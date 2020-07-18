@@ -17,11 +17,17 @@ library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, digits = 3, ...){
-datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(scrollX = TRUE, 
-                         dom = '<<t>Bp>',
-                         buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
-    formatSignif(columns = c(as.numeric(which(sapply(table, class) == "numeric"))), digits = digits)}
+  df <- datatable(table, rownames = rownames, extensions = 'Buttons',
+                  options = list(scrollX = TRUE, 
+                                 dom = '<<t>Bp>',
+                                 buttons = c('copy', 'excel', 'pdf', 'print')), ...)
+  num_cols <- c(as.numeric(which(sapply(table, class) == "numeric")))
+  if(length(num_cols) > 0){
+    formatSignif(df, columns = num_cols, digits = digits)
+  } else{
+    df
+  }
+}
 
 ```
 
@@ -193,11 +199,17 @@ This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables w
 library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, digits = 3, ...){
-datatable(table, rownames = rownames, extensions = 'Buttons',
-          options = list(scrollX = TRUE, 
-                         dom = '<<t>Bp>',
-                         buttons = c('copy', 'excel', 'pdf', 'print')), ...) %>%
-    formatSignif(columns = c(as.numeric(which(sapply(table, class) == "numeric"))), digits = digits)}
+  df <- datatable(table, rownames = rownames, extensions = 'Buttons',
+                  options = list(scrollX = TRUE, 
+                                 dom = '<<t>Bp>',
+                                 buttons = c('copy', 'excel', 'pdf', 'print')), ...)
+  num_cols <- c(as.numeric(which(sapply(table, class) == "numeric")))
+  if(length(num_cols) > 0){
+    formatSignif(df, columns = num_cols, digits = digits)
+  } else{
+    df
+  }
+}
 
 ```
 

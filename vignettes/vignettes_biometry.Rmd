@@ -81,11 +81,11 @@ lpc1 <-
   data_ge2 %>% 
   select(starts_with("N")) %>% 
   lpcor()
-print_table(as.data.frame(lpc1))
+print_table(lpc1$results)
 
 # Compute the correlations for each level of the factor ENV
 lpc2 <- lpcor(data_ge2, by = ENV)
-print_table(lpc2)
+print(lpc2)
 
     ```
 
@@ -320,7 +320,7 @@ The following codes compute a complete collinearity diagnostic of a correlation 
 ```{r }
 cor_data <- lpc1$linear.mat
 n <- nrow(data_ge2)
-cold1 = colindiag(cor_data, n = n)
+cold1 <- colindiag(cor_data, n = n)
 
 ```
 
@@ -518,8 +518,7 @@ data_ge2 %>%
 mahala_design(gen = GEN,
               rep = REP,
               resp = c(PH, EH, NKE, TKW, CL, CD, CW, KW),
-              by = ENV) %>%
-pairs_mantel()
+              by = ENV)
 
 ```
 

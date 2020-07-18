@@ -97,7 +97,7 @@ random-effect models." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
       </span>
     </div>
 
@@ -330,7 +330,7 @@ with the larger.</p></li>
 "gen"</code> or <code>random = "all"</code>) with the following columns: <code>Phenotypic
 variance</code> the phenotypic variance; <code>Heritability</code> the broad-sense
 heritability; <code>GEr2</code> the coefficient of determination of the interaction
-effects; <code>Heribatility of means</code> the heritability on the mean basis;
+effects; <code>h2mg</code> the heritability on the mean basis;
 <code>Accuracy</code> the selective accuracy; <code>rge</code> the genotype-environment
 correlation; <code>CVg</code> the genotypic coefficient of variation; <code>CVr</code>
 the residual coefficient of variation; <code>CV ratio</code> the ratio between
@@ -419,17 +419,17 @@ incomplete block designs. Biometrika 63:83-92.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>model</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"re"</span>)</div><div class='img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Genetic parameters</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model</span>, <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
-#&gt;   Parameters                GY     HM
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance    0.181 5.52  
-#&gt; </span><span style='color: #555555;'>2</span><span> Heritability           0.154 0.088</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                  0.313 0.397 
-#&gt; </span><span style='color: #555555;'>4</span><span> Heribatility of means  0.815 0.686 
-#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy               0.903 0.828 
-#&gt; </span><span style='color: #555555;'>6</span><span> rge                    0.370 0.435 
-#&gt; </span><span style='color: #555555;'>7</span><span> CVg                    6.26  1.46  
-#&gt; </span><span style='color: #555555;'>8</span><span> CVr                   11.6   3.50  
-#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio               0.538 0.415 </div><div class='input'>
+#&gt;   Parameters              GY     HM
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance  0.181 5.52  
+#&gt; </span><span style='color: #555555;'>2</span><span> Heritability         0.154 0.088</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                0.313 0.397 
+#&gt; </span><span style='color: #555555;'>4</span><span> h2mg                 0.815 0.686 
+#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy             0.903 0.828 
+#&gt; </span><span style='color: #555555;'>6</span><span> rge                  0.370 0.435 
+#&gt; </span><span style='color: #555555;'>7</span><span> CVg                  6.26  1.46  
+#&gt; </span><span style='color: #555555;'>8</span><span> CVr                 11.6   3.50  
+#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio             0.538 0.415 </div><div class='input'>
 
 
 <span class='co'>#===============================================================#</span>
@@ -456,17 +456,17 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt;   GEN:ENV 2.11e-11
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model2</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
-#&gt;   Parameters                 GY
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance    0.907 
-#&gt; </span><span style='color: #555555;'>2</span><span> Heritability           0.030</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                  0.314 
-#&gt; </span><span style='color: #555555;'>4</span><span> Heribatility of means  0.813 
-#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy               0.902 
-#&gt; </span><span style='color: #555555;'>6</span><span> rge                    0.371 
-#&gt; </span><span style='color: #555555;'>7</span><span> CVg                    6.24  
-#&gt; </span><span style='color: #555555;'>8</span><span> CVr                   11.6   
-#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio               0.536 </div><div class='input'># }
+#&gt;   Parameters               GY
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance  0.907 
+#&gt; </span><span style='color: #555555;'>2</span><span> Heritability         0.030</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                0.314 
+#&gt; </span><span style='color: #555555;'>4</span><span> h2mg                 0.813 
+#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy             0.902 
+#&gt; </span><span style='color: #555555;'>6</span><span> rge                  0.371 
+#&gt; </span><span style='color: #555555;'>7</span><span> CVg                  6.24  
+#&gt; </span><span style='color: #555555;'>8</span><span> CVr                 11.6   
+#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio             0.536 </div><div class='input'># }
 
 </div></span></pre>
   </div>

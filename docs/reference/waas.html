@@ -97,7 +97,7 @@ al., 2019)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
       </span>
     </div>
 
@@ -245,7 +245,7 @@ al., 2019).</p>
   <span class='kw'>wresp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ind_anova</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ind_anova</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
@@ -322,8 +322,8 @@ significance. Note that if two or more variables are included in
     </tr>
     <tr>
       <th>ind_anova</th>
-      <td><p>Logical argument set to <code>TRUE</code>. If <code>FALSE</code> the
-within-environment ANOVA is not performed.</p></td>
+      <td><p>Logical argument set to <code>FALSE</code>. If <code>TRUE</code> an
+within-environment ANOVA is performed.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

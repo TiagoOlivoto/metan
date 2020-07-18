@@ -109,7 +109,7 @@ presents desired values for all the analyzed traits." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
       </span>
     </div>
 
@@ -272,10 +272,10 @@ presents desired values for all the analyzed traits.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>An object fitted with the function <code><a href='gamem.html'>gamem</a></code> or a
-two-way table with BLUPs for genotypes in each trait (genotypes in rows and
-traits in columns). In the last case, row names must contain the genotypes
-names.</p></td>
+      <td><p>An object fitted with the function <code><a href='gafem.html'>gafem</a>()</code>,
+<code><a href='gamem.html'>gamem</a>()</code> or a two-way table with BLUPs for genotypes in each
+trait (genotypes in rows and traits in columns). In the last case, row
+names must contain the genotypes names.</p></td>
     </tr>
     <tr>
       <th>SI</th>
@@ -295,8 +295,9 @@ the traits in which higher values are desired or <code>'l'</code> to indicate th
 variables in which lower values are desired. For example, <code>ideotype =
   c("h, h, h, h, l")</code> will consider that the ideotype has higher values for
 the first four traits and lower values for the last trait. If <code>.data</code>
-is a model fitted with the function <code><a href='gamem.html'>gamem</a></code>, the order of the
-traits will be the declared in the argument <code>resp</code> in that function.</p></td>
+is a model fitted with the functions <code><a href='gafem.html'>gafem</a>()</code> or
+<code><a href='gamem.html'>gamem</a>()</code>, the order of the traits will be the declared in the
+argument <code>resp</code> in those functions.</p></td>
     </tr>
     <tr>
       <th>use</th>
@@ -327,11 +328,13 @@ shown in the console.</p></td>
 <li><p><strong>canonical_loadings</strong> The canonical loadings.</p></li>
 <li><p><strong>scores_gen</strong> The scores for genotypes in all retained factors.</p></li>
 <li><p><strong>scores_ide</strong> The scores for the ideotype in all retained factors.</p></li>
-<li><p><strong>gen_ide</strong> The distance between the scores of each genotype with the ideotype.</p></li>
+<li><p><strong>gen_ide</strong> The distance between the scores of each genotype with the
+ideotype.|</p></li>
 <li><p><strong>MGIDI</strong> The multi-trait genotype-ideotype distance index.</p></li>
-<li><p><strong>contri_fac</strong> The relative contribution of each factor on the MGIDI value.
-The lower the contribution of a factor, the close of the ideotype the variables in such
-factor are.</p></li>
+<li><p><strong>contri_fac</strong> The relative contribution of each factor on the MGIDI
+value.
+The lower the contribution of a factor, the close of the ideotype the
+variables in such factor are.</p></li>
 <li><p><strong>sel_dif</strong> The selection differential for the variables.</p></li>
 <li><p><strong>total_gain</strong> The selection differential for the variables.</p></li>
 <li><p><strong>sel_gen</strong> The selected genotypes.</p></li>
@@ -369,28 +372,28 @@ II: Selection based on multiple traits. Agron. J. 111:2961-2969.
 #&gt; <span style='color: #555555;'># A tibble: 8 x 4</span><span>
 #&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1      3.89            48.6                   48.6
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2      3.09            38.6                   87.1
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3      0.518            6.48                  93.6
-#&gt; </span><span style='color: #555555;'>4</span><span> PC4      0.272            3.40                  97.0
-#&gt; </span><span style='color: #555555;'>5</span><span> PC5      0.178            2.23                  99.2
-#&gt; </span><span style='color: #555555;'>6</span><span> PC6      0.056</span><span style='text-decoration: underline;'>1</span><span>           0.702                100. 
-#&gt; </span><span style='color: #555555;'>7</span><span> PC7      0.003</span><span style='text-decoration: underline;'>02</span><span>          0.037</span><span style='text-decoration: underline;'>7</span><span>               100. 
-#&gt; </span><span style='color: #555555;'>8</span><span> PC8      0.000</span><span style='text-decoration: underline;'>966</span><span>         0.012</span><span style='text-decoration: underline;'>1</span><span>               100  
+#&gt; </span><span style='color: #555555;'>1</span><span> PC1          3.89          48.6                 48.6
+#&gt; </span><span style='color: #555555;'>2</span><span> PC2          3.09          38.6                 87.1
+#&gt; </span><span style='color: #555555;'>3</span><span> PC3          0.52           6.48                93.6
+#&gt; </span><span style='color: #555555;'>4</span><span> PC4          0.27           3.4                 97.0
+#&gt; </span><span style='color: #555555;'>5</span><span> PC5          0.18           2.23                99.2
+#&gt; </span><span style='color: #555555;'>6</span><span> PC6          0.06           0.7                100. 
+#&gt; </span><span style='color: #555555;'>7</span><span> PC7          0              0.04               100. 
+#&gt; </span><span style='color: #555555;'>8</span><span> PC8          0              0.01               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
 #&gt; </span><span style='color: #555555;'># A tibble: 8 x 5</span><span>
-#&gt;   VAR       FA1       FA2 Communality Uniquenesses
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> NR    -</span><span style='color: #BB0000;'>0.065</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.899</span><span>          0.813       0.187 
-#&gt; </span><span style='color: #555555;'>2</span><span> KW    -</span><span style='color: #BB0000;'>0.444</span><span>  -</span><span style='color: #BB0000;'>0.842</span><span>          0.907       0.093</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> CW    -</span><span style='color: #BB0000;'>0.935</span><span>  -</span><span style='color: #BB0000;'>0.280</span><span>          0.953       0.046</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> CL    -</span><span style='color: #BB0000;'>0.952</span><span>   0.029</span><span style='text-decoration: underline;'>4</span><span>         0.907       0.092</span><span style='text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> NKE    0.405  -</span><span style='color: #BB0000;'>0.853</span><span>          0.891       0.109 
-#&gt; </span><span style='color: #555555;'>6</span><span> TKW   -</span><span style='color: #BB0000;'>0.913</span><span>  -</span><span style='color: #BB0000;'>0.000</span><span style='color: #BB0000;text-decoration: underline;'>960</span><span>       0.834       0.166 
-#&gt; </span><span style='color: #555555;'>7</span><span> PERK   0.933  -</span><span style='color: #BB0000;'>0.154</span><span>          0.894       0.106 
-#&gt; </span><span style='color: #555555;'>8</span><span> PH     0.019</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.879</span><span>          0.772       0.228 
+#&gt;   VAR     FA1   FA2 Communality Uniquenesses
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> NR    -</span><span style='color: #BB0000;'>0.07</span><span> -</span><span style='color: #BB0000;'>0.9</span><span>         0.81         0.19
+#&gt; </span><span style='color: #555555;'>2</span><span> KW    -</span><span style='color: #BB0000;'>0.44</span><span> -</span><span style='color: #BB0000;'>0.84</span><span>        0.91         0.09
+#&gt; </span><span style='color: #555555;'>3</span><span> CW    -</span><span style='color: #BB0000;'>0.94</span><span> -</span><span style='color: #BB0000;'>0.28</span><span>        0.95         0.05
+#&gt; </span><span style='color: #555555;'>4</span><span> CL    -</span><span style='color: #BB0000;'>0.95</span><span>  0.03        0.91         0.09
+#&gt; </span><span style='color: #555555;'>5</span><span> NKE    0.41 -</span><span style='color: #BB0000;'>0.85</span><span>        0.89         0.11
+#&gt; </span><span style='color: #555555;'>6</span><span> TKW   -</span><span style='color: #BB0000;'>0.91</span><span>  0           0.83         0.17
+#&gt; </span><span style='color: #555555;'>7</span><span> PERK   0.93 -</span><span style='color: #BB0000;'>0.15</span><span>        0.89         0.11
+#&gt; </span><span style='color: #555555;'>8</span><span> PH     0.02 -</span><span style='color: #BB0000;'>0.88</span><span>        0.77         0.23
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.8713971 
 #&gt; -------------------------------------------------------------------------------

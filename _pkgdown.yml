@@ -290,6 +290,9 @@ reference:
   - title: "Data manipulation"
     desc: "Utilities for handling with columns, rows, numbers, strings, and matrices."
     contents:
+  - subtitle: "Copy-Paste"
+    contents:
+      - utils_data
   - subtitle: "Numbers and strings"
     contents:
       - utils_num_str
