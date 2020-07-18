@@ -1,5 +1,5 @@
 # Release summary
-This is a patch release (v1.6.1) that fixes the [error in donttest example](https://www.stats.ox.ac.uk/pub/bdr/donttest/metan.out) and inclues minor improvements. Please, see the `news.md` file for more details.
+This is a minor release (v1.7.0) that includes new functions and improves the usability of `mgidi()` function. Please, see the `news.md` file for more details.
 
 # Test environments
 - local OS X install, R 4.0.0
