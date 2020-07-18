@@ -349,7 +349,7 @@ melhoramento genetico. Embrapa Florestas, Colombo
 
 Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
 Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
-\href{http://doi.org/10.2135/cropsci1997.0011183X003700020013x}{doi:10.2135/cropsci1997.0011183X003700020013x}
+\href{https://onlinelibrary.wiley.com/doi/abs/10.2135/cropsci1997.0011183X003700020013x}{doi:10.2135/cropsci1997.0011183X003700020013x}
 
 Shahbazi, E. 2019. Genotype selection and stability analysis for seed yield
 of Nigella sativa using parametric and non-parametric statistics. Sci.

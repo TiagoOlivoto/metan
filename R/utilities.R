@@ -1619,8 +1619,7 @@ is_balanced_trial <- function(.data, env, gen, resp){
 #' @param .data The data that should be copied to the clipboard. Only data frames and matrices are allowed
 #' @param header If the copied data has a header row for dataFrame, defaults to
 #'   \code{TRUE}.
-#' @param sep The separator which should be used in the copied output, defaults
-#'   to \code{"\t"}.
+#' @param sep The separator which should be used in the copied output.
 #' @param row_names Decides if the output should keep row names or not, defaults
 #'   to \code{FALSE}.
 #' @param col_names Decides if the output should keep column names or not,

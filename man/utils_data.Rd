@@ -14,8 +14,7 @@ clip_write(.data, sep = "\\t", row_names = FALSE, col_names = TRUE, ...)
 \item{header}{If the copied data has a header row for dataFrame, defaults to
 \code{TRUE}.}
 
-\item{sep}{The separator which should be used in the copied output, defaults
-to \code{"\t"}.}
+\item{sep}{The separator which should be used in the copied output.}
 
 \item{...}{Further arguments to be passed to \code{\link[utils]{read.table}()}.}
 

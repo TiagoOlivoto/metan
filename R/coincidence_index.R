@@ -28,7 +28,7 @@
 #' @references
 #' Hamblin, J., and M.J. de O. Zimmermann. 1986. Breeding Common Bean for Yield
 #' in Mixtures. p. 245-272. In Plant Breeding Reviews. John Wiley & Sons, Inc.,
-#' Hoboken, NJ, USA.\href{http://doi.wiley.com/10.1002/9781118061015.ch8}{doi:10.1002/9781118061015.ch8}
+#' Hoboken, NJ, USA.\href{https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118061015.ch8}{doi:10.1002/9781118061015.ch8}
 #'
 #' @examples
 #' \donttest{
