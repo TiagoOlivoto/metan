@@ -1,3 +1,6 @@
+# metan (development version)
+* Include class `gge` in `get_model_data()`.
+
 # metan 1.7.0
 
 * New functions `clip_read()` and `clip_write()` to read from the clipboard and write to the clipboard, respectively.
