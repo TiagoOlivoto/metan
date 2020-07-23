@@ -90,6 +90,11 @@
 #' * \code{"env_means"} Environment means.
 #' * \code{"gen_means"} Genotype means.
 #'
+#'  \strong{Objects of class \code{gge}:}
+#' * \code{"scores"} The scores for genotypes and environments for all the
+#' analyzed traits (default).
+#' * \code{"exp_var"} The eigenvalues and explained variance.
+#'
 #'  \strong{Objects of class \code{Shukla}:}
 #' * \code{"rMean"} Rank for the mean.
 #' * \code{"ShuklaVar"} Shukla's stablity variance (default).
@@ -334,7 +339,7 @@ get_model_data <- function(x,
                        "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                        "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                        "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
-                       "gafem", "anova_ind")) {
+                       "gafem", "anova_ind", "gge")) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -373,12 +378,48 @@ get_model_data <- function(x,
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Y", "h2", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
   check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSCR", "FCR", "PFCR", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
+  check22 <- c("scores", "exp_var")
   if (!is.null(what) && what %in% check3 && !class(x) %in% c("waasb", "gamem", "gafem", "anova_joint")) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
+
+  if(class(x) == "gge"){
+    if (is.null(what)){
+      what <- "scores"
+    }
+    if(class(x) == "gge" && !what %in% check22){
+      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check22, collapse = ", "), call. = FALSE)
+    }
+    if(what == "scores"){
+      npc <- length(x[[1]]$varexpl)
+    bind <- lapply(x, function(x) {
+      rbind(x$ coordgen %>%
+              as.data.frame() %>%
+              set_names(paste("PC", 1:npc, sep = "")) %>%
+              add_cols(TYPE = "GEN",
+                       CODE = x$labelgen,
+                       .before = 1),
+            x$coordenv %>%
+              as.data.frame() %>%
+              set_names(paste("PC", 1:npc, sep = "")) %>%
+              add_cols(TYPE = "ENV",
+                       CODE = x$labelenv,
+                       .before = 1))
+    })
+    }
+    if(what == "exp_var"){
+      bind <- lapply(x, function(x) {
+        tibble(PC = x$labelaxes,
+               Eigenvalue = x$eigenvalues,
+               Variance = x$varexpl,
+               Accumulated = cumsum(Variance))
+      })
+    }
+  }
+
   if (class(x)  %in% c("waasb", "gamem")) {
     if (is.null(what)){
       what <- "genpar"

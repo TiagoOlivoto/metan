@@ -122,6 +122,13 @@ alpha lattice design only).
 \item \code{"gen_means"} Genotype means.
 }
 
+\strong{Objects of class \code{gge}:}
+\itemize{
+\item \code{"scores"} The scores for genotypes and environments for all the
+analyzed traits (default).
+\item \code{"exp_var"} The eigenvalues and explained variance.
+}
+
 \strong{Objects of class \code{Shukla}:}
 \itemize{
 \item \code{"rMean"} Rank for the mean.
