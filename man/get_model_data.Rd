@@ -10,13 +10,13 @@ get_model_data(x, what = NULL, type = "GEN", verbose = TRUE)
 gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 }
 \arguments{
-\item{x}{An object created with the functions \code{\link{AMMI_indexes}},
-\code{\link{anova_ind}}, \code{\link{anova_joint}},
-\code{\link{ecovalence}},  \code{\link{Fox}}, \code{\link{gai}},
-\code{\link{gamem}},\code{\link{gafem}}, \code{\link{ge_means}},
-\code{\link{ge_reg}}, \code{\link{performs_ammi}},
-\code{\link{Resende_indexes}}, \code{\link{Shukla}},
-\code{\link{superiority}}, \code{\link{waas}} or \code{\link{waasb}}.}
+\item{x}{An object created with the functions \code{\link{AMMI_indexes}()},
+\code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_cor}()}
+\code{\link{ecovalence}()},  \code{\link{Fox}()}, \code{\link{gai}()},
+\code{\link{gamem}()},\code{\link{gafem}()}, \code{\link{ge_means}()},
+\code{\link{ge_reg}()}, \code{\link{performs_ammi}()},
+\code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
+\code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.}
 
 \item{what}{What should be captured from the model. See more in section
 \strong{Details}.}
@@ -93,6 +93,14 @@ alpha lattice design only).
 \item \code{"Mean_rp"} The relative performance of the mean.
 \item \code{"rank"} The rank for genotypic confidence index.
 \item \code{"Wi"} The genotypic confidence index.
+}
+
+\strong{Objects of class \code{can_cor}:}
+\itemize{
+\item \code{"coefs"} The canonical coefficients (default).
+\item \code{"loads"} The canonical loadings.
+\item \code{"crossloads"} The canonical cross-loadings.
+\item \code{"canonical"} The canonical correlations and hypothesis testing.
 }
 
 \strong{Objects of class \code{ecovalence}:}

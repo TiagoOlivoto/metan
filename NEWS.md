@@ -1,5 +1,5 @@
 # metan (development version)
-* Include class `gge` in `get_model_data()`.
+* Include class `gge` and `can_corr` in `get_model_data()`.
 
 # metan 1.7.0
 

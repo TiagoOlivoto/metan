@@ -111,7 +111,7 @@ can_corr <- function(.data,
           stdscores = stdscores,
           verbose = verbose,
           collinearity = collinearity)
-    return(results)
+    return(set_class(results, c("can_cor", "can_cor_group", "tbl_df", "tbl",  "data.frame")))
   }
   FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
   SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
@@ -302,11 +302,13 @@ can_corr <- function(.data,
     cat("---------------------------------------------------------------------------\n")
     print(Rvy)
   }
-  invisible(structure(list(Matrix = MC, MFG = S11, MSG = S22,
-                           MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
-                           Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,
-                           Crossload_SG = SG_CL, Sigtest = results, collinearity = colin),
-                      class = "can_cor"))
+
+  out <- list(Matrix = MC, MFG = S11, MSG = S22,
+              MFG_SG = S12, Coef_FG = Coef_FG, Coef_SG = Coef_SG, Loads_FG = Rux,
+              Loads_SG = Rvy, Score_FG = FG_SC, Score_SG = SG_SC, Crossload_FG = FG_CL,
+              Crossload_SG = SG_CL, Sigtest = results, collinearity = colin) %>%
+    add_class(class = "can_cor")
+  invisible(out)
 }
 
 
