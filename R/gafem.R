@@ -46,22 +46,24 @@
 #' @details \code{gafem} analyses data from a one-way genotype testing
 #'   experiment. By default, a randomized complete block design is used
 #'   according to the following model:
-#' \deqn{Y_{ij} = m + g_i + r_j + e_{ij}}
-#' where \eqn{Y_{ij}} is the response variable of the ith genotype in the
-#' \emph{j}th block; \emph{m} is the grand mean (fixed); \eqn{g_i} is the effect
-#' of the \emph{i}th genotype; \eqn{r_j} is the effect of the \emph{j}th
-#' replicate; and \eqn{e_{ij}} is the random error.
+#' \loadmathjax
+#' \mjsdeqn{Y_{ij} = m + g_i + r_j + e_{ij}}
+#' where \mjseqn{Y_{ij}} is the response variable of the ith genotype in the
+#' \emph{j}th block; \emph{m} is the grand mean (fixed); \mjseqn{g_i} is the effect
+#' of the \emph{i}th genotype; \mjseqn{r_j} is the effect of the \emph{j}th
+#' replicate; and \mjseqn{e_{ij}} is the random error.
 #'
 #' When \code{block} is informed, then a resolvable alpha design is implemented,
 #' according to the following model:
 #'
-#' \deqn{Y_{ijk} = m + g_i + r_j + b_{jk} + e_{ijk}} where where \eqn{y_{ijk}}
+#' \mjsdeqn{Y_{ijk} = m + g_i + r_j + b_{jk} + e_{ijk}}
+#'  where where \mjseqn{y_{ijk}}
 #' is the response variable of the \emph{i}th genotype in the \emph{k}th block
-#' of the \emph{j}th replicate; \emph{m} is the intercept, \eqn{t_i} is the
-#' effect for the \emph{i}th genotype \eqn{r_j} is the effect of the \emph{j}th
-#' replicate, \eqn{b_{jk}} is the effect of the \emph{k}th incomplete block of
-#' the \emph{j}th replicate, and \eqn{e_{ijk}} is the plot error effect
-#' corresponding to \eqn{y_{ijk}}. All effects, except the random error are
+#' of the \emph{j}th replicate; \emph{m} is the intercept, \mjseqn{t_i} is the
+#' effect for the \emph{i}th genotype \mjseqn{r_j} is the effect of the \emph{j}th
+#' replicate, \mjseqn{b_{jk}} is the effect of the \emph{k}th incomplete block of
+#' the \emph{j}th replicate, and \mjseqn{e_{ijk}} is the plot error effect
+#' corresponding to \mjseqn{y_{ijk}}. All effects, except the random error are
 #' assumed to be fixed.
 #'
 #' @md
