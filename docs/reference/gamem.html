@@ -97,7 +97,7 @@ estimation of genetic parameters." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0.9000</span>
       </span>
     </div>
 
@@ -310,13 +310,15 @@ coefficient of variation.</p></li>
 
     <p><code>gamem</code> analyses data from a one-way genotype testing experiment.
 By default, a randomized complete block design is used according to the following model:
-$$Y_{ij} = m + g_i + r_j + e_{ij}$$
+<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
+
+\[Y_{ij} = m + g_i + r_j + e_{ij}\]
 where \(Y_{ij}\) is the response variable of the ith genotype in the <em>j</em>th block;
 <em>m</em> is the grand mean (fixed); \(g_i\) is the effect of the <em>i</em>th genotype
 (assumed to be random); \(r_j\) is the effect of the <em>j</em>th replicate (assumed to be fixed);
 and \(e_{ij}\) is the random error.</p>
 <p>When <code>block</code> is informed, then a resolvable alpha design is implemented, according to the following model:</p>
-<p>$$Y_{ijk} = m + g_i + r_j + b_{jk} + e_{ijk}$$
+<p>\[Y_{ijk} = m + g_i + r_j + b_{jk} + e_{ijk}\]
 where where \(y_{ijk}\) is the response variable of the <em>i</em>th genotype in the
 <em>k</em>th block of the <em>j</em>th replicate; <em>m</em> is the intercept, \(t_i\) is
 the effect for the <em>i</em>th genotype \(r_j\) is the effect of the <em>j</em>th

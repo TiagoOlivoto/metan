@@ -183,8 +183,13 @@ corr_plot(data_ge2, CD, EL, PERK, NKR, CW, NKE,
 arrange_ggplot(a, b, c, d, labels = letters[1:4])
 ```
 
+It is also possible to use a categorical variable of the data to map the scatterplot by colors.
 
-The function `corr_coef()` can be used to compute Pearson producto-moment correlation coefficients with p-values.  A correlation heat map can be created with the function `plot()`
+```{r fig.height = 6, fig.width = 6}
+corr_plot(iris, col.by = Species)
+```
+
+The function `corr_coef()` can be used to compute Pearson product-moment correlation coefficients with p-values.  A correlation heat map can be created with the function `plot()`
 
 
 ## (co)variance and correlations for designed experiments
