@@ -8,6 +8,8 @@
 #'   with a warning message.
 #' @param ... Variables to use in the correlation. If no variable is informed
 #'   all the numeric variables from \code{.data} are used.
+#' @param col.by A categorical variable to map the color of the points by.
+#'   Defaults to \code{NULL}.
 #' @param upper The visualization method for the upper triangular correlation
 #'   matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
 #'   (the scatterplot for each pairwise combination), or \code{NULL} to set a
@@ -130,7 +132,7 @@
 #'           pan.spacing = 0,
 #'           lab.position = 'tl')
 #'}
-corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
+corr_plot <- function(.data, ..., col.by = NULL, upper = "corr", lower = "scatter",
                       axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12,
                       diag = TRUE, diag.type = "histogram", bins = 20, col.diag = "gray",
                       alpha.diag = 1, col.up.panel = "gray", col.lw.panel = "gray",
@@ -159,24 +161,30 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
       stop("The argument 'lower' must be one of the 'corr', 'scatter' or 'NULL'.")
     }
   }
+  col.by.test <- missing(col.by)
+  if(!col.by.test && !missing(fill.point) || !col.by.test && !missing(col.point)){
+    message("Arguments 'fill.point' and 'col.point' overwritten by 'col.by'")
+  }
   if (missing(...)) {
-    data <- select_numeric_cols(.data)
+    data <- select(.data, where(is.numeric), {{col.by}})
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
   }
   if (!missing(...)) {
-    data <- select(.data, ...) %>%
-      select_numeric_cols()
+    data <- select(.data, ..., {{col.by}})
     if(has_na(data)){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
   }
   w <- c(21:25)
-  if (is.null(fill.point) == TRUE && any(w == shape.point)) {
+  if (is.null(fill.point) == TRUE && any(w == shape.point) && col.by.test) {
     stop("If 'shape.point' is a value between 21 and 25, you must provide a color to fill the shape using the argument 'fill.point.'")
+  }
+  if (!is.null(fill.point) && !shape.point %in% w) {
+    stop("If 'fill.point' is informed, then declare 'shape.point' between 21 and 25.", call. = FALSE)
   }
   my_custom_cor <- function(data, mapping, color = I("black"),
                             sizeRange = c(minsize, maxsize), ...) {
@@ -208,12 +216,25 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
     rt <- format(r, digits = digits)[1]
     tt <- as.character(rt)
     p <- ggplot2::ggplot(data = data, mapping = mapping)
-    if (is.null(fill.point) == FALSE) {
-      p <- p + geom_point(color = I(col.point), fill = fill.point,
-                          shape = shape.point, size = size.point, alpha = alpha.point)
+    if (!is.null(fill.point) && col.by.test) {
+      p <- p + geom_point(color = I(col.point),
+                          fill = fill.point,
+                          shape = shape.point,
+                          size = size.point,
+                          alpha = alpha.point)
     } else {
-      p <- p + geom_point(color = I(col.point), shape = shape.point,
-                          size = size.point, alpha = alpha.point)
+      if(col.by.test){
+        p <- p + geom_point(color = col.point,
+                            shape = shape.point,
+                            size = size.point,
+                            alpha = alpha.point)
+      } else{
+        p <- p + geom_point(aes(color = {{col.by}},
+                                fill = {{col.by}}),
+                            shape = shape.point,
+                            size = size.point,
+                            alpha = alpha.point)
+      }
     }
     p <- p + theme_classic() + theme(panel.background = ggplot2::element_rect(fill = "white",
                                                                               color = col.lw.panel))
@@ -302,11 +323,13 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
   } else {
     axis.labels <- "none"
   }
-  p1 <- GGally::ggpairs(data, upper = upper, lower = lower,
+  p1 <- GGally::ggpairs(data,
+                        columns =  which( unlist(lapply(data, is.numeric))),
+                        upper = upper, lower = lower,
                         switch = switch, diag = diag, progress = progress, axisLabels = axis.labels)+
-                    theme(panel.spacing = grid::unit(pan.spacing, "lines"),
-                          axis.text = element_text(size = size.axis.label, color = "black"),
-                          axis.ticks.length = unit(0.2, "cm"))
+    theme(panel.spacing = grid::unit(pan.spacing, "lines"),
+          axis.text = element_text(size = size.axis.label, color = "black"),
+          axis.ticks.length = unit(0.2, "cm"))
   if (export == FALSE) {
     return(p1)
   } else if (file.type == "pdf") {
@@ -329,3 +352,4 @@ corr_plot <- function(.data, ..., upper = "corr", lower = "scatter",
     dev.off()
   }
 }
+

@@ -7,6 +7,7 @@
 corr_plot(
   .data,
   ...,
+  col.by = NULL,
   upper = "corr",
   lower = "scatter",
   axis.labels = FALSE,
@@ -53,6 +54,9 @@ with a warning message.}
 
 \item{...}{Variables to use in the correlation. If no variable is informed
 all the numeric variables from \code{.data} are used.}
+
+\item{col.by}{A categorical variable to map the color of the points by.
+Defaults to \code{NULL}.}
 
 \item{upper}{The visualization method for the upper triangular correlation
 matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
