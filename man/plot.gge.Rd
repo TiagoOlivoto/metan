@@ -22,7 +22,7 @@
   col.alpha = 1,
   col.circle = "gray",
   col.alpha.circle = 0.5,
-  leg.lab = c("Gen", "Env"),
+  leg.lab = c("Env", "Gen"),
   size.text.gen = 4,
   size.text.env = 4,
   size.text.lab = 12,
@@ -85,7 +85,7 @@ must be between \code{0} (full transparency) to \code{1} (full color).}
 \item{col.circle, col.alpha.circle}{The color and alpha values for the circle
 lines. Defaults to \code{'gray'} and \code{0.4}, respectively.}
 
-\item{leg.lab}{The labs of legend. Default is \code{c('Gen', 'Env')}.}
+\item{leg.lab}{The labs of legend. Default is \code{c('Env', 'Gen')}.}
 
 \item{size.text.gen, size.text.env, size.text.lab}{The size of the text for
 genotypes, environments and labels, respectively.}
@@ -100,7 +100,7 @@ the two selected genotypes. Defaults to 4.5}
 enable fitting of labels. Defaults to 1.2}
 
 \item{title}{Logical values (Defaults to \code{TRUE}) to include
-automatically generated informations in the plot such as singular value
+automatically generated information in the plot such as singular value
 partitioning, scaling and centering.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is

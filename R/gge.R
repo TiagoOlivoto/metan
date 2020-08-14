@@ -264,7 +264,7 @@ gge <- function(.data,
 #'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param col.circle,col.alpha.circle The color and alpha values for the circle
 #'   lines. Defaults to \code{'gray'} and \code{0.4}, respectively.
-#' @param leg.lab The labs of legend. Default is \code{c('Gen', 'Env')}.
+#' @param leg.lab The labs of legend. Default is \code{c('Env', 'Gen')}.
 #' @param size.text.gen,size.text.env,size.text.lab The size of the text for
 #'   genotypes, environments and labels, respectively.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
@@ -274,7 +274,7 @@ gge <- function(.data,
 #' @param axis_expand multiplication factor to expand the axis limits by to
 #'   enable fitting of labels. Defaults to 1.2
 #' @param title Logical values (Defaults to \code{TRUE}) to include
-#'   automatically generated informations in the plot such as singular value
+#'   automatically generated information in the plot such as singular value
 #'   partitioning, scaling and centering.
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
@@ -316,7 +316,7 @@ plot.gge <- function(x,
                      col.alpha = 1,
                      col.circle = "gray",
                      col.alpha.circle = 0.5,
-                     leg.lab = c("Gen", "Env"),
+                     leg.lab = c("Env", "Gen"),
                      size.text.gen = 4,
                      size.text.env = 4,
                      size.text.lab = 12,
@@ -373,7 +373,7 @@ plot.gge <- function(x,
   # Base plot
   P1 <-
     ggplot(data = plotdata, aes(x = d1, y = d2, group = "type")) +
-    scale_color_manual(values = c(col.gen, col.env)) +
+    scale_color_manual(values = c(col.env, col.gen)) +
     scale_size_manual(values = c(size.text.gen, size.text.env)) +
     xlab(paste(labelaxes[1], " (", round(varexpl[1], 2), "%)", sep = "")) +
     ylab(paste(labelaxes[2]," (", round(varexpl[2], 2), "%)", sep = "")) +
@@ -398,9 +398,9 @@ plot.gge <- function(x,
                  stroke = size.bor.tick,
                  alpha = col.alpha) +
       scale_shape_manual(labels = leg.lab,
-                         values = c(shape.gen, shape.env)) +
+                         values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab,
-                        values = c(col.gen, col.env)) +
+                        values = c(col.env, col.gen)) +
       geom_text_repel(aes(col = type,
                           label = label,
                           size = type),
@@ -533,8 +533,8 @@ plot.gge <- function(x,
     if("genotype" %in% others$type){
       P2 <-
         P2 +
-        scale_shape_manual(labels = leg.lab, values = c(shape.gen, shape.env)) +
-        scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env))
+        scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
+        scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen))
     } else{
       P2 <-
         suppressMessages(
@@ -584,8 +584,8 @@ plot.gge <- function(x,
                  size = size.shape,
                  stroke = size.bor.tick,
                  alpha = col.alpha) +
-      scale_shape_manual(labels = leg.lab, values = c(shape.gen, shape.env)) +
-      scale_fill_manual(labels = leg.lab,  values = c(col.gen, col.env)) +
+      scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
+      scale_fill_manual(labels = leg.lab,  values = c(col.env, col.gen)) +
       geom_segment(data = subset(plotdata, type == "environment"),
                    xend = 0,
                    yend = 0,
@@ -820,8 +820,8 @@ plot.gge <- function(x,
                  size = size.shape,
                  stroke = size.bor.tick,
                  alpha = col.alpha) +
-      scale_shape_manual(labels = leg.lab, values = c(shape.gen, shape.env)) +
-      scale_fill_manual(labels = leg.lab, values = c(col.gen, col.env)) +
+      scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
+      scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen)) +
       geom_text_repel(aes(col = type, label = label, size = type),
                       show.legend = FALSE,
                       color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
