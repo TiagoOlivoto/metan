@@ -513,7 +513,7 @@ plot(scenarios, type = 2)
 @ColombariFilho2013 have shown the use of three BLUP-based indexes for selecting genotypes with performance and stability. The first is the harmonic mean of genotypic values -or BLUPS- (HMGV) a stability index that considers the genotype with the highest harmonic mean across environments as the most stable, as follows:
 
 $$
-HMGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}}}}
+HMG{V_i} = \frac{E}{{\sum\limits_{j = 1}^E {\frac{1}{{BLUP{_{ij}}}}}}}
 $$
 
 The second is the relative performance of genotypic values (RPGV), an adaptability index estimated as follows:
@@ -525,14 +525,14 @@ $$
 The third and last is the harmonic mean of relative performance of genotypic values (HMRPGV), a simultaneous selection index for stability, adaptability and mean performance, estimated as follows:
 
 $$
-HMRPGV_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{BLUP_{ij}/{\mu _j}}}}
+HMRPG{V_i} = \frac{E}{{\sum\limits_{j = 1}^E {\frac{1}{{BLUP{_{ij}}/{\mu _j}}}} }}
 $$
 
 
 ```{r  }
 Res_ind <- 
 data_ge %>%
-waasb(ENV, GEN, REP, resp = GY, verbose = FALSE) %>% 
+gamem_met(ENV, GEN, REP, GY, verbose = FALSE) %>% 
 Resende_indexes()
 
 print_table(Res_ind$GY)

@@ -26,7 +26,7 @@ and Colombari Filho et al. (2013).
 
 \loadmathjax
 The HMGV index is computed as
-\mjsdeqn{HMGV_i = \frac{1}{E}\sum\limits_{j = 1}^E {\frac{1}{{G{v_{ij}}}}}}
+\mjsdeqn{HMG{V_i} = \frac{E}{{\sum\limits_{j = 1}^E {\frac{1}{{G{v_{ij}}}}}}}}
 
 where \mjseqn{E} is the number of environments included in the analysis,
 \mjseqn{Gv_{ij}} is the genotypic value (BLUP) for the ith genotype in the
@@ -37,8 +37,8 @@ The RPGV index is computed as
 \nolimits_j }}
 
 The HMRPGV index is computed as
-\mjsdeqn{HMRPGV_i = \frac{1}{E}\sum\limits_{j = 1}^E
-{\frac{1}{{G{v_{ij}}/{\mu _j}}}}}
+\mjsdeqn{HMRPG{V_i} = \frac{E}{{\sum\limits_{j = 1}^E
+{\frac{1}{{G{v_{ij}}/{\mu _j}}}} }}}
 }
 \examples{
 \donttest{
