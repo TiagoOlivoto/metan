@@ -11,7 +11,7 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}()},
-\code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_cor}()}
+\code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_corr}()}
 \code{\link{ecovalence}()},  \code{\link{Fox}()}, \code{\link{gai}()},
 \code{\link{gamem}()},\code{\link{gafem}()}, \code{\link{ge_means}()},
 \code{\link{ge_reg}()}, \code{\link{performs_ammi}()},
@@ -95,7 +95,7 @@ alpha lattice design only).
 \item \code{"Wi"} The genotypic confidence index.
 }
 
-\strong{Objects of class \code{can_cor}:}
+\strong{Objects of class \code{can_corr}:}
 \itemize{
 \item \code{"coefs"} The canonical coefficients (default).
 \item \code{"loads"} The canonical loadings.

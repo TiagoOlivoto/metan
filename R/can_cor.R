@@ -111,7 +111,7 @@ can_corr <- function(.data,
           stdscores = stdscores,
           verbose = verbose,
           collinearity = collinearity)
-    return(set_class(results, c("can_cor", "can_cor_group", "tbl_df", "tbl",  "data.frame")))
+    return(set_class(results, c("tbl_df",  "can_cor_group", "tbl",  "data.frame")))
   }
   FG <- as.data.frame(select(.data, {{FG}}) %>% select_numeric_cols())
   SG <- as.data.frame(select(.data, {{SG}}) %>% select_numeric_cols())
@@ -407,7 +407,7 @@ plot.can_cor <- function(x,
                          size.bor.tick = 0.3,
                          labels = FALSE,
                          main = NULL, ...) {
-  if(!class(x) ==  "can_cor"){
+  if(has_class(x, "can_cor_group")){
     stop("The object 'x' must be of class 'can_cor'.")
   }
   if(type == 1){
@@ -583,7 +583,7 @@ plot.can_cor <- function(x,
 #' print(cc)
 #' }
 print.can_cor <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "can_cor") {
+  if (has_class(x, "can_cor_group")) {
     stop("The object must be of class 'can_cor'")
   }
   if (export == TRUE) {

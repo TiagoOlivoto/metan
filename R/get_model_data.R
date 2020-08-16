@@ -8,7 +8,7 @@
 #' @name get_model_data
 #'
 #' @param x An object created with the functions \code{\link{AMMI_indexes}()},
-#'   \code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_cor}()}
+#'   \code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_corr}()}
 #'   \code{\link{ecovalence}()},  \code{\link{Fox}()}, \code{\link{gai}()},
 #'   \code{\link{gamem}()},\code{\link{gafem}()}, \code{\link{ge_means}()},
 #'   \code{\link{ge_reg}()}, \code{\link{performs_ammi}()},
@@ -70,7 +70,7 @@
 #' * \code{"rank"} The rank for genotypic confidence index.
 #' * \code{"Wi"} The genotypic confidence index.
 #'
-#'  \strong{Objects of class \code{can_cor}:}
+#'  \strong{Objects of class \code{can_corr}:}
 #' * \code{"coefs"} The canonical coefficients (default).
 #' * \code{"loads"} The canonical loadings.
 #' * \code{"crossloads"} The canonical cross-loadings.
@@ -345,7 +345,7 @@ get_model_data <- function(x,
                       "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
-                      "gafem", "anova_ind", "gge", "can_cor"))) {
+                      "gafem", "anova_ind", "gge", "can_cor", "can_cor_group"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -393,11 +393,11 @@ get_model_data <- function(x,
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
 
-  if(has_class(x, "can_cor")){
+  if(has_class(x, c("can_cor", "can_cor_group"))){
     if (is.null(what)){
       what <- "coefs"
     }
-    if(has_class(x, "can_cor") && !what %in% check23){
+    if(has_class(x, c("can_cor", "can_cor_group")) && !what %in% check23){
       stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check23, collapse = ", "), call. = FALSE)
     }
     fg_what <- case_when(
@@ -414,7 +414,7 @@ get_model_data <- function(x,
       npairs <- ncol(x[["data"]][[1]][["Coef_FG"]])
       if(what == "canonical"){
         bind <-
-          can_yld_pan %>%
+          x %>%
           mutate(test = map(data, ~.x %>% .[["Sigtest"]])) %>%
           remove_cols(data) %>%
           unnest(test)
