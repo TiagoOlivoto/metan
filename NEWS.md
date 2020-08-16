@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.7.1
 * Include class `gge` and `can_corr` in `get_model_data()`.
 * New argument `col.by` in `corr_plot()` to map the color of the points by a categorical variable.
 * Fix bug of inconsistent color legend when plotting objects of class `gge`.
