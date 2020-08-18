@@ -99,7 +99,7 @@ permutations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
@@ -402,7 +402,7 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='co'># iris dataset</span>
 <span class='no'>lpc</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
        <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))
 

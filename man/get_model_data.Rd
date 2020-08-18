@@ -366,10 +366,10 @@ Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
 Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
 \href{https://onlinelibrary.wiley.com/doi/abs/10.2135/cropsci1997.0011183X003700020013x}{doi:10.2135/cropsci1997.0011183X003700020013x}
 
-Shahbazi, E. 2019. Genotype selection and stability analysis for seed yield
-of Nigella sativa using parametric and non-parametric statistics. Sci.
-Hortic. (Amsterdam). 253:172-179.
-\href{https://www.sciencedirect.com/science/article/pii/S0304423819303012}{doi:10.1016/j.scienta.2019.04.047}.
+Mohammadi, R., & Amri, A. (2008). Comparison of parametric and non-parametric
+methods for selecting stable and adapted durum wheat genotypes in variable
+environments. Euphytica, 159(3), 419-432.
+\href{https://link.springer.com/article/10.1007/s10681-007-9600-6}{doi:10.1007/s10681-007-9600-6}.
 
 Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer. Z.
 Pflanzenzuchtg 52:127-138.

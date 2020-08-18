@@ -1,6 +1,7 @@
 #' Geometric adaptability index
 #'
-#' Performs a stability analysis based on the geometric mean (GAI), according to the following model:
+#' Performs a stability analysis based on the geometric mean (GAI), according to
+#' the following model (Mohammadi and Amri, 2008):
 #'  \deqn{GAI = \sqrt[E]{{{{\bar Y}_{1.}} \cdot {{\bar Y}_{2.}} \cdot ... \cdot {{\bar Y}_{i.}}}}}
 #'
 #'
@@ -23,10 +24,11 @@
 #' * \strong{GAI_R} The rank for the GAI value.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Shahbazi, E. 2019. Genotype selection and stability analysis for
-#'   seed yield of Nigella sativa using parametric and non-parametric
-#'   statistics. Sci. Hortic. (Amsterdam). 253:172-179.
-#'   \href{https://www.sciencedirect.com/science/article/pii/S0304423819303012}{doi:10.1016/j.scienta.2019.04.047}.
+#' @references
+#' Mohammadi, R., & Amri, A. (2008). Comparison of parametric and non-parametric
+#' methods for selecting stable and adapted durum wheat genotypes in variable
+#' environments. Euphytica, 159(3), 419-432.
+#' \href{https://link.springer.com/article/10.1007/s10681-007-9600-6}{doi:10.1007/s10681-007-9600-6}.
 #'
 #' @export
 #' @examples

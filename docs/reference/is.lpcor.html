@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
@@ -251,7 +251,7 @@
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>mt_num</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
+<span class='no'>mt_num</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select_all.html'>select_if</a></span>(<span class='no'>.</span>, <span class='no'>is.numeric</span>)
 <span class='no'>lpdata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
                    <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
                    <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),

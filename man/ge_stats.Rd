@@ -110,10 +110,10 @@ Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
   Agron. J. 111:2949-2960.
 \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
 
-  Shahbazi, E. 2019. Genotype selection and stability analysis for
-  seed yield of Nigella sativa using parametric and non-parametric
-  statistics. Sci. Hortic. (Amsterdam). 253:172-179.
-  \href{https://www.sciencedirect.com/science/article/pii/S0304423819303012}{doi:10.1016/j.scienta.2019.04.047}.
+Mohammadi, R., & Amri, A. (2008). Comparison of parametric and non-parametric
+methods for selecting stable and adapted durum wheat genotypes in variable
+environments. Euphytica, 159(3), 419-432.
+\href{https://link.springer.com/article/10.1007/s10681-007-9600-6}{doi:10.1007/s10681-007-9600-6}.
 
   Shukla, G.K. 1972. Some statistical aspects of partitioning
   genotype-environmental components of variability. Heredity. 29:238-245.

@@ -36,7 +36,7 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 * Non-parametric methods
    * Superiority index [@Lin1988], using the function [`superiority()`](https://tiagoolivoto.github.io/metan/reference/superiority.html).
    * Fox's stability statistic [@Fox1990] with [`Fox()`](https://tiagoolivoto.github.io/metan/reference/Fox.html).
-   * Geometric adaptability index [@Shahbazi2019] with [`gai()`](https://tiagoolivoto.github.io/metan/reference/gai.html).
+   * Geometric adaptability index [@Mohammadi2008] with [`gai()`](https://tiagoolivoto.github.io/metan/reference/gai.html).
    * Huehn's stability statistic [@Huehn1979] with [`Huehn()`](https://tiagoolivoto.github.io/metan/reference/Huehn.html).
    * Thennarasu's stability statistics [@Thennarasu1995] with [`Thennarasu()`](https://tiagoolivoto.github.io/metan/reference/Thennarasu.html).
    

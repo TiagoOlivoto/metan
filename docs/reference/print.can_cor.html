@@ -98,7 +98,7 @@ directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
@@ -274,7 +274,88 @@ to the working directory</p></td>
                <span class='kw'>FG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>EP</span>),
                <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CD</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>),
                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>cc</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: a condição tem comprimento &gt; 1 e somente o primeiro elemento será usado</span></div><div class='output co'>#&gt; <span class='error'>Error in print.can_cor(cc): The object must be of class 'can_cor'</span></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>cc</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+#&gt; Matrix (correlation/covariance) between variables of first group (FG)
+#&gt; ---------------------------------------------------------------------------
+#&gt;       PH    EH    EP
+#&gt; PH 1.000 0.932 0.638
+#&gt; EH 0.932 1.000 0.870
+#&gt; EP 0.638 0.870 1.000
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Collinearity diagnostic between first group
+#&gt; ---------------------------------------------------------------------------
+#&gt; The multicollinearity in the matrix should be investigated.
+#&gt; CN = 977.586
+#&gt; Largest VIF = 229.164618380199
+#&gt; Matrix determinant: 0.0025852 
+#&gt; Largest correlation: PH x EH = 0.932 
+#&gt; Smallest correlation: PH x EP = 0.638 
+#&gt; Number of VIFs &gt; 10: 3 
+#&gt; Number of correlations with r &gt;= |0.8|: 2 
+#&gt; Variables with largest weight in the last eigenvalues: 
+#&gt; EH &gt; PH &gt; EP 
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Matrix (correlation/covariance) between variables of second group (SG)
+#&gt; ---------------------------------------------------------------------------
+#&gt;          EL    CL      CD    CW    KW      NR    TKW
+#&gt; EL   1.0000 0.255  0.9119 0.458 0.669 -0.0139  0.442
+#&gt; CL   0.2554 1.000  0.3004 0.738 0.471  0.2619  0.619
+#&gt; CD   0.9119 0.300  1.0000 0.484 0.626 -0.0358  0.443
+#&gt; CW   0.4582 0.738  0.4840 1.000 0.735  0.1657  0.673
+#&gt; KW   0.6686 0.471  0.6260 0.735 1.000  0.3621  0.673
+#&gt; NR  -0.0139 0.262 -0.0358 0.166 0.362  1.0000 -0.109
+#&gt; TKW  0.4421 0.619  0.4433 0.673 0.673 -0.1088  1.000
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Collinearity diagnostic between second group
+#&gt; ---------------------------------------------------------------------------
+#&gt; Weak multicollinearity in the matrix
+#&gt; CN = 66.912
+#&gt; Matrix determinant: 0.0026584 
+#&gt; Largest correlation: EL x CD = 0.912 
+#&gt; Smallest correlation: EL x NR = -0.014 
+#&gt; Number of VIFs &gt; 10: 0 
+#&gt; Number of correlations with r &gt;= |0.8|: 1 
+#&gt; Variables with largest weight in the last eigenvalues: 
+#&gt; KW &gt; TKW &gt; EL &gt; CW &gt; CL &gt; NR &gt; CD 
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Matrix (correlation/covariance) between FG and SG)
+#&gt; ---------------------------------------------------------------------------
+#&gt;       EL    CL    CD    CW    KW    NR   TKW
+#&gt; PH 0.380 0.325 0.315 0.505 0.753 0.329 0.569
+#&gt; EH 0.363 0.397 0.281 0.519 0.703 0.265 0.562
+#&gt; EP 0.263 0.391 0.175 0.425 0.497 0.140 0.426
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Correlation of the canonical pairs and hypothesis testing 
+#&gt; ---------------------------------------------------------------------------
+#&gt;         Var Percent   Sum  Corr Lambda  Chisq DF p_val
+#&gt; U1V1 0.6500   74.35  74.4 0.806  0.273 194.28 21 0e+00
+#&gt; U2V2 0.2087   23.87  98.2 0.457  0.779  37.33 12 2e-04
+#&gt; U3V3 0.0156    1.78 100.0 0.125  0.984   2.35  5 8e-01
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Canonical coefficients of the first group 
+#&gt; ---------------------------------------------------------------------------
+#&gt;       U1    U2     U3
+#&gt; PH  2.66  5.26   7.72
+#&gt; EH -2.58 -7.33 -12.99
+#&gt; EP  1.15  2.27   6.67
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt; Canonical coefficients of the second group 
+#&gt; ---------------------------------------------------------------------------
+#&gt;           V1     V2      V3
+#&gt; EL  -0.00776 -0.832  0.4561
+#&gt; CL  -0.25837 -1.430  0.1989
+#&gt; CD  -0.23630  1.177 -1.1116
+#&gt; CW  -0.06101  0.338  0.0822
+#&gt; KW   0.91468 -0.691  1.4550
+#&gt; NR   0.21616  0.914 -0.5313
+#&gt; TKW  0.39749  0.717 -1.5248</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
