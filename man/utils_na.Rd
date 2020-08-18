@@ -70,3 +70,6 @@ select_rows_na(data_with_na)
 replace_na(data_with_na)
 }
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

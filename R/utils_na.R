@@ -22,6 +22,7 @@
 #' * \code{select_rows_na()}: Select rows with \code{NA} values.
 #' * \code{replace_na()} Replace missing values
 #' @md
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
 #' library(metan)
