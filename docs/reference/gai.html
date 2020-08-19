@@ -55,7 +55,12 @@
 <meta property="og:title" content="Geometric adaptability index — gai" />
 <meta property="og:description" content="Performs a stability analysis based on the geometric mean (GAI), according to
 the following model (Mohammadi and Amri, 2008):
-$$GAI = \sqrt[E]{{{{\bar Y}_{1.}} \cdot {{\bar Y}_{2.}} \cdot ... \cdot {{\bar Y}_{i.}}}}$$" />
+
+
+\[GAI = \sqrt[E]{{\mathop {\bar Y}\nolimits_1  + \mathop {\bar Y}\nolimits_2  + ... + \mathop {\bar Y}\nolimits_i }}\]
+where \(\bar Y_1\), \(\bar Y_2\), and \(\bar Y_i\) are
+the mean yields of the first, second and i-th genotypes across
+environments, and E is the number of environments" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -233,7 +238,12 @@ $$GAI = \sqrt[E]{{{{\bar Y}_{1.}} \cdot {{\bar Y}_{2.}} \cdot ... \cdot {{\bar Y
     <div class="ref-description">
     <p>Performs a stability analysis based on the geometric mean (GAI), according to
 the following model (Mohammadi and Amri, 2008):
-$$GAI = \sqrt[E]{{{{\bar Y}_{1.}} \cdot {{\bar Y}_{2.}} \cdot ... \cdot {{\bar Y}_{i.}}}}$$</p>
+<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
+
+\[GAI = \sqrt[E]{{\mathop {\bar Y}\nolimits_1  + \mathop {\bar Y}\nolimits_2  + ... + \mathop {\bar Y}\nolimits_i }}\]
+where \(\bar Y_1\), \(\bar Y_2\), and \(\bar Y_i\) are
+the mean yields of the first, second and <em>i</em>-th genotypes across
+environments, and E is the number of environments</p>
     </div>
 
     <pre class="usage"><span class='fu'>gai</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
