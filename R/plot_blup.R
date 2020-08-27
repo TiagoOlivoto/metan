@@ -40,6 +40,10 @@
 #'   i.e., the name of the selected variable.
 #' @param y.lab The label of the y-axis in the plot. Default is
 #'   \code{"Genotypes"}.
+#' @param n.dodge The number of rows that should be used to render the Y labels.
+#'   This is useful for displaying labels that would otherwise overlap.
+#' @param check.overlap Silently remove overlapping labels, (recursively)
+#'   prioritizing the first, last, and middle labels.
 #' @param panel.spacing Defines the spacing between panels when \code{which =
 #'   "ge"}.
 #' @param resolution The resolution of the plot. Parameter valid if
@@ -82,6 +86,8 @@ plot_blup <- function(x,
                       col.shape = c("blue", "red"),
                       y.lab = "Genotypes",
                       x.lab = NULL,
+                      n.dodge = 1,
+                      check.overlap = FALSE,
                       panel.spacing = 0.15,
                       resolution = 300, ...) {
     x.lab <- ifelse(missing(x.lab), names(x[var]), x.lab)
@@ -134,6 +140,7 @@ plot_blup <- function(x,
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         labs(x = x.lab, y = y.lab) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
+        scale_y_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap)) +
         plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,colour = "black"),
                                axis.title = element_text(size = size.tex.lab, colour = "black"))
 

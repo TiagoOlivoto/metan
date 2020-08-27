@@ -1,7 +1,11 @@
 # metan 1.8.0
-* Include class `gge` and `can_corr` in `get_model_data()`.
-* New argument `col.by` in `corr_plot()` to map the color of the points by a categorical variable.
+* New function `gytb()` to generate the Genotype by yield*trait biplot
+* New functions `row_col_mean()` and `row_col_sum()`to add a row with the mean/sum of each variable and a column with the the mean/sum for each row of a matrix or data frame.
 * Fix bug of inconsistent color legend when plotting objects of class `gge`.
+* Include class `gge` and `can_corr` in `get_model_data()`.
+* New argument `position` in `plot.gamem()` and `plot.mtsi()`  to control the position adjustment of the bar plot.
+* New argument `col.by` in `corr_plot()` to map the color of the points by a categorical variable.
+
 
 # metan 1.7.0
 

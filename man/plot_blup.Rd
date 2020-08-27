@@ -24,6 +24,8 @@ plot_blup(
   col.shape = c("blue", "red"),
   y.lab = "Genotypes",
   x.lab = NULL,
+  n.dodge = 1,
+  check.overlap = FALSE,
   panel.spacing = 0.15,
   resolution = 300,
   ...
@@ -85,6 +87,12 @@ genotypes above and below of the mean, respectively. Default is
 
 \item{x.lab}{The label of the x-axis in the plot. Default is \code{NULL},
 i.e., the name of the selected variable.}
+
+\item{n.dodge}{The number of rows that should be used to render the Y labels.
+This is useful for displaying labels that would otherwise overlap.}
+
+\item{check.overlap}{Silently remove overlapping labels, (recursively)
+prioritizing the first, last, and middle labels.}
 
 \item{panel.spacing}{Defines the spacing between panels when \code{which =
 "ge"}.}

@@ -14,7 +14,7 @@
 #'   = c(var1, var2, var3)}. Select helpers are also supported.
 #' @param centering The centering method. Must be one of the \code{'none | 0'}, for no
 #'  centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
-#'  for environment-centered (G+GE); or \code{'double | 3'}, for double centred (GE).
+#'  for environment-centered (G+GE); or \code{'double | 3'}, for double centered (GE).
 #'   A biplot cannot be produced with models produced without centering.
 #' @param scaling The scaling method. Must be one of the \code{'none | 0'} (default), for no scaling;
 #'  or \code{'sd | 1'}, where each value is divided by the standard deviation of its corresponding
@@ -219,29 +219,28 @@ gge <- function(.data,
 
 
 
-#' Create GGE biplots
+#' Create GGE, GT or GYT biplots
 #'
-#' Produces a ggplot2-based GGE biplot based on a model of class \code{gge}.
-#' Since the output is an object of class \code{ggplot}, all stylistic attributes
-#' of the output can be customized using the power of plot customization provided by
-#' ggplot2.
+#' Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
+#' functions \code{\link{gge}()}, \code{\link{gtb}()}, and \code{\link{gytb}()}.
 #'
-#'@param x An object of class \code{gge}
-#'@param var The variable to plot. Defaults to \code{var = 1} the first variable
-#'  of \code{x}.
+#'@param x An object with classes \code{gge} \code{gtb}, or \code{gytb}.
+#'@param var The variable to plot (useful for \code{gge} objects. Defaults to
+#'  \code{var = 1} the first variable of \code{x}.
 #'@param type The type of biplot to produce.
 #' \enumerate{
 #' \item Basic biplot.
-#' \item Mean performance vs. stability.
+#' \item Mean performance vs. stability (gge biplots)
+#' or the The Average Tester Coordination view for genotype-trait and genotype-yield*trait biplots.
 #' \item Which-won-where.
 #' \item Discriminativeness vs. representativeness.
-#' \item Examine an environment.
-#' \item Ranking environments.
+#' \item Examine an environment (or trait/yield*trait combination).
+#' \item Ranking environments (or trait/yield*trait combination).
 #' \item Examine a genotype.
 #' \item Ranking genotypes.
 #' \item Compare two genotypes.
-#' \item Relationship among environments}
-#' @param sel_env,sel_gen The name of the environment and genotype to examine
+#' \item Relationship among environments (or trait/yield*trait combination).}
+#' @param sel_env,sel_gen The name of the environment (or trait/yield*trait combination) and genotype to examine
 #'   when \code{type = 5} and   \code{type = 7}, respectively. Must be a string
 #'   which matches a environment or genotype label.
 #' @param sel_gen1,sel_gen2 The name of genotypes to compare between when
@@ -264,7 +263,7 @@ gge <- function(.data,
 #'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param col.circle,col.alpha.circle The color and alpha values for the circle
 #'   lines. Defaults to \code{'gray'} and \code{0.4}, respectively.
-#' @param leg.lab The labs of legend. Default is \code{c('Env', 'Gen')}.
+#' @param leg.lab The labs of legend. Defaults to \code{NULL} is \code{c('Env', 'Gen')}.
 #' @param size.text.gen,size.text.env,size.text.lab The size of the text for
 #'   genotypes, environments and labels, respectively.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
@@ -316,22 +315,28 @@ plot.gge <- function(x,
                      col.alpha = 1,
                      col.circle = "gray",
                      col.alpha.circle = 0.5,
-                     leg.lab = c("Env", "Gen"),
+                     leg.lab = NULL,
                      size.text.gen = 4,
                      size.text.env = 4,
                      size.text.lab = 12,
-                     size.line = 0.8,
+                     size.line = 0.5,
                      large_label = 4.5,
                      axis_expand = 1.2,
                      title = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
-  if(any(class(x) == "gtb")){
-    if(all(leg.lab %in% c("Gen", "Env")))
-      leg.lab <- c("Gen", "Trait")
+
+  if(is.null(leg.lab)){
+  leg.lab <- case_when(
+    has_class(x, "gytb") ~ c("Y-Trait", "Gen"),
+    has_class(x, "gtb") ~ c("Trait", "Gen"),
+    TRUE ~ c("Env", "Gen")
+  )
+  } else{
+    leg.lab <- leg.lab
   }
   model <- x[[var]]
-  if (!class(model) == "gge") {
+  if (!has_class(model, c("gge", "gtb", "gytb"))) {
     stop("The model must be of class 'gge'")
   }
   coord_gen <- model$coordgen[, c(1, 2)]
@@ -374,7 +379,7 @@ plot.gge <- function(x,
   P1 <-
     ggplot(data = plotdata, aes(x = d1, y = d2, group = "type")) +
     scale_color_manual(values = c(col.env, col.gen)) +
-    scale_size_manual(values = c(size.text.gen, size.text.env)) +
+    scale_size_manual(values = c(size.text.env, size.text.gen)) +
     xlab(paste(labelaxes[1], " (", round(varexpl[1], 2), "%)", sep = "")) +
     ylab(paste(labelaxes[2]," (", round(varexpl[2], 2), "%)", sep = "")) +
     geom_hline(yintercept = 0) +
@@ -410,11 +415,12 @@ plot.gge <- function(x,
       theme(axis.text = element_text(size = size.text.lab, colour = "black"),
             axis.title = element_text(size = size.text.lab, colour = "black"))
     if (title == TRUE) {
-      if(any(class(x) == "gtb")){
-        ggt <- ggtitle("GT Biplot")
-      } else{
-        ggt <- ggtitle("GGE Biplot")
-      }
+      ggt <- case_when(
+        has_class(model, "gytb") ~ "GYT Biplot",
+        has_class(model, "gtb") ~ "GT Biplot",
+        TRUE ~ "GGE biplot"
+      ) %>%
+        ggtitle()
     }
   }
   # Mean vs. stability
@@ -457,7 +463,12 @@ plot.gge <- function(x,
                     size = type),
                 show.legend = FALSE)
     if (title == TRUE) {
-      ggt <- ggtitle("Mean vs. Stability")
+      ggt <- case_when(
+        has_class(model, "gytb") ~ "Average tester coordination view of the GYT biplot",
+        has_class(model, "gtb") ~ "Average tester coordination form of the GT biplot",
+        TRUE ~ "Mean vs. Stability"
+      ) %>%
+        ggtitle()
     }
   }
   # Which-won-where
@@ -547,6 +558,12 @@ plot.gge <- function(x,
     }
     if (title == TRUE) {
       ggt <- ggtitle("Which-won-where pattern")
+      ggt <- case_when(
+        has_class(x, "gytb") ~ "The which-won-where view of the GYT biplot",
+        has_class(x, "gtb") ~ "The which-won-where view of the GT biplot",
+        TRUE ~ "Which-won-where view of the GGE biplot"
+      ) %>%
+        ggtitle()
     }
   }
   # Discrimination vs. representativeness

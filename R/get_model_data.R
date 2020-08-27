@@ -11,7 +11,7 @@
 #'   \code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_corr}()}
 #'   \code{\link{ecovalence}()},  \code{\link{Fox}()}, \code{\link{gai}()},
 #'   \code{\link{gamem}()},\code{\link{gafem}()}, \code{\link{ge_means}()},
-#'   \code{\link{ge_reg}()}, \code{\link{performs_ammi}()},
+#'   \code{\link{ge_reg}()}, \code{\link{gytb}()}, \code{\link{performs_ammi}()},
 #'   \code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
 #'   \code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.
 #' @param what What should be captured from the model. See more in section
@@ -100,6 +100,12 @@
 #' * \code{"scores"} The scores for genotypes and environments for all the
 #' analyzed traits (default).
 #' * \code{"exp_var"} The eigenvalues and explained variance.
+#'
+#'  \strong{Objects of class \code{gytb}:}
+#' * \code{"gyt"} Genotype by yield*trait table (Default).
+#' * \code{"stand_gyt"} The standardized (zero mean and unit variance) Genotype by yield*trait table.
+#' * \code{"si"} The superiority index (sum standardized value across all yield*trait combinations).
+#'
 #'
 #'  \strong{Objects of class \code{Shukla}:}
 #' * \code{"rMean"} Rank for the mean.
@@ -345,7 +351,7 @@ get_model_data <- function(x,
                       "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
-                      "gafem", "anova_ind", "gge", "can_cor", "can_cor_group"))) {
+                      "gafem", "anova_ind", "gge", "can_cor", "can_cor_group", "gytb"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -386,12 +392,75 @@ get_model_data <- function(x,
   check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSCR", "FCR", "PFCR", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
   check22 <- c("scores", "exp_var")
   check23 <- c("coefs", "loads", "crossloads", "canonical")
+  check24 <- c("gyt", "stand_gyt", "si")
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
+
+
+  if(has_class(x,  "gge") & length(class(x)) == 1){
+    if (is.null(what)){
+      what <- "scores"
+    }
+    if(has_class(x,  "gge") && !what %in% check22){
+      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check22, collapse = ", "), call. = FALSE)
+    }
+    if(what == "scores"){
+      npc <- length(x[[1]]$varexpl)
+      bind <- lapply(x, function(x) {
+        rbind(x$ coordgen %>%
+                as.data.frame() %>%
+                set_names(paste("PC", 1:npc, sep = "")) %>%
+                add_cols(TYPE = "GEN",
+                         CODE = x$labelgen,
+                         .before = 1),
+              x$coordenv %>%
+                as.data.frame() %>%
+                set_names(paste("PC", 1:npc, sep = "")) %>%
+                add_cols(TYPE = "ENV",
+                         CODE = x$labelenv,
+                         .before = 1))
+      })
+    }
+    if(what == "exp_var"){
+      bind <- lapply(x, function(x) {
+        tibble(PC = x$labelaxes,
+               Eigenvalue = x$eigenvalues,
+               Variance = x$varexpl,
+               Accumulated = cumsum(Variance))
+      })
+    }
+  }
+
+  if(has_class(x, "gytb")){
+    if (is.null(what)){
+      what <- "gyt"
+    }
+    if(has_class(x, "gytb") && !what %in% check24){
+      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check24, collapse = ", "), call. = FALSE)
+    }
+
+    if(what == "gyt"){
+     bind <- x[["mod"]][["data"]]
+    }
+    if(what == "stand_gyt"){
+      bind <- x[["mod"]][["ge_mat"]]
+    }
+    if(what == "si"){
+      bind <-
+        x[["mod"]][["ge_mat"]] %>%
+        as.data.frame() %>%
+        add_cols(SI = rowSums(.)) %>%
+        rownames_to_column("GEN") %>%
+        select(GEN, SI) %>%
+        arrange(-SI)
+    }
+  }
+
+
 
   if(has_class(x, c("can_cor", "can_cor_group"))){
     if (is.null(what)){
@@ -465,39 +534,6 @@ get_model_data <- function(x,
   }
 
 
-  if(has_class(x,  "gge")){
-    if (is.null(what)){
-      what <- "scores"
-    }
-    if(has_class(x,  "gge") && !what %in% check22){
-      stop("Invalid value in 'what' for an object of class '", class(x), "'. Allowed are ", paste(check22, collapse = ", "), call. = FALSE)
-    }
-    if(what == "scores"){
-      npc <- length(x[[1]]$varexpl)
-    bind <- lapply(x, function(x) {
-      rbind(x$ coordgen %>%
-              as.data.frame() %>%
-              set_names(paste("PC", 1:npc, sep = "")) %>%
-              add_cols(TYPE = "GEN",
-                       CODE = x$labelgen,
-                       .before = 1),
-            x$coordenv %>%
-              as.data.frame() %>%
-              set_names(paste("PC", 1:npc, sep = "")) %>%
-              add_cols(TYPE = "ENV",
-                       CODE = x$labelenv,
-                       .before = 1))
-    })
-    }
-    if(what == "exp_var"){
-      bind <- lapply(x, function(x) {
-        tibble(PC = x$labelaxes,
-               Eigenvalue = x$eigenvalues,
-               Variance = x$varexpl,
-               Accumulated = cumsum(Variance))
-      })
-    }
-  }
 
   if (has_class(x, c("waasb", "gamem"))) {
     if (is.null(what)){
@@ -1080,7 +1116,7 @@ get_model_data <- function(x,
     }
   }
   if(verbose == TRUE){
-    message("Class of the model: ", class(x))
+    message("Class of the model: ", paste(class(x), collapse = ", "))
     message("Variable extracted: ", what)
   }
   return(bind)

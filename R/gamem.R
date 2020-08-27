@@ -545,8 +545,14 @@ predict.gamem <- function(object, ...) {
 #' @param x An object of class \code{gamem}.
 #' @param var The variable to plot. Defaults to \code{var = 1} the first
 #'   variable of \code{x}.
-#' @param type If \code{type = 're'}, normal Q-Q plots for the random effects
-#' are obtained.
+#' @param type One of the \code{"res"} to plot the model residuals (default),
+#'   \code{type = 're'} to plot normal Q-Q plots for the random effects, or
+#'   \code{"vcomp"} to create a bar plot with the variance components.
+#' @param position The position adjustment when \code{type = "vcomp"}. Defaults
+#'   to \code{"fill"}, which shows relative proportions at each trait by
+#'   stacking the bars and then standardizing each bar to have the same height.
+#'   Use \code{position = "stack"} to plot the phenotypic variance for each
+#'   trait.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
 #' @param out How the output is returned. Must be one of the 'print' (default)
@@ -597,6 +603,7 @@ predict.gamem <- function(object, ...) {
 plot.gamem <- function(x,
                        var = 1,
                        type = "res",
+                       position = "fill",
                        conf = 0.95,
                        out = "print",
                        n.dodge = 1,
@@ -649,13 +656,14 @@ plot.gamem <- function(x,
     p1 <-
       ggplot(vcomp, aes(x = name, y = value, fill = Group)) +
       geom_bar(stat = "identity",
-               position = "fill",
+               position = position,
                col = "black")  +
       scale_y_continuous(expand = expansion(c(0, 0.05)))+
       scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
       theme_metan()+
       theme(legend.position = "bottom")+
-      labs(x = "Traits", y = "Proportion of phenotypic variance")
+      labs(x = "Traits",
+      y = ifelse(position == "fill", "Proportion of phenotypic variance", "Phenotypic variance"))
     return(p1)
   }
   if (type == "res") {

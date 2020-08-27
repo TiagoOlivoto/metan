@@ -9,6 +9,7 @@
   SI = 15,
   radar = TRUE,
   type = "index",
+  position = "fill",
   genotypes = "selected",
   n.dodge = 1,
   check.overlap = FALSE,
@@ -37,6 +38,12 @@ after using \code{coord_polar()}.}
 \item{type}{The type of the plot. Defaults to \code{"index"}. Use \code{type
 = "contribution"} to show the contribution of each factor to the MGIDI
 index of the selected genotypes.}
+
+\item{position}{The position adjustment when \code{type = "contribution"}.
+Defaults to \code{"fill"}, which shows relative proportions at each trait
+by stacking the bars and then standardizing each bar to have the same
+height. Use \code{position = "stack"} to plot the MGIDI index for each
+genotype.}
 
 \item{genotypes}{When \code{type = "contribution"} defines the genotypes to
 be shown in the plot. By default (\code{genotypes = "selected"} only

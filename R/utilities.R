@@ -815,6 +815,8 @@ select_rows <- function(.data, ...){
 #' products.
 #'    - \code{kurt()} computes the kurtosis like used in SAS and SPSS.
 #'    - \code{range_data()} Computes the range of the values.
+#'    - \code{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
+#'    each variable and a column with the the mean/sum for each row of the data.
 #'    - \code{sd_amo(), sd_pop()} Computes sample and populational standard
 #' deviation, respectively.
 #'    - \code{sem()} computes the standard error of the mean.
@@ -1084,6 +1086,34 @@ range_data <- function(.data, ..., na.rm = FALSE){
         ungroup()
     }
   }
+}
+#' @name utils_stats
+#' @export
+row_col_mean <- function(.data, na.rm = FALSE) {
+  if(!any(sapply(.data, is.numeric))){
+    stop("All columns in '.data' must be numeric")
+  }
+  mat <- as.matrix(.data)
+  row_means <- rowMeans(mat, na.rm = na.rm)
+  col_means <- colMeans(mat, na.rm = na.rm)
+  cmeans <- suppressWarnings(cbind(mat,  row_means) %>% rbind(col_means))
+  rownames(cmeans) <- c(rownames(mat), "col_means")
+  cmeans[nrow(cmeans), ncol(cmeans)] <- mean(mat)
+  return(cmeans)
+}
+#' @name utils_stats
+#' @export
+row_col_sum <- function(.data, na.rm = FALSE) {
+  if(!any(sapply(.data, is.numeric))){
+    stop("All columns in '.data' must be numeric")
+  }
+  mat <- as.matrix(.data)
+  row_sums <- rowSums(mat, na.rm = na.rm)
+  col_sums <- colSums(mat, na.rm = na.rm)
+  cmeans <- suppressWarnings(cbind(mat,  row_sums) %>% rbind(col_sums))
+  rownames(cmeans) <- c(rownames(mat), "col_sums")
+  cmeans[nrow(cmeans), ncol(cmeans)] <- sum(mat)
+  return(cmeans)
 }
 #' @name utils_stats
 #' @export

@@ -7,12 +7,22 @@
 \method{plot}{mtsi}(
   x,
   SI = 15,
+  type = "index",
+  position = "fill",
+  genotypes = "selected",
   radar = TRUE,
   arrange.label = FALSE,
+  x.lab = NULL,
+  y.lab = NULL,
   size.point = 2.5,
+  size.line = 0.7,
+  size.text = 10,
+  width.bar = 0.75,
+  n.dodge = 1,
+  check.overlap = FALSE,
+  invert = FALSE,
   col.sel = "red",
   col.nonsel = "black",
-  size.text = 10,
   ...
 )
 }
@@ -22,6 +32,21 @@
 \item{SI}{An integer [0-100]. The selection intensity in percentage of the
 total number of genotypes.}
 
+\item{type}{The type of the plot. Defaults to \code{"index"}. Use \code{type
+= "contribution"} to show the contribution of each factor to the MGIDI
+index of the selected genotypes.}
+
+\item{position}{The position adjustment when \code{type = "contribution"}.
+Defaults to \code{"fill"}, which shows relative proportions at each trait
+by stacking the bars and then standardizing each bar to have the same
+height. Use \code{position = "stack"} to plot the MGIDI index for each
+genotype.}
+
+\item{genotypes}{When \code{type = "contribution"} defines the genotypes to
+be shown in the plot. By default (\code{genotypes = "selected"} only
+selected genotypes are shown. Use \code{genotypes = "all"} to plot the
+contribution for all genotypes.)}
+
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
 
@@ -29,13 +54,29 @@ after using \code{coord_polar()}.}
 arranged to avoid text overlapping. This becomes useful when the number of
 genotypes is large, say, more than 30.}
 
+\item{x.lab, y.lab}{The labels for the axes x and y, respectively. x label is
+set to null when a radar plot is produced.}
+
 \item{size.point}{The size of the point in graphic. Defaults to 2.5.}
 
-\item{col.sel}{The colour for selected genotypes.}
-
-\item{col.nonsel}{The colour for nonselected genotypes.}
+\item{size.line}{The size of the line in graphic. Defaults to 0.7.}
 
 \item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{width.bar}{The width of the bars if \code{type = "contribution"}.
+Defaults to 0.75.}
+
+\item{n.dodge}{The number of rows that should be used to render the x labels.
+This is useful for displaying labels that would otherwise overlap.}
+
+\item{check.overlap}{Silently remove overlapping labels, (recursively)
+prioritizing the first, last, and middle labels.}
+
+\item{invert}{Logical argument. If \code{TRUE}, rotate the plot.}
+
+\item{col.sel}{The colour for selected genotypes. Defaults to \code{"red"}.}
+
+\item{col.nonsel}{The colour for nonselected genotypes. Defaults to \code{"black"}.}
 
 \item{...}{Other arguments to be passed from ggplot2::theme().}
 }

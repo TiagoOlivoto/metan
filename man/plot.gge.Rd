@@ -2,7 +2,7 @@
 % Please edit documentation in R/gge.R
 \name{plot.gge}
 \alias{plot.gge}
-\title{Create GGE biplots}
+\title{Create GGE, GT or GYT biplots}
 \usage{
 \method{plot}{gge}(
   x,
@@ -22,11 +22,11 @@
   col.alpha = 1,
   col.circle = "gray",
   col.alpha.circle = 0.5,
-  leg.lab = c("Env", "Gen"),
+  leg.lab = NULL,
   size.text.gen = 4,
   size.text.env = 4,
   size.text.lab = 12,
-  size.line = 0.8,
+  size.line = 0.5,
   large_label = 4.5,
   axis_expand = 1.2,
   title = TRUE,
@@ -35,25 +35,26 @@
 )
 }
 \arguments{
-\item{x}{An object of class \code{gge}}
+\item{x}{An object with classes \code{gge} \code{gtb}, or \code{gytb}.}
 
-\item{var}{The variable to plot. Defaults to \code{var = 1} the first variable
-of \code{x}.}
+\item{var}{The variable to plot (useful for \code{gge} objects. Defaults to
+\code{var = 1} the first variable of \code{x}.}
 
 \item{type}{The type of biplot to produce.
 \enumerate{
 \item Basic biplot.
-\item Mean performance vs. stability.
+\item Mean performance vs. stability (gge biplots)
+or the The Average Tester Coordination view for genotype-trait and genotype-yield*trait biplots.
 \item Which-won-where.
 \item Discriminativeness vs. representativeness.
-\item Examine an environment.
-\item Ranking environments.
+\item Examine an environment (or trait/yield*trait combination).
+\item Ranking environments (or trait/yield*trait combination).
 \item Examine a genotype.
 \item Ranking genotypes.
 \item Compare two genotypes.
-\item Relationship among environments}}
+\item Relationship among environments (or trait/yield*trait combination).}}
 
-\item{sel_env, sel_gen}{The name of the environment and genotype to examine
+\item{sel_env, sel_gen}{The name of the environment (or trait/yield*trait combination) and genotype to examine
 when \code{type = 5} and   \code{type = 7}, respectively. Must be a string
 which matches a environment or genotype label.}
 
@@ -85,7 +86,7 @@ must be between \code{0} (full transparency) to \code{1} (full color).}
 \item{col.circle, col.alpha.circle}{The color and alpha values for the circle
 lines. Defaults to \code{'gray'} and \code{0.4}, respectively.}
 
-\item{leg.lab}{The labs of legend. Default is \code{c('Env', 'Gen')}.}
+\item{leg.lab}{The labs of legend. Defaults to \code{NULL} is \code{c('Env', 'Gen')}.}
 
 \item{size.text.gen, size.text.env, size.text.lab}{The size of the text for
 genotypes, environments and labels, respectively.}
@@ -115,10 +116,8 @@ A ggplot2-based biplot.
 An object of class \code{gg, ggplot}.
 }
 \description{
-Produces a ggplot2-based GGE biplot based on a model of class \code{gge}.
-Since the output is an object of class \code{ggplot}, all stylistic attributes
-of the output can be customized using the power of plot customization provided by
-ggplot2.
+Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
+functions \code{\link{gge}()}, \code{\link{gtb}()}, and \code{\link{gytb}()}.
 }
 \examples{
 \donttest{

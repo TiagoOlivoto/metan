@@ -185,6 +185,6 @@ gtb <- function(.data,
            centering = centering, scaling = scaling, svp = svp,
            d = d, grand_mean = grand_mean, mean_gen = mean_gen,
            mean_env = mean_trait, scale_val = scale_val) %>%
-      set_class("gge")
+      set_class(c("gge", "gtb"))
   return(set_class(list(mod = tmp), c("gge", "gtb")))
 }

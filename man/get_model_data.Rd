@@ -14,7 +14,7 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 \code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_corr}()}
 \code{\link{ecovalence}()},  \code{\link{Fox}()}, \code{\link{gai}()},
 \code{\link{gamem}()},\code{\link{gafem}()}, \code{\link{ge_means}()},
-\code{\link{ge_reg}()}, \code{\link{performs_ammi}()},
+\code{\link{ge_reg}()}, \code{\link{gytb}()}, \code{\link{performs_ammi}()},
 \code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
 \code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.}
 
@@ -135,6 +135,13 @@ alpha lattice design only).
 \item \code{"scores"} The scores for genotypes and environments for all the
 analyzed traits (default).
 \item \code{"exp_var"} The eigenvalues and explained variance.
+}
+
+\strong{Objects of class \code{gytb}:}
+\itemize{
+\item \code{"gyt"} Genotype by yield*trait table (Default).
+\item \code{"stand_gyt"} The standardized (zero mean and unit variance) Genotype by yield*trait table.
+\item \code{"si"} The superiority index (sum standardized value across all yield*trait combinations).
 }
 
 \strong{Objects of class \code{Shukla}:}

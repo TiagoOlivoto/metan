@@ -29,7 +29,7 @@ single procedure a vector of variables may be used. For example \code{resp
 
 \item{centering}{The centering method. Must be one of the \code{'none | 0'}, for no
 centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
-for environment-centered (G+GE); or \code{'double | 3'}, for double centred (GE).
+for environment-centered (G+GE); or \code{'double | 3'}, for double centered (GE).
 A biplot cannot be produced with models produced without centering.}
 
 \item{scaling}{The scaling method. Must be one of the \code{'none | 0'} (default), for no scaling;

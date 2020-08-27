@@ -296,6 +296,11 @@ mgidi <- function(.data,
 #' @param type The type of the plot. Defaults to \code{"index"}. Use \code{type
 #'   = "contribution"} to show the contribution of each factor to the MGIDI
 #'   index of the selected genotypes.
+#' @param position The position adjustment when \code{type = "contribution"}.
+#'   Defaults to \code{"fill"}, which shows relative proportions at each trait
+#'   by stacking the bars and then standardizing each bar to have the same
+#'   height. Use \code{position = "stack"} to plot the MGIDI index for each
+#'   genotype.
 #' @param genotypes When \code{type = "contribution"} defines the genotypes to
 #'   be shown in the plot. By default (\code{genotypes = "selected"} only
 #'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
@@ -338,6 +343,7 @@ plot.mgidi <- function(x,
                        SI = 15,
                        radar = TRUE,
                        type = "index",
+                       position = "fill",
                        genotypes = "selected",
                        n.dodge = 1,
                        check.overlap = FALSE,
@@ -417,7 +423,7 @@ plot.mgidi <- function(x,
     p <-
       ggplot(data, aes(Gen, value, fill = name))+
       geom_bar(stat = "identity",
-               position = "fill",
+               position = position,
                color = "black",
                size = size.line,
                width = width.bar) +
@@ -431,7 +437,7 @@ plot.mgidi <- function(x,
                          expand = expansion(0))+
         labs(x = x.lab, y = y.lab)+
         guides(guide_legend(nrow = 1)) +
-        ggtitle("Contribution of each factor to the MGIDI index")
+        ggtitle("The strengths and weaknesses for genotypes")
     if(invert == TRUE){
       p <- p + coord_flip()
     }

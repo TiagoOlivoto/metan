@@ -82,37 +82,22 @@ mtsi <- function(.data,
 
   if (has_class(.data, c("waas", "waas_means"))){
     if (index == "waasb") {
-      bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
-        val <- x[["model"]][["WAAS"]]
-      })))
+      data <- gmd(.data, "WAAS", verbose = FALSE) %>% as.data.frame()
     }
     if (index == "waasby") {
-      bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
-        val <- x[["model"]][["WAASY"]]
-      })))
+      data <- gmd(.data, "WAASY", verbose = FALSE) %>% as.data.frame()
     }
-    bind$gen <- .data[[1]][["model"]][["Code"]]
-    bind$type <- .data[[1]][["model"]][["type"]]
-    data <- data.frame(subset(bind, type == "GEN") %>%
-                         remove_cols(type) %>%
-                         column_to_first(gen))
   }
   if (class(.data) == "waasb") {
     if (index == "waasb") {
-      bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
-        val <- x[["model"]][["WAASB"]]
-      })))
+      data <- gmd(.data, "WAASB", verbose = FALSE) %>% as.data.frame()
     }
     if (index == "waasby") {
-      bind <- data.frame(do.call(cbind, lapply(.data, function(x) {
-        val <- x[["model"]][["WAASBY"]]
-      })))
+      data <- gmd(.data, "WAASBY", verbose = FALSE) %>% as.data.frame()
     }
-    bind$gen <- .data[[1]][["model"]][["Code"]]
-    bind$type <- .data[[1]][["model"]][["type"]]
-    data <- data.frame(subset(bind, type == "GEN") %>%
-                         remove_cols(type) %>%
-                         column_to_first(gen))
+  }
+  if(has_na(data)){
+    stop("Missing values for traits ")
   }
   if (is.null(SI)) {
     ngs <- NULL
@@ -283,15 +268,37 @@ mtsi <- function(.data,
 #' @param x An object of class \code{mtsi}
 #' @param SI An integer [0-100]. The selection intensity in percentage of the
 #'   total number of genotypes.
+#' @param type The type of the plot. Defaults to \code{"index"}. Use \code{type
+#'   = "contribution"} to show the contribution of each factor to the MGIDI
+#'   index of the selected genotypes.
+#' @param position The position adjustment when \code{type = "contribution"}.
+#'   Defaults to \code{"fill"}, which shows relative proportions at each trait
+#'   by stacking the bars and then standardizing each bar to have the same
+#'   height. Use \code{position = "stack"} to plot the MGIDI index for each
+#'   genotype.
+#' @param genotypes When \code{type = "contribution"} defines the genotypes to
+#'   be shown in the plot. By default (\code{genotypes = "selected"} only
+#'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
+#'   contribution for all genotypes.)
 #' @param radar Logical argument. If true (default) a radar plot is generated
 #'   after using \code{coord_polar()}.
 #' @param arrange.label Logical argument. If \code{TRUE}, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
+#' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
+#'   set to null when a radar plot is produced.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
-#' @param col.sel The colour for selected genotypes.
-#' @param col.nonsel The colour for nonselected genotypes.
+#' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
+#' @param width.bar The width of the bars if \code{type = "contribution"}.
+#'   Defaults to 0.75.
+#' @param n.dodge The number of rows that should be used to render the x labels.
+#'   This is useful for displaying labels that would otherwise overlap.
+#' @param check.overlap Silently remove overlapping labels, (recursively)
+#'   prioritizing the first, last, and middle labels.
+#' @param invert Logical argument. If \code{TRUE}, rotate the plot.
+#' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
 #' @param ... Other arguments to be passed from ggplot2::theme().
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -307,11 +314,35 @@ mtsi <- function(.data,
 #'}
 #'
 #'
-plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.point = 2.5,
-                      col.sel = "red", col.nonsel = "black", size.text = 10, ...) {
+plot.mtsi <- function(x,
+                      SI = 15,
+                      type = "index",
+                      position = "fill",
+                      genotypes = "selected",
+                      radar = TRUE,
+                      arrange.label = FALSE,
+                      x.lab = NULL,
+                      y.lab = NULL,
+                      size.point = 2.5,
+                      size.line = 0.7,
+                      size.text = 10,
+                      width.bar = 0.75,
+                      n.dodge = 1,
+                      check.overlap = FALSE,
+                      invert = FALSE,
+                      col.sel = "red",
+                      col.nonsel = "black",
+                      ...) {
   if (!class(x) == "mtsi") {
     stop("The object 'x' is not of class 'mtsi'")
   }
+  if(!type %in% c("index", "contribution")){
+    stop("The argument index must be one of the 'index' or 'contribution'", call. = FALSE)
+  }
+  if(!genotypes %in% c("selected", "all")){
+    stop("The argument 'genotypes' must be one of the 'selected' or 'all'", call. = FALSE)
+  }
+  if(type == "index"){
   data <- x$MTSI %>%
     add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
@@ -336,6 +367,41 @@ plot.mtsi <- function(x, SI = 15, radar = TRUE, arrange.label = FALSE, size.poin
                                                                           sang)), legend.margin = margin(-120, 0, 0, 0), ...)
     } else{
       p <- p + coord_polar()
+    }
+  }
+  } else{
+
+    x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
+    y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
+    if(genotypes == "selected"){
+      data <-
+        x$contri.fac %>%
+        subset(Gen %in% x$Selected) %>%
+        droplevels()
+    } else{
+      data <- x$contri.fac
+    }
+    data %<>% pivot_longer(-Gen)
+    p <-
+      ggplot(data, aes(Gen, value, fill = name))+
+      geom_bar(stat = "identity",
+               position = position,
+               color = "black",
+               size = size.line,
+               width = width.bar) +
+      scale_y_continuous(expand = expansion(0))+
+      theme_metan()+
+      theme(legend.position = "bottom",
+            axis.ticks = element_line(size = size.line),
+            plot.margin = margin(0.5, 0.5, 0, 0, "cm"),
+            panel.border = element_rect(size = size.line))+
+      scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
+                       expand = expansion(0))+
+      labs(x = x.lab, y = y.lab)+
+      guides(guide_legend(nrow = 1)) +
+      ggtitle("The strengths and weaknesses for genotypes")
+    if(invert == TRUE){
+      p <- p + coord_flip()
     }
   }
   return(p)
