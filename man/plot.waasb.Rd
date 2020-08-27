@@ -8,6 +8,7 @@
   x,
   var = 1,
   type = "res",
+  position = "fill",
   conf = 0.95,
   out = "print",
   n.dodge = 1,
@@ -20,6 +21,9 @@
   col.point = "black",
   col.line = "red",
   col.lab.out = "red",
+  size.line = 0.7,
+  size.text = 10,
+  width.bar = 0.75,
   size.lab.out = 2.5,
   size.tex.lab = 10,
   size.shape = 1.5,
@@ -37,8 +41,15 @@
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
 
-\item{type}{If \code{type = 're'}, normal Q-Q plots for the random effects
-are obtained.}
+\item{type}{One of the \code{"res"} to plot the model residuals (default),
+\code{type = 're'} to plot normal Q-Q plots for the random effects, or
+\code{"vcomp"} to create a bar plot with the variance components.}
+
+\item{position}{The position adjustment when \code{type = "vcomp"}. Defaults
+to \code{"fill"}, which shows relative proportions at each trait by
+stacking the bars and then standardizing each bar to have the same height.
+Use \code{position = "stack"} to plot the phenotypic variance for each
+trait.}
 
 \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by
 default).}
@@ -72,6 +83,12 @@ number between 0 (opaque) and 1 (full transparency).}
 \item{col.line}{The color of the lines in the graphic. Default is 'red'.}
 
 \item{col.lab.out}{The color of the labels for the 'outlying' points.}
+
+\item{size.line}{The size of the line in graphic. Defaults to 0.7.}
+
+\item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{width.bar}{The width of the bars if \code{type = "contribution"}.}
 
 \item{size.lab.out}{The size of the labels for the 'outlying' points.}
 
@@ -113,7 +130,6 @@ model2 <- waasb(data_ge,
                 rep = REP)
 plot(model2)
 }
-
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

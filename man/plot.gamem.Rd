@@ -21,6 +21,9 @@
   col.point = "black",
   col.line = "red",
   col.lab.out = "red",
+  size.line = 0.7,
+  size.text = 10,
+  width.bar = 0.75,
   size.lab.out = 2.5,
   size.tex.lab = 10,
   size.shape = 1.5,
@@ -80,6 +83,12 @@ number between 0 (opaque) and 1 (full transparency).}
 \item{col.line}{The color of the lines in the graphic. Default is 'red'.}
 
 \item{col.lab.out}{The color of the labels for the 'outlying' points.}
+
+\item{size.line}{The size of the line in graphic. Defaults to 0.7.}
+
+\item{size.text}{The size for the text in the plot. Defaults to 10.}
+
+\item{width.bar}{The width of the bars if \code{type = "contribution"}.}
 
 \item{size.lab.out}{The size of the labels for the 'outlying' points.}
 

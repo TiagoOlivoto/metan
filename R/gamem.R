@@ -574,6 +574,9 @@ predict.gamem <- function(object, ...) {
 #' @param col.point The color of the points in the graphic. Default is 'black'.
 #' @param col.line The color of the lines in the graphic. Default is 'red'.
 #' @param col.lab.out The color of the labels for the 'outlying' points.
+#' @param size.line The size of the line in graphic. Defaults to 0.7.
+#' @param size.text The size for the text in the plot. Defaults to 10.
+#' @param width.bar The width of the bars if \code{type = "contribution"}.
 #' @param size.lab.out The size of the labels for the 'outlying' points.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param size.shape The size of the shape in the plots.
@@ -616,6 +619,9 @@ plot.gamem <- function(x,
                        col.point = "black",
                        col.line = "red",
                        col.lab.out = "red",
+                       size.line = 0.7,
+                       size.text = 10,
+                       width.bar = 0.75,
                        size.lab.out = 2.5,
                        size.tex.lab = 10,
                        size.shape = 1.5,
@@ -657,10 +663,20 @@ plot.gamem <- function(x,
       ggplot(vcomp, aes(x = name, y = value, fill = Group)) +
       geom_bar(stat = "identity",
                position = position,
-               col = "black")  +
-      scale_y_continuous(expand = expansion(c(0, 0.05)))+
+               color = "black",
+               size = size.line,
+               width = width.bar) +
+      scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05))))++
       scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
-      theme_metan()+
+      theme_bw()+
+      theme(legend.position = "bottom",
+            axis.ticks = element_line(size = size.line),
+            axis.ticks.length = unit(0.2, "cm"),
+            panel.grid = element_blank(),
+            legend.title = element_blank(),
+            strip.background = element_rect(fill = NA),
+            text = element_text(size = size.text, colour = "black"),
+            axis.text = element_text(size = size.text, colour = "black")) +
       theme(legend.position = "bottom")+
       labs(x = "Traits",
       y = ifelse(position == "fill", "Proportion of phenotypic variance", "Phenotypic variance"))

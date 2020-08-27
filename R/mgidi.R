@@ -427,7 +427,7 @@ plot.mgidi <- function(x,
                color = "black",
                size = size.line,
                width = width.bar) +
-        scale_y_continuous(expand = expansion(0))+
+        scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05))))+
         theme_metan()+
         theme(legend.position = "bottom",
               axis.ticks = element_line(size = size.line),

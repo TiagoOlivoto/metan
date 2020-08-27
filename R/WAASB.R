@@ -744,8 +744,14 @@ waasb <- function(.data,
 #' @param x An object of class \code{waasb}.
 #' @param var The variable to plot. Defaults to \code{var = 1} the first
 #'   variable of \code{x}.
-#' @param type If \code{type = 're'}, normal Q-Q plots for the random effects
-#' are obtained.
+#' @param type One of the \code{"res"} to plot the model residuals (default),
+#'   \code{type = 're'} to plot normal Q-Q plots for the random effects, or
+#'   \code{"vcomp"} to create a bar plot with the variance components.
+#' @param position The position adjustment when \code{type = "vcomp"}. Defaults
+#'   to \code{"fill"}, which shows relative proportions at each trait by
+#'   stacking the bars and then standardizing each bar to have the same height.
+#'   Use \code{position = "stack"} to plot the phenotypic variance for each
+#'   trait.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
 #' @param out How the output is returned. Must be one of the 'print' (default)
@@ -767,6 +773,9 @@ waasb <- function(.data,
 #' @param col.point The color of the points in the graphic. Default is 'black'.
 #' @param col.line The color of the lines in the graphic. Default is 'red'.
 #' @param col.lab.out The color of the labels for the 'outlying' points.
+#' @param size.line The size of the line in graphic. Defaults to 0.7.
+#' @param size.text The size for the text in the plot. Defaults to 10.
+#' @param width.bar The width of the bars if \code{type = "contribution"}.
 #' @param size.lab.out The size of the labels for the 'outlying' points.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param size.shape The size of the shape in the plots.
@@ -796,10 +805,11 @@ waasb <- function(.data,
 #'                 rep = REP)
 #' plot(model2)
 #'}
-#'
+
 plot.waasb <- function(x,
                        var = 1,
                        type = "res",
+                       position = "fill",
                        conf = 0.95,
                        out = "print",
                        n.dodge = 1,
@@ -812,6 +822,9 @@ plot.waasb <- function(x,
                        col.point = "black",
                        col.line = "red",
                        col.lab.out = "red",
+                       size.line = 0.7,
+                       size.text = 10,
+                       width.bar = 0.75,
                        size.lab.out = 2.5,
                        size.tex.lab = 10,
                        size.shape = 1.5,
@@ -852,18 +865,26 @@ plot.waasb <- function(x,
         p1 <-
             ggplot(vcomp, aes(x = name, y = value, fill = Group)) +
             geom_bar(stat = "identity",
-                     position = "fill",
-                     col = "black")  +
+                     position = position,
+                     color = "black",
+                     size = size.line,
+                     width = width.bar) +
+            scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05))))+
             theme_bw()+
             theme(legend.position = "bottom",
+                  axis.ticks = element_line(size = size.line),
+                  axis.ticks.length = unit(0.2, "cm"),
                   panel.grid = element_blank(),
                   legend.title = element_blank(),
                   strip.background = element_rect(fill = NA),
-                  axis.text = element_text(colour = "black")) +
+                  text = element_text(size = size.text, colour = "black"),
+                  axis.text = element_text(size = size.text, colour = "black")) +
             scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
-            labs(x = "Traits", y = "Proportion of phenotypic variance")
+            labs(x = "Traits",
+                 y = ifelse(position == "fill", "Proportion of phenotypic variance", "Phenotypic variance"))
         return(p1)
     }
+
     if (type == "res") {
         x <- x[[var]]
         df <- data.frame(x$residuals)
