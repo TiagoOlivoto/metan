@@ -231,9 +231,18 @@
 <a href="#metan-180" class="anchor"></a>metan 1.8.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>Include class <code>gge</code> and <code>can_corr</code> in <code><a href="../reference/get_model_data.html">get_model_data()</a></code>.</li>
-<li>New argument <code>col.by</code> in <code><a href="../reference/corr_plot.html">corr_plot()</a></code> to map the color of the points by a categorical variable.</li>
+<li>New function <code><a href="../reference/gytb.html">gytb()</a></code> to generate the Genotype by yield*trait biplot</li>
+<li>New functions <code><a href="../reference/utils_stats.html">row_col_mean()</a></code> and <code><a href="../reference/utils_stats.html">row_col_sum()</a></code>to add a row with the mean/sum of each variable and a column with the the mean/sum for each row of a matrix or data frame.</li>
+<li>New functions <code><a href="../reference/utils_na_zero.html">has_zero()</a></code>, <code><a href="../reference/utils_na_zero.html">remove_cols_zero()</a></code>, <code><a href="../reference/utils_na_zero.html">remove_rows_zero()</a></code>, <code><a href="../reference/utils_na_zero.html">select_cols_zero()</a></code>, <code><a href="../reference/utils_na_zero.html">select_rows_zero()</a></code>, and <code><a href="../reference/utils_na_zero.html">replace_zero()</a></code> to deal with 0s in a data frame.</li>
 <li>Fix bug of inconsistent color legend when plotting objects of class <code>gge</code>.</li>
+<li>Include class <code>gge</code> and <code>can_corr</code> in <code><a href="../reference/get_model_data.html">get_model_data()</a></code>.</li>
+<li>New argument <code>position</code> in <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> and <code><a href="../reference/plot.mtsi.html">plot.mtsi()</a></code> to control the position adjustment of the bar plot.</li>
+<li>New argument <code>col.by</code> in <code><a href="../reference/corr_plot.html">corr_plot()</a></code> to map the color of the points by a categorical variable.</li>
+<li>New argument <code>use_data</code> in functions <code><a href="../reference/mgidi.html">mgidi()</a></code>, <code><a href="../reference/fai_blup.html">fai_blup()</a></code>, and <code><a href="../reference/Smith_Hazel.html">Smith_Hazel()</a></code> to control which data is used (BLUPs or phenotypic means) to compute the index.</li>
+<li>
+<code><a href="../reference/inspect.html">inspect()</a></code> now generate a warning if zero values are observed in data.</li>
+<li>
+</li>
 </ul>
 </div>
     <div id="metan-170" class="section level1">
@@ -321,7 +330,7 @@
 <a href="#new-functions-1" class="anchor"></a>New functions</h2>
 <ul>
 <li>
-<code><a href="../reference/utils_na.html">select_rows_na()</a></code> and <code><a href="../reference/utils_na.html">select_cols_na()</a></code> to select rows or columns with with <code>NA</code> values.</li>
+<code><a href="../reference/utils_na_zero.html">select_rows_na()</a></code> and <code><a href="../reference/utils_na_zero.html">select_cols_na()</a></code> to select rows or columns with with <code>NA</code> values.</li>
 <li>
 <code><a href="../reference/mgidi.html">mgidi()</a></code> to compute the multi-trait genotype-ideotype distance index.</li>
 <li>
@@ -397,9 +406,9 @@
 <li>
 <code><a href="../reference/non_collinear_vars.html">non_collinear_vars()</a></code> to select a set of predictors with minimal multicollinearity.</li>
 <li>
-<code><a href="../reference/utils_na.html">replace_na()</a></code> to replace <code>NA</code> values quicly.</li>
+<code><a href="../reference/utils_na_zero.html">replace_na()</a></code> to replace <code>NA</code> values quicly.</li>
 <li>
-<code><a href="../reference/utils_na.html">random_na()</a></code> to generate random <code>NA</code> values based on a desired proportion.</li>
+<code><a href="../reference/utils_na_zero.html">random_na()</a></code> to generate random <code>NA</code> values based on a desired proportion.</li>
 </ul>
 </div>
 <div id="minor-changes-2" class="section level2">
@@ -506,7 +515,7 @@
 <li>
 <code><a href="../reference/utils_num_str.html">tidy_strings()</a></code> Tidy up characters strings, non-numeric columns, or any selected columns in a data frame by putting all word in upper case, replacing any space, tabulation, punctuation characters by <code>'_'</code>, and putting <code>'_'</code> between lower and upper cases.</li>
 <li>
-<code><a href="../reference/utils_num_str.html">find_text_in_num()</a></code> Find text fragments in columns assumed to be numeric. This is especially useful when <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> is used in argument <code>resp</code> to select the response variables.</li>
+<code><a href="../reference/utils_num_str.html">find_text_in_num()</a></code> Find text fragments in columns assumed to be numeric. This is especially useful when <code><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything()</a></code> is used in argument <code>resp</code> to select the response variables.</li>
 </ul>
 </div>
 </div>
@@ -609,10 +618,10 @@
 <a href="#metan-112" class="anchor"></a>metan 1.1.2<small> Unreleased </small>
 </h1>
 <ul>
-<li>Reexport select_helpers <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">num_range()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/one_of.html">one_of()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code>, and <code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code>.</li>
+<li>Reexport select_helpers <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">starts_with()</a></code>, <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">ends_with()</a></code>, <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">contains()</a></code>, <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">contains()</a></code>, <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">num_range()</a></code>, <code><a href="https://rdrr.io/pkg/tidyselect/man/one_of.html">one_of()</a></code>, <code><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything()</a></code>, and <code><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">last_col()</a></code>.</li>
 <li>When possible, argument <code>resp</code> (response variable(s) now support select helpers.</li>
 <li>New helper function <code><a href="../reference/utils_stats.html">sem()</a></code> for computing standard error of mean.</li>
-<li>New helper functions <code><a href="../reference/utils_na.html">remove_rows_na()</a></code> and <code><a href="../reference/utils_na.html">remove_cols_na()</a></code> for removing rows or columns with <code>NA</code> values quickly.</li>
+<li>New helper functions <code><a href="../reference/utils_na_zero.html">remove_rows_na()</a></code> and <code><a href="../reference/utils_na_zero.html">remove_cols_na()</a></code> for removing rows or columns with <code>NA</code> values quickly.</li>
 <li>New select helpers <code><a href="../reference/Select_helper.html">difference_var()</a></code>, <code><a href="../reference/Select_helper.html">intersect_var()</a></code>, and <code><a href="../reference/Select_helper.html">union_var()</a></code> for selecting variables that match an expression.</li>
 <li>New function <code><a href="../reference/Schmildt.html">Schmildt()</a></code> for stability analysis.</li>
 <li>Plot regression slope and mean performance in objects of class <code>ge_reg</code>.</li>

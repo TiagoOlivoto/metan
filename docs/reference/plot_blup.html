@@ -243,6 +243,7 @@
   <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
   <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
   <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='kw'>err.bar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>size.err.bar</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>3.5</span>,
   <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
@@ -252,6 +253,8 @@
   <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>),
   <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>,
   <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>panel.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
   <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
   <span class='no'>...</span>
@@ -309,6 +312,11 @@ exported. Default is <code>pdf</code>, Graphic can also be exported in
       <td><p>The height "inch" of the plot. Default is <code>6</code>.</p></td>
     </tr>
     <tr>
+      <th>err.bar</th>
+      <td><p>Logical value to indicate if an error bar is shown. Defaults
+to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
       <th>size.err.bar</th>
       <td><p>The size of the error bar for the plot. Default is
 <code>0.5</code>.</p></td>
@@ -353,6 +361,16 @@ genotypes above and below of the mean, respectively. Default is
       <th>x.lab</th>
       <td><p>The label of the x-axis in the plot. Default is <code>NULL</code>,
 i.e., the name of the selected variable.</p></td>
+    </tr>
+    <tr>
+      <th>n.dodge</th>
+      <td><p>The number of rows that should be used to render the Y labels.
+This is useful for displaying labels that would otherwise overlap.</p></td>
+    </tr>
+    <tr>
+      <th>check.overlap</th>
+      <td><p>Silently remove overlapping labels, (recursively)
+prioritizing the first, last, and middle labels.</p></td>
     </tr>
     <tr>
       <th>panel.spacing</th>

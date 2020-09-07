@@ -81,6 +81,8 @@ the reciprocals. The geometric mean is the nth root of n
 products.
 kurt() computes the kurtosis like used in SAS and SPSS.
 range_data() Computes the range of the values.
+row_col_mean(), row_col_sum() Adds a row with the mean/sum of
+each variable and a column with the the mean/sum for each row of the data.
 sd_amo(), sd_pop() Computes sample and populational standard
 deviation, respectively.
 sem() computes the standard error of the mean.
@@ -297,6 +299,8 @@ the reciprocals. The geometric mean is the <em>n</em>th root of <em>n</em>
 products.</p><ul>
 <li><p><code>kurt()</code> computes the kurtosis like used in SAS and SPSS.</p></li>
 <li><p><code>range_data()</code> Computes the range of the values.</p></li>
+<li><p><code>row_col_mean(), row_col_sum()</code> Adds a row with the mean/sum of
+each variable and a column with the the mean/sum for each row of the data.</p></li>
 <li><p><code>sd_amo(), sd_pop()</code> Computes sample and populational standard
 deviation, respectively.</p></li>
 <li><p><code>sem()</code> computes the standard error of the mean.</p></li>
@@ -329,6 +333,10 @@ used to compute quickly all these statistics at once.</p>
 <span class='fu'>pseudo_sigma</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>range_data</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>row_col_mean</span>(<span class='no'>.data</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>row_col_sum</span>(<span class='no'>.data</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>sd_amo</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 

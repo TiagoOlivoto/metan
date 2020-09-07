@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create GGE biplots — plot.gge • metan</title>
+<title>Create GGE, GT or GYT biplots — plot.gge • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,11 +52,9 @@
 
 
 
-<meta property="og:title" content="Create GGE biplots — plot.gge" />
-<meta property="og:description" content="Produces a ggplot2-based GGE biplot based on a model of class gge.
-Since the output is an object of class ggplot, all stylistic attributes
-of the output can be customized using the power of plot customization provided by
-ggplot2." />
+<meta property="og:title" content="Create GGE, GT or GYT biplots — plot.gge" />
+<meta property="og:description" content="Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
+functions gge(), gtb(), and gytb()." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -226,16 +224,14 @@ ggplot2." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create GGE biplots</h1>
+    <h1>Create GGE, GT or GYT biplots</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/gge.R'><code>R/gge.R</code></a></small>
     <div class="hidden name"><code>plot.gge.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Produces a ggplot2-based GGE biplot based on a model of class <code>gge</code>.
-Since the output is an object of class <code>ggplot</code>, all stylistic attributes
-of the output can be customized using the power of plot customization provided by
-ggplot2.</p>
+    <p>Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
+functions <code><a href='gge.html'>gge</a>()</code>, <code><a href='gtb.html'>gtb</a>()</code>, and <code><a href='gytb.html'>gytb</a>()</code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gge</span>
@@ -257,11 +253,11 @@ ggplot2.</p>
   <span class='kw'>col.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>col.circle</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
   <span class='kw'>col.alpha.circle</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"Gen"</span>),
+  <span class='kw'>leg.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>size.text.gen</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>size.text.env</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>size.text.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>large_label</span> <span class='kw'>=</span> <span class='fl'>4.5</span>,
   <span class='kw'>axis_expand</span> <span class='kw'>=</span> <span class='fl'>1.2</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -274,31 +270,32 @@ ggplot2.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>gge</code></p></td>
+      <td><p>An object with classes <code>gge</code> <code>gtb</code>, or <code>gytb</code>.</p></td>
     </tr>
     <tr>
       <th>var</th>
-      <td><p>The variable to plot. Defaults to <code>var = 1</code> the first variable
-of <code>x</code>.</p></td>
+      <td><p>The variable to plot (useful for <code>gge</code> objects. Defaults to
+<code>var = 1</code> the first variable of <code>x</code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
       <td><p>The type of biplot to produce.</p><ol>
 <li><p>Basic biplot.</p></li>
-<li><p>Mean performance vs. stability.</p></li>
+<li><p>Mean performance vs. stability (gge biplots)
+or the The Average Tester Coordination view for genotype-trait and genotype-yield*trait biplots.</p></li>
 <li><p>Which-won-where.</p></li>
 <li><p>Discriminativeness vs. representativeness.</p></li>
-<li><p>Examine an environment.</p></li>
-<li><p>Ranking environments.</p></li>
+<li><p>Examine an environment (or trait/yield*trait combination).</p></li>
+<li><p>Ranking environments (or trait/yield*trait combination).</p></li>
 <li><p>Examine a genotype.</p></li>
 <li><p>Ranking genotypes.</p></li>
 <li><p>Compare two genotypes.</p></li>
-<li><p>Relationship among environments</p></li>
+<li><p>Relationship among environments (or trait/yield*trait combination).</p></li>
 </ol></td>
     </tr>
     <tr>
       <th>sel_env, sel_gen</th>
-      <td><p>The name of the environment and genotype to examine
+      <td><p>The name of the environment (or trait/yield*trait combination) and genotype to examine
 when <code>type = 5</code> and   <code>type = 7</code>, respectively. Must be a string
 which matches a environment or genotype label.</p></td>
     </tr>
@@ -348,7 +345,7 @@ lines. Defaults to <code>'gray'</code> and <code>0.4</code>, respectively.</p></
     </tr>
     <tr>
       <th>leg.lab</th>
-      <td><p>The labs of legend. Default is <code><a href='https://rdrr.io/r/base/c.html'>c('Env', 'Gen')</a></code>.</p></td>
+      <td><p>The labs of legend. Defaults to <code>NULL</code> is <code><a href='https://rdrr.io/r/base/c.html'>c('Env', 'Gen')</a></code>.</p></td>
     </tr>
     <tr>
       <th>size.text.gen, size.text.env, size.text.lab</th>

@@ -43,6 +43,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/comb_vars.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/correlated_vars.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/corr_ci.html</loc>
   </url>
   <url>
@@ -151,6 +154,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/gtb.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/gytb.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Huehn.html</loc>
   </url>
   <url>
@@ -221,6 +227,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.clustering.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.correlated_vars.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.corr_coef.html</loc>
@@ -466,7 +475,7 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_mat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_na.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_na_zero.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_num_str.html</loc>

@@ -234,7 +234,15 @@ Rocha et al. (2018)." />
 Rocha et al. (2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fai_blup</span>(<span class='no'>.data</span>, <span class='kw'>DI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>UI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>fai_blup</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>use_data</span> <span class='kw'>=</span> <span class='st'>"blup"</span>,
+  <span class='kw'>DI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>UI</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>mineval</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -244,6 +252,13 @@ Rocha et al. (2018).</p>
       <td><p>An object of class <code>waasb</code> or a two-way table with
 genotypes in the rows and traits in columns. In the last case the row names
 must contain the genotypes names.</p></td>
+    </tr>
+    <tr>
+      <th>use_data</th>
+      <td><p>Define which data to use If <code>.data</code> is an object of
+class <code>gamem</code>. Defaults to <code>"blup"</code> (the BLUPs for genotypes).
+Use <code>"pheno"</code> to use phenotypic means instead BLUPs for computing the
+index.</p></td>
     </tr>
     <tr>
       <th>DI, UI</th>
@@ -332,9 +347,9 @@ application on elephant grass breeding for bioenergy. GCB Bioenergy
 #&gt; Comunalit Mean: 0.5523038 
 #&gt; Selection differential
 #&gt; -----------------------------------------------------------------------------------
-#&gt;   VAR Factor        Xo        Xs          SD     SDperc sense
-#&gt; 1  GY      1  2.674242  2.594199 -0.08004274 -2.9931005  none
-#&gt; 2  HM      1 48.088286 48.005568 -0.08271774 -0.1720122  none
+#&gt;   VAR Factor        Xo        Xs          SD     SDperc sense goal
+#&gt; 1  GY      1  2.674242  2.594199 -0.08004274 -2.9931005  none    0
+#&gt; 2  HM      1 48.088286 48.005568 -0.08271774 -0.1720122  none    0
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selected genotypes

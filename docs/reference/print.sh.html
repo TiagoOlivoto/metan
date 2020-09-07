@@ -267,7 +267,7 @@ to the working directory</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/everything.html'>everything</a></span>())
 <span class='no'>means</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>vcov</span>$<span class='no'>means</span>)
 <span class='no'>pcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>phen_cov</span>
 <span class='no'>gcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>geno_cov</span>
@@ -317,24 +317,24 @@ to the working directory</p></td>
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selection gain
 #&gt; -----------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 15 x 5</span><span>
-#&gt;    VAR         Xo       Xs       SD  SDperc
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> PH      2.167    2.304   0.137</span><span style='text-decoration: underline;'>1</span><span>   6.328 
-#&gt; </span><span style='color: #555555;'> 2</span><span> EH      1.078    1.22    0.142</span><span style='text-decoration: underline;'>0</span><span>  13.18  
-#&gt; </span><span style='color: #555555;'> 3</span><span> EP      0.495</span><span style='text-decoration: underline;'>8</span><span>   0.522</span><span style='text-decoration: underline;'>7</span><span>  0.026</span><span style='text-decoration: underline;'>89</span><span>  5.423 
-#&gt; </span><span style='color: #555555;'> 4</span><span> EL     14.67    14.25   -</span><span style='color: #BB0000;'>0.419</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>  -</span><span style='color: #BB0000;'>2.859</span><span> 
-#&gt; </span><span style='color: #555555;'> 5</span><span> ED     47.87    48.27    0.399    0.833</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> CL     28.45    28.02   -</span><span style='color: #BB0000;'>0.424</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  -</span><span style='color: #BB0000;'>1.490</span><span> 
-#&gt; </span><span style='color: #555555;'> 7</span><span> CD     15.77    14.99   -</span><span style='color: #BB0000;'>0.776</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  -</span><span style='color: #BB0000;'>4.927</span><span> 
-#&gt; </span><span style='color: #555555;'> 8</span><span> CW     20.78    22.55    1.765    8.494 
-#&gt; </span><span style='color: #555555;'> 9</span><span> KW    146.8    152.0     5.198    3.540 
-#&gt; </span><span style='color: #555555;'>10</span><span> NR     15.78    15.93    0.148</span><span style='text-decoration: underline;'>7</span><span>   0.942</span><span style='text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #555555;'>11</span><span> NKR    30.4     29.6    -</span><span style='color: #BB0000;'>0.800</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  -</span><span style='color: #BB0000;'>2.632</span><span> 
-#&gt; </span><span style='color: #555555;'>12</span><span> CDED    0.594</span><span style='text-decoration: underline;'>6</span><span>   0.580</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>54</span><span> -</span><span style='color: #BB0000;'>2.445</span><span> 
-#&gt; </span><span style='color: #555555;'>13</span><span> PERK   87.65    87.05   -</span><span style='color: #BB0000;'>0.599</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>  -</span><span style='color: #BB0000;'>0.684</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #555555;'>14</span><span> TKW   317.7    320.8     3.122    0.982</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #555555;'>15</span><span> NKE   467.9    478.8    10.87     2.323 
+#&gt; </span><span style='color: #555555;'># A tibble: 15 x 7</span><span>
+#&gt;    VAR         Xo       Xs       SD  SDperc sense     goal
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> PH      2.167    2.304   0.137</span><span style='text-decoration: underline;'>1</span><span>   6.328  increase   100
+#&gt; </span><span style='color: #555555;'> 2</span><span> EH      1.078    1.22    0.142</span><span style='text-decoration: underline;'>0</span><span>  13.18   increase   100
+#&gt; </span><span style='color: #555555;'> 3</span><span> EP      0.495</span><span style='text-decoration: underline;'>8</span><span>   0.522</span><span style='text-decoration: underline;'>7</span><span>  0.026</span><span style='text-decoration: underline;'>89</span><span>  5.423  increase   100
+#&gt; </span><span style='color: #555555;'> 4</span><span> EL     14.67    14.25   -</span><span style='color: #BB0000;'>0.419</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>  -</span><span style='color: #BB0000;'>2.859</span><span>  increase     0
+#&gt; </span><span style='color: #555555;'> 5</span><span> ED     47.87    48.27    0.399    0.833</span><span style='text-decoration: underline;'>5</span><span> increase   100
+#&gt; </span><span style='color: #555555;'> 6</span><span> CL     28.45    28.02   -</span><span style='color: #BB0000;'>0.424</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  -</span><span style='color: #BB0000;'>1.490</span><span>  increase     0
+#&gt; </span><span style='color: #555555;'> 7</span><span> CD     15.77    14.99   -</span><span style='color: #BB0000;'>0.776</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>  -</span><span style='color: #BB0000;'>4.927</span><span>  increase     0
+#&gt; </span><span style='color: #555555;'> 8</span><span> CW     20.78    22.55    1.765    8.494  increase   100
+#&gt; </span><span style='color: #555555;'> 9</span><span> KW    146.8    152.0     5.198    3.540  increase   100
+#&gt; </span><span style='color: #555555;'>10</span><span> NR     15.78    15.93    0.148</span><span style='text-decoration: underline;'>7</span><span>   0.942</span><span style='text-decoration: underline;'>2</span><span> increase   100
+#&gt; </span><span style='color: #555555;'>11</span><span> NKR    30.4     29.6    -</span><span style='color: #BB0000;'>0.800</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  -</span><span style='color: #BB0000;'>2.632</span><span>  increase     0
+#&gt; </span><span style='color: #555555;'>12</span><span> CDED    0.594</span><span style='text-decoration: underline;'>6</span><span>   0.580</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>54</span><span> -</span><span style='color: #BB0000;'>2.445</span><span>  increase     0
+#&gt; </span><span style='color: #555555;'>13</span><span> PERK   87.65    87.05   -</span><span style='color: #BB0000;'>0.599</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>  -</span><span style='color: #BB0000;'>0.684</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> increase     0
+#&gt; </span><span style='color: #555555;'>14</span><span> TKW   317.7    320.8     3.122    0.982</span><span style='text-decoration: underline;'>5</span><span> increase   100
+#&gt; </span><span style='color: #555555;'>15</span><span> NKE   467.9    478.8    10.87     2.323  increase   100
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Phenotypic variance-covariance matrix

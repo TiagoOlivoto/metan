@@ -260,7 +260,14 @@ genotype based on traits <em>x</em>, <em>y</em>, ..., <em>n</em>, is calculated 
 traits <em>x</em>, <em>y</em>, ..., <em>n</em>, respectively.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Smith_Hazel</span>(<span class='no'>.data</span>, <span class='kw'>pcov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gcov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>Smith_Hazel</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>use_data</span> <span class='kw'>=</span> <span class='st'>"blup"</span>,
+  <span class='kw'>pcov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gcov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -270,6 +277,13 @@ traits <em>x</em>, <em>y</em>, ..., <em>n</em>, respectively.</p>
       <td><p>The input data. It can be either a two-way table with genotypes
 in rows and traits in columns, or an object fitted with the function
 <code><a href='gamem.html'>gamem</a>()</code>. Please, see <strong>Details</strong> for more details.</p></td>
+    </tr>
+    <tr>
+      <th>use_data</th>
+      <td><p>Define which data to use If <code>.data</code> is an object of
+class <code>gamem</code>. Defaults to <code>"blup"</code> (the BLUPs for genotypes).
+Use <code>"pheno"</code> to use phenotypic means instead BLUPs for computing the
+index.</p></td>
     </tr>
     <tr>
       <th>pcov, gcov</th>
@@ -284,7 +298,7 @@ respectively. Defaults to <code>NULL</code>. If a two-way table is informed in
     <tr>
       <th>weights</th>
       <td><p>The vector of economic weights. Defaults to a vector of 1s
-with the same lenth of the number of traits.</p></td>
+with the same length of the number of traits.</p></td>
     </tr>
     </table>
 
@@ -319,7 +333,7 @@ Genetics 28:476-90.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/everything.html'>everything</a></span>())
 <span class='no'>means</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>vcov</span>$<span class='no'>means</span>)
 <span class='no'>pcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>phen_cov</span>
 <span class='no'>gcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>geno_cov</span>

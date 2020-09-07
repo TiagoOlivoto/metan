@@ -273,7 +273,7 @@ single procedure a vector of variables may be used. For example <code>resp
       <th>centering</th>
       <td><p>The centering method. Must be one of the <code>'none | 0'</code>, for no
 centering; <code>'global | 1'</code>, for global centered (E+G+GE); <code>'environment | 2'</code> (default),
-for environment-centered (G+GE); or <code>'double | 3'</code>, for double centred (GE).
+for environment-centered (G+GE); or <code>'double | 3'</code>, for double centered (GE).
 A biplot cannot be produced with models produced without centering.</p></td>
     </tr>
     <tr>
@@ -333,7 +333,7 @@ geneticists, and agronomists. CRC Press.</p>
 <span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gge</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>GY</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gge-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># GGE model for all numeric variables</span>
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='fu'>gge</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='fu'>gge</span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/everything.html'>everything</a></span>())
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod2</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"ED"</span>)</div><div class='img'><img src='gge-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># If we have a two-way table with the mean values for</span>
 <span class='co'># genotypes and environments</span>

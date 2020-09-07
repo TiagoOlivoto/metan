@@ -238,12 +238,14 @@
   <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
   <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"index"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"fill"</span>,
   <span class='kw'>genotypes</span> <span class='kw'>=</span> <span class='st'>"selected"</span>,
   <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
   <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
@@ -275,7 +277,15 @@ after using <code>coord_polar()</code>.</p></td>
       <th>type</th>
       <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type
 = "contribution"</code> to show the contribution of each factor to the MGIDI
-index of the selected genotypes.</p></td>
+index of the selected genotypes/treatments.</p></td>
+    </tr>
+    <tr>
+      <th>position</th>
+      <td><p>The position adjustment when <code>type = "contribution"</code>.
+Defaults to <code>"fill"</code>, which shows relative proportions at each trait
+by stacking the bars and then standardizing each bar to have the same
+height. Use <code>position = "stack"</code> to plot the MGIDI index for each
+genotype/treatment.</p></td>
     </tr>
     <tr>
       <th>genotypes</th>
@@ -302,6 +312,10 @@ prioritizing the first, last, and middle labels.</p></td>
       <th>x.lab, y.lab</th>
       <td><p>The labels for the axes x and y, respectively. x label is
 set to null when a radar plot is produced.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>The plot title when <code>type = "contribution"</code>.</p></td>
     </tr>
     <tr>
       <th>arrange.label</th>
@@ -385,13 +399,13 @@ Defaults to 0.75.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential 
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 4 x 10</span><span>
-#&gt;   VAR   Factor    Xo    Xs     SD SDperc    h2     SG SGperc sense   
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #555555;'>1</span><span> KW    FA 1   147.  163.  16.2    11.0  0.659 10.7     7.27 increase
-#&gt; </span><span style='color: #555555;'>2</span><span> NR    FA 1    15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase
-#&gt; </span><span style='color: #555555;'>3</span><span> NKE   FA 1   468.  532.  64.0    13.7  0.713 45.6     9.74 increase
-#&gt; </span><span style='color: #555555;'>4</span><span> NKR   FA 2    30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase
+#&gt; </span><span style='color: #555555;'># A tibble: 4 x 11</span><span>
+#&gt;   VAR   Factor    Xo    Xs     SD SDperc    h2     SG SGperc sense     goal
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> KW    FA 1   147.  163.  16.2    11.0  0.659 10.7     7.27 increase   100
+#&gt; </span><span style='color: #555555;'>2</span><span> NR    FA 1    15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase   100
+#&gt; </span><span style='color: #555555;'>3</span><span> NKE   FA 1   468.  532.  64.0    13.7  0.713 45.6     9.74 increase   100
+#&gt; </span><span style='color: #555555;'>4</span><span> NKR   FA 2    30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase   100
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
