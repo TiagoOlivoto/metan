@@ -29,12 +29,16 @@
 #' @param .data The input data. It can be either a two-way table with genotypes
 #'   in rows and traits in columns, or an object fitted with the function
 #'   \code{\link{gamem}()}. Please, see \strong{Details} for more details.
+#' @param use_data Define which data to use If \code{.data} is an object of
+#'   class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
+#'   Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+#'   index.
 #' @param pcov,gcov The phenotypic and genotypic variance-covariance matrix,
 #'   respectively. Defaults to \code{NULL}. If a two-way table is informed in
 #'   \code{.data} these matrices are mandatory.
 #' @param SI The selection intensity (percentage). Defaults to \code{20}
 #' @param weights The vector of economic weights. Defaults to a vector of 1s
-#'   with the same lenth of the number of traits.
+#'   with the same length of the number of traits.
 #'
 #' @references
 #' Smith, H.F. 1936. A discriminant function for plant selection. Ann. Eugen.
@@ -67,14 +71,18 @@
 #' index <- Smith_Hazel(means, pcov = pcov, gcov = gcov, weights = rep(1, 15))
 #' }
 Smith_Hazel <- function(.data,
+                        use_data = "blup",
                         pcov = NULL,
                         gcov = NULL,
                         SI = 15,
                         weights = NULL){
+  if(!use_data %in% c("blup", "pheno")){
+    stop("Argument 'use_data = ", match.call()["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
+  }
   if(has_class(.data, "gamem")){
     ifelse(missing(weights), weights <- rep(1, length(.data)), weights <- weights)
     mat <-
-      gmd(.data, "blupg", verbose = FALSE) %>%
+      gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
       means_by(GEN) %>%
       column_to_rownames("GEN") %>%
       as.matrix()
@@ -116,20 +124,39 @@ Smith_Hazel <- function(.data,
            Xs = colMeans(mat[sel_gen, ]),
            SD = Xs - Xo,
            SDperc = (Xs - Xo) / Xo * 100)
+  vars <- tibble(VAR = colnames(mat),
+                 sense = weights) %>%
+    mutate(sense = ifelse(sense < 0, "decrease", "increase"))
   if(has_class(.data, "gamem")){
     sel_dif <-
       left_join(sel_dif, h2, by = "VAR") %>%
       add_cols(SG = SD * h2,
                SGperc = SG / Xo * 100)
   }
+  sel_dif <-
+    sel_dif %>%
+    left_join(vars, by = "VAR") %>%
+    mutate(goal = case_when(
+      sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
+      TRUE ~ 0
+    ))
+  total_gain <-
+    desc_stat(sel_dif,
+              by = sense,
+              any_of(c("SDperc", "SGperc")),
+              stats = c("min, mean, max, sum"))
   b <-
     data.frame(b) %>%
     rownames_to_column("VAR") %>%
     add_cols(gen_weights = weights)
+
+
+
   results <-
     list(b = b,
          index = index,
          sel_dif = sel_dif,
+         total_gain = total_gain,
          sel_gen = sel_gen,
          gcov = gcov,
          pcov = pcov)

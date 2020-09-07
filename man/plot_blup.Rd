@@ -15,6 +15,7 @@ plot_blup(
   plot_theme = theme_metan(),
   width = 6,
   height = 6,
+  err.bar = TRUE,
   size.err.bar = 0.5,
   size.shape = 3.5,
   size.tex.lab = 12,
@@ -59,6 +60,9 @@ exported. Default is \code{pdf}, Graphic can also be exported in
 \item{width}{The width "inch" of the plot. Default is \code{6}.}
 
 \item{height}{The height "inch" of the plot. Default is \code{6}.}
+
+\item{err.bar}{Logical value to indicate if an error bar is shown. Defaults
+to \code{TRUE}.}
 
 \item{size.err.bar}{The size of the error bar for the plot. Default is
 \code{0.5}.}

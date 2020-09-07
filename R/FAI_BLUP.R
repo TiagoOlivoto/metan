@@ -7,6 +7,10 @@
 #' @param .data An object of class \code{waasb} or a two-way table with
 #'   genotypes in the rows and traits in columns. In the last case the row names
 #'   must contain the genotypes names.
+#' @param use_data Define which data to use If \code{.data} is an object of
+#'   class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
+#'   Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+#'   index.
 #' @param DI,UI A vector of the same length of \code{.data} to construct the
 #'   desirable (DI) and undesirable (UI) ideotypes. For each element of the
 #'   vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
@@ -54,11 +58,15 @@
 #'                 UI = c('min, min'))
 #'}
 fai_blup <- function(.data,
+                     use_data = "blup",
                      DI = NULL,
                      UI = NULL,
                      SI = 15,
                      mineval = 1,
                      verbose = TRUE) {
+  if(!use_data %in% c("blup", "pheno")){
+    stop("Argument 'use_data = ", match.call()["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
+  }
   if (!has_class(.data, c("data.frame", "tbl_df", "tbl", "waasb", "gamem"))) {
     stop("The .data must be an object of class 'waasb', 'gamem' or a data.frame/tbl_df.")
   }
@@ -83,7 +91,9 @@ fai_blup <- function(.data,
     stop("The length of DI and UI must be the same length of data.")
   }
   if(has_class(.data, c("gamem", "waasb"))){
-    means <- gmd(.data, "blupg", verbose = FALSE) %>%
+    means <-
+      gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
+      means_by(GEN) %>%
       column_to_rownames("GEN")
   } else {
     if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
@@ -249,7 +259,11 @@ fai_blup <- function(.data,
                                  !sense  %in% c("max", "min", "mean") ~ "none"))
       selection.diferential <-
         lapply(selection.diferential, function(x){
-          left_join(x, vars, by = "VAR")
+          left_join(x, vars, by = "VAR") %>%
+            mutate(goal = case_when(
+              sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
+              TRUE ~ 0
+            ))
         })
       total_gain <-
         lapply(selection.diferential, function(x){

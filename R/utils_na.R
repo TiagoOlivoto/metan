@@ -1,41 +1,76 @@
-#' @title Utilities for handling with NA values
-#' @name utils_na
+#' @title Utilities for handling with NA and zero values
+#'
+#' @description NAs and zeros can increase the noise in multi-environment trial
+#'   analysis. This collection of functions will make it easier to deal with
+#'   them.
+#' @name utils_na_zero
 #' @param .data A data frame or tibble
-#' @param ... Variables to replace \code{NAs}. If \code{...} is null then all
-#'   variables with \code{NA} will be replaced. It must be a single variable
-#'   name or a comma-separated list of unquoted variables names. Select helpers
-#'   are also allowed.
-#' @param prop The proportion (percentage) of \code{NA} values to generate in \code{.data}.
-#' @param replace The value used for replacement. Defaults to \code{0}. Use
-#'   \code{replace = "colmeans"} to replace missing values with colum means.
+#' @param ... Variables to replace \code{NAs} in \code{replace_na()} or zeros in
+#'   \code{replace_zero()}  . If \code{...} is null then all variables with
+#'   \code{NA} or \code{0} will be replaced by the value in \code{replacement}
+#'   argument of such functions. It must be a single variable name or a
+#'   comma-separated list of unquoted variables names. Select helpers are also
+#'   allowed.
+#' @param prop The proportion (percentage) of \code{NA} values to generate in
+#'   \code{.data}.
+#' @param replace Deprecated argument as of 1.8.0. Use \code{replacement} instead.
+#' @param replacement The value used for replacement. Defaults to \code{0}. Use
+#'   \code{replacement. = "colmean"} to replace missing values with column mean.
 #' @param verbose Logical argument. If \code{TRUE} (default) shows in console
 #'   the rows or columns deleted.
 #' @export
 #' @return A data frame with rows or columns with \code{NA} values deleted.
 #' @description
-#' * \code{has_na()}: Check for \code{NA} values in the data and return a logical value.
+#' * \code{has_na(), has_zero() }: Check for \code{NAs} and \code{0s} in the
+#' data and return a logical value.
 #' * \code{random_na()}: Generate random \code{NA} values in a two-way table
 #' based on a desired proportion.
-#' * \code{remove_cols_na()}: Remove columns with \code{NA} values.
-#' * \code{remove_rows_na()}: Remove rows with \code{NA} values.
-#' * \code{select_cols_na()}: Select columns with \code{NA} values.
-#' * \code{select_rows_na()}: Select rows with \code{NA} values.
-#' * \code{replace_na()} Replace missing values
+#' * \code{remove_cols_na(), remove_cols_zero()}: Remove columns with \code{NAs}
+#' and \code{0s}, respectively.
+#' * \code{remove_rows_na(), remove_rows_zero()}: Remove rows with \code{NAs}
+#' and \code{0s}, respectively.
+#' * \code{select_cols_na(), select_cols_zero()}: Select columns with \code{NAs}
+#' and \code{0s}, respectively.
+#' * \code{select_rows_na(), select_rows_zero()}: Select rows with \code{NAs}
+#' and \code{0s}, respectively.
+#' * \code{replace_na(), replace_zero()} Replace \code{NAs} and \code{0s},
+#' respectively, with a \code{replacement} value.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
 #' library(metan)
-#' data_with_na <- data_g
-#' data_with_na[c(1, 5, 10), c(3:5, 10:15)] <- NA
-#' data_with_na
-#' has_na(data_with_na)
-#' remove_cols_na(data_with_na)
-#' remove_rows_na(data_with_na)
-#' select_cols_na(data_with_na)
-#' select_rows_na(data_with_na)
-#' replace_na(data_with_na)
+#' data_naz <- data_g
+#' data_naz[c(1, 5, 10), c(3:5, 10:15)] <- NA
+#' data_naz[c(2, 6, 9), c(6:7, 12:13)] <- 0
+#' has_na(data_naz)
+#' has_zero(data_naz)
+#'
+#' # Remove columns
+#' remove_cols_na(data_naz)
+#' remove_cols_zero(data_naz)
+#' remove_rows_na(data_naz)
+#' remove_rows_zero(data_naz)
+#'
+#' # Select columns
+#' select_cols_na(data_naz)
+#' select_cols_zero(data_naz)
+#' select_rows_na(data_naz)
+#' select_rows_zero(data_naz)
+#'
+#' # Replace values
+#' replace_na(data_naz)
+#' replace_zero(data_naz)
 #' }
+#'
+
+# Dealing with NAs
+
+has_na <- function(.data){
+  any(complete.cases(.data) ==  FALSE)
+}
+#' @name utils_na_zero
+#' @export
 remove_rows_na <- function(.data, verbose = TRUE){
 row_with_na <- which(complete.cases(.data) ==  FALSE)
 if(verbose == TRUE){
@@ -44,7 +79,7 @@ warning("Row(s) ", paste(row_with_na, collapse = ", "), " with NA values deleted
 return(na.omit(.data))
 }
 
-#' @name utils_na
+#' @name utils_na_zero
 #' @export
 remove_cols_na <- function(.data, verbose = TRUE){
   cols_with_na <- names(which(sapply(.data, anyNA)))
@@ -53,7 +88,7 @@ remove_cols_na <- function(.data, verbose = TRUE){
   }
   return(select(.data, -cols_with_na))
 }
-#' @name utils_na
+#' @name utils_na_zero
 #' @export
 select_cols_na <- function(.data, verbose = TRUE){
   cols_with_na <- names(which(sapply(.data, anyNA)))
@@ -62,7 +97,7 @@ select_cols_na <- function(.data, verbose = TRUE){
   }
   return(select(.data, cols_with_na))
 }
-#' @name utils_na
+#' @name utils_na_zero
 #' @export
 select_rows_na <- function(.data, verbose = TRUE){
   rows_with_na <- which(complete.cases(.data) == FALSE)
@@ -71,37 +106,40 @@ select_rows_na <- function(.data, verbose = TRUE){
   }
   return(.data[rows_with_na, ])
 }
-#' @name utils_na
+#' @name utils_na_zero
 #' @export
-has_na <- function(.data){
-   any(complete.cases(.data) ==  FALSE)
-}
-#' @name utils_na
-#' @export
-replace_na <- function(.data, ..., replace = 0){
+replace_na <- function(.data, ..., replace = 0, replacement = 0){
+  if(replace != 0){
+      warning("Argument 'replace' deprecated. Use 'replacement' instead.", call. = FALSE)
+    replacement <- replace
+  }
+  test <- !is.na(replacement) && replacement == "colmean"
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     if(has_rownames(.data)){
       rnames <- rownames(.data)
     }
   if(missing(...)){
     cols_with_na <- names(which(sapply(.data, anyNA)))
-    df <- mutate(.data, across(all_of(cols_with_na), ~replace(., is.na(.), replace)))
-    if(replace == "colmeans"){
+    df <- mutate(.data, across(all_of(cols_with_na), ~replace(., is.na(.), replacement)))
+    if(test){
     df <- mutate(.data, across(all_of(cols_with_na), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x)))
     }
   } else{
-    df <- mutate(.data, across(c(...), ~replace(., is.na(.), replace)))
+    df <- mutate(.data, across(c(...), ~replace(., is.na(.), replacement)))
+    if(test){
     df <- mutate(.data, across(c(...), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x)))
+    }
   }
   } else{
-    df <- replace(.data, is.na(.data), replace)
+    df <- replace(.data, is.na(.data), replacement)
   }
   if(has_rownames(.data)){
     rownames(df) <- rnames
   }
   return(df)
 }
-#' @name utils_na
+
+#' @name utils_na_zero
 #' @export
 random_na <- function(.data, prop){
   if( prop < 1 | prop > 100){
@@ -113,4 +151,94 @@ random_na <- function(.data, prop){
   coord_miss <- sample(1:cells, miss, replace = FALSE)
   .data[coord_miss] <- NA
   return(as.matrix(.data))
+}
+
+
+
+
+
+
+# Dealing with zeros
+
+#' @name utils_na_zero
+#' @export
+has_zero <- function(.data){
+  if(is.vector(.data)){
+    any(.data == 0)
+  } else{
+    any(apply(.data %>% replace_na(replacement = 1) == 0, 2, any) == TRUE)
+  }
+}
+
+#' @name utils_na_zero
+#' @export
+remove_rows_zero <- function(.data, verbose = TRUE){
+  row_with_zeros <- which(apply(.data == 0, 1, any) ==  TRUE)
+  if(verbose == TRUE){
+    warning("Row(s) ", paste(row_with_zeros, collapse = ", "), " with 0s deleted.", call. = FALSE)
+  }
+  return(remove_rows(.data, all_of(row_with_zeros)))
+}
+
+#' @name utils_na_zero
+#' @export
+remove_cols_zero <- function(.data, verbose = TRUE){
+  cols_with_zero <- which(apply(.data == 0, 2, any) ==  TRUE)
+  if(verbose == TRUE){
+    warning("Column(s) ", paste(names(.data[cols_with_zero]), collapse = ", "), " with 0s deleted.", call. = FALSE)
+  }
+  return(remove_cols(.data, all_of(cols_with_zero)))
+}
+
+#' @name utils_na_zero
+#' @export
+select_cols_zero <- function(.data, verbose = TRUE){
+  cols_with_zero <- which(apply(.data == 0, 2, any) ==  TRUE)
+  if(verbose == TRUE){
+    warning("Column(s) with 0s: ", paste(names(.data[cols_with_zero]), collapse = ", "), call. = FALSE)
+  }
+  return(select(.data, cols_with_zero))
+}
+
+#' @name utils_na_zero
+#' @export
+select_rows_zero <- function(.data, verbose = TRUE){
+  row_with_zeros <- which(apply(.data == 0, 1, any) ==  TRUE)
+  if(verbose == TRUE){
+    warning("Rows(s) with 0s: ", paste(rownames(.data[row_with_zeros,]), collapse = ", "), call. = FALSE)
+  }
+  return(.data[row_with_zeros, ])
+}
+
+
+
+
+#' @name utils_na_zero
+#' @export
+replace_zero <- function(.data, ..., replacement = NA){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    if(has_rownames(.data)){
+      rnames <- rownames(.data)
+    }
+    test <- !is.na(replacement) && replacement == "colmean"
+    print(test)
+    if(missing(...)){
+      cols_with_zero <- which(apply(.data == 0, 2, any) ==  TRUE)
+      df <- mutate(.data, across(all_of(cols_with_zero), ~replace(., . == 0, replacement)))
+      if(test){
+        df <- mutate(.data, across(all_of(cols_with_zero), ~ifelse(.x == 0, mean(.x, na.rm = TRUE), .x)))
+      }
+    } else{
+      df <- mutate(.data, across(c(...), ~replace(., . == 0, replacement)))
+      if(test){
+        df <- mutate(.data, across(c(...), ~ifelse(.x == 0, mean(.x, na.rm = TRUE), .x)))
+      }
+    }
+  } else{
+    df <- replace(.data, which(.data == 0), replacement)
+  }
+  if(has_rownames(.data)){
+    rownames(df) <- rnames
+  }
+  return(df)
 }

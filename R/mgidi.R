@@ -20,6 +20,10 @@
 #'   \code{\link{gamem}()} or a two-way table with BLUPs for genotypes in each
 #'   trait (genotypes in rows and traits in columns). In the last case, row
 #'   names must contain the genotypes names.
+#' @param use_data Define which data to use if \code{.data} is an object of
+#'   class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
+#'   Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+#'   index.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
@@ -89,14 +93,21 @@
 #'
 #'}
 mgidi <- function(.data,
+                  use_data = "blup",
                   SI = 15,
                   mineval = 1,
                   ideotype = NULL,
                   use = "complete.obs",
                   verbose = TRUE) {
   d <- match.call()
+  if(!use_data %in% c("blup", "pheno")){
+    stop("Argument 'use_data = ", d["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
+  }
   if(has_class(.data, c("gamem", "waasb"))){
-    data <- gmd(.data, "blupg", verbose = FALSE) %>% column_to_rownames("GEN")
+    data <-
+      gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
+      means_by(GEN) %>%
+      column_to_rownames("GEN")
   } else if(has_class(.data, "gafem")){
     data <-
       gmd(.data, "Y", verbose = FALSE) %>%
@@ -114,20 +125,25 @@ mgidi <- function(.data,
   if (length(data) == 1) {
     stop("The multi-trait stability index cannot be computed with one single variable.", call. = FALSE)
   }
-  ideotype.D <- rep(100, length(data))
-  names(ideotype.D) <- names(data)
   if(is.null(ideotype)){
     rescaled <- rep(100, length(data))
+    ideotype.D <- rep(100, length(data))
+    names(ideotype.D) <- names(data)
   } else{
     rescaled <- unlist(strsplit(ideotype, split="\\s*(\\s|,)\\s*")) %>%
       all_lower_case()
     if(length(rescaled) != length(data)){
       stop("Ideotype must have length ", ncol(data), ", the number of columns in data")
     }
-    if(!all(rescaled %in% c("h", "l"))){
-      stop("argument 'ideotype' must have 'h' or 'l' only", call. = FALSE)
+    if(!all(rescaled %in% c("h", "l", "m"))){
+      stop("argument 'ideotype' must have 'h', 'l', or 'm' only", call. = FALSE)
     }
-    rescaled <- ifelse(rescaled == "h", 100, 0)
+    ideotype.D <- ifelse(rescaled == "m", 50, 100)
+    names(ideotype.D) <- names(data)
+    rescaled <- case_when(
+      rescaled == "h" ~ 100,
+      rescaled == "l" ~ 0,
+      TRUE ~ 100)
   }
   if (is.null(SI)) {
     ngs <- NULL
@@ -227,12 +243,18 @@ mgidi <- function(.data,
     }
     sel_dif_mean <-
       sel_dif_mean %>%
-      left_join(vars, by = "VAR")
+      left_join(vars, by = "VAR") %>%
+      mutate(goal = case_when(
+        sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
+        TRUE ~ 0
+      ))
     total_gain <-
       desc_stat(sel_dif_mean,
                 by = sense,
                 any_of(c("SDperc", "SGperc")),
                 stats = c("min, mean, max, sum"))
+
+
   } else{
     sel_dif_mean <- NULL
   }
@@ -295,12 +317,12 @@ mgidi <- function(.data,
 #'   after using \code{coord_polar()}.
 #' @param type The type of the plot. Defaults to \code{"index"}. Use \code{type
 #'   = "contribution"} to show the contribution of each factor to the MGIDI
-#'   index of the selected genotypes.
+#'   index of the selected genotypes/treatments.
 #' @param position The position adjustment when \code{type = "contribution"}.
 #'   Defaults to \code{"fill"}, which shows relative proportions at each trait
 #'   by stacking the bars and then standardizing each bar to have the same
 #'   height. Use \code{position = "stack"} to plot the MGIDI index for each
-#'   genotype.
+#'   genotype/treatment.
 #' @param genotypes When \code{type = "contribution"} defines the genotypes to
 #'   be shown in the plot. By default (\code{genotypes = "selected"} only
 #'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
@@ -312,6 +334,7 @@ mgidi <- function(.data,
 #' @param invert Logical argument. If \code{TRUE}, rotate the plot.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
 #'   set to null when a radar plot is produced.
+#' @param title The plot title when \code{type = "contribution"}.
 #' @param arrange.label Logical argument. If \code{TRUE}, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
@@ -350,6 +373,7 @@ plot.mgidi <- function(x,
                        invert = FALSE,
                        x.lab = NULL,
                        y.lab = NULL,
+                       title = NULL,
                        arrange.label = FALSE,
                        size.point = 2.5,
                        size.line = 0.7,
@@ -373,6 +397,7 @@ plot.mgidi <- function(x,
   data <- x$MGIDI %>% add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- max(subset(data, sel == "Selected")$MGIDI)
+
   p <-
     ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
     geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
@@ -420,6 +445,7 @@ plot.mgidi <- function(x,
       data <- x$contri_fac
     }
     data %<>% pivot_longer(-Gen)
+    title <- ifelse(is.null(title), "The strengths and weaknesses view of genotypes", title)
     p <-
       ggplot(data, aes(Gen, value, fill = name))+
       geom_bar(stat = "identity",
@@ -437,7 +463,7 @@ plot.mgidi <- function(x,
                          expand = expansion(0))+
         labs(x = x.lab, y = y.lab)+
         guides(guide_legend(nrow = 1)) +
-        ggtitle("The strengths and weaknesses for genotypes")
+        ggtitle(title)
     if(invert == TRUE){
       p <- p + coord_flip()
     }

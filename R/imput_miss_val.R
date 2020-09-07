@@ -153,7 +153,7 @@ impute_missing_val <- function(.data,
     }
   }
   if(algorithm == "EM-SVD"){
-    data_in <- as.matrix(replace_na(data.frame(.data),  replace = "colmeans"))
+    data_in <- as.matrix(replace_na(data.frame(.data),  replacement = "colmean"))
     max_ipc <- min(nrow(data_in), ncol(data_in)) - 1
     axis_used <- ifelse(max_ipc < naxis, max_ipc, naxis)
     iter <- 1
@@ -174,7 +174,7 @@ impute_missing_val <- function(.data,
     }
   }
   if(algorithm == "colmeans"){
-    new_data <- as.matrix(replace_na(data.frame(.data),  replace = "colmeans"))
+    new_data <- as.matrix(replace_na(data.frame(.data),  replacement = "colmean"))
     pc_ss <- NULL
     iter <- NULL
     final_tol <- NULL

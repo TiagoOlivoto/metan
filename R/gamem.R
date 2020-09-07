@@ -666,8 +666,8 @@ plot.gamem <- function(x,
                color = "black",
                size = size.line,
                width = width.bar) +
-      scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05))))++
-      scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap))+
+      scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05)))) +
+      scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap)) +
       theme_bw()+
       theme(legend.position = "bottom",
             axis.ticks = element_line(size = size.line),
@@ -677,7 +677,7 @@ plot.gamem <- function(x,
             strip.background = element_rect(fill = NA),
             text = element_text(size = size.text, colour = "black"),
             axis.text = element_text(size = size.text, colour = "black")) +
-      theme(legend.position = "bottom")+
+      theme(legend.position = "bottom") +
       labs(x = "Traits",
       y = ifelse(position == "fill", "Proportion of phenotypic variance", "Phenotypic variance"))
     return(p1)

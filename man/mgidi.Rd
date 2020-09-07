@@ -6,6 +6,7 @@
 \usage{
 mgidi(
   .data,
+  use_data = "blup",
   SI = 15,
   mineval = 1,
   ideotype = NULL,
@@ -18,6 +19,11 @@ mgidi(
 \code{\link{gamem}()} or a two-way table with BLUPs for genotypes in each
 trait (genotypes in rows and traits in columns). In the last case, row
 names must contain the genotypes names.}
+
+\item{use_data}{Define which data to use if \code{.data} is an object of
+class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
+Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+index.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}

@@ -86,7 +86,12 @@ inspect <- function (.data,
               paste(df$Variable[c(which(df$Outlier != 0))], collapse = ", "),
               ". Use 'find_outliers()' for more details.", call. = F)
     }
-    if(nfactors >= 3 && esp_nrows == nrow(.data) && all(df$Missing == "No") && all(df$Outlier[!is.na(df$Outlier)] == 0) == TRUE){
+    if(has_zero(.data)){
+      warning("Zero values observed in variable(s) ",
+              paste(names(select_cols_zero(.data, verbose = FALSE)),
+                    collapse = ", "), ".", call. = FALSE)
+    }
+    if(nfactors >= 3 && esp_nrows == nrow(.data) && all(df$Missing == "No") && all(df$Outlier[!is.na(df$Outlier)] == 0) == TRUE && !has_zero(.data)){
       message("No issues detected while inspecting data.")
     }
   }

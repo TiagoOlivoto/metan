@@ -21,11 +21,13 @@
 #'   \code{\link[ggplot2]{theme}}.
 #' @param width The width "inch" of the plot. Default is \code{6}.
 #' @param height The height "inch" of the plot. Default is \code{6}.
-#' @param size.err.bar The size of the error bar for the plot. Default is
-#'   \code{0.5}.
 #' @param size.shape The size of the shape (both for genotypes and
 #'   environments). Default is \code{3.5}.
 #' @param size.tex.lab The size of the text in axis text and labels.
+#' @param err.bar Logical value to indicate if an error bar is shown. Defaults
+#'   to \code{TRUE}.
+#' @param size.err.bar The size of the error bar for the plot. Default is
+#'   \code{0.5}.
 #' @param height.err.bar The height for error bar. Default is \code{0.3}.
 #' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
 #'   values of the data set). New arguments can be inserted as \code{x.lim =
@@ -77,6 +79,7 @@ plot_blup <- function(x,
                       plot_theme = theme_metan(),
                       width = 6,
                       height = 6,
+                      err.bar = TRUE,
                       size.err.bar = 0.5,
                       size.shape = 3.5,
                       size.tex.lab = 12,
@@ -135,7 +138,6 @@ plot_blup <- function(x,
     p1 <-
         ggplot(blup, aes(x = Predicted, y = reorder(GEN, Predicted))) +
         geom_vline(xintercept = mean(blup$Predicted), linetype = 2) +
-        geom_errorbarh(aes(xmin = LL, xmax = UL), size = size.err.bar, height = height.err.bar) +
         geom_point(stat = "identity", aes(fill = Mean), shape = 21, size = size.shape) +
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         labs(x = x.lab, y = y.lab) +
@@ -143,7 +145,9 @@ plot_blup <- function(x,
         scale_y_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap)) +
         plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,colour = "black"),
                                axis.title = element_text(size = size.tex.lab, colour = "black"))
-
+    if(err.bar == TRUE){
+        p1 <- p1 + geom_errorbarh(aes(xmin = LL, xmax = UL), size = size.err.bar, height = height.err.bar)
+    }
     if(which == "ge"){
     p1 <- p1 +
         facet_wrap(~ENV) +
