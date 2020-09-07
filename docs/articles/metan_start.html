@@ -234,11 +234,11 @@
 <span class="co"># 3 REP      factor  No      3          420 NA     NA    NA         NA</span>
 <span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span>
 <span class="co"># 5 HM       numeric No      -          420 38     48    58          0</span></pre></body></html></div>
-<p>Then, the details of the multi-environment trial can be obtained with the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_details.html"><code><a href="../reference/ge_details.html">ge_details()</a></code></a>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything()</a></code> in the argument <code>resp</code>.</p>
+<p>Then, the details of the multi-environment trial can be obtained with the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_details.html"><code><a href="../reference/ge_details.html">ge_details()</a></code></a>. Note that to apply the function to all numeric variables quickly, we can use the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html#select-helpers">select helper</a> <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> in the argument <code>resp</code>.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/ge_details.html">ge_details</a></span>(<span class="no">data_ge</span>,
            <span class="kw">env</span> <span class="kw">=</span> <span class="no">ENV</span>,
            <span class="kw">gen</span> <span class="kw">=</span> <span class="no">GEN</span>,
-           <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything</a></span>())
+           <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>())
 <span class="co"># # A tibble: 10 x 3</span>
 <span class="co">#    Parameters GY                  HM              </span>
 <span class="co">#    &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;           </span>
@@ -259,7 +259,7 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">mge</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/ge_means.html">ge_means</a></span>(<span class="no">data_ge</span>,
                 <span class="kw">env</span> <span class="kw">=</span> <span class="no">ENV</span>,
                 <span class="kw">gen</span> <span class="kw">=</span> <span class="no">GEN</span>,
-                <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything</a></span>())
+                <span class="kw">resp</span> <span class="kw">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>())
 <span class="co"># Genotype-environment means</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="no">mge</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span>()
 <span class="co"># Class of the model: ge_means</span>
@@ -420,7 +420,7 @@
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with the function <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html"><code><a href="../reference/gamem_met.html">gamem_met()</a></code></a>. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument <code>random</code> to change this default. In the following example the model is fitted to all numeric variables in <a href="https://tiagoolivoto.github.io/metan/reference/data_ge.html"><code>data_ge</code></a>.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">model2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gamem_met.html">gamem_met</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything</a></span>())
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">model2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gamem_met.html">gamem_met</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>())
 <span class="co"># Method: REML/BLUP</span>
 <span class="co"># Random effects: GEN, GEN:ENV</span>
 <span class="co"># Fixed effects: ENV, REP(ENV)</span>
@@ -506,7 +506,7 @@
 <h2 class="hasAnchor">
 <a href="#blup-based-stability-index" class="anchor"></a>BLUP-based stability index</h2>
 <p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can obtain this statistic with the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code><a href="../reference/waasb.html">waasb()</a></code></a> combined with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="../reference/get_model_data.html">get_model_data()</a></code></a> using <code>what = "WAASB"</code>.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">model3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/waasb.html">waasb</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything</a></span>(), <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">model3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/waasb.html">waasb</a></span>(<span class="no">data_ge</span>, <span class="no">ENV</span>, <span class="no">GEN</span>, <span class="no">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span>(), <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span>(<span class="no">model3</span>, <span class="kw">what</span> <span class="kw">=</span> <span class="st">"WAASB"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span>()
 <span class="co"># Class of the model: waasb</span>

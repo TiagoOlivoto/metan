@@ -148,10 +148,11 @@ reference:
 
 
   - title: "GGE"
-    desc: "Functions for GGE analysis"
+    desc: "Functions for GGE, GT, and GYT biplot analysis"
     contents:
       - gge
       - gtb
+      - gytb
       - plot.gge
       - predict.gge
 
@@ -240,12 +241,14 @@ reference:
       - corr_plot
       - corr_ci
       - corr_ss
+      - correlated_vars
       - covcor_design
       - is.lpcor
       - lpcor
       - pairs_mantel
       - plot_ci
       - plot.corr_coef
+      - plot.correlated_vars
       - print.corr_coef
       - print.lpcor
   - subtitle: "Canonical correlation coefficient"

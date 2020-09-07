@@ -324,10 +324,10 @@ values.</p>
 <span class='co'># Compute the mean of these variables by ENV and GEN;</span>
 <span class='co'># Rescale the variables that ends with 'L' whithin ENV;</span>
 <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/starts_with.html'>starts_with</a></span>(<span class='st'>"N"</span>), <span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/starts_with.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with</a></span>(<span class='st'>"N"</span>), <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>resca</span>(<span class='fu'><a href='https://rdrr.io/pkg/tidyselect/man/starts_with.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>resca</span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>13</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 9</span><span>
 #&gt; </span><span style='color: #555555;'># Groups:   ENV [1]</span><span>
 #&gt;    ENV   GEN      NR   NKR   NKE    EL    CL EL_res   CL_res
