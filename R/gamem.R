@@ -553,6 +553,8 @@ predict.gamem <- function(object, ...) {
 #'   stacking the bars and then standardizing each bar to have the same height.
 #'   Use \code{position = "stack"} to plot the phenotypic variance for each
 #'   trait.
+#' @param rotate Logical argument. If \code{rotate = TRUE} the plot is rotated,
+#'   i.e., traits in y axis and value in the x axis.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
 #' @param out How the output is returned. Must be one of the 'print' (default)
@@ -607,6 +609,7 @@ plot.gamem <- function(x,
                        var = 1,
                        type = "res",
                        position = "fill",
+                       rotate = FALSE,
                        conf = 0.95,
                        out = "print",
                        n.dodge = 1,
@@ -680,6 +683,9 @@ plot.gamem <- function(x,
       theme(legend.position = "bottom") +
       labs(x = "Traits",
       y = ifelse(position == "fill", "Proportion of phenotypic variance", "Phenotypic variance"))
+    if(rotate == TRUE){
+      p1 <- p1 + coord_flip()
+    }
     return(p1)
   }
   if (type == "res") {

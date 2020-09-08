@@ -9,6 +9,7 @@
   var = 1,
   type = "res",
   position = "fill",
+  rotate = FALSE,
   conf = 0.95,
   out = "print",
   n.dodge = 1,
@@ -50,6 +51,9 @@ to \code{"fill"}, which shows relative proportions at each trait by
 stacking the bars and then standardizing each bar to have the same height.
 Use \code{position = "stack"} to plot the phenotypic variance for each
 trait.}
+
+\item{rotate}{Logical argument. If \code{rotate = TRUE} the plot is rotated,
+i.e., traits in y axis and value in the x axis.}
 
 \item{conf}{Level of confidence interval to use in the Q-Q plot (0.95 by
 default).}

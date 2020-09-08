@@ -323,6 +323,8 @@ mgidi <- function(.data,
 #'   by stacking the bars and then standardizing each bar to have the same
 #'   height. Use \code{position = "stack"} to plot the MGIDI index for each
 #'   genotype/treatment.
+#' @param rotate Logical argument. If \code{rotate = TRUE} the plot is rotated,
+#'   i.e., traits in y axis and value in the x axis.
 #' @param genotypes When \code{type = "contribution"} defines the genotypes to
 #'   be shown in the plot. By default (\code{genotypes = "selected"} only
 #'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
@@ -331,7 +333,7 @@ mgidi <- function(.data,
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param invert Logical argument. If \code{TRUE}, rotate the plot.
+#' @param invert Deprecated argument as of 1.8.0. Use \code{rotate} instead.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
 #'   set to null when a radar plot is produced.
 #' @param title The plot title when \code{type = "contribution"}.
@@ -367,10 +369,11 @@ plot.mgidi <- function(x,
                        radar = TRUE,
                        type = "index",
                        position = "fill",
+                       rotate = FALSE,
                        genotypes = "selected",
                        n.dodge = 1,
                        check.overlap = FALSE,
-                       invert = FALSE,
+                       invert = NULL,
                        x.lab = NULL,
                        y.lab = NULL,
                        title = NULL,
@@ -382,6 +385,10 @@ plot.mgidi <- function(x,
                        col.sel = "red",
                        col.nonsel = "black",
                        ...) {
+  if(!is.null(invert)){
+    warning("Argument 'invert' is deprecated. Use 'replacement' instead.", call. = FALSE)
+    rotate <- invert
+  }
   if(!type %in% c("index", "contribution")){
     stop("The argument index must be one of the 'index' or 'contribution'", call. = FALSE)
   }
@@ -464,7 +471,7 @@ plot.mgidi <- function(x,
         labs(x = x.lab, y = y.lab)+
         guides(guide_legend(nrow = 1)) +
         ggtitle(title)
-    if(invert == TRUE){
+    if(rotate == TRUE){
       p <- p + coord_flip()
     }
   }

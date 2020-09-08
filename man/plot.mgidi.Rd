@@ -10,10 +10,11 @@
   radar = TRUE,
   type = "index",
   position = "fill",
+  rotate = FALSE,
   genotypes = "selected",
   n.dodge = 1,
   check.overlap = FALSE,
-  invert = FALSE,
+  invert = NULL,
   x.lab = NULL,
   y.lab = NULL,
   title = NULL,
@@ -46,6 +47,9 @@ by stacking the bars and then standardizing each bar to have the same
 height. Use \code{position = "stack"} to plot the MGIDI index for each
 genotype/treatment.}
 
+\item{rotate}{Logical argument. If \code{rotate = TRUE} the plot is rotated,
+i.e., traits in y axis and value in the x axis.}
+
 \item{genotypes}{When \code{type = "contribution"} defines the genotypes to
 be shown in the plot. By default (\code{genotypes = "selected"} only
 selected genotypes are shown. Use \code{genotypes = "all"} to plot the
@@ -57,7 +61,7 @@ This is useful for displaying labels that would otherwise overlap.}
 \item{check.overlap}{Silently remove overlapping labels, (recursively)
 prioritizing the first, last, and middle labels.}
 
-\item{invert}{Logical argument. If \code{TRUE}, rotate the plot.}
+\item{invert}{Deprecated argument as of 1.8.0. Use \code{rotate} instead.}
 
 \item{x.lab, y.lab}{The labels for the axes x and y, respectively. x label is
 set to null when a radar plot is produced.}

@@ -138,7 +138,6 @@ plot_blup <- function(x,
     p1 <-
         ggplot(blup, aes(x = Predicted, y = reorder(GEN, Predicted))) +
         geom_vline(xintercept = mean(blup$Predicted), linetype = 2) +
-        geom_point(stat = "identity", aes(fill = Mean), shape = 21, size = size.shape) +
         scale_fill_manual(name = "Average", values = col.shape, labels = c("Above", "Below")) +
         labs(x = x.lab, y = y.lab) +
         scale_x_continuous(limits = x.lim, breaks = x.breaks) +
@@ -146,7 +145,9 @@ plot_blup <- function(x,
         plot_theme %+replace% theme(axis.text = element_text(size = size.tex.lab,colour = "black"),
                                axis.title = element_text(size = size.tex.lab, colour = "black"))
     if(err.bar == TRUE){
-        p1 <- p1 + geom_errorbarh(aes(xmin = LL, xmax = UL), size = size.err.bar, height = height.err.bar)
+        p1 <- p1 +
+            geom_errorbarh(aes(xmin = LL, xmax = UL), size = size.err.bar, height = height.err.bar) +
+            geom_point(stat = "identity", aes(fill = Mean), shape = 21, size = size.shape)
     }
     if(which == "ge"){
     p1 <- p1 +
