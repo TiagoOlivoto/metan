@@ -11,7 +11,7 @@ This is a path release (v1.8.0) that includes minor improvements. Please, see th
 
 
 # R CMD check results (run with --run-donttest --as-cran)
-0 errors | 0 warnings | 2 notes
+0 errors | 0 warnings | 3 notes
 
 > 
 checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
@@ -19,11 +19,16 @@ Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>'
 
 **I think the following note doesn't matter.**
 
+>
+unable to verify current time
+
+**I believe this requires a fix in the check function by the R development team or the web-resource coming online again.**
+
 > 
 checking top-level files ... NOTE
 Files 'README.md' or 'NEWS.md' cannot be checked without 'pandoc' being installed.
 
-I can put these in .Rbuildignore but CRAN supports NEWS.md now.
+**I can put these in .Rbuildignore but CRAN supports NEWS.md now.**
 
 
 
