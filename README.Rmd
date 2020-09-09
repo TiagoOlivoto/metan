@@ -38,6 +38,7 @@ knitr::opts_chunk$set(
 * Compute AMMI analysis with prediction considering different numbers of interaction principal component axes;
 * Compute AMMI-based stability indexes;
 * Compute GGE biplot analysis;
+* Compute GT and GYT biplot analysis;
 * Compute BLUP-based stability indexes;
 * Compute variance components and genetic parameters in mixed-effect models;
 * Perform cross-validation procedures for AMMI-family and BLUP models;
@@ -149,6 +150,7 @@ f <- plot(model2,
 arrange_ggplot(d, e, f, labels = letters[4:6], nrow = 1)
 
 ```
+
 
 
 

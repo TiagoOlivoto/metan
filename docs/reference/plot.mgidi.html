@@ -239,10 +239,11 @@
   <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"index"</span>,
   <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"fill"</span>,
+  <span class='kw'>rotate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>genotypes</span> <span class='kw'>=</span> <span class='st'>"selected"</span>,
   <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>invert</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -288,6 +289,11 @@ height. Use <code>position = "stack"</code> to plot the MGIDI index for each
 genotype/treatment.</p></td>
     </tr>
     <tr>
+      <th>rotate</th>
+      <td><p>Logical argument. If <code>rotate = TRUE</code> the plot is rotated,
+i.e., traits in y axis and value in the x axis.</p></td>
+    </tr>
+    <tr>
       <th>genotypes</th>
       <td><p>When <code>type = "contribution"</code> defines the genotypes to
 be shown in the plot. By default (<code>genotypes = "selected"</code> only
@@ -306,7 +312,7 @@ prioritizing the first, last, and middle labels.</p></td>
     </tr>
     <tr>
       <th>invert</th>
-      <td><p>Logical argument. If <code>TRUE</code>, rotate the plot.</p></td>
+      <td><p>Deprecated argument as of 1.8.0. Use <code>rotate</code> instead.</p></td>
     </tr>
     <tr>
       <th>x.lab, y.lab</th>

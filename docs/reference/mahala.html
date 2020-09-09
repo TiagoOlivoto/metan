@@ -266,7 +266,7 @@ contain the inverse of the covariance matrix.</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'># Compute the mean for genotypes</span>
 <span class='no'>means</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='no'>data_ge</span>, <span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
+         <span class='fu'><a href='https://rdrr.io/pkg/tibble/man/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
 
 <span class='co'># Compute the covariance matrix</span>
 <span class='no'>covmat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span>(<span class='no'>means</span>)

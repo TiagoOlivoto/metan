@@ -1,5 +1,5 @@
 # metan 1.8.0
-* New function `gytb()` to generate the Genotype by yield*trait biplot
+* New function `gytb()` to generate the Genotype by yield*trait biplot.
 * New functions `row_col_mean()` and `row_col_sum()`to add a row with the mean/sum of each variable and a column with the the mean/sum for each row of a matrix or data frame.
 * New functions `has_zero()`, `remove_cols_zero()`, `remove_rows_zero()`, `select_cols_zero()`, `select_rows_zero()`, and `replace_zero()` to deal with 0s in a data frame.
 * Fix bug of inconsistent color legend when plotting objects of class `gge`.
@@ -8,7 +8,6 @@
 * New argument `col.by` in `corr_plot()` to map the color of the points by a categorical variable.
 * New argument `use_data` in functions `mgidi()`, `fai_blup()`, and `Smith_Hazel()` to control which data is used (BLUPs or phenotypic means) to compute the index.
 * `inspect()` now generate a warning if zero values are observed in data.
-* 
 
 
 # metan 1.7.0

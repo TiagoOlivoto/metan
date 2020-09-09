@@ -250,6 +250,7 @@ object, normal Q-Q plot for random effects may also be obtained declaring
   <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"res"</span>,
   <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"fill"</span>,
+  <span class='kw'>rotate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>out</span> <span class='kw'>=</span> <span class='st'>"print"</span>,
   <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -301,6 +302,11 @@ to <code>"fill"</code>, which shows relative proportions at each trait by
 stacking the bars and then standardizing each bar to have the same height.
 Use <code>position = "stack"</code> to plot the phenotypic variance for each
 trait.</p></td>
+    </tr>
+    <tr>
+      <th>rotate</th>
+      <td><p>Logical argument. If <code>rotate = TRUE</code> the plot is rotated,
+i.e., traits in y axis and value in the x axis.</p></td>
     </tr>
     <tr>
       <th>conf</th>
