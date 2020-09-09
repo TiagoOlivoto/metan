@@ -10,6 +10,7 @@ corr_plot(
   col.by = NULL,
   upper = "corr",
   lower = "scatter",
+  decimal.mark = ".",
   axis.labels = FALSE,
   show.labels.in = "show",
   size.axis.label = 12,
@@ -67,6 +68,8 @@ blank diagonal.}
 matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
 (the scatterplot for each pairwise combination), or \code{NULL} to set a
 blank diagonal.}
+
+\item{decimal.mark}{The decimal mark. Defaults to \code{"."}.}
 
 \item{axis.labels}{Should the axis labels be shown in the plot? Set to
 \code{FALSE}.}

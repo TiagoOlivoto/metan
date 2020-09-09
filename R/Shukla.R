@@ -33,7 +33,7 @@
 #'   \href{http://www.nature.com/articles/hdy197287}{doi:10.1038/hdy.1972.87}.
 #' @references Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
 #'   Yielding and Stable Crop Genotypes. Agron. J. 83:161.
-#'   \href{https://dl.sciencesocieties.org/publications/aj/abstracts/83/1/AJ0830010161}{doi:10.2134/agronj1991.00021962008300010037x}.
+#'   \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj1991.00021962008300010037x}{doi:10.2134/agronj1991.00021962008300010037x}.
 #'
 #' @examples
 #' \donttest{

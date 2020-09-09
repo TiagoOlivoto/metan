@@ -62,7 +62,7 @@
 #' Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
 #' in South Africa: II. Stability analysis of yield performance. South African
 #' J. Plant Soil 17:101-107.
-#' \href{http://doi.org/10.1080/02571862.2000.10634878}{doi:10.1080/02571862.2000.10634878}
+#' \href{https://doi.org/10.1080/02571862.2000.10634878}{doi:10.1080/02571862.2000.10634878}
 #'
 #' Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
 #' Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.

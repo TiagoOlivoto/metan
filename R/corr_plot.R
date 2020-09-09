@@ -18,6 +18,7 @@
 #'   matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
 #'   (the scatterplot for each pairwise combination), or \code{NULL} to set a
 #'   blank diagonal.
+#' @param decimal.mark The decimal mark. Defaults to \code{"."}.
 #' @param axis.labels Should the axis labels be shown in the plot? Set to
 #'   \code{FALSE}.
 #' @param show.labels.in Where to show the axis labels. Defaults to "show"
@@ -132,16 +133,46 @@
 #'           pan.spacing = 0,
 #'           lab.position = 'tl')
 #'}
-corr_plot <- function(.data, ..., col.by = NULL, upper = "corr", lower = "scatter",
-                      axis.labels = FALSE, show.labels.in = "show", size.axis.label = 12,
-                      diag = TRUE, diag.type = "histogram", bins = 20, col.diag = "gray",
-                      alpha.diag = 1, col.up.panel = "gray", col.lw.panel = "gray",
-                      col.dia.panel = "gray", prob = 0.05, col.sign = "green", alpha.sign = 0.15,
-                      lab.position = "tr", progress = NULL, smooth = FALSE, col.smooth = "red",
-                      size.smooth = 0.3, confint = TRUE, size.point = 1, shape.point = 19,
-                      alpha.point = 0.7, fill.point = NULL, col.point = "black", minsize = 2,
-                      maxsize = 3, pan.spacing = 0.15, digits = 2, export = FALSE, file.type = "pdf",
-                      file.name = NULL, width = 8, height = 7, resolution = 300) {
+corr_plot <- function(.data, ...,
+                      col.by = NULL,
+                      upper = "corr",
+                      lower = "scatter",
+                      decimal.mark = ".",
+                      axis.labels = FALSE,
+                      show.labels.in = "show",
+                      size.axis.label = 12,
+                      diag = TRUE,
+                      diag.type = "histogram",
+                      bins = 20,
+                      col.diag = "gray",
+                      alpha.diag = 1,
+                      col.up.panel = "gray",
+                      col.lw.panel = "gray",
+                      col.dia.panel = "gray",
+                      prob = 0.05,
+                      col.sign = "green",
+                      alpha.sign = 0.15,
+                      lab.position = "tr",
+                      progress = NULL,
+                      smooth = FALSE,
+                      col.smooth = "red",
+                      size.smooth = 0.3,
+                      confint = TRUE,
+                      size.point = 1,
+                      shape.point = 19,
+                      alpha.point = 0.7,
+                      fill.point = NULL,
+                      col.point = "black",
+                      minsize = 2,
+                      maxsize = 3,
+                      pan.spacing = 0.15,
+                      digits = 2,
+                      export = FALSE,
+                      file.type = "pdf",
+                      file.name = NULL,
+                      width = 8,
+                      height = 7,
+                      resolution = 300) {
   if(!show.labels.in %in% c("show", "internal", "none")){
     stop("The argument 'show.labels.in' must be one of the 'show', 'internal', or 'none'. ")
   }
@@ -195,12 +226,13 @@ corr_plot <- function(.data, ..., col.by = NULL, upper = "corr", lower = "scatte
                                                                       0.001, 0.01, 0.05, 0.1, 1), symbols = c("***", "**",
                                                                                                               "*", ".", " "))
     r <- unname(ct$estimate)
-    rt <- format(r, digits = digits)[1]
+    rt <- format(r, digits = digits, decimal.mark = decimal.mark,  scientific = FALSE)[1]
     cex <- max(sizeRange)
     percent_of_range <- function(percent, range) {
       percent * diff(range) + min(range, na.rm = TRUE)
     }
-    GGally::ggally_text(label = as.character(rt), mapping = aes(),
+    GGally::ggally_text(label =  rt,
+                        mapping = aes(),
                         xP = 0.5, yP = 0.5, size = I(percent_of_range(cex *
                                                                         abs(r), sizeRange)), color = color, ...) + geom_text(aes_string(x = 0.8,
                                                                                                                                         y = 0.8), label = sig, size = I(cex), color = color,

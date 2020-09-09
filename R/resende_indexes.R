@@ -50,13 +50,13 @@
 #'   R.A. Estopa. 2018. Genetic evaluation of Pinus taeda clones from somatic
 #'   embryogenesis and their genotype x environment interaction. Crop Breed.
 #'   Appl. Biotechnol. 18:55-64.
-#'   \href{http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1984-70332018000100055&lng=en&tlng=en}{doi:10.1590/1984-70332018v18n1a8}
+#'   \href{https://www.scielo.br/scielo.php?script=sci_arttext&pid=S1984-70332018000100055&lng=en&tlng=en}{doi:10.1590/1984-70332018v18n1a8}
 #'
 #'
 #'   Azevedo Peixoto, L. de, P.E. Teodoro, L.A. Silva, E.V. Rodrigues, B.G.
 #'   Laviola, and L.L. Bhering. 2018. Jatropha half-sib family selection with
 #'   high adaptability and genotypic stability. PLoS One 13:e0199880.
-#'   \href{https://dx.plos.org/10.1371/journal.pone.0199880}{doi:10.1371/journal.pone.0199880}
+#'   \href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199880}{doi:10.1371/journal.pone.0199880}
 #'
 #'
 #'   Resende MDV (2007) Matematica e estatistica na analise de experimentos e no

@@ -59,7 +59,7 @@
 #'
 #' @references Ouyang, Z., R.P. Mowers, A. Jensen, S. Wang, and S. Zheng. 1995.
 #'  Cluster analysis for genotype x environment interaction with unbalanced data. Crop Sci. 35:1300-1305.
-#'  \href{https://dl.sciencesocieties.org/publications/cs/abstracts/35/5/CS0350051300?access=0&view=pdf}{doi:10.2135/cropsci1995.0011183X003500050008x}
+#'  \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2135/cropsci1995.0011183X003500050008x}{doi:10.2135/cropsci1995.0011183X003500050008x}
 #' @export
 #' @examples
 #' \donttest{

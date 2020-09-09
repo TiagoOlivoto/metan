@@ -178,7 +178,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 
 Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information: to
 recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
-\href{http://www.ncbi.nlm.nih.gov/pubmed/25972114}{doi:10.1007/s00122-015-2530-0}
+\href{https://pubmed.ncbi.nlm.nih.gov/25972114/}{doi:10.1007/s00122-015-2530-0}
 
 Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable
 incomplete block designs. Biometrika 63:83-92.

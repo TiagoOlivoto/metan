@@ -63,7 +63,7 @@ trials in Northern Italy. J. Genet. Breed. 46:269-278.
 Schmildt, E.R., A.L. Nascimento, C.D. Cruz, and J.A.R. Oliveira. 2011.
 Avaliacao de metodologias de adaptabilidade e estabilidade de cultivares
 milho. Acta Sci. - Agron. 33:51-58.
-\href{http://www.scielo.br/scielo.php?script=sci_abstract&pid=S1807-86212011000100008&lng=en&nrm=iso&tlng=pt}{doi:10.4025/actasciagron.v33i1.5817}.
+\href{https://www.scielo.br/scielo.php?script=sci_abstract&pid=S1807-86212011000100008&lng=en&nrm=iso&tlng=pt}{doi:10.4025/actasciagron.v33i1.5817}.
 }
 \seealso{
 \code{\link{superiority}, \link{ecovalence}, \link{ge_stats},
