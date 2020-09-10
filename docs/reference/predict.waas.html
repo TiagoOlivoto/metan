@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,7 +233,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for waas</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>object</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>object</span>, naxis = <span class='fl'>2</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -276,15 +276,19 @@ package provide both. <code><a href='waas.html'>waas</a></code> function compute
 analysis showing the number of significant axis. On the other hand,
 <code><a href='cv_ammif.html'>cv_ammif</a></code> function provide a cross-validation, estimating the
 RMSPD of all AMMI-family models, based on resampling procedures.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>,
-             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; variable GY 
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='kw'>data_ge</span>,
+             env = <span class='kw'>ENV</span>,
+             gen = <span class='kw'>GEN</span>,
+             rep = <span class='kw'>REP</span>,
+             resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>))
+</div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -330,8 +334,9 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Predict GY with 3 IPCA and HM with 1 IPCA</span>
-<span class='no'>predict</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>model</span>, <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>1</span>))
-<span class='no'>predict</span></div><div class='output co'>#&gt; $GY
+<span class='kw'>predict</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>model</span>, naxis = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>1</span>))
+<span class='kw'>predict</span>
+</div><div class='output co'>#&gt; $GY
 #&gt; <span style='color: #555555;'># A tibble: 140 x 7</span><span>
 #&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -362,7 +367,7 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     48.0  -</span><span style='color: #BB0000;'>0.466</span><span>     48.4     -</span><span style='color: #BB0000;'>0.005</span><span style='color: #BB0000;text-decoration: underline;'>68</span><span>          48.4
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     47.7   0.450     47.2     -</span><span style='color: #BB0000;'>0.146</span><span>            47.1
 #&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span>
-#&gt; </div><div class='input'># }
+#&gt; </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -380,7 +385,7 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

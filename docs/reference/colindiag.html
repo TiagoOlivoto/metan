@@ -97,7 +97,7 @@ variables using several indicators, as shown by Olivoto et al. (2017)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ variables using several indicators, as shown by Olivoto et al. (2017)." />
 variables using several indicators, as shown by Olivoto et al. (2017).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>colindiag</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>colindiag</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, by = <span class='kw'>NULL</span>, n = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -289,40 +289,43 @@ in the eigenvalue of smallest value, sorted in decreasing order.</p></li>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
-A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
-path analysis: a simple method to reduce its effects. Agron. J.
-109:131-142. doi:10.2134/agronj2016.04.0196.
-<a href='https://doi.org/10.2134/agronj2016.04.0196'>doi:10.2134/agronj2016.04.0196</a></p>
-<p>Olivoto, T., M. Nardino, I.I.R. Carvalho, D.N. Follmann, M.
-Ferrari, A.J. de Pelegrin, V.J. Szareski, A.C. de Oliveira, B.O. Caron, and
-V.Q. de Souza. 2017. Optimal sample size and data arrangement method in
-estimating correlation matrices with lesser collinearity: A statistical
-focus in maize breeding. African J. Agric. Res. 12:93-103.
-<a href='https://academicjournals.org/journal/AJAR/article-abstract/5DB554B62359'>doi:10.5897/AJAR2016.11799</a>.</p>
+    <p>Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J.
+Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in path
+analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
+doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.0196</a></p>
+<p>Olivoto, T., M. Nardino, I.I.R. Carvalho, D.N. Follmann, M. Ferrari, A.J. de
+Pelegrin, V.J. Szareski, A.C. de Oliveira, B.O. Caron, and V.Q. de Souza.
+2017. Optimal sample size and data arrangement method in estimating
+correlation matrices with lesser collinearity: A statistical focus in maize
+breeding. African J. Agric. Res. 12:93-103. doi: <a href='https://doi.org/10.5897/AJAR2016.11799'>10.5897/AJAR2016.11799</a>
+.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># Using the correlation matrix</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 
-<span class='no'>cor_iris</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>iris</span>[,<span class='fl'>1</span>:<span class='fl'>4</span>])
-<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>iris</span>)
+<span class='kw'>cor_iris</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>iris</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>])
+<span class='kw'>n</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>iris</span>)
 
-<span class='no'>col_diag</span> <span class='kw'>&lt;-</span> <span class='fu'>colindiag</span>(<span class='no'>cor_iris</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>)
+<span class='kw'>col_diag</span> <span class='op'>&lt;-</span> <span class='fu'>colindiag</span>(<span class='kw'>cor_iris</span>, n = <span class='kw'>n</span>)
 
 
 <span class='co'># Using a data frame</span>
-<span class='no'>col_diag_gen</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
+<span class='kw'>col_diag_gen</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
                 <span class='fu'>colindiag</span>()
 
 <span class='co'># Diagnostic by levels of a factor</span>
 <span class='co'># For variables with "N" in variable name</span>
-<span class='no'>col_diag_gen</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
+<span class='kw'>col_diag_gen</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
                 <span class='fu'>colindiag</span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span>(<span class='st'>"N"</span>))
-<span class='co'># }</span></div></pre>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -338,7 +341,7 @@ focus in maize breeding. African J. Agric. Res. 12:93-103.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

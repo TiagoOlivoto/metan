@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,15 +233,15 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_effects</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>leg.position</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
+  <span class='kw'>x</span>,
+  var = <span class='fl'>1</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  x.lab = <span class='kw'>NULL</span>,
+  y.lab = <span class='kw'>NULL</span>,
+  leg.position = <span class='st'>"right"</span>,
+  size.text = <span class='fl'>12</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -293,12 +293,16 @@ is <code>12</code>.</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ge_plot.html'>ge_plot</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>ge_eff</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ge_effects.html'>ge_effects</a></span>(<span class='no'>data_ge2</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>ge_eff</span>)</div><div class='img'><img src='plot.ge_effects-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>ge_eff</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_effects.html'>ge_effects</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>PH</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>ge_eff</span>)
+</div><div class='img'><img src='plot.ge_effects-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -316,7 +320,7 @@ is <code>12</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

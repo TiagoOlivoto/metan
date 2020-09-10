@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,13 +233,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>correlated_vars</span>(
-  <span class='no'>y</span>,
-  <span class='kw'>min_cor</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-  <span class='kw'>max_cor</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='no'>nvars</span>,
-  <span class='kw'>constant</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>operation</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>y</span>,
+  min_cor = <span class='op'>-</span><span class='fl'>1</span>,
+  max_cor = <span class='fl'>1</span>,
+  <span class='kw'>nvars</span>,
+  constant = <span class='kw'>NULL</span>,
+  operation = <span class='st'>"*"</span>,
+  x = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -281,13 +281,17 @@ used.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame with the <code>y</code> variable and the correlated variables.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='no'>cor_vars</span> <span class='kw'>&lt;-</span> <span class='fu'>correlated_vars</span>(<span class='no'>y</span>, <span class='kw'>nvar</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>cor_vars</span>)</div><div class='img'><img src='correlated_vars-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(n = <span class='fl'>10</span>)
+<span class='kw'>cor_vars</span> <span class='op'>&lt;-</span> <span class='fu'>correlated_vars</span>(<span class='kw'>y</span>, nvar = <span class='fl'>6</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>cor_vars</span>)
+</div><div class='img'><img src='correlated_vars-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 
 </div></pre>
@@ -306,7 +310,7 @@ used.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

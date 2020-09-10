@@ -97,7 +97,7 @@ et al. (2019)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,26 +235,26 @@ et al. (2019)</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mtsi</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"index"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"fill"</span>,
-  <span class='kw'>genotypes</span> <span class='kw'>=</span> <span class='st'>"selected"</span>,
-  <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.75</span>,
-  <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
+  <span class='kw'>x</span>,
+  SI = <span class='fl'>15</span>,
+  type = <span class='st'>"index"</span>,
+  position = <span class='st'>"fill"</span>,
+  genotypes = <span class='st'>"selected"</span>,
+  radar = <span class='fl'>TRUE</span>,
+  arrange.label = <span class='fl'>FALSE</span>,
+  x.lab = <span class='kw'>NULL</span>,
+  y.lab = <span class='kw'>NULL</span>,
+  size.point = <span class='fl'>2.5</span>,
+  size.line = <span class='fl'>0.7</span>,
+  size.text = <span class='fl'>10</span>,
+  width.bar = <span class='fl'>0.75</span>,
+  n.dodge = <span class='fl'>1</span>,
+  check.overlap = <span class='fl'>FALSE</span>,
+  invert = <span class='fl'>FALSE</span>,
+  col.sel = <span class='st'>"red"</span>,
+  col.nonsel = <span class='st'>"black"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -293,7 +293,7 @@ contribution for all genotypes.)</p></td>
     <tr>
       <th>radar</th>
       <td><p>Logical argument. If true (default) a radar plot is generated
-after using <code>coord_polar()</code>.</p></td>
+after using <code><a href='https://ggplot2.tidyverse.org/reference/coord_polar.html'>coord_polar()</a></code>.</p></td>
     </tr>
     <tr>
       <th>arrange.label</th>
@@ -357,11 +357,15 @@ prioritizing the first, last, and middle labels.</p></td>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, B.G. Sari, and M.I. Diel. 2019. Mean performance and stability in multi-environment trials II: Selection based on multiple traits. Agron. J. (in press).</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>mtsi_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>))</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>mtsi_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>))
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -369,7 +373,8 @@ prioritizing the first, last, and middle labels.</p></td>
 #&gt;       GEN 1.11e-05 5.07e-03
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='no'>mtsi_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>mtsi_model</span>)</div><div class='output co'>#&gt; 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='kw'>mtsi_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='kw'>mtsi_model</span>)
+</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
@@ -404,16 +409,17 @@ prioritizing the first, last, and middle labels.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    xo    Xs    SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4  
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 8</span><span>
+#&gt;   VAR   Factor    xo    Xs    SD SDperc sense     goal
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4   increase   100
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551 increase   100
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; G8 G3
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mtsi_index</span>)</div><div class='img'><img src='plot.mtsi-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mtsi_index</span>)
+</div><div class='img'><img src='plot.mtsi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 
 </div></span></pre>
@@ -432,7 +438,7 @@ prioritizing the first, last, and middle labels.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

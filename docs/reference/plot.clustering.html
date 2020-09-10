@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,7 +233,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for clustering</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dendrogram"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>x</span>, horiz = <span class='fl'>TRUE</span>, type = <span class='st'>"dendrogram"</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,16 +262,20 @@ horizontally or not.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>gg, ggplot</code> if <code>type == "cophenetic"</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>mean_gen</span> <span class='kw'>&lt;-</span>
- <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='https://rdrr.io/pkg/tibble/man/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
+<span class='kw'>mean_gen</span> <span class='op'>&lt;-</span>
+ <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
 
-<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clustering.html'>clustering</a></span>(<span class='no'>mean_gen</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>d</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Euclidean Distance"</span>)</div><div class='img'><img src='plot.clustering-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='clustering.html'>clustering</a></span>(<span class='kw'>mean_gen</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>d</span>, xlab = <span class='st'>"Euclidean Distance"</span>)
+</div><div class='img'><img src='plot.clustering-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -288,7 +292,7 @@ horizontally or not.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

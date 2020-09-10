@@ -102,7 +102,7 @@ normal Q-Q plot for random effects may also be obtained declaring type
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -245,36 +245,36 @@ normal Q-Q plot for random effects may also be obtained declaring <code>type
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gamem</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"res"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"fill"</span>,
-  <span class='kw'>rotate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>out</span> <span class='kw'>=</span> <span class='st'>"print"</span>,
-  <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>fill.hist</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.hist</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>col.lab.out</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>width.bar</span> <span class='kw'>=</span> <span class='fl'>0.75</span>,
-  <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>),
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"hv"</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
+  <span class='kw'>x</span>,
+  var = <span class='fl'>1</span>,
+  type = <span class='st'>"res"</span>,
+  position = <span class='st'>"fill"</span>,
+  rotate = <span class='fl'>FALSE</span>,
+  conf = <span class='fl'>0.95</span>,
+  out = <span class='st'>"print"</span>,
+  n.dodge = <span class='fl'>1</span>,
+  check.overlap = <span class='fl'>FALSE</span>,
+  labels = <span class='fl'>FALSE</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  alpha = <span class='fl'>0.2</span>,
+  fill.hist = <span class='st'>"gray"</span>,
+  col.hist = <span class='st'>"black"</span>,
+  col.point = <span class='st'>"black"</span>,
+  col.line = <span class='st'>"red"</span>,
+  col.lab.out = <span class='st'>"red"</span>,
+  size.line = <span class='fl'>0.7</span>,
+  size.text = <span class='fl'>10</span>,
+  width.bar = <span class='fl'>0.75</span>,
+  size.lab.out = <span class='fl'>2.5</span>,
+  size.tex.lab = <span class='fl'>10</span>,
+  size.shape = <span class='fl'>1.5</span>,
+  bins = <span class='fl'>30</span>,
+  which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>),
+  ncol = <span class='kw'>NULL</span>,
+  nrow = <span class='kw'>NULL</span>,
+  align = <span class='st'>"hv"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -416,14 +416,18 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span>(<span class='no'>data_g</span>,
-               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span>(<span class='kw'>data_g</span>,
+               gen = <span class='kw'>GEN</span>,
+               rep = <span class='kw'>REP</span>,
+               resp = <span class='kw'>PH</span>)
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model    PH
@@ -432,7 +436,8 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variables with nonsignificant Genotype effect
 #&gt; PH 
-#&gt; ---------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='plot.gamem-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; ---------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>)
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='plot.gamem-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -450,7 +455,7 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

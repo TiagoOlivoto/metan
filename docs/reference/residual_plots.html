@@ -101,7 +101,7 @@ standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -243,27 +243,27 @@ standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
     </div>
 
     <pre class="usage"><span class='fu'>residual_plots</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  <span class='kw'>band.alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>fill.hist</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.hist</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>col.line</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>col.lab.out</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>size.lab.out</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>),
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"hv"</span>,
-  <span class='no'>...</span>
+  <span class='kw'>x</span>,
+  var = <span class='fl'>1</span>,
+  conf = <span class='fl'>0.95</span>,
+  labels = <span class='fl'>FALSE</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  band.alpha = <span class='fl'>0.2</span>,
+  point.alpha = <span class='fl'>0.8</span>,
+  fill.hist = <span class='st'>"gray"</span>,
+  col.hist = <span class='st'>"black"</span>,
+  col.point = <span class='st'>"black"</span>,
+  col.line = <span class='st'>"red"</span>,
+  col.lab.out = <span class='st'>"red"</span>,
+  size.lab.out = <span class='fl'>2.5</span>,
+  size.tex.lab = <span class='fl'>10</span>,
+  size.shape = <span class='fl'>1.5</span>,
+  bins = <span class='fl'>30</span>,
+  which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>),
+  ncol = <span class='kw'>NULL</span>,
+  nrow = <span class='kw'>NULL</span>,
+  align = <span class='st'>"hv"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -361,11 +361,15 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='no'>GY</span>)</div><div class='output co'>#&gt; variable GY 
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='kw'>GY</span>)
+</div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -390,19 +394,22 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Default plot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>model</span>)</div><div class='img'><img src='residual_plots-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>)
+</div><div class='img'><img src='residual_plots-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Normal Q-Q plot</span>
 <span class='co'># Label possible outliers</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>model</span>,
-     <span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-     <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='residual_plots-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>,
+     which = <span class='fl'>2</span>,
+     labels = <span class='fl'>TRUE</span>)
+</div><div class='img'><img src='residual_plots-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Residual vs fitted,</span>
 <span class='co'># Normal Q-Q plot</span>
 <span class='co'># Histogram of raw residuals</span>
 <span class='co'># All in one row</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>model</span>,
-     <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>5</span>),
-     <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='residual_plots-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>,
+     which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>5</span>),
+     nrow = <span class='fl'>1</span>)
+</div><div class='img'><img src='residual_plots-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -419,7 +426,7 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

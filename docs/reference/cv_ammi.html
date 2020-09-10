@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,16 +233,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>cv_ammi</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>env</span>,
-  <span class='no'>gen</span>,
-  <span class='no'>rep</span>,
-  <span class='no'>resp</span>,
-  <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-  <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>env</span>,
+  <span class='kw'>gen</span>,
+  <span class='kw'>rep</span>,
+  <span class='kw'>resp</span>,
+  block = <span class='kw'>NULL</span>,
+  naxis = <span class='fl'>2</span>,
+  nboot = <span class='fl'>200</span>,
+  design = <span class='st'>"RCBD"</span>,
+  verbose = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -338,25 +338,31 @@ replications than observed in the trial.</p>
 V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960.
-<a href='https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220'>doi:10.2134/agronj2019.03.0220</a></p>
+doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
 <p>Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cv_ammif.html'>cv_ammif</a>, <a href='cv_blup.html'>cv_blup</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>cv_ammi</span>(<span class='no'>data_ge</span>,
-                <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='co'># }</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'>cv_ammi</span>(<span class='kw'>data_ge</span>,
+                env = <span class='kw'>ENV</span>,
+                gen = <span class='kw'>GEN</span>,
+                rep = <span class='kw'>REP</span>,
+                resp = <span class='kw'>GY</span>,
+                nboot = <span class='fl'>5</span>,
+                naxis = <span class='fl'>2</span>)
+<span class='co'># }</span>
+
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -372,7 +378,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

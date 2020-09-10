@@ -97,7 +97,7 @@ algorithms. See Details section for more details" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,13 +235,13 @@ algorithms. See <strong>Details</strong> section for more details</p>
     </div>
 
     <pre class="usage"><span class='fu'>impute_missing_val</span>(
-  <span class='no'>.data</span>,
-  <span class='kw'>naxis</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>algorithm</span> <span class='kw'>=</span> <span class='st'>"EM-SVD"</span>,
-  <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-10</span>,
-  <span class='kw'>max_iter</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>simplified</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>.data</span>,
+  naxis = <span class='fl'>1</span>,
+  algorithm = <span class='st'>"EM-SVD"</span>,
+  tol = <span class='fl'>1e-10</span>,
+  max_iter = <span class='fl'>1000</span>,
+  simplified = <span class='fl'>FALSE</span>,
+  verbose = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -339,16 +339,17 @@ column mean of the respective entire. Thus, there is no iteractive process.</p>
 
     <p>Gauch, H. G., &amp; Zobel, R. W. (1990). Imputing missing yield trial data.
 Theoretical and Applied Genetics, 79(6), 753-761.
-<a href='https://link.springer.com/article/10.1007%2FBF00224240'>doi:10.1007/BF00224240</a></p>
+doi: <a href='https://doi.org/10.1007/BF00224240'>10.1007/BF00224240</a></p>
 <p>Troyanskaya, O., Cantor, M., Sherlock, G., Brown, P., Hastie, T., Tibshirani,
 R., . Altman, R. B. (2001). Missing value estimation methods for DNA
 microarrays. Bioinformatics, 17(6), 520-525.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>mat</span> <span class='kw'>&lt;-</span> (<span class='fl'>1</span>:<span class='fl'>20</span>) <span class='kw'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>)
-<span class='no'>mat</span></div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>mat</span> <span class='op'>&lt;-</span> (<span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>) <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)
+<span class='kw'>mat</span>
+</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 #&gt;  [1,]    1    2    3    4    5    6    7    8    9    10
 #&gt;  [2,]    2    4    6    8   10   12   14   16   18    20
 #&gt;  [3,]    3    6    9   12   15   18   21   24   27    30
@@ -369,8 +370,9 @@ microarrays. Bioinformatics, 17(6), 520-525.</p>
 #&gt; [18,]   18   36   54   72   90  108  126  144  162   180
 #&gt; [19,]   19   38   57   76   95  114  133  152  171   190
 #&gt; [20,]   20   40   60   80  100  120  140  160  180   200</div><div class='input'><span class='co'># 10% of missing values at random</span>
-<span class='no'>miss_mat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='utils_na_zero.html'>random_na</a></span>(<span class='no'>mat</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='no'>miss_mat</span></div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+<span class='kw'>miss_mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_na_zero.html'>random_na</a></span>(<span class='kw'>mat</span>, prop = <span class='fl'>10</span>)
+<span class='kw'>miss_mat</span>
+</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 #&gt;  [1,]    1    2    3    4    5    6    7    8    9    10
 #&gt;  [2,]    2    4    6    8   10   12   14   16   18    20
 #&gt;  [3,]    3    6   NA   12   15   18   NA   NA   27    30
@@ -390,14 +392,16 @@ microarrays. Bioinformatics, 17(6), 520-525.</p>
 #&gt; [17,]   17   34   51   68   85  102  119  136  153   170
 #&gt; [18,]   18   36   NA   72   NA  108  126  144  162   180
 #&gt; [19,]   19   38   57   76   95  114  133  152  171   190
-#&gt; [20,]   20   40   NA   80  100  120  140  160  180   200</div><div class='input'><span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>impute_missing_val</span>(<span class='no'>miss_mat</span>)</div><div class='output co'>#&gt; ----------------------------------------------
+#&gt; [20,]   20   40   NA   80  100  120  140  160  180   200</div><div class='input'><span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>impute_missing_val</span>(<span class='kw'>miss_mat</span>)
+</div><div class='output co'>#&gt; ----------------------------------------------
 #&gt; Convergence information
 #&gt; ----------------------------------------------
 #&gt; Number of iterations: 29
 #&gt; Final RMSE: 8.56358e-11
 #&gt; Number of axis: 1
 #&gt; Convergence: TRUE
-#&gt; ----------------------------------------------</div><div class='input'><span class='no'>mod</span>$<span class='no'>.data</span></div><div class='output co'>#&gt;       X1 X2 X3 X4  X5  X6  X7  X8  X9 X10
+#&gt; ----------------------------------------------</div><div class='input'><span class='kw'>mod</span><span class='op'>$</span><span class='kw'>.data</span>
+</div><div class='output co'>#&gt;       X1 X2 X3 X4  X5  X6  X7  X8  X9 X10
 #&gt;  [1,]  1  2  3  4   5   6   7   8   9  10
 #&gt;  [2,]  2  4  6  8  10  12  14  16  18  20
 #&gt;  [3,]  3  6  9 12  15  18  21  24  27  30
@@ -417,7 +421,7 @@ microarrays. Bioinformatics, 17(6), 520-525.</p>
 #&gt; [17,] 17 34 51 68  85 102 119 136 153 170
 #&gt; [18,] 18 36 54 72  90 108 126 144 162 180
 #&gt; [19,] 19 38 57 76  95 114 133 152 171 190
-#&gt; [20,] 20 40 60 80 100 120 140 160 180 200</div><div class='input'># }
+#&gt; [20,] 20 40 60 80 100 120 140 160 180 200</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -434,7 +438,7 @@ microarrays. Bioinformatics, 17(6), 520-525.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

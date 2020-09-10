@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -232,7 +232,7 @@
     <p>Regression-based stability analysis using the Eberhart and Russell (1966) model.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_reg</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>ge_reg</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -278,21 +278,25 @@ environment index</p></dd>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing Varieties.
-Crop Sci. 6:36-40. <a href='https://doi.org/10.2135/cropsci1966.0011183X000600010011x'>doi:10.2135/cropsci1966.0011183X000600010011x</a>.</p>
+Crop Sci. 6:36-40. doi: <a href='https://doi.org/10.2135/cropsci1966.0011183X000600010011x'>10.2135/cropsci1966.0011183X000600010011x</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='superiority.html'>superiority</a>, <a href='ecovalence.html'>ecovalence</a>, <a href='ge_stats.html'>ge_stats</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'>ge_reg</span>(<span class='no'>data_ge2</span>,
-             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>reg</span>)</div><div class='img'><img src='ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'>
-# }
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>reg</span> <span class='op'>&lt;-</span> <span class='fu'>ge_reg</span>(<span class='kw'>data_ge2</span>,
+             env = <span class='kw'>ENV</span>,
+             gen = <span class='kw'>GEN</span>,
+             rep = <span class='kw'>REP</span>,
+             resp = <span class='kw'>PH</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>reg</span>)
+</div><div class='img'><img src='ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -309,7 +313,7 @@ Crop Sci. 6:36-40. <a href='https://doi.org/10.2135/cropsci1966.0011183X00060001
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

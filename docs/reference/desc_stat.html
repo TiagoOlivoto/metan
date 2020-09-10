@@ -104,7 +104,7 @@ argument stat.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -249,19 +249,19 @@ argument <code>stat</code>.</p></li>
     </div>
 
     <pre class="usage"><span class='fu'>desc_stat</span>(
-  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"main"</span>,
-  <span class='kw'>hist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>()
+  .data = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>,
+  by = <span class='kw'>NULL</span>,
+  stats = <span class='st'>"main"</span>,
+  hist = <span class='fl'>FALSE</span>,
+  level = <span class='fl'>0.95</span>,
+  digits = <span class='fl'>4</span>,
+  na.rm = <span class='fl'>FALSE</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>()
 )
 
-<span class='fu'>desc_wider</span>(<span class='no'>.data</span>, <span class='no'>which</span>)</pre>
+<span class='fu'>desc_wider</span>(<span class='kw'>.data</span>, <span class='kw'>which</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -369,10 +369,13 @@ variables (with possible grouping factors) in rows.</p></li>
 factors in rows.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'>#===============================================================#</span>
 <span class='co'># Example 1: main statistics (coefficient of variation, maximum,#</span>
 <span class='co'># mean, median, minimum, sample standard deviation, standard    #</span>
@@ -380,7 +383,8 @@ factors in rows.</p></li>
 <span class='co'># variables in data                                             #</span>
 <span class='co'>#===============================================================#</span>
 
-<span class='fu'>desc_stat</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 9</span><span>
+<span class='fu'>desc_stat</span>(<span class='kw'>data_ge2</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 9</span><span>
 #&gt;    variable    cv     max    mean  median     min  sd.amo     se      ci
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> CD        7.34  18.6    16.0    16      12.9    1.17   0.093</span><span style='text-decoration: underline;'>9</span><span>  0.186 
@@ -402,8 +406,9 @@ factors in rows.</p></li>
 <span class='co'>#Example 2: robust statistics using a numeric vector as input   #</span>
 <span class='co'># data</span>
 <span class='co'>#===============================================================#</span>
-<span class='no'>vect</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span>$<span class='no'>TKW</span>
-<span class='fu'>desc_stat</span>(<span class='no'>vect</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"robust"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 5</span><span>
+<span class='kw'>vect</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span><span class='op'>$</span><span class='kw'>TKW</span>
+<span class='fu'>desc_stat</span>(<span class='kw'>vect</span>, stats = <span class='st'>"robust"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 5</span><span>
 #&gt;   variable     n median   iqr    ps
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> val        156   342.  57.8  42.8</div><div class='input'>
@@ -412,8 +417,9 @@ factors in rows.</p></li>
 <span class='co'># are removed before analysis with a warning message            #</span>
 <span class='co'>#===============================================================#</span>
 <span class='fu'>desc_stat</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>13</span>, <span class='fl'>19</span>, <span class='fl'>21</span>, <span class='fl'>8</span>, <span class='fl'>NA</span>, <span class='fl'>23</span>, <span class='fl'>NA</span>),
-          <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, se, cv, n, valid.n'</span>),
-          <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+          stats = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, se, cv, n, valid.n'</span>),
+          na.rm = <span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
 #&gt;   variable  mean    se    cv     n valid.n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> val         16  2.39  36.7     8       6</div><div class='input'>
@@ -421,11 +427,12 @@ factors in rows.</p></li>
 <span class='co'># Example 4: Select specific variables and compute statistics by#</span>
 <span class='co'># levels of a factor variable (GEN)                             #</span>
 <span class='co'>#===============================================================#</span>
-<span class='no'>stats</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>desc_stat</span>(<span class='no'>data_ge2</span>,
-            <span class='no'>EP</span>, <span class='no'>EL</span>, <span class='no'>EH</span>, <span class='no'>ED</span>, <span class='no'>PH</span>, <span class='no'>CD</span>,
-            <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>GEN</span>)
-<span class='no'>stats</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 78 x 10</span><span>
+<span class='kw'>stats</span> <span class='op'>&lt;-</span>
+  <span class='fu'>desc_stat</span>(<span class='kw'>data_ge2</span>,
+            <span class='kw'>EP</span>, <span class='kw'>EL</span>, <span class='kw'>EH</span>, <span class='kw'>ED</span>, <span class='kw'>PH</span>, <span class='kw'>CD</span>,
+            by = <span class='kw'>GEN</span>)
+<span class='kw'>stats</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 78 x 10</span><span>
 #&gt;    GEN   variable    cv    max   mean median    min sd.amo     se     ci
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    CD        6.44 17.9   15.7   15.7   14.5   1.01   0.292  0.643 
@@ -440,7 +447,8 @@ factors in rows.</p></li>
 #&gt; </span><span style='color: #555555;'>10</span><span> H10   EL        6.83 16.7   15.1   14.9   13.6   1.03   0.298  0.656 
 #&gt; </span><span style='color: #555555;'># ... with 68 more rows</span><span></div><div class='input'>
 <span class='co'># To get a 'wide' format with the maximum values for all variables</span>
-<span class='fu'>desc_wider</span>(<span class='no'>stats</span>, <span class='no'>max</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 7</span><span>
+<span class='fu'>desc_wider</span>(<span class='kw'>stats</span>, <span class='kw'>max</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 7</span><span>
 #&gt;    GEN      CD    ED    EH    EL    EP    PH
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1     17.9  53.3  1.88  16.9 0.658  3.00
@@ -462,9 +470,10 @@ factors in rows.</p></li>
 <span class='co'># grouped data to the function desc_stat()                      #</span>
 <span class='co'>#===============================================================#</span>
 
-<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>desc_stat</span>()</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 780 x 11</span><span>
+<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>desc_stat</span>()
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 780 x 11</span><span>
 #&gt;    ENV   GEN   variable    cv     max    mean  median     min  sd.amo      se
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    CD        6.91  16.4    15.7    16.3    14.5    1.09    0.627 
@@ -478,7 +487,7 @@ factors in rows.</p></li>
 #&gt; </span><span style='color: #555555;'> 9</span><span> A1    H1    KW        8.31 217.    203.    208.    184.    16.8     9.72  
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    H1    NKE       6.80 565.    527.    521.    494.    35.8    20.7   
 #&gt; </span><span style='color: #555555;'># ... with 770 more rows, and 1 more variable: ci </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
-# }
+<span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -495,7 +504,7 @@ factors in rows.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

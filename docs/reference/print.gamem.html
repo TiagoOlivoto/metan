@@ -97,7 +97,7 @@ in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,7 +235,7 @@ in the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gamem</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -260,20 +260,24 @@ the working directory</p></td>
     <tr>
       <th>...</th>
       <td><p>Options used by the tibble package to format the output. See
-<code><a href='https://rdrr.io/pkg/tibble/man/formatting.html'>tibble::print()</a></code> for more details.</p></td>
+<code><a href='https://tibble.tidyverse.org/reference/formatting.html'>tibble::print()</a></code> for more details.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>alpha</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span>(<span class='no'>data_alpha</span>,
-  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-  <span class='kw'>block</span> <span class='kw'>=</span> <span class='no'>BLOCK</span>,
-  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>YIELD</span>
-)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, BLOCK(REP)</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>alpha</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span>(<span class='kw'>data_alpha</span>,
+  gen = <span class='kw'>GEN</span>,
+  rep = <span class='kw'>REP</span>,
+  block = <span class='kw'>BLOCK</span>,
+  resp = <span class='kw'>YIELD</span>
+)
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, BLOCK(REP)</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;      model    YIELD
@@ -282,7 +286,8 @@ the working directory</p></td>
 #&gt;  rep:block 3.35e-03
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype effect</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>alpha</span>)</div><div class='output co'>#&gt; Variable YIELD 
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>alpha</span>)
+</div><div class='output co'>#&gt; Variable YIELD 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Fixed-effect anova table
 #&gt; ---------------------------------------------------------------------------
@@ -341,7 +346,7 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>13</span><span> CV ratio       1.323  
 #&gt; 
 #&gt; 
-#&gt; </div><div class='input'># }
+#&gt; </div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -358,7 +363,7 @@ the working directory</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

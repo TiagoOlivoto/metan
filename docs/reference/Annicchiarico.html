@@ -97,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@
 1992).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Annicchiarico</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>Annicchiarico</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, prob = <span class='fl'>0.25</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -295,16 +295,20 @@ from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='superiority.html'>superiority</a>, <a href='ecovalence.html'>ecovalence</a>, <a href='ge_stats.html'>ge_stats</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>Ann</span> <span class='kw'>&lt;-</span> <span class='fu'>Annicchiarico</span>(<span class='no'>data_ge2</span>,
-                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>Ann</span>)</div><div class='output co'>#&gt; Variable PH 
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>Ann</span> <span class='op'>&lt;-</span> <span class='fu'>Annicchiarico</span>(<span class='kw'>data_ge2</span>,
+                    env = <span class='kw'>ENV</span>,
+                    gen = <span class='kw'>GEN</span>,
+                    rep = <span class='kw'>REP</span>,
+                    resp = <span class='kw'>PH</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>Ann</span>)
+</div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Environmental index
 #&gt; ---------------------------------------------------------------------------
@@ -374,7 +378,7 @@ from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.</p>
 #&gt; </span><span style='color: #555555;'>13</span><span> H9     2.11    91.5  3.02  89.4     8
 #&gt; 
 #&gt; 
-#&gt; </div><div class='input'># }
+#&gt; </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -392,7 +396,7 @@ from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

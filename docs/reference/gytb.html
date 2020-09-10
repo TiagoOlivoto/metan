@@ -97,7 +97,7 @@ Fregeau-Reid (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,16 +235,16 @@ Fregeau-Reid (2018).</p>
     </div>
 
     <pre class="usage"><span class='fu'>gytb</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>gen</span>,
-  <span class='no'>yield</span>,
-  <span class='kw'>traits</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-  <span class='kw'>ideotype</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>weight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"Y"</span>,
-  <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"trait"</span>,
-  <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='st'>"sd"</span>,
-  <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"trait"</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>gen</span>,
+  <span class='kw'>yield</span>,
+  traits = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
+  ideotype = <span class='kw'>NULL</span>,
+  weight = <span class='kw'>NULL</span>,
+  prefix = <span class='st'>"Y"</span>,
+  centering = <span class='st'>"trait"</span>,
+  scaling = <span class='st'>"sd"</span>,
+  svp = <span class='st'>"trait"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -327,7 +327,7 @@ relationship among genotypes or that among the traits).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/base/plot.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
+    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
 <li><p><strong>data</strong> The Genotype by yield\*trait (GYT) data.</p></li>
 <li><p><strong>ge_mat</strong> The Genotype by yield\*trait (GYT) data  (scaled and centered).</p></li>
 <li><p><strong>coordgen</strong> The coordinates for genotypes for all components.</p></li>
@@ -353,17 +353,20 @@ and traits are comparable when singular value partitioning is set to
 
     <p>Yan, W., &amp; Fregeau-Reid, J. (2018). Genotype by Yield\*Trait (GYT) Biplot: a
 Novel Approach for Genotype Selection based on Multiple Traits. Scientific
-Reports, 8(1), 1-10. doi:10.1038/s41598-018-26688-8
-<a href='https://www.nature.com/articles/s41598-018-26688-8'>doi:10.1038/s41598-018-26688-8</a></p>
+Reports, 8(1), 1-10. doi: <a href='https://doi.org/10.1038/s41598-018-26688-8'>10.1038/s41598-018-26688-8</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># GYT biplot for all numeric traits of 'data_g'</span>
 <span class='co'># KW (kernel weight) considered as 'yield',</span>
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gytb</span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>KW</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gytb-1.png' alt='' width='700' height='433' /></div><div class='input'>
-# }
+<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>gytb</span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>KW</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mod</span>)
+</div><div class='img'><img src='gytb-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -380,7 +383,7 @@ Reports, 8(1), 1-10. doi:10.1038/s41598-018-26688-8
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

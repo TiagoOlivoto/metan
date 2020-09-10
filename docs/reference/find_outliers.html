@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,13 +233,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>find_outliers</span>(
-  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plots</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>()
+  .data = <span class='kw'>NULL</span>,
+  var = <span class='kw'>NULL</span>,
+  by = <span class='kw'>NULL</span>,
+  plots = <span class='fl'>FALSE</span>,
+  coef = <span class='fl'>1.5</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -282,15 +282,20 @@ console.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 
-<span class='fu'>find_outliers</span>(<span class='no'>data_ge2</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>PH</span>, <span class='kw'>plots</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='find_outliers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; No possible outlier identified. 
+<span class='fu'>find_outliers</span>(<span class='kw'>data_ge2</span>, var = <span class='kw'>PH</span>, plots = <span class='fl'>TRUE</span>)
+</div><div class='img'><img src='find_outliers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; No possible outlier identified. 
 #&gt; </div><div class='input'>
 <span class='co'># Find outliers within each environment</span>
-<span class='fu'>find_outliers</span>(<span class='no'>data_ge2</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>PH</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>)</div><div class='output co'>#&gt; No possible outlier identified. 
+<span class='fu'>find_outliers</span>(<span class='kw'>data_ge2</span>, var = <span class='kw'>PH</span>, by = <span class='kw'>ENV</span>)
+</div><div class='output co'>#&gt; No possible outlier identified. 
 #&gt; 
 #&gt; No possible outlier identified. 
 #&gt; 
@@ -308,7 +313,7 @@ console.</p></td>
 #&gt; 1  A1        0
 #&gt; 2  A2        0
 #&gt; 3  A3        4
-#&gt; 4  A4        0</div><div class='input'># }
+#&gt; 4  A4        0</div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -326,7 +331,7 @@ console.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

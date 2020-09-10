@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -232,7 +232,7 @@
     <p>Computes the ranking for genotypes within environments and return the winners.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_winners</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>resp</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"winners"</span>, <span class='kw'>better</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>ge_winners</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>resp</span>, type = <span class='st'>"winners"</span>, better = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -280,11 +280,15 @@ ranking the fifth variable from minimum to maximum.</p></td>
     <p>A tibble with two-way table with the winner genotype in each
   environment (default) or the genotype ranking for each environment (if
   <code>type = "ranks"</code>).</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'>ge_winners</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 3</span><span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='fu'>ge_winners</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV   GY    HM   
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> E1    G2    G5   
@@ -302,9 +306,10 @@ ranking the fifth variable from minimum to maximum.</p></td>
 #&gt; </span><span style='color: #555555;'>13</span><span> E8    G8    G8   
 #&gt; </span><span style='color: #555555;'>14</span><span> E9    G4    G10  </div><div class='input'>
 <span class='co'># Assuming that for 'GY' lower values are better.</span>
-<span class='fu'>ge_winners</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>,
-           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-           <span class='kw'>better</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"l, h"</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
+<span class='fu'>ge_winners</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>,
+           resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
+           better = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"l, h"</span>))
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV   GY    HM   
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> E1    G10   G5   
@@ -322,9 +327,10 @@ ranking the fifth variable from minimum to maximum.</p></td>
 #&gt; </span><span style='color: #555555;'>13</span><span> E8    G2    G8   
 #&gt; </span><span style='color: #555555;'>14</span><span> E9    G9    G10  </div><div class='input'>
 <span class='co'># Show the genotype ranking for each environment</span>
-<span class='fu'>ge_winners</span>(<span class='no'>data_ge</span>, <span class='no'>ENV</span>, <span class='no'>GEN</span>,
-           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-           <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ranks"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 140 x 3</span><span>
+<span class='fu'>ge_winners</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>,
+           resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
+           type = <span class='st'>"ranks"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 140 x 3</span><span>
 #&gt;    ENV   GY    HM   
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> E1    G2    G5   
@@ -337,7 +343,7 @@ ranking the fifth variable from minimum to maximum.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G6    G1   
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G5    G3   
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G10   G2   
-#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -355,7 +361,7 @@ ranking the fifth variable from minimum to maximum.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

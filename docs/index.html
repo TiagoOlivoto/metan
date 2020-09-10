@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -220,7 +220,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p><code>metan</code> offers a set of functions that can be used to manipulate, summarize, analyze and plot typical multi-environment trial data. Maybe, one of the first functions users should use would be <a href="https://tiagoolivoto.github.io/metan/reference/inspect.html"><code><a href="reference/inspect.html">inspect()</a></code></a>. Here, we will inspect the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments.</p>
+<p><code>metan</code> offers a set of functions that can be used to manipulate, summarize, analyze and plot typical multi-environment trial data. Maybe, one of the first functions users should use would be <a href="https://tiagoolivoto.github.io/metan/reference/inspect.html"><code>inspect()</code></a>. Here, we will inspect the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(metan)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">inspect</span>(data_ge, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</span>
@@ -233,12 +233,12 @@
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co"># 5 HM       numeric No      -          420 38     48    58          0</span></span></code></pre></div>
 <p><img src="reference/figures/README-INSPECT-1.png" style="display: block; margin: auto;"></p>
-<p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code><a href="reference/find_outliers.html">find_outliers()</a></code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na.html"><code>remove_na_rows()</code></a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/to_factor.html"><code><a href="reference/to_factor.html">to_factor()</a></code></a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code><a href="reference/utils_num_str.html">find_text_in_num()</a></code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code><a href="reference/utils_num_str.html">tidy_strings()</a></code></a> to tidy up strings.</p>
+<p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code>find_outliers()</code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na.html"><code>remove_na_rows()</code></a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/to_factor.html"><code>to_factor()</code></a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>find_text_in_num()</code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> to tidy up strings.</p>
 </div>
 <div id="descriptive-statistics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#descriptive-statistics" class="anchor"></a>Descriptive statistics</h1>
-<p><code>metan</code> provides <a href="https://tiagoolivoto.github.io/metan/reference/utils_stats.html">a set of functions</a> to compute descriptive statistics. The easiest way to do that is by using <a href="https://tiagoolivoto.github.io/metan/reference/desc_stat.html"><code><a href="reference/desc_stat.html">desc_stat()</a></code></a>.</p>
+<p><code>metan</code> provides <a href="https://tiagoolivoto.github.io/metan/reference/utils_stats.html">a set of functions</a> to compute descriptive statistics. The easiest way to do that is by using <a href="https://tiagoolivoto.github.io/metan/reference/desc_stat.html"><code>desc_stat()</code></a>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">desc_stat</span>(data_ge2)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co"># # A tibble: 15 x 9</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">#    variable    cv     max    mean  median     min  sd.amo     se      ci</span></span>
@@ -265,7 +265,7 @@
 <div id="fitting-the-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h2>
-<p>The AMMI model is fitted with the function <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code><a href="reference/performs_ammi.html">performs_ammi()</a></code></a>. To analyze multiple variables at once we can use a comma-separated vector of unquoted variable names, or use any select helper in the argument <code>resp</code>. Here, using <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> we apply the function to all numeric variables in the data. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html">complete vignette</a>.</p>
+<p>The AMMI model is fitted with the function <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi()</code></a>. To analyze multiple variables at once we can use a comma-separated vector of unquoted variable names, or use any select helper in the argument <code>resp</code>. Here, using <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> we apply the function to all numeric variables in the data. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">performs_ammi</span>(data_ge,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>                       <span class="dt">env =</span> ENV,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>                       <span class="dt">gen =</span> GEN,</span>
@@ -292,7 +292,7 @@
 <div id="biplots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplots" class="anchor"></a>Biplots</h2>
-<p>The well-known AMMI1 and AMMI2 biplots can be created with <a href="file:///D:/Desktop/metan/docs/reference/plot_scores.html"><code><a href="reference/plot_scores.html">plot_scores()</a></code></a>. Note that since <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi</code></a> allows analyzing multiple variables at once, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list, in this case with two elements (GY and HM). By default, the biplots are created for the first variable of the model. To choose another variable use the argument <code>var</code> (e.g., <code>var = "HM"</code>).</p>
+<p>The well-known AMMI1 and AMMI2 biplots can be created with <a href="file:///D:/Desktop/metan/docs/reference/plot_scores.html"><code>plot_scores()</code></a>. Note that since <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi</code></a> allows analyzing multiple variables at once, e.g., <code>resp = c(v1, v2, ...)</code>, the output <code>model</code> is a list, in this case with two elements (GY and HM). By default, the biplots are created for the first variable of the model. To choose another variable use the argument <code>var</code> (e.g., <code>var = "HM"</code>).</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">plot_scores</span>(model)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>b &lt;-<span class="st"> </span><span class="kw">plot_scores</span>(model,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>                 <span class="dt">type =</span> <span class="dv">2</span>,</span>
@@ -308,7 +308,7 @@
 <div id="gge-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#gge-model" class="anchor"></a>GGE model</h1>
-<p>The GGE model is fitted with the function <a href="https://tiagoolivoto.github.io/metan/reference/gge.html"><code><a href="reference/gge.html">gge()</a></code></a>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html">complete vignette</a>.</p>
+<p>The GGE model is fitted with the function <a href="https://tiagoolivoto.github.io/metan/reference/gge.html"><code>gge()</code></a>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">gge</span>(data_ge, ENV, GEN, GY)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>model2 &lt;-<span class="st"> </span><span class="kw">gge</span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"genotype"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>model3 &lt;-<span class="st"> </span><span class="kw">gge</span>(data_ge, ENV, GEN, GY, <span class="dt">svp =</span> <span class="st">"symmetrical"</span>)</span>
@@ -325,7 +325,7 @@
 <div id="blup-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
-<p>Linear-mixed effect models to predict the response variable in METs are fitted using the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code><a href="reference/waasb.html">waasb()</a></code></a>. Here we will obtain the predicted means for genotypes in the variables <code>GY</code> and <code>HM</code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
+<p>Linear-mixed effect models to predict the response variable in METs are fitted using the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a>. Here we will obtain the predicted means for genotypes in the variables <code>GY</code> and <code>HM</code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>model2 &lt;-<span class="st"> </span><span class="kw">waasb</span>(data_ge,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>                <span class="dt">env =</span> ENV,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>                <span class="dt">gen =</span> GEN,</span>
@@ -357,7 +357,7 @@
 <div id="plotting-the-blups-for-genotypes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-blups-for-genotypes" class="anchor"></a>Plotting the BLUPs for genotypes</h2>
-<p>To produce a plot with the predicted means, use the function <a href="https://tiagoolivoto.github.io/metan/reference/plot_blup.html"><code><a href="reference/plot_blup.html">plot_blup()</a></code></a>.</p>
+<p>To produce a plot with the predicted means, use the function <a href="https://tiagoolivoto.github.io/metan/reference/plot_blup.html"><code>plot_blup()</code></a>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>g &lt;-<span class="st"> </span><span class="kw">plot_blup</span>(model2)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>h &lt;-<span class="st"> </span><span class="kw">plot_blup</span>(model2,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>               <span class="dt">prob =</span> <span class="fl">0.1</span>,</span>
@@ -369,7 +369,7 @@
 <div id="computing-parametric-and-non-parametric-stability-indexes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#computing-parametric-and-non-parametric-stability-indexes" class="anchor"></a>Computing parametric and non-parametric stability indexes</h1>
-<p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code><a href="reference/ge_stats.html">ge_stats()</a></code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code><a href="reference/get_model_data.html">gmd()</a></code></a>.</p>
+<p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>gmd()</code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>stats &lt;-<span class="st"> </span><span class="kw">ge_stats</span>(data_ge, ENV, GEN, REP, GY)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">get_model_data</span>(stats)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co"># Class of the model: ge_stats</span></span>
@@ -488,7 +488,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

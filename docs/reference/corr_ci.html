@@ -97,7 +97,7 @@ the nonparametric method proposed by Olivoto et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ the nonparametric method proposed by Olivoto et al. (2018)." />
 the nonparametric method proposed by Olivoto et al. (2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>corr_ci</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>corr_ci</span>(.data = <span class='fl'>NA</span>, <span class='kw'>...</span>, r = <span class='kw'>NULL</span>, n = <span class='kw'>NULL</span>, by = <span class='kw'>NULL</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -291,13 +291,17 @@ equation:
   interval width for Pearson's correlation coefficient: a
   Gaussian-independent estimator based on sample size and strength of
   association. Agron. J. 110:1-8.
-  <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.0196</a></p>
+  doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.0196</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 
-<span class='no'>CI1</span> <span class='kw'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='no'>data_ge2</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 105 x 6</span><span>
+<span class='kw'>CI1</span> <span class='op'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='kw'>data_ge2</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 105 x 6</span><span>
 #&gt;    Pair      Corr     n     CI    LL    UL
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> PH x EH  0.932   156 0.085</span><span style='text-decoration: underline;'>8</span><span> 0.846 1.02 
@@ -312,10 +316,11 @@ equation:
 #&gt; </span><span style='color: #555555;'>10</span><span> PH x NKR 0.353   156 0.136  0.217 0.489
 #&gt; </span><span style='color: #555555;'># ... with 95 more rows</span><span></div><div class='input'>
 <span class='co'># By each level of the factor 'ENV'</span>
-<span class='no'>CI2</span> <span class='kw'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='no'>data_ge2</span>, <span class='no'>CD</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>,
-               <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-               <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>CI2</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 7</span><span>
+<span class='kw'>CI2</span> <span class='op'>&lt;-</span> <span class='fu'>corr_ci</span>(<span class='kw'>data_ge2</span>, <span class='kw'>CD</span>, <span class='kw'>TKW</span>, <span class='kw'>NKE</span>,
+               by = <span class='kw'>ENV</span>,
+               verbose = <span class='fl'>FALSE</span>)
+<span class='kw'>CI2</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 7</span><span>
 #&gt;    ENV   Pair         Corr     n    CI      LL      UL
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> A1    CD x TKW   0.385     39 0.265  0.120   0.650 
@@ -329,7 +334,7 @@ equation:
 #&gt; </span><span style='color: #555555;'> 9</span><span> A3    TKW x NKE -</span><span style='color: #BB0000;'>0.389</span><span>     39 0.264 -</span><span style='color: #BB0000;'>0.653</span><span>  -</span><span style='color: #BB0000;'>0.125</span><span> 
 #&gt; </span><span style='color: #555555;'>10</span><span> A4    CD x TKW   0.417     39 0.258  0.158   0.675 
 #&gt; </span><span style='color: #555555;'>11</span><span> A4    CD x NKE   0.477     39 0.246  0.230   0.723 
-#&gt; </span><span style='color: #555555;'>12</span><span> A4    TKW x NKE -</span><span style='color: #BB0000;'>0.259</span><span>     39 0.293 -</span><span style='color: #BB0000;'>0.552</span><span>   0.033</span><span style='text-decoration: underline;'>4</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>12</span><span> A4    TKW x NKE -</span><span style='color: #BB0000;'>0.259</span><span>     39 0.293 -</span><span style='color: #BB0000;'>0.552</span><span>   0.033</span><span style='text-decoration: underline;'>4</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -347,7 +352,7 @@ equation:
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

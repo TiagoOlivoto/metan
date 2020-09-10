@@ -103,7 +103,7 @@ intensity." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -246,7 +246,7 @@ methods; <em>C</em> is the number of expected genotypes selected by chance; and
 intensity.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>coincidence_index</span>(<span class='no'>...</span>, <span class='no'>total</span>, <span class='kw'>sel1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sel2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>coincidence_index</span>(<span class='kw'>...</span>, <span class='kw'>total</span>, sel1 = <span class='kw'>NULL</span>, sel2 = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -281,13 +281,14 @@ the insersection of the selected genotypes of all models</p></li>
 
     <p>Hamblin, J., and M.J. de O. Zimmermann. 1986. Breeding Common Bean for Yield
 in Mixtures. p. 245-272. In Plant Breeding Reviews. John Wiley &amp; Sons, Inc.,
-Hoboken, NJ, USA.<a href='https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118061015.ch8'>doi:10.1002/9781118061015.ch8</a></p>
+Hoboken, NJ, USA.doi: <a href='https://doi.org/10.1002/9781118061015.ch8'>10.1002/9781118061015.ch8</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>sel1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"G"</span>, <span class='fl'>1</span>:<span class='fl'>30</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>)
-<span class='no'>sel2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"G"</span>, <span class='fl'>16</span>:<span class='fl'>45</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>)
-<span class='fu'>coincidence_index</span>(<span class='kw'>sel1</span> <span class='kw'>=</span> <span class='no'>sel1</span>, <span class='kw'>sel2</span> <span class='kw'>=</span> <span class='no'>sel2</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>150</span>)</div><div class='output co'>#&gt; [1] 37.5</div><div class='input'># }
+<span class='kw'>sel1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"G"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>30</span>, sep = <span class='st'>""</span>)
+<span class='kw'>sel2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"G"</span>, <span class='fl'>16</span><span class='op'>:</span><span class='fl'>45</span>, sep = <span class='st'>""</span>)
+<span class='fu'>coincidence_index</span>(sel1 = <span class='kw'>sel1</span>, sel2 = <span class='kw'>sel2</span>, total = <span class='fl'>150</span>)
+</div><div class='output co'>#&gt; [1] 37.5</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -304,7 +305,7 @@ Hoboken, NJ, USA.<a href='https://onlinelibrary.wiley.com/doi/abs/10.1002/978111
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

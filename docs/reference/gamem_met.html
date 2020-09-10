@@ -97,7 +97,7 @@ random-effect models." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,15 +235,15 @@ random-effect models.</p>
     </div>
 
     <pre class="usage"><span class='fu'>gamem_met</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>env</span>,
-  <span class='no'>gen</span>,
-  <span class='no'>rep</span>,
-  <span class='no'>resp</span>,
-  <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>env</span>,
+  <span class='kw'>gen</span>,
+  <span class='kw'>rep</span>,
+  <span class='kw'>resp</span>,
+  block = <span class='kw'>NULL</span>,
+  random = <span class='st'>"gen"</span>,
+  prob = <span class='fl'>0.05</span>,
+  verbose = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -385,29 +385,33 @@ assuming all effects, except the intercept, as random factors.</p></li>
 Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 111:2949-2960.
-<a href='https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220'>doi:10.2134/agronj2019.03.0220</a></p>
+doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
 <p>Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information: to
 recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
-<a href='http://www.ncbi.nlm.nih.gov/pubmed/25972114'>doi:10.1007/s00122-015-2530-0</a></p>
+doi: <a href='https://doi.org/10.1007/s00122-015-2530-0'>10.1007/s00122-015-2530-0</a></p>
 <p>Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable
 incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='mtsi.html'>mtsi</a></code> <code><a href='waas.html'>waas</a></code>
 <code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='plot_scores.html'>plot_scores</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'>#===============================================================#</span>
 <span class='co'># Example 1: Analyzing all numeric variables assuming genotypes #</span>
 <span class='co'># as random effects                                             #</span>
 <span class='co'>#===============================================================#</span>
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>gamem_met</span>(<span class='no'>data_ge</span>,
-                  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'>gamem_met</span>(<span class='kw'>data_ge</span>,
+                  env = <span class='kw'>ENV</span>,
+                  gen = <span class='kw'>GEN</span>,
+                  rep = <span class='kw'>REP</span>,
+                  resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -416,9 +420,11 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='co'># Distribution of random effects (first variable)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>model</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"re"</span>)</div><div class='img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>, type = <span class='st'>"re"</span>)
+</div><div class='img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Genetic parameters</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model</span>, <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model</span>, <span class='st'>"genpar"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
 #&gt;   Parameters              GY     HM
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance  0.181 5.52  
@@ -436,16 +442,17 @@ incomplete block designs. Biometrika 63:83-92.</p>
 <span class='co'># Example 2: Unbalanced trials                                  #</span>
 <span class='co'># assuming all factors as random effects                        #</span>
 <span class='co'>#===============================================================#</span>
-<span class='no'>un_data</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-             <span class='fu'><a href='utils_rows_cols.html'>remove_rows</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
+<span class='kw'>un_data</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
+             <span class='fu'><a href='utils_rows_cols.html'>remove_rows</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>) <span class='op'>%&gt;%</span>
              <span class='fu'><a href='https://rdrr.io/r/base/droplevels.html'>droplevels</a></span>()
 
-<span class='no'>model2</span> <span class='kw'>&lt;-</span> <span class='fu'>gamem_met</span>(<span class='no'>un_data</span>,
-                   <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                   <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                   <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                   <span class='kw'>random</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
-                   <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: -</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='kw'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>gamem_met</span>(<span class='kw'>un_data</span>,
+                   env = <span class='kw'>ENV</span>,
+                   gen = <span class='kw'>GEN</span>,
+                   rep = <span class='kw'>REP</span>,
+                   random = <span class='st'>"all"</span>,
+                   resp = <span class='kw'>GY</span>)
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: -</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY
@@ -455,7 +462,8 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt;       ENV 9.33e-17
 #&gt;   GEN:ENV 2.11e-11
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>model2</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model2</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
 #&gt;   Parameters               GY
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance  0.907 
@@ -466,7 +474,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; </span><span style='color: #555555;'>6</span><span> rge                  0.371 
 #&gt; </span><span style='color: #555555;'>7</span><span> CVg                  6.24  
 #&gt; </span><span style='color: #555555;'>8</span><span> CVr                 11.6   
-#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio             0.536 </div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio             0.536 </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -484,7 +492,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

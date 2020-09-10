@@ -97,7 +97,7 @@ applied to each combination." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ applied to each combination." />
 applied to each combination.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>comb_vars</span>(<span class='no'>.data</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"first"</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>"+"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>comb_vars</span>(<span class='kw'>.data</span>, order = <span class='st'>"first"</span>, FUN = <span class='st'>"+"</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -255,7 +255,7 @@ V3.V4</code>.</p></td>
     <tr>
       <th>FUN</th>
       <td><p>The function that will be applied to each combination. The default
-is <code>+</code>, i.e., V1 + V2.</p></td>
+is <code><a href='https://rdrr.io/r/base/Arithmetic.html'>+</a></code>, i.e., V1 + V2.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -269,18 +269,22 @@ silently.</p></td>
     <p>A data frame containing all possible combination of variables. Each
   combination is the result of the function in <code>FUN</code> applied to the two
   variables.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>A</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-                  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>30</span>),
-                  <span class='kw'>C</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-                  <span class='kw'>D</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1100</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>200</span>),
-                  <span class='kw'>E</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>))
-<span class='no'>comb1</span> <span class='kw'>&lt;-</span> <span class='fu'>comb_vars</span>(<span class='no'>data</span>)
-<span class='no'>comb2</span> <span class='kw'>&lt;-</span> <span class='fu'>comb_vars</span>(<span class='no'>data</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>'*'</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>'second'</span>)
-<span class='co'># }</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(A = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(n = <span class='fl'>5</span>, mean = <span class='fl'>10</span>, sd = <span class='fl'>3</span>),
+                  B = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(n = <span class='fl'>5</span>, mean = <span class='fl'>120</span>, sd = <span class='fl'>30</span>),
+                  C = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(n = <span class='fl'>5</span>, mean = <span class='fl'>40</span>, sd = <span class='fl'>10</span>),
+                  D = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(n = <span class='fl'>5</span>, mean = <span class='fl'>1100</span>, sd = <span class='fl'>200</span>),
+                  E = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(n = <span class='fl'>5</span>, mean = <span class='fl'>2</span>, sd = <span class='fl'>1</span>))
+<span class='kw'>comb1</span> <span class='op'>&lt;-</span> <span class='fu'>comb_vars</span>(<span class='kw'>data</span>)
+<span class='kw'>comb2</span> <span class='op'>&lt;-</span> <span class='fu'>comb_vars</span>(<span class='kw'>data</span>, FUN = <span class='st'>'*'</span>, order = <span class='st'>'second'</span>)
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -296,7 +300,7 @@ silently.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

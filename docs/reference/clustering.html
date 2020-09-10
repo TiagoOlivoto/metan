@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,15 +233,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>clustering</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>distmethod</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
-  <span class='kw'>clustmethod</span> <span class='kw'>=</span> <span class='st'>"average"</span>,
-  <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>...</span>,
+  by = <span class='kw'>NULL</span>,
+  scale = <span class='fl'>FALSE</span>,
+  selvar = <span class='fl'>FALSE</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  distmethod = <span class='st'>"euclidean"</span>,
+  clustmethod = <span class='st'>"average"</span>,
+  nclust = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -347,26 +347,30 @@ cophenetic correlation and high similarity with the original distances.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Mojena, R. 2015. Hierarchical grouping methods and stopping
-rules: an evaluation. Comput. J. 20:359-363. doi:10.1093/comjnl/20.4.359</p>
+rules: an evaluation. Comput. J. 20:359-363. doi: <a href='https://doi.org/10.1093/comjnl/20.4.359'>10.1093/comjnl/20.4.359</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 
 <span class='co'># All rows and all numeric variables from data</span>
-<span class='no'>d1</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge2</span>)
+<span class='kw'>d1</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>data_ge2</span>)
 
 <span class='co'># Based on the mean for each genotype</span>
-<span class='no'>mean_gen</span> <span class='kw'>&lt;-</span>
- <span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='no'>GEN</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='https://rdrr.io/pkg/tibble/man/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
+<span class='kw'>mean_gen</span> <span class='op'>&lt;-</span>
+ <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
 
-<span class='no'>d2</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>mean_gen</span>)
+<span class='kw'>d2</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>mean_gen</span>)
 
 
 <span class='co'># Select variables for compute the distances</span>
-<span class='no'>d3</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>mean_gen</span>, <span class='kw'>selvar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
+<span class='kw'>d3</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>mean_gen</span>, selvar = <span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
 #&gt; Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
 #&gt; Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
 #&gt; Calculating model 4 with 12 variables. PH excluded in this step (28.6%).
@@ -409,12 +413,13 @@ rules: an evaluation. Comput. J. 20:359-363. doi:10.1093/comjnl/20.4.359</p>
 #&gt; --------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Compute the distances with standardized data</span>
 <span class='co'># Define 4 clusters</span>
-<span class='no'>d4</span> <span class='kw'>&lt;-</span> <span class='fu'>clustering</span>(<span class='no'>data_ge</span>,
-                 <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                 <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                 <span class='kw'>nclust</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='kw'>d4</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>data_ge</span>,
+                 by = <span class='kw'>ENV</span>,
+                 scale = <span class='fl'>TRUE</span>,
+                 nclust = <span class='fl'>4</span>)
 
-<span class='co'># }</span></div></pre>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -430,7 +435,7 @@ rules: an evaluation. Comput. J. 20:359-363. doi:10.1093/comjnl/20.4.359</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

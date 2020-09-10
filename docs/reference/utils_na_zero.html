@@ -115,7 +115,7 @@ respectively, with a replacement value.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -270,31 +270,31 @@ respectively, with a <code>replacement</code> value.</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>has_na</span>(<span class='no'>.data</span>)
+    <pre class="usage"><span class='fu'>has_na</span>(<span class='kw'>.data</span>)
 
-<span class='fu'>remove_rows_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>remove_rows_na</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>remove_cols_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>remove_cols_na</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>select_cols_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>select_cols_na</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>select_rows_na</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>select_rows_na</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>replace_na</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>replacement</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+<span class='fu'>replace_na</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, replace = <span class='fl'>0</span>, replacement = <span class='fl'>0</span>)
 
-<span class='fu'>random_na</span>(<span class='no'>.data</span>, <span class='no'>prop</span>)
+<span class='fu'>random_na</span>(<span class='kw'>.data</span>, <span class='kw'>prop</span>)
 
-<span class='fu'>has_zero</span>(<span class='no'>.data</span>)
+<span class='fu'>has_zero</span>(<span class='kw'>.data</span>)
 
-<span class='fu'>remove_rows_zero</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>remove_rows_zero</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>remove_cols_zero</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>remove_cols_zero</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>select_cols_zero</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>select_cols_zero</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>select_rows_zero</span>(<span class='no'>.data</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>select_rows_zero</span>(<span class='kw'>.data</span>, verbose = <span class='fl'>TRUE</span>)
 
-<span class='fu'>replace_zero</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>replacement</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+<span class='fu'>replace_zero</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, replacement = <span class='fl'>NA</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -336,16 +336,22 @@ allowed.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame with rows or columns with <code>NA</code> values deleted.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>data_naz</span> <span class='kw'>&lt;-</span> <span class='no'>data_g</span>
-<span class='no'>data_naz</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>5</span>, <span class='fl'>10</span>:<span class='fl'>15</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='no'>data_naz</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>6</span>, <span class='fl'>9</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>6</span>:<span class='fl'>7</span>, <span class='fl'>12</span>:<span class='fl'>13</span>)] <span class='kw'>&lt;-</span> <span class='fl'>0</span>
-<span class='fu'>has_na</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>has_zero</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>data_naz</span> <span class='op'>&lt;-</span> <span class='kw'>data_g</span>
+<span class='kw'>data_naz</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>10</span><span class='op'>:</span><span class='fl'>15</span>)] <span class='op'>&lt;-</span> <span class='fl'>NA</span>
+<span class='kw'>data_naz</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>6</span>, <span class='fl'>9</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>6</span><span class='op'>:</span><span class='fl'>7</span>, <span class='fl'>12</span><span class='op'>:</span><span class='fl'>13</span>)] <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='fu'>has_na</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>has_zero</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Remove columns</span>
-<span class='fu'>remove_cols_na</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) PH, EH, EP, CW, KW, NR, NKR, CDED, PERK with NA values deleted.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 39 x 8</span><span>
+<span class='fu'>remove_cols_na</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) PH, EH, EP, CW, KW, NR, NKR, CDED, PERK with NA values deleted.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 39 x 8</span><span>
 #&gt;    GEN   REP      EL    ED    CL    CD   TKW   NKE
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1      15.7  49.9  30.5  16.6  347.  458.
@@ -358,7 +364,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> H11   2      12.2  46.9  26.5  14.3  288.  397 
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3       0     0    27.5  15.2  315.  532.
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1      14.4  49.2  28.4  15    291.  525.
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>remove_cols_zero</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) EL, ED, NR, NKR with 0s deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 13</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>remove_cols_zero</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) EL, ED, NR, NKR with 0s deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 13</span><span>
 #&gt;    GEN   REP      PH     EH     EP    CL    CD    CW    KW   CDED  PERK   TKW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      30.5  16.6  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    347.
@@ -371,7 +378,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> H11   2      2.09  1.06   0.509  26.5  14.3  13.5  114.  0.566  89.3  288.
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3      2.5   1.44   0.577  27.5  15.2  19.4  168.  0.562  89.6  315.
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      28.4  15    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    291.
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows_na</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 1, 5, 10 with NA values deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 36 x 17</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows_na</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 1, 5, 10 with NA values deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 36 x 17</span><span>
 #&gt;    GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    2      2.20 1.09  0.492   0     0    30.5  14.7  22.3  130.   0     0  
@@ -385,7 +393,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 9</span><span> H12   3      2.00 0.782 0.386  13.7  47.5  25.3  14.3  18.9  139.  14.8  25.4
 #&gt; </span><span style='color: #555555;'>10</span><span> H13   1      2.52 1.09  0.434  16.1  51.7  28.2  16.6  23.9  199.  18    30.8
 #&gt; </span><span style='color: #555555;'># ... with 26 more rows, and 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows_zero</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2, 6, 9 with 0s deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 36 x 17</span><span>
+#&gt; </span><span style='color: #555555;'>#   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows_zero</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2, 6, 9 with 0s deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 36 x 17</span><span>
 #&gt;    GEN   REP      PH     EH     EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      15.7  49.9  30.5  16.6  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>  
@@ -401,7 +410,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'># ... with 26 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Select columns</span>
-<span class='fu'>select_cols_na</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with NAs: PH, EH, EP, CW, KW, NR, NKR, CDED, PERK</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 9</span><span>
+<span class='fu'>select_cols_na</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with NAs: PH, EH, EP, CW, KW, NR, NKR, CDED, PERK</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 9</span><span>
 #&gt;       PH     EH     EP    CW    KW    NR   NKR   CDED  PERK
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>  
@@ -414,7 +424,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span>  2.09  1.06   0.509  13.5  114.  16.8  26.2  0.566  89.3
 #&gt; </span><span style='color: #555555;'> 9</span><span>  2.5   1.44   0.577  19.4  168.   0     0    0.562  89.6
 #&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>select_cols_zero</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with 0s: EL, ED, NR, NKR</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 4</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>select_cols_zero</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with 0s: EL, ED, NR, NKR</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 4</span><span>
 #&gt;       EL    ED    NR   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>  15.7  49.9  </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  
@@ -427,13 +438,15 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span>  12.2  46.9  16.8  26.2
 #&gt; </span><span style='color: #555555;'> 9</span><span>   0     0     0     0  
 #&gt; </span><span style='color: #555555;'>10</span><span>  14.4  49.2  </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>select_rows_na</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with NAs: 1, 5, 10</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 17</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'><span class='fu'>select_rows_na</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with NAs: 1, 5, 10</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 17</span><span>
 #&gt;   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> H1    1        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  15.7  49.9  30.5  16.6    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
 #&gt; </span><span style='color: #555555;'>2</span><span> H10   2        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  13.6  43.9  23.5  14.4    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
 #&gt; </span><span style='color: #555555;'>3</span><span> H12   1        </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>  14.4  49.2  28.4  15      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>select_rows_zero</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with 0s: 1, 2, 3</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 17</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>select_rows_zero</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with 0s: 1, 2, 3</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 17</span><span>
 #&gt;   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> H1    2      2.20  1.09 0.492     0     0  30.5  14.7  22.3  130.     0     0
@@ -441,7 +454,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> H11   3      2.5   1.44 0.577     0     0  27.5  15.2  19.4  168.     0     0
 #&gt; </span><span style='color: #555555;'># ... with 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Replace values</span>
-<span class='fu'>replace_na</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 17</span><span>
+<span class='fu'>replace_na</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 17</span><span>
 #&gt;    GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1      0    0     0      15.7  49.9  30.5  16.6   0      0    0     0  
@@ -455,7 +469,8 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3      2.5  1.44  0.577   0     0    27.5  15.2  19.4  168.   0     0  
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1      0    0     0      14.4  49.2  28.4  15     0      0    0     0  
 #&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>replace_zero</span>(<span class='no'>data_naz</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 17</span><span>
+#&gt; </span><span style='color: #555555;'>#   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>replace_zero</span>(<span class='kw'>data_naz</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 17</span><span>
 #&gt;    GEN   REP      PH     EH     EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      15.7  49.9  30.5  16.6  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>  
@@ -469,7 +484,7 @@ allowed.</p></td>
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3      2.5   1.44   0.577  </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>    27.5  15.2  19.4  168.  </span><span style='color: #BB0000;'>NA</span><span>  
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1     </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      14.4  49.2  28.4  15    </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>  
 #&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -487,7 +502,7 @@ allowed.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

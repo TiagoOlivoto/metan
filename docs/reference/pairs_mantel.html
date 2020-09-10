@@ -99,7 +99,7 @@ permutations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -239,34 +239,34 @@ permutations.</p>
     </div>
 
     <pre class="usage"><span class='fu'>pairs_mantel</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>nrepet</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
-  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>signcol</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>diagcol</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>
+  <span class='kw'>...</span>,
+  type = <span class='fl'>1</span>,
+  nrepet = <span class='fl'>1000</span>,
+  names = <span class='kw'>NULL</span>,
+  prob = <span class='fl'>0.05</span>,
+  diag = <span class='fl'>FALSE</span>,
+  export = <span class='fl'>FALSE</span>,
+  main = <span class='st'>"auto"</span>,
+  file.type = <span class='st'>"pdf"</span>,
+  file.name = <span class='kw'>NULL</span>,
+  width = <span class='fl'>8</span>,
+  height = <span class='fl'>7</span>,
+  resolution = <span class='fl'>300</span>,
+  size.point = <span class='fl'>0.5</span>,
+  shape.point = <span class='fl'>19</span>,
+  alpha.point = <span class='fl'>1</span>,
+  fill.point = <span class='kw'>NULL</span>,
+  col.point = <span class='st'>"black"</span>,
+  minsize = <span class='fl'>2</span>,
+  maxsize = <span class='fl'>3</span>,
+  signcol = <span class='st'>"green"</span>,
+  alpha = <span class='fl'>0.15</span>,
+  diagcol = <span class='st'>"gray"</span>,
+  col.up.panel = <span class='st'>"gray"</span>,
+  col.lw.panel = <span class='st'>"gray"</span>,
+  col.dia.panel = <span class='st'>"gray"</span>,
+  pan.spacing = <span class='fl'>0.15</span>,
+  digits = <span class='fl'>2</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -396,25 +396,29 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>gg, ggmatrix</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># iris dataset</span>
-<span class='no'>lpc</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='kw'>%&gt;%</span>
-       <span class='fu'>pairs_mantel</span>(<span class='kw'>names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))
+<span class='kw'>lpc</span> <span class='op'>&lt;-</span> <span class='kw'>iris</span> <span class='op'>%&gt;%</span>
+       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span>
+       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='op'>%&gt;%</span>
+       <span class='fu'>pairs_mantel</span>(names = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))
 
 
 <span class='co'># mtcars dataset</span>
-<span class='no'>mt_num</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='utils_rows_cols.html'>select_numeric_cols</a></span>(<span class='no'>mtcars</span>)
-<span class='no'>lpdata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
-                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]),
-                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>2</span>:<span class='fl'>6</span>]),
-                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mt_num</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])) <span class='kw'>%&gt;%</span>
+<span class='kw'>mt_num</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_rows_cols.html'>select_numeric_cols</a></span>(<span class='kw'>mtcars</span>)
+<span class='kw'>lpdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]),
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]),
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>2</span><span class='op'>:</span><span class='fl'>6</span>]),
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>4</span><span class='op'>:</span><span class='fl'>8</span>])) <span class='op'>%&gt;%</span>
           <span class='fu'>pairs_mantel</span>()
-<span class='co'># }</span></div></pre>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -430,7 +434,7 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

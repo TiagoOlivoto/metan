@@ -97,7 +97,7 @@ using singular value decomposition." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ using singular value decomposition." />
 using singular value decomposition.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>solve_svd</span>(<span class='no'>x</span>, <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>2.220446e-16</span>)</pre>
+    <pre class="usage"><span class='fu'>solve_svd</span>(<span class='kw'>x</span>, tolerance = <span class='fl'>2.220446e-16</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -252,14 +252,19 @@ using singular value decomposition.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A matrix with the same dimension of <code>x</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/det.html'>det</a></span>(<span class='no'>mat</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'>solve_svd</span>(<span class='no'>mat</span>)</div><div class='output co'>#&gt;            [,1]       [,2]
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>8</span>), ncol = <span class='fl'>2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/det.html'>det</a></span>(<span class='kw'>mat</span>)
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'>solve_svd</span>(<span class='kw'>mat</span>)
+</div><div class='output co'>#&gt;            [,1]       [,2]
 #&gt; [1,] 0.01176471 0.04705882
-#&gt; [2,] 0.02352941 0.09411765</div><div class='input'># }
+#&gt; [2,] 0.02352941 0.09411765</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -276,7 +281,7 @@ using singular value decomposition.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

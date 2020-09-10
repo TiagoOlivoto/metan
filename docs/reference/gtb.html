@@ -101,7 +101,7 @@ trait-standardized two-way table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -242,7 +242,7 @@ of genotype by trait data is the singular value decomposition of
 trait-standardized two-way table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gtb</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>resp</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"trait"</span>, <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>svp</span> <span class='kw'>=</span> <span class='st'>"trait"</span>)</pre>
+    <pre class="usage"><span class='fu'>gtb</span>(<span class='kw'>.data</span>, <span class='kw'>gen</span>, <span class='kw'>resp</span>, centering = <span class='st'>"trait"</span>, scaling = <span class='st'>"sd"</span>, svp = <span class='st'>"trait"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -292,7 +292,7 @@ relationship among genotypes or that among the traits).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/base/plot.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
+    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
 <li><p><strong>coordgen</strong> The coordinates for genotypes for all components.</p></li>
 <li><p><strong>coordenv</strong> The coordinates for traits for all components.</p></li>
 <li><p><strong>eigenvalues</strong> The vector of eigenvalues.</p></li>
@@ -317,14 +317,18 @@ and traits are comparable when singular value partitioning is set to
 
     <p>Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
 geneticists, and agronomists. CRC Press.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># GT biplot for all numeric variables</span>
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>gtb</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span>(<span class='st'>"E"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='gtb-1.png' alt='' width='700' height='433' /></div><div class='input'>
-# }
+<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>gtb</span>(<span class='kw'>data_ge2</span>, <span class='kw'>GEN</span>, resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span>(<span class='st'>"E"</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mod</span>)
+</div><div class='img'><img src='gtb-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -341,7 +345,7 @@ geneticists, and agronomists. CRC Press.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -97,7 +97,7 @@ randomized complete block design or completely randomized design." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,13 +235,13 @@ randomized complete block design or completely randomized design.</p>
     </div>
 
     <pre class="usage"><span class='fu'>mahala_design</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>gen</span>,
-  <span class='no'>rep</span>,
-  <span class='no'>resp</span>,
-  <span class='kw'>design</span> <span class='kw'>=</span> <span class='st'>"RCBD"</span>,
-  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"distance"</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>gen</span>,
+  <span class='kw'>rep</span>,
+  <span class='kw'>resp</span>,
+  design = <span class='st'>"RCBD"</span>,
+  by = <span class='kw'>NULL</span>,
+  return = <span class='st'>"distance"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -291,30 +291,34 @@ residuals <code>return = 'covmat'</code>.</p></td>
     <p>A symmetric matrix with the Mahalanobis' distance. If <code>.data</code> is
   a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code> then the results
   will be returned into a list-column of data frames.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>maha</span> <span class='kw'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='no'>data_g</span>,
-                      <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                      <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-                      <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"covmat"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>maha</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='kw'>data_g</span>,
+                      gen = <span class='kw'>GEN</span>,
+                      rep = <span class='kw'>REP</span>,
+                      resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
+                      return = <span class='st'>"covmat"</span>)
 
 <span class='co'># Compute one distance for each environment (all numeric variables)</span>
-<span class='no'>maha_group</span> <span class='kw'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='no'>data_ge</span>,
-                           <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                           <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                           <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-                           <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>)
+<span class='kw'>maha_group</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='kw'>data_ge</span>,
+                           gen = <span class='kw'>GEN</span>,
+                           rep = <span class='kw'>REP</span>,
+                           resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
+                           by = <span class='kw'>ENV</span>)
 
 <span class='co'># Return the variance-covariance matrix of residuals</span>
-<span class='no'>cov_mat</span> <span class='kw'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='no'>data_ge</span>,
-                        <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                        <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                        <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-                        <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>'covmat'</span>)
-<span class='co'># }</span></div></pre>
+<span class='kw'>cov_mat</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='kw'>data_ge</span>,
+                        gen = <span class='kw'>GEN</span>,
+                        rep = <span class='kw'>REP</span>,
+                        resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
+                        return = <span class='st'>'covmat'</span>)
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -330,7 +334,7 @@ residuals <code>return = 'covmat'</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

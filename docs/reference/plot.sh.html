@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,17 +233,17 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for sh</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>arrange.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>size.line</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>size.text</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>col.sel</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>col.nonsel</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
+  <span class='kw'>x</span>,
+  SI = <span class='fl'>15</span>,
+  radar = <span class='fl'>TRUE</span>,
+  arrange.label = <span class='fl'>FALSE</span>,
+  size.point = <span class='fl'>2.5</span>,
+  size.line = <span class='fl'>0.7</span>,
+  size.text = <span class='fl'>10</span>,
+  col.sel = <span class='st'>"red"</span>,
+  col.nonsel = <span class='st'>"black"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -261,7 +261,7 @@ total number of genotypes.</p></td>
     <tr>
       <th>radar</th>
       <td><p>Logical argument. If true (default) a radar plot is generated
-after using <code>coord_polar()</code>.</p></td>
+after using <code><a href='https://ggplot2.tidyverse.org/reference/coord_polar.html'>coord_polar()</a></code>.</p></td>
     </tr>
     <tr>
       <th>arrange.label</th>
@@ -298,17 +298,21 @@ genotypes is large, say, more than 30.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>gg, ggplot</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='no'>means</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>vcov</span>$<span class='no'>means</span>)
-<span class='no'>pcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>phen_cov</span>
-<span class='no'>gcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>geno_cov</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='kw'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>means</span>)
+<span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>phen_cov</span>
+<span class='kw'>gcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>geno_cov</span>
 
-<span class='no'>index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span>(<span class='no'>means</span>, <span class='kw'>pcov</span> <span class='kw'>=</span> <span class='no'>pcov</span>, <span class='kw'>gcov</span> <span class='kw'>=</span> <span class='no'>gcov</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>index</span>)</div><div class='img'><img src='plot.sh-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span>(<span class='kw'>means</span>, pcov = <span class='kw'>pcov</span>, gcov = <span class='kw'>gcov</span>, weights = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>index</span>)
+</div><div class='img'><img src='plot.sh-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -326,7 +330,7 @@ genotypes is large, say, more than 30.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

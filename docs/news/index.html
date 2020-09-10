@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -226,6 +226,14 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="metan-181" class="section level1">
+<h1 class="page-header" data-toc-text="1.8.1">
+<a href="#metan-181" class="anchor"></a>metan 1.8.1<small> Unreleased </small>
+</h1>
+<ul>
+<li>Use <code>\doi{}</code> markup in Rd files.</li>
+</ul>
+</div>
     <div id="metan-180" class="section level1">
 <h1 class="page-header" data-toc-text="1.8.0">
 <a href="#metan-180" class="anchor"></a>metan 1.8.0<small> Unreleased </small>
@@ -296,7 +304,7 @@
 <code><a href="../reference/fai_blup.html">fai_blup()</a></code> now returns the total genetic gain and the list with the ideotypes’ construction.</li>
 <li>
 <code><a href="../reference/mgidi.html">mgidi()</a></code> now computes the genetic gain when a mixed-model is used as input data.</li>
-<li>The S3 method <a href="https://tiagoolivoto.github.io/metan/reference/plot.mgidi.html"><code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code></a> for objects of class <code>mgidi</code> has a new argument <code>type = "contribution"</code> to plot the contribution of each factor in the MGIDI index.</li>
+<li>The S3 method <a href="https://tiagoolivoto.github.io/metan/reference/plot.mgidi.html"><code>plot()</code></a> for objects of class <code>mgidi</code> has a new argument <code>type = "contribution"</code> to plot the contribution of each factor in the MGIDI index.</li>
 <li>
 <code><a href="../reference/plot_scores.html">plot_scores()</a></code> now can produce a biplot showing other axes besides PC1 and PC2. To change the default IPCA in each axis use the new arguments <code>first</code> and <code>second</code>.</li>
 </ul>
@@ -356,7 +364,7 @@
 </li>
 <li>Improve feedback for results, indicating random and fixed effects. Thanks to <a href="https://scholar.google.com.br/citations?user=i2F6X04AAAAJ&amp;hl=pt-BR">@NelsonJunior</a> for his suggestion.</li>
 <li>
-<code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code> call on objects of class <code>gamem</code>, <code>waasb</code> and <code>waas</code> now returns the variable names automatically. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for suggesting me this change.</li>
+<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> call on objects of class <code>gamem</code>, <code>waasb</code> and <code>waas</code> now returns the variable names automatically. Thanks to <a href="https://www.researchgate.net/profile/Md_Farhad">@MdFarhad</a> for suggesting me this change.</li>
 <li>
 <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> and <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> have a new argument (<code>type = "vcomp"</code>) to produce a plot showing the contribution of the variance components to the phenotypic variance</li>
 <li>
@@ -867,7 +875,7 @@
 <ul>
 <li>AMMI-based stability indexes;</li>
 <li>Allow analyzing multiple variables at the same time;</li>
-<li>S3 methods such as <code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code>, <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> implemented.</li>
+<li>S3 methods such as <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> implemented.</li>
 </ul>
 </div>
     <div id="metaab-012" class="section level1">
@@ -904,7 +912,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

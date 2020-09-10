@@ -138,7 +138,7 @@ used to compute quickly all these statistics at once." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -316,61 +316,61 @@ deviation, respectively.</p></li>
 used to compute quickly all these statistics at once.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>av_dev</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>av_dev</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>ci_mean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)
+<span class='fu'>ci_mean</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>, level = <span class='fl'>0.95</span>)
 
-<span class='fu'>cv</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>cv</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>freq_table</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'>freq_table</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
 
-<span class='fu'>hmean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>hmean</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>gmean</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>gmean</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>kurt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>kurt</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>pseudo_sigma</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>pseudo_sigma</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>range_data</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>range_data</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>row_col_mean</span>(<span class='no'>.data</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>row_col_mean</span>(<span class='kw'>.data</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>row_col_sum</span>(<span class='no'>.data</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>row_col_sum</span>(<span class='kw'>.data</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sd_amo</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sd_amo</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sd_pop</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sd_pop</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sem</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sem</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>skew</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>skew</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sum_dev</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sum_dev</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sum_sq_dev</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sum_sq_dev</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>var_pop</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>var_pop</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>var_amo</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>var_amo</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>valid_n</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>valid_n</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>cv_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>cv_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>max_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>max_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>means_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>means_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>min_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>min_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>n_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>n_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sd_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sd_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sem_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>sem_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
 
-<span class='fu'>sum_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>sum_by</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -415,12 +415,16 @@ each level of the factor(s) declared in <code>...</code>.</p></li>
 or a numeric value if the input is a numeric vector.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># means of all numeric variables by ENV</span>
-<span class='fu'>means_by</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='no'>ENV</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 52 x 17</span><span>
+<span class='fu'>means_by</span>(<span class='kw'>data_ge2</span>, <span class='kw'>GEN</span>, <span class='kw'>ENV</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 52 x 17</span><span>
 #&gt;    GEN   ENV      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    A1     2.72 1.68  0.626  15.4  51.1  28.1  15.7  23.5  203.  16.3  33.3
@@ -437,7 +441,8 @@ or a numeric value if the input is a numeric vector.</p></li>
 #&gt; </span><span style='color: #555555;'>#   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Coefficient of variation for all numeric variables</span>
 <span class='co'># by GEN and ENV</span>
-<span class='fu'>cv_by</span>(<span class='no'>data_ge2</span>, <span class='no'>GEN</span>, <span class='no'>ENV</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 52 x 17</span><span>
+<span class='fu'>cv_by</span>(<span class='kw'>data_ge2</span>, <span class='kw'>GEN</span>, <span class='kw'>ENV</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 52 x 17</span><span>
 #&gt;    GEN   ENV       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    A1     4.93   5.36  5.34  7.15 1.98   1.48  6.91  7.93  8.31  5.12
@@ -454,14 +459,16 @@ or a numeric value if the input is a numeric vector.</p></li>
 #&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Skewness of a numeric vector</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='no'>nvec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>200</span>, <span class='fl'>10</span>, <span class='fl'>1</span>)
-<span class='fu'>skew</span>(<span class='no'>nvec</span>)</div><div class='output co'>#&gt; [1] 0.1977769</div><div class='input'>
+<span class='kw'>nvec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>200</span>, <span class='fl'>10</span>, <span class='fl'>1</span>)
+<span class='fu'>skew</span>(<span class='kw'>nvec</span>)
+</div><div class='output co'>#&gt; [1] 0.1977769</div><div class='input'>
 <span class='co'># Confidence interval 0.95 for the mean</span>
 <span class='co'># All numeric variables</span>
 <span class='co'># Grouped by levels of ENV</span>
-<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>ENV</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>ci_mean</span>()</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 16</span><span>
+<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>ENV</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>ci_mean</span>()
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 16</span><span>
 #&gt;   ENV       PH     EH     EP    EL    ED    CL    CD    CW    KW    NR   NKR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> A1    0.040</span><span style='text-decoration: underline;'>1</span><span> 0.041</span><span style='text-decoration: underline;'>5</span><span> 0.014</span><span style='text-decoration: underline;'>2</span><span> 0.382 0.598 0.725 0.352  1.83  6.31 0.638 0.948
@@ -471,13 +478,15 @@ or a numeric value if the input is a numeric vector.</p></li>
 #&gt; </span><span style='color: #555555;'># ... with 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># standard error of the mean</span>
 <span class='co'># Variable PH and EH</span>
-<span class='fu'>sem</span>(<span class='no'>data_ge2</span>, <span class='no'>PH</span>, <span class='no'>EH</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 2</span><span>
+<span class='fu'>sem</span>(<span class='kw'>data_ge2</span>, <span class='kw'>PH</span>, <span class='kw'>EH</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 2</span><span>
 #&gt;       PH     EH
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> 0.026</span><span style='text-decoration: underline;'>7</span><span> 0.022</span><span style='text-decoration: underline;'>8</span><span></div><div class='input'>
 <span class='co'># Frequency table for variable NR</span>
-<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>freq_table</span>(<span class='no'>NR</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 4</span><span>
+<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>freq_table</span>(<span class='kw'>NR</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 4</span><span>
 #&gt;       NR     n rel_freq cum_freq
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>  12.4     1  0.006</span><span style='text-decoration: underline;'>41</span><span>  0.006</span><span style='text-decoration: underline;'>41</span><span>
@@ -499,7 +508,7 @@ or a numeric value if the input is a numeric vector.</p></li>
 #&gt; </span><span style='color: #555555;'>17</span><span>  19.6     1  0.006</span><span style='text-decoration: underline;'>41</span><span>  0.962  
 #&gt; </span><span style='color: #555555;'>18</span><span>  20       3  0.019</span><span style='text-decoration: underline;'>2</span><span>   0.981  
 #&gt; </span><span style='color: #555555;'>19</span><span>  20.4     2  0.012</span><span style='text-decoration: underline;'>8</span><span>   0.994  
-#&gt; </span><span style='color: #555555;'>20</span><span>  21.2     1  0.006</span><span style='text-decoration: underline;'>41</span><span>  1      </div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>20</span><span>  21.2     1  0.006</span><span style='text-decoration: underline;'>41</span><span>  1      </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -517,7 +526,7 @@ or a numeric value if the input is a numeric vector.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

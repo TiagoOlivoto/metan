@@ -97,7 +97,7 @@ matrices easily." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,13 +234,13 @@ matrices easily." />
 matrices easily.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_upper_tri</span>(<span class='no'>x</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
+    <pre class="usage"><span class='fu'>make_upper_tri</span>(<span class='kw'>x</span>, diag = <span class='fl'>NA</span>)
 
-<span class='fu'>make_lower_tri</span>(<span class='no'>x</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
+<span class='fu'>make_lower_tri</span>(<span class='kw'>x</span>, diag = <span class='fl'>NA</span>)
 
-<span class='fu'>make_sym</span>(<span class='no'>x</span>, <span class='kw'>make</span> <span class='kw'>=</span> <span class='st'>"upper"</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
+<span class='fu'>make_sym</span>(<span class='kw'>x</span>, make = <span class='st'>"upper"</span>, diag = <span class='fl'>NA</span>)
 
-<span class='fu'>tidy_sym</span>(<span class='no'>x</span>, <span class='kw'>keep_diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>tidy_sym</span>(<span class='kw'>x</span>, keep_diag = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -284,31 +284,38 @@ matrix.</p></li>
 <li><p><code>tidy_sym()</code> transform a symmetric matrix into tidy data frame.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span>(<span class='no'>data_ge2</span>, <span class='fl'>5</span>:<span class='fl'>10</span>))
-<span class='fu'>make_upper_tri</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt;    EH       EP        EL        ED        CL        CD
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span>(<span class='kw'>data_ge2</span>, <span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span>))
+<span class='fu'>make_upper_tri</span>(<span class='kw'>m</span>)
+</div><div class='output co'>#&gt;    EH       EP        EL        ED        CL        CD
 #&gt; EH NA 0.869546 0.3626537 0.6302561 0.3971935 0.2805118
 #&gt; EP NA       NA 0.2634237 0.4580196 0.3908239 0.1750448
 #&gt; EL NA       NA        NA 0.3851451 0.2554068 0.9118653
 #&gt; ED NA       NA        NA        NA 0.6974629 0.3897128
 #&gt; CL NA       NA        NA        NA        NA 0.3003636
-#&gt; CD NA       NA        NA        NA        NA        NA</div><div class='input'><span class='fu'>make_lower_tri</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt;           EH        EP        EL        ED        CL CD
+#&gt; CD NA       NA        NA        NA        NA        NA</div><div class='input'><span class='fu'>make_lower_tri</span>(<span class='kw'>m</span>)
+</div><div class='output co'>#&gt;           EH        EP        EL        ED        CL CD
 #&gt; EH        NA        NA        NA        NA        NA NA
 #&gt; EP 0.8695460        NA        NA        NA        NA NA
 #&gt; EL 0.3626537 0.2634237        NA        NA        NA NA
 #&gt; ED 0.6302561 0.4580196 0.3851451        NA        NA NA
 #&gt; CL 0.3971935 0.3908239 0.2554068 0.6974629        NA NA
-#&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 NA</div><div class='input'><span class='fu'>make_lower_tri</span>(<span class='no'>m</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'>make_sym</span>(<span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;           EH        EP        EL        ED        CL        CD
+#&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 NA</div><div class='input'><span class='fu'>make_lower_tri</span>(<span class='kw'>m</span>) <span class='op'>%&gt;%</span>
+<span class='fu'>make_sym</span>(diag = <span class='fl'>0</span>)
+</div><div class='output co'>#&gt;           EH        EP        EL        ED        CL        CD
 #&gt; EH 0.0000000 0.8695460 0.3626537 0.6302561 0.3971935 0.2805118
 #&gt; EP 0.8695460 0.0000000 0.2634237 0.4580196 0.3908239 0.1750448
 #&gt; EL 0.3626537 0.2634237 0.0000000 0.3851451 0.2554068 0.9118653
 #&gt; ED 0.6302561 0.4580196 0.3851451 0.0000000 0.6974629 0.3897128
 #&gt; CL 0.3971935 0.3908239 0.2554068 0.6974629 0.0000000 0.3003636
-#&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 0.0000000</div><div class='input'><span class='fu'>tidy_sym</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 36 x 3</span><span>
+#&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 0.0000000</div><div class='input'><span class='fu'>tidy_sym</span>(<span class='kw'>m</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 36 x 3</span><span>
 #&gt;    group1 group2 value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> CD     EH     0.281
@@ -321,7 +328,8 @@ matrix.</p></li>
 #&gt; </span><span style='color: #555555;'> 8</span><span> CL     EP     0.391
 #&gt; </span><span style='color: #555555;'> 9</span><span> CL     EL     0.255
 #&gt; </span><span style='color: #555555;'>10</span><span> CL     ED     0.697
-#&gt; </span><span style='color: #555555;'># ... with 26 more rows</span><span></div><div class='input'><span class='fu'>tidy_sym</span>(<span class='fu'>make_lower_tri</span>(<span class='no'>m</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 3</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 26 more rows</span><span></div><div class='input'><span class='fu'>tidy_sym</span>(<span class='fu'>make_lower_tri</span>(<span class='kw'>m</span>))
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 3</span><span>
 #&gt;    group1 group2 value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> CD     EH     0.281
@@ -339,7 +347,7 @@ matrix.</p></li>
 #&gt; </span><span style='color: #555555;'>13</span><span> EL     EH     0.363
 #&gt; </span><span style='color: #555555;'>14</span><span> EL     EP     0.263
 #&gt; </span><span style='color: #555555;'>15</span><span> EP     EH     0.870</div><div class='input'>
-# }
+<span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -357,7 +365,7 @@ matrix.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

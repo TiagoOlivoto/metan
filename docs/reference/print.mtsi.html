@@ -97,7 +97,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,7 +235,7 @@ the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mtsi</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -260,21 +260,25 @@ to the working directory</p></td>
     <tr>
       <th>...</th>
       <td><p>Options used by the tibble package to format the output. See
-<code><a href='https://rdrr.io/pkg/tibble/man/formatting.html'>tibble::print()</a></code> for more details.</p></td>
+<code><a href='https://tibble.tidyverse.org/reference/formatting.html'>tibble::print()</a></code> for more details.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># Based on stability only</span>
-<span class='no'>MTSI_MODEL</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge</span>,
-  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>
-)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='kw'>MTSI_MODEL</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>,
+  resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
+  gen = <span class='kw'>GEN</span>,
+  env = <span class='kw'>ENV</span>,
+  rep = <span class='kw'>REP</span>
+)
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -283,7 +287,8 @@ to the working directory</p></td>
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
-<span class='no'>MTSI_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='no'>MTSI_MODEL</span>)</div><div class='output co'>#&gt; 
+<span class='kw'>MTSI_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mtsi.html'>mtsi</a></span>(<span class='kw'>MTSI_MODEL</span>)
+</div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
@@ -318,16 +323,17 @@ to the working directory</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor    xo    Xs    SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4  
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 8</span><span>
+#&gt;   VAR   Factor    xo    Xs    SD SDperc sense     goal
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4   increase   100
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551 increase   100
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; G8 G3
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>MTSI_index</span>)</div><div class='output co'>#&gt; -------------------- Correlation matrix used used in factor analysis -----------------
+#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>MTSI_index</span>)
+</div><div class='output co'>#&gt; -------------------- Correlation matrix used used in factor analysis -----------------
 #&gt;           GY        HM
 #&gt; GY 1.0000000 0.3693246
 #&gt; HM 0.3693246 1.0000000
@@ -396,14 +402,14 @@ to the working directory</p></td>
 #&gt; 53.30528 82.80829 29.50301 57.33645 
 #&gt; 
 #&gt; ------------------------- Selection differential (variables) --------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
-#&gt;   VAR   Factor     xo     Xs     SD  SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.674  2.979 0.305</span><span style='text-decoration: underline;'>2</span><span> 11.41  
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  48.35  0.264</span><span style='text-decoration: underline;'>8</span><span>  0.550</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 8</span><span>
+#&gt;   VAR   Factor     xo     Xs     SD  SDperc sense     goal
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.674  2.979 0.305</span><span style='text-decoration: underline;'>2</span><span> 11.41   increase   100
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  48.35  0.264</span><span style='text-decoration: underline;'>8</span><span>  0.550</span><span style='text-decoration: underline;'>7</span><span> increase   100
 #&gt; 
 #&gt; -------------------------------- Selected genotypes -----------------------------------
-#&gt; G8 G3</div><div class='input'># }
+#&gt; G8 G3</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -420,7 +426,7 @@ to the working directory</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

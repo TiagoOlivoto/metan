@@ -97,7 +97,7 @@ estimation of genetic parameters." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ estimation of genetic parameters." />
 estimation of genetic parameters.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gamem</span>(<span class='no'>.data</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>gamem</span>(<span class='kw'>.data</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, block = <span class='kw'>NULL</span>, prob = <span class='fl'>0.05</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -329,22 +329,26 @@ corresponding to \(y_{ijk}\).</p>
 
     <p>Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information:
 to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
-<a href='http://www.ncbi.nlm.nih.gov/pubmed/25972114'>doi:10.1007/s00122-015-2530-0</a></p>
+doi: <a href='https://doi.org/10.1007/s00122-015-2530-0'>10.1007/s00122-015-2530-0</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='waasb.html'>waasb</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 
 <span class='co'># fitting the model considering an RCBD</span>
 <span class='co'># Genotype as random effects</span>
 
-<span class='no'>rcbd</span> <span class='kw'>&lt;-</span> <span class='fu'>gamem</span>(<span class='no'>data_g</span>,
-             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>PH</span>, <span class='no'>ED</span>, <span class='no'>EL</span>, <span class='no'>CL</span>, <span class='no'>CW</span>, <span class='no'>KW</span>, <span class='no'>NR</span>, <span class='no'>TKW</span>, <span class='no'>NKE</span>))</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='kw'>rcbd</span> <span class='op'>&lt;-</span> <span class='fu'>gamem</span>(<span class='kw'>data_g</span>,
+             gen = <span class='kw'>GEN</span>,
+             rep = <span class='kw'>REP</span>,
+             resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>ED</span>, <span class='kw'>EL</span>, <span class='kw'>CL</span>, <span class='kw'>CW</span>, <span class='kw'>KW</span>, <span class='kw'>NR</span>, <span class='kw'>TKW</span>, <span class='kw'>NKE</span>))
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model    PH       ED    EL       CL       CW     KW     NR     TKW     NKE
@@ -355,7 +359,8 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; PH EL 
 #&gt; ---------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Likelihood ratio test for random effects</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"lrt"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 8</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>rcbd</span>, <span class='st'>"lrt"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 8</span><span>
 #&gt;   VAR   model     npar   logLik    AIC     LRT    Df `Pr(&gt;Chisq)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> PH    Genotype     4   -</span><span style='color: #BB0000;'>0.947</span><span>   9.89  3.81       1   0.051</span><span style='text-decoration: underline;'>0</span><span>    
@@ -369,13 +374,15 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'>9</span><span> NKE   Genotype     4 -</span><span style='color: #BB0000;'>206.</span><span>    420.    6.72       1   0.009</span><span style='text-decoration: underline;'>52</span><span>   </div><div class='input'>
 
 <span class='co'># Variance components</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"vcomp"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 10</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>rcbd</span>, <span class='st'>"vcomp"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 10</span><span>
 #&gt;   Group        PH    ED     EL    CL    CW    KW    NR   TKW   NKE
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> GEN      0.017</span><span style='text-decoration: underline;'>1</span><span>  5.37 0.047</span><span style='text-decoration: underline;'>2</span><span>  4.27 18.5   181.  1.18  841. </span><span style='text-decoration: underline;'>1</span><span>982.
 #&gt; </span><span style='color: #555555;'>2</span><span> Residual 0.032</span><span style='text-decoration: underline;'>8</span><span>  2.43 0.984   1.41  7.54  280.  1.27 </span><span style='text-decoration: underline;'>1</span><span>018. </span><span style='text-decoration: underline;'>2</span><span>399.</div><div class='input'>
 <span class='co'># Genetic parameters</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 11 x 10</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>rcbd</span>, <span class='st'>"genpar"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 11 x 10</span><span>
 #&gt;    Parameters      PH     ED      EL     CL     CW      KW     NR     TKW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> Gen_var     0.017</span><span style='text-decoration: underline;'>1</span><span>  5.37   0.047</span><span style='text-decoration: underline;'>2</span><span>  4.27  18.5   181.     1.18  8.41</span><span style='color: #555555;'>e</span><span>+2
@@ -391,7 +398,8 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'>11</span><span> CV ratio    0.722   1.49   0.219   1.74   1.56    0.803  0.964 9.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
 #&gt; </span><span style='color: #555555;'># ... with 1 more variable: NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># random effects</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>rcbd</span>, <span class='st'>"ranef"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>rcbd</span>, <span class='st'>"ranef"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
 #&gt;    GEN           PH         ED           EL         CL         CW         KW
 #&gt; 1   H1  0.018773415  2.3610811  0.020813796  2.2056449  5.3329442   6.597949
 #&gt; 2  H10 -0.078441587 -3.4773234 -0.085772984 -3.3060659 -7.4818217 -17.311524
@@ -422,7 +430,8 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; 13 -0.92086539 -16.640945 -34.320501
 #&gt; </div><div class='input'>
 <span class='co'># Predicted values</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>rcbd</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 11</span><span>
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>rcbd</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 11</span><span>
 #&gt;    GEN   REP      PH    ED    EL    CL    CW    KW    NR   TKW   NKE
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1      2.12  50.5  14.9  31.5  26.9  156.  15.8  360.  436.
@@ -440,11 +449,12 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 <span class='co'># Genotype and block-within-replicate as random effects</span>
 <span class='co'># Note that block effect was now informed.</span>
 
-<span class='no'>alpha</span> <span class='kw'>&lt;-</span> <span class='fu'>gamem</span>(<span class='no'>data_alpha</span>,
-               <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-               <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-               <span class='kw'>block</span> <span class='kw'>=</span> <span class='no'>BLOCK</span>,
-               <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>YIELD</span>)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, BLOCK(REP)</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='kw'>alpha</span> <span class='op'>&lt;-</span> <span class='fu'>gamem</span>(<span class='kw'>data_alpha</span>,
+               gen = <span class='kw'>GEN</span>,
+               rep = <span class='kw'>REP</span>,
+               block = <span class='kw'>BLOCK</span>,
+               resp = <span class='kw'>YIELD</span>)
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, BLOCK(REP)</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;      model    YIELD
@@ -453,7 +463,8 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt;  rep:block 3.35e-03
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype effect</div><div class='input'><span class='co'># Genetic parameters</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>alpha</span>, <span class='st'>"genpar"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 2</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>alpha</span>, <span class='st'>"genpar"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 2</span><span>
 #&gt;    Parameters      YIELD
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> Gen_var        0.143 
@@ -470,7 +481,8 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; </span><span style='color: #555555;'>12</span><span> CVr            6.38  
 #&gt; </span><span style='color: #555555;'>13</span><span> CV ratio       1.32  </div><div class='input'>
 <span class='co'># Random effects</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>alpha</span>, <span class='st'>"ranef"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>alpha</span>, <span class='st'>"ranef"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gamem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $GEN
 #&gt;    GEN        YIELD
 #&gt; 1  G01  0.501183769
 #&gt; 2  G02  0.004962705
@@ -592,7 +604,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #&gt; 70 G24  R1    B6 -0.05152273
 #&gt; 71 G24  R2    B2 -0.55429061
 #&gt; 72 G24  R3    B5 -0.26110528
-#&gt; </div><div class='input'># }
+#&gt; </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -610,7 +622,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

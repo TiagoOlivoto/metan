@@ -101,7 +101,7 @@ WAAS, weighted average of absolute scores (Olivoto et al. 2019)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -242,7 +242,7 @@ relative contribution of IPCAs to the interaction (Zali et al. 2012), and
 WAAS, weighted average of absolute scores (Olivoto et al. 2019).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>AMMI_indexes</span>(<span class='no'>.data</span>, <span class='kw'>order.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
+    <pre class="usage"><span class='fu'>AMMI_indexes</span>(<span class='kw'>.data</span>, order.y = <span class='kw'>NULL</span>, level = <span class='fl'>0.95</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -303,10 +303,10 @@ and ssiWAAS, respectively.</p>
 Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
 in South Africa: II. Stability analysis of yield performance. South African
 J. Plant Soil 17:101-107.
-<a href='http://doi.org/10.1080/02571862.2000.10634878'>doi:10.1080/02571862.2000.10634878</a></p>
+doi: <a href='https://doi.org/10.1080/02571862.2000.10634878'>10.1080/02571862.2000.10634878</a></p>
 <p>Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
 Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
-<a href='https://onlinelibrary.wiley.com/doi/abs/10.2135/cropsci1997.0011183X003700020013x'>doi:10.2135/cropsci1997.0011183X003700020013x</a></p>
+doi: <a href='https://doi.org/10.2135/cropsci1997.0011183X003700020013x'>10.2135/cropsci1997.0011183X003700020013x</a></p>
 <p>Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
@@ -314,24 +314,28 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960.
-<a href='https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220'>doi:10.2134/agronj2019.03.0220</a></p>
+doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>data_ge</span>,
-              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>),
-              <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>model_indexes</span> <span class='kw'>&lt;-</span> <span class='fu'>AMMI_indexes</span>(<span class='no'>model</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='kw'>data_ge</span>,
+              env = <span class='kw'>ENV</span>,
+              gen = <span class='kw'>GEN</span>,
+              rep = <span class='kw'>REP</span>,
+              resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
+              verbose = <span class='fl'>FALSE</span>)
+<span class='kw'>model_indexes</span> <span class='op'>&lt;-</span> <span class='fu'>AMMI_indexes</span>(<span class='kw'>model</span>)
 
 
 <span class='co'># Alternatively (and more intuitively) using %&gt;%</span>
-<span class='no'>res_ind</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span>
-           <span class='fu'><a href='waas.html'>waas</a></span>(<span class='no'>ENV</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>GY</span>, <span class='no'>HM</span>)) <span class='kw'>%&gt;%</span>
-           <span class='fu'>AMMI_indexes</span>()</div><div class='output co'>#&gt; variable GY 
+<span class='kw'>res_ind</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
+           <span class='fu'><a href='waas.html'>waas</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>)) <span class='op'>%&gt;%</span>
+           <span class='fu'>AMMI_indexes</span>()
+</div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
@@ -376,7 +380,7 @@ Agron. J. 111:2949-2960.
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'># }
+#&gt; Done!</div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -394,7 +398,7 @@ Agron. J. 111:2949-2960.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

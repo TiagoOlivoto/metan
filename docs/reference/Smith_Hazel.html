@@ -110,7 +110,7 @@ traits x, y, ..., n, respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -261,12 +261,12 @@ traits <em>x</em>, <em>y</em>, ..., <em>n</em>, respectively.</p>
     </div>
 
     <pre class="usage"><span class='fu'>Smith_Hazel</span>(
-  <span class='no'>.data</span>,
-  <span class='kw'>use_data</span> <span class='kw'>=</span> <span class='st'>"blup"</span>,
-  <span class='kw'>pcov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gcov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>SI</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>.data</span>,
+  use_data = <span class='st'>"blup"</span>,
+  pcov = <span class='kw'>NULL</span>,
+  gcov = <span class='kw'>NULL</span>,
+  SI = <span class='fl'>15</span>,
+  weights = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -323,23 +323,27 @@ genetic covariance components are estimated by mean cross products.</p>
 
     <p>Smith, H.F. 1936. A discriminant function for plant selection. Ann. Eugen.
 7:240-250.
-<a href='https://doi.org/10.1111/j.1469-1809.1936.tb02143.x'>doi:10.1111/j.1469-1809.1936.tb02143.x</a></p>
+doi: <a href='https://doi.org/10.1111/j.1469-1809.1936.tb02143.x'>10.1111/j.1469-1809.1936.tb02143.x</a></p>
 <p>Hazel, L.N. 1943. The genetic basis for constructing selection indexes.
 Genetics 28:476-90.
-<a href='https://www.ncbi.nlm.nih.gov/pubmed/17247099'>PMID:17247099</a></p>
+<a href='https://pubmed.ncbi.nlm.nih.gov/17247099/'>PMID:17247099</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='mtsi.html'>mtsi</a></code>, <code><a href='mgidi.html'>mgidi</a></code>, <code><a href='fai_blup.html'>fai_blup</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='no'>means</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>vcov</span>$<span class='no'>means</span>)
-<span class='no'>pcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>phen_cov</span>
-<span class='no'>gcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>geno_cov</span>
+<span class='kw'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='kw'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>means</span>)
+<span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>phen_cov</span>
+<span class='kw'>gcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>geno_cov</span>
 
-<span class='no'>index</span> <span class='kw'>&lt;-</span> <span class='fu'>Smith_Hazel</span>(<span class='no'>means</span>, <span class='kw'>pcov</span> <span class='kw'>=</span> <span class='no'>pcov</span>, <span class='kw'>gcov</span> <span class='kw'>=</span> <span class='no'>gcov</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
-<span class='co'># }</span></div></pre>
+<span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'>Smith_Hazel</span>(<span class='kw'>means</span>, pcov = <span class='kw'>pcov</span>, gcov = <span class='kw'>gcov</span>, weights = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -355,7 +359,7 @@ Genetics 28:476-90.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

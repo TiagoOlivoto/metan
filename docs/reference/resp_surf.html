@@ -97,7 +97,7 @@ to obtain the stationary point." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,13 +235,13 @@ to obtain the stationary point.</p>
     </div>
 
     <pre class="usage"><span class='fu'>resp_surf</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>factor1</span>,
-  <span class='no'>factor2</span>,
-  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>resp</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>factor1</span>,
+  <span class='kw'>factor2</span>,
+  rep = <span class='kw'>NULL</span>,
+  <span class='kw'>resp</span>,
+  prob = <span class='fl'>0.05</span>,
+  verbose = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -281,22 +281,26 @@ console.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># A small toy example</span>
 
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
- <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-             <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>)),
- <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>,
+<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+ <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(x = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, by = <span class='fl'>1</span>),
+             y = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, by = <span class='fl'>1</span>)),
+ z = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>,
        <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
        <span class='fl'>16</span>, <span class='fl'>17</span>, <span class='fl'>18</span>, <span class='fl'>17</span>, <span class='fl'>16</span>,
        <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
        <span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>)
 )
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'>resp_surf</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>z</span>)</div><div class='output co'>#&gt; -----------------------------------------------------------------
+<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>resp_surf</span>(<span class='kw'>df</span>, <span class='kw'>x</span>, <span class='kw'>y</span>, resp = <span class='kw'>z</span>)
+</div><div class='output co'>#&gt; -----------------------------------------------------------------
 #&gt; Anova table for the response surface model 
 #&gt; -----------------------------------------------------------------
 #&gt; Analysis of Variance Table
@@ -358,7 +362,8 @@ console.</p></td>
 #&gt; Shapiro-Wilk normality test
 #&gt; p-value:  0.04213785 
 #&gt; WARNING: at 5% of significance, residuals can not be considered normal! 
-#&gt; ------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mod</span>)</div><div class='img'><img src='resp_surf-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; ------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mod</span>)
+</div><div class='img'><img src='resp_surf-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -376,7 +381,7 @@ console.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

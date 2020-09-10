@@ -98,7 +98,7 @@ exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -237,7 +237,7 @@ exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for lpcor</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>3</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,26 +262,31 @@ to the working directory</p></td>
     <tr>
       <th>...</th>
       <td><p>Options used by the tibble package to format the output. See
-<code><a href='https://rdrr.io/pkg/tibble/man/formatting.html'>tibble::print()</a></code> for more details.</p></td>
+<code><a href='https://tibble.tidyverse.org/reference/formatting.html'>tibble::print()</a></code> for more details.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>pcor</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='lpcor.html'>lpcor</a></span>(<span class='no'>data_ge2</span>, <span class='no'>NR</span>, <span class='no'>NKR</span>, <span class='no'>NKE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pcor</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 5</span><span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>pcor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='lpcor.html'>lpcor</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>NR</span>, <span class='kw'>NKR</span>, <span class='kw'>NKE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pcor</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   Pairs     linear partial     t  prob
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> NR x NKR  0.020</span><span style='text-decoration: underline;'>6</span><span>  -</span><span style='color: #BB0000;'>0.767</span><span> -</span><span style='color: #BB0000;'>14.8</span><span>     0
 #&gt; </span><span style='color: #555555;'>2</span><span> NR x NKE  0.626    0.866  21.4     0
 #&gt; </span><span style='color: #555555;'>3</span><span> NKR x NKE 0.708    0.891  24.3     0</div><div class='input'>
 <span class='co'># Compute the correlations for each level of the factor ENV</span>
-<span class='no'>lpc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='lpcor.html'>lpcor</a></span>(<span class='no'>data_ge2</span>,
-              <span class='no'>NR</span>, <span class='no'>NKR</span>, <span class='no'>NKE</span>,
-              <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>ENV</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>lpc2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
+<span class='kw'>lpc2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='lpcor.html'>lpcor</a></span>(<span class='kw'>data_ge2</span>,
+              <span class='kw'>NR</span>, <span class='kw'>NKR</span>, <span class='kw'>NKE</span>,
+              by = <span class='kw'>ENV</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>lpc2</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   Pairs      linear partial       t   prob
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> A1    PH x EH   0.425     0.981  25.1   0     
@@ -294,7 +299,7 @@ to the working directory</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> A1    PH x KW   0.082</span><span style='text-decoration: underline;'>5</span><span>    0.155   0.770 0.449 
 #&gt; </span><span style='color: #555555;'> 9</span><span> A1    PH x NR  -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span>    0.389   2.07  0.049</span><span style='text-decoration: underline;'>6</span><span>
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    PH x NKR  0.140     0.271   1.38  0.181 
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -311,7 +316,7 @@ to the working directory</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

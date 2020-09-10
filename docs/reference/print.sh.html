@@ -97,7 +97,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,7 +235,7 @@ the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for sh</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -260,20 +260,24 @@ to the working directory</p></td>
     <tr>
       <th>...</th>
       <td><p>Options used by the tibble package to format the output. See
-<code><a href='https://rdrr.io/pkg/tibble/man/formatting.html'>tibble::print()</a></code> for more details.</p></td>
+<code><a href='https://tibble.tidyverse.org/reference/formatting.html'>tibble::print()</a></code> for more details.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>vcov</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='no'>data_g</span>, <span class='no'>GEN</span>, <span class='no'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='no'>means</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>vcov</span>$<span class='no'>means</span>)
-<span class='no'>pcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>phen_cov</span>
-<span class='no'>gcov</span> <span class='kw'>&lt;-</span> <span class='no'>vcov</span>$<span class='no'>geno_cov</span>
+<span class='kw'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='kw'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>means</span>)
+<span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>phen_cov</span>
+<span class='kw'>gcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>geno_cov</span>
 
-<span class='no'>index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span>(<span class='no'>means</span>, <span class='kw'>pcov</span> <span class='kw'>=</span> <span class='no'>pcov</span>, <span class='kw'>gcov</span> <span class='kw'>=</span> <span class='no'>gcov</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>index</span>)</div><div class='output co'>#&gt; 
+<span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span>(<span class='kw'>means</span>, pcov = <span class='kw'>pcov</span>, gcov = <span class='kw'>gcov</span>, weights = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>index</span>)
+</div><div class='output co'>#&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Index coefficients
 #&gt; -----------------------------------------------------------------------------------
@@ -406,7 +410,7 @@ to the working directory</p></td>
 #&gt; CDED  -0.117 -0.0191  -0.034  9.6e-04  -0.0483    0.646   -1.294
 #&gt; PERK  -7.911  0.0477   2.033 -4.8e-02   3.1367  -46.969   42.024
 #&gt; TKW  175.110  2.7390 -48.942  6.5e-01 -46.9689  840.939 -627.503
-#&gt; NKE  344.314 36.5977  34.725 -1.3e+00  42.0240 -627.503 1982.321</div><div class='input'># }
+#&gt; NKE  344.314 36.5977  34.725 -1.3e+00  42.0240 -627.503 1982.321</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -423,7 +427,7 @@ to the working directory</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

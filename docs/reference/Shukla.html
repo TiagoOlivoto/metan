@@ -98,7 +98,7 @@ performance and stability into a single selection criteria." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -236,7 +236,7 @@ uses the Kang's nonparametric stability (rank sum) to imcorporate the mean
 performance and stability into a single selection criteria.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Shukla</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>Shukla</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -289,20 +289,24 @@ columns is returned.</p><ul>
 
     <p>Shukla, G.K. 1972. Some statistical aspects of partitioning
 genotype-environmental components of variability. Heredity. 29:238-245.
-<a href='http://www.nature.com/articles/hdy197287'>doi:10.1038/hdy.1972.87</a>.</p>
-<p>Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
-Yielding and Stable Crop Genotypes. Agron. J. 83:161.
-<a href='https://dl.sciencesocieties.org/publications/aj/abstracts/83/1/AJ0830010161'>doi:10.2134/agronj1991.00021962008300010037x</a>.</p>
+doi: <a href='https://doi.org/10.1038/hdy.1972.87'>10.1038/hdy.1972.87</a></p>
+<p>Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High Yielding and
+Stable Crop Genotypes. Agron. J. 83:161.
+doi: <a href='https://doi.org/10.2134/agronj1991.00021962008300010037x'>10.2134/agronj1991.00021962008300010037x</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>Shukla</span>(<span class='no'>data_ge2</span>,
-             <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-             <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-             <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-             <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>)
-<span class='co'># }</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>out</span> <span class='op'>&lt;-</span> <span class='fu'>Shukla</span>(<span class='kw'>data_ge2</span>,
+             env = <span class='kw'>ENV</span>,
+             gen = <span class='kw'>GEN</span>,
+             rep = <span class='kw'>REP</span>,
+             resp = <span class='kw'>PH</span>)
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -318,7 +322,7 @@ Yielding and Stable Crop Genotypes. Agron. J. 83:161.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

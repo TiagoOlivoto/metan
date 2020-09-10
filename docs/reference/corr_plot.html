@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,46 +233,47 @@
     </div>
 
     <pre class="usage"><span class='fu'>corr_plot</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>col.by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>"corr"</span>,
-  <span class='kw'>lower</span> <span class='kw'>=</span> <span class='st'>"scatter"</span>,
-  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>show.labels.in</span> <span class='kw'>=</span> <span class='st'>"show"</span>,
-  <span class='kw'>size.axis.label</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>diag.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>col.diag</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-  <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>"tr"</span>,
-  <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-  <span class='kw'>confint</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-  <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>
+  <span class='kw'>.data</span>,
+  <span class='kw'>...</span>,
+  col.by = <span class='kw'>NULL</span>,
+  upper = <span class='st'>"corr"</span>,
+  lower = <span class='st'>"scatter"</span>,
+  decimal.mark = <span class='st'>"."</span>,
+  axis.labels = <span class='fl'>FALSE</span>,
+  show.labels.in = <span class='st'>"show"</span>,
+  size.axis.label = <span class='fl'>12</span>,
+  diag = <span class='fl'>TRUE</span>,
+  diag.type = <span class='st'>"histogram"</span>,
+  bins = <span class='fl'>20</span>,
+  col.diag = <span class='st'>"gray"</span>,
+  alpha.diag = <span class='fl'>1</span>,
+  col.up.panel = <span class='st'>"gray"</span>,
+  col.lw.panel = <span class='st'>"gray"</span>,
+  col.dia.panel = <span class='st'>"gray"</span>,
+  prob = <span class='fl'>0.05</span>,
+  col.sign = <span class='st'>"green"</span>,
+  alpha.sign = <span class='fl'>0.15</span>,
+  lab.position = <span class='st'>"tr"</span>,
+  progress = <span class='kw'>NULL</span>,
+  smooth = <span class='fl'>FALSE</span>,
+  col.smooth = <span class='st'>"red"</span>,
+  size.smooth = <span class='fl'>0.3</span>,
+  confint = <span class='fl'>TRUE</span>,
+  size.point = <span class='fl'>1</span>,
+  shape.point = <span class='fl'>19</span>,
+  alpha.point = <span class='fl'>0.7</span>,
+  fill.point = <span class='kw'>NULL</span>,
+  col.point = <span class='st'>"black"</span>,
+  minsize = <span class='fl'>2</span>,
+  maxsize = <span class='fl'>3</span>,
+  pan.spacing = <span class='fl'>0.15</span>,
+  digits = <span class='fl'>2</span>,
+  export = <span class='fl'>FALSE</span>,
+  file.type = <span class='st'>"pdf"</span>,
+  file.name = <span class='kw'>NULL</span>,
+  width = <span class='fl'>8</span>,
+  height = <span class='fl'>7</span>,
+  resolution = <span class='fl'>300</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -307,6 +308,10 @@ blank diagonal.</p></td>
 matrix. Must be one of <code>'corr'</code> (numeric values), <code>'scatter'</code>
 (the scatterplot for each pairwise combination), or <code>NULL</code> to set a
 blank diagonal.</p></td>
+    </tr>
+    <tr>
+      <th>decimal.mark</th>
+      <td><p>The decimal mark. Defaults to <code>"."</code>.</p></td>
     </tr>
     <tr>
       <th>axis.labels</th>
@@ -476,49 +481,57 @@ used. Set to <code>300</code> (300 dpi).</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>gg, ggmatrix</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>dataset</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge2</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>dataset</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span>
 
 <span class='co'># Default plot setting</span>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>)</div><div class='img'><img src='corr_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>corr_plot</span>(<span class='kw'>dataset</span>)
+</div><div class='img'><img src='corr_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Chosing variables to be correlated</span>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>)</div><div class='img'><img src='corr_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>corr_plot</span>(<span class='kw'>dataset</span>, <span class='kw'>CD</span>, <span class='kw'>EL</span>, <span class='kw'>PERK</span>, <span class='kw'>NKR</span>)
+</div><div class='img'><img src='corr_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Changing the layout</span>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>,
-          <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-          <span class='kw'>upper</span> <span class='kw'>=</span> <span class='st'>'corr'</span>)</div><div class='img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>corr_plot</span>(<span class='kw'>dataset</span>, <span class='kw'>CD</span>, <span class='kw'>EL</span>, <span class='kw'>PERK</span>, <span class='kw'>NKR</span>,
+          lower = <span class='kw'>NULL</span>,
+          upper = <span class='st'>'corr'</span>)
+</div><div class='img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Axis labels, similar to the function pairs()</span>
 <span class='co'># Gray scale</span>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>,
-          <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-          <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-          <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-          <span class='kw'>alpha.diag</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-          <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-          <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>'gray'</span>,
-          <span class='kw'>alpha.sign</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-          <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>corr_plot</span>(<span class='no'>dataset</span>, <span class='no'>CD</span>, <span class='no'>EL</span>, <span class='no'>PERK</span>, <span class='no'>NKR</span>, <span class='no'>CW</span>, <span class='no'>NKE</span>,
-          <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
-          <span class='kw'>shape.point</span> <span class='kw'>=</span> <span class='fl'>21</span>,
-          <span class='kw'>col.point</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
-          <span class='kw'>fill.point</span> <span class='kw'>=</span> <span class='st'>'orange'</span>,
-          <span class='kw'>size.point</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-          <span class='kw'>alpha.point</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
-          <span class='kw'>maxsize</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-          <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-          <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>size.smooth</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-          <span class='kw'>col.smooth</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
-          <span class='kw'>col.sign</span> <span class='kw'>=</span> <span class='st'>'cyan'</span>,
-          <span class='kw'>col.up.panel</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
-          <span class='kw'>col.lw.panel</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
-          <span class='kw'>col.dia.panel</span> <span class='kw'>=</span> <span class='st'>'black'</span>,
-          <span class='kw'>pan.spacing</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-          <span class='kw'>lab.position</span> <span class='kw'>=</span> <span class='st'>'tl'</span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='corr_plot-5.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>corr_plot</span>(<span class='kw'>dataset</span>, <span class='kw'>CD</span>, <span class='kw'>EL</span>, <span class='kw'>PERK</span>, <span class='kw'>NKR</span>,
+          shape.point = <span class='fl'>19</span>,
+          size.point = <span class='fl'>2</span>,
+          alpha.point = <span class='fl'>0.5</span>,
+          alpha.diag = <span class='fl'>0</span>,
+          pan.spacing = <span class='fl'>0</span>,
+          col.sign = <span class='st'>'gray'</span>,
+          alpha.sign = <span class='fl'>0.3</span>,
+          axis.labels = <span class='fl'>TRUE</span>)
+</div><div class='img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>corr_plot</span>(<span class='kw'>dataset</span>, <span class='kw'>CD</span>, <span class='kw'>EL</span>, <span class='kw'>PERK</span>, <span class='kw'>NKR</span>, <span class='kw'>CW</span>, <span class='kw'>NKE</span>,
+          prob = <span class='fl'>0.01</span>,
+          shape.point = <span class='fl'>21</span>,
+          col.point = <span class='st'>'black'</span>,
+          fill.point = <span class='st'>'orange'</span>,
+          size.point = <span class='fl'>2</span>,
+          alpha.point = <span class='fl'>0.6</span>,
+          maxsize = <span class='fl'>4</span>,
+          minsize = <span class='fl'>2</span>,
+          smooth = <span class='fl'>TRUE</span>,
+          size.smooth = <span class='fl'>1</span>,
+          col.smooth = <span class='st'>'black'</span>,
+          col.sign = <span class='st'>'cyan'</span>,
+          col.up.panel = <span class='st'>'black'</span>,
+          col.lw.panel = <span class='st'>'black'</span>,
+          col.dia.panel = <span class='st'>'black'</span>,
+          pan.spacing = <span class='fl'>0</span>,
+          lab.position = <span class='st'>'tl'</span>)
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='corr_plot-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -535,7 +548,7 @@ used. Set to <code>300</code> (300 dpi).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

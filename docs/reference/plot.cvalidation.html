@@ -97,7 +97,7 @@ validation procedure." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,27 +235,27 @@ validation procedure.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for cvalidation</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>violin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>order_box</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
-  <span class='kw'>col.violin</span> <span class='kw'>=</span> <span class='st'>"gray90"</span>,
-  <span class='kw'>col.boxplot</span> <span class='kw'>=</span> <span class='st'>"gray70"</span>,
-  <span class='kw'>col.boxplot.win</span> <span class='kw'>=</span> <span class='st'>"cyan"</span>,
-  <span class='kw'>width.boxplot</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
-  <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
-  <span class='no'>...</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
+  <span class='kw'>x</span>,
+  violin = <span class='fl'>FALSE</span>,
+  export = <span class='fl'>FALSE</span>,
+  order_box = <span class='fl'>FALSE</span>,
+  x.lab = <span class='kw'>NULL</span>,
+  y.lab = <span class='kw'>NULL</span>,
+  size.tex.lab = <span class='fl'>12</span>,
+  file.type = <span class='st'>"pdf"</span>,
+  file.name = <span class='kw'>NULL</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  width = <span class='fl'>6</span>,
+  height = <span class='fl'>6</span>,
+  resolution = <span class='fl'>300</span>,
+  col.violin = <span class='st'>"gray90"</span>,
+  col.boxplot = <span class='st'>"gray70"</span>,
+  col.boxplot.win = <span class='st'>"cyan"</span>,
+  width.boxplot = <span class='fl'>0.6</span>,
+  x.lim = <span class='kw'>NULL</span>,
+  x.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -371,17 +371,21 @@ The upper whisker extends from the hinge to the largest value no further than
 1.5 * IQR from the hinge (where IQR is the inter-quartile range). The lower
 whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
 hinge. Data beyond the end of the whiskers are considered outlying points.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># \donttest{</span>
-<span class='no'>validation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span>(<span class='no'>data_ge</span>,
-                       <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>GY</span>,
-                       <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                       <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                       <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                       <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>validation</span>)</div><div class='img'><img src='plot.cvalidation-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='kw'>validation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span>(<span class='kw'>data_ge</span>,
+                       resp = <span class='kw'>GY</span>,
+                       gen = <span class='kw'>GEN</span>,
+                       env = <span class='kw'>ENV</span>,
+                       rep = <span class='kw'>REP</span>,
+                       nboot = <span class='fl'>5</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>validation</span>)
+</div><div class='img'><img src='plot.cvalidation-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 
 </div></pre>
@@ -400,7 +404,7 @@ hinge. Data beyond the end of the whiskers are considered outlying points.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

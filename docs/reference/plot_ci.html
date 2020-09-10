@@ -97,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,20 +235,20 @@
     </div>
 
     <pre class="usage"><span class='fu'>plot_ci</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
-  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>21</span>,
-  <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>fill.shape</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>width.errbar</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>invert.axis</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>()
+  <span class='kw'>object</span>,
+  x.lab = <span class='kw'>NULL</span>,
+  y.lab = <span class='kw'>NULL</span>,
+  y.lim = <span class='kw'>NULL</span>,
+  y.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
+  shape = <span class='fl'>21</span>,
+  col.shape = <span class='st'>"black"</span>,
+  fill.shape = <span class='st'>"orange"</span>,
+  size.shape = <span class='fl'>2.5</span>,
+  width.errbar = <span class='fl'>0.5</span>,
+  main = <span class='fl'>TRUE</span>,
+  invert.axis = <span class='fl'>TRUE</span>,
+  reorder = <span class='fl'>TRUE</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -331,13 +331,14 @@ combinations are reordered according to the correlation coefficient.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
 
-<span class='no'>data_ge2</span> <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span>(<span class='st'>'E'</span>)) <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='corr_ci.html'>corr_ci</a></span>() <span class='kw'>%&gt;%</span>
-<span class='fu'>plot_ci</span>()</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 21 x 6</span><span>
+<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span>(<span class='st'>'E'</span>)) <span class='op'>%&gt;%</span>
+<span class='fu'><a href='corr_ci.html'>corr_ci</a></span>() <span class='op'>%&gt;%</span>
+<span class='fu'>plot_ci</span>()
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 21 x 6</span><span>
 #&gt;    Pair         Corr     n     CI      LL     UL
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> EH x EP    0.870    156 0.090</span><span style='text-decoration: underline;'>1</span><span>  0.779  0.960 
@@ -350,7 +351,7 @@ combinations are reordered according to the correlation coefficient.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> EP x ED    0.458    156 0.125   0.333  0.583 
 #&gt; </span><span style='color: #555555;'> 9</span><span> EP x CDED  0.089</span><span style='text-decoration: underline;'>7</span><span>   156 0.167  -</span><span style='color: #BB0000;'>0.077</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> 0.257 
 #&gt; </span><span style='color: #555555;'>10</span><span> EP x PERK -</span><span style='color: #BB0000;'>0.087</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>   156 0.167  -</span><span style='color: #BB0000;'>0.255</span><span>  0.080</span><span style='text-decoration: underline;'>4</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 11 more rows</span><span></div><div class='img'><img src='plot_ci-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'># ... with 11 more rows</span><span></div><div class='img'><img src='plot_ci-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -367,7 +368,7 @@ combinations are reordered according to the correlation coefficient.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

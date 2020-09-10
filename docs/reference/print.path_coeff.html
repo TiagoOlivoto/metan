@@ -98,7 +98,7 @@ directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -237,7 +237,7 @@ directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for path_coeff</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,19 +262,24 @@ the working directory</p></td>
     <tr>
       <th>...</th>
       <td><p>Options used by the tibble package to format the output. See
-<code><a href='https://rdrr.io/pkg/tibble/man/formatting.html'>tibble::print()</a></code> for more details.</p></td>
+<code><a href='https://tibble.tidyverse.org/reference/formatting.html'>tibble::print()</a></code> for more details.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 
 <span class='co'># KW as dependent trait and all others as predictors</span>
-<span class='no'>pcoeff</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='no'>data_ge2</span>, <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>)</div><div class='output co'>#&gt; Severe multicollinearity. 
+<span class='kw'>pcoeff</span> <span class='op'>&lt;-</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='kw'>data_ge2</span>, resp = <span class='kw'>KW</span>)
+</div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 7865.84
-#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pcoeff</span>)</div><div class='output co'>#&gt; ----------------------------------------------------------------------------------------------
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pcoeff</span>)
+</div><div class='output co'>#&gt; ----------------------------------------------------------------------------------------------
 #&gt; Correlation matrix between the predictor traits
 #&gt; ----------------------------------------------------------------------------------------------
 #&gt; <span style='color: #555555;'># A tibble: 14 x 14</span><span>
@@ -409,10 +414,11 @@ the working directory</p></td>
 #&gt; ----------------------------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Call the algorithm for selecting a set of predictors</span>
 <span class='co'># With minimal multicollinearity (no VIF larger than 5)</span>
-<span class='no'>pcoeff2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='no'>data_ge2</span>,
-                      <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>KW</span>,
-                      <span class='kw'>brutstep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                      <span class='kw'>maxvif</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; --------------------------------------------------------------------------
+<span class='kw'>pcoeff2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='path_coeff.html'>path_coeff</a></span>(<span class='kw'>data_ge2</span>,
+                      resp = <span class='kw'>KW</span>,
+                      brutstep = <span class='fl'>TRUE</span>,
+                      maxvif = <span class='fl'>5</span>)
+</div><div class='output co'>#&gt; --------------------------------------------------------------------------
 #&gt; The algorithm has selected a set of 8 predictors with largest VIF = 3.346. 
 #&gt; Selected predictors: NR PERK EP CDED EL NKR TKW PH 
 #&gt; A forward stepwise-based selection procedure will fit 6 models.
@@ -435,7 +441,8 @@ the working directory</p></td>
 #&gt;  MODEL_5 1148       3  1.34      0.9787 0.919   0.0808   1.02
 #&gt;  MODEL_6 1329       2  2.23      0.8555 0.738   0.2616   1.17
 #&gt; --------------------------------------------------------------------------
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pcoeff2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pcoeff2</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
 #&gt;   Model     AIC Numpred     CN Determinant     R2 Residual maxVIF
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> MODEL_1 </span><span style='text-decoration: underline;'>1</span><span>127.       7 13.67      0.084</span><span style='text-decoration: underline;'>06</span><span> 0.933</span><span style='text-decoration: underline;'>1</span><span>  0.066</span><span style='text-decoration: underline;'>94</span><span>  2.592
@@ -443,7 +450,7 @@ the working directory</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> MODEL_3 </span><span style='text-decoration: underline;'>1</span><span>126.       5 12.05      0.198</span><span style='text-decoration: underline;'>9</span><span>  0.931</span><span style='text-decoration: underline;'>7</span><span>  0.068</span><span style='text-decoration: underline;'>25</span><span>  2.310
 #&gt; </span><span style='color: #555555;'>4</span><span> MODEL_4 </span><span style='text-decoration: underline;'>1</span><span>138.       4  6.402     0.459</span><span style='text-decoration: underline;'>5</span><span>  0.925</span><span style='text-decoration: underline;'>3</span><span>  0.074</span><span style='text-decoration: underline;'>74</span><span>  2.130
 #&gt; </span><span style='color: #555555;'>5</span><span> MODEL_5 </span><span style='text-decoration: underline;'>1</span><span>148.       3  1.339     0.978</span><span style='text-decoration: underline;'>7</span><span>  0.919</span><span style='text-decoration: underline;'>2</span><span>  0.080</span><span style='text-decoration: underline;'>77</span><span>  1.021
-#&gt; </span><span style='color: #555555;'>6</span><span> MODEL_6 </span><span style='text-decoration: underline;'>1</span><span>329.       2  2.227     0.855</span><span style='text-decoration: underline;'>5</span><span>  0.738</span><span style='text-decoration: underline;'>4</span><span>  0.261</span><span style='text-decoration: underline;'>6</span><span>   1.169</div><div class='output co'>#&gt; <span class='message'>Go to 'pcoeff2 &gt; s' to select a specific model</span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>6</span><span> MODEL_6 </span><span style='text-decoration: underline;'>1</span><span>329.       2  2.227     0.855</span><span style='text-decoration: underline;'>5</span><span>  0.738</span><span style='text-decoration: underline;'>4</span><span>  0.261</span><span style='text-decoration: underline;'>6</span><span>   1.169</div><div class='output co'>#&gt; <span class='message'>Go to 'pcoeff2 &gt; s' to select a specific model</span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -460,7 +467,7 @@ the working directory</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

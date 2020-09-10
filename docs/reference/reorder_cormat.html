@@ -98,7 +98,7 @@ the hidden pattern in the matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -236,7 +236,7 @@ using  hclust for hierarchical clustering order. This is useful to identify
 the hidden pattern in the matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>reorder_cormat</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>reorder_cormat</span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -250,24 +250,29 @@ the hidden pattern in the matrix.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The ordered correlation matrix</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>cor_mat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span>(<span class='no'>data_ge2</span>, <span class='no'>PH</span>, <span class='no'>EH</span>, <span class='no'>CD</span>, <span class='no'>CL</span>, <span class='no'>ED</span>, <span class='no'>NKR</span>)
-<span class='no'>cor_mat</span>$<span class='no'>cor</span></div><div class='output co'>#&gt;            PH        EH        CD         CL        ED        NKR
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>cor_mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>CD</span>, <span class='kw'>CL</span>, <span class='kw'>ED</span>, <span class='kw'>NKR</span>)
+<span class='kw'>cor_mat</span><span class='op'>$</span><span class='kw'>cor</span>
+</div><div class='output co'>#&gt;            PH        EH        CD         CL        ED        NKR
 #&gt; PH  1.0000000 0.9318282 0.3153910  0.3251648 0.6613148  0.3530495
 #&gt; EH  0.9318282 1.0000000 0.2805118  0.3971935 0.6302561  0.3310529
 #&gt; CD  0.3153910 0.2805118 1.0000000  0.3003636 0.3897128  0.5933206
 #&gt; CL  0.3251648 0.3971935 0.3003636  1.0000000 0.6974629 -0.1149405
 #&gt; ED  0.6613148 0.6302561 0.3897128  0.6974629 1.0000000  0.2220727
-#&gt; NKR 0.3530495 0.3310529 0.5933206 -0.1149405 0.2220727  1.0000000</div><div class='input'><span class='fu'>reorder_cormat</span>(<span class='no'>cor_mat</span>$<span class='no'>cor</span>)</div><div class='output co'>#&gt;            CD        NKR        PH        EH         CL        ED
+#&gt; NKR 0.3530495 0.3310529 0.5933206 -0.1149405 0.2220727  1.0000000</div><div class='input'><span class='fu'>reorder_cormat</span>(<span class='kw'>cor_mat</span><span class='op'>$</span><span class='kw'>cor</span>)
+</div><div class='output co'>#&gt;            CD        NKR        PH        EH         CL        ED
 #&gt; CD  1.0000000  0.5933206 0.3153910 0.2805118  0.3003636 0.3897128
 #&gt; NKR 0.5933206  1.0000000 0.3530495 0.3310529 -0.1149405 0.2220727
 #&gt; PH  0.3153910  0.3530495 1.0000000 0.9318282  0.3251648 0.6613148
 #&gt; EH  0.2805118  0.3310529 0.9318282 1.0000000  0.3971935 0.6302561
 #&gt; CL  0.3003636 -0.1149405 0.3251648 0.3971935  1.0000000 0.6974629
-#&gt; ED  0.3897128  0.2220727 0.6613148 0.6302561  0.6974629 1.0000000</div><div class='input'># }
+#&gt; ED  0.3897128  0.2220727 0.6613148 0.6302561  0.6974629 1.0000000</div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -285,7 +290,7 @@ the hidden pattern in the matrix.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

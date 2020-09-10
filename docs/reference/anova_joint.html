@@ -98,7 +98,7 @@ alpha-lattice designs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -236,7 +236,7 @@ genotype-vs-environment interactions using both randomized complete block and
 alpha-lattice designs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>anova_joint</span>(<span class='no'>.data</span>, <span class='no'>env</span>, <span class='no'>gen</span>, <span class='no'>rep</span>, <span class='no'>resp</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>anova_joint</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, block = <span class='kw'>NULL</span>, verbose = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -306,16 +306,20 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='anova_ind.html'>anova_ind</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
 <span class='co'># traditional usage approach</span>
-<span class='no'>j_an</span> <span class='kw'>&lt;-</span> <span class='fu'>anova_joint</span>(<span class='no'>data_ge</span>,
-                    <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-                    <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-                    <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-                    <span class='kw'>resp</span> <span class='kw'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())</div><div class='output co'>#&gt; variable GY 
+<span class='kw'>j_an</span> <span class='op'>&lt;-</span> <span class='fu'>anova_joint</span>(<span class='kw'>data_ge</span>,
+                    env = <span class='kw'>ENV</span>,
+                    gen = <span class='kw'>GEN</span>,
+                    rep = <span class='kw'>REP</span>,
+                    resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+</div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Joint ANOVA table
 #&gt; ---------------------------------------------------------------------------
@@ -347,7 +351,8 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Predicted values</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>j_an</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 420 x 6</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>j_an</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP   factors    GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1     G1_1     2.42  46.5
@@ -362,7 +367,8 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1     G4_1     2.65  48.3
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Details</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='no'>j_an</span>, <span class='st'>"details"</span>)</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: details</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>j_an</span>, <span class='st'>"details"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: details</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    Parameters GY                  HM              
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
 #&gt; </span><span style='color: #555555;'> 1</span><span> Mean       </span><span style='color: #555555;'>"</span><span>2.67</span><span style='color: #555555;'>"</span><span>              </span><span style='color: #555555;'>"</span><span>48.09</span><span style='color: #555555;'>"</span><span>         
@@ -374,7 +380,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; </span><span style='color: #555555;'> 7</span><span> MinENV     </span><span style='color: #555555;'>"</span><span>E11 (1.37)</span><span style='color: #555555;'>"</span><span>        </span><span style='color: #555555;'>"</span><span>E14 (41.03)</span><span style='color: #555555;'>"</span><span>   
 #&gt; </span><span style='color: #555555;'> 8</span><span> MaxENV     </span><span style='color: #555555;'>"</span><span>E3 (4.06)</span><span style='color: #555555;'>"</span><span>         </span><span style='color: #555555;'>"</span><span>E11 (54.2)</span><span style='color: #555555;'>"</span><span>    
 #&gt; </span><span style='color: #555555;'> 9</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G10 (2.47) </span><span style='color: #555555;'>"</span><span>       </span><span style='color: #555555;'>"</span><span>G2 (46.66) </span><span style='color: #555555;'>"</span><span>   
-#&gt; </span><span style='color: #555555;'>10</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G8 (3) </span><span style='color: #555555;'>"</span><span>           </span><span style='color: #555555;'>"</span><span>G5 (49.3) </span><span style='color: #555555;'>"</span><span>    </div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>10</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G8 (3) </span><span style='color: #555555;'>"</span><span>           </span><span style='color: #555555;'>"</span><span>G5 (49.3) </span><span style='color: #555555;'>"</span><span>    </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -392,7 +398,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

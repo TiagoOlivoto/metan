@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -233,31 +233,31 @@
     </div>
 
     <pre class="usage"><span class='fu'>plot_blup</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='st'>"gen"</span>,
-  <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>,
-  <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot_theme</span> <span class='kw'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>err.bar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>size.err.bar</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>size.shape</span> <span class='kw'>=</span> <span class='fl'>3.5</span>,
-  <span class='kw'>size.tex.lab</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>height.err.bar</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-  <span class='kw'>x.lim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x.breaks</span> <span class='kw'>=</span> <span class='fu'>waiver</span>(),
-  <span class='kw'>col.shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>),
-  <span class='kw'>y.lab</span> <span class='kw'>=</span> <span class='st'>"Genotypes"</span>,
-  <span class='kw'>x.lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n.dodge</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>check.overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>panel.spacing</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>,
-  <span class='no'>...</span>
+  <span class='kw'>x</span>,
+  var = <span class='fl'>1</span>,
+  which = <span class='st'>"gen"</span>,
+  prob = <span class='fl'>0.05</span>,
+  export = <span class='fl'>FALSE</span>,
+  file.type = <span class='st'>"pdf"</span>,
+  file.name = <span class='kw'>NULL</span>,
+  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
+  width = <span class='fl'>6</span>,
+  height = <span class='fl'>6</span>,
+  err.bar = <span class='fl'>TRUE</span>,
+  size.err.bar = <span class='fl'>0.5</span>,
+  size.shape = <span class='fl'>3.5</span>,
+  size.tex.lab = <span class='fl'>12</span>,
+  height.err.bar = <span class='fl'>0.3</span>,
+  x.lim = <span class='kw'>NULL</span>,
+  x.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
+  col.shape = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>),
+  y.lab = <span class='st'>"Genotypes"</span>,
+  x.lab = <span class='kw'>NULL</span>,
+  n.dodge = <span class='fl'>1</span>,
+  check.overlap = <span class='fl'>FALSE</span>,
+  panel.spacing = <span class='fl'>0.15</span>,
+  resolution = <span class='fl'>300</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -394,15 +394,19 @@ prioritizing the first, last, and middle labels.</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores</a></code>, <code><a href='plot_waasby.html'>plot_waasby</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>BLUP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='no'>data_ge2</span>,
-              <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>,
-              <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-              <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-              <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>)</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>BLUP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge2</span>,
+              resp = <span class='kw'>PH</span>,
+              gen = <span class='kw'>GEN</span>,
+              env = <span class='kw'>ENV</span>,
+              rep = <span class='kw'>REP</span>)
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       PH
@@ -410,8 +414,10 @@ prioritizing the first, last, and middle labels.</p></td>
 #&gt;       GEN 9.39e-01
 #&gt;   GEN:ENV 1.09e-13
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>)</div><div class='img'><img src='plot_blup-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_blup</span>(<span class='no'>BLUP</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='st'>"ge"</span>)</div><div class='img'><img src='plot_blup-2.png' alt='' width='700' height='433' /></div><div class='input'>
-# }
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_blup</span>(<span class='kw'>BLUP</span>)
+</div><div class='img'><img src='plot_blup-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_blup</span>(<span class='kw'>BLUP</span>, which = <span class='st'>"ge"</span>)
+</div><div class='img'><img src='plot_blup-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># }</span>
 
 
 </div></pre>
@@ -430,7 +436,7 @@ prioritizing the first, last, and middle labels.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

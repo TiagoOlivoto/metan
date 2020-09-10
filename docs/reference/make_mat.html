@@ -97,7 +97,7 @@ data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ data." />
 data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_mat</span>(<span class='no'>.data</span>, <span class='no'>row</span>, <span class='no'>col</span>, <span class='no'>value</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>mean</span>)</pre>
+    <pre class="usage"><span class='fu'>make_mat</span>(<span class='kw'>.data</span>, <span class='kw'>row</span>, <span class='kw'>col</span>, <span class='kw'>value</span>, fun = <span class='kw'>mean</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -271,12 +271,16 @@ such as <code>max</code>, <code>min</code>, <code>sd</code>, <code>var</code>, o
 
     <p>A two-way table with the argument <code>row</code> in the rows, <code>col</code>
   in the columns, filled by the argument <code>value</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metan</span>)
-<span class='no'>matrix</span> <span class='kw'>&lt;-</span> <span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'>make_mat</span>(<span class='kw'>row</span> <span class='kw'>=</span> <span class='no'>GEN</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>ENV</span>, <span class='kw'>val</span> <span class='kw'>=</span> <span class='no'>GY</span>)
-<span class='no'>matrix</span></div><div class='output co'>#&gt;           E1      E10      E11      E12      E13      E14       E2       E3
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'>matrix</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge</span> <span class='op'>%&gt;%</span> <span class='fu'>make_mat</span>(row = <span class='kw'>GEN</span>, col = <span class='kw'>ENV</span>, val = <span class='kw'>GY</span>)
+<span class='kw'>matrix</span>
+</div><div class='output co'>#&gt;           E1      E10      E11      E12      E13      E14       E2       E3
 #&gt; G1  2.365787 2.307633 1.355667 1.342333 2.998259 1.533333 3.040690 4.080333
 #&gt; G10 1.974073 1.536253 0.899100 1.022136 1.830667 1.859210 3.145840 4.114333
 #&gt; G2  2.901747 2.297053 1.490720 1.993333 3.028309 1.426580 3.231053 4.568667
@@ -300,7 +304,8 @@ such as <code>max</code>, <code>min</code>, <code>sd</code>, <code>var</code>, o
 #&gt; G9  3.896340 3.934173 2.768037 1.393247 2.485260 1.943333</div><div class='input'>
 <span class='co'># standart error of mean</span>
 
-<span class='no'>data_ge</span> <span class='kw'>%&gt;%</span> <span class='fu'>make_mat</span>(<span class='no'>GEN</span>, <span class='no'>ENV</span>, <span class='no'>GY</span>, <span class='no'>sem</span>)</div><div class='output co'>#&gt;             E1        E10       E11        E12       E13       E14         E2
+<span class='kw'>data_ge</span> <span class='op'>%&gt;%</span> <span class='fu'>make_mat</span>(<span class='kw'>GEN</span>, <span class='kw'>ENV</span>, <span class='kw'>GY</span>, <span class='kw'>sem</span>)
+</div><div class='output co'>#&gt;             E1        E10       E11        E12       E13       E14         E2
 #&gt; G1  0.10176850 0.15393927 0.1840202 0.13684216 0.1960110 0.1616202 0.06714584
 #&gt; G10 0.36385473 0.18293605 0.1148991 0.09783392 0.1298876 0.1328169 0.06402113
 #&gt; G2  0.18617274 0.14997427 0.2228192 0.16035828 0.1043294 0.1317479 0.25773834
@@ -321,7 +326,7 @@ such as <code>max</code>, <code>min</code>, <code>sd</code>, <code>var</code>, o
 #&gt; G6  0.31191897 0.2973022 0.19296432 0.1907696 0.14544696 0.28935692 0.17583547
 #&gt; G7  0.25336228 0.2347714 0.12000312 0.0834189 0.21589852 0.14491164 0.11357817
 #&gt; G8  0.34028566 0.1274485 0.16166059 0.1915529 0.10396713 0.21588338 0.11722770
-#&gt; G9  0.06711433 0.3376508 0.09859422 0.1678251 0.06465526 0.06345724 0.09722368</div><div class='input'># }
+#&gt; G9  0.06711433 0.3376508 0.09859422 0.1678251 0.06465526 0.06345724 0.09722368</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -338,7 +343,7 @@ such as <code>max</code>, <code>min</code>, <code>sd</code>, <code>var</code>, o
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

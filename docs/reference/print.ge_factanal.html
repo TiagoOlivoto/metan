@@ -97,7 +97,7 @@ shown in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -235,7 +235,7 @@ shown in the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_factanal</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -260,20 +260,24 @@ the working directory</p></td>
     <tr>
       <th>...</th>
       <td><p>Options used by the tibble package to format the output. See
-<code><a href='https://rdrr.io/pkg/tibble/man/formatting.html'>tibble::print()</a></code> for more details.</p></td>
+<code><a href='https://tibble.tidyverse.org/reference/formatting.html'>tibble::print()</a></code> for more details.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span>(<span class='no'>data_ge2</span>,
-  <span class='kw'>env</span> <span class='kw'>=</span> <span class='no'>ENV</span>,
-  <span class='kw'>gen</span> <span class='kw'>=</span> <span class='no'>GEN</span>,
-  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='no'>REP</span>,
-  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='no'>PH</span>
+<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span>(<span class='kw'>data_ge2</span>,
+  env = <span class='kw'>ENV</span>,
+  gen = <span class='kw'>GEN</span>,
+  rep = <span class='kw'>REP</span>,
+  resp = <span class='kw'>PH</span>
 )
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>model</span>)</div><div class='output co'>#&gt; Variable PH 
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>model</span>)
+</div><div class='output co'>#&gt; Variable PH 
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Correlation matrix among environments
 #&gt; ------------------------------------------------------------------------------------
@@ -329,7 +333,7 @@ the working directory</p></td>
 #&gt; ------------------------------------------------------------------------------------
 #&gt; 
 #&gt; 
-#&gt; </div><div class='input'># }
+#&gt; </div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -346,7 +350,7 @@ the working directory</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

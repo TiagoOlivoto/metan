@@ -97,7 +97,7 @@ missing values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ missing values." />
 missing values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rbind_fill</span>(<span class='no'>...</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
+    <pre class="usage"><span class='fu'>rbind_fill</span>(<span class='kw'>...</span>, fill = <span class='st'>"."</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -252,20 +252,25 @@ missing values.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>v1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>v2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>3</span>))
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>v3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>5</span>))
-<span class='fu'>rbind_fill</span>(<span class='no'>df1</span>, <span class='no'>df2</span>)</div><div class='output co'>#&gt;   v1 v2 v3
+<span class='kw'>df1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(v1 = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), v2 = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>3</span>))
+<span class='kw'>df2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(v3 = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>5</span>))
+<span class='fu'>rbind_fill</span>(<span class='kw'>df1</span>, <span class='kw'>df2</span>)
+</div><div class='output co'>#&gt;   v1 v2 v3
 #&gt; 1  1  2  .
 #&gt; 2  2  3  .
 #&gt; 3  .  .  4
-#&gt; 4  .  .  5</div><div class='input'><span class='fu'>rbind_fill</span>(<span class='no'>df1</span>, <span class='no'>df2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"NA"</span>)</div><div class='output co'>#&gt;   v1 v2 v3
+#&gt; 4  .  .  5</div><div class='input'><span class='fu'>rbind_fill</span>(<span class='kw'>df1</span>, <span class='kw'>df2</span>, fill = <span class='st'>"NA"</span>)
+</div><div class='output co'>#&gt;   v1 v2 v3
 #&gt; 1  1  2 NA
 #&gt; 2  2  3 NA
 #&gt; 3 NA NA  4
-#&gt; 4 NA NA  5</div><div class='input'># }
+#&gt; 4 NA NA  5</div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -283,7 +288,7 @@ missing values.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
