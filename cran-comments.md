@@ -1,5 +1,5 @@
 # Release summary
-This is a path release (v1.8.0) that includes minor improvements. Please, see the `news.md` file for more details.
+This is a patch release (v1.8.1) that update Rd files by including \doi{} markup as kindly suggested by Uwe Ligges in the submission of v1.8.0
 
 # Test environments
 - local OS X install, R 4.0.0

@@ -1,3 +1,6 @@
+# metan 1.8.1
+* Use `\doi{}` markup in Rd files.
+
 # metan 1.8.0
 * New function `gytb()` to generate the Genotype by yield*trait biplot.
 * New functions `row_col_mean()` and `row_col_sum()`to add a row with the mean/sum of each variable and a column with the the mean/sum for each row of a matrix or data frame.
