@@ -82,7 +82,7 @@ index <- Smith_Hazel(means, pcov = pcov, gcov = gcov, weights = rep(1, 15))
 \references{
 Smith, H.F. 1936. A discriminant function for plant selection. Ann. Eugen.
 7:240-250.
-\href{https://doi.org/10.1111/j.1469-1809.1936.tb02143.x}{doi:10.1111/j.1469-1809.1936.tb02143.x}
+\doi{10.1111/j.1469-1809.1936.tb02143.x}
 
 Hazel, L.N. 1943. The genetic basis for constructing selection indexes.
 Genetics 28:476-90.

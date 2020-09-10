@@ -68,7 +68,7 @@ print(mod)
 \references{
 Cruz, C.D., Castoldi, F. (1991). Decomposicao da interacao genotipos x
 ambientes em partes simples e complexa. Ceres, 38:422-430. Available at:
-\url{http://www.ceres.ufv.br/ojs/index.php/ceres/article/view/2165}.
+\url{http://www.ceres.ufv.br/ojs/index.php/ceres/article/view/2165/}.
 
 Robertson, A. (1959). Experimental design on the measurement of
 heritabilities and genetic correlations. biometrical genetics. New York:

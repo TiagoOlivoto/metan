@@ -109,11 +109,10 @@ get_model_data(model2, what = "OrWAAS")
 
 }
 \references{
-Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
+Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+Souza, and E. Jost. 2019a. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
-Agron. J. 111:2949-2960.
-\href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
+Agron. J. 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 }
 \seealso{
 \code{\link{waas} \link{waasb}}

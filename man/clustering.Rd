@@ -125,7 +125,7 @@ d4 <- clustering(data_ge,
 }
 \references{
 Mojena, R. 2015. Hierarchical grouping methods and stopping
-rules: an evaluation. Comput. J. 20:359-363. doi:10.1093/comjnl/20.4.359
+rules: an evaluation. Comput. J. 20:359-363. \doi{10.1093/comjnl/20.4.359}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

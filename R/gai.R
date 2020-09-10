@@ -32,7 +32,7 @@
 #' Mohammadi, R., & Amri, A. (2008). Comparison of parametric and non-parametric
 #' methods for selecting stable and adapted durum wheat genotypes in variable
 #' environments. Euphytica, 159(3), 419-432.
-#' \href{https://link.springer.com/article/10.1007/s10681-007-9600-6}{doi:10.1007/s10681-007-9600-6}.
+#' \doi{10.1007/s10681-007-9600-6}.
 #'
 #' @export
 #' @examples

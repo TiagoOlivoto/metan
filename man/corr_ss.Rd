@@ -38,7 +38,7 @@ Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
   interval width for Pearson's correlation coefficient: a
   Gaussian-independent estimator based on sample size and strength of
   association. Agron. J. 110:1-8.
-  \href{https://doi.org/10.2134/agronj2016.04.0196}{10.2134/agronj2016.04.0196}
+  \doi{10.2134/agronj2016.04.0196}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

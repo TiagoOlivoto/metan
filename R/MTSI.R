@@ -42,7 +42,7 @@
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
 #'   M.I. Diel. 2019. Mean performance and stability in multi-environment trials
 #'   II: Selection based on multiple traits. Agron. J. 111:2961-2969.
-#' \href{https://acsess.onlinelibrary.wiley.com/doi/full/10.2134/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0220}
+#' \doi{10.2134/agronj2019.03.0220}
 #' @examples
 #'\donttest{
 #' library(metan)
@@ -104,6 +104,7 @@ mtsi <- function(.data,
   } else {
     ngs <- round(nrow(data) * (SI/100), 0)
   }
+
   observed <- data.frame(do.call(cbind, lapply(.data, function(x) {
     val <- x[["model"]][["Y"]]
   })))
@@ -188,12 +189,25 @@ mtsi <- function(.data,
                       SD = Xs - Xo,
                       SDperc = (Xs - Xo) / Xo * 100)
     mean_sd_ind <- apply(sel.dif[, 3:6], 2, mean)
-    sel.dif.mean <- tibble(VAR = names(pos.var.factor[, 2]),
-                           Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
-                           xo = colMeans(observed),
-                           Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
-                           SD = Xs - colMeans(observed),
-                           SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100)
+    sel.dif.mean <-
+      tibble(VAR = names(pos.var.factor[, 2]),
+             Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
+             xo = colMeans(observed),
+             Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
+             SD = Xs - colMeans(observed),
+             SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100) %>%
+      left_join(
+        gmd(.data, "details", verbose = FALSE) %>%
+          pivot_longer(-Parameters) %>%
+          subset(Parameters == "mresp") %>%
+          remove_cols(Parameters) %>%
+          set_names("VAR", "sense"),
+        by = "VAR") %>%
+      mutate(sense = ifelse(sense == 0, "decrease", "increase"),
+             goal = case_when(
+               sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
+               TRUE ~ 0
+             ))
   }
   if (is.null(ngs)) {
     sel.dif <- NULL

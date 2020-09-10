@@ -35,11 +35,11 @@
 #' * \strong{total_gain} A list with the total gain for variables to be increased or decreased.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
-#'   Multitrait index based on factor analysis and ideotype-design: proposal and
-#'   application on elephant grass breeding for bioenergy. GCB Bioenergy
-#'   10:52-60. doi:
-#'   \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}
+#' @references
+#' Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index
+#' based on factor analysis and ideotype-design: proposal and application on
+#' elephant grass breeding for bioenergy. GCB Bioenergy 10:52-60.
+#' \doi{10.1111/gcbb.12443}
 #'
 #' @export
 #' @examples
@@ -339,11 +339,11 @@ fai_blup <- function(.data,
 #' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
 #' @param ... Other arguments to be passed from ggplot2::theme().
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
-#'   Multitrait index based on factor analysis and ideotype-design: proposal and
-#'   application on elephant grass breeding for bioenergy. GCB Bioenergy
-#'   10:52-60. doi:
-#'   \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+#' @references
+#' Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index
+#' based on factor analysis and ideotype-design: proposal and application on
+#' elephant grass breeding for bioenergy. GCB Bioenergy 10:52-60.
+#' \doi{10.1111/gcbb.12443}
 #'
 #' @method plot fai_blup
 #' @export

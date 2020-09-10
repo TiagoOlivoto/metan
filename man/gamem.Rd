@@ -130,7 +130,7 @@ get_model_data(alpha, "ranef")
 \references{
 Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information:
 to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
-\href{https://pubmed.ncbi.nlm.nih.gov/25972114/}{doi:10.1007/s00122-015-2530-0}
+\doi{10.1007/s00122-015-2530-0}
 }
 \seealso{
 \code{\link{get_model_data}} \code{\link{waasb}}

@@ -86,8 +86,7 @@
 #' @references
 #'  Yan, W., & Fregeau-Reid, J. (2018). Genotype by Yield\*Trait (GYT) Biplot: a
 #'  Novel Approach for Genotype Selection based on Multiple Traits. Scientific
-#'  Reports, 8(1), 1-10. doi:10.1038/s41598-018-26688-8
-#'  \href{https://www.nature.com/articles/s41598-018-26688-8}{doi:10.1038/s41598-018-26688-8}
+#'  Reports, 8(1), 1-10. \doi{10.1038/s41598-018-26688-8}
 #'
 #' @export
 #' @examples

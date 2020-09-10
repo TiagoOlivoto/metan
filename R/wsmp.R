@@ -35,11 +35,11 @@
 #'   is not valid, an error will be occur.
 #' @param progbar A logical argument to define if a progress bar is shown.
 #'   Default is \code{TRUE}.
-#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-#'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
-#'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
-#'   Agron. J.
-#' \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
+#' @references
+#' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+#' Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
+#' trials I: Combining features of AMMI and BLUP techniques. Agron. J.
+#' \doi{10.2134/agronj2019.03.0220}
 #'
 #' @return An object of class \code{wsmp} with the following items for each
 #'   variable:

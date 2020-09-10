@@ -26,7 +26,7 @@
 #' @references Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
 #'   Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
 #'   Euphytica 47:57-64.
-#'   \href{https://link.springer.com/article/10.1007/BF00040364}{doi:10.1007/BF00040364}.
+#'   \doi{10.1007/BF00040364}.
 #'
 #' @export
 #' @examples

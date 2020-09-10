@@ -73,18 +73,16 @@ col_diag_gen <- data_ge2 \%>\%
 }
 }
 \references{
-Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari,
-A.J. Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in
-path analysis: a simple method to reduce its effects. Agron. J.
-109:131-142. doi:10.2134/agronj2016.04.0196.
-\href{https://doi.org/10.2134/agronj2016.04.0196}{doi:10.2134/agronj2016.04.0196}
+Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J.
+Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in path
+analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
+\doi{10.2134/agronj2016.04.0196}
 
-Olivoto, T., M. Nardino, I.I.R. Carvalho, D.N. Follmann, M.
-Ferrari, A.J. de Pelegrin, V.J. Szareski, A.C. de Oliveira, B.O. Caron, and
-V.Q. de Souza. 2017. Optimal sample size and data arrangement method in
-estimating correlation matrices with lesser collinearity: A statistical
-focus in maize breeding. African J. Agric. Res. 12:93-103.
-\href{https://academicjournals.org/journal/AJAR/article-abstract/5DB554B62359}{doi:10.5897/AJAR2016.11799}.
+Olivoto, T., M. Nardino, I.I.R. Carvalho, D.N. Follmann, M. Ferrari, A.J. de
+Pelegrin, V.J. Szareski, A.C. de Oliveira, B.O. Caron, and V.Q. de Souza.
+2017. Optimal sample size and data arrangement method in estimating
+correlation matrices with lesser collinearity: A statistical focus in maize
+breeding. African J. Agric. Res. 12:93-103. \doi{10.5897/AJAR2016.11799}.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

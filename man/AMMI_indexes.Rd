@@ -90,11 +90,11 @@ Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
 Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
 in South Africa: II. Stability analysis of yield performance. South African
 J. Plant Soil 17:101-107.
-\href{https://doi.org/10.1080/02571862.2000.10634878}{doi:10.1080/02571862.2000.10634878}
+\doi{10.1080/02571862.2000.10634878}
 
 Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
 Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
-\href{https://onlinelibrary.wiley.com/doi/abs/10.2135/cropsci1997.0011183X003700020013x}{doi:10.2135/cropsci1997.0011183X003700020013x}
+\doi{10.2135/cropsci1997.0011183X003700020013x}
 
 Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
 Evaluation of genotype vs environment interaction in chickpea using measures
@@ -104,7 +104,7 @@ Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
 multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960.
-\href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
+\doi{10.2134/agronj2019.03.0220}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

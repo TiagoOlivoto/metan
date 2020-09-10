@@ -70,11 +70,10 @@ plot(FAI)
 
 }
 \references{
-Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018.
-  Multitrait index based on factor analysis and ideotype-design: proposal and
-  application on elephant grass breeding for bioenergy. GCB Bioenergy
-  10:52-60. doi:
-  \href{https://onlinelibrary.wiley.com/doi/full/10.1111/gcbb.12443}{doi:10.1111/gcbb.12443}.
+Rocha, J.R.A.S.C.R, J.C. Machado, and P.C.S. Carneiro. 2018. Multitrait index
+based on factor analysis and ideotype-design: proposal and application on
+elephant grass breeding for bioenergy. GCB Bioenergy 10:52-60.
+\doi{10.1111/gcbb.12443}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

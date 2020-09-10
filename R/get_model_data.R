@@ -206,20 +206,20 @@
 #' R.A. Estopa. 2018. Genetic evaluation of Pinus taeda clones from somatic
 #' embryogenesis and their genotype x environment interaction. Crop Breed. Appl.
 #' Biotechnol. 18:55-64.
-#' \href{https://www.scielo.br/scielo.php?script=sci_arttext&pid=S1984-70332018000100055&lng=en&tlng=en}{doi:10.1590/1984-70332018v18n1a8}
+#' \doi{10.1590/1984-70332018v18n1a8}
 #'
 #' Azevedo Peixoto, L. de, P.E. Teodoro, L.A. Silva, E.V. Rodrigues, B.G.
 #' Laviola, and L.L. Bhering. 2018. Jatropha half-sib family selection with high
 #' adaptability and genotypic stability. PLoS One 13:e0199880.
-#' \href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199880}{doi:10.1371/journal.pone.0199880}
+#' \doi{10.1371/journal.pone.0199880}
 #'
 #' Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing
 #' Varieties. Crop Sci. 6:36-40.
-#' \href{https://doi.org/10.2135/cropsci1966.0011183X000600010011x}{doi:10.2135/cropsci1966.0011183X000600010011x}.
+#' \doi{10.2135/cropsci1966.0011183X000600010011x}
 #'
 #' Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R. Cormier. 1990.
 #' Yield and adaptation of hexaploid spring triticale. Euphytica 47:57-64.
-#' \href{https://link.springer.com/article/10.1007/BF00040364}{doi:10.1007/BF00040364}.
+#' \doi{10.1007/BF00040364}
 #'
 #' Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen stabilitat. EDV
 #' Med. Biol. 10:112.
@@ -228,30 +228,30 @@
 #' Souza, and E. Jost. 2019a. Mean performance and stability in
 #' multi-environment trials I: Combining features of AMMI and BLUP techniques.
 #' Agron. J. 111:2949-2960.
-#' \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
+#' \doi{10.2134/agronj2019.03.0220}
 #'
 #' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and M.I. Diel.
 #' 2019b. Mean performance and stability in multi-environment trials II:
 #' Selection based on multiple traits. Agron. J. 111:2961-2969.
-#' \href{https://acsess.onlinelibrary.wiley.com/doi/full/10.2134/agronj2019.03.0221}{doi:10.2134/agronj2019.03.0221}
+#' \doi{10.2134/agronj2019.03.0221}
 #'
 #' Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
 #' Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
 #' in South Africa: II. Stability analysis of yield performance. South African
 #' J. Plant Soil 17:101-107.
-#' \href{https://doi.org/10.1080/02571862.2000.10634878}{doi:10.1080/02571862.2000.10634878}
+#' \doi{10.1080/02571862.2000.10634878}
 #'
 #' Resende MDV (2007) Matematica e estatistica na analise de experimentos e no
 #' melhoramento genetico. Embrapa Florestas, Colombo
 #'
 #' Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
 #' Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
-#' \href{https://onlinelibrary.wiley.com/doi/abs/10.2135/cropsci1997.0011183X003700020013x}{doi:10.2135/cropsci1997.0011183X003700020013x}
+#' \doi{10.2135/cropsci1997.0011183X003700020013x}
 #'
 #' Mohammadi, R., & Amri, A. (2008). Comparison of parametric and non-parametric
 #' methods for selecting stable and adapted durum wheat genotypes in variable
 #' environments. Euphytica, 159(3), 419-432.
-#' \href{https://link.springer.com/article/10.1007/s10681-007-9600-6}{doi:10.1007/s10681-007-9600-6}.
+#' \doi{10.1007/s10681-007-9600-6}
 #'
 #' Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer. Z.
 #' Pflanzenzuchtg 52:127-138.

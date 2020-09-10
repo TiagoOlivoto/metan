@@ -28,12 +28,14 @@
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @references Shukla, G.K. 1972. Some statistical aspects of partitioning
-#'   genotype-environmental components of variability. Heredity. 29:238-245.
-#'   \href{http://www.nature.com/articles/hdy197287}{doi:10.1038/hdy.1972.87}.
-#' @references Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
-#'   Yielding and Stable Crop Genotypes. Agron. J. 83:161.
-#'   \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj1991.00021962008300010037x}{doi:10.2134/agronj1991.00021962008300010037x}.
+#' @references
+#' Shukla, G.K. 1972. Some statistical aspects of partitioning
+#' genotype-environmental components of variability. Heredity. 29:238-245.
+#' \doi{10.1038/hdy.1972.87}
+#'
+#' Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High Yielding and
+#' Stable Crop Genotypes. Agron. J. 83:161.
+#' \doi{10.2134/agronj1991.00021962008300010037x}
 #'
 #' @examples
 #' \donttest{

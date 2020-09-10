@@ -25,5 +25,5 @@ principal component axes;
 analysis, canonical correlation, partial correlation, clustering analysis, as
 well as tools for summarizing and plotting data.
 
-A complete guide may be found at \href{https://tiagoolivoto.github.io/metan/}{https://tiagoolivoto.github.io/metan/}
+A complete guide may be found at \url{https://tiagoolivoto.github.io/metan/}
 }

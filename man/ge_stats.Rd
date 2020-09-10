@@ -86,38 +86,36 @@ Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
 
   Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
   comparing Varieties. Crop Sci. 6:36-40.
-  \href{https://doi.org/10.2135/cropsci1966.0011183X000600010011x}{doi:10.2135/cropsci1966.0011183X000600010011x}
+  \doi{10.2135/cropsci1966.0011183X000600010011x}
 
   Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
   Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
   Euphytica 47:57-64.
-  \href{https://link.springer.com/article/10.1007/BF00040364}{doi:10.1007/BF00040364}.
+  \doi{10.1007/BF00040364}.
 
   Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
   stabilitat. EDV Med. Biol. 10:112.
 
   Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
   Yielding and Stable Crop Genotypes. Agron. J. 83:161.
-  \href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj1991.00021962008300010037x}{doi:10.2134/agronj1991.00021962008300010037x}.
+  \doi{10.2134/agronj1991.00021962008300010037x}
 
   Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
   performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
-  \href{https://www.nrcresearchpress.com/doi/10.4141/cjps88-018#.XmEYwKhKgdU}{doi:10.4141/cjps88-018}
+  \doi{10.4141/cjps88-018}
 
-  Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
-  V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
+  Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
+  Souza, and E. Jost. 2019a. Mean performance and stability in
   multi-environment trials I: Combining features of AMMI and BLUP techniques.
-  Agron. J. 111:2949-2960.
-\href{https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/agronj2019.03.0220}{doi:10.2134/agronj2019.03.0220}
+  Agron. J. 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 
 Mohammadi, R., & Amri, A. (2008). Comparison of parametric and non-parametric
 methods for selecting stable and adapted durum wheat genotypes in variable
-environments. Euphytica, 159(3), 419-432.
-\href{https://link.springer.com/article/10.1007/s10681-007-9600-6}{doi:10.1007/s10681-007-9600-6}.
+environments. Euphytica, 159(3), 419-432. \doi{10.1007/s10681-007-9600-6}
 
   Shukla, G.K. 1972. Some statistical aspects of partitioning
   genotype-environmental components of variability. Heredity. 29:238-245.
-  \href{https://www.nature.com/articles/hdy197287}{doi:10.1038/hdy.1972.87}.
+  \doi{10.1038/hdy.1972.87}
 
   Thennarasu, K. 1995. On certain nonparametric procedures for
   studying genotype x environment interactions and yield stability. Ph.D.
