@@ -724,13 +724,12 @@ concatenate <- function(.data,
 
   if (drop == FALSE){
     conc <- select(.data, ...)
-    results <- mutate(.data, {{new_var}} := apply(conc, 1, paste, collapse = sep))
-    if(!is.null(prefix)){
-      results <- mutate(results, {{new_var}} := paste(prefix, {{new_var}}, sep = sep))
-    }
-    if(!is.null(suffix)){
-      results <- mutate(results, {{new_var}} := paste({{new_var}}, suffix, sep = sep))
-    }
+    results <- mutate(.data,
+                      {{new_var}} := paste(prefix,
+                                           ifelse(is.null(prefix), "", sep),
+                                           apply(conc, 1, paste, collapse = sep),
+                                           ifelse(is.null(suffix), "", sep),
+                                           suffix, sep = ""))
     if (pull == TRUE){
       results <- pull(results)
     }
@@ -739,19 +738,22 @@ concatenate <- function(.data,
     }
   } else{
     conc <- select(.data, ...)
-    results <- transmute(.data, {{new_var}} := apply(conc, 1, paste, collapse = sep))
-    if(!is.null(prefix)){
-      results <- mutate(results, {{new_var}} := paste(prefix, {{new_var}}, sep = sep))
-    }
-    if(!is.null(suffix)){
-      results <- mutate(results, {{new_var}} := paste({{new_var}}, suffix, sep = sep))
-    }
+    results <- transmute(.data,
+                         {{new_var}} := paste(prefix,
+                                              ifelse(is.null(prefix), "", sep),
+                                              apply(conc, 1, paste, collapse = sep),
+                                              ifelse(is.null(suffix), "", sep),
+                                              suffix, sep = ""))
     if (pull == TRUE){
       results <- pull(results)
     }
   }
   return(results)
 }
+library(tidyverse)
+library(metan)
+concatenate(data_ge, ENV, GEN)
+
 #' @name utils_rows_cols
 #' @export
 get_levels <- function(.data, group){
