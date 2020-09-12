@@ -750,10 +750,6 @@ concatenate <- function(.data,
   }
   return(results)
 }
-library(tidyverse)
-library(metan)
-concatenate(data_ge, ENV, GEN)
-
 #' @name utils_rows_cols
 #' @export
 get_levels <- function(.data, group){
