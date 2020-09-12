@@ -1,4 +1,6 @@
 # metan (development version)
+* New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.
+* New arguments `prefix` and `suffix` in `concatenate()` to add prefixes and suffixes to contatenated values, respectively.
 
 # metan 1.8.1
 * Use `\doi{}` markup in Rd files.
