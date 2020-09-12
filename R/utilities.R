@@ -503,7 +503,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' column name or column index of the variable(s) to be dropped.
 #'
 #' * For \code{add_prefix()} and \code{add_suffix()},  \code{...} is the column
-#' name to add the prefix or suffix, respectively. Select helper are allowed.
+#' name to add the prefix or suffix, respectively. Select helpers are allowed.
 #'
 #' * For \code{columns_to_first()} and \code{columns_to_last()},  \code{...} is
 #' the column name or column index of the variable(s) to be moved to first or

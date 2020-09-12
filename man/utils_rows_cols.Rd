@@ -97,7 +97,7 @@ must have one element for each row in \code{.data} when using
 \item For \code{remove_cols()} and \code{select_cols()},  \code{...} is the
 column name or column index of the variable(s) to be dropped.
 \item For \code{add_prefix()} and \code{add_suffix()},  \code{...} is the column
-name to add the prefix or suffix, respectively. Select helper are allowed.
+name to add the prefix or suffix, respectively. Select helpers are allowed.
 \item For \code{columns_to_first()} and \code{columns_to_last()},  \code{...} is
 the column name or column index of the variable(s) to be moved to first or
 last in \code{.data}.
