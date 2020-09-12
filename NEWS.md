@@ -3,7 +3,7 @@
 
 # metan 1.8.0
 * New function `gytb()` to generate the Genotype by yield*trait biplot.
-* New functions `row_col_mean()` and `row_col_sum()`to add a row with the mean/sum of each variable and a column with the the mean/sum for each row of a matrix or data frame.
+* New functions `row_col_mean()` and `row_col_sum()`to add a row with the mean/sum of each variable and a column with the mean/sum for each row of a matrix or data frame.
 * New functions `has_zero()`, `remove_cols_zero()`, `remove_rows_zero()`, `select_cols_zero()`, `select_rows_zero()`, and `replace_zero()` to deal with 0s in a data frame.
 * Fix bug of inconsistent color legend when plotting objects of class `gge`.
 * Include class `gge` and `can_corr` in `get_model_data()`.

@@ -461,7 +461,9 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' * \code{add_rows()}: Add one or more rows to an existing data frame. If
 #' specified \code{.before} or \code{.after} rows does not exist, rows are
 #' appended at the end of the data. Return a data frame with all the original
-#' rows in \code{.data} plus the rows declared in \code{...}.
+#' rows in \code{.data} plus the rows declared in \code{...} argument.
+#' * \code{add_prefix()} and \code{add_suffix()} add prefixes and suffixes,
+#' respectively, in variable names selected in \code{...} argument.
 #' * \code{all_pairs()}: Get all the possible pairs between the levels of a
 #' factor.
 #' * \code{colnames_to_lower()}: Translate all column names to lower case.
@@ -500,6 +502,9 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' * For \code{remove_cols()} and \code{select_cols()},  \code{...} is the
 #' column name or column index of the variable(s) to be dropped.
 #'
+#' * For \code{add_prefix()} and \code{add_suffix()},  \code{...} is the column
+#' name to add the prefix or suffix, respectively. Select helper are allowed.
+#'
 #' * For \code{columns_to_first()} and \code{columns_to_last()},  \code{...} is
 #' the column name or column index of the variable(s) to be moved to first or
 #' last in \code{.data}.
@@ -513,10 +518,12 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #'   \code{reorder_cols()}, one-based column index or column name where to add
 #'   the new columns, default: .after last column. For \code{add_rows()},
 #'   one-based row index where to add the new rows, default: .after last row.
+#' @param prefix,suffix The prefix and suffix used in \code{add_prefix()} and
+#'   \code{add_suffix()}, respectively.
 #' @param new_var The name of the new variable containing the concatenated
 #'   values. Defaults to \code{new_var}.
-#' @param sep The separator to appear between concatenated variables. Defaults
-#'   to "_".
+#' @param sep The separator to appear when using \code{concatenate()},
+#'   \code{add_prefix()}, or \code{add_suffix()}. Defaults to to \code{"_"}.
 #' @param drop Logical argument. If \code{TRUE} keeps the new variable
 #'   \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
@@ -577,6 +584,17 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #'                 pattern = "H",
 #'                 replacement = "HYB_",
 #'                 .after = ENV_GEN)
+#'
+#' # Use prefixes and suffixes
+#' concatenate(data_ge2, REP, prefix = "REP", new_var = REP)
+#'
+#' # Use prefixes and suffixes (the ear traits EH, EP, EL, and ED)
+#' add_prefix(data_ge2, PH, EH, EP, EL, prefix = "EAR")
+#' add_suffix(data_ge2, PH, EH, EP, EL, suffix = "EAR", sep = ".")
+#'
+#' # Use prefixes and suffixes (colnames)
+#' concatenate(data_ge2, REP, prefix = "REP", new_var = REP)
+#'
 #'
 #' ########### formating column names ###############
 #' # Creating data with messy column names
@@ -645,6 +663,17 @@ all_pairs <- function(.data, levels){
 }
 #' @name utils_rows_cols
 #' @export
+#' @importFrom dplyr rename_with
+add_prefix <- function(.data, ..., prefix, sep = "_"){
+  rename_with(.data, ~paste(prefix, ., sep = sep), c(...))
+}
+#' @name utils_rows_cols
+#' @export
+add_suffix <- function(.data, ..., suffix, sep = "_"){
+  rename_with(.data, ~paste(., suffix, sep = sep), c(...))
+}
+#' @name utils_rows_cols
+#' @export
 colnames_to_lower <- function(.data){
   colnames(.data) <- all_lower_case(colnames(.data))
   return(.data)
@@ -684,15 +713,24 @@ column_exists <-function(.data, cols){
 #' @export
 concatenate <- function(.data,
                         ...,
+                        prefix = NULL,
+                        suffix = NULL,
                         new_var = new_var,
                         sep = "_",
                         drop = FALSE,
                         pull = FALSE,
                         .before = NULL,
                         .after  = NULL){
+
   if (drop == FALSE){
     conc <- select(.data, ...)
     results <- mutate(.data, {{new_var}} := apply(conc, 1, paste, collapse = sep))
+    if(!is.null(prefix)){
+      results <- mutate(results, {{new_var}} := paste(prefix, {{new_var}}, sep = sep))
+    }
+    if(!is.null(suffix)){
+      results <- mutate(results, {{new_var}} := paste({{new_var}}, suffix, sep = sep))
+    }
     if (pull == TRUE){
       results <- pull(results)
     }
@@ -702,6 +740,12 @@ concatenate <- function(.data,
   } else{
     conc <- select(.data, ...)
     results <- transmute(.data, {{new_var}} := apply(conc, 1, paste, collapse = sep))
+    if(!is.null(prefix)){
+      results <- mutate(results, {{new_var}} := paste(prefix, {{new_var}}, sep = sep))
+    }
+    if(!is.null(suffix)){
+      results <- mutate(results, {{new_var}} := paste({{new_var}}, suffix, sep = sep))
+    }
     if (pull == TRUE){
       results <- pull(results)
     }
