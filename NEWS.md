@@ -1,3 +1,5 @@
+# metan (development version)
+
 # metan 1.8.1
 * Use `\doi{}` markup in Rd files.
 
