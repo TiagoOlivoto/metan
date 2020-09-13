@@ -64,7 +64,9 @@ So, it is possible to add a column based on existing data.
 add_rows(): Add one or more rows to an existing data frame. If
 specified .before or .after rows does not exist, rows are
 appended at the end of the data. Return a data frame with all the original
-rows in .data plus the rows declared in ....
+rows in .data plus the rows declared in ... argument.
+add_prefix() and add_suffix() add prefixes and suffixes,
+respectively, in variable names selected in ... argument.
 all_pairs(): Get all the possible pairs between the levels of a
 factor.
 colnames_to_lower(): Translate all column names to lower case.
@@ -135,7 +137,7 @@ select_rows(): Select one or more rows from a data frame.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1.9000</span>
       </span>
     </div>
 
@@ -279,7 +281,9 @@ So, it is possible to add a column based on existing data.</p></li>
 <li><p><code>add_rows()</code>: Add one or more rows to an existing data frame. If
 specified <code>.before</code> or <code>.after</code> rows does not exist, rows are
 appended at the end of the data. Return a data frame with all the original
-rows in <code>.data</code> plus the rows declared in <code>...</code>.</p></li>
+rows in <code>.data</code> plus the rows declared in <code>...</code> argument.</p></li>
+<li><p><code>add_prefix()</code> and <code>add_suffix()</code> add prefixes and suffixes,
+respectively, in variable names selected in <code>...</code> argument.</p></li>
 <li><p><code>all_pairs()</code>: Get all the possible pairs between the levels of a
 factor.</p></li>
 <li><p><code>colnames_to_lower()</code>: Translate all column names to lower case.</p></li>
@@ -316,6 +320,10 @@ data frame.</p></li>
 
 <span class='fu'>all_pairs</span>(<span class='kw'>.data</span>, <span class='kw'>levels</span>)
 
+<span class='fu'>add_prefix</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, <span class='kw'>prefix</span>, sep = <span class='st'>"_"</span>)
+
+<span class='fu'>add_suffix</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, <span class='kw'>suffix</span>, sep = <span class='st'>"_"</span>)
+
 <span class='fu'>colnames_to_lower</span>(<span class='kw'>.data</span>)
 
 <span class='fu'>colnames_to_upper</span>(<span class='kw'>.data</span>)
@@ -331,6 +339,8 @@ data frame.</p></li>
 <span class='fu'>concatenate</span>(
   <span class='kw'>.data</span>,
   <span class='kw'>...</span>,
+  prefix = <span class='kw'>NULL</span>,
+  suffix = <span class='kw'>NULL</span>,
   new_var = <span class='kw'>new_var</span>,
   sep = <span class='st'>"_"</span>,
   drop = <span class='fl'>FALSE</span>,
@@ -378,6 +388,8 @@ must have one element for each row in <code>.data</code> when using
 <code>add_cols()</code>.</p></li>
 <li><p>For <code>remove_cols()</code> and <code>select_cols()</code>,  <code>...</code> is the
 column name or column index of the variable(s) to be dropped.</p></li>
+<li><p>For <code>add_prefix()</code> and <code>add_suffix()</code>,  <code>...</code> is the column
+name to add the prefix or suffix, respectively. Select helpers are allowed.</p></li>
 <li><p>For <code>columns_to_first()</code> and <code>columns_to_last()</code>,  <code>...</code> is
 the column name or column index of the variable(s) to be moved to first or
 last in <code>.data</code>.</p></li>
@@ -399,6 +411,16 @@ one-based row index where to add the new rows, default: .after last row.</p></td
       <td><p>The levels of a factor or a numeric vector.</p></td>
     </tr>
     <tr>
+      <th>prefix, suffix</th>
+      <td><p>The prefix and suffix used in <code>add_prefix()</code> and
+<code>add_suffix()</code>, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>The separator to appear when using <code>concatenate()</code>,
+<code>add_prefix()</code>, or <code>add_suffix()</code>. Defaults to to <code>"_"</code>.</p></td>
+    </tr>
+    <tr>
       <th>cols</th>
       <td><p>A quoted variable name to check if it exists in <code>.data</code>.</p></td>
     </tr>
@@ -406,11 +428,6 @@ one-based row index where to add the new rows, default: .after last row.</p></td
       <th>new_var</th>
       <td><p>The name of the new variable containing the concatenated
 values. Defaults to <code>new_var</code>.</p></td>
-    </tr>
-    <tr>
-      <th>sep</th>
-      <td><p>The separator to appear between concatenated variables. Defaults
-to "_".</p></td>
     </tr>
     <tr>
       <th>drop</th>
@@ -638,6 +655,73 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   A1_H12  A1_HYB~ 1      2.73  1.54 0.563  14.9  47.5  28.2  15.5
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 8 more variables: CW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, KW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'># Use prefixes and suffixes</span>
+<span class='fu'>concatenate</span>(<span class='kw'>data_ge2</span>, <span class='kw'>REP</span>, prefix = <span class='st'>"REP"</span>, new_var = <span class='kw'>REP</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
+#&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    REP_1  2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    REP_2  2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    REP_3  2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   REP_1  2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   REP_2  2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   REP_3  2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   REP_1  2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   REP_2  2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   REP_3  2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   REP_1  2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'># Use prefixes and suffixes (the ear traits EH, EP, EL, and ED)</span>
+<span class='fu'>add_prefix</span>(<span class='kw'>data_ge2</span>, <span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>EP</span>, <span class='kw'>EL</span>, prefix = <span class='st'>"EAR"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
+#&gt;    ENV   GEN   REP   EAR_PH EAR_EH EAR_EP EAR_EL    ED    CL    CD    CW    KW
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1       2.61   1.71  0.658   16.1  52.2  28.1  16.3  25.1  217.
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    2       2.87   1.76  0.628   14.2  50.3  27.6  14.5  21.4  184.
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    3       2.68   1.58  0.591   16.0  50.7  28.4  16.4  24.0  208.
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   1       2.83   1.64  0.581   16.7  54.1  31.7  17.4  26.2  194.
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   2       2.79   1.71  0.616   14.9  52.7  32.0  15.5  20.7  176.
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   3       2.72   1.51  0.554   16.7  52.7  30.4  17.5  26.8  207.
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   1       2.75   1.51  0.549   17.4  51.7  30.6  18.0  26.2  217.
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2       2.72   1.56  0.573   16.7  47.2  28.7  17.2  24.1  181.
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3       2.77   1.67  0.600   15.8  47.9  27.6  16.4  20.5  166.
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1       2.73   1.54  0.563   14.9  47.5  28.2  15.5  20.1  161.
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 6 more variables: NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>add_suffix</span>(<span class='kw'>data_ge2</span>, <span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>EP</span>, <span class='kw'>EL</span>, suffix = <span class='st'>"EAR"</span>, sep = <span class='st'>"."</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
+#&gt;    ENV   GEN   REP   PH.EAR EH.EAR EP.EAR EL.EAR    ED    CL    CD    CW    KW
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1       2.61   1.71  0.658   16.1  52.2  28.1  16.3  25.1  217.
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    2       2.87   1.76  0.628   14.2  50.3  27.6  14.5  21.4  184.
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    3       2.68   1.58  0.591   16.0  50.7  28.4  16.4  24.0  208.
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   1       2.83   1.64  0.581   16.7  54.1  31.7  17.4  26.2  194.
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   2       2.79   1.71  0.616   14.9  52.7  32.0  15.5  20.7  176.
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   3       2.72   1.51  0.554   16.7  52.7  30.4  17.5  26.8  207.
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   1       2.75   1.51  0.549   17.4  51.7  30.6  18.0  26.2  217.
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2       2.72   1.56  0.573   16.7  47.2  28.7  17.2  24.1  181.
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3       2.77   1.67  0.600   15.8  47.9  27.6  16.4  20.5  166.
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1       2.73   1.54  0.563   14.9  47.5  28.2  15.5  20.1  161.
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 6 more variables: NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'># Use prefixes and suffixes (colnames)</span>
+<span class='fu'>concatenate</span>(<span class='kw'>data_ge2</span>, <span class='kw'>REP</span>, prefix = <span class='st'>"REP"</span>, new_var = <span class='kw'>REP</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
+#&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    REP_1  2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    REP_2  2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    REP_3  2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   REP_1  2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   REP_2  2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6
+#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   REP_3  2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
+#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   REP_1  2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8
+#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   REP_2  2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6
+#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   REP_3  2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2
+#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   REP_1  2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+
 <span class='co'>########### formating column names ###############</span>
 <span class='co'># Creating data with messy column names</span>
 <span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>data_ge</span>, <span class='fl'>3</span>)
@@ -823,7 +907,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,8 +1,19 @@
 pandoc: 2.10.1
-pkgdown: 1.6.0
+pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: []
-last_built: 2020-09-10T13:59Z
+articles:
+  metan_start: metan_start.html
+  vignettes_ammi: vignettes_ammi.html
+  vignettes_biometry: vignettes_biometry.html
+  vignettes_blup: vignettes_blup.html
+  vignettes_cross-validation: vignettes_cross-validation.html
+  vignettes_descriptive: vignettes_descriptive.html
+  vignettes_gge: vignettes_gge.html
+  vignettes_helper: vignettes_helper.html
+  vignettes_indexes: vignettes_indexes.html
+  vignettes_stability: vignettes_stability.html
+  vignettes_utilities: vignettes_utilities.html
+last_built: 2020-09-13T00:10Z
 urls:
   reference: https://tiagoolivoto.github.io/metan//reference
   article: https://tiagoolivoto.github.io/metan//articles
