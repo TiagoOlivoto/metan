@@ -35,6 +35,7 @@
 #' * \strong{sel.dif} The selection differential for the WAASBY or WAASB index.
 #' * \strong{mean.sd} The mean for the differential selection.
 #' * \strong{sel.dif.var} The selection differential for the variables.
+#' * \strong{total.sel.dif} The total selection differential.
 #' * \strong{Selected} The selected genotypes.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -192,7 +193,7 @@ mtsi <- function(.data,
     sel.dif.mean <-
       tibble(VAR = names(pos.var.factor[, 2]),
              Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
-             xo = colMeans(observed),
+             Xo = colMeans(observed),
              Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
              SD = Xs - colMeans(observed),
              SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100) %>%
@@ -208,6 +209,18 @@ mtsi <- function(.data,
                sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
                TRUE ~ 0
              ))
+    if (class(.data) == "waasb") {
+      h2 <- gmd(.data, "h2", verbose = FALSE)
+      sel.dif.mean <-
+        left_join(sel.dif.mean, h2, by = "VAR") %>%
+        add_cols(SG = SD * h2,
+                 SGperc = SG / Xo * 100,
+                 .after = SDperc) %>%
+        reorder_cols(h2, .after  = SDperc)
+    }
+    tota_gain <-
+      sum_by(mtsi_mod[["sel.dif.var"]], sense) %>%
+      select_cols(sense, one_of(c("SD", "SDperc", "SG", "SGperc")))
   }
   if (is.null(ngs)) {
     sel.dif <- NULL
@@ -261,6 +274,7 @@ mtsi <- function(.data,
                         sel.dif = sel.dif,
                         mean.sd = mean_sd_ind,
                         sel.dif.var = sel.dif.mean,
+                        total.sel.dif = tota_gain,
                         Selected = names(MTSI)[1:ngs]),
                    class = "mtsi"))
 }
