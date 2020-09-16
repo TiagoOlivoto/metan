@@ -189,5 +189,5 @@ if (getRversion() >= "2.15.1") {
       "intercept", "lower", "upper", "pred_ols", "res_ammi", "res_ols", "pattern",
       "replacement", "comparison", "group1", "group2", "p.adj", "term", "rel_freq",
       "variable", "Model", "level", "RESIDUAL", "MGIDI", "sd.amo", "SD", "SG", "data.x",
-      "data.y", "sense", "win", "where", "test", "FG", "SI"))
+      "data.y", "sense", "win", "where", "test", "FG", "SI", "ACV"))
   }
