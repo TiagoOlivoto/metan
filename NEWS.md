@@ -1,6 +1,9 @@
 # metan (development version)
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.
+* New function `acv()` to compute the [adjusted coefficient of variation](https://linkinghub.elsevier.com/retrieve/pii/S1161030118301904) to account for the systematic dependence of $\sigma^2$ from $\mu$.
+* New function `ge_acv()` to compute yield stability index based on the adjusted coefficient of variation.
 * New arguments `prefix` and `suffix` in `concatenate()` to add prefixes and suffixes to concatenated values, respectively.
+* List packages providing the Rd macros in 'Imports' instead of 'Suggests'.
 
 # metan 1.8.1
 * Use `\doi{}` markup in Rd files.
