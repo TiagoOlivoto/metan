@@ -53,6 +53,7 @@ Imports:
     lme4,
     lmerTest,
     magrittr,
+    mathjaxr,
     methods,
     progress,
     purrr,
@@ -63,8 +64,6 @@ Imports:
 Suggests:
     DT,
     knitr,
-    mathjaxr,
-    readxl,
     rmarkdown,
     roxygen2
 VignetteBuilder: 
