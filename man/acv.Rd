@@ -25,9 +25,10 @@ A tibble with the following columns
 }
 }
 \description{
-Computes the adjusted coefficient of variation, \emph{acv},
-(Doring and Reckling, 2018) to account for the systematic dependence of
-\mjseqn{\sigma^2} from \mjseqn{\mu}. The \emph{acv} is computed as follows:
+Computes the scale-adjusted coefficient of variation,
+\emph{acv}, (Doring and Reckling, 2018) to account for the systematic
+dependence of \mjseqn{\sigma^2} from \mjseqn{\mu}. The \emph{acv} is
+computed as follows:
 
 \mjsdeqn{acv = \frac{\sqrt{10^{\tilde v_i}}}{\mu_i}\times 100}
 
@@ -45,13 +46,14 @@ regression.
 \examples{
 \donttest{
 ################# Table 1 from Doring and Reckling (2018)  ###########
+
 # Mean values
 u <- c(0.5891, 0.6169, 0.7944, 1.0310, 1.5032, 3.8610, 4.6969, 6.1148,
-7.1526, 7.5348, 1.2229, 1.6321, 2.4293, 2.5011, 3.0161)
+       7.1526, 7.5348, 1.2229, 1.6321, 2.4293, 2.5011, 3.0161)
 
 # Variances
 v <- c(0.0064, 0.0141, 0.0218, 0.0318, 0.0314, 0.0766, 0.0620, 0.0822,
-0.1605, 0.1986, 0.0157, 0.0593, 0.0565, 0.1997, 0.2715)
+       0.1605, 0.1986, 0.0157, 0.0593, 0.0565, 0.1997, 0.2715)
 
 library(metan)
 acv(u, v)

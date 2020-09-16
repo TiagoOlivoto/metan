@@ -11,10 +11,11 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}()},
-\code{\link{anova_ind}()}, \code{\link{anova_joint}()}, \code{\link{can_corr}()}
-\code{\link{ecovalence}()},  \code{\link{Fox}()}, \code{\link{gai}()},
-\code{\link{gamem}()},\code{\link{gafem}()}, \code{\link{ge_means}()},
-\code{\link{ge_reg}()}, \code{\link{gytb}()}, \code{\link{performs_ammi}()},
+\code{\link{anova_ind}()}, \code{\link{anova_joint}()},
+\code{\link{can_corr}()} \code{\link{ecovalence}()},  \code{\link{Fox}()},
+\code{\link{gai}()}, \code{\link{gamem}()},\code{\link{gafem}()},
+\code{\link{ge_acv}}, \code{\link{ge_means}()}, \code{\link{ge_reg}()},
+\code{\link{gytb}()}, \code{\link{performs_ammi}()},
 \code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
 \code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.}
 
@@ -108,6 +109,12 @@ alpha lattice design only).
 \item \code{"Ecoval"} Ecovalence value (default).
 \item \code{"Ecov_perc"} Ecovalence in percentage value.
 \item \code{"rank"} Rank for ecovalence.
+}
+
+\strong{Objects of class \code{ge_acv}:}
+\itemize{
+\item \code{"ACV"} The adjusted coefficient of variation (default).
+\item \code{"ACV_R"} The rank for adjusted coefficient of variation.
 }
 
 \strong{Objects of class \code{ge_reg}:}
@@ -389,9 +396,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 \code{\link{AMMI_indexes}}, \code{\link{anova_ind}},
 \code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
 \code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
-\code{\link{ge_means}}, \code{\link{ge_reg}}, \code{\link{performs_ammi}},
-\code{\link{Resende_indexes}}, \code{\link{Shukla}},
-\code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
+\code{\link{ge_acv}} \code{\link{ge_means}}, \code{\link{ge_reg}},
+\code{\link{performs_ammi}}, \code{\link{Resende_indexes}},
+\code{\link{Shukla}}, \code{\link{superiority}}, \code{\link{waas}},
+\code{\link{waasb}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
