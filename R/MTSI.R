@@ -216,8 +216,8 @@ mtsi <- function(.data,
         left_join(sel.dif.mean, h2, by = "VAR") %>%
         add_cols(SG = SD * h2,
                  SGperc = SG / Xo * 100,
-                 .after = SDperc) %>%
-        reorder_cols(h2, .after  = SDperc)
+                 .after = "SDperc") %>%
+        reorder_cols(h2, .after  = "SDperc")
     }
     tota_gain <-
       sum_by(sel.dif.mean, sense) %>%
