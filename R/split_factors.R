@@ -47,7 +47,7 @@ split_factors <- function(.data, ..., keep_factors = FALSE) {
 #' @name split_factors
 #' @export
 as.split_factors <- function(.data, keep_factors = FALSE) {
-  grouped <- group_by_if(.data, is.factor)
+  grouped <- .data %>% group_by(across(where(is.factor)))
   names <- eval_bare(expr(paste(!!!group_keys(grouped), sep = " | ")))
   gd <- grouped %>%
     group_split(.keep = keep_factors) %>%
