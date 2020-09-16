@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.9.0
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.
 * New function `acv()` to compute the [adjusted coefficient of variation](https://linkinghub.elsevier.com/retrieve/pii/S1161030118301904) to account for the systematic dependence of $\sigma^2$ from $\mu$.
 * New function `ge_acv()` to compute yield stability index based on the adjusted coefficient of variation.
