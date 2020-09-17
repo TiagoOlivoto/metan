@@ -19,6 +19,8 @@
 #' regression.
 #' @param mean A numeric vector with mean values.
 #' @param var A numeric vector with variance values.
+#' @param na.rm A logical value indicating whether \code{NA} values should be
+#'   stripped before the computation proceeds. Defaults to \code{FALSE}.
 #'
 #' @return A tibble with the following columns
 #' * \strong{mean} The mean values;
@@ -50,7 +52,14 @@
 #' library(metan)
 #' acv(u, v)
 #' }
-acv <- function(mean, var) {
+acv <- function(mean, var, na.rm = FALSE) {
+  if(has_na(mean) | has_na(var)){
+    stop("NA values in 'mean' or 'var'. Use 'na.rm = TRUE' to remove them.")
+  }
+  if(na.rm == TRUE){
+    mean <- na.omit(mean)
+    var <- na.omit(var)
+  }
   if(!is.numeric(mean) | !is.numeric(var)){
     stop("Argument 'mean' and 'var' must be numeric.")
   }

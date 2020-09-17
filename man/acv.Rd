@@ -5,12 +5,15 @@
 \title{Adjusted Coefficient of Variation
 \loadmathjax}
 \usage{
-acv(mean, var)
+acv(mean, var, na.rm = FALSE)
 }
 \arguments{
 \item{mean}{A numeric vector with mean values.}
 
 \item{var}{A numeric vector with variance values.}
+
+\item{na.rm}{A logical value indicating whether \code{NA} values should be
+stripped before the computation proceeds. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with the following columns

@@ -196,7 +196,9 @@ reference:
       - corr_stab_ind
       - ecovalence
       - env_dissimilarity
+      - ge_acv
       - ge_factanal
+      - ge_polar
       - ge_reg
       - ge_stats
       - gai
