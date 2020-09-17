@@ -1,5 +1,6 @@
 #' @import ggplot2
 #' @import stats
+#' @import mathjaxr
 #' @importFrom dplyr  select  everything  mutate  group_by group_keys
 #'   group_split  left_join  sample_n  anti_join pull select_if arrange slice
 #'   contains top_n summarise ungroup rename is_grouped_df desc n funs
@@ -154,7 +155,7 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  vers <-  "v1.8.1"
+  vers <-  "v1.9.0"
   packageStartupMessage("[]========================================================[]")
   packageStartupMessage("[] Multi-Environment Trial Analysis (metan) ", vers, "        []")
   packageStartupMessage("[] Author: Tiago Olivoto                                  []")

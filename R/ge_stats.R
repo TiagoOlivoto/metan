@@ -23,33 +23,35 @@
 #' @param prob The probability error assumed.
 #' @details The function computes the statistics and ranks for the following
 #'   stability indexes. \code{"Y"} (Response variable), \code{"CV"} (coefficient
-#'   of variation), \code{"ACV"} (adjusted coefficient of variation)
-#'   \code{"Var"} (Genotype's variance), \code{"Shukla"} (Shukla's variance,
-#'   calling \code{\link{Shukla}} internally), \code{"Wi_g", "Wi_f", "Wi_u"}
-#'   (Annichiarrico's genotypic confidence index for all, favorable and
-#'   unfavorable environments, respectively, calling \code{\link{Annicchiarico}}
-#'   internally ), \code{"Ecoval"} (Wricke's ecovalence,
-#'   \code{\link{ecovalence}} internally), \code{"Sij"} (Deviations from the
-#'   joint-regression analysis) and \code{"R2"} (R-squared from the
-#'   joint-regression analysis, calling \code{\link{ge_reg}} internally),
-#'   \code{"ASV"} (AMMI-stability value), \code{"SIPC"} (sum of the absolute
-#'   values of the IPCA scores), \code{"EV"} (Average of the squared eigenvector
-#'   values), \code{"ZA"} (Absolute values of the relative contributions of the
-#'   IPCAs to the interaction), and \code{"WAAS"} (Weighted Average of Absolute
-#'   Scores), by calling \code{\link{AMMI_indexes}} internally; \code{"HMGV"}
-#'   (Harmonic mean of the genotypic value), \code{"RPGV"} (Relative performance
-#'   of the genotypic values), \code{"HMRPGV"} (Harmonic mean of the relative
-#'   performance of the genotypic values), by calling
-#'   \code{\link{Resende_indexes}} internally; \code{"Pi_a", "Pi_f", "Pi_u"}
-#'   (Superiority indexes for all, favorable and unfavorable environments,
-#'   respectively, calling \code{\link{superiority}} internally), \code{"Gai"}
-#'   (Geometric adaptability index, calling \code{\link{gai}} internally),
-#'   \code{"S1"} (mean of the absolute rank differences of a genotype over the n
-#'   environments), \code{"S2"} (variance among the ranks over the k
-#'   environments), \code{"S3"} (sum of the absolute deviations), \code{"S6"}
-#'   (relative sum of squares of rank for each genotype), by calling
-#'   \code{\link{Huehn}} internally; and  \code{"N1", "N2", "N3", "N4"}
-#'   (Thennarasu"s statistics, calling \code{\link{Thennarasu}} internally ).
+#'   of variation), \code{"ACV"} (adjusted coefficient of variation calling
+#'   \code{\link{ge_acv}} internally); \code{POLAR} (Power Law Residuals,
+#'   calling \code{\link{ge_polar}} internally) \code{"Var"} (Genotype's
+#'   variance), \code{"Shukla"} (Shukla's variance, calling \code{\link{Shukla}}
+#'   internally), \code{"Wi_g", "Wi_f", "Wi_u"} (Annichiarrico's genotypic
+#'   confidence index for all, favorable and unfavorable environments,
+#'   respectively, calling \code{\link{Annicchiarico}} internally ),
+#'   \code{"Ecoval"} (Wricke's ecovalence, \code{\link{ecovalence}} internally),
+#'   \code{"Sij"} (Deviations from the joint-regression analysis) and
+#'   \code{"R2"} (R-squared from the joint-regression analysis, calling
+#'   \code{\link{ge_reg}} internally), \code{"ASV"} (AMMI-stability value),
+#'   \code{"SIPC"} (sum of the absolute values of the IPCA scores), \code{"EV"}
+#'   (Average of the squared eigenvector values), \code{"ZA"} (Absolute values
+#'   of the relative contributions of the IPCAs to the interaction), and
+#'   \code{"WAAS"} (Weighted Average of Absolute Scores), by calling
+#'   \code{\link{AMMI_indexes}} internally; \code{"HMGV"} (Harmonic mean of the
+#'   genotypic value), \code{"RPGV"} (Relative performance of the genotypic
+#'   values), \code{"HMRPGV"} (Harmonic mean of the relative performance of the
+#'   genotypic values), by calling \code{\link{Resende_indexes}} internally;
+#'   \code{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and
+#'   unfavorable environments, respectively, calling \code{\link{superiority}}
+#'   internally), \code{"Gai"} (Geometric adaptability index, calling
+#'   \code{\link{gai}} internally), \code{"S1"} (mean of the absolute rank
+#'   differences of a genotype over the n environments), \code{"S2"} (variance
+#'   among the ranks over the k environments), \code{"S3"} (sum of the absolute
+#'   deviations), \code{"S6"} (relative sum of squares of rank for each
+#'   genotype), by calling \code{\link{Huehn}} internally; and  \code{"N1",
+#'   "N2", "N3", "N4"} (Thennarasu"s statistics, calling
+#'   \code{\link{Thennarasu}} internally ).
 #' @return An object of class \code{ge_stats} which is a list with one data
 #'   frame for each variable containing the computed indexes.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -60,6 +62,10 @@
 #'   Doring, T.F., and M. Reckling. 2018. Detecting global trends of
 #'   cereal yield stability by adjusting the coefficient of variation. Eur. J.
 #'   Agron. 99: 30-36. \doi{10.1016/j.eja.2018.06.007}
+#'
+#' Doring, T.F., S. Knapp, and J.E. Cohen. 2015. Taylor's power law and the
+#' stability of crop yields. F. Crop. Res. 183: 294-302.
+#' \doi{10.1016/j.fcr.2015.08.005}
 #'
 #'   Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
 #'   comparing Varieties. Crop Sci. 6:36-40.
@@ -148,6 +154,7 @@ Mean <- apply(ge_mean, 1, mean)
 Variance <- rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
 CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
 ACV <- ge_acv(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+POLAR <- ge_polar(data, ENV, GEN, Y, verbose = FALSE)[[1]]
 GENSS <- (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
 mod <- anova(lm(Y ~ REP/ENV + ENV * GEN, data = data))
 GENMS <- GENSS / mod[2, 1]
@@ -173,6 +180,8 @@ temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                CV_R = rank(CV),
                ACV = ACV[["ACV"]],
                ACV_R = rank(ACV),
+               POLAR = POLAR[["POLAR"]],
+               POLAR = rank(POLAR),
                Var = Variance,
                Var_R = rank(Variance),
                Shukla = shu_mod$ShuklaVar,

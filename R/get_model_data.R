@@ -86,6 +86,10 @@
 #' * \code{"ACV"} The adjusted coefficient of variation (default).
 #' * \code{"ACV_R"} The rank for adjusted coefficient of variation.
 #'
+#'  \strong{Objects of class \code{ge_polar}:}
+#' * \code{"POLAR"} The Power Law Residuals (default).
+#' * \code{"POLAR_R"} The rank for Power Law Residuals.
+#'
 #'  \strong{Objects of class \code{ge_reg}:}
 #' * \code{"deviations"} The deviations from regression.
 #' * \code{"RMSE"} The Root Mean Square Error.
@@ -268,10 +272,10 @@
 #' @seealso \code{\link{AMMI_indexes}}, \code{\link{anova_ind}},
 #'   \code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
 #'   \code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
-#'   \code{\link{ge_acv}} \code{\link{ge_means}}, \code{\link{ge_reg}},
-#'   \code{\link{performs_ammi}}, \code{\link{Resende_indexes}},
-#'   \code{\link{Shukla}}, \code{\link{superiority}}, \code{\link{waas}},
-#'   \code{\link{waasb}}
+#'   \code{\link{ge_acv}}, \code{\link{ge_polar}} \code{\link{ge_means}},
+#'   \code{\link{ge_reg}}, \code{\link{performs_ammi}},
+#'   \code{\link{Resende_indexes}}, \code{\link{Shukla}},
+#'   \code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
 #' @examples
 #' \donttest{
 #' library(metan)
@@ -358,7 +362,7 @@ get_model_data <- function(x,
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "anova_ind", "gge", "can_cor", "can_cor_group", "gytb",
-                      "ge_acv"))) {
+                      "ge_acv", "ge_polar"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -401,11 +405,27 @@ get_model_data <- function(x,
   check23 <- c("coefs", "loads", "crossloads", "canonical")
   check24 <- c("gyt", "stand_gyt", "si")
   check25 <- c("ACV", "ACV_R")
+  check26 <- c("POLAR", "POLAR_R")
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
+  }
+
+  if (has_class(x,  "ge_polar")) {
+    if (is.null(what)){
+      what <- "POLAR"
+    }
+    if (!what %in% check26) {
+      stop("Invalid value in 'what' for object of class 'ge_acv'. Allowed are ", paste(check26, collapse = ", "), call. = FALSE)
+    }
+    bind <- sapply(x, function(x) {
+      x[[what]]
+    }) %>%
+      as_tibble() %>%
+      mutate(gen = x[[1]][["GEN"]]) %>%
+      column_to_first(gen)
   }
 
   if (has_class(x,  "ge_acv")) {
