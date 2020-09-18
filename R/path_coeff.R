@@ -329,10 +329,11 @@ path_coeff <- function(.data,
       cat("--------------------------------------------------------------------------\n")
     }
     for (i in 1:nproced) {
-      FDSel <- FWDselect::selection(x = xxx, y = unlist(yyy),
-                                    q = npred, method = "lm", criterion = "aic",
-                                    cluster = FALSE)
-      predstw <- FDSel$Variable_names
+      data_sel <- cbind(yyy, xxx)
+      model_sel <- select_pred(data_sel,
+                               resp = names(yyy),
+                               npred = npred)
+      predstw <- model_sel$predictors
       x <- data[, c(predstw)]
       names <- colnames(x)
       y <- data %>% dplyr::select({{resp}})
@@ -438,7 +439,7 @@ path_coeff <- function(.data,
                       weightvar = weightvarname)
       ModelEstimates[[paste("Model_", modelcode, sep = "")]] <- set_class(Results, "path_coeff")
       statistics[i, 1] <- paste("Model", modelcode, sep = "")
-      statistics[i, 2] <- FDSel$Information_Criterion
+      statistics[i, 2] <- model_sel$AIC
       statistics[i, 3] <- npred
       statistics[i, 4] <- NC
       statistics[i, 5] <- Det
@@ -474,11 +475,6 @@ path_coeff <- function(.data,
     return(set_class(temp, c("brute_path", "path_coeff")))
   }
 }
-
-
-
-
-
 
 
 
