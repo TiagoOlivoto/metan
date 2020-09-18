@@ -189,9 +189,9 @@ clustering <- function(.data,
         hc <- hclust(de, method = clustmethod)
         d2 <- cophenetic(hc)
         cof <- cor(d2, de)
-        mant <- ade4::mantel.rtest(de, dein, nrepet = 1000)
-        mantc <- mant$obs
-        mantp <- mant$pvalue
+        mant <- mantel_test(de, dein, nboot = 1000)
+        mantc <- mant[[1]]
+        mantp <- mant[[3]]
         evect <- data.frame(t(prcomp(data)$rotation))
         var <- abs(evect)[nrow(evect), ]
         names <- apply(var, 1, function(x) which(x ==
@@ -215,9 +215,9 @@ clustering <- function(.data,
         names(statistics) <- c("Model", "excluded", "cophenetic",
                                "remaining", "cormantel", "pvmantel")
         if (verbose == TRUE) {
-          cat(paste("Calculating model ", modelcode,
-                    " with ", npred, " variables. ", namesv,
-                    " excluded in this step (", round(modelcode/n *
+          cat(paste("Model ", modelcode,
+                    " with ", npred, " variables. '", namesv,
+                    "' excluded in this step (", round(modelcode/n *
                                                         100, 1), "%).\n", sep = ""))
         }
         modelcode <- modelcode + 1
