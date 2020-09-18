@@ -1,5 +1,5 @@
 # Release summary
-This is a patch release (v1.8.1) that update Rd files by including \doi{} markup as kindly suggested by Uwe Ligges in the submission of v1.8.0
+This is a minor release (v1.9.0) that list packages providing the Rd macros in 'Imports' instead of 'Suggests' as suggested by the CRAN team and add new functions for stability analysis. See `News.md` for more information.
 
 # Test environments
 - local OS X install, R 4.0.0
