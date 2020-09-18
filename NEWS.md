@@ -1,9 +1,12 @@
 # metan 1.9.0
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.
+* New function `select_pred()` to selects a best subset of predictor variables.
 * New function `acv()` to compute the [adjusted coefficient of variation](https://linkinghub.elsevier.com/retrieve/pii/S1161030118301904) to account for the systematic dependence of $\sigma^2$ from $\mu$.
 * New function `ge_acv()` to compute yield stability index based on the adjusted coefficient of variation.
+* New function `ge_polar()` to compute yield stability index based on [Power Law Residuals (POLAR) statistics](https://linkinghub.elsevier.com/retrieve/pii/S0378429015300368).
+* New function `mantel_test()` to performs a Mantel test between two matrices. 
 * New arguments `prefix` and `suffix` in `concatenate()` to add prefixes and suffixes to concatenated values, respectively.
-* List packages providing the Rd macros in 'Imports' instead of 'Suggests'.
+* List packages providing the Rd macros in 'Imports' instead of 'Suggests' as suggested by the CRAN team.
 
 # metan 1.8.1
 * Use `\doi{}` markup in Rd files.
