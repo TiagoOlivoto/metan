@@ -10,4 +10,6 @@ vignettes/*.RData
 vignettes/*.bib
 doc
 package_release.R
+check.R
+build_site.R
 CODE_OF_CONDUCT.md

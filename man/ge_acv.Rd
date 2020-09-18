@@ -40,6 +40,7 @@ variation (Doring and Reckling, 2018). For more details see
 \donttest{
 library(metan)
 out <- ge_acv(data_ge2, ENV, GEN, c(EH, PH, EL, CD, ED, NKE))
+gmd(out)
 }
 
 }

@@ -27,6 +27,8 @@
 ^pkgdown$
 ^cran-comments\.md$
 ^package_release\.R$
+^check\.R$
+^build_site\.R$
 ^CRAN-RELEASE$
 ^README\.Rmd$
 ^README\.md$

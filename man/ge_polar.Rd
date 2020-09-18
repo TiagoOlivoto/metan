@@ -48,6 +48,7 @@ indicated by more negative POLAR values.
 \donttest{
 library(metan)
 out <- ge_polar(data_ge2, ENV, GEN, c(EH, PH, EL, CD, ED, NKE))
+gmd(out)
 }
 
 }

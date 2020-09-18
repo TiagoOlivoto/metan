@@ -16,6 +16,7 @@
 #' * \code{p-value} The quantile of the observed Z-score. in the permutation
 #' distribution.
 #' @md
+#' @seealso \code{\link{pairs_mantel}()}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -40,6 +40,9 @@ mantel_test(A1, A2, plot = TRUE)
 
 }
 }
+\seealso{
+\code{\link{pairs_mantel}()}
+}
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
 }
