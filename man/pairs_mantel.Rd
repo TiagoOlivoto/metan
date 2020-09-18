@@ -131,6 +131,9 @@ lpdata <- as.lpcor(cor(mt_num[1:5]),
           pairs_mantel()
 }
 }
+\seealso{
+\code{\link{mantel_test}()}
+}
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
 }

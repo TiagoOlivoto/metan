@@ -46,6 +46,7 @@
 #' @param col.up.panel,col.lw.panel,col.dia.panel The color for the opper, lower
 #'   and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.
 #' @param pan.spacing The space between the pannels. Set to 0.15.
+#' @seealso \code{\link{mantel_test}()}
 #' @param digits The number of digits to show in the plot.
 #' @return An object of class \code{gg, ggmatrix}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -68,13 +69,33 @@
 #'                    cor(mt_num[4:8])) %>%
 #'           pairs_mantel()
 #'}
-pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
-                         prob = 0.05, diag = FALSE, export = FALSE, main = "auto",
-                         file.type = "pdf", file.name = NULL, width = 8, height = 7,
-                         resolution = 300, size.point = 0.5, shape.point = 19, alpha.point = 1,
-                         fill.point = NULL, col.point = "black", minsize = 2, maxsize = 3,
-                         signcol = "green", alpha = 0.15, diagcol = "gray", col.up.panel = "gray",
-                         col.lw.panel = "gray", col.dia.panel = "gray", pan.spacing = 0.15,
+pairs_mantel <- function(...,
+                         type = 1,
+                         nrepet = 1000,
+                         names = NULL,
+                         prob = 0.05,
+                         diag = FALSE,
+                         export = FALSE,
+                         main = "auto",
+                         file.type = "pdf",
+                         file.name = NULL,
+                         width = 8,
+                         height = 7,
+                         resolution = 300,
+                         size.point = 0.5,
+                         shape.point = 19,
+                         alpha.point = 1,
+                         fill.point = NULL,
+                         col.point = "black",
+                         minsize = 2,
+                         maxsize = 3,
+                         signcol = "green",
+                         alpha = 0.15,
+                         diagcol = "gray",
+                         col.up.panel = "gray",
+                         col.lw.panel = "gray",
+                         col.dia.panel = "gray",
+                         pan.spacing = 0.15,
                          digits = 2) {
   class <- list(...)
   if (!type %in% c(1:2)) {
@@ -130,19 +151,17 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     y <- GGally::eval_data_col(data, mapping$y)
     D <- matrix(nrow = dim, ncol = dim)
     D[lower.tri(D, diag = FALSE)] <- x
-    D[upper.tri(D, diag = FALSE)] <- x
-    diag(D) <- 0
+    D <- make_sym(D, diag = 0)
     D2 <- matrix(nrow = dim, ncol = dim)
     D2[lower.tri(D2, diag = FALSE)] <- y
-    D2[upper.tri(D2, diag = FALSE)] <- y
-    diag(D2) <- 0
-    ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2), nrepet = nrepet)
-    sig <- symnum(ct$pvalue,
+    D2 <- make_sym(D2, diag = 0)
+    ct <- mantel_test(D, D2, nboot = nrepet)
+    sig <- symnum(ct[[3]],
                   corr = FALSE,
                   na = FALSE,
                   cutpoints = c(0, 0.001, 0.01, 0.05, 1),
                   symbols = c("***", "**", "*", ""))
-    r <- unname(ct$obs)
+    r <- ct[[1]]
     rt <- format(r, digits = digits)[1]
     cex <- max(sizeRange)
     percent_of_range <- function(percent, range) {
@@ -170,14 +189,12 @@ pairs_mantel <- function(..., type = 1, nrepet = 1000, names = NULL,
     y <- GGally::eval_data_col(data, mapping$y)
     D <- matrix(nrow = dim, ncol = dim)
     D[lower.tri(D, diag = FALSE)] <- x
-    D[upper.tri(D, diag = FALSE)] <- x
-    diag(D) <- 0
+    D <- make_sym(D, diag = 0)
     D2 <- matrix(nrow = dim, ncol = dim)
     D2[lower.tri(D2, diag = FALSE)] <- y
-    D2[upper.tri(D2, diag = FALSE)] <- y
-    diag(D2) <- 0
-    ct <- ade4::mantel.randtest(as.dist(D), as.dist(D2), nrepet = nrepet)
-    pval <- unname(ct$pvalue)
+    D2 <- make_sym(D2, diag = 0)
+    ct <- mantel_test(D, D2, nboot = nrepet)
+    pval <- ct[[3]]
     p <- ggplot(data = data, mapping = mapping)
     if (is.null(fill.point) == FALSE) {
       p <- p +
