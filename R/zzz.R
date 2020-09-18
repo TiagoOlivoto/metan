@@ -9,10 +9,8 @@
 #' @importFrom ggrepel  geom_text_repel geom_label_repel
 #' @importFrom magrittr  %>% %<>%
 #' @importFrom GGally  ggally_text  eval_data_col  ggpairs
-#' @importFrom ade4  mantel.randtest
 #' @importFrom lme4  ranef  VarCorr  fortify.merMod
 #' @importFrom lmerTest  ranova  lmer
-#' @importFrom FWDselect  selection
 #' @importFrom grDevices  colorRampPalette  dev.off  pdf
 #'             chull  tiff  boxplot.stats
 #' @importFrom methods  is  as
