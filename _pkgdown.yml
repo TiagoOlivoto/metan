@@ -247,6 +247,7 @@ reference:
       - covcor_design
       - is.lpcor
       - lpcor
+      - mantel_test
       - pairs_mantel
       - plot_ci
       - plot.corr_coef
@@ -271,6 +272,7 @@ reference:
       - path_coeff
       - print.colindiag
       - print.path_coeff
+      - select_pred
 
 
   - title: "Plot two-way data"
@@ -284,6 +286,7 @@ reference:
   - title: "Descriptive"
     desc: "Useful functions for computing descriptive statistics"
     contents:
+      - acv
       - desc_stat
       - desc_wider
       - find_outliers

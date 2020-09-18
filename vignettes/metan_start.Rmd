@@ -21,22 +21,24 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 
 * Parametric methods
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
-   * GGE biplot analysis with [`gge()`](https://tiagoolivoto.github.io/metan/reference/gge.html).
-   * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
    * AMMI-based stability statistics with [`AMMI_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
+   * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
    * BLUP-based stability indexes with [`Resende_indexes()`](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html).
-   * Joint regression analysis [@Eberhart1966] using [`ge_reg()`](https://tiagoolivoto.github.io/metan/reference/ge_reg.html).
-   * Genotypic confidence index [@Annicchiarico1992] using [`Annicchiarico()`](https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html).
-   * Modified genotypic confidence index [@Schmildt2011] using [`Schmildt()`](https://tiagoolivoto.github.io/metan/reference/Schmildt.html).
    * Ecovalence [@Wricke1965] using [`ecovalence()`](https://tiagoolivoto.github.io/metan/reference/ecovalence.html).
-   * Stability analysis and environmental stratification [@murakami2004] using [`ge_factanal()`](https://tiagoolivoto.github.io/metan/reference/ge_factanal.html).
+   * GGE biplot analysis with [`gge()`](https://tiagoolivoto.github.io/metan/reference/gge.html).
+   * Genotypic confidence index [@Annicchiarico1992] using [`Annicchiarico()`](https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html).
+   * Geometric adaptability index [@Mohammadi2008] with [`gai()`](https://tiagoolivoto.github.io/metan/reference/gai.html).
+   * Joint regression analysis [@Eberhart1966] using [`ge_reg()`](https://tiagoolivoto.github.io/metan/reference/ge_reg.html).
+   * Modified genotypic confidence index [@Schmildt2011] using [`Schmildt()`](https://tiagoolivoto.github.io/metan/reference/Schmildt.html).
+   * Power law residuals (POLAR) statistics [@Doring2015] using `ge_polar()`.
+   * Stability analysis and environmental stratification [@murakami2004] using  [`ge_factanal()`](https://tiagoolivoto.github.io/metan/reference/ge_factanal.html).
    * Shukla's stability variance [@Shukla1972] using [`Shukla()`](https://tiagoolivoto.github.io/metan/reference/Shukla.html).
+   * Scale-adjusted coefficient of variation [@Doring2018]  using `ge_acv()`.
    * Weighted Average of Absolute Scores [@Olivoto2019] using [`waas()`](https://tiagoolivoto.github.io/metan/reference/waas.html) (fixed-effect model) and [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html) (mixed-effect model).
 
 * Non-parametric methods
    * Superiority index [@Lin1988], using the function [`superiority()`](https://tiagoolivoto.github.io/metan/reference/superiority.html).
    * Fox's stability statistic [@Fox1990] with [`Fox()`](https://tiagoolivoto.github.io/metan/reference/Fox.html).
-   * Geometric adaptability index [@Mohammadi2008] with [`gai()`](https://tiagoolivoto.github.io/metan/reference/gai.html).
    * Huehn's stability statistic [@Huehn1979] with [`Huehn()`](https://tiagoolivoto.github.io/metan/reference/Huehn.html).
    * Thennarasu's stability statistics [@Thennarasu1995] with [`Thennarasu()`](https://tiagoolivoto.github.io/metan/reference/Thennarasu.html).
    

@@ -97,7 +97,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
       </span>
     </div>
 
@@ -323,11 +323,11 @@ to the working directory</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 8</span><span>
-#&gt;   VAR   Factor    xo    Xs    SD SDperc sense     goal
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4   increase   100
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551 increase   100
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 11</span><span>
+#&gt;   VAR   Factor    Xo    Xs    SD SDperc    h2    SG SGperc sense     goal
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4   0.815 0.249  9.31  increase   100
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551 0.686 0.182  0.378 increase   100
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
@@ -402,11 +402,11 @@ to the working directory</p></td>
 #&gt; 53.30528 82.80829 29.50301 57.33645 
 #&gt; 
 #&gt; ------------------------- Selection differential (variables) --------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 8</span><span>
-#&gt;   VAR   Factor     xo     Xs     SD  SDperc sense     goal
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.674  2.979 0.305</span><span style='text-decoration: underline;'>2</span><span> 11.41   increase   100
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  48.35  0.264</span><span style='text-decoration: underline;'>8</span><span>  0.550</span><span style='text-decoration: underline;'>7</span><span> increase   100
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 11</span><span>
+#&gt;   VAR   Factor     Xo     Xs     SD  SDperc     h2     SG SGperc sense     goal
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.674  2.979 0.305</span><span style='text-decoration: underline;'>2</span><span> 11.41   0.815</span><span style='text-decoration: underline;'>2</span><span> 0.248</span><span style='text-decoration: underline;'>8</span><span> 9.305  increase   100
+#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.09  48.35  0.264</span><span style='text-decoration: underline;'>8</span><span>  0.550</span><span style='text-decoration: underline;'>7</span><span> 0.686</span><span style='text-decoration: underline;'>2</span><span> 0.181</span><span style='text-decoration: underline;'>7</span><span> 0.377</span><span style='text-decoration: underline;'>9</span><span> increase   100
 #&gt; 
 #&gt; -------------------------------- Selected genotypes -----------------------------------
 #&gt; G8 G3</div><div class='input'><span class='co'># }</span>

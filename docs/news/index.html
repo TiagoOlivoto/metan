@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
       </span>
     </div>
 
@@ -226,13 +226,19 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
+    <div id="metan-190" class="section level1">
+<h1 class="page-header" data-toc-text="1.9.0">
+<a href="#metan-190" class="anchor"></a>metan 1.9.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>New functions <code><a href="../reference/utils_rows_cols.html">add_prefix()</a></code> and <code><a href="../reference/utils_rows_cols.html">add_suffix()</a></code> to add prefixes and suffixes to variable names, respectively.</li>
+<li>New function <code><a href="../reference/select_pred.html">select_pred()</a></code> to selects a best subset of predictor variables.</li>
+<li>New function <code><a href="../reference/acv.html">acv()</a></code> to compute the <a href="https://linkinghub.elsevier.com/retrieve/pii/S1161030118301904">adjusted coefficient of variation</a> to account for the systematic dependence of <span class="math inline"><em>σ</em><sup>2</sup></span> from <span class="math inline"><em>μ</em></span>.</li>
+<li>New function <code><a href="../reference/ge_acv.html">ge_acv()</a></code> to compute yield stability index based on the adjusted coefficient of variation.</li>
+<li>New function <code><a href="../reference/ge_polar.html">ge_polar()</a></code> to compute yield stability index based on <a href="https://linkinghub.elsevier.com/retrieve/pii/S0378429015300368">Power Law Residuals (POLAR) statistics</a>.</li>
+<li>New function <code><a href="../reference/mantel_test.html">mantel_test()</a></code> to performs a Mantel test between two matrices.</li>
 <li>New arguments <code>prefix</code> and <code>suffix</code> in <code><a href="../reference/utils_rows_cols.html">concatenate()</a></code> to add prefixes and suffixes to concatenated values, respectively.</li>
+<li>List packages providing the Rd macros in ‘Imports’ instead of ‘Suggests’ as suggested by the CRAN team.</li>
 </ul>
 </div>
     <div id="metan-181" class="section level1">

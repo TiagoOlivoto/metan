@@ -37,6 +37,7 @@
 #' \donttest{
 #' library(metan)
 #' out <- ge_polar(data_ge2, ENV, GEN, c(EH, PH, EL, CD, ED, NKE))
+#' gmd(out)
 #' }
 #'
 ge_polar <- function(.data, env, gen, resp, base = 10, verbose = TRUE) {

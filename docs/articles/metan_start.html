@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
       </span>
     </div>
 
@@ -176,7 +176,7 @@
       <h1 data-toc-skip>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-09-12</h4>
+            <h4 class="date">2020-09-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -190,16 +190,19 @@
 <li>Parametric methods
 <ul>
 <li>AMMI analysis with <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi()</code></a>.</li>
-<li>GGE biplot analysis with <a href="https://tiagoolivoto.github.io/metan/reference/gge.html"><code>gge()</code></a>.</li>
-<li>BLUP prediction for multi-environment trials with <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a>.</li>
 <li>AMMI-based stability statistics with <a href="https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html"><code>AMMI_indexes()</code></a>.</li>
+<li>BLUP prediction for multi-environment trials with <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a>.</li>
 <li>BLUP-based stability indexes with <a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html"><code>Resende_indexes()</code></a>.</li>
-<li>Joint regression analysis <span class="citation">(Eberhart and Russell <a href="#ref-Eberhart1966" role="doc-biblioref">1966</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_reg.html"><code>ge_reg()</code></a>.</li>
-<li>Genotypic confidence index <span class="citation">(Annicchiarico <a href="#ref-Annicchiarico1992" role="doc-biblioref">1992</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html"><code>Annicchiarico()</code></a>.</li>
-<li>Modified genotypic confidence index <span class="citation">(Schmildt et al. <a href="#ref-Schmildt2011" role="doc-biblioref">2011</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Schmildt.html"><code>Schmildt()</code></a>.</li>
 <li>Ecovalence <span class="citation">(Wricke <a href="#ref-Wricke1965" role="doc-biblioref">1965</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ecovalence.html"><code>ecovalence()</code></a>.</li>
+<li>GGE biplot analysis with <a href="https://tiagoolivoto.github.io/metan/reference/gge.html"><code>gge()</code></a>.</li>
+<li>Genotypic confidence index <span class="citation">(Annicchiarico <a href="#ref-Annicchiarico1992" role="doc-biblioref">1992</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html"><code>Annicchiarico()</code></a>.</li>
+<li>Geometric adaptability index <span class="citation">(Mohammadi and Amri <a href="#ref-Mohammadi2008" role="doc-biblioref">2008</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/gai.html"><code>gai()</code></a>.</li>
+<li>Joint regression analysis <span class="citation">(Eberhart and Russell <a href="#ref-Eberhart1966" role="doc-biblioref">1966</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_reg.html"><code>ge_reg()</code></a>.</li>
+<li>Modified genotypic confidence index <span class="citation">(Schmildt et al. <a href="#ref-Schmildt2011" role="doc-biblioref">2011</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Schmildt.html"><code>Schmildt()</code></a>.</li>
+<li>Power law residuals (POLAR) statistics <span class="citation">(Döring, Knapp, and Cohen <a href="#ref-Doring2015" role="doc-biblioref">2015</a>)</span> using <code><a href="../reference/ge_polar.html">ge_polar()</a></code>.</li>
 <li>Stability analysis and environmental stratification <span class="citation">(Murakami and Cruz <a href="#ref-murakami2004" role="doc-biblioref">2004</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_factanal.html"><code>ge_factanal()</code></a>.</li>
 <li>Shukla’s stability variance <span class="citation">(Shukla <a href="#ref-Shukla1972" role="doc-biblioref">1972</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Shukla.html"><code>Shukla()</code></a>.</li>
+<li>Scale-adjusted coefficient of variation <span class="citation">(Döring and Reckling <a href="#ref-Doring2018" role="doc-biblioref">2018</a>)</span> using <code><a href="../reference/ge_acv.html">ge_acv()</a></code>.</li>
 <li>Weighted Average of Absolute Scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code>waas()</code></a> (fixed-effect model) and <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a> (mixed-effect model).</li>
 </ul>
 </li>
@@ -207,7 +210,6 @@
 <ul>
 <li>Superiority index <span class="citation">(Lin and Binns <a href="#ref-Lin1988" role="doc-biblioref">1988</a>)</span>, using the function <a href="https://tiagoolivoto.github.io/metan/reference/superiority.html"><code>superiority()</code></a>.</li>
 <li>Fox’s stability statistic <span class="citation">(Fox et al. <a href="#ref-Fox1990" role="doc-biblioref">1990</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Fox.html"><code>Fox()</code></a>.</li>
-<li>Geometric adaptability index <span class="citation">(Mohammadi and Amri <a href="#ref-Mohammadi2008" role="doc-biblioref">2008</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/gai.html"><code>gai()</code></a>.</li>
 <li>Huehn’s stability statistic <span class="citation">(Huehn <a href="#ref-Huehn1979" role="doc-biblioref">1979</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Huehn.html"><code>Huehn()</code></a>.</li>
 <li>Thennarasu’s stability statistics <span class="citation">(Thennarasu <a href="#ref-Thennarasu1995" role="doc-biblioref">1995</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Thennarasu.html"><code>Thennarasu()</code></a>.</li>
 </ul>
@@ -630,23 +632,23 @@
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span>()
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
-<span class="co"># # A tibble: 10 x 33</span>
-<span class="co">#    var   gen       Y    CV   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij   Sij</span>
-<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1 GY    G1     2.6   35.2 10.9    0.03  84.4  89.2  81.1   1.22  1.06  0   </span>
-<span class="co">#  2 GY    G10    2.47  42.4 14.2    0.24  59.2  64.6  54.4   7.96  1.12  0.18</span>
-<span class="co">#  3 GY    G2     2.74  34.0 11.3    0.09  82.8  95.3  75.6   3.03  1.05  0.05</span>
-<span class="co">#  4 GY    G3     2.96  29.9 10.1    0.01 104.   99.7 107.    0.72  1.03 -0.01</span>
-<span class="co">#  5 GY    G4     2.64  31.4  8.93   0.06  85.9  79.6  91.9   2.34  0.94  0.03</span>
-<span class="co">#  6 GY    G5     2.54  30.6  7.82   0.05  82.7  82.2  82.4   1.84  0.89  0.01</span>
-<span class="co">#  7 GY    G6     2.53  29.6  7.34   0.05  83.0  83.7  81.8   1.81  0.86  0   </span>
-<span class="co">#  8 GY    G7     2.74  27.4  7.33   0.12  83.9  77.6  93.4   4.16  0.82  0.06</span>
-<span class="co">#  9 GY    G8     3     30.4 10.8    0.07  98.8  90.5 107.    2.57  1.03  0.04</span>
-<span class="co"># 10 GY    G9     2.51  42.4 14.8    0.17  68.8  68.9  70.3   5.56  1.19  0.09</span>
-<span class="co"># # ... with 21 more variables: R2 &lt;dbl&gt;, ASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, EV &lt;dbl&gt;,</span>
-<span class="co"># #   ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;,</span>
-<span class="co"># #   Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;,</span>
-<span class="co"># #   N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span>
+<span class="co"># # A tibble: 10 x 35</span>
+<span class="co">#    var   gen       Y    CV   ACV POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval</span>
+<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#  1 GY    G1     2.6   35.2  34.1  0.03 10.9    0.03  84.4  89.2  81.1   1.22</span>
+<span class="co">#  2 GY    G10    2.47  42.4  38.6  0.14 14.2    0.24  59.2  64.6  54.4   7.96</span>
+<span class="co">#  3 GY    G2     2.74  34.0  35.2  0.06 11.3    0.09  82.8  95.3  75.6   3.03</span>
+<span class="co">#  4 GY    G3     2.96  29.9  33.8  0.02 10.1    0.01 104.   99.7 107.    0.72</span>
+<span class="co">#  5 GY    G4     2.64  31.4  31   -0.05  8.93   0.06  85.9  79.6  91.9   2.34</span>
+<span class="co">#  6 GY    G5     2.54  30.6  28.8 -0.12  7.82   0.05  82.7  82.2  82.4   1.84</span>
+<span class="co">#  7 GY    G6     2.53  29.6  27.8 -0.15  7.34   0.05  83.0  83.7  81.8   1.81</span>
+<span class="co">#  8 GY    G7     2.74  27.4  28.3 -0.13  7.33   0.12  83.9  77.6  93.4   4.16</span>
+<span class="co">#  9 GY    G8     3     30.4  35.0  0.05 10.8    0.07  98.8  90.5 107.    2.57</span>
+<span class="co"># 10 GY    G9     2.51  42.4  39.4  0.15 14.8    0.17  68.8  68.9  70.3   5.56</span>
+<span class="co"># # ... with 23 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
+<span class="co"># #   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;,</span>
+<span class="co"># #   HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;,</span>
+<span class="co"># #   S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span>
 </pre></div>
 </div>
 <div id="selection-based-on-multiple-traits" class="section level1">
@@ -671,6 +673,12 @@
 </div>
 <div id="ref-Annicchiarico1992">
 <p>Annicchiarico, P. 1992. “Cultivar adaptation and recommendation from alfalfa trials in Northern Italy.” <em>Journal of Genetics and Breeding</em> 46: 269–78.</p>
+</div>
+<div id="ref-Doring2015">
+<p>Döring, Thomas F., Samuel Knapp, and Joel E. Cohen. 2015. “Taylor’s power law and the stability of crop yields.” <em>Field Crops Research</em> 183 (November): 294–302. <a href="https://doi.org/10.1016/j.fcr.2015.08.005">https://doi.org/10.1016/j.fcr.2015.08.005</a>.</p>
+</div>
+<div id="ref-Doring2018">
+<p>Döring, Thomas F., and Moritz Reckling. 2018. “Detecting global trends of cereal yield stability by adjusting the coefficient of variation.” <em>European Journal of Agronomy</em> 99 (September): 30–36. <a href="https://doi.org/10.1016/j.eja.2018.06.007">https://doi.org/10.1016/j.eja.2018.06.007</a>.</p>
 </div>
 <div id="ref-Eberhart1966">
 <p>Eberhart, S. A., and W. A. Russell. 1966. “Stability parameters for comparing Varieties.” <em>Crop Science</em> 6 (1): 36–40. <a href="https://doi.org/10.2135/cropsci1966.0011183X000600010011x">https://doi.org/10.2135/cropsci1966.0011183X000600010011x</a>.</p>

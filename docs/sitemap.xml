@@ -4,6 +4,9 @@
     <loc>https://tiagoolivoto.github.io/metan//index.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/acv.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/AMMI_indexes.html</loc>
   </url>
   <url>
@@ -121,6 +124,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/get_model_data.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/ge_acv.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/ge_cluster.html</loc>
   </url>
   <url>
@@ -137,6 +143,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/ge_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/ge_polar.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/ge_reg.html</loc>
@@ -191,6 +200,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/make_mat.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/mantel_test.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/meansGxE.html</loc>
@@ -431,6 +443,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Select_helper.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/select_pred.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/Shukla.html</loc>

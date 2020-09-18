@@ -31,6 +31,7 @@
 #' \donttest{
 #' library(metan)
 #' out <- ge_acv(data_ge2, ENV, GEN, c(EH, PH, EL, CD, ED, NKE))
+#' gmd(out)
 #' }
 #'
 ge_acv <- function(.data, env, gen, resp, verbose = TRUE) {
