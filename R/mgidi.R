@@ -415,6 +415,7 @@ plot.mgidi <- function(x,
     theme_minimal() +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
+          panel.grid = element_line(size = size.line),
           panel.border = element_blank(),
           axis.text = element_text(colour = "black"),
           text = element_text(size = size.text),

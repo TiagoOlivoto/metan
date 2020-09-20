@@ -390,14 +390,22 @@ plot.mtsi <- function(x,
     add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- max(subset(data, sel == "Selected")$MTSI)
-  p <- ggplot(data = data, aes(x = reorder(Genotype, -MTSI),
-                               y = MTSI)) + geom_hline(yintercept = cutpoint, col = col.sel) +
-    geom_path(colour = "black", group = 1) + geom_point(size = size.point,
-                                                        aes(fill = sel), shape = 21, colour = "black") + scale_x_discrete() +
-    scale_y_reverse() + theme_minimal() + theme(legend.position = "bottom",
-                                                legend.title = element_blank(), axis.title.x = element_blank(),
-                                                panel.border = element_blank(), axis.text = element_text(colour = "black"),
-                                                text = element_text(size = size.text)) + labs(y = "Multitrait stability index") +
+  p <-
+    ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
+    geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+    geom_path(colour = "black", group = 1, size = size.line) +
+    geom_point(size = size.point, aes(fill = sel), shape = 21, colour = "black") +
+    scale_x_discrete() +
+    scale_y_reverse() +
+    theme_minimal() +
+    theme(legend.position = "bottom",
+          legend.title = element_blank(),
+          axis.title.x = element_blank(),
+          panel.border = element_blank(),
+          panel.grid = element_line(size = size.line),
+          axis.text = element_text(colour = "black"),
+          text = element_text(size = size.text)) +
+    labs(y = "Multitrait stability index") +
     scale_fill_manual(values = c(col.nonsel, col.sel))
   if (radar == TRUE) {
     if(arrange.label == TRUE){
@@ -406,8 +414,10 @@ plot.mtsi <- function(x,
       sseq <- c((tot_gen/2 + 1):tot_gen)
       fang <- c(90 - 180/length(fseq) * fseq)
       sang <- c(-90 - 180/length(sseq) * sseq)
-      p <- p + coord_polar() + theme(axis.text.x = element_text(angle = c(fang,
-                                                                          sang)), legend.margin = margin(-120, 0, 0, 0), ...)
+      p <-
+        p +
+        coord_polar() +
+        theme(axis.text.x = element_text(angle = c(fang, sang)), legend.margin = margin(-120, 0, 0, 0), ...)
     } else{
       p <- p + coord_polar()
     }
