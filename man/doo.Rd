@@ -4,7 +4,7 @@
 \alias{doo}
 \title{Alternative to dplyr::do for doing anything}
 \usage{
-doo(.data, .fun, ...)
+doo(.data, .fun, ..., unnest = TRUE)
 }
 \arguments{
 \item{.data}{a (grouped) data frame}
@@ -12,6 +12,10 @@ doo(.data, .fun, ...)
 \item{.fun}{A function, formula, or atomic vector.}
 
 \item{...}{Additional arguments passed on to \code{.fun}}
+
+\item{unnest}{Logical argument defaults to \code{TRUE} to control if results
+of \code{.fun} should be unnested. Valid only if the result is of class
+\code{data.frame} or \code{tbl_df}.}
 }
 \value{
 a data frame
