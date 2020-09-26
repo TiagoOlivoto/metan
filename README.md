@@ -289,23 +289,23 @@ or its shortcut
     get_model_data(stats)
     # Class of the model: ge_stats
     # Variable extracted: stats
-    # # A tibble: 10 x 33
-    #    var   gen       Y    CV   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval   bij      Sij
-    #    <chr> <chr> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl>
-    #  1 GY    G1     2.60  35.2 10.9  0.0280  84.4  89.2  81.1  1.22  1.06  -0.00142
-    #  2 GY    G10    2.47  42.3 14.2  0.244   59.2  64.6  54.4  7.96  1.12   0.177  
-    #  3 GY    G2     2.74  34.0 11.3  0.0861  82.8  95.3  75.6  3.03  1.05   0.0497 
-    #  4 GY    G3     2.96  29.9 10.1  0.0121 104.   99.7 107.   0.725 1.03  -0.0128 
-    #  5 GY    G4     2.64  31.4  8.93 0.0640  85.9  79.5  91.9  2.34  0.937  0.0298 
-    #  6 GY    G5     2.54  30.6  7.82 0.0480  82.7  82.2  82.4  1.84  0.887  0.00902
-    #  7 GY    G6     2.53  29.7  7.34 0.0468  83.0  83.7  81.8  1.81  0.861  0.00304
-    #  8 GY    G7     2.74  27.4  7.33 0.122   83.9  77.6  93.4  4.16  0.819  0.0579 
-    #  9 GY    G8     3.00  30.4 10.8  0.0712  98.8  90.5 107.   2.57  1.03   0.0382 
-    # 10 GY    G9     2.51  42.4 14.7  0.167   68.8  68.9  70.3  5.56  1.19   0.0938 
-    # # ... with 21 more variables: R2 <dbl>, ASV <dbl>, SIPC <dbl>, EV <dbl>,
-    # #   ZA <dbl>, WAAS <dbl>, HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>,
-    # #   Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>, S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>,
-    # #   N1 <dbl>, N2 <dbl>, N3 <dbl>, N4 <dbl>
+    # # A tibble: 10 x 35
+    #    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval
+    #    <chr> <chr> <dbl> <dbl> <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl>
+    #  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 
+    #  2 GY    G10    2.47  42.3  38.6  0.136  14.2  0.244   59.2  64.6  54.4  7.96 
+    #  3 GY    G2     2.74  34.0  35.2  0.0570 11.3  0.0861  82.8  95.3  75.6  3.03 
+    #  4 GY    G3     2.96  29.9  33.8  0.0216 10.1  0.0121 104.   99.7 107.   0.725
+    #  5 GY    G4     2.64  31.4  31.0 -0.0537  8.93 0.0640  85.9  79.5  91.9  2.34 
+    #  6 GY    G5     2.54  30.6  28.8 -0.119   7.82 0.0480  82.7  82.2  82.4  1.84 
+    #  7 GY    G6     2.53  29.7  27.8 -0.147   7.34 0.0468  83.0  83.7  81.8  1.81 
+    #  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 
+    #  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 
+    # 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 
+    # # ... with 23 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASV <dbl>,
+    # #   SIPC <dbl>, EV <dbl>, ZA <dbl>, WAAS <dbl>, HMGV <dbl>, RPGV <dbl>,
+    # #   HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>, S1 <dbl>,
+    # #   S2 <dbl>, S3 <dbl>, S6 <dbl>, N1 <dbl>, N2 <dbl>, N3 <dbl>, N4 <dbl>
 
 Citation
 ========

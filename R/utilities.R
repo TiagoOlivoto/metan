@@ -1519,9 +1519,12 @@ tidy_sym <- function(x, keep_diag = TRUE){
 #'@param .data a (grouped) data frame
 #'@param .fun A function, formula, or atomic vector.
 #'@param ... Additional arguments passed on to \code{.fun}
+#'@param unnest Logical argument defaults to \code{TRUE} to control if results
+#'  of \code{.fun} should be unnested. Valid only if the result is of class
+#'  \code{data.frame} or \code{tbl_df}.
 #' @export
-#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@return a data frame
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@importFrom purrr map
 #'@importFrom tidyr nest unnest
 #'@examples
@@ -1538,7 +1541,7 @@ tidy_sym <- function(x, keep_diag = TRUE){
 #'   group_by(ENV) %>%
 #'   doo(~gafem(., GEN, REP, PH, verbose = FALSE))
 #'}
-doo <- function(.data, .fun, ...){
+doo <- function(.data, .fun, ..., unnest = TRUE){
   if(is_grouped_df(.data)){
     out <- nest(.data)
   } else{
@@ -1548,8 +1551,8 @@ doo <- function(.data, .fun, ...){
     ungroup() %>%
     mutate(data = purrr::map(.data$data, droplevels)) %>%
     mutate(data = purrr::map(.data$data, .fun, ...))
-  if(inherits(out$data[[1]], c("tbl_df"))){
-    out <- suppressWarnings(unnest(out))
+  if(has_class(out$data[[1]], c("tbl_df", "data.frame")) & unnest == TRUE){
+    out <- unnest(out, cols = c(data))
   }
   if(is_grouped_df(.data)){
     out <- arrange(out, !!!syms(group_vars(.data)))
@@ -1793,3 +1796,11 @@ get_os <- function(){
   }
   return(all_lower_case(os))
 }
+# Coord radar for mtsi and mgidi indexes
+coord_radar <- function (theta = "x", start = 0, direction = 1) {
+  theta <- match.arg(theta, c("x", "y"))
+  r <- ifelse(theta == "x", "y", "x")
+  ggproto("CoordRadar", CoordPolar, theta = theta, r = r, start = start,
+          direction = sign(direction),
+          is_linear = function(coord) TRUE)
+  }

@@ -8,6 +8,7 @@
 #' @importFrom methods as
 #' @return An object of class \code{lpcor}.
 #' @export
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
 #' library(metan)

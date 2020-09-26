@@ -29,3 +29,6 @@ is.lpcor(lpdata)
 }
 
 }
+\author{
+Tiago Olivoto \email{tiagoolivoto@gmail.com}
+}

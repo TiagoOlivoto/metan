@@ -103,7 +103,7 @@ pairs_mantel <- function(...,
   }
   if (sum(lapply(class, function(x)
     !any(class(x) %in% c("lpcor_group", "lpcor", "mahala_group",
-                         "covcor_design", "group_clustering") == TRUE)) > 0)) {
+                         "covcor_design", "group_clustering", "clustering") == TRUE)) > 0)) {
     stop("The object must be of the class lpcor. Please use 'as.lpcorr' to convert correlation matrices into the correct format.")
   }
   if (any(class(...) == "lpcor_group")) {

@@ -1,3 +1,10 @@
+# metan (development version)
+## Minor improvements
+* `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor.
+
+## New functions
+* `get_dist()` to get distance matrices from objects of class `clustering`.
+
 # metan 1.9.0
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.
 * New function `select_pred()` to selects a best subset of predictor variables.
