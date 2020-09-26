@@ -43,6 +43,8 @@ An object of class \code{mtsi} with the following items:
 \item \strong{contri.fac} The relative contribution of each factor on the MTSI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.
+\item \strong{contri.fac.rank, contri.fac.rank.sel} The rank for the contribution
+of each factor for all genotypes and selected genotypes, respectively.
 \item \strong{sel.dif} The selection differential for the WAASBY index.
 \item \strong{mean.sd} The mean for the differential selection.
 \item \strong{sel.dif.var} The selection differential for the variables.

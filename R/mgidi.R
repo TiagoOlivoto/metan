@@ -60,9 +60,10 @@
 #' ideotype.|
 #' * \strong{MGIDI} The multi-trait genotype-ideotype distance index.
 #' * \strong{contri_fac} The relative contribution of each factor on the MGIDI
-#' value.
-#' The lower the contribution of a factor, the close of the ideotype the
+#' value. The lower the contribution of a factor, the close of the ideotype the
 #' variables in such factor are.
+#' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
+#' of each factor for all genotypes and selected genotypes, respectively.
 #' * \strong{sel_dif} The selection differential for the variables.
 #' * \strong{total_gain} The selection differential for the variables.
 #' * \strong{sel_gen} The selected genotypes.
@@ -220,17 +221,25 @@ mgidi <- function(.data,
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
   MGIDI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))), decreasing = FALSE)
   contr.factor <- data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
-    rownames_to_column("Gen") %>%
+    rownames_to_column("GEN") %>%
     as_tibble()
   means.factor <- means[, names.pos.var.factor]
   observed <- means[, names.pos.var.factor]
+  contri_long <- pivot_longer(contr.factor, -GEN)
+  contri_fac_rank <-
+    contri_long %>%
+    ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
+    split_factors(ENV) %>%
+    map_dfc(~.x %>% pull())
+
   if (!is.null(ngs)) {
+    selected <- names(MGIDI)[1:ngs]
     data_order <- data[colnames(observed)]
     sel_dif_mean <-
       tibble(VAR = names(pos.var.factor[, 2]),
              Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
              Xo = colMeans(data_order, na.rm = TRUE),
-             Xs = colMeans(data_order[names(MGIDI)[1:ngs], ], na.rm = TRUE),
+             Xs = colMeans(data_order[selected, ], na.rm = TRUE),
              SD = Xs - colMeans(data_order, na.rm = TRUE),
              SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / colMeans(data_order, na.rm = TRUE) * 100)
 
@@ -254,9 +263,16 @@ mgidi <- function(.data,
                 any_of(c("SDperc", "SGperc")),
                 stats = c("min, mean, max, sum"))
 
+    contri_fac_rank_sel <-
+      contri_long %>%
+      subset(GEN %in% selected) %>%
+      ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
+      split_factors(ENV) %>%
+      map_dfc(~.x %>% pull())
 
   } else{
     sel_dif_mean <- NULL
+    contri_fac_rank_sel <- NULL
   }
   if (verbose) {
     cat("\n-------------------------------------------------------------------------------\n")
@@ -277,10 +293,11 @@ mgidi <- function(.data,
       cat("------------------------------------------------------------------------------\n")
       cat("Selected genotypes\n")
       cat("-------------------------------------------------------------------------------\n")
-      cat(names(MGIDI)[1:ngs])
+      cat(selected)
       cat("\n-------------------------------------------------------------------------------\n")
     }
   }
+
   return(structure(list(data = rownames_to_column(data, "GEN"),
                         cormat = as.matrix(cor.means),
                         PCA = pca,
@@ -297,9 +314,11 @@ mgidi <- function(.data,
                         gen_ide = as_tibble(gen_ide, rownames = NA) %>% rownames_to_column("GEN"),
                         MGIDI = as_tibble(MGIDI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MGIDI = value),
                         contri_fac = contr.factor,
+                        contri_fac_rank = contri_fac_rank,
+                        contri_fac_rank_sel = contri_fac_rank_sel,
                         sel_dif = sel_dif_mean,
                         total_gain = total_gain,
-                        sel_gen = names(MGIDI)[1:ngs]),
+                        sel_gen = selected),
                    class = "mgidi"))
 }
 
@@ -446,16 +465,38 @@ plot.mgidi <- function(x,
     if(genotypes == "selected"){
     data <-
       x$contri_fac %>%
-      subset(Gen %in% x$sel_gen)
-    data$Gen <-
-      factor(data$Gen, levels = x$sel_gen)
+      subset(GEN %in% x$sel_gen)
+    data$GEN <-
+      factor(data$GEN, levels = x$sel_gen)
     } else{
       data <- x$contri_fac
     }
-    data %<>% pivot_longer(-Gen)
+    data %<>% pivot_longer(-GEN)
     title <- ifelse(is.null(title), "The strengths and weaknesses view of genotypes", title)
+    if(radar == TRUE){
+      p <-
+        ggplot(data, aes(x = GEN, y = value)) +
+        geom_polygon(aes(group = name, color = name), fill = NA, size = size.line) +
+        geom_line(aes(group = name, color = name), size = size.line) +
+        geom_point(aes(group = name, color = name), size = size.line * 2) +
+        theme_minimal() +
+        theme(strip.text.x = element_text(size = size.text),
+              axis.text.x = element_text(color = "black", size = size.text),
+              axis.ticks.y = element_blank(),
+              panel.grid = element_line(size = size.line),
+              axis.text.y = element_text(size = size.text, color = "black"),
+              legend.position = "bottom",
+              legend.title = element_blank()) +
+        labs(title = title,
+             x = NULL,
+             y = "Contribution of each factor to the MGIDI index") +
+        scale_y_reverse() +
+        guides(color = guide_legend(nrow = 1)) +
+        coord_radar()
+
+    } else{
     p <-
-      ggplot(data, aes(Gen, value, fill = name))+
+      ggplot(data, aes(GEN, value, fill = name))+
       geom_bar(stat = "identity",
                position = position,
                color = "black",
@@ -474,6 +515,7 @@ plot.mgidi <- function(x,
         ggtitle(title)
     if(rotate == TRUE){
       p <- p + coord_flip()
+    }
     }
   }
   return(p)

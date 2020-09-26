@@ -68,9 +68,10 @@ An object of class \code{mgidi} with the following items:
 ideotype.|
 \item \strong{MGIDI} The multi-trait genotype-ideotype distance index.
 \item \strong{contri_fac} The relative contribution of each factor on the MGIDI
-value.
-The lower the contribution of a factor, the close of the ideotype the
+value. The lower the contribution of a factor, the close of the ideotype the
 variables in such factor are.
+\item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
+of each factor for all genotypes and selected genotypes, respectively.
 \item \strong{sel_dif} The selection differential for the variables.
 \item \strong{total_gain} The selection differential for the variables.
 \item \strong{sel_gen} The selected genotypes.

@@ -18,7 +18,7 @@
 #' @param what What should be captured from the model. See more in section
 #'   \strong{Details}.
 #' @param type Chose if the statistics must be show by genotype (\code{type =
-#'   "GEN"}, default) or environment (\code{type = "ENV"}), when possible.
+#'   "GEN"}, default) or environment (\code{TYPE = "ENV"}), when possible.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
 #' @return A tibble showing the values of the variable chosen in argument
@@ -424,8 +424,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
 
   if (has_class(x,  "ge_acv")) {
@@ -439,8 +439,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
 
   if(has_class(x,  "gge") & length(class(x)) == 1){
@@ -596,11 +596,11 @@ get_model_data <- function(x,
         x$model[[what]]
       }) %>%
         as_tibble() %>%
-        mutate(gen = x[[1]][["model"]][["Code"]],
-               type = x[[1]][["model"]][["type"]]) %>%
-        dplyr::filter(type == {{type}}) %>%
-        remove_cols(type) %>%
-        column_to_first(gen)
+        mutate(GEN = x[[1]][["model"]][["Code"]],
+               TYPE = x[[1]][["model"]][["type"]]) %>%
+        dplyr::filter(TYPE == {{type}}) %>%
+        remove_cols(TYPE) %>%
+        column_to_first(GEN)
     }
     if(what == "h2"){
       bind <-
@@ -905,8 +905,8 @@ get_model_data <- function(x,
       x[["general"]][[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["general"]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["general"]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "Schmildt")) {
     if (is.null(what)){
@@ -919,8 +919,8 @@ get_model_data <- function(x,
       x[["general"]][[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["general"]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["general"]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "ge_stats")) {
     if (is.null(what)){
@@ -937,7 +937,7 @@ get_model_data <- function(x,
       }
     })) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
+      mutate(GEN = x[[1]][["GEN"]]) %>%
       pivot_longer(cols = contains(".")) %>%
       separate(name, into = c("var", "stat"), sep = "\\.") %>%
       pivot_wider(values_from = value, names_from = stat) %>%
@@ -955,8 +955,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "Huehn")) {
     if (is.null(what)){
@@ -969,8 +969,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "gai")) {
     if (is.null(what)){
@@ -983,8 +983,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "ge_effects")) {
     bind <- sapply(x, function(x) {
@@ -1007,8 +1007,8 @@ get_model_data <- function(x,
       x[["index"]][[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["index"]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["index"]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "Shukla")) {
     if (is.null(what)){
@@ -1021,8 +1021,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "Fox")) {
     if (is.null(what)){
@@ -1035,8 +1035,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "ge_reg")) {
     if (is.null(what)){
@@ -1049,8 +1049,8 @@ get_model_data <- function(x,
       x[["regression"]][[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["regression"]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["regression"]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "ecovalence")) {
     if (is.null(what)){
@@ -1063,8 +1063,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "AMMI_indexes")) {
     if (is.null(what)){
@@ -1077,8 +1077,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "Res_ind")) {
     if (is.null(what)){
@@ -1091,8 +1091,8 @@ get_model_data <- function(x,
       x[[what]]
     }) %>%
       as_tibble() %>%
-      mutate(gen = x[[1]][["GEN"]]) %>%
-      column_to_first(gen)
+      mutate(GEN = x[[1]][["GEN"]]) %>%
+      column_to_first(GEN)
   }
   if (has_class(x,  "performs_ammi")) {
     if (is.null(what)){
@@ -1106,11 +1106,11 @@ get_model_data <- function(x,
         x$model[[what]]
       }) %>%
         as_tibble() %>%
-        mutate(gen = x[[1]][["model"]][["Code"]],
-               type = x[[1]][["model"]][["type"]]) %>%
-        dplyr::filter(type == {{type}}) %>%
-        remove_cols(type) %>%
-        column_to_first(gen)
+        mutate(GEN = x[[1]][["model"]][["Code"]],
+               TYPE = x[[1]][["model"]][["type"]]) %>%
+        dplyr::filter(TYPE == {{type}}) %>%
+        remove_cols(TYPE) %>%
+        column_to_first(GEN)
     }
     if (what  %in% check5) {
       what <- case_when(
@@ -1142,11 +1142,11 @@ get_model_data <- function(x,
         x$model[[what]]
       }) %>%
         as_tibble() %>%
-        mutate(gen = x[[1]][["model"]][["Code"]],
-               type = x[[1]][["model"]][["type"]]) %>%
-        dplyr::filter(type == {{type}}) %>%
-        remove_cols(type) %>%
-        column_to_first(gen)
+        mutate(GEN = x[[1]][["model"]][["Code"]],
+               TYPE = x[[1]][["model"]][["type"]]) %>%
+        dplyr::filter(TYPE == {{type}}) %>%
+        remove_cols(TYPE) %>%
+        column_to_first(GEN)
     }
     if (what == "details") {
       bind <- sapply(x, function(x) {

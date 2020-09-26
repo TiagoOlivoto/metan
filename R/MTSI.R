@@ -32,6 +32,8 @@
 #' * \strong{contri.fac} The relative contribution of each factor on the MTSI value.
 #' The lower the contribution of a factor, the close of the ideotype the variables in such
 #' factor are.
+#' * \strong{contri.fac.rank, contri.fac.rank.sel} The rank for the contribution
+#' of each factor for all genotypes and selected genotypes, respectively.
 #' * \strong{sel.dif} The selection differential for the WAASBY index.
 #' * \strong{mean.sd} The mean for the differential selection.
 #' * \strong{sel.dif.var} The selection differential for the variables.
@@ -39,6 +41,7 @@
 #' * \strong{sel.dif.waasb} The selection differential for WAASB index.
 #' * \strong{Selected} The selected genotypes.
 #' @md
+#' @importFrom purrr map_dfc
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
@@ -106,14 +109,9 @@ mtsi <- function(.data,
   } else {
     ngs <- round(nrow(data) * (SI/100), 0)
   }
-
-  observed <- data.frame(do.call(cbind, lapply(.data, function(x) {
-    val <- x[["model"]][["Y"]]
-  })))
-  observed$gen <- .data[[1]][["model"]][["Code"]]
-  observed$type <- .data[[1]][["model"]][["type"]]
-  observed %<>% dplyr::filter(type == "GEN") %>% remove_cols(type) %>%
-    column_to_rownames("gen")
+  observed <-
+    gmd(.data, "Y", verbose = FALSE) %>%
+    column_to_rownames("GEN")
   means <- data[, 2:ncol(data)]
   rownames(means) <- data[, 1]
   cor.means <- cor(means)
@@ -179,11 +177,13 @@ mtsi <- function(.data,
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
   MTSI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))), decreasing = FALSE)
   contr.factor <- data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
-    rownames_to_column("Gen") %>%
+    rownames_to_column("GEN") %>%
     as_tibble()
   means.factor <- means[, names.pos.var.factor]
   observed <- observed[, names.pos.var.factor]
+  contri_long <- pivot_longer(contr.factor, -GEN)
   if (!is.null(ngs)) {
+    selected <- names(MTSI)[1:ngs]
     sel.dif <- tibble(VAR = names(pos.var.factor[, 2]),
                       Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
                       Xo = colMeans(means.factor),
@@ -222,12 +222,9 @@ mtsi <- function(.data,
     tota_gain <-
       sum_by(sel.dif.mean, sense) %>%
       select_cols(sense, one_of(c("SD", "SDperc", "SG", "SGperc")))
-
-
-    selected <- names(MTSI)[1:ngs]
     what <- ifelse(has_class(.data, "WAASB"), "WAAS", "WAASB")
     waasb_index <- gmd(.data, what, verbose = FALSE)
-    waasb_selected <- colMeans(subset(waasb_index, gen %in% selected) %>% select_numeric_cols())
+    waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
     sel.dif.waasb <-
       tibble(
         TRAIT = names(waasb_selected),
@@ -235,11 +232,19 @@ mtsi <- function(.data,
         Xs = waasb_selected,
         SD = Xs - Xo,
         SDperc = (Xs - Xo) / Xo * 100)
+    contri.fac.rank.sel <-
+      contri_long %>%
+      subset(GEN %in% selected) %>%
+      ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
+      split_factors(ENV) %>%
+      map_dfc(~.x %>% pull())
   }
   if (is.null(ngs)) {
     sel.dif <- NULL
     sel.dif.waasb <- NULL
     sel.dif.mean <- NULL
+    selected <- NULL
+    contri.fac.rank.sel <- NULL
   }
   if (verbose) {
     cat("\n-------------------------------------------------------------------------------\n")
@@ -272,7 +277,13 @@ mtsi <- function(.data,
       cat("\n-------------------------------------------------------------------------------\n")
     }
   }
-  return(structure(list(data = rownames_to_column(data, "GEN"),
+  contri.fac.rank <-
+    contri_long %>%
+    ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
+    split_factors(ENV) %>%
+    map_dfc(~.x %>% pull())
+
+  return(structure(list(data = data,
                         cormat = as.matrix(cor.means),
                         PCA = pca,
                         FA = fa,
@@ -287,12 +298,14 @@ mtsi <- function(.data,
                         scores.ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
                         MTSI = as_tibble(MTSI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MTSI = value),
                         contri.fac = contr.factor,
+                        contri.fac.rank = contri.fac.rank,
+                        contri.fac.rank.sel = contri.fac.rank.sel,
                         sel.dif = sel.dif,
                         mean.sd = mean_sd_ind,
                         sel.dif.var = sel.dif.mean,
                         total.sel.dif = tota_gain,
                         sel.dif.waasb = sel.dif.waasb,
-                        Selected = names(MTSI)[1:ngs]),
+                        Selected = selected),
                    class = "mtsi"))
 }
 
@@ -423,20 +436,41 @@ plot.mtsi <- function(x,
     }
   }
   } else{
-
     x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
     y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
     if(genotypes == "selected"){
       data <-
         x$contri.fac %>%
-        subset(Gen %in% x$Selected) %>%
+        subset(GEN %in% x$Selected) %>%
         droplevels()
     } else{
       data <- x$contri.fac
     }
-    data %<>% pivot_longer(-Gen)
+    data %<>% pivot_longer(-GEN)
+    if(radar == TRUE){
+      p <-
+      ggplot(data, aes(x = GEN, y = value)) +
+        geom_polygon(aes(group = name, color = name), fill = NA, size = size.line) +
+        geom_line(aes(group = name, color = name), size = size.line) +
+        geom_point(aes(group = name, color = name), size = size.line * 2) +
+        theme_minimal() +
+        theme(strip.text.x = element_text(size = size.text),
+              axis.text.x = element_text(color = "black", size = size.text),
+              axis.ticks.y = element_blank(),
+              panel.grid = element_line(size = size.line),
+              axis.text.y = element_text(size = size.text, color = "black"),
+              legend.position = "bottom",
+              legend.title = element_blank()) +
+        labs(title = "The strengths and weaknesses for genotypes",
+             x = NULL,
+             y = "Contribution of each factor to the MTSI index") +
+        scale_y_reverse() +
+        guides(color = guide_legend(nrow = 1)) +
+        coord_radar()
+
+    } else{
     p <-
-      ggplot(data, aes(Gen, value, fill = name))+
+      ggplot(data, aes(GEN, value, fill = name))+
       geom_bar(stat = "identity",
                position = position,
                color = "black",
@@ -450,15 +484,18 @@ plot.mtsi <- function(x,
             panel.border = element_rect(size = size.line))+
       scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
                        expand = expansion(0))+
-      labs(x = x.lab, y = y.lab)+
-      guides(guide_legend(nrow = 1)) +
-      ggtitle("The strengths and weaknesses for genotypes")
+      labs(title = "The strengths and weaknesses for genotypes",
+           x = x.lab,
+           y = y.lab)+
+      guides(guide_legend(nrow = 1))
     if(invert == TRUE){
       p <- p + coord_flip()
+    }
     }
   }
   return(p)
 }
+
 
 
 

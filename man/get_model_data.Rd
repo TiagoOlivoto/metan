@@ -23,7 +23,7 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 \strong{Details}.}
 
 \item{type}{Chose if the statistics must be show by genotype (\code{type =
-"GEN"}, default) or environment (\code{type = "ENV"}), when possible.}
+"GEN"}, default) or environment (\code{TYPE = "ENV"}), when possible.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
