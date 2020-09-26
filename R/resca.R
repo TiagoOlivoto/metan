@@ -62,6 +62,11 @@ resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, 
     stop("You cannot inform a vector of values if a data frame is used as input.")
   }
   if(!missing(.data)){
+    if(missing(...)){
+      vars <- select_numeric_cols(.data)
+    } else{
+      vars <- select_cols(.data, ...) %>%  select_numeric_cols()
+    }
     rescc <- function(x){
       (new_max - new_min)/(max(x, na.rm = na.rm) - min(x, na.rm = na.rm)) * (x - max(x, na.rm = na.rm)) + new_max
     }
@@ -69,10 +74,10 @@ resca <- function(.data = NULL, ..., values = NULL, new_min = 0, new_max = 100, 
       dplyr::do(.data, resca(., ...))
     }
     if (keep == TRUE){
-    .data %>% mutate(across(c(...), list(res = rescc)))
+    .data %>% mutate(across(any_of(names(vars)), list(res = rescc)))
     } else {
       .data %>%
-        mutate(across(c(...), list(res = rescc))) %>%
+        mutate(across(any_of(names(vars)), list(res = rescc))) %>%
         select(contains("res"))
     }
   } else {
