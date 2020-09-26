@@ -29,13 +29,14 @@ corr_plot(
   progress = NULL,
   smooth = FALSE,
   col.smooth = "red",
-  size.smooth = 0.3,
+  size.smooth = "deprecated",
   confint = TRUE,
   size.point = 1,
   shape.point = 19,
   alpha.point = 0.7,
   fill.point = NULL,
   col.point = "black",
+  size.line = 0.5,
   minsize = 2,
   maxsize = 3,
   pan.spacing = 0.15,
@@ -124,7 +125,7 @@ to \code{FALSE}.}
 
 \item{col.smooth}{The color for the smooth line.}
 
-\item{size.smooth}{The size for the smooth line.}
+\item{size.smooth}{Deprecated argument. Use \code{size.line} instead.}
 
 \item{confint}{Should a confidence band be shown with the smooth line? Set to
 \code{TRUE}.}
@@ -140,6 +141,8 @@ transparent. 0 = fully transparent; 1 = full color. Set to 0.7}
 between 21 and 25.}
 
 \item{col.point}{The color for the edge of the point, set to \code{black}.}
+
+\item{size.line}{The size of the line (smooth and diagonal).}
 
 \item{minsize}{The size of the letter that will represent the smallest
 correlation coefficient.}
@@ -212,7 +215,7 @@ corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
           maxsize = 4,
           minsize = 2,
           smooth = TRUE,
-          size.smooth = 1,
+          size.line = 1,
           col.smooth = 'black',
           col.sign = 'cyan',
           col.up.panel = 'black',

@@ -56,7 +56,7 @@
 #' @param smooth Should a linear smooth line be shown in the scatterplots? Set
 #'   to \code{FALSE}.
 #' @param col.smooth The color for the smooth line.
-#' @param size.smooth The size for the smooth line.
+#' @param size.smooth Deprecated argument. Use \code{size.line} instead.
 #' @param confint Should a confidence band be shown with the smooth line? Set to
 #'   \code{TRUE}.
 #' @param size.point The size of the points in the plot. Set to \code{0.5}.
@@ -66,6 +66,7 @@
 #' @param fill.point The color to fill the points. Valid argument if points are
 #'   between 21 and 25.
 #' @param col.point The color for the edge of the point, set to \code{black}.
+#' @param size.line The size of the line (smooth and diagonal).
 #' @param minsize The size of the letter that will represent the smallest
 #'   correlation coefficient.
 #' @param maxsize The size of the letter that will represent the largest
@@ -124,7 +125,7 @@
 #'           maxsize = 4,
 #'           minsize = 2,
 #'           smooth = TRUE,
-#'           size.smooth = 1,
+#'           size.line = 1,
 #'           col.smooth = 'black',
 #'           col.sign = 'cyan',
 #'           col.up.panel = 'black',
@@ -156,13 +157,14 @@ corr_plot <- function(.data, ...,
                       progress = NULL,
                       smooth = FALSE,
                       col.smooth = "red",
-                      size.smooth = 0.3,
+                      size.smooth = "deprecated",
                       confint = TRUE,
                       size.point = 1,
                       shape.point = 19,
                       alpha.point = 0.7,
                       fill.point = NULL,
                       col.point = "black",
+                      size.line = 0.5,
                       minsize = 2,
                       maxsize = 3,
                       pan.spacing = 0.15,
@@ -173,6 +175,10 @@ corr_plot <- function(.data, ...,
                       width = 8,
                       height = 7,
                       resolution = 300) {
+  if(!size.smooth == "deprecated"){
+    warning("Argument 'size.smooth' is deprecated. Use 'size.line' instead.")
+    size.line <- size.smooth
+  }
   if(!show.labels.in %in% c("show", "internal", "none")){
     stop("The argument 'show.labels.in' must be one of the 'show', 'internal', or 'none'. ")
   }
@@ -271,8 +277,10 @@ corr_plot <- function(.data, ...,
     p <- p + theme_classic() + theme(panel.background = ggplot2::element_rect(fill = "white",
                                                                               color = col.lw.panel))
     if (smooth == TRUE) {
-      p <- p + geom_smooth(method = "lm", se = confint,
-                           size = size.smooth, color = col.smooth, ...)
+      p <- p + geom_smooth(method = "lm",
+                           se = confint,
+                           size = size.line,
+                           color = col.smooth, ...)
     }
     if (r < prob) {
       p <- p + theme(panel.background = ggplot2::element_rect(fill = ggplot2::alpha(col.sign,
@@ -282,10 +290,9 @@ corr_plot <- function(.data, ...,
   }
   ggally_mysmooth <- function(data, mapping, ...) {
 
-    dia <- ggplot2::ggplot(data = data, mapping = mapping)
+    dia <- ggplot(data = data, mapping = mapping)
     if (diag.type == "density") {
-      dia <- dia + ggplot2::geom_density(fill = ggplot2::alpha(col.diag,
-                                                               alpha.diag), col = "black")
+      dia <- dia + geom_density(fill = ggplot2::alpha(col.diag, alpha.diag), col = "black")
     }
     if (diag.type == "boxplot") {
       y <- GGally::eval_data_col(data, mapping$x)
@@ -293,23 +300,28 @@ corr_plot <- function(.data, ...,
       dia <- dia + stat_boxplot(aes(y = y, x = x, group = 1),
                                 geom ='errorbar',
                                 color = transparent_color(),
+                                size = size.line,
                                 width = 0.9) +
         stat_boxplot(aes(y = y, x = x, group = 1),
                      geom ='errorbar',
+                     size = size.line,
                      width = 0.2) +
         ggplot2::geom_boxplot(aes(y = y, x = x, group = 1),
                               fill = ggplot2::alpha(col.diag,
                                                     alpha.diag),
                               width = 0.4,
+                              size = size.line,
                               col = "black")
 
     }
     if (diag.type == "histogram") {
-      dia <- dia + ggplot2::geom_histogram(fill = ggplot2::alpha(col.diag,
-                                                                 alpha.diag), col = "black", bins = bins)
+      dia <- dia + geom_histogram(fill = ggplot2::alpha(col.diag, alpha.diag),
+                                  col = "black",
+                                  size = size.line,
+                                  bins = bins)
     }
-    dia <- dia + ggplot2::theme_classic() + ggplot2::theme(panel.background = ggplot2::element_rect(fill = ggplot2::alpha("white",
-                                                                                                                          1), color = col.dia.panel))
+    dia <- dia + theme_classic() +
+      theme(panel.background = element_rect(fill = ggplot2::alpha("white", 1), color = col.dia.panel))
   }
   if (diag == TRUE) {
     diag <- list(continuous = ggally_mysmooth)
