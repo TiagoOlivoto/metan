@@ -262,6 +262,7 @@ reference:
   - subtitle: "Clustering analysis"
     contents:
       - clustering
+      - get_dist
       - mahala
       - mahala_design
       - plot.clustering

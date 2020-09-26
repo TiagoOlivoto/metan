@@ -97,7 +97,7 @@ mutate() and map() to apply a function to a grouped data frame." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0.9000</span>
       </span>
     </div>
 
@@ -234,7 +234,7 @@ mutate() and map() to apply a function to a grouped data frame." />
 <code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate()</a></code> and <code>map()</code> to apply a function to a grouped data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>doo</span>(<span class='kw'>.data</span>, <span class='kw'>.fun</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>doo</span>(<span class='kw'>.data</span>, <span class='kw'>.fun</span>, <span class='kw'>...</span>, unnest = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -250,6 +250,12 @@ mutate() and map() to apply a function to a grouped data frame." />
     <tr>
       <th>...</th>
       <td><p>Additional arguments passed on to <code>.fun</code></p></td>
+    </tr>
+    <tr>
+      <th>unnest</th>
+      <td><p>Logical argument defaults to <code>TRUE</code> to control if results
+of <code>.fun</code> should be unnested. Valid only if the result is of class
+<code>data.frame</code> or <code>tbl_df</code>.</p></td>
     </tr>
     </table>
 

@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0.9000</span>
       </span>
     </div>
 
@@ -285,6 +285,8 @@ shown in the console.</p></td>
 <li><p><strong>contri.fac</strong> The relative contribution of each factor on the MTSI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.</p></li>
+<li><p><strong>contri.fac.rank, contri.fac.rank.sel</strong> The rank for the contribution
+of each factor for all genotypes and selected genotypes, respectively.</p></li>
 <li><p><strong>sel.dif</strong> The selection differential for the WAASBY index.</p></li>
 <li><p><strong>mean.sd</strong> The mean for the differential selection.</p></li>
 <li><p><strong>sel.dif.var</strong> The selection differential for the variables.</p></li>
@@ -321,7 +323,7 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='kw'>mtsi_index</span> <span class='op'>&lt;-</span> <span class='fu'>mtsi</span>(<span class='kw'>mtsi_model</span>, index = <span class='st'>'waasb'</span>)
-</div><div class='output co'>#&gt; 
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2 with NA values deleted.</span></div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
@@ -365,7 +367,7 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------
 #&gt; G3 G1
-#&gt; -------------------------------------------------------------------------------</div><div class='input'>
+#&gt; -------------------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 4 with NA values deleted.</span></div><div class='input'>
 
 <span class='co'># Based on mean performance and stability (using pipe operator %&gt;%)</span>
 <span class='co'># GY: higher is better</span>

@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0.9000</span>
       </span>
     </div>
 
@@ -257,13 +257,14 @@
   progress = <span class='kw'>NULL</span>,
   smooth = <span class='fl'>FALSE</span>,
   col.smooth = <span class='st'>"red"</span>,
-  size.smooth = <span class='fl'>0.3</span>,
+  size.smooth = <span class='st'>"deprecated"</span>,
   confint = <span class='fl'>TRUE</span>,
   size.point = <span class='fl'>1</span>,
   shape.point = <span class='fl'>19</span>,
   alpha.point = <span class='fl'>0.7</span>,
   fill.point = <span class='kw'>NULL</span>,
   col.point = <span class='st'>"black"</span>,
+  size.line = <span class='fl'>0.5</span>,
   minsize = <span class='fl'>2</span>,
   maxsize = <span class='fl'>3</span>,
   pan.spacing = <span class='fl'>0.15</span>,
@@ -400,7 +401,7 @@ to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>size.smooth</th>
-      <td><p>The size for the smooth line.</p></td>
+      <td><p>Deprecated argument. Use <code>size.line</code> instead.</p></td>
     </tr>
     <tr>
       <th>confint</th>
@@ -428,6 +429,10 @@ between 21 and 25.</p></td>
     <tr>
       <th>col.point</th>
       <td><p>The color for the edge of the point, set to <code>black</code>.</p></td>
+    </tr>
+    <tr>
+      <th>size.line</th>
+      <td><p>The size of the line (smooth and diagonal).</p></td>
     </tr>
     <tr>
       <th>minsize</th>
@@ -523,7 +528,7 @@ used. Set to <code>300</code> (300 dpi).</p></td>
           maxsize = <span class='fl'>4</span>,
           minsize = <span class='fl'>2</span>,
           smooth = <span class='fl'>TRUE</span>,
-          size.smooth = <span class='fl'>1</span>,
+          size.line = <span class='fl'>1</span>,
           col.smooth = <span class='st'>'black'</span>,
           col.sign = <span class='st'>'cyan'</span>,
           col.up.panel = <span class='st'>'black'</span>,

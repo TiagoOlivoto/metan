@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Selects a best subset of predictor variables. — select_pred • metan</title>
+<title>Get a distance matrix — get_dist • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,9 +52,10 @@
 
 
 
-<meta property="og:title" content="Selects a best subset of predictor variables. — select_pred" />
-<meta property="og:description" content="Selects among a set of covariates the best set of npred
-predictors for a given response trait resp based on AIC values." />
+<meta property="og:title" content="Get a distance matrix — get_dist" />
+<meta property="og:description" content="Get the distance matrices from objects fitted with the function
+clustering. This is especially useful to get distance matrices
+from several objects to be further analyzed using pairs_mantel." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -224,57 +225,35 @@ predictors for a given response trait resp based on AIC values." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Selects a best subset of predictor variables.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/select_pred.R'><code>R/select_pred.R</code></a></small>
-    <div class="hidden name"><code>select_pred.Rd</code></div>
+    <h1>Get a distance matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/get_dist.R'><code>R/get_dist.R</code></a></small>
+    <div class="hidden name"><code>get_dist.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Selects among a set of <code>covariates</code> the best set of <code>npred</code>
-predictors for a given response trait <code>resp</code> based on AIC values.</p>
+    <p>Get the distance matrices from objects fitted with the function
+<code><a href='clustering.html'>clustering</a></code>. This is especially useful to get distance matrices
+from several objects to be further analyzed using <code><a href='pairs_mantel.html'>pairs_mantel</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_pred</span>(<span class='kw'>.data</span>, <span class='kw'>resp</span>, covariates = <span class='kw'>NULL</span>, <span class='kw'>npred</span>)</pre>
+    <pre class="usage"><span class='fu'>get_dist</span>(<span class='kw'>...</span>, digits = <span class='fl'>2</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>A data frame with the response variable and covariates.</p></td>
+      <th>...</th>
+      <td><p>Object(s) of class <code>clustering</code>.]</p></td>
     </tr>
     <tr>
-      <th>resp</th>
-      <td><p>The response variable.</p></td>
-    </tr>
-    <tr>
-      <th>covariates</th>
-      <td><p>The covariates. Defaults to <em>NULL</em>. In this case, all
-numeric traits in <code>.data</code>, except that in <code>resp</code> are selected. To
-select specific covariates from <code>.data</code>, use a list of unquoted
-comma-separated variable names (e.g. <em>traits = c(var1, var2, var3)</em>),
-an specific range of variables, (e.g. <em>traits = c(var1:var3)</em>), or
-even a select helper like <code><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with("N")</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>npred</th>
-      <td><p>An integer specifying the size of the subset of predictors to be
-selected</p></td>
+      <th>digits</th>
+      <td><p>The number of significant figures. Defaults to <code>2</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with the following elements:</p><ul>
-<li><p><strong>sel_mod</strong> An object of class <code>lm</code> that is the selected model.</p></li>
-<li><p><strong>predictors</strong> The name of the selected predictors.</p></li>
-<li><p><strong>AIC</strong> The Akaike's Information Criterion for the selected model.</p></li>
-<li><p><strong>pred_models</strong> The Akaike's Information Criterion and the predictors
-selected in each step.</p></li>
-<li><p><strong>predicted</strong> The predicted values considering the model in
-<code>sel_mod</code>.</p></li>
-</ul>
-
+    <p>A list of class <code>clustering</code>.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -282,10 +261,44 @@ selected in each step.</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>select_pred</span>(<span class='kw'>data_ge2</span>, resp = <span class='kw'>PH</span>, npred = <span class='fl'>10</span>)
-<span class='kw'>mod</span><span class='op'>$</span><span class='kw'>predictors</span>
-</div><div class='output co'>#&gt;  [1] "EH"   "EP"   "CDED" "KW"   "NR"   "CL"   "ED"   "NKE"  "NKR"  "EL"  </div><div class='input'><span class='kw'>mod</span><span class='op'>$</span><span class='kw'>AIC</span>
-</div><div class='output co'>#&gt; [1] -628.8605</div><div class='input'><span class='co'># }</span>
+<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='clustering.html'>clustering</a></span>()
+<span class='fu'>get_dist</span>(<span class='kw'>d</span>)
+</div><div class='output co'>#&gt; $d
+#&gt;        H1   H10   H11   H12   H13    H2    H3    H4    H5    H6    H7    H8
+#&gt; H1   0.00 49.24 36.63 55.94 39.76 22.00 28.60 34.48 42.49 10.77 24.96 50.59
+#&gt; H10 49.24  0.00 13.73  8.30 42.95 48.85 29.18 46.05 48.06 51.34 26.89  8.77
+#&gt; H11 36.63 13.73  0.00 20.00 40.07 40.23 16.18 41.01 45.28 40.25 13.59 14.45
+#&gt; H12 55.94  8.30 20.00  0.00 49.06 56.01 33.96 52.93 54.39 58.52 32.68  8.59
+#&gt; H13 39.76 42.95 40.07 49.06  0.00 20.76 48.04  9.11  6.78 32.52 40.82 49.88
+#&gt; H2  22.00 48.85 40.23 56.01 20.76  0.00 40.93 14.18 22.03 12.71 34.51 53.61
+#&gt; H3  28.60 29.18 16.18 33.96 48.04 40.93  0.00 46.77 52.96 36.07  7.93 26.52
+#&gt; H4  34.48 46.05 41.01 52.93  9.11 14.18 46.77  0.00  8.67 26.16 39.70 52.51
+#&gt; H5  42.49 48.06 45.28 54.39  6.78 22.03 52.96  8.67  0.00 34.14 45.65 55.21
+#&gt; H6  10.77 51.34 40.25 58.52 32.52 12.71 36.07 26.16 34.14  0.00 30.85 54.36
+#&gt; H7  24.96 26.89 13.59 32.68 40.82 34.51  7.93 39.70 45.65 30.85  0.00 26.25
+#&gt; H8  50.59  8.77 14.45  8.59 49.88 53.61 26.52 52.51 55.21 54.36 26.25  0.00
+#&gt; H9  63.45 16.57 27.13  9.65 58.17 64.91 39.28 61.89 63.28 66.73 39.22 13.19
+#&gt;        H9
+#&gt; H1  63.45
+#&gt; H10 16.57
+#&gt; H11 27.13
+#&gt; H12  9.65
+#&gt; H13 58.17
+#&gt; H2  64.91
+#&gt; H3  39.28
+#&gt; H4  61.89
+#&gt; H5  63.28
+#&gt; H6  66.73
+#&gt; H7  39.22
+#&gt; H8  13.19
+#&gt; H9   0.00
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "clustering"</div><div class='input'><span class='co'># }</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

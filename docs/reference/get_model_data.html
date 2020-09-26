@@ -104,7 +104,7 @@ gmd() Is a shortcut to get_model_data.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0.9000</span>
       </span>
     </div>
 
@@ -274,7 +274,7 @@ AMMI-based stability statistics.</p></li>
     <tr>
       <th>type</th>
       <td><p>Chose if the statistics must be show by genotype (<code>type =
-"GEN"</code>, default) or environment (<code>type = "ENV"</code>), when possible.</p></td>
+"GEN"</code>, default) or environment (<code>TYPE = "ENV"</code>), when possible.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -553,7 +553,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
                resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>CD</span>, <span class='kw'>CL</span>, <span class='kw'>ED</span>))
 <span class='fu'>get_model_data</span>(<span class='kw'>ge_r</span>)
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_reg</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: slope</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 6</span><span>
-#&gt;    gen      PH    EH      CD     CL      ED
+#&gt;    GEN      PH    EH      CD     CL      ED
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.806 1.06  -</span><span style='color: #BB0000;'>0.059</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>2.19</span><span>   0.028</span><span style='text-decoration: underline;'>0</span><span>
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10   1.22  1.30   2.31    4.63   2.47  
@@ -569,7 +569,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>12</span><span> H8    1.01  0.886  0.903   3.73   1.89  
 #&gt; </span><span style='color: #555555;'>13</span><span> H9    1.42  1.48   2.04    3.42   2.40  </div><div class='input'><span class='fu'>get_model_data</span>(<span class='kw'>ge_r</span>, <span class='st'>"deviations"</span>)
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_reg</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: deviations</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
-#&gt;    gen       PH       EH      CD     CL     ED
+#&gt;    GEN       PH       EH      CD     CL     ED
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.071</span><span style='text-decoration: underline;'>0</span><span>  0.063</span><span style='text-decoration: underline;'>7</span><span>  -</span><span style='color: #BB0000;'>0.268</span><span>  -</span><span style='color: #BB0000;'>0.176</span><span> -</span><span style='color: #BB0000;'>0.448</span><span>
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.031</span><span style='text-decoration: underline;'>8</span><span>  0.030</span><span style='text-decoration: underline;'>3</span><span>  -</span><span style='color: #BB0000;'>0.056</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.576 -</span><span style='color: #BB0000;'>0.506</span><span>
@@ -750,7 +750,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span>() <span class='op'>%&gt;%</span>
 <span class='fu'>get_model_data</span>(<span class='st'>"ASV"</span>)
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: AMMI_indexes</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ASV</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 8</span><span>
-#&gt;    gen      PH    ED    TKW   NKR    CD    CL     CW
+#&gt;    GEN      PH    ED    TKW   NKR    CD    CL     CW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    2.27  1.41   7.76  2.01  0.314 2.75   6.24 
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10   1.61  2.11   6.58  1.00  0.725 2.67   4.63 
@@ -839,7 +839,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='co'># Getting the weighted average of absolute scores</span>
 <span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, what = <span class='st'>"WAAS"</span>)
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
-#&gt;    gen      PH    ED   TKW   NKR
+#&gt;    GEN      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    0.318 0.667 2.72  0.929
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.230 0.973 2.15  0.506
@@ -857,7 +857,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='co'># And the rank for the WAASB index.</span>
 <span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, what = <span class='st'>"OrWAAS"</span>)
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
-#&gt;    gen      PH    ED   TKW   NKR
+#&gt;    GEN      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1        9     9     7    10
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10       5    12     6     5
@@ -926,7 +926,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='fu'><a href='Resende_indexes.html'>Resende_indexes</a></span>() <span class='op'>%&gt;%</span>
 <span class='fu'>get_model_data</span>()
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: Res_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: HMRPGV</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
-#&gt;    gen      PH    ED   TKW   NKR
+#&gt;    GEN      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1    1.04  1.03  1.06  0.998
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10   0.937 0.979 0.946 1.00 
@@ -946,7 +946,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class='kw'>stats_ge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
 <span class='fu'>get_model_data</span>(<span class='kw'>stats_ge</span>)
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_stats</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: stats</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 35</span><span>
-#&gt;    var   gen       Y    CV   ACV   POLAR    Var Shukla  Wi_g  Wi_f  Wi_u  Ecoval
+#&gt;    var   GEN       Y    CV   ACV   POLAR    Var Shukla  Wi_g  Wi_f  Wi_u  Ecoval
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> GY    G1     2.60 35.2  34.1   0.029</span><span style='text-decoration: underline;'>8</span><span>  10.9  0.028</span><span style='text-decoration: underline;'>0</span><span>  84.4  89.2  81.1   1.22 
 #&gt; </span><span style='color: #555555;'> 2</span><span> GY    G10    2.47 42.3  38.6   0.136   14.2  0.244   59.2  64.6  54.4   7.96 
