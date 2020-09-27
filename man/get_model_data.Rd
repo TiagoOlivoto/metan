@@ -15,7 +15,7 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 \code{\link{can_corr}()} \code{\link{ecovalence}()},  \code{\link{Fox}()},
 \code{\link{gai}()}, \code{\link{gamem}()},\code{\link{gafem}()},
 \code{\link{ge_acv}}, \code{\link{ge_means}()}, \code{\link{ge_reg}()},
-\code{\link{gytb}()}, \code{\link{performs_ammi}()},
+\code{\link{gytb}()}, \code{\link{mgidi}()}, \code{\link{performs_ammi}()},
 \code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
 \code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.}
 
@@ -156,6 +156,9 @@ analyzed traits (default).
 \item \code{"stand_gyt"} The standardized (zero mean and unit variance) Genotype by yield*trait table.
 \item \code{"si"} The superiority index (sum standardized value across all yield*trait combinations).
 }
+
+\strong{Objects of class \code{mgidi}:} See the \strong{Value} section of
+\code{\link{mgidi}()} to see valid options for \code{what} argument.
 
 \strong{Objects of class \code{Shukla}:}
 \itemize{

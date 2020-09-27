@@ -12,7 +12,7 @@
 #'   \code{\link{can_corr}()} \code{\link{ecovalence}()},  \code{\link{Fox}()},
 #'   \code{\link{gai}()}, \code{\link{gamem}()},\code{\link{gafem}()},
 #'   \code{\link{ge_acv}}, \code{\link{ge_means}()}, \code{\link{ge_reg}()},
-#'   \code{\link{gytb}()}, \code{\link{performs_ammi}()},
+#'   \code{\link{gytb}()}, \code{\link{mgidi}()}, \code{\link{performs_ammi}()},
 #'   \code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
 #'   \code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.
 #' @param what What should be captured from the model. See more in section
@@ -115,6 +115,8 @@
 #' * \code{"stand_gyt"} The standardized (zero mean and unit variance) Genotype by yield*trait table.
 #' * \code{"si"} The superiority index (sum standardized value across all yield*trait combinations).
 #'
+#'  \strong{Objects of class \code{mgidi}:} See the \strong{Value} section of
+#'  \code{\link{mgidi}()} to see valid options for \code{what} argument.
 #'
 #'  \strong{Objects of class \code{Shukla}:}
 #' * \code{"rMean"} Rank for the mean.
@@ -361,8 +363,8 @@ get_model_data <- function(x,
                       "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
-                      "gafem", "anova_ind", "gge", "can_cor", "can_cor_group", "gytb",
-                      "ge_acv", "ge_polar"))) {
+                      "gafem", "gamem_group", "anova_ind", "gge", "can_cor",
+                      "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -406,13 +408,34 @@ get_model_data <- function(x,
   check24 <- c("gyt", "stand_gyt", "si")
   check25 <- c("ACV", "ACV_R")
   check26 <- c("POLAR", "POLAR_R")
-  if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gafem", "anova_joint"))) {
+  check27 <- c("data", "cormat", "PCA", "FA", "KMO", "MSA", "communalities",
+               "communalities_mean", "initial_loadings", "finish_loadings",
+               "canonical_loadings", "scores_gen", "scores_ide", "gen_ide",
+               "MGIDI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
+               "sel_dif", "total_gain", "sel_gen")
+  if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
 
+  if(has_class(x, "mgidi")){
+    if (is.null(what)){
+      what <- "sel_dif"
+    }
+    if (!what %in% check27) {
+      stop("Invalid value in 'what' for object of class 'mgidi'. Allowed are ", paste(check27, collapse = ", "), call. = FALSE)
+    }
+    if(has_class(x, "mgidi_group")){
+      bind <-
+        x %>%
+        mutate(data = map(data, ~.x %>% .[[what]])) %>%
+        unnest(data)
+    } else{
+    bind <- x[[what]]
+    }
+  }
   if (has_class(x,  "ge_polar")) {
     if (is.null(what)){
       what <- "POLAR"
@@ -577,10 +600,17 @@ get_model_data <- function(x,
 
 
 
-  if (has_class(x, c("waasb", "gamem"))) {
+  if (has_class(x, c("waasb", "gamem", "gamem_group"))) {
     if (is.null(what)){
       what <- "genpar"
     }
+    if(has_class(x, "gamem_group")){
+      bind <-
+      x %>%
+        mutate(bind = map(data, ~.x %>% gmd(what = what, verbose = verbose))) %>%
+        unnest(bind) %>%
+        remove_cols(data)
+    } else{
     if(is.null(x[[1]][["ESTIMATES"]]) == TRUE && what == "genpar"){
       warning("Using what = 'genpar' is only possible for models fitted with random = 'gen' or random = 'all'\nSetting what to 'vcomp'.", call. = FALSE)
       what <- "vcomp"
@@ -798,9 +828,9 @@ get_model_data <- function(x,
                  }) %>%
           reduce(full_join, by = var_names) %>%
           arrange(across(where(~!is.numeric(.x))))
-          # arrange_if(~!is.numeric(.x))
         bind[[names(dfs[[1]])[i]]] <- num
       }
+    }
     }
   }
 

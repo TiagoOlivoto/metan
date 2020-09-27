@@ -100,6 +100,18 @@ mgidi <- function(.data,
                   ideotype = NULL,
                   use = "complete.obs",
                   verbose = TRUE) {
+  if(has_class(.data, "gamem_group")){
+    bind <-
+      .data %>%
+      mutate(data = map(data, ~.x %>%
+                          mgidi(use_data = use_data,
+                                SI = SI,
+                                mineval = mineval,
+                                ideotype = ideotype,
+                                use = use,
+                                verbose = verbose)))
+    return(set_class(bind, c("tbl_df",  "mgidi_group", "mgidi", "tbl",  "data.frame")))
+  } else{
   d <- match.call()
   if(!use_data %in% c("blup", "pheno")){
     stop("Argument 'use_data = ", d["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
@@ -320,6 +332,7 @@ mgidi <- function(.data,
                         total_gain = total_gain,
                         sel_gen = selected),
                    class = "mgidi"))
+  }
 }
 
 
@@ -428,7 +441,11 @@ plot.mgidi <- function(x,
     ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
     geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
     geom_path(colour = "black", group = 1, size = size.line) +
-    geom_point(size = size.point, aes(fill = sel), shape = 21, colour = "black", stroke  = size.point / 10) +
+    geom_point(size = size.point,
+               aes(fill = sel),
+               shape = 21,
+               colour = "black",
+               stroke  = size.point / 10) +
     scale_x_discrete() +
     scale_y_reverse() +
     theme_minimal() +

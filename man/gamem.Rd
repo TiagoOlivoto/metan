@@ -4,7 +4,16 @@
 \alias{gamem}
 \title{Genotype analysis by mixed-effect models}
 \usage{
-gamem(.data, gen, rep, resp, block = NULL, prob = 0.05, verbose = TRUE)
+gamem(
+  .data,
+  gen,
+  rep,
+  resp,
+  block = NULL,
+  by = NULL,
+  prob = 0.05,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to, Genotypes,
@@ -27,6 +36,13 @@ information, whereas the complete replicate effect is always taken as
 fixed, as no inter-replicate information was to be recovered (Mohring et
 al., 2015).}
 
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+when the researcher what to fit a mixed-effect model for each environment.
+In this case, an object of class gamem_grouped is returned.
+\code{\link{mgidi}} can then be used to compute the mgidi index within each
+environment.}
+
 \item{prob}{The probability for estimating confidence interval for BLUP's
 prediction.}
 
@@ -34,8 +50,8 @@ prediction.}
 silently.}
 }
 \value{
-An object of class \code{gamem}, which is a list with the following items for each
-element (variable):
+An object of class \code{gamem} or \code{gamem_grouped}, which is a
+list with the following items for each element (variable):
 \itemize{
 \item \strong{fixed:} Test for fixed effects.
 \item \strong{random:} Variance components for random effects.

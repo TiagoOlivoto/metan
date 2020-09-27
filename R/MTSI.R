@@ -407,7 +407,12 @@ plot.mtsi <- function(x,
     ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
     geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
     geom_path(colour = "black", group = 1, size = size.line) +
-    geom_point(size = size.point, aes(fill = sel), shape = 21, colour = "black") +
+    geom_point(size = size.point,
+               stroke = size.point / 10,
+               aes(fill = sel),
+               shape = 21,
+               colour = "black",
+               ) +
     scale_x_discrete() +
     scale_y_reverse() +
     theme_minimal() +
