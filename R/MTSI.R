@@ -22,24 +22,24 @@
 #' * \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
 #' * \strong{MSA} The measure of sampling adequacy for individual variable.
 #' * \strong{communalities} The communalities.
-#' * \strong{communalities.mean} The communalities' mean.
-#' * \strong{initial.loadings} The initial loadings.
-#' * \strong{finish.loadings} The final loadings after varimax rotation.
-#' * \strong{canonical.loadings} The canonical loadings.
-#' * \strong{scores.gen} The scores for genotypes in all retained factors.
-#' * \strong{scores.ide} The scores for the ideotype in all retained factors.
+#' * \strong{communalities_mean} The communalities' mean.
+#' * \strong{initial_loadings} The initial loadings.
+#' * \strong{finish_loadings} The final loadings after varimax rotation.
+#' * \strong{canonical_loadings} The canonical loadings.
+#' * \strong{scores_gen} The scores for genotypes in all retained factors.
+#' * \strong{scores_ide} The scores for the ideotype in all retained factors.
 #' * \strong{MTSI} The multi-trait stability index.
-#' * \strong{contri.fac} The relative contribution of each factor on the MTSI value.
+#' * \strong{contri_fac} The relative contribution of each factor on the MTSI value.
 #' The lower the contribution of a factor, the close of the ideotype the variables in such
 #' factor are.
-#' * \strong{contri.fac.rank, contri.fac.rank.sel} The rank for the contribution
+#' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
-#' * \strong{sel.dif} The selection differential for the WAASBY index.
-#' * \strong{mean.sd} The mean for the differential selection.
-#' * \strong{sel.dif.var} The selection differential for the variables.
-#' * \strong{total.sel.dif} The total selection differential.
-#' * \strong{sel.dif.waasb} The selection differential for WAASB index.
-#' * \strong{Selected} The selected genotypes.
+#' * \strong{sel_dif} The selection differential for the WAASBY index.
+#' * \strong{mean_sd} The mean for the differential selection.
+#' * \strong{sel_dif_var} The selection differential for the variables.
+#' * \strong{total_sel_dif} The total selection differential.
+#' * \strong{sel_dif_waasb} The selection differential for WAASB index.
+#' * \strong{sel_gen} The selected genotypes.
 #' @md
 #' @importFrom purrr map_dfc
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -122,13 +122,13 @@ mtsi <- function(.data,
   rownames(eigen.vectors) <- colnames(means)
   if (length(eigen.values[eigen.values >= mineval]) == 1) {
     eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >= mineval]))))
-    initial.loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
-    A <- initial.loadings
+    initial_loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
+    A <- initial_loadings
   } else {
     eigen.values.factors <-
       t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >= mineval])))))
-    initial.loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
-    A <- varimax(initial.loadings)[[1]][]
+    initial_loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
+    A <- varimax(initial_loadings)[[1]][]
   }
   partial <- solve_svd(cor.means)
   k <- ncol(means)
@@ -147,7 +147,7 @@ mtsi <- function(.data,
     sum((cor.means[i, -i])^2)/(sum((cor.means[i, -i])^2) + sum((partial[i, -i])^2))
   }))
   names(MSA) <- colnames(means)
-  colnames(A) <- paste("FA", 1:ncol(initial.loadings), sep = "")
+  colnames(A) <- paste("FA", 1:ncol(initial_loadings), sep = "")
   pca <- tibble(PC = paste("PC", 1:ncol(means), sep = ""),
                 Eigenvalues = eigen.values,
                 `Variance (%)` = (eigen.values/sum(eigen.values)) * 100,
@@ -156,8 +156,8 @@ mtsi <- function(.data,
   Uniquenesses <- 1 - Communality
   fa <- cbind(A, Communality, Uniquenesses) %>% as_tibble(rownames = NA) %>%  rownames_to_column("VAR")
   z <- scale(means, center = FALSE, scale = apply(means, 2, sd))
-  canonical.loadings <- t(t(A) %*% solve_svd(cor.means))
-  scores <- z %*% canonical.loadings
+  canonical_loadings <- t(t(A) %*% solve_svd(cor.means))
+  scores <- z %*% canonical_loadings
   colnames(scores) <- paste("FA", 1:ncol(scores), sep = "")
   rownames(scores) <- data[, 1]
   pos.var.factor <- which(abs(A) == apply(abs(A), 1, max), arr.ind = TRUE)
@@ -173,7 +173,7 @@ mtsi <- function(.data,
   }
   ideotypes.matrix <- t(as.matrix(ideotype.D))/apply(means, 2, sd)
   rownames(ideotypes.matrix) <- "ID1"
-  ideotypes.scores <- ideotypes.matrix %*% canonical.loadings
+  ideotypes.scores <- ideotypes.matrix %*% canonical_loadings
   gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
   MTSI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))), decreasing = FALSE)
   contr.factor <- data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
@@ -184,14 +184,14 @@ mtsi <- function(.data,
   contri_long <- pivot_longer(contr.factor, -GEN)
   if (!is.null(ngs)) {
     selected <- names(MTSI)[1:ngs]
-    sel.dif <- tibble(VAR = names(pos.var.factor[, 2]),
+    sel_dif <- tibble(VAR = names(pos.var.factor[, 2]),
                       Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
                       Xo = colMeans(means.factor),
                       Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]),
                       SD = Xs - Xo,
                       SDperc = (Xs - Xo) / Xo * 100)
-    mean_sd_ind <- apply(sel.dif[, 3:6], 2, mean)
-    sel.dif.mean <-
+    mean_sd_ind <- apply(sel_dif[, 3:6], 2, mean)
+    sel_dif_mean <-
       tibble(VAR = names(pos.var.factor[, 2]),
              Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
              Xo = colMeans(observed),
@@ -212,27 +212,27 @@ mtsi <- function(.data,
              ))
     if (class(.data) == "waasb") {
       h2 <- gmd(.data, "h2", verbose = FALSE)
-      sel.dif.mean <-
-        left_join(sel.dif.mean, h2, by = "VAR") %>%
+      sel_dif_mean <-
+        left_join(sel_dif_mean, h2, by = "VAR") %>%
         add_cols(SG = SD * h2,
                  SGperc = SG / Xo * 100,
                  .after = "SDperc") %>%
         reorder_cols(h2, .after  = "SDperc")
     }
     tota_gain <-
-      sum_by(sel.dif.mean, sense) %>%
+      sum_by(sel_dif_mean, sense) %>%
       select_cols(sense, one_of(c("SD", "SDperc", "SG", "SGperc")))
     what <- ifelse(has_class(.data, "WAASB"), "WAAS", "WAASB")
     waasb_index <- gmd(.data, what, verbose = FALSE)
     waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
-    sel.dif.waasb <-
+    sel_dif_waasb <-
       tibble(
         TRAIT = names(waasb_selected),
         Xo = colMeans(waasb_index %>% select_numeric_cols()),
         Xs = waasb_selected,
         SD = Xs - Xo,
         SDperc = (Xs - Xo) / Xo * 100)
-    contri.fac.rank.sel <-
+    contri_fac_rank_sel <-
       contri_long %>%
       subset(GEN %in% selected) %>%
       ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
@@ -240,11 +240,11 @@ mtsi <- function(.data,
       map_dfc(~.x %>% pull())
   }
   if (is.null(ngs)) {
-    sel.dif <- NULL
-    sel.dif.waasb <- NULL
-    sel.dif.mean <- NULL
+    sel_dif <- NULL
+    sel_dif_waasb <- NULL
+    sel_dif_mean <- NULL
     selected <- NULL
-    contri.fac.rank.sel <- NULL
+    contri_fac_rank_sel <- NULL
   }
   if (verbose) {
     cat("\n-------------------------------------------------------------------------------\n")
@@ -261,7 +261,7 @@ mtsi <- function(.data,
     if (!is.null(ngs)) {
       cat("Selection differential for the ", index, "index\n")
       cat("-------------------------------------------------------------------------------\n")
-      print(sel.dif)
+      print(sel_dif)
       cat("------------------------------------------------------------------------------\n")
       cat("Mean of selection differential\n")
       cat("-------------------------------------------------------------------------------\n")
@@ -269,7 +269,7 @@ mtsi <- function(.data,
       cat("-------------------------------------------------------------------------------\n")
       cat("Selection differential for the mean of the variables\n")
       cat("-------------------------------------------------------------------------------\n")
-      print(sel.dif.mean)
+      print(sel_dif_mean)
       cat("------------------------------------------------------------------------------\n")
       cat("Selected genotypes\n")
       cat("-------------------------------------------------------------------------------\n")
@@ -277,7 +277,7 @@ mtsi <- function(.data,
       cat("\n-------------------------------------------------------------------------------\n")
     }
   }
-  contri.fac.rank <-
+  contri_fac_rank <-
     contri_long %>%
     ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
     split_factors(ENV) %>%
@@ -290,22 +290,22 @@ mtsi <- function(.data,
                         KMO = KMO,
                         MSA = MSA,
                         communalities = Communality,
-                        communalities.mean = mean(Communality),
-                        initial.loadings = data.frame(initial.loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
-                        finish.loadings = data.frame(A) %>% rownames_to_column("VAR") %>% as_tibble(),
-                        canonical.loadings = data.frame(canonical.loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
-                        scores.gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
-                        scores.ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
+                        communalities_mean = mean(Communality),
+                        initial_loadings = data.frame(initial_loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
+                        finish_loadings = data.frame(A) %>% rownames_to_column("VAR") %>% as_tibble(),
+                        canonical_loadings = data.frame(canonical_loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
+                        scores_gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
+                        scores_ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
                         MTSI = as_tibble(MTSI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MTSI = value),
-                        contri.fac = contr.factor,
-                        contri.fac.rank = contri.fac.rank,
-                        contri.fac.rank.sel = contri.fac.rank.sel,
-                        sel.dif = sel.dif,
-                        mean.sd = mean_sd_ind,
-                        sel.dif.var = sel.dif.mean,
-                        total.sel.dif = tota_gain,
-                        sel.dif.waasb = sel.dif.waasb,
-                        Selected = selected),
+                        contri_fac = contr.factor,
+                        contri_fac_rank = contri_fac_rank,
+                        contri_fac_rank_sel = contri_fac_rank_sel,
+                        sel_dif = sel_dif,
+                        mean_sd = mean_sd_ind,
+                        sel_dif_var = sel_dif_mean,
+                        total_sel_dif = tota_gain,
+                        sel_dif_waasb = sel_dif_waasb,
+                        sel_gen = selected),
                    class = "mtsi"))
 }
 
@@ -402,7 +402,7 @@ plot.mtsi <- function(x,
   data <- x$MTSI %>%
     add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
-  cutpoint <- max(subset(data, sel == "Selected")$MTSI)
+  cutpoint <- max(subset(data, sel == "sel_gen")$MTSI)
   p <-
     ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
     geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
@@ -445,11 +445,11 @@ plot.mtsi <- function(x,
     y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
     if(genotypes == "selected"){
       data <-
-        x$contri.fac %>%
-        subset(GEN %in% x$Selected) %>%
+        x$contri_fac %>%
+        subset(GEN %in% x$sel_gen) %>%
         droplevels()
     } else{
-      data <- x$contri.fac
+      data <- x$contri_fac
     }
     data %<>% pivot_longer(-GEN)
     if(radar == TRUE){
@@ -551,28 +551,28 @@ print.mtsi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   print(x$PCA)
   cat("\n")
   cat("--------------------------------- Initial loadings -----------------------------------\n")
-  print(x$initial.loadings)
+  print(x$initial_loadings)
   cat("\n")
   cat("-------------------------- Loadings after varimax rotation ---------------------------\n")
-  print(x$finish.loadings)
+  print(x$finish_loadings)
   cat("\n")
   cat("--------------------------- Scores for genotypes-ideotype -----------------------------\n")
-  print(rbind(x$scores.gen, x$scores.ide))
+  print(rbind(x$scores_gen, x$scores_ide))
   cat("\n")
   cat("---------------------------- Multitrait stability index ------------------------------\n")
   print(x$MTSI)
   cat("\n")
   cat("--------------------------- Selection differential (index) ----------------------------\n")
-  print(x$sel.dif)
+  print(x$sel_dif)
   cat("\n")
   cat("-------------------------- Mean of Selection differential -----------------------------\n")
-  print(x$mean.sd)
+  print(x$mean_sd)
   cat("\n")
   cat("------------------------- Selection differential (variables) --------------------------\n")
-  print(x$sel.dif.var)
+  print(x$sel_dif_var)
   cat("\n")
   cat("-------------------------------- Selected genotypes -----------------------------------\n")
-  cat(x$Selected)
+  cat(x$sel_gen)
   cat("\n")
   if (export == TRUE) {
     sink()

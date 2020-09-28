@@ -232,7 +232,7 @@
     <p>Computes the multi-trait stability index proposed by Olivoto et al. (2019)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mtsi</span>(<span class='kw'>.data</span>, index = <span class='st'>"waasby"</span>, SI = <span class='fl'>15</span>, mineval = <span class='fl'>1</span>, verbose = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>mtsi</span><span class='op'>(</span><span class='va'>.data</span>, index <span class='op'>=</span> <span class='st'>"waasby"</span>, SI <span class='op'>=</span> <span class='fl'>15</span>, mineval <span class='op'>=</span> <span class='fl'>1</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -275,24 +275,24 @@ shown in the console.</p></td>
 <li><p><strong>KMO</strong> The result for the Kaiser-Meyer-Olkin test.</p></li>
 <li><p><strong>MSA</strong> The measure of sampling adequacy for individual variable.</p></li>
 <li><p><strong>communalities</strong> The communalities.</p></li>
-<li><p><strong>communalities.mean</strong> The communalities' mean.</p></li>
-<li><p><strong>initial.loadings</strong> The initial loadings.</p></li>
-<li><p><strong>finish.loadings</strong> The final loadings after varimax rotation.</p></li>
-<li><p><strong>canonical.loadings</strong> The canonical loadings.</p></li>
-<li><p><strong>scores.gen</strong> The scores for genotypes in all retained factors.</p></li>
-<li><p><strong>scores.ide</strong> The scores for the ideotype in all retained factors.</p></li>
+<li><p><strong>communalities_mean</strong> The communalities' mean.</p></li>
+<li><p><strong>initial_loadings</strong> The initial loadings.</p></li>
+<li><p><strong>finish_loadings</strong> The final loadings after varimax rotation.</p></li>
+<li><p><strong>canonical_loadings</strong> The canonical loadings.</p></li>
+<li><p><strong>scores_gen</strong> The scores for genotypes in all retained factors.</p></li>
+<li><p><strong>scores_ide</strong> The scores for the ideotype in all retained factors.</p></li>
 <li><p><strong>MTSI</strong> The multi-trait stability index.</p></li>
-<li><p><strong>contri.fac</strong> The relative contribution of each factor on the MTSI value.
+<li><p><strong>contri_fac</strong> The relative contribution of each factor on the MTSI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.</p></li>
-<li><p><strong>contri.fac.rank, contri.fac.rank.sel</strong> The rank for the contribution
+<li><p><strong>contri_fac_rank, contri_fac_rank_sel</strong> The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.</p></li>
-<li><p><strong>sel.dif</strong> The selection differential for the WAASBY index.</p></li>
-<li><p><strong>mean.sd</strong> The mean for the differential selection.</p></li>
-<li><p><strong>sel.dif.var</strong> The selection differential for the variables.</p></li>
-<li><p><strong>total.sel.dif</strong> The total selection differential.</p></li>
-<li><p><strong>sel.dif.waasb</strong> The selection differential for WAASB index.</p></li>
-<li><p><strong>Selected</strong> The selected genotypes.</p></li>
+<li><p><strong>sel_dif</strong> The selection differential for the WAASBY index.</p></li>
+<li><p><strong>mean_sd</strong> The mean for the differential selection.</p></li>
+<li><p><strong>sel_dif_var</strong> The selection differential for the variables.</p></li>
+<li><p><strong>total_sel_dif</strong> The total selection differential.</p></li>
+<li><p><strong>sel_dif_waasb</strong> The selection differential for WAASB index.</p></li>
+<li><p><strong>sel_gen</strong> The selected genotypes.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -307,13 +307,13 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># Based on stability only, for both GY and HM, higher is better</span>
-<span class='kw'>mtsi_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>,
-                    env = <span class='kw'>ENV</span>,
-                    gen = <span class='kw'>GEN</span>,
-                    rep = <span class='kw'>REP</span>,
-                    resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>))
+<span class='va'>mtsi_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+                    env <span class='op'>=</span> <span class='va'>ENV</span>,
+                    gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                    rep <span class='op'>=</span> <span class='va'>REP</span>,
+                    resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -322,7 +322,7 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 #&gt;       GEN 1.11e-05 5.07e-03
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='kw'>mtsi_index</span> <span class='op'>&lt;-</span> <span class='fu'>mtsi</span>(<span class='kw'>mtsi_model</span>, index = <span class='st'>'waasb'</span>)
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='va'>mtsi_index</span> <span class='op'>&lt;-</span> <span class='fu'>mtsi</span><span class='op'>(</span><span class='va'>mtsi_model</span>, index <span class='op'>=</span> <span class='st'>'waasb'</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2 with NA values deleted.</span></div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
@@ -373,11 +373,11 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 <span class='co'># GY: higher is better</span>
 <span class='co'># HM: lower is better</span>
 
-<span class='kw'>mtsi_index2</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>,
-       resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
-       mresp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>)) <span class='op'>%&gt;%</span>
- <span class='fu'>mtsi</span>()
+<span class='va'>mtsi_index2</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>,
+       resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
+       mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>mtsi</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------

@@ -232,22 +232,22 @@ function." />
 
     <div class="ref-description">
     <p>This is a helper function to arrange ggplot2 objects in the metan package. It
-imports <code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>plot_grid</a></code>. For a complete usability use that
+imports <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>plot_grid</a></code>. For a complete usability use that
 function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>arrange_ggplot</span>(
-  <span class='kw'>...</span>,
-  plotlist = <span class='kw'>NULL</span>,
-  nrow = <span class='kw'>NULL</span>,
-  ncol = <span class='kw'>NULL</span>,
-  rel_widths = <span class='fl'>1</span>,
-  rel_heights = <span class='fl'>1</span>,
-  labels = <span class='kw'>NULL</span>,
-  hjust = <span class='op'>-</span><span class='fl'>0.5</span>,
-  vjust = <span class='fl'>1.5</span>,
-  align = <span class='st'>"hv"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>arrange_ggplot</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  plotlist <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rel_widths <span class='op'>=</span> <span class='fl'>1</span>,
+  rel_heights <span class='op'>=</span> <span class='fl'>1</span>,
+  labels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  hjust <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.5</span>,
+  vjust <span class='op'>=</span> <span class='fl'>1.5</span>,
+  align <span class='op'>=</span> <span class='st'>"hv"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -291,15 +291,15 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>wt</span>, <span class='kw'>mpg</span>)) <span class='op'>+</span>
-      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>mpg</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='kw'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>mpg</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>class</span>, <span class='kw'>hwy</span>)) <span class='op'>+</span>
-             <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mpg</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>class</span>, <span class='va'>hwy</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+             <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>arrange_ggplot</span>(<span class='kw'>p1</span>, <span class='kw'>p2</span>)
+<span class='fu'>arrange_ggplot</span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span>
 </div><div class='img'><img src='arrange_ggplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

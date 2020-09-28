@@ -234,15 +234,15 @@ randomized complete block design or completely randomized design." />
 randomized complete block design or completely randomized design.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mahala_design</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>gen</span>,
-  <span class='kw'>rep</span>,
-  <span class='kw'>resp</span>,
-  design = <span class='st'>"RCBD"</span>,
-  by = <span class='kw'>NULL</span>,
-  return = <span class='st'>"distance"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>mahala_design</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>gen</span>,
+  <span class='va'>rep</span>,
+  <span class='va'>resp</span>,
+  design <span class='op'>=</span> <span class='st'>"RCBD"</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return <span class='op'>=</span> <span class='st'>"distance"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -297,26 +297,26 @@ residuals <code>return = 'covmat'</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>maha</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='kw'>data_g</span>,
-                      gen = <span class='kw'>GEN</span>,
-                      rep = <span class='kw'>REP</span>,
-                      resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-                      return = <span class='st'>"covmat"</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>maha</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span><span class='op'>(</span><span class='va'>data_g</span>,
+                      gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                      rep <span class='op'>=</span> <span class='va'>REP</span>,
+                      resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,
+                      return <span class='op'>=</span> <span class='st'>"covmat"</span><span class='op'>)</span>
 
 <span class='co'># Compute one distance for each environment (all numeric variables)</span>
-<span class='kw'>maha_group</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='kw'>data_ge</span>,
-                           gen = <span class='kw'>GEN</span>,
-                           rep = <span class='kw'>REP</span>,
-                           resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-                           by = <span class='kw'>ENV</span>)
+<span class='va'>maha_group</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span><span class='op'>(</span><span class='va'>data_ge</span>,
+                           gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                           rep <span class='op'>=</span> <span class='va'>REP</span>,
+                           resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,
+                           by <span class='op'>=</span> <span class='va'>ENV</span><span class='op'>)</span>
 
 <span class='co'># Return the variance-covariance matrix of residuals</span>
-<span class='kw'>cov_mat</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span>(<span class='kw'>data_ge</span>,
-                        gen = <span class='kw'>GEN</span>,
-                        rep = <span class='kw'>REP</span>,
-                        resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
-                        return = <span class='st'>'covmat'</span>)
+<span class='va'>cov_mat</span> <span class='op'>&lt;-</span> <span class='fu'>mahala_design</span><span class='op'>(</span><span class='va'>data_ge</span>,
+                        gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                        rep <span class='op'>=</span> <span class='va'>REP</span>,
+                        resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
+                        return <span class='op'>=</span> <span class='st'>'covmat'</span><span class='op'>)</span>
 <span class='co'># }</span>
 </div></pre>
   </div>

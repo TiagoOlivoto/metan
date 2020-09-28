@@ -236,7 +236,7 @@ from several objects to be further analyzed using pairs_mantel." />
 from several objects to be further analyzed using <code><a href='pairs_mantel.html'>pairs_mantel</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_dist</span>(<span class='kw'>...</span>, digits = <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>get_dist</span><span class='op'>(</span><span class='va'>...</span>, digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -260,12 +260,12 @@ from several objects to be further analyzed using <code><a href='pairs_mantel.ht
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>) <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='clustering.html'>clustering</a></span>()
-<span class='fu'>get_dist</span>(<span class='kw'>d</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='clustering.html'>clustering</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>get_dist</span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $d
 #&gt;        H1   H10   H11   H12   H13    H2    H3    H4    H5    H6    H7    H8
 #&gt; H1   0.00 49.24 36.63 55.94 39.76 22.00 28.60 34.48 42.49 10.77 24.96 50.59

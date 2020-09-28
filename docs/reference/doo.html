@@ -234,7 +234,7 @@ mutate() and map() to apply a function to a grouped data frame." />
 <code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate()</a></code> and <code>map()</code> to apply a function to a grouped data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>doo</span>(<span class='kw'>.data</span>, <span class='kw'>.fun</span>, <span class='kw'>...</span>, unnest = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>doo</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>.fun</span>, <span class='va'>...</span>, unnest <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -274,11 +274,11 @@ of <code>.fun</code> should be unnested. Valid only if the result is of class
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># Head the first two lines of each environment</span>
-<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>ENV</span>) <span class='op'>%&gt;%</span>
- <span class='fu'>doo</span>(<span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>.</span>, <span class='fl'>2</span>))
+<span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>ENV</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>doo</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>.</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 18</span><span>
 #&gt;   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -294,9 +294,9 @@ of <code>.fun</code> should be unnested. Valid only if the result is of class
 #&gt; </span><span style='color: #555555;'>#   NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Genotype analysis for each environment using 'gafem()'</span>
 <span class='co'># variable PH</span>
-<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>ENV</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>doo</span>(<span class='op'>~</span><span class='fu'><a href='gafem.html'>gafem</a></span>(<span class='kw'>.</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='kw'>PH</span>, verbose = <span class='fl'>FALSE</span>))
+<span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>ENV</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>doo</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='gafem.html'>gafem</a></span><span class='op'>(</span><span class='va'>.</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>PH</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 2</span><span>
 #&gt;   ENV   data   
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span> 

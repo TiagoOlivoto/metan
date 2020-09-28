@@ -260,14 +260,14 @@ genotype based on traits <em>x</em>, <em>y</em>, ..., <em>n</em>, is calculated 
 traits <em>x</em>, <em>y</em>, ..., <em>n</em>, respectively.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Smith_Hazel</span>(
-  <span class='kw'>.data</span>,
-  use_data = <span class='st'>"blup"</span>,
-  pcov = <span class='kw'>NULL</span>,
-  gcov = <span class='kw'>NULL</span>,
-  SI = <span class='fl'>15</span>,
-  weights = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>Smith_Hazel</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  use_data <span class='op'>=</span> <span class='st'>"blup"</span>,
+  pcov <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gcov <span class='op'>=</span> <span class='cn'>NULL</span>,
+  SI <span class='op'>=</span> <span class='fl'>15</span>,
+  weights <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -336,12 +336,12 @@ Genetics 28:476-90.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='kw'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>means</span>)
-<span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>phen_cov</span>
-<span class='kw'>gcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>geno_cov</span>
+<span class='va'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>vcov</span><span class='op'>$</span><span class='va'>means</span><span class='op'>)</span>
+<span class='va'>pcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>phen_cov</span>
+<span class='va'>gcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>geno_cov</span>
 
-<span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'>Smith_Hazel</span>(<span class='kw'>means</span>, pcov = <span class='kw'>pcov</span>, gcov = <span class='kw'>gcov</span>, weights = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
+<span class='va'>index</span> <span class='op'>&lt;-</span> <span class='fu'>Smith_Hazel</span><span class='op'>(</span><span class='va'>means</span>, pcov <span class='op'>=</span> <span class='va'>pcov</span>, gcov <span class='op'>=</span> <span class='va'>gcov</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>15</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># }</span>
 </div></pre>
   </div>

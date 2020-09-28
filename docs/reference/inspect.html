@@ -240,7 +240,7 @@ outliers. The function will return a warning if the data looks like
 unbalanced, has missing values or possible outliers.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>inspect</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, plot = <span class='fl'>FALSE</span>, threshold = <span class='fl'>15</span>, verbose = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, threshold <span class='op'>=</span> <span class='fl'>15</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -287,8 +287,8 @@ for checks are shown in the console.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='fu'>inspect</span>(<span class='kw'>data_ge</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='fu'>inspect</span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 9</span><span>
 #&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -298,11 +298,11 @@ for checks are shown in the console.</p></td>
 #&gt; </span><span style='color: #555555;'>4</span><span> GY       numeric No      -          420  0.67   2.61  5.09       0
 #&gt; </span><span style='color: #555555;'>5</span><span> HM       numeric No      -          420 38     48    58          0</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data.</span></div><div class='input'>
 <span class='co'># Create a toy example with messy data</span>
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span>[<span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>30</span>, <span class='fl'>45</span>, <span class='fl'>134</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>)]
-<span class='kw'>df</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>20</span>, <span class='fl'>50</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>5</span>)] <span class='op'>&lt;-</span> <span class='fl'>NA</span>
-<span class='kw'>df</span>[<span class='fl'>40</span>, <span class='fl'>5</span>] <span class='op'>&lt;-</span> <span class='kw'>df</span>[<span class='fl'>40</span>, <span class='fl'>5</span>] <span class='op'>*</span> <span class='fl'>2</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>30</span>, <span class='fl'>45</span>, <span class='fl'>134</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>20</span>, <span class='fl'>50</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>40</span>, <span class='fl'>5</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>[</span><span class='fl'>40</span>, <span class='fl'>5</span><span class='op'>]</span> <span class='op'>*</span> <span class='fl'>2</span>
 
-<span class='fu'>inspect</span>(<span class='kw'>df</span>, plot = <span class='fl'>TRUE</span>)
+<span class='fu'>inspect</span><span class='op'>(</span><span class='va'>df</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
 #&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

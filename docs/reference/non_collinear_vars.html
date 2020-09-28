@@ -244,12 +244,12 @@ iterate step <strong>ii</strong> until VIF value is less than or equal to
 <code>max_vif</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>non_collinear_vars</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>...</span>,
-  max_vif = <span class='fl'>10</span>,
-  missingval = <span class='st'>"pairwise.complete.obs"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>non_collinear_vars</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>...</span>,
+  max_vif <span class='op'>=</span> <span class='fl'>10</span>,
+  missingval <span class='op'>=</span> <span class='st'>"pairwise.complete.obs"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -284,9 +284,9 @@ please see <code><a href='https://rdrr.io/r/stats/cor.html'>cor</a>()</code>.</p
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># All numeric variables</span>
-<span class='fu'>non_collinear_vars</span>(<span class='kw'>data_ge2</span>)
+<span class='fu'>non_collinear_vars</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          Parameter                                       values
 #&gt; 1       Predictors                                           10
 #&gt; 2              VIF                                         7.16
@@ -295,7 +295,7 @@ please see <code><a href='https://rdrr.io/r/stats/cor.html'>cor</a>()</code>.</p
 #&gt; 5         Selected PERK, EP, CDED, NKR, PH, NR, TKW, EL, CD, ED
 #&gt; 6          Removed                          EH, CL, CW, KW, NKE</div><div class='input'>
 <span class='co'># Select variables and choose a VIF threshold to 5</span>
-<span class='fu'>non_collinear_vars</span>(<span class='kw'>data_ge2</span>, <span class='kw'>EH</span>, <span class='kw'>CL</span>, <span class='kw'>CW</span>, <span class='kw'>KW</span>, <span class='kw'>NKE</span>, max_vif = <span class='fl'>5</span>)
+<span class='fu'>non_collinear_vars</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>EH</span>, <span class='va'>CL</span>, <span class='va'>CW</span>, <span class='va'>KW</span>, <span class='va'>NKE</span>, max_vif <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          Parameter          values
 #&gt; 1       Predictors               4
 #&gt; 2              VIF           2.934

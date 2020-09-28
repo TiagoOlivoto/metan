@@ -234,20 +234,20 @@ al., 2019)." />
 al., 2019).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>waas</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>env</span>,
-  <span class='kw'>gen</span>,
-  <span class='kw'>rep</span>,
-  <span class='kw'>resp</span>,
-  block = <span class='kw'>NULL</span>,
-  mresp = <span class='kw'>NULL</span>,
-  wresp = <span class='kw'>NULL</span>,
-  prob = <span class='fl'>0.05</span>,
-  naxis = <span class='kw'>NULL</span>,
-  ind_anova = <span class='fl'>FALSE</span>,
-  verbose = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>waas</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>env</span>,
+  <span class='va'>gen</span>,
+  <span class='va'>rep</span>,
+  <span class='va'>resp</span>,
+  block <span class='op'>=</span> <span class='cn'>NULL</span>,
+  mresp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  wresp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  prob <span class='op'>=</span> <span class='fl'>0.05</span>,
+  naxis <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ind_anova <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -394,16 +394,16 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'>#===============================================================#</span>
 <span class='co'># Example 1: Analyzing all numeric variables considering p-value#</span>
 <span class='co'># &lt;= 0.05 to compute the WAAS.                                  #</span>
 <span class='co'>#===============================================================#</span>
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span>(<span class='kw'>data_ge</span>,
-             env = <span class='kw'>ENV</span>,
-             gen = <span class='kw'>GEN</span>,
-             rep = <span class='kw'>REP</span>,
-             resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,
+             env <span class='op'>=</span> <span class='va'>ENV</span>,
+             gen <span class='op'>=</span> <span class='va'>GEN</span>,
+             rep <span class='op'>=</span> <span class='va'>REP</span>,
+             resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -450,10 +450,10 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Residual plot (first variable)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='waas-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Get the WAAS index</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model</span>, <span class='st'>"WAAS"</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"WAAS"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -468,7 +468,7 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; </span><span style='color: #555555;'> 9</span><span> G8    0.327 0.541
 #&gt; </span><span style='color: #555555;'>10</span><span> G9    0.507 0.701</div><div class='input'>
 <span class='co'># Plot WAAS and response variable</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span>(<span class='kw'>model</span>, type = <span class='fl'>3</span>)
+<span class='fu'><a href='plot_scores.html'>plot_scores</a></span><span class='op'>(</span><span class='va'>model</span>, type <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </div><div class='img'><img src='waas-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'>#===============================================================#</span>
@@ -477,13 +477,13 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 <span class='co'># variable when computing the WAASBY index.                     #</span>
 <span class='co'>#===============================================================#</span>
 
-<span class='kw'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span>(<span class='kw'>data_ge</span>,
-               env = <span class='kw'>ENV</span>,
-               gen = <span class='kw'>GEN</span>,
-               rep = <span class='kw'>REP</span>,
-               resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-               naxis = <span class='fl'>1</span>, <span class='co'># Only to compare with PC1</span>
-               wresp = <span class='fl'>60</span>)
+<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,
+               env <span class='op'>=</span> <span class='va'>ENV</span>,
+               gen <span class='op'>=</span> <span class='va'>GEN</span>,
+               rep <span class='op'>=</span> <span class='va'>REP</span>,
+               resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,
+               naxis <span class='op'>=</span> <span class='fl'>1</span>, <span class='co'># Only to compare with PC1</span>
+               wresp <span class='op'>=</span> <span class='fl'>60</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'naxis'. Setting naxis = 1 to all the 2 variables.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'wresp'. Setting wresp = 60 to all the 2 variables.</span></div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -530,7 +530,7 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Get the WAAS index (it will be |PC1|)</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model2</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN       GY     HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -545,7 +545,7 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; </span><span style='color: #555555;'> 9</span><span> G8    0.499  0.041</span><span style='text-decoration: underline;'>8</span><span>
 #&gt; </span><span style='color: #555555;'>10</span><span> G9    0.467  1.07  </div><div class='input'>
 <span class='co'># Get values for IPCA1</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model2</span>, <span class='st'>"PC1"</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='st'>"PC1"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PC1</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN        GY      HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -567,13 +567,13 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 <span class='co'># weight for HM (40%) are considered for mean performance.      #</span>
 <span class='co'>#===============================================================#</span>
 
-<span class='kw'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span>(<span class='kw'>data_ge</span>,
-               env = <span class='kw'>ENV</span>,
-               gen = <span class='kw'>GEN</span>,
-               rep = <span class='kw'>REP</span>,
-               resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
-               mresp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>),
-               wresp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>60</span>, <span class='fl'>40</span>))
+<span class='va'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,
+               env <span class='op'>=</span> <span class='va'>ENV</span>,
+               gen <span class='op'>=</span> <span class='va'>GEN</span>,
+               rep <span class='op'>=</span> <span class='va'>REP</span>,
+               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
+               mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>0</span><span class='op'>)</span>,
+               wresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>60</span>, <span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -622,7 +622,7 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; Done!</div><div class='input'>
 
 <span class='co'># Get the ranks for the WAASY index</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model3</span>, what = <span class='st'>"OrWAASY"</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model3</span>, what <span class='op'>=</span> <span class='st'>"OrWAASY"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAASY</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

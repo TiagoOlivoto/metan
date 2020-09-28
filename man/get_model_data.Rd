@@ -160,6 +160,9 @@ analyzed traits (default).
 \strong{Objects of class \code{mgidi}:} See the \strong{Value} section of
 \code{\link{mgidi}()} to see valid options for \code{what} argument.
 
+\strong{Objects of class \code{mtsi}:} See the \strong{Value} section of
+\code{\link{mtsi}()} to see valid options for \code{what} argument.
+
 \strong{Objects of class \code{Shukla}:}
 \itemize{
 \item \code{"rMean"} Rank for the mean.

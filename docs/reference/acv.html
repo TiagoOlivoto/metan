@@ -259,7 +259,7 @@ Power Law Residuals (POLAR), i.e., the residuals for the previously described
 regression.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>acv</span>(<span class='kw'>mean</span>, <span class='kw'>var</span>, na.rm = <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>acv</span><span class='op'>(</span><span class='va'>mean</span>, <span class='va'>var</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -305,15 +305,15 @@ Agron. 99: 30-36. doi: <a href='https://doi.org/10.1016/j.eja.2018.06.007'>10.10
 <span class='co'>################# Table 1 from Doring and Reckling (2018)  ###########</span>
 
 <span class='co'># Mean values</span>
-<span class='kw'>u</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5891</span>, <span class='fl'>0.6169</span>, <span class='fl'>0.7944</span>, <span class='fl'>1.0310</span>, <span class='fl'>1.5032</span>, <span class='fl'>3.8610</span>, <span class='fl'>4.6969</span>, <span class='fl'>6.1148</span>,
-       <span class='fl'>7.1526</span>, <span class='fl'>7.5348</span>, <span class='fl'>1.2229</span>, <span class='fl'>1.6321</span>, <span class='fl'>2.4293</span>, <span class='fl'>2.5011</span>, <span class='fl'>3.0161</span>)
+<span class='va'>u</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5891</span>, <span class='fl'>0.6169</span>, <span class='fl'>0.7944</span>, <span class='fl'>1.0310</span>, <span class='fl'>1.5032</span>, <span class='fl'>3.8610</span>, <span class='fl'>4.6969</span>, <span class='fl'>6.1148</span>,
+       <span class='fl'>7.1526</span>, <span class='fl'>7.5348</span>, <span class='fl'>1.2229</span>, <span class='fl'>1.6321</span>, <span class='fl'>2.4293</span>, <span class='fl'>2.5011</span>, <span class='fl'>3.0161</span><span class='op'>)</span>
 
 <span class='co'># Variances</span>
-<span class='kw'>v</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.0064</span>, <span class='fl'>0.0141</span>, <span class='fl'>0.0218</span>, <span class='fl'>0.0318</span>, <span class='fl'>0.0314</span>, <span class='fl'>0.0766</span>, <span class='fl'>0.0620</span>, <span class='fl'>0.0822</span>,
-       <span class='fl'>0.1605</span>, <span class='fl'>0.1986</span>, <span class='fl'>0.0157</span>, <span class='fl'>0.0593</span>, <span class='fl'>0.0565</span>, <span class='fl'>0.1997</span>, <span class='fl'>0.2715</span>)
+<span class='va'>v</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.0064</span>, <span class='fl'>0.0141</span>, <span class='fl'>0.0218</span>, <span class='fl'>0.0318</span>, <span class='fl'>0.0314</span>, <span class='fl'>0.0766</span>, <span class='fl'>0.0620</span>, <span class='fl'>0.0822</span>,
+       <span class='fl'>0.1605</span>, <span class='fl'>0.1986</span>, <span class='fl'>0.0157</span>, <span class='fl'>0.0593</span>, <span class='fl'>0.0565</span>, <span class='fl'>0.1997</span>, <span class='fl'>0.2715</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='fu'>acv</span>(<span class='kw'>u</span>, <span class='kw'>v</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='fu'>acv</span><span class='op'>(</span><span class='va'>u</span>, <span class='va'>v</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 7</span><span>
 #&gt;     mean    var log10_mean log10_var    POLAR    cv   acv
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

@@ -250,91 +250,91 @@ two-way trial with <strong>qualitative-qualitative treatment structure</strong>.
 
     </div>
 
-    <pre class="usage"><span class='fu'>plot_bars</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>x</span>,
-  <span class='kw'>y</span>,
-  order = <span class='kw'>NULL</span>,
-  y.lim = <span class='kw'>NULL</span>,
-  y.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
-  y.expand = <span class='fl'>0.05</span>,
-  y.contract = <span class='fl'>0</span>,
-  xlab = <span class='kw'>NULL</span>,
-  ylab = <span class='kw'>NULL</span>,
-  n.dodge = <span class='fl'>1</span>,
-  check.overlap = <span class='fl'>FALSE</span>,
-  color.bar = <span class='st'>"black"</span>,
-  fill.bar = <span class='st'>"gray"</span>,
-  lab.bar = <span class='kw'>NULL</span>,
-  lab.bar.hjust = <span class='fl'>0.5</span>,
-  lab.bar.vjust = <span class='op'>-</span><span class='fl'>0.5</span>,
-  lab.bar.angle = <span class='fl'>0</span>,
-  size.text.bar = <span class='fl'>5</span>,
-  values = <span class='fl'>FALSE</span>,
-  values.hjust = <span class='fl'>0.5</span>,
-  values.vjust = <span class='fl'>1.5</span>,
-  values.angle = <span class='fl'>0</span>,
-  values.digits = <span class='fl'>2</span>,
-  values.size = <span class='fl'>4</span>,
-  lab.x.hjust = <span class='fl'>0.5</span>,
-  lab.x.vjust = <span class='fl'>1</span>,
-  lab.x.angle = <span class='fl'>0</span>,
-  errorbar = <span class='fl'>TRUE</span>,
-  stat.erbar = <span class='st'>"se"</span>,
-  width.erbar = <span class='kw'>NULL</span>,
-  level = <span class='fl'>0.95</span>,
-  invert = <span class='fl'>FALSE</span>,
-  width.bar = <span class='fl'>0.9</span>,
-  size.line = <span class='fl'>0.5</span>,
-  size.text = <span class='fl'>12</span>,
-  fontfam = <span class='st'>"sans"</span>,
-  na.rm = <span class='fl'>TRUE</span>,
-  verbose = <span class='fl'>FALSE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>()
-)
+    <pre class="usage"><span class='fu'>plot_bars</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.lim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.breaks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span><span class='op'>(</span><span class='op'>)</span>,
+  y.expand <span class='op'>=</span> <span class='fl'>0.05</span>,
+  y.contract <span class='op'>=</span> <span class='fl'>0</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  n.dodge <span class='op'>=</span> <span class='fl'>1</span>,
+  check.overlap <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  color.bar <span class='op'>=</span> <span class='st'>"black"</span>,
+  fill.bar <span class='op'>=</span> <span class='st'>"gray"</span>,
+  lab.bar <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lab.bar.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
+  lab.bar.vjust <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.5</span>,
+  lab.bar.angle <span class='op'>=</span> <span class='fl'>0</span>,
+  size.text.bar <span class='op'>=</span> <span class='fl'>5</span>,
+  values <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  values.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
+  values.vjust <span class='op'>=</span> <span class='fl'>1.5</span>,
+  values.angle <span class='op'>=</span> <span class='fl'>0</span>,
+  values.digits <span class='op'>=</span> <span class='fl'>2</span>,
+  values.size <span class='op'>=</span> <span class='fl'>4</span>,
+  lab.x.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
+  lab.x.vjust <span class='op'>=</span> <span class='fl'>1</span>,
+  lab.x.angle <span class='op'>=</span> <span class='fl'>0</span>,
+  errorbar <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stat.erbar <span class='op'>=</span> <span class='st'>"se"</span>,
+  width.erbar <span class='op'>=</span> <span class='cn'>NULL</span>,
+  level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  invert <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  width.bar <span class='op'>=</span> <span class='fl'>0.9</span>,
+  size.line <span class='op'>=</span> <span class='fl'>0.5</span>,
+  size.text <span class='op'>=</span> <span class='fl'>12</span>,
+  fontfam <span class='op'>=</span> <span class='st'>"sans"</span>,
+  na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>plot_factbars</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>...</span>,
-  <span class='kw'>resp</span>,
-  y.lim = <span class='kw'>NULL</span>,
-  y.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
-  y.expand = <span class='fl'>0.05</span>,
-  y.contract = <span class='fl'>0</span>,
-  xlab = <span class='kw'>NULL</span>,
-  ylab = <span class='kw'>NULL</span>,
-  n.dodge = <span class='fl'>1</span>,
-  check.overlap = <span class='fl'>FALSE</span>,
-  lab.bar = <span class='kw'>NULL</span>,
-  lab.bar.hjust = <span class='fl'>0.5</span>,
-  lab.bar.vjust = <span class='op'>-</span><span class='fl'>0.5</span>,
-  lab.bar.angle = <span class='fl'>0</span>,
-  size.text.bar = <span class='fl'>5</span>,
-  values = <span class='fl'>FALSE</span>,
-  values.hjust = <span class='fl'>0.5</span>,
-  values.vjust = <span class='fl'>1.5</span>,
-  values.angle = <span class='fl'>0</span>,
-  values.digits = <span class='fl'>2</span>,
-  values.size = <span class='fl'>4</span>,
-  lab.x.hjust = <span class='fl'>0.5</span>,
-  lab.x.vjust = <span class='fl'>1</span>,
-  lab.x.angle = <span class='fl'>0</span>,
-  errorbar = <span class='fl'>TRUE</span>,
-  stat.erbar = <span class='st'>"se"</span>,
-  width.erbar = <span class='kw'>NULL</span>,
-  level = <span class='fl'>0.95</span>,
-  invert = <span class='fl'>FALSE</span>,
-  col = <span class='fl'>TRUE</span>,
-  palette = <span class='st'>"Spectral"</span>,
-  width.bar = <span class='fl'>0.9</span>,
-  legend.position = <span class='st'>"bottom"</span>,
-  size.line = <span class='fl'>0.5</span>,
-  size.text = <span class='fl'>12</span>,
-  fontfam = <span class='st'>"sans"</span>,
-  na.rm = <span class='fl'>TRUE</span>,
-  verbose = <span class='fl'>FALSE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>()
-)</pre>
+<span class='fu'>plot_factbars</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>...</span>,
+  <span class='va'>resp</span>,
+  y.lim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.breaks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span><span class='op'>(</span><span class='op'>)</span>,
+  y.expand <span class='op'>=</span> <span class='fl'>0.05</span>,
+  y.contract <span class='op'>=</span> <span class='fl'>0</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  n.dodge <span class='op'>=</span> <span class='fl'>1</span>,
+  check.overlap <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  lab.bar <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lab.bar.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
+  lab.bar.vjust <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.5</span>,
+  lab.bar.angle <span class='op'>=</span> <span class='fl'>0</span>,
+  size.text.bar <span class='op'>=</span> <span class='fl'>5</span>,
+  values <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  values.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
+  values.vjust <span class='op'>=</span> <span class='fl'>1.5</span>,
+  values.angle <span class='op'>=</span> <span class='fl'>0</span>,
+  values.digits <span class='op'>=</span> <span class='fl'>2</span>,
+  values.size <span class='op'>=</span> <span class='fl'>4</span>,
+  lab.x.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
+  lab.x.vjust <span class='op'>=</span> <span class='fl'>1</span>,
+  lab.x.angle <span class='op'>=</span> <span class='fl'>0</span>,
+  errorbar <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stat.erbar <span class='op'>=</span> <span class='st'>"se"</span>,
+  width.erbar <span class='op'>=</span> <span class='cn'>NULL</span>,
+  level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  invert <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  col <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  palette <span class='op'>=</span> <span class='st'>"Spectral"</span>,
+  width.bar <span class='op'>=</span> <span class='fl'>0.9</span>,
+  legend.position <span class='op'>=</span> <span class='st'>"bottom"</span>,
+  size.line <span class='op'>=</span> <span class='fl'>0.5</span>,
+  size.text <span class='op'>=</span> <span class='fl'>12</span>,
+  fontfam <span class='op'>=</span> <span class='st'>"sans"</span>,
+  na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -553,24 +553,24 @@ be used. For more details, see <code><a href='https://ggplot2.tidyverse.org/refe
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># two categorical variables</span>
-<span class='fu'>plot_factbars</span>(<span class='kw'>data_ge2</span>,
-              <span class='kw'>GEN</span>,
-              <span class='kw'>ENV</span>,
-              resp = <span class='kw'>PH</span>)
+<span class='fu'>plot_factbars</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+              <span class='va'>GEN</span>,
+              <span class='va'>ENV</span>,
+              resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
 </div><div class='img'><img src='barplots-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># one categorical variable</span>
-<span class='kw'>p1</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>PH</span>)
-<span class='kw'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>PH</span>,
-                n.dodge = <span class='fl'>2</span>, <span class='co'># two rows for x labels</span>
-                y.expand = <span class='fl'>0.1</span>, <span class='co'># expand y scale</span>
-                y.contract = <span class='op'>-</span><span class='fl'>0.75</span>, <span class='co'># contract the lower limit</span>
-                errorbar = <span class='fl'>FALSE</span>, <span class='co'># remove errorbar</span>
-                color.bar = <span class='st'>"red"</span>, <span class='co'># color of bars</span>
-                fill.bar = <span class='fu'><a href='themes.html'>alpha_color</a></span>(<span class='st'>"cyan"</span>, <span class='fl'>75</span>), <span class='co'># create a transparent color</span>
-                lab.bar = <span class='kw'>letters</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>13</span>]) <span class='co'># add labels</span>
-<span class='fu'><a href='arrange_ggplot.html'>arrange_ggplot</a></span>(<span class='kw'>p1</span>, <span class='kw'>p2</span>)
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>PH</span><span class='op'>)</span>
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>PH</span>,
+                n.dodge <span class='op'>=</span> <span class='fl'>2</span>, <span class='co'># two rows for x labels</span>
+                y.expand <span class='op'>=</span> <span class='fl'>0.1</span>, <span class='co'># expand y scale</span>
+                y.contract <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.75</span>, <span class='co'># contract the lower limit</span>
+                errorbar <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='co'># remove errorbar</span>
+                color.bar <span class='op'>=</span> <span class='st'>"red"</span>, <span class='co'># color of bars</span>
+                fill.bar <span class='op'>=</span> <span class='fu'><a href='themes.html'>alpha_color</a></span><span class='op'>(</span><span class='st'>"cyan"</span>, <span class='fl'>75</span><span class='op'>)</span>, <span class='co'># create a transparent color</span>
+                lab.bar <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>13</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># add labels</span>
+<span class='fu'><a href='arrange_ggplot.html'>arrange_ggplot</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span>
 </div><div class='img'><img src='barplots-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

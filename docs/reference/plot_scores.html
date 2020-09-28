@@ -234,53 +234,53 @@ interpretations." />
 interpretations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_scores</span>(
-  <span class='kw'>x</span>,
-  var = <span class='fl'>1</span>,
-  type = <span class='fl'>1</span>,
-  first = <span class='st'>"PC1"</span>,
-  second = <span class='st'>"PC2"</span>,
-  repel = <span class='fl'>TRUE</span>,
-  polygon = <span class='fl'>FALSE</span>,
-  title = <span class='fl'>TRUE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  axis.expand = <span class='fl'>1.1</span>,
-  x.lim = <span class='kw'>NULL</span>,
-  y.lim = <span class='kw'>NULL</span>,
-  x.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
-  y.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
-  x.lab = <span class='kw'>NULL</span>,
-  y.lab = <span class='kw'>NULL</span>,
-  shape.gen = <span class='fl'>21</span>,
-  shape.env = <span class='fl'>23</span>,
-  size.shape = <span class='fl'>2.2</span>,
-  size.bor.tick = <span class='fl'>0.3</span>,
-  size.tex.lab = <span class='fl'>12</span>,
-  size.tex.pa = <span class='fl'>3.5</span>,
-  size.line = <span class='fl'>0.5</span>,
-  size.segm.line = <span class='fl'>0.5</span>,
-  col.bor.gen = <span class='st'>"black"</span>,
-  col.bor.env = <span class='st'>"black"</span>,
-  col.line = <span class='st'>"black"</span>,
-  col.gen = <span class='st'>"blue"</span>,
-  col.env = <span class='st'>"forestgreen"</span>,
-  col.alpha.gen = <span class='fl'>0.9</span>,
-  col.alpha.env = <span class='fl'>0.9</span>,
-  col.segm.gen = <span class='fu'><a href='themes.html'>transparent_color</a></span>(),
-  col.segm.env = <span class='st'>"forestgreen"</span>,
-  repulsion = <span class='fl'>1</span>,
-  leg.lab = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"Gen"</span>),
-  line.type = <span class='st'>"solid"</span>,
-  line.alpha = <span class='fl'>0.9</span>,
-  resolution = <span class='fl'>300</span>,
-  file.type = <span class='st'>"pdf"</span>,
-  export = <span class='fl'>FALSE</span>,
-  file.name = <span class='kw'>NULL</span>,
-  width = <span class='fl'>8</span>,
-  height = <span class='fl'>7</span>,
-  color = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_scores</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  var <span class='op'>=</span> <span class='fl'>1</span>,
+  type <span class='op'>=</span> <span class='fl'>1</span>,
+  first <span class='op'>=</span> <span class='st'>"PC1"</span>,
+  second <span class='op'>=</span> <span class='st'>"PC2"</span>,
+  repel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  polygon <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  title <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>,
+  axis.expand <span class='op'>=</span> <span class='fl'>1.1</span>,
+  x.lim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.lim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x.breaks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span><span class='op'>(</span><span class='op'>)</span>,
+  y.breaks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span><span class='op'>(</span><span class='op'>)</span>,
+  x.lab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.lab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  shape.gen <span class='op'>=</span> <span class='fl'>21</span>,
+  shape.env <span class='op'>=</span> <span class='fl'>23</span>,
+  size.shape <span class='op'>=</span> <span class='fl'>2.2</span>,
+  size.bor.tick <span class='op'>=</span> <span class='fl'>0.3</span>,
+  size.tex.lab <span class='op'>=</span> <span class='fl'>12</span>,
+  size.tex.pa <span class='op'>=</span> <span class='fl'>3.5</span>,
+  size.line <span class='op'>=</span> <span class='fl'>0.5</span>,
+  size.segm.line <span class='op'>=</span> <span class='fl'>0.5</span>,
+  col.bor.gen <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.bor.env <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.line <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.gen <span class='op'>=</span> <span class='st'>"blue"</span>,
+  col.env <span class='op'>=</span> <span class='st'>"forestgreen"</span>,
+  col.alpha.gen <span class='op'>=</span> <span class='fl'>0.9</span>,
+  col.alpha.env <span class='op'>=</span> <span class='fl'>0.9</span>,
+  col.segm.gen <span class='op'>=</span> <span class='fu'><a href='themes.html'>transparent_color</a></span><span class='op'>(</span><span class='op'>)</span>,
+  col.segm.env <span class='op'>=</span> <span class='st'>"forestgreen"</span>,
+  repulsion <span class='op'>=</span> <span class='fl'>1</span>,
+  leg.lab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Env"</span>, <span class='st'>"Gen"</span><span class='op'>)</span>,
+  line.type <span class='op'>=</span> <span class='st'>"solid"</span>,
+  line.alpha <span class='op'>=</span> <span class='fl'>0.9</span>,
+  resolution <span class='op'>=</span> <span class='fl'>300</span>,
+  file.type <span class='op'>=</span> <span class='st'>"pdf"</span>,
+  export <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  file.name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='fl'>8</span>,
+  height <span class='op'>=</span> <span class='fl'>7</span>,
+  color <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -514,13 +514,13 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># AMMI model</span>
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='kw'>data_ge</span>,
-             env = <span class='kw'>ENV</span>,
-             gen = <span class='kw'>GEN</span>,
-             rep = <span class='kw'>REP</span>,
-             resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+             env <span class='op'>=</span> <span class='va'>ENV</span>,
+             gen <span class='op'>=</span> <span class='va'>GEN</span>,
+             rep <span class='op'>=</span> <span class='va'>REP</span>,
+             resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -568,32 +568,32 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># GY x PC1 for variable GY (default plot)</span>
-<span class='fu'>plot_scores</span>(<span class='kw'>model</span>)
+<span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scores-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC1 x PC2 (variable HM)</span>
-<span class='fu'>plot_scores</span>(<span class='kw'>model</span>,
-            polygon = <span class='fl'>TRUE</span>, <span class='co'># Draw a convex hull polygon</span>
-            var = <span class='st'>"HM"</span>,     <span class='co'># or var = 2 to select variable</span>
-            type = <span class='fl'>2</span>)       <span class='co'># type of biplot</span>
+<span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>model</span>,
+            polygon <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='co'># Draw a convex hull polygon</span>
+            var <span class='op'>=</span> <span class='st'>"HM"</span>,     <span class='co'># or var = 2 to select variable</span>
+            type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>       <span class='co'># type of biplot</span>
 </div><div class='img'><img src='plot_scores-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC3 x PC4 (variable HM)</span>
 <span class='co'>#</span>
 <span class='co'># Change size of plot fonts and colors</span>
 <span class='co'># Minimal theme</span>
-<span class='fu'>plot_scores</span>(<span class='kw'>model</span>,
-           var = <span class='st'>"HM"</span>,
-           type = <span class='fl'>2</span>,
-           first = <span class='st'>"PC3"</span>,
-           second = <span class='st'>"PC4"</span>,
-           col.gen = <span class='st'>"black"</span>,
-           col.env = <span class='st'>"gray"</span>,
-           col.segm.env = <span class='st'>"gray"</span>,
-           size.tex.pa = <span class='fl'>2</span>,
-           size.tex.lab = <span class='fl'>16</span>,
-           plot_theme = <span class='fu'><a href='themes.html'>theme_metan_minimal</a></span>())
+<span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>model</span>,
+           var <span class='op'>=</span> <span class='st'>"HM"</span>,
+           type <span class='op'>=</span> <span class='fl'>2</span>,
+           first <span class='op'>=</span> <span class='st'>"PC3"</span>,
+           second <span class='op'>=</span> <span class='st'>"PC4"</span>,
+           col.gen <span class='op'>=</span> <span class='st'>"black"</span>,
+           col.env <span class='op'>=</span> <span class='st'>"gray"</span>,
+           col.segm.env <span class='op'>=</span> <span class='st'>"gray"</span>,
+           size.tex.pa <span class='op'>=</span> <span class='fl'>2</span>,
+           size.tex.lab <span class='op'>=</span> <span class='fl'>16</span>,
+           plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan_minimal</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scores-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># WAASB index</span>
-<span class='kw'>waasb_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='kw'>GY</span>)
+<span class='va'>waasb_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -604,10 +604,10 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='co'># GY x WAASB</span>
-<span class='fu'>plot_scores</span>(<span class='kw'>waasb_model</span>,
-            type = <span class='fl'>3</span>,
-            size.tex.pa = <span class='fl'>2</span>,
-            size.tex.lab = <span class='fl'>16</span>)
+<span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>waasb_model</span>,
+            type <span class='op'>=</span> <span class='fl'>3</span>,
+            size.tex.pa <span class='op'>=</span> <span class='fl'>2</span>,
+            size.tex.lab <span class='op'>=</span> <span class='fl'>16</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scores-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

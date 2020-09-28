@@ -233,7 +233,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for clustering</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>x</span>, horiz = <span class='fl'>TRUE</span>, type = <span class='st'>"dendrogram"</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span>, type <span class='op'>=</span> <span class='st'>"dendrogram"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -268,13 +268,13 @@ horizontally or not.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>mean_gen</span> <span class='op'>&lt;-</span>
- <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
+<span class='va'>mean_gen</span> <span class='op'>&lt;-</span>
+ <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span>
 
-<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='clustering.html'>clustering</a></span>(<span class='kw'>mean_gen</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>d</span>, xlab = <span class='st'>"Euclidean Distance"</span>)
+<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='clustering.html'>clustering</a></span><span class='op'>(</span><span class='va'>mean_gen</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>d</span>, xlab <span class='op'>=</span> <span class='st'>"Euclidean Distance"</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.clustering-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

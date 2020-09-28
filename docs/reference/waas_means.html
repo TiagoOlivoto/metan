@@ -242,17 +242,17 @@ on means for genotype-environment data as follows:
 1}^{p}EP_k\]</p>
     </div>
 
-    <pre class="usage"><span class='fu'>waas_means</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>env</span>,
-  <span class='kw'>gen</span>,
-  <span class='kw'>resp</span>,
-  mresp = <span class='kw'>NULL</span>,
-  wresp = <span class='kw'>NULL</span>,
-  min_expl_var = <span class='fl'>85</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>waas_means</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>env</span>,
+  <span class='va'>gen</span>,
+  <span class='va'>resp</span>,
+  mresp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  wresp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  min_expl_var <span class='op'>=</span> <span class='fl'>85</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -353,13 +353,13 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># Data with replicates</span>
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='kw'>data_ge</span>,
-              env = <span class='kw'>ENV</span>,
-              gen = <span class='kw'>GEN</span>,
-              rep = <span class='kw'>REP</span>,
-              resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+              env <span class='op'>=</span> <span class='va'>ENV</span>,
+              gen <span class='op'>=</span> <span class='va'>GEN</span>,
+              rep <span class='op'>=</span> <span class='va'>REP</span>,
+              resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -407,13 +407,13 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Based on means of genotype-environment data</span>
-<span class='kw'>data_means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>)
-<span class='kw'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>waas_means</span>(<span class='kw'>data_ge</span>,
-                     env = <span class='kw'>ENV</span>,
-                     gen = <span class='kw'>GEN</span>,
-                     resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='va'>data_means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span><span class='op'>)</span>
+<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>waas_means</span><span class='op'>(</span><span class='va'>data_ge</span>,
+                     env <span class='op'>=</span> <span class='va'>ENV</span>,
+                     gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                     resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># The index WAAS</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model</span>, what = <span class='st'>"OrWAAS"</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -426,7 +426,7 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; </span><span style='color: #555555;'> 7</span><span> G6        3     3
 #&gt; </span><span style='color: #555555;'> 8</span><span> G7        8     7
 #&gt; </span><span style='color: #555555;'> 9</span><span> G8        7     4
-#&gt; </span><span style='color: #555555;'>10</span><span> G9        9     5</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>model2</span>, what = <span class='st'>"OrWAAS"</span>)
+#&gt; </span><span style='color: #555555;'>10</span><span> G9        9     5</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

@@ -294,68 +294,68 @@ level in plant breeding trials, e.g., environment 1) is subjected to
 
     </div>
 
-    <pre class="usage"><span class='fu'>all_upper_case</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>all_upper_case</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>all_lower_case</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>all_lower_case</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>all_title_case</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>all_title_case</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>extract_number</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>var</span>,
-  new_var = <span class='kw'>new_var</span>,
-  drop = <span class='fl'>FALSE</span>,
-  pull = <span class='fl'>FALSE</span>,
-  .before = <span class='kw'>NULL</span>,
-  .after = <span class='kw'>NULL</span>
-)
+<span class='fu'>extract_number</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>var</span>,
+  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>extract_string</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>var</span>,
-  new_var = <span class='kw'>new_var</span>,
-  drop = <span class='fl'>FALSE</span>,
-  pull = <span class='fl'>FALSE</span>,
-  .before = <span class='kw'>NULL</span>,
-  .after = <span class='kw'>NULL</span>
-)
+<span class='fu'>extract_string</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>var</span>,
+  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>find_text_in_num</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>find_text_in_num</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>has_text_in_num</span>(<span class='kw'>.data</span>)
+<span class='fu'>has_text_in_num</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
 
-<span class='fu'>remove_space</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>remove_space</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>remove_strings</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>replace_number</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>var</span>,
-  new_var = <span class='kw'>new_var</span>,
-  pattern = <span class='kw'>NULL</span>,
-  replacement = <span class='st'>""</span>,
-  drop = <span class='fl'>FALSE</span>,
-  pull = <span class='fl'>FALSE</span>,
-  .before = <span class='kw'>NULL</span>,
-  .after = <span class='kw'>NULL</span>
-)
+<span class='fu'>replace_number</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>var</span>,
+  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
+  replacement <span class='op'>=</span> <span class='st'>""</span>,
+  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>replace_string</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>var</span>,
-  new_var = <span class='kw'>new_var</span>,
-  pattern = <span class='kw'>NULL</span>,
-  replacement = <span class='st'>""</span>,
-  ignore_case = <span class='fl'>FALSE</span>,
-  drop = <span class='fl'>FALSE</span>,
-  pull = <span class='fl'>FALSE</span>,
-  .before = <span class='kw'>NULL</span>,
-  .after = <span class='kw'>NULL</span>
-)
+<span class='fu'>replace_string</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>var</span>,
+  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
+  replacement <span class='op'>=</span> <span class='st'>""</span>,
+  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>round_cols</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, digits = <span class='fl'>2</span>)
+<span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 
-<span class='fu'>tidy_strings</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, sep = <span class='st'>"_"</span>)</pre>
+<span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, sep <span class='op'>=</span> <span class='st'>"_"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -431,11 +431,11 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
 <span class='co'>################ Rounding numbers ###############</span>
 <span class='co'># All numeric columns</span>
-<span class='fu'>round_cols</span>(<span class='kw'>data_ge2</span>, digits = <span class='fl'>1</span>)
+<span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -452,7 +452,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Round specific columns</span>
-<span class='fu'>round_cols</span>(<span class='kw'>data_ge2</span>, <span class='kw'>EP</span>, digits = <span class='fl'>1</span>)
+<span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>EP</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -470,7 +470,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'>########### Extract or replace numbers ##########</span>
 <span class='co'># Extract numbers</span>
-<span class='fu'>extract_number</span>(<span class='kw'>data_ge</span>, <span class='kw'>GEN</span>)
+<span class='fu'>extract_number</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -484,10 +484,10 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2       3
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8       3
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9       4
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_number</span>(<span class='kw'>data_ge</span>,
-               var = <span class='kw'>GEN</span>,
-               drop = <span class='fl'>TRUE</span>,
-               new_var = <span class='kw'>g_number</span>)
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_number</span><span class='op'>(</span><span class='va'>data_ge</span>,
+               var <span class='op'>=</span> <span class='va'>GEN</span>,
+               drop <span class='op'>=</span> <span class='cn'>TRUE</span>,
+               new_var <span class='op'>=</span> <span class='va'>g_number</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
 #&gt;    g_number
 #&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -504,7 +504,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Replace numbers</span>
 
-<span class='fu'>replace_number</span>(<span class='kw'>data_ge</span>, <span class='kw'>GEN</span>)
+<span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
@@ -518,11 +518,11 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 G      
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 G      
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 G      
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span>(<span class='kw'>data_ge</span>,
-               var = <span class='kw'>GEN</span>,
-               pattern = <span class='st'>"1"</span>,
-               replacement = <span class='st'>"_one"</span>,
-               pull = <span class='fl'>TRUE</span>)
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>,
+               var <span class='op'>=</span> <span class='va'>GEN</span>,
+               pattern <span class='op'>=</span> <span class='st'>"1"</span>,
+               replacement <span class='op'>=</span> <span class='st'>"_one"</span>,
+               pull <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   [1] "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"    
 #&gt;   [9] "G3"     "G4"     "G4"     "G4"     "G5"     "G5"     "G5"     "G6"    
 #&gt;  [17] "G6"     "G6"     "G7"     "G7"     "G7"     "G8"     "G8"     "G8"    
@@ -578,7 +578,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; [417] "G9"     "G_one0" "G_one0" "G_one0"</div><div class='input'>
 <span class='co'>########## Extract, replace or remove strings ##########</span>
 <span class='co'># Extract strings</span>
-<span class='fu'>extract_string</span>(<span class='kw'>data_ge</span>, <span class='kw'>GEN</span>)
+<span class='fu'>extract_string</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
@@ -592,10 +592,10 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 G      
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 G      
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 G      
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_string</span>(<span class='kw'>data_ge</span>,
-               var = <span class='kw'>GEN</span>,
-               drop = <span class='fl'>TRUE</span>,
-               new_var = <span class='kw'>g_name</span>)
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_string</span><span class='op'>(</span><span class='va'>data_ge</span>,
+               var <span class='op'>=</span> <span class='va'>GEN</span>,
+               drop <span class='op'>=</span> <span class='cn'>TRUE</span>,
+               new_var <span class='op'>=</span> <span class='va'>g_name</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
 #&gt;    g_name
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
@@ -611,7 +611,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'>10</span><span> G     
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Replace strings</span>
-<span class='fu'>replace_string</span>(<span class='kw'>data_ge</span>, <span class='kw'>GEN</span>)
+<span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
@@ -625,11 +625,11 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 3      
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 3      
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 4      
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span>(<span class='kw'>data_ge</span>,
-               var = <span class='kw'>GEN</span>,
-               new_var = <span class='kw'>GENOTYPE</span>,
-               pattern = <span class='st'>"G"</span>,
-               replacement = <span class='st'>"GENOTYPE_"</span>)
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>,
+               var <span class='op'>=</span> <span class='va'>GEN</span>,
+               new_var <span class='op'>=</span> <span class='va'>GENOTYPE</span>,
+               pattern <span class='op'>=</span> <span class='st'>"G"</span>,
+               replacement <span class='op'>=</span> <span class='st'>"GENOTYPE_"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM GENOTYPE  
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
@@ -645,7 +645,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 GENOTYPE_4
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Remove strings</span>
-<span class='fu'>remove_strings</span>(<span class='kw'>data_ge</span>)
+<span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;      ENV   GEN   REP    GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -659,7 +659,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'> 8</span><span>     1     3     2  3.62  43.2
 #&gt; </span><span style='color: #555555;'> 9</span><span>     1     3     3  2.28  47.8
 #&gt; </span><span style='color: #555555;'>10</span><span>     1     4     1  2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>)
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;      ENV GEN   REP      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -676,19 +676,19 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 
 <span class='co'>############ Find text in numeric sequences ###########</span>
-<span class='kw'>mixed_text</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>data_ge</span>)
-<span class='kw'>mixed_text</span>[<span class='fl'>2</span>, <span class='fl'>4</span>] <span class='op'>&lt;-</span> <span class='st'>"2..503"</span>
-<span class='kw'>mixed_text</span>[<span class='fl'>3</span>, <span class='fl'>4</span>] <span class='op'>&lt;-</span> <span class='st'>"3.2o75"</span>
-<span class='fu'>find_text_in_num</span>(<span class='kw'>mixed_text</span>, <span class='kw'>GY</span>)
+<span class='va'>mixed_text</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
+<span class='va'>mixed_text</span><span class='op'>[</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"2..503"</span>
+<span class='va'>mixed_text</span><span class='op'>[</span><span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"3.2o75"</span>
+<span class='fu'>find_text_in_num</span><span class='op'>(</span><span class='va'>mixed_text</span>, <span class='va'>GY</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 2 3</div><div class='input'>
 <span class='co'>############# upper, lower and title cases ############</span>
-<span class='kw'>gen_text</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GEN 1"</span>, <span class='st'>"Gen 1"</span>, <span class='st'>"gen 1"</span>)
-<span class='fu'>all_lower_case</span>(<span class='kw'>gen_text</span>)
-</div><div class='output co'>#&gt; [1] "gen 1" "gen 1" "gen 1"</div><div class='input'><span class='fu'>all_upper_case</span>(<span class='kw'>gen_text</span>)
-</div><div class='output co'>#&gt; [1] "GEN 1" "GEN 1" "GEN 1"</div><div class='input'><span class='fu'>all_title_case</span>(<span class='kw'>gen_text</span>)
+<span class='va'>gen_text</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GEN 1"</span>, <span class='st'>"Gen 1"</span>, <span class='st'>"gen 1"</span><span class='op'>)</span>
+<span class='fu'>all_lower_case</span><span class='op'>(</span><span class='va'>gen_text</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "gen 1" "gen 1" "gen 1"</div><div class='input'><span class='fu'>all_upper_case</span><span class='op'>(</span><span class='va'>gen_text</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "GEN 1" "GEN 1" "GEN 1"</div><div class='input'><span class='fu'>all_title_case</span><span class='op'>(</span><span class='va'>gen_text</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Gen 1" "Gen 1" "Gen 1"</div><div class='input'>
 <span class='co'># A whole data frame</span>
-<span class='fu'>all_lower_case</span>(<span class='kw'>data_ge</span>)
+<span class='fu'>all_lower_case</span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -705,22 +705,22 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 
 <span class='co'>############### Tidy up messy text string ##############</span>
-<span class='kw'>messy_env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ENV 1"</span>, <span class='st'>"Env   1"</span>, <span class='st'>"Env1"</span>, <span class='st'>"env1"</span>, <span class='st'>"Env.1"</span>, <span class='st'>"Env_1"</span>)
-<span class='fu'>tidy_strings</span>(<span class='kw'>messy_env</span>)
+<span class='va'>messy_env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ENV 1"</span>, <span class='st'>"Env   1"</span>, <span class='st'>"Env1"</span>, <span class='st'>"env1"</span>, <span class='st'>"Env.1"</span>, <span class='st'>"Env_1"</span><span class='op'>)</span>
+<span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>messy_env</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "ENV_1" "ENV_1" "ENV_1" "ENV_1" "ENV_1" "ENV_1"</div><div class='input'>
-<span class='kw'>messy_gen</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GEN1"</span>, <span class='st'>"gen 2"</span>, <span class='st'>"Gen.3"</span>, <span class='st'>"gen-4"</span>, <span class='st'>"Gen_5"</span>, <span class='st'>"GEN_6"</span>)
-<span class='fu'>tidy_strings</span>(<span class='kw'>messy_gen</span>)
+<span class='va'>messy_gen</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GEN1"</span>, <span class='st'>"gen 2"</span>, <span class='st'>"Gen.3"</span>, <span class='st'>"gen-4"</span>, <span class='st'>"Gen_5"</span>, <span class='st'>"GEN_6"</span><span class='op'>)</span>
+<span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>messy_gen</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "GEN_1" "GEN_2" "GEN_3" "GEN_4" "GEN_5" "GEN_6"</div><div class='input'>
-<span class='kw'>messy_int</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"EnvGen"</span>, <span class='st'>"Env_Gen"</span>, <span class='st'>"env gen"</span>, <span class='st'>"Env Gen"</span>, <span class='st'>"ENV.GEN"</span>, <span class='st'>"ENV_GEN"</span>)
-<span class='fu'>tidy_strings</span>(<span class='kw'>messy_int</span>)
+<span class='va'>messy_int</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"EnvGen"</span>, <span class='st'>"Env_Gen"</span>, <span class='st'>"env gen"</span>, <span class='st'>"Env Gen"</span>, <span class='st'>"ENV.GEN"</span>, <span class='st'>"ENV_GEN"</span><span class='op'>)</span>
+<span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>messy_int</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "ENV_GEN" "ENV_GEN" "ENV_GEN" "ENV_GEN" "ENV_GEN" "ENV_GEN"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://tibble.tidyverse.org'>tibble</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
 <span class='co'># Or a whole data frame</span>
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(Env = <span class='kw'>messy_env</span>,
-             gen = <span class='kw'>messy_gen</span>,
-             Env_GEN = <span class='fu'><a href='https://rdrr.io/r/base/interaction.html'>interaction</a></span>(<span class='kw'>Env</span>, <span class='kw'>gen</span>),
-             y = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>6</span>, <span class='fl'>300</span>, <span class='fl'>10</span>))
-<span class='kw'>df</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>Env <span class='op'>=</span> <span class='va'>messy_env</span>,
+             gen <span class='op'>=</span> <span class='va'>messy_gen</span>,
+             Env_GEN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interaction.html'>interaction</a></span><span class='op'>(</span><span class='va'>Env</span>, <span class='va'>gen</span><span class='op'>)</span>,
+             y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>300</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>df</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
 #&gt;   Env     gen   Env_GEN           y
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -729,7 +729,7 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> Env1    Gen.3 Env1.Gen.3     308.
 #&gt; </span><span style='color: #555555;'>4</span><span> env1    gen-4 env1.gen-4     292.
 #&gt; </span><span style='color: #555555;'>5</span><span> Env.1   Gen_5 Env.1.Gen_5    300.
-#&gt; </span><span style='color: #555555;'>6</span><span> Env_1   GEN_6 Env_1.GEN_6    298.</div><div class='input'><span class='fu'>tidy_strings</span>(<span class='kw'>df</span>)
+#&gt; </span><span style='color: #555555;'>6</span><span> Env_1   GEN_6 Env_1.GEN_6    298.</div><div class='input'><span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
 #&gt;   Env   gen   Env_GEN         y
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

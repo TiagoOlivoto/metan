@@ -236,21 +236,21 @@ a set of predictors with minimal multicollinearity and high explanatory power
 is implemented.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>path_coeff</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>resp</span>,
-  by = <span class='kw'>NULL</span>,
-  pred = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>(),
-  exclude = <span class='fl'>FALSE</span>,
-  correction = <span class='kw'>NULL</span>,
-  knumber = <span class='fl'>50</span>,
-  brutstep = <span class='fl'>FALSE</span>,
-  maxvif = <span class='fl'>10</span>,
-  missingval = <span class='st'>"pairwise.complete.obs"</span>,
-  plot_res = <span class='fl'>FALSE</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>path_coeff</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>resp</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pred <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,
+  exclude <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  correction <span class='op'>=</span> <span class='cn'>NULL</span>,
+  knumber <span class='op'>=</span> <span class='fl'>50</span>,
+  brutstep <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  maxvif <span class='op'>=</span> <span class='fl'>10</span>,
+  missingval <span class='op'>=</span> <span class='st'>"pairwise.complete.obs"</span>,
+  plot_res <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -383,39 +383,39 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
 <span class='co'># Using KW as the response variable and all other ones as predictors</span>
-<span class='kw'>pcoeff</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='kw'>data_ge2</span>, resp = <span class='kw'>KW</span>)
+<span class='va'>pcoeff</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span><span class='op'>(</span><span class='va'>data_ge2</span>, resp <span class='op'>=</span> <span class='va'>KW</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 7865.84
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 
 <span class='co'># Declaring the predictors</span>
 <span class='co'># Create a residual plot with 'plot_res = TRUE'</span>
-<span class='kw'>pcoeff2</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='kw'>data_ge2</span>,
-                      resp = <span class='kw'>KW</span>,
-                      pred = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>NKE</span>, <span class='kw'>TKW</span>),
-                      plot_res = <span class='fl'>TRUE</span>)
+<span class='va'>pcoeff2</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+                      resp <span class='op'>=</span> <span class='va'>KW</span>,
+                      pred <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>NKE</span>, <span class='va'>TKW</span><span class='op'>)</span>,
+                      plot_res <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='path_coeff-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Weak multicollinearity. 
 #&gt; Condition Number = 40.232
 #&gt; You will probably have path coefficients close to being unbiased. </div><div class='input'>
 
 <span class='co'># Selecting variables to be excluded from the analysis</span>
-<span class='kw'>pcoeff3</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='kw'>data_ge2</span>,
-                     resp = <span class='kw'>KW</span>,
-                     pred = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>NKR</span>, <span class='kw'>PERK</span>, <span class='kw'>KW</span>, <span class='kw'>NKE</span>),
-                     exclude = <span class='fl'>TRUE</span>)
+<span class='va'>pcoeff3</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+                     resp <span class='op'>=</span> <span class='va'>KW</span>,
+                     pred <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>NKR</span>, <span class='va'>PERK</span>, <span class='va'>KW</span>, <span class='va'>NKE</span><span class='op'>)</span>,
+                     exclude <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 5827.719
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 
 <span class='co'># Selecting a set of predictors with minimal multicollinearity</span>
 <span class='co'># Maximum variance Inflation factor of 5</span>
-<span class='kw'>pcoeff4</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='kw'>data_ge2</span>,
-                     resp = <span class='kw'>KW</span>,
-                     brutstep = <span class='fl'>TRUE</span>,
-                     maxvif = <span class='fl'>5</span>)
+<span class='va'>pcoeff4</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+                     resp <span class='op'>=</span> <span class='va'>KW</span>,
+                     brutstep <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                     maxvif <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; --------------------------------------------------------------------------
 #&gt; The algorithm has selected a set of 8 predictors with largest VIF = 3.346. 
 #&gt; Selected predictors: NR PERK EP CDED EL NKR TKW PH 
@@ -443,7 +443,7 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
 
 <span class='co'># When one analysis should be carried out for each environment</span>
 <span class='co'># Using the forward-pipe operator %&gt;%</span>
-<span class='kw'>pcoeff5</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span>(<span class='kw'>data_ge2</span>, resp = <span class='kw'>KW</span>, by = <span class='kw'>ENV</span>)
+<span class='va'>pcoeff5</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span><span class='op'>(</span><span class='va'>data_ge2</span>, resp <span class='op'>=</span> <span class='va'>KW</span>, by <span class='op'>=</span> <span class='va'>ENV</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 13958.438
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. 

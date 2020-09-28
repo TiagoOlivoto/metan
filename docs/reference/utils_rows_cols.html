@@ -314,62 +314,62 @@ data frame.</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>add_cols</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, .before = <span class='kw'>NULL</span>, .after = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>add_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, .before <span class='op'>=</span> <span class='cn'>NULL</span>, .after <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>add_rows</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, .before = <span class='kw'>NULL</span>, .after = <span class='kw'>NULL</span>)
+<span class='fu'>add_rows</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, .before <span class='op'>=</span> <span class='cn'>NULL</span>, .after <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>all_pairs</span>(<span class='kw'>.data</span>, <span class='kw'>levels</span>)
+<span class='fu'>all_pairs</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>levels</span><span class='op'>)</span>
 
-<span class='fu'>add_prefix</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, <span class='kw'>prefix</span>, sep = <span class='st'>"_"</span>)
+<span class='fu'>add_prefix</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, <span class='va'>prefix</span>, sep <span class='op'>=</span> <span class='st'>"_"</span><span class='op'>)</span>
 
-<span class='fu'>add_suffix</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, <span class='kw'>suffix</span>, sep = <span class='st'>"_"</span>)
+<span class='fu'>add_suffix</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, <span class='va'>suffix</span>, sep <span class='op'>=</span> <span class='st'>"_"</span><span class='op'>)</span>
 
-<span class='fu'>colnames_to_lower</span>(<span class='kw'>.data</span>)
+<span class='fu'>colnames_to_lower</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
 
-<span class='fu'>colnames_to_upper</span>(<span class='kw'>.data</span>)
+<span class='fu'>colnames_to_upper</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
 
-<span class='fu'>colnames_to_title</span>(<span class='kw'>.data</span>)
+<span class='fu'>colnames_to_title</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
 
-<span class='fu'>column_to_first</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>column_to_first</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>column_to_last</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>column_to_last</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>column_exists</span>(<span class='kw'>.data</span>, <span class='kw'>cols</span>)
+<span class='fu'>column_exists</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>cols</span><span class='op'>)</span>
 
-<span class='fu'>concatenate</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>...</span>,
-  prefix = <span class='kw'>NULL</span>,
-  suffix = <span class='kw'>NULL</span>,
-  new_var = <span class='kw'>new_var</span>,
-  sep = <span class='st'>"_"</span>,
-  drop = <span class='fl'>FALSE</span>,
-  pull = <span class='fl'>FALSE</span>,
-  .before = <span class='kw'>NULL</span>,
-  .after = <span class='kw'>NULL</span>
-)
+<span class='fu'>concatenate</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>...</span>,
+  prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  suffix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  sep <span class='op'>=</span> <span class='st'>"_"</span>,
+  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>get_levels</span>(<span class='kw'>.data</span>, <span class='kw'>group</span>)
+<span class='fu'>get_levels</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>group</span><span class='op'>)</span>
 
-<span class='fu'>get_level_size</span>(<span class='kw'>.data</span>, <span class='kw'>group</span>)
+<span class='fu'>get_level_size</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>group</span><span class='op'>)</span>
 
-<span class='fu'>reorder_cols</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>, .before = <span class='kw'>NULL</span>, .after = <span class='kw'>NULL</span>)
+<span class='fu'>reorder_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, .before <span class='op'>=</span> <span class='cn'>NULL</span>, .after <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>remove_cols</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>remove_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>remove_rows</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>remove_rows</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>select_first_col</span>(<span class='kw'>.data</span>, offset = <span class='kw'>NULL</span>)
+<span class='fu'>select_first_col</span><span class='op'>(</span><span class='va'>.data</span>, offset <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>select_last_col</span>(<span class='kw'>.data</span>, offset = <span class='kw'>NULL</span>)
+<span class='fu'>select_last_col</span><span class='op'>(</span><span class='va'>.data</span>, offset <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>select_numeric_cols</span>(<span class='kw'>.data</span>)
+<span class='fu'>select_numeric_cols</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
 
-<span class='fu'>select_non_numeric_cols</span>(<span class='kw'>.data</span>)
+<span class='fu'>select_non_numeric_cols</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
 
-<span class='fu'>select_cols</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+<span class='fu'>select_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>select_rows</span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>select_rows</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -457,13 +457,13 @@ end (for <code>select_last_col()</code>) of from the begin (for
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
 <span class='co'>################# Adding columns #################</span>
 <span class='co'># Variables x and y .after last column</span>
-<span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>add_cols</span>(x = <span class='fl'>10</span>,
-           y = <span class='fl'>30</span>)
+<span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>add_cols</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>10</span>,
+           y <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 420 x 7</span><span>
 #&gt;    ENV   GEN   REP      GY    HM     x     y
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -478,10 +478,10 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8    10    30
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9    10    30
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># Variables x and y .before the variable GEN</span>
-<span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>add_cols</span>(x = <span class='fl'>10</span>,
-           y = <span class='fl'>30</span>,
-           .before = <span class='kw'>GEN</span>)
+<span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>add_cols</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>10</span>,
+           y <span class='op'>=</span> <span class='fl'>30</span>,
+           .before <span class='op'>=</span> <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 7</span><span>
 #&gt;    ENV       x     y GEN   REP      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -497,10 +497,10 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>10</span><span> E1       10    30 G4    1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Creating a new variable based on the existing ones.</span>
-<span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>add_cols</span>(GY2 = <span class='kw'>GY</span><span class='op'>^</span><span class='fl'>2</span>,
-           GY2_HM = <span class='kw'>GY2</span> <span class='op'>+</span> <span class='kw'>HM</span>,
-           .after = <span class='kw'>GY</span>)
+<span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>add_cols</span><span class='op'>(</span>GY2 <span class='op'>=</span> <span class='va'>GY</span><span class='op'>^</span><span class='fl'>2</span>,
+           GY2_HM <span class='op'>=</span> <span class='va'>GY2</span> <span class='op'>+</span> <span class='va'>HM</span>,
+           .after <span class='op'>=</span> <span class='va'>GY</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 7</span><span>
 #&gt;    ENV   GEN   REP      GY   GY2 GY2_HM    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -516,7 +516,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  5.57   53.5  47.9
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'>############### Reordering columns ###############</span>
-<span class='fu'>reorder_cols</span>(<span class='kw'>data_ge2</span>, <span class='kw'>NKR</span>, .before = <span class='kw'>ENV</span>)
+<span class='fu'>reorder_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>NKR</span>, .before <span class='op'>=</span> <span class='va'>ENV</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;      NKR ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -531,7 +531,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 9</span><span>  34.8 A1    H11   3      2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.
 #&gt; </span><span style='color: #555555;'>10</span><span>  31.6 A1    H12   1      2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>reorder_cols</span>(<span class='kw'>data_ge2</span>, <span class='fu'>where</span>(<span class='kw'>is.factor</span>), .after = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>last_col</a></span>())
+#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>reorder_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='fu'>where</span><span class='op'>(</span><span class='va'>is.factor</span><span class='op'>)</span>, .after <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>last_col</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED  PERK
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -548,7 +548,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   ENV </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span style='color: #555555;'>, GEN </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span style='color: #555555;'>, REP </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span></div><div class='input'>
 <span class='co'>######## Selecting and removing columns ##########</span>
-<span class='fu'>select_cols</span>(<span class='kw'>data_ge2</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>)
+<span class='fu'>select_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>GEN</span>, <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 2</span><span>
 #&gt;    GEN   REP  
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
@@ -562,7 +562,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 8</span><span> H11   2    
 #&gt; </span><span style='color: #555555;'> 9</span><span> H11   3    
 #&gt; </span><span style='color: #555555;'>10</span><span> H12   1    
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'><span class='fu'>remove_cols</span>(<span class='kw'>data_ge2</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>)
+#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'><span class='fu'>remove_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>GEN</span>, <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 16</span><span>
 #&gt;    ENV      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -579,14 +579,14 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 3 more variables: PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'>########## Selecting and removing rows ###########</span>
-<span class='fu'>select_rows</span>(<span class='kw'>data_ge2</span>, <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>)
+<span class='fu'>select_rows</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 18</span><span>
 #&gt;   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
 #&gt; </span><span style='color: #555555;'>2</span><span> A1    H1    3      2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
 #&gt; </span><span style='color: #555555;'># ... with 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows</span>(<span class='kw'>data_ge2</span>, <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>)
+#&gt; </span><span style='color: #555555;'>#   NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>remove_rows</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 154 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -603,7 +603,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 144 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'>########### Concatenating columns ################</span>
-<span class='fu'>concatenate</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>)
+<span class='fu'>concatenate</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP      GY    HM new_var
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
@@ -617,7 +617,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 E1_G3_2
 #&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 E1_G3_3
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 E1_G4_1
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>concatenate</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, drop = <span class='fl'>TRUE</span>)
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>concatenate</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, drop <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
 #&gt;    new_var
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
@@ -633,13 +633,13 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>10</span><span> E1_G4_1
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Combine with add_cols() and replace_string()</span>
-<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
- <span class='fu'>add_cols</span>(ENV_GEN = <span class='fu'>concatenate</span>(<span class='kw'>.</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, pull = <span class='fl'>TRUE</span>),
-          .after = <span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
- <span class='fu'><a href='utils_num_str.html'>replace_string</a></span>(<span class='kw'>ENV_GEN</span>,
-                pattern = <span class='st'>"H"</span>,
-                replacement = <span class='st'>"HYB_"</span>,
-                .after = <span class='kw'>ENV_GEN</span>)
+<span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>add_cols</span><span class='op'>(</span>ENV_GEN <span class='op'>=</span> <span class='fu'>concatenate</span><span class='op'>(</span><span class='va'>.</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, pull <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+          .after <span class='op'>=</span> <span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='utils_num_str.html'>replace_string</a></span><span class='op'>(</span><span class='va'>ENV_GEN</span>,
+                pattern <span class='op'>=</span> <span class='st'>"H"</span>,
+                replacement <span class='op'>=</span> <span class='st'>"HYB_"</span>,
+                .after <span class='op'>=</span> <span class='va'>ENV_GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 20</span><span>
 #&gt;    ENV   GEN   ENV_GEN new_var REP      PH    EH    EP    EL    ED    CL    CD
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -656,7 +656,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 8 more variables: CW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, KW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Use prefixes and suffixes</span>
-<span class='fu'>concatenate</span>(<span class='kw'>data_ge2</span>, <span class='kw'>REP</span>, prefix = <span class='st'>"REP"</span>, new_var = <span class='kw'>REP</span>)
+<span class='fu'>concatenate</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>REP</span>, prefix <span class='op'>=</span> <span class='st'>"REP"</span>, new_var <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -673,7 +673,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Use prefixes and suffixes (the ear traits EH, EP, EL, and ED)</span>
-<span class='fu'>add_prefix</span>(<span class='kw'>data_ge2</span>, <span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>EP</span>, <span class='kw'>EL</span>, prefix = <span class='st'>"EAR"</span>)
+<span class='fu'>add_prefix</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EP</span>, <span class='va'>EL</span>, prefix <span class='op'>=</span> <span class='st'>"EAR"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP   EAR_PH EAR_EH EAR_EP EAR_EL    ED    CL    CD    CW    KW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -688,7 +688,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3       2.77   1.67  0.600   15.8  47.9  27.6  16.4  20.5  166.
 #&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1       2.73   1.54  0.563   14.9  47.5  28.2  15.5  20.1  161.
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 6 more variables: NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>add_suffix</span>(<span class='kw'>data_ge2</span>, <span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>EP</span>, <span class='kw'>EL</span>, suffix = <span class='st'>"EAR"</span>, sep = <span class='st'>"."</span>)
+#&gt; </span><span style='color: #555555;'>#   CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>add_suffix</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EP</span>, <span class='va'>EL</span>, suffix <span class='op'>=</span> <span class='st'>"EAR"</span>, sep <span class='op'>=</span> <span class='st'>"."</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP   PH.EAR EH.EAR EP.EAR EL.EAR    ED    CL    CD    CW    KW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -705,7 +705,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 6 more variables: NR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Use prefixes and suffixes (colnames)</span>
-<span class='fu'>concatenate</span>(<span class='kw'>data_ge2</span>, <span class='kw'>REP</span>, prefix = <span class='st'>"REP"</span>, new_var = <span class='kw'>REP</span>)
+<span class='fu'>concatenate</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>REP</span>, prefix <span class='op'>=</span> <span class='st'>"REP"</span>, new_var <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -724,27 +724,27 @@ end (for <code>select_last_col()</code>) of from the begin (for
 
 <span class='co'>########### formating column names ###############</span>
 <span class='co'># Creating data with messy column names</span>
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>data_ge</span>, <span class='fl'>3</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='kw'>df</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Env"</span>, <span class='st'>"gen"</span>, <span class='st'>"Rep"</span>, <span class='st'>"GY"</span>, <span class='st'>"hm"</span>)
-<span class='kw'>df</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Env"</span>, <span class='st'>"gen"</span>, <span class='st'>"Rep"</span>, <span class='st'>"GY"</span>, <span class='st'>"hm"</span><span class='op'>)</span>
+<span class='va'>df</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   Env   gen   Rep      GY    hm
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
 #&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
-#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_lower</span>(<span class='kw'>df</span>)
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_lower</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   env   gen   rep      gy    hm
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
 #&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
-#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_upper</span>(<span class='kw'>df</span>)
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_upper</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   ENV   GEN   REP      GY    HM
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    1      2.17  44.9
 #&gt; </span><span style='color: #555555;'>2</span><span> E1    G1    2      2.50  46.9
-#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_title</span>(<span class='kw'>df</span>)
+#&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'><span class='fu'>colnames_to_title</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   Env   Gen   Rep      Gy    Hm
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -753,10 +753,10 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>3</span><span> E1    G1    3      2.43  47.8</div><div class='input'>
 
 <span class='co'>################### Adding rows ##################</span>
-<span class='kw'>data_ge</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>add_rows</span>(GY = <span class='fl'>10.3</span>,
-           HM = <span class='fl'>100.11</span>,
-           .after = <span class='fl'>1</span>)
+<span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>add_rows</span><span class='op'>(</span>GY <span class='op'>=</span> <span class='fl'>10.3</span>,
+           HM <span class='op'>=</span> <span class='fl'>100.11</span>,
+           .after <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 421 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -772,16 +772,16 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'>10</span><span> E1    G3    3      2.28  47.8
 #&gt; </span><span style='color: #555555;'># ... with 411 more rows</span><span></div><div class='input'>
 <span class='co'>########## checking if a column exists ###########</span>
-<span class='fu'>column_exists</span>(<span class='kw'>data_g</span>, <span class='st'>"GEN"</span>)
+<span class='fu'>column_exists</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='st'>"GEN"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>####### get the levels and size of levels ########</span>
-<span class='fu'>get_levels</span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>)
+<span class='fu'>get_levels</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] "H1"  "H10" "H11" "H12" "H13" "H2"  "H3"  "H4"  "H5"  "H6"  "H7"  "H8" 
-#&gt; [13] "H9" </div><div class='input'><span class='fu'>get_level_size</span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>)
+#&gt; [13] "H9" </div><div class='input'><span class='fu'>get_level_size</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  H1 H10 H11 H12 H13  H2  H3  H4  H5  H6  H7  H8  H9 
 #&gt;   3   3   3   3   3   3   3   3   3   3   3   3   3 </div><div class='input'>
 <span class='co'>############## all possible pairs ################</span>
-<span class='fu'>all_pairs</span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>)
+<span class='fu'>all_pairs</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     V1  V2
 #&gt; 1   H1 H10
 #&gt; 2   H1 H11
@@ -862,7 +862,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; 77  H7  H9
 #&gt; 78  H8  H9</div><div class='input'>
 <span class='co'>########## select numeric variables only #########</span>
-<span class='fu'>select_numeric_cols</span>(<span class='kw'>data_g</span>)
+<span class='fu'>select_numeric_cols</span><span class='op'>(</span><span class='va'>data_g</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 15</span><span>
 #&gt;       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED  PERK
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -876,7 +876,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'> 8</span><span>  2.09 1.06  0.509  12.2  46.9  26.5  14.3  13.5  114.  16.8  26.2 0.566  89.3
 #&gt; </span><span style='color: #555555;'> 9</span><span>  2.5  1.44  0.577  15.0  49.0  27.5  15.2  19.4  168.  16.4  35   0.562  89.6
 #&gt; </span><span style='color: #555555;'>10</span><span>  2.52 1.52  0.601  14.4  49.2  28.4  15    18.2  153.  16.4  32   0.577  89.2
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 2 more variables: TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>select_non_numeric_cols</span>(<span class='kw'>data_g</span>)
+#&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 2 more variables: TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='fu'>select_non_numeric_cols</span><span class='op'>(</span><span class='va'>data_g</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 39 x 2</span><span>
 #&gt;    GEN   REP  
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>

@@ -242,29 +242,29 @@ standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
 (6) standardized residuals vs observation order, and (7) 1:1 line plot</p>
     </div>
 
-    <pre class="usage"><span class='fu'>residual_plots</span>(
-  <span class='kw'>x</span>,
-  var = <span class='fl'>1</span>,
-  conf = <span class='fl'>0.95</span>,
-  labels = <span class='fl'>FALSE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  band.alpha = <span class='fl'>0.2</span>,
-  point.alpha = <span class='fl'>0.8</span>,
-  fill.hist = <span class='st'>"gray"</span>,
-  col.hist = <span class='st'>"black"</span>,
-  col.point = <span class='st'>"black"</span>,
-  col.line = <span class='st'>"red"</span>,
-  col.lab.out = <span class='st'>"red"</span>,
-  size.lab.out = <span class='fl'>2.5</span>,
-  size.tex.lab = <span class='fl'>10</span>,
-  size.shape = <span class='fl'>1.5</span>,
-  bins = <span class='fl'>30</span>,
-  which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>),
-  ncol = <span class='kw'>NULL</span>,
-  nrow = <span class='kw'>NULL</span>,
-  align = <span class='st'>"hv"</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>residual_plots</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  var <span class='op'>=</span> <span class='fl'>1</span>,
+  conf <span class='op'>=</span> <span class='fl'>0.95</span>,
+  labels <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>,
+  band.alpha <span class='op'>=</span> <span class='fl'>0.2</span>,
+  point.alpha <span class='op'>=</span> <span class='fl'>0.8</span>,
+  fill.hist <span class='op'>=</span> <span class='st'>"gray"</span>,
+  col.hist <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.point <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.line <span class='op'>=</span> <span class='st'>"red"</span>,
+  col.lab.out <span class='op'>=</span> <span class='st'>"red"</span>,
+  size.lab.out <span class='op'>=</span> <span class='fl'>2.5</span>,
+  size.tex.lab <span class='op'>=</span> <span class='fl'>10</span>,
+  size.shape <span class='op'>=</span> <span class='fl'>1.5</span>,
+  bins <span class='op'>=</span> <span class='fl'>30</span>,
+  which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
+  align <span class='op'>=</span> <span class='st'>"hv"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -357,7 +357,7 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments passed on to the function
-<code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>plot_grid</a></code></p></td>
+<code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>plot_grid</a></code></p></td>
     </tr>
     </table>
 
@@ -367,8 +367,8 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='kw'>GY</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -394,21 +394,21 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Default plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='residual_plots-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Normal Q-Q plot</span>
 <span class='co'># Label possible outliers</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>,
-     which = <span class='fl'>2</span>,
-     labels = <span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span>,
+     which <span class='op'>=</span> <span class='fl'>2</span>,
+     labels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='residual_plots-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Residual vs fitted,</span>
 <span class='co'># Normal Q-Q plot</span>
 <span class='co'># Histogram of raw residuals</span>
 <span class='co'># All in one row</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>,
-     which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>5</span>),
-     nrow = <span class='fl'>1</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span>,
+     which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>5</span><span class='op'>)</span>,
+     nrow <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='img'><img src='residual_plots-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

@@ -235,7 +235,7 @@ the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for sh</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, export <span class='op'>=</span> <span class='cn'>FALSE</span>, file.name <span class='op'>=</span> <span class='cn'>NULL</span>, digits <span class='op'>=</span> <span class='fl'>4</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -270,13 +270,13 @@ to the working directory</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span>(<span class='kw'>data_g</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='kw'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>means</span>)
-<span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>phen_cov</span>
-<span class='kw'>gcov</span> <span class='op'>&lt;-</span> <span class='kw'>vcov</span><span class='op'>$</span><span class='kw'>geno_cov</span>
+<span class='va'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>vcov</span><span class='op'>$</span><span class='va'>means</span><span class='op'>)</span>
+<span class='va'>pcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>phen_cov</span>
+<span class='va'>gcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>geno_cov</span>
 
-<span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span>(<span class='kw'>means</span>, pcov = <span class='kw'>pcov</span>, gcov = <span class='kw'>gcov</span>, weights = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>15</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>index</span>)
+<span class='va'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span><span class='op'>(</span><span class='va'>means</span>, pcov <span class='op'>=</span> <span class='va'>pcov</span>, gcov <span class='op'>=</span> <span class='va'>gcov</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>15</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>index</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Index coefficients

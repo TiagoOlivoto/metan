@@ -236,19 +236,19 @@ estimation of canonical loads, canonical scores, and hypothesis testing for
 correlation pairs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>can_corr</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>FG</span>,
-  <span class='kw'>SG</span>,
-  by = <span class='kw'>NULL</span>,
-  use = <span class='st'>"cor"</span>,
-  test = <span class='st'>"Bartlett"</span>,
-  prob = <span class='fl'>0.05</span>,
-  center = <span class='fl'>TRUE</span>,
-  stdscores = <span class='fl'>FALSE</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  collinearity = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>can_corr</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>FG</span>,
+  <span class='va'>SG</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  use <span class='op'>=</span> <span class='st'>"cor"</span>,
+  test <span class='op'>=</span> <span class='st'>"Bartlett"</span>,
+  prob <span class='op'>=</span> <span class='fl'>0.05</span>,
+  center <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stdscores <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  collinearity <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -343,11 +343,11 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
-<span class='kw'>cc1</span> <span class='op'>&lt;-</span> <span class='fu'>can_corr</span>(<span class='kw'>data_ge2</span>,
-               FG = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>EP</span>),
-               SG = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>EL</span>, <span class='kw'>ED</span>, <span class='kw'>CL</span>, <span class='kw'>CD</span>, <span class='kw'>CW</span>, <span class='kw'>KW</span>, <span class='kw'>NR</span>))
+<span class='va'>cc1</span> <span class='op'>&lt;-</span> <span class='fu'>can_corr</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+               FG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EP</span><span class='op'>)</span>,
+               SG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>EL</span>, <span class='va'>ED</span>, <span class='va'>CL</span>, <span class='va'>CD</span>, <span class='va'>CW</span>, <span class='va'>KW</span>, <span class='va'>NR</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; Matrix (correlation/covariance) between variables of first group (FG)
 #&gt; ---------------------------------------------------------------------------
@@ -443,11 +443,11 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
 #&gt; NR 0.4351188  0.29047403  0.18639351</div><div class='input'>
 
 <span class='co'># Canonical correlations for each environment</span>
-<span class='kw'>cc3</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
-       <span class='fu'>can_corr</span>(FG = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>EP</span>),
-                SG = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>EL</span>, <span class='kw'>ED</span>, <span class='kw'>CL</span>, <span class='kw'>CD</span>, <span class='kw'>CW</span>, <span class='kw'>KW</span>, <span class='kw'>NR</span>),
-                by = <span class='kw'>ENV</span>,
-                verbose = <span class='fl'>FALSE</span>)
+<span class='va'>cc3</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+       <span class='fu'>can_corr</span><span class='op'>(</span>FG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EP</span><span class='op'>)</span>,
+                SG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>EL</span>, <span class='va'>ED</span>, <span class='va'>CL</span>, <span class='va'>CD</span>, <span class='va'>CW</span>, <span class='va'>KW</span>, <span class='va'>NR</span><span class='op'>)</span>,
+                by <span class='op'>=</span> <span class='va'>ENV</span>,
+                verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'># }</span>
 </div></pre>

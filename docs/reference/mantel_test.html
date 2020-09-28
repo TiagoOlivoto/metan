@@ -238,7 +238,7 @@ is the sum of the products of the corresponding elements of the matrices and
 a two-tailed p-value (null hypothesis: <code>r = 0</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mantel_test</span>(<span class='kw'>mat1</span>, <span class='kw'>mat2</span>, nboot = <span class='fl'>1000</span>, plot = <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>mantel_test</span><span class='op'>(</span><span class='va'>mat1</span>, <span class='va'>mat2</span>, nboot <span class='op'>=</span> <span class='fl'>1000</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -278,12 +278,12 @@ distribution.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># Test if the correlation of traits (data_ge2 dataset)</span>
 <span class='co'># changes between A1 and A2 levels of factor ENV</span>
-<span class='kw'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span>(<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='kw'>ENV</span> <span class='op'>==</span> <span class='st'>"A1"</span>))[[<span class='st'>"cor"</span>]]
-<span class='kw'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span>(<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='kw'>ENV</span> <span class='op'>==</span> <span class='st'>"A2"</span>))[[<span class='st'>"cor"</span>]]
-<span class='fu'>mantel_test</span>(<span class='kw'>A1</span>, <span class='kw'>A2</span>, plot = <span class='fl'>TRUE</span>)
+<span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span><span class='op'>(</span><span class='va'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>ENV</span> <span class='op'>==</span> <span class='st'>"A1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[[</span><span class='st'>"cor"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='corr_coef.html'>corr_coef</a></span><span class='op'>(</span><span class='va'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>ENV</span> <span class='op'>==</span> <span class='st'>"A2"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[[</span><span class='st'>"cor"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'>mantel_test</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='mantel_test-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $mantel_r
 #&gt; [1] 0.7154291
 #&gt; 

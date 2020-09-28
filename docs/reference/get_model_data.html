@@ -248,9 +248,9 @@ AMMI-based stability statistics.</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>get_model_data</span>(<span class='kw'>x</span>, what = <span class='kw'>NULL</span>, type = <span class='st'>"GEN"</span>, verbose = <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>x</span>, what <span class='op'>=</span> <span class='cn'>NULL</span>, type <span class='op'>=</span> <span class='st'>"GEN"</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>gmd</span>(<span class='kw'>x</span>, what = <span class='kw'>NULL</span>, type = <span class='st'>"GEN"</span>, verbose = <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>gmd</span><span class='op'>(</span><span class='va'>x</span>, what <span class='op'>=</span> <span class='cn'>NULL</span>, type <span class='op'>=</span> <span class='st'>"GEN"</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,7 +262,7 @@ AMMI-based stability statistics.</p></li>
 <code><a href='can_corr.html'>can_corr</a>()</code> <code><a href='ecovalence.html'>ecovalence</a>()</code>,  <code><a href='Fox.html'>Fox</a>()</code>,
 <code><a href='gai.html'>gai</a>()</code>, <code><a href='gamem.html'>gamem</a>()</code>,<code><a href='gafem.html'>gafem</a>()</code>,
 <code><a href='ge_acv.html'>ge_acv</a></code>, <code><a href='ge_means.html'>ge_means</a>()</code>, <code><a href='ge_reg.html'>ge_reg</a>()</code>,
-<code><a href='gytb.html'>gytb</a>()</code>, <code><a href='performs_ammi.html'>performs_ammi</a>()</code>,
+<code><a href='gytb.html'>gytb</a>()</code>, <code><a href='mgidi.html'>mgidi</a>()</code>, <code><a href='performs_ammi.html'>performs_ammi</a>()</code>,
 <code><a href='Resende_indexes.html'>Resende_indexes</a>()</code>, <code><a href='Shukla.html'>Shukla</a>()</code>,
 <code><a href='superiority.html'>superiority</a>()</code>, <code><a href='waas.html'>waas</a>()</code> or <code><a href='waasb.html'>waasb</a>()</code>.</p></td>
     </tr>
@@ -390,6 +390,10 @@ analyzed traits (default).</p></li>
 <li><p><code>"si"</code> The superiority index (sum standardized value across all yield*trait combinations).</p></li>
 </ul>
 
+<p><strong>Objects of class <code>mgidi</code>:</strong> See the <strong>Value</strong> section of
+<code><a href='mgidi.html'>mgidi</a>()</code> to see valid options for <code>what</code> argument.</p>
+<p><strong>Objects of class <code>mtsi</code>:</strong> See the <strong>Value</strong> section of
+<code><a href='mtsi.html'>mtsi</a>()</code> to see valid options for <code>what</code> argument.</p>
 <p><strong>Objects of class <code>Shukla</code>:</strong></p><ul>
 <li><p><code>"rMean"</code> Rank for the mean.</p></li>
 <li><p><code>"ShuklaVar"</code> Shukla's stablity variance (default).</p></li>
@@ -546,12 +550,12 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
 <span class='co'>#################### joint-regression analysis #####################</span>
-<span class='kw'>ge_r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>,
-               resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>EH</span>, <span class='kw'>CD</span>, <span class='kw'>CL</span>, <span class='kw'>ED</span>))
-<span class='fu'>get_model_data</span>(<span class='kw'>ge_r</span>)
+<span class='va'>ge_r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>,
+               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>CD</span>, <span class='va'>CL</span>, <span class='va'>ED</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>ge_r</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_reg</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: slope</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 6</span><span>
 #&gt;    GEN      PH    EH      CD     CL      ED
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -567,7 +571,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>10</span><span> H6    0.936 0.780  3.00    1.60   0.940 
 #&gt; </span><span style='color: #555555;'>11</span><span> H7    0.992 0.950 -</span><span style='color: #BB0000;'>0.038</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  1.48   0.797 
 #&gt; </span><span style='color: #555555;'>12</span><span> H8    1.01  0.886  0.903   3.73   1.89  
-#&gt; </span><span style='color: #555555;'>13</span><span> H9    1.42  1.48   2.04    3.42   2.40  </div><div class='input'><span class='fu'>get_model_data</span>(<span class='kw'>ge_r</span>, <span class='st'>"deviations"</span>)
+#&gt; </span><span style='color: #555555;'>13</span><span> H9    1.42  1.48   2.04    3.42   2.40  </div><div class='input'><span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>ge_r</span>, <span class='st'>"deviations"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_reg</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: deviations</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
 #&gt;    GEN       PH       EH      CD     CL     ED
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -587,9 +591,9 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 
 <span class='co'>#################### AMMI model #####################</span>
 <span class='co'># Fit an AMMI model for 7 variables.</span>
-<span class='kw'>AMMI</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>,
-               resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>ED</span>, <span class='kw'>TKW</span>, <span class='kw'>NKR</span>, <span class='kw'>CD</span>, <span class='kw'>CL</span>, <span class='kw'>CW</span>))
+<span class='va'>AMMI</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>,
+               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>TKW</span>, <span class='va'>NKR</span>, <span class='va'>CD</span>, <span class='va'>CL</span>, <span class='va'>CW</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -705,7 +709,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Sum of squares</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, <span class='st'>"ipca_ss"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='st'>"ipca_ss"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: performs_ammi</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: Sum Sq</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF    PH    ED     TKW   NKR    CD    CL    CW
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -713,7 +717,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.653 135.   </span><span style='text-decoration: underline;'>33</span><span>361. 192.   20.7 129.   503.
 #&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.277  51.3  </span><span style='text-decoration: underline;'>26</span><span>935.  73.1  12.6  77.5  330.</div><div class='input'>
 <span class='co'># Mean squares</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, <span class='st'>"ipca_ms"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='st'>"ipca_ms"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: performs_ammi</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: Mean Sq</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF     PH    ED   TKW   NKR    CD    CL    CW
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -721,7 +725,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.054</span><span style='text-decoration: underline;'>5</span><span> 11.2  </span><span style='text-decoration: underline;'>2</span><span>780. 16.0   1.73 10.8   41.9
 #&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.027</span><span style='text-decoration: underline;'>7</span><span>  5.13 </span><span style='text-decoration: underline;'>2</span><span>694.  7.31  1.26  7.75  33.0</div><div class='input'>
 <span class='co'># Examine the significance (p-value) of the IPCAs</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, <span class='st'>"ipca_pval"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='st'>"ipca_pval"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: performs_ammi</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: Pr(&gt;F)</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF     PH     ED     TKW      NKR     CD    CL       CW
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -729,7 +733,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>2</span><span> PC2      12 0.008</span><span style='text-decoration: underline;'>4</span><span> 0      0.001</span><span style='text-decoration: underline;'>20</span><span> 0.028</span><span style='text-decoration: underline;'>5</span><span>   0.042</span><span style='text-decoration: underline;'>3</span><span>     0 0.000</span><span style='text-decoration: underline;'>300</span><span>
 #&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 0.276  0.043</span><span style='text-decoration: underline;'>8</span><span> 0.003   0.509    0.192      0 0.005</span><span style='text-decoration: underline;'>2</span><span>  </div><div class='input'>
 <span class='co'># Explained sum of square for each IPCA</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: performs_ammi</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: Proportion</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF    PH    ED   TKW   NKR    CD    CL    CW
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -737,7 +741,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>2</span><span> PC2      12  12.1  33.8  20.3  31.9  25.4  24.5  16.4
 #&gt; </span><span style='color: #555555;'>3</span><span> PC3      10   5.1  12.9  16.4  12.1  15.5  14.7  10.8</div><div class='input'>
 <span class='co'># Accumulated sum of square</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, <span class='st'>"ipca_accum"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='st'>"ipca_accum"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: performs_ammi</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: Accumulated</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   PC       DF    PH    ED   TKW   NKR    CD    CL    CW
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -746,9 +750,9 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>3</span><span> PC3      10 100   100   100   100   100   100   100  </div><div class='input'>
 <span class='co'>### AMMI-based stability statistics ###</span>
 <span class='co'># Get the AMMI stability value</span>
-<span class='kw'>AMMI</span> <span class='op'>%&gt;%</span>
-<span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span>() <span class='op'>%&gt;%</span>
-<span class='fu'>get_model_data</span>(<span class='st'>"ASV"</span>)
+<span class='va'>AMMI</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='st'>"ASV"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: AMMI_indexes</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ASV</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 8</span><span>
 #&gt;    GEN      PH    ED    TKW   NKR    CD    CL     CW
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -768,8 +772,8 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 
 <span class='co'>#################### WAASB model #####################</span>
 <span class='co'># Fitting the WAAS index</span>
-<span class='kw'>AMMI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>,
-             resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>ED</span>, <span class='kw'>TKW</span>, <span class='kw'>NKR</span>))
+<span class='va'>AMMI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>,
+             resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>TKW</span>, <span class='va'>NKR</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -837,7 +841,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'>
 <span class='co'># Getting the weighted average of absolute scores</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, what = <span class='st'>"WAAS"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span>, what <span class='op'>=</span> <span class='st'>"WAAS"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
 #&gt;    GEN      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -855,7 +859,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>12</span><span> H8    0.315 0.653 4.91  0.941
 #&gt; </span><span style='color: #555555;'>13</span><span> H9    0.146 0.907 5.50  0.888</div><div class='input'>
 <span class='co'># And the rank for the WAASB index.</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>AMMI</span>, what = <span class='st'>"OrWAAS"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>AMMI</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
 #&gt;    GEN      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -875,8 +879,8 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 
 <span class='co'>#################### BLUP model #####################</span>
 <span class='co'># Fitting a mixed-effect model</span>
-<span class='kw'>blup</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>,
-              resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>PH</span>, <span class='kw'>ED</span>, <span class='kw'>TKW</span>, <span class='kw'>NKR</span>))
+<span class='va'>blup</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>,
+              resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>TKW</span>, <span class='va'>NKR</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -887,7 +891,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='co'># Getting p-values for likelihood-ratio test</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>blup</span>, what = <span class='st'>"lrt"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>blup</span>, what <span class='op'>=</span> <span class='st'>"lrt"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 8</span><span>
 #&gt;   VAR   model    npar  logLik    AIC      LRT    Df `Pr(&gt;Chisq)`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -900,7 +904,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>7</span><span> NKR   GEN        14 -</span><span style='color: #BB0000;'>387.</span><span>    802.  7.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>     1     7.87</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>
 #&gt; </span><span style='color: #555555;'>8</span><span> NKR   GEN:ENV    14 -</span><span style='color: #BB0000;'>391.</span><span>    810.  8.26</span><span style='color: #555555;'>e</span><span>+ 0     1     4.04</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span></div><div class='input'>
 <span class='co'># Getting the variance components</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>blup</span>, what = <span class='st'>"vcomp"</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>blup</span>, what <span class='op'>=</span> <span class='st'>"vcomp"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   Group          PH    ED      TKW   NKR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -908,7 +912,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>2</span><span> GEN:ENV  0.042</span><span style='text-decoration: underline;'>5</span><span>   2.82  1.15</span><span style='color: #555555;'>e</span><span>+ 3 2.96 
 #&gt; </span><span style='color: #555555;'>3</span><span> Residual 0.022</span><span style='text-decoration: underline;'>4</span><span>   2.59  9.18</span><span style='color: #555555;'>e</span><span>+ 2 7.85 </div><div class='input'>
 <span class='co'># Getting the genetic parameters</span>
-<span class='fu'>get_model_data</span>(<span class='kw'>blup</span>)
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>blup</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 9 x 5</span><span>
 #&gt;   Parameters               PH     ED      TKW     NKR
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -922,9 +926,9 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>8</span><span> CVr                 6.03    3.25   8.95</span><span style='color: #555555;'>e</span><span>+ 0  8.69  
 #&gt; </span><span style='color: #555555;'>9</span><span> CV ratio            0.142   0.463  2.96</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>  0.154 </div><div class='input'>
 <span class='co'>### BLUP-based stability indexes ###</span>
-<span class='kw'>blup</span> <span class='op'>%&gt;%</span>
-<span class='fu'><a href='Resende_indexes.html'>Resende_indexes</a></span>() <span class='op'>%&gt;%</span>
-<span class='fu'>get_model_data</span>()
+<span class='va'>blup</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='Resende_indexes.html'>Resende_indexes</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: Res_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: HMRPGV</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 5</span><span>
 #&gt;    GEN      PH    ED   TKW   NKR
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -943,8 +947,8 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 #&gt; </span><span style='color: #555555;'>13</span><span> H9    0.953 0.965 0.916 1.00 </div><div class='input'>
 
 <span class='co'>#################### Stability indexes #####################</span>
-<span class='kw'>stats_ge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='fu'>get_model_data</span>(<span class='kw'>stats_ge</span>)
+<span class='va'>stats_ge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>get_model_data</span><span class='op'>(</span><span class='va'>stats_ge</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_stats</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: stats</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 20 x 35</span><span>
 #&gt;    var   GEN       Y    CV   ACV   POLAR    Var Shukla  Wi_g  Wi_f  Wi_u  Ecoval
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

@@ -234,7 +234,7 @@ predictors for a given response trait resp based on AIC values." />
 predictors for a given response trait <code>resp</code> based on AIC values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_pred</span>(<span class='kw'>.data</span>, <span class='kw'>resp</span>, covariates = <span class='kw'>NULL</span>, <span class='kw'>npred</span>)</pre>
+    <pre class="usage"><span class='fu'>select_pred</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>resp</span>, covariates <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>npred</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -281,10 +281,10 @@ selected in each step.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>select_pred</span>(<span class='kw'>data_ge2</span>, resp = <span class='kw'>PH</span>, npred = <span class='fl'>10</span>)
-<span class='kw'>mod</span><span class='op'>$</span><span class='kw'>predictors</span>
-</div><div class='output co'>#&gt;  [1] "EH"   "EP"   "CDED" "KW"   "NR"   "CL"   "ED"   "NKE"  "NKR"  "EL"  </div><div class='input'><span class='kw'>mod</span><span class='op'>$</span><span class='kw'>AIC</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>select_pred</span><span class='op'>(</span><span class='va'>data_ge2</span>, resp <span class='op'>=</span> <span class='va'>PH</span>, npred <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>mod</span><span class='op'>$</span><span class='va'>predictors</span>
+</div><div class='output co'>#&gt;  [1] "EH"   "EP"   "CDED" "KW"   "NR"   "CL"   "ED"   "NKE"  "NKR"  "EL"  </div><div class='input'><span class='va'>mod</span><span class='op'>$</span><span class='va'>AIC</span>
 </div><div class='output co'>#&gt; [1] -628.8605</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

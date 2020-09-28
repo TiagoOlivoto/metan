@@ -488,7 +488,9 @@ plot.mgidi <- function(x,
     } else{
       data <- x$contri_fac
     }
-    data %<>% pivot_longer(-GEN)
+    data %<>%
+      pivot_longer(-GEN) %>%
+      arrange(GEN)
     title <- ifelse(is.null(title), "The strengths and weaknesses view of genotypes", title)
     if(radar == TRUE){
       p <-

@@ -234,24 +234,24 @@ interaction effects matrix." />
 interaction effects matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_eigen</span>(
-  <span class='kw'>x</span>,
-  var = <span class='fl'>1</span>,
-  export = <span class='fl'>FALSE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  file.type = <span class='st'>"pdf"</span>,
-  file.name = <span class='kw'>NULL</span>,
-  width = <span class='fl'>6</span>,
-  height = <span class='fl'>6</span>,
-  size.shape = <span class='fl'>3.5</span>,
-  size.line = <span class='fl'>1</span>,
-  size.tex.lab = <span class='fl'>12</span>,
-  y.lab = <span class='st'>"Eigenvalue"</span>,
-  y2.lab = <span class='st'>"Accumulated variance"</span>,
-  x.lab = <span class='st'>"Number of multiplicative terms"</span>,
-  resolution = <span class='fl'>300</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_eigen</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  var <span class='op'>=</span> <span class='fl'>1</span>,
+  export <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>,
+  file.type <span class='op'>=</span> <span class='st'>"pdf"</span>,
+  file.name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='fl'>6</span>,
+  height <span class='op'>=</span> <span class='fl'>6</span>,
+  size.shape <span class='op'>=</span> <span class='fl'>3.5</span>,
+  size.line <span class='op'>=</span> <span class='fl'>1</span>,
+  size.tex.lab <span class='op'>=</span> <span class='fl'>12</span>,
+  y.lab <span class='op'>=</span> <span class='st'>"Eigenvalue"</span>,
+  y2.lab <span class='op'>=</span> <span class='st'>"Accumulated variance"</span>,
+  x.lab <span class='op'>=</span> <span class='st'>"Number of multiplicative terms"</span>,
+  resolution <span class='op'>=</span> <span class='fl'>300</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -344,12 +344,12 @@ multiplicative terms"</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>BLUP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>,
-             resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>),
-             gen = <span class='kw'>GEN</span>,
-             env = <span class='kw'>ENV</span>,
-             rep = <span class='kw'>REP</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>BLUP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+             resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
+             gen <span class='op'>=</span> <span class='va'>GEN</span>,
+             env <span class='op'>=</span> <span class='va'>ENV</span>,
+             rep <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -358,7 +358,7 @@ multiplicative terms"</code>.</p></td>
 #&gt;       GEN 1.11e-05 5.07e-03
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_eigen</span>(<span class='kw'>BLUP</span>)
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'>plot_eigen</span><span class='op'>(</span><span class='va'>BLUP</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_eigen-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># }</span>
 

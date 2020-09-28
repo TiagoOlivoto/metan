@@ -234,7 +234,7 @@
 1992).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Annicchiarico</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, prob = <span class='fl'>0.25</span>, verbose = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>Annicchiarico</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, prob <span class='op'>=</span> <span class='fl'>0.25</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -301,13 +301,13 @@ from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>Ann</span> <span class='op'>&lt;-</span> <span class='fu'>Annicchiarico</span>(<span class='kw'>data_ge2</span>,
-                    env = <span class='kw'>ENV</span>,
-                    gen = <span class='kw'>GEN</span>,
-                    rep = <span class='kw'>REP</span>,
-                    resp = <span class='kw'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>Ann</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>Ann</span> <span class='op'>&lt;-</span> <span class='fu'>Annicchiarico</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+                    env <span class='op'>=</span> <span class='va'>ENV</span>,
+                    gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                    rep <span class='op'>=</span> <span class='va'>REP</span>,
+                    resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>Ann</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Environmental index

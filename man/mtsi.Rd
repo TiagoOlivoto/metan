@@ -33,24 +33,24 @@ An object of class \code{mtsi} with the following items:
 \item \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
 \item \strong{MSA} The measure of sampling adequacy for individual variable.
 \item \strong{communalities} The communalities.
-\item \strong{communalities.mean} The communalities' mean.
-\item \strong{initial.loadings} The initial loadings.
-\item \strong{finish.loadings} The final loadings after varimax rotation.
-\item \strong{canonical.loadings} The canonical loadings.
-\item \strong{scores.gen} The scores for genotypes in all retained factors.
-\item \strong{scores.ide} The scores for the ideotype in all retained factors.
+\item \strong{communalities_mean} The communalities' mean.
+\item \strong{initial_loadings} The initial loadings.
+\item \strong{finish_loadings} The final loadings after varimax rotation.
+\item \strong{canonical_loadings} The canonical loadings.
+\item \strong{scores_gen} The scores for genotypes in all retained factors.
+\item \strong{scores_ide} The scores for the ideotype in all retained factors.
 \item \strong{MTSI} The multi-trait stability index.
-\item \strong{contri.fac} The relative contribution of each factor on the MTSI value.
+\item \strong{contri_fac} The relative contribution of each factor on the MTSI value.
 The lower the contribution of a factor, the close of the ideotype the variables in such
 factor are.
-\item \strong{contri.fac.rank, contri.fac.rank.sel} The rank for the contribution
+\item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.
-\item \strong{sel.dif} The selection differential for the WAASBY index.
-\item \strong{mean.sd} The mean for the differential selection.
-\item \strong{sel.dif.var} The selection differential for the variables.
-\item \strong{total.sel.dif} The total selection differential.
-\item \strong{sel.dif.waasb} The selection differential for WAASB index.
-\item \strong{Selected} The selected genotypes.
+\item \strong{sel_dif} The selection differential for the WAASBY index.
+\item \strong{mean_sd} The mean for the differential selection.
+\item \strong{sel_dif_var} The selection differential for the variables.
+\item \strong{total_sel_dif} The total selection differential.
+\item \strong{sel_dif_waasb} The selection differential for WAASB index.
+\item \strong{sel_gen} The selected genotypes.
 }
 }
 \description{

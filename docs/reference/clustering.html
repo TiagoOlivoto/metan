@@ -232,17 +232,17 @@
     <p>Performs clustering analysis with selection of variables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>clustering</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>...</span>,
-  by = <span class='kw'>NULL</span>,
-  scale = <span class='fl'>FALSE</span>,
-  selvar = <span class='fl'>FALSE</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  distmethod = <span class='st'>"euclidean"</span>,
-  clustmethod = <span class='st'>"average"</span>,
-  nclust = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>clustering</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>...</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scale <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  selvar <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  distmethod <span class='op'>=</span> <span class='st'>"euclidean"</span>,
+  clustmethod <span class='op'>=</span> <span class='st'>"average"</span>,
+  nclust <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -354,22 +354,22 @@ rules: an evaluation. Comput. J. 20:359-363. doi: <a href='https://doi.org/10.10
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
 <span class='co'># All rows and all numeric variables from data</span>
-<span class='kw'>d1</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>data_ge2</span>)
+<span class='va'>d1</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span>
 
 <span class='co'># Based on the mean for each genotype</span>
-<span class='kw'>mean_gen</span> <span class='op'>&lt;-</span>
- <span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span>(<span class='st'>"GEN"</span>)
+<span class='va'>mean_gen</span> <span class='op'>&lt;-</span>
+ <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span>
 
-<span class='kw'>d2</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>mean_gen</span>)
+<span class='va'>d2</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span><span class='op'>)</span>
 
 
 <span class='co'># Select variables for compute the distances</span>
-<span class='kw'>d3</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>mean_gen</span>, selvar = <span class='fl'>TRUE</span>)
+<span class='va'>d3</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span>, selvar <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Model 1 with 15 variables. 'EH' excluded in this step (7.1%).
 #&gt; Model 2 with 14 variables. 'EP' excluded in this step (14.3%).
 #&gt; Model 3 with 13 variables. 'CDED' excluded in this step (21.4%).
@@ -413,10 +413,10 @@ rules: an evaluation. Comput. J. 20:359-363. doi: <a href='https://doi.org/10.10
 #&gt; --------------------------------------------------------------------------</div><div class='input'>
 <span class='co'># Compute the distances with standardized data</span>
 <span class='co'># Define 4 clusters</span>
-<span class='kw'>d4</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span>(<span class='kw'>data_ge</span>,
-                 by = <span class='kw'>ENV</span>,
-                 scale = <span class='fl'>TRUE</span>,
-                 nclust = <span class='fl'>4</span>)
+<span class='va'>d4</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge</span>,
+                 by <span class='op'>=</span> <span class='va'>ENV</span>,
+                 scale <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                 nclust <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
 
 <span class='co'># }</span>
 </div></pre>

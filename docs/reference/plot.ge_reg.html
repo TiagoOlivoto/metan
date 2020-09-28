@@ -233,21 +233,21 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_reg</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
-  <span class='kw'>x</span>,
-  var = <span class='fl'>1</span>,
-  type = <span class='fl'>1</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  x.lim = <span class='kw'>NULL</span>,
-  x.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
-  x.lab = <span class='kw'>NULL</span>,
-  y.lim = <span class='kw'>NULL</span>,
-  y.breaks = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span>(),
-  y.lab = <span class='kw'>NULL</span>,
-  leg.position = <span class='st'>"right"</span>,
-  size.tex.lab = <span class='fl'>12</span>,
-  <span class='kw'>...</span>
-)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  var <span class='op'>=</span> <span class='fl'>1</span>,
+  type <span class='op'>=</span> <span class='fl'>1</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>,
+  x.lim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x.breaks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span><span class='op'>(</span><span class='op'>)</span>,
+  x.lab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.lim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y.breaks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/waiver.html'>waiver</a></span><span class='op'>(</span><span class='op'>)</span>,
+  y.lab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  leg.position <span class='op'>=</span> <span class='st'>"right"</span>,
+  size.tex.lab <span class='op'>=</span> <span class='fl'>12</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -334,9 +334,9 @@ is <code>12</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span>(<span class='kw'>data_ge2</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='kw'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>PH</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

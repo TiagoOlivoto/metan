@@ -248,20 +248,20 @@ argument <code>stat</code>.</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>desc_stat</span>(
-  .data = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>,
-  by = <span class='kw'>NULL</span>,
-  stats = <span class='st'>"main"</span>,
-  hist = <span class='fl'>FALSE</span>,
-  level = <span class='fl'>0.95</span>,
-  digits = <span class='fl'>4</span>,
-  na.rm = <span class='fl'>FALSE</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>()
-)
+    <pre class="usage"><span class='fu'>desc_stat</span><span class='op'>(</span>
+  .data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stats <span class='op'>=</span> <span class='st'>"main"</span>,
+  hist <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  digits <span class='op'>=</span> <span class='fl'>4</span>,
+  na.rm <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>desc_wider</span>(<span class='kw'>.data</span>, <span class='kw'>which</span>)</pre>
+<span class='fu'>desc_wider</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>which</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -375,7 +375,7 @@ factors in rows.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'>#===============================================================#</span>
 <span class='co'># Example 1: main statistics (coefficient of variation, maximum,#</span>
 <span class='co'># mean, median, minimum, sample standard deviation, standard    #</span>
@@ -383,7 +383,7 @@ factors in rows.</p></li>
 <span class='co'># variables in data                                             #</span>
 <span class='co'>#===============================================================#</span>
 
-<span class='fu'>desc_stat</span>(<span class='kw'>data_ge2</span>)
+<span class='fu'>desc_stat</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 9</span><span>
 #&gt;    variable    cv     max    mean  median     min  sd.amo     se      ci
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -406,8 +406,8 @@ factors in rows.</p></li>
 <span class='co'>#Example 2: robust statistics using a numeric vector as input   #</span>
 <span class='co'># data</span>
 <span class='co'>#===============================================================#</span>
-<span class='kw'>vect</span> <span class='op'>&lt;-</span> <span class='kw'>data_ge2</span><span class='op'>$</span><span class='kw'>TKW</span>
-<span class='fu'>desc_stat</span>(<span class='kw'>vect</span>, stats = <span class='st'>"robust"</span>)
+<span class='va'>vect</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span><span class='op'>$</span><span class='va'>TKW</span>
+<span class='fu'>desc_stat</span><span class='op'>(</span><span class='va'>vect</span>, stats <span class='op'>=</span> <span class='st'>"robust"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 5</span><span>
 #&gt;   variable     n median   iqr    ps
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -416,9 +416,9 @@ factors in rows.</p></li>
 <span class='co'># Example 3: Select specific statistics. In this example, NAs   #</span>
 <span class='co'># are removed before analysis with a warning message            #</span>
 <span class='co'>#===============================================================#</span>
-<span class='fu'>desc_stat</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>13</span>, <span class='fl'>19</span>, <span class='fl'>21</span>, <span class='fl'>8</span>, <span class='fl'>NA</span>, <span class='fl'>23</span>, <span class='fl'>NA</span>),
-          stats = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mean, se, cv, n, valid.n'</span>),
-          na.rm = <span class='fl'>TRUE</span>)
+<span class='fu'>desc_stat</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>13</span>, <span class='fl'>19</span>, <span class='fl'>21</span>, <span class='fl'>8</span>, <span class='cn'>NA</span>, <span class='fl'>23</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+          stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'mean, se, cv, n, valid.n'</span><span class='op'>)</span>,
+          na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
 #&gt;   variable  mean    se    cv     n valid.n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -427,11 +427,11 @@ factors in rows.</p></li>
 <span class='co'># Example 4: Select specific variables and compute statistics by#</span>
 <span class='co'># levels of a factor variable (GEN)                             #</span>
 <span class='co'>#===============================================================#</span>
-<span class='kw'>stats</span> <span class='op'>&lt;-</span>
-  <span class='fu'>desc_stat</span>(<span class='kw'>data_ge2</span>,
-            <span class='kw'>EP</span>, <span class='kw'>EL</span>, <span class='kw'>EH</span>, <span class='kw'>ED</span>, <span class='kw'>PH</span>, <span class='kw'>CD</span>,
-            by = <span class='kw'>GEN</span>)
-<span class='kw'>stats</span>
+<span class='va'>stats</span> <span class='op'>&lt;-</span>
+  <span class='fu'>desc_stat</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+            <span class='va'>EP</span>, <span class='va'>EL</span>, <span class='va'>EH</span>, <span class='va'>ED</span>, <span class='va'>PH</span>, <span class='va'>CD</span>,
+            by <span class='op'>=</span> <span class='va'>GEN</span><span class='op'>)</span>
+<span class='va'>stats</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 78 x 10</span><span>
 #&gt;    GEN   variable    cv    max   mean median    min sd.amo     se     ci
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -447,7 +447,7 @@ factors in rows.</p></li>
 #&gt; </span><span style='color: #555555;'>10</span><span> H10   EL        6.83 16.7   15.1   14.9   13.6   1.03   0.298  0.656 
 #&gt; </span><span style='color: #555555;'># ... with 68 more rows</span><span></div><div class='input'>
 <span class='co'># To get a 'wide' format with the maximum values for all variables</span>
-<span class='fu'>desc_wider</span>(<span class='kw'>stats</span>, <span class='kw'>max</span>)
+<span class='fu'>desc_wider</span><span class='op'>(</span><span class='va'>stats</span>, <span class='va'>max</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 7</span><span>
 #&gt;    GEN      CD    ED    EH    EL    EP    PH
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -470,9 +470,9 @@ factors in rows.</p></li>
 <span class='co'># grouped data to the function desc_stat()                      #</span>
 <span class='co'>#===============================================================#</span>
 
-<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>desc_stat</span>()
+<span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>desc_stat</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 780 x 11</span><span>
 #&gt;    ENV   GEN   variable    cv     max    mean  median     min  sd.amo      se
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

@@ -234,15 +234,15 @@ and maximum values." />
 and maximum values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>resca</span>(
-  .data = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>,
-  values = <span class='kw'>NULL</span>,
-  new_min = <span class='fl'>0</span>,
-  new_max = <span class='fl'>100</span>,
-  na.rm = <span class='fl'>TRUE</span>,
-  keep = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>resca</span><span class='op'>(</span>
+  .data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  new_min <span class='op'>=</span> <span class='fl'>0</span>,
+  new_max <span class='op'>=</span> <span class='fl'>100</span>,
+  na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  keep <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -306,15 +306,15 @@ values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 <span class='co'># Rescale a numeric vector</span>
-<span class='fu'>resca</span>(values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>))
+<span class='fu'>resca</span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1]   0  25  50  75 100</div><div class='input'>
  <span class='co'># Using a data frame</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(
- <span class='fu'>resca</span>(<span class='kw'>data_ge</span>, <span class='kw'>GY</span>, <span class='kw'>HM</span>, new_min = <span class='fl'>0</span>, new_max = <span class='fl'>1</span>)
-)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span>
+ <span class='fu'>resca</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GY</span>, <span class='va'>HM</span>, new_min <span class='op'>=</span> <span class='fl'>0</span>, new_max <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 7</span><span>
 #&gt;   ENV   GEN   REP      GY    HM GY_res HM_res
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -328,12 +328,12 @@ values.</p>
 <span class='co'># Select variables that stats with 'N' and ends with 'L';</span>
 <span class='co'># Compute the mean of these variables by ENV and GEN;</span>
 <span class='co'># Rescale the variables that ends with 'L' whithin ENV;</span>
-<span class='kw'>data_ge2</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with</a></span>(<span class='st'>"N"</span>), <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='utils_stats.html'>means_by</a></span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>ENV</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>resca</span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>ends_with</a></span>(<span class='st'>"L"</span>)) <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(n = <span class='fl'>13</span>)
+<span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with</a></span><span class='op'>(</span><span class='st'>"N"</span><span class='op'>)</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>ends_with</a></span><span class='op'>(</span><span class='st'>"L"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>ENV</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>resca</span><span class='op'>(</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>ends_with</a></span><span class='op'>(</span><span class='st'>"L"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>13</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Adding missing grouping variables: `ENV`</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 9</span><span>
 #&gt; </span><span style='color: #555555;'># Groups:   ENV [1]</span><span>
 #&gt;    ENV   GEN      NR   NKR   NKE    EL    CL EL_res   CL_res

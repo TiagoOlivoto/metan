@@ -241,7 +241,7 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for performs_ammi</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -263,8 +263,8 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>REP</span>, <span class='kw'>GY</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; AMMI analysis table
@@ -288,12 +288,12 @@ and (6) standardized residuals vs observation order, and (7) 1:1 line plot.</p>
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>)
-</div><div class='img'><img src='plot.performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model</span>,
-     which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>5</span>),
-     nrow = <span class='fl'>2</span>,
-     labels = <span class='fl'>TRUE</span>,
-     size.lab.out = <span class='fl'>4</span>)
+#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.performs_ammi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span>,
+     which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span>,
+     nrow <span class='op'>=</span> <span class='fl'>2</span>,
+     labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     size.lab.out <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.performs_ammi-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

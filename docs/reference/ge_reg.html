@@ -232,7 +232,7 @@
     <p>Regression-based stability analysis using the Eberhart and Russell (1966) model.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ge_reg</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, verbose = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>ge_reg</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -288,13 +288,13 @@ Crop Sci. 6:36-40. doi: <a href='https://doi.org/10.2135/cropsci1966.0011183X000
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>reg</span> <span class='op'>&lt;-</span> <span class='fu'>ge_reg</span>(<span class='kw'>data_ge2</span>,
-             env = <span class='kw'>ENV</span>,
-             gen = <span class='kw'>GEN</span>,
-             rep = <span class='kw'>REP</span>,
-             resp = <span class='kw'>PH</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>reg</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>reg</span> <span class='op'>&lt;-</span> <span class='fu'>ge_reg</span><span class='op'>(</span><span class='va'>data_ge2</span>,
+             env <span class='op'>=</span> <span class='va'>ENV</span>,
+             gen <span class='op'>=</span> <span class='va'>GEN</span>,
+             rep <span class='op'>=</span> <span class='va'>REP</span>,
+             resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>reg</span><span class='op'>)</span>
 </div><div class='img'><img src='ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># }</span>
 </div></pre>

@@ -118,6 +118,9 @@
 #'  \strong{Objects of class \code{mgidi}:} See the \strong{Value} section of
 #'  \code{\link{mgidi}()} to see valid options for \code{what} argument.
 #'
+#'  \strong{Objects of class \code{mtsi}:} See the \strong{Value} section of
+#'  \code{\link{mtsi}()} to see valid options for \code{what} argument.
+#'
 #'  \strong{Objects of class \code{Shukla}:}
 #' * \code{"rMean"} Rank for the mean.
 #' * \code{"ShuklaVar"} Shukla's stablity variance (default).
@@ -364,7 +367,7 @@ get_model_data <- function(x,
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gamem_group", "anova_ind", "gge", "can_cor",
-                      "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi"))) {
+                      "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi", "mtsi"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -413,11 +416,26 @@ get_model_data <- function(x,
                "canonical_loadings", "scores_gen", "scores_ide", "gen_ide",
                "MGIDI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
                "sel_dif", "total_gain", "sel_gen")
+  check28 <- c("data", "cormat", "PCA", "FA", "KMO", "MSA", "communalities",
+               "communalities_mean", "initial_loadings", "finish_loadings",
+               "canonical_loadings", "scores_gen", "scores_ide", "gen_ide",
+               "MTSI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
+               "sel_dif", "mean_sd", "sel_dif_var", "total_sel_dif", "sel_dif_waasb", "sel_gen")
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
+  }
+
+  if(has_class(x, "mtsi")){
+    if (is.null(what)){
+      what <- "sel_dif_var"
+    }
+    if (!what %in% check28) {
+      stop("Invalid value in 'what' for object of class 'mtsi'. Allowed are ", paste(check28, collapse = ", "), call. = FALSE)
+    }
+    bind <- x[[what]]
   }
 
   if(has_class(x, "mgidi")){
@@ -525,8 +543,6 @@ get_model_data <- function(x,
     }
   }
 
-
-
   if(has_class(x, c("can_cor", "can_cor_group"))){
     if (is.null(what)){
       what <- "coefs"
@@ -597,8 +613,6 @@ get_model_data <- function(x,
     }
     }
   }
-
-
 
   if (has_class(x, c("waasb", "gamem", "gamem_group"))) {
     if (is.null(what)){
@@ -924,6 +938,7 @@ get_model_data <- function(x,
         column_to_first(GEN)
     }
   }
+
   if (has_class(x,  "Annicchiarico")) {
     if (is.null(what)){
       what <- "Wi"
@@ -938,6 +953,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["general"]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "Schmildt")) {
     if (is.null(what)){
       what <- "Wi"
@@ -952,6 +968,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["general"]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "ge_stats")) {
     if (is.null(what)){
       what <- "stats"
@@ -974,6 +991,7 @@ get_model_data <- function(x,
       column_to_first(var) %>%
       arrange(var)
   }
+
   if (has_class(x,  "Thennarasu")) {
     if (is.null(what)){
       what <- "N1"
@@ -988,6 +1006,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "Huehn")) {
     if (is.null(what)){
       what <- "S1"
@@ -1002,6 +1021,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "gai")) {
     if (is.null(what)){
       what <- "GAI"
@@ -1016,6 +1036,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "ge_effects")) {
     bind <- sapply(x, function(x) {
       make_long(x)[[3]]
@@ -1026,6 +1047,7 @@ get_model_data <- function(x,
       select(1:2)
     bind <- cbind(factors, bind)
   }
+
   if (has_class(x,  "superiority")) {
     if (is.null(what)){
       what <- "Pi_a"
@@ -1040,6 +1062,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["index"]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "Shukla")) {
     if (is.null(what)){
       what <- "ShuklaVar"
@@ -1054,6 +1077,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "Fox")) {
     if (is.null(what)){
       what <- "TOP"
@@ -1068,6 +1092,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "ge_reg")) {
     if (is.null(what)){
       what <- "slope"
@@ -1082,6 +1107,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["regression"]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "ecovalence")) {
     if (is.null(what)){
       what <- "Ecoval"
@@ -1096,6 +1122,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "AMMI_indexes")) {
     if (is.null(what)){
       what <- "WAAS"
@@ -1110,6 +1137,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "Res_ind")) {
     if (is.null(what)){
       what <- "HMRPGV"
@@ -1124,6 +1152,7 @@ get_model_data <- function(x,
       mutate(GEN = x[[1]][["GEN"]]) %>%
       column_to_first(GEN)
   }
+
   if (has_class(x,  "performs_ammi")) {
     if (is.null(what)){
       what <- "ipca_expl"
@@ -1160,6 +1189,7 @@ get_model_data <- function(x,
         column_to_first(PC, DF)
     }
   }
+
   if (has_class(x, c("waas", "waas_means"))){
     if (is.null(what)){
       what <- "WAAS"
@@ -1187,6 +1217,7 @@ get_model_data <- function(x,
         column_to_first(Parameters)
     }
   }
+
   if(verbose == TRUE){
     message("Class of the model: ", paste(class(x), collapse = ", "))
     message("Variable extracted: ", what)

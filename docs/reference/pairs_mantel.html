@@ -238,36 +238,36 @@ plots and in the lower diagonal the result of Mantel test based on
 permutations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pairs_mantel</span>(
-  <span class='kw'>...</span>,
-  type = <span class='fl'>1</span>,
-  nrepet = <span class='fl'>1000</span>,
-  names = <span class='kw'>NULL</span>,
-  prob = <span class='fl'>0.05</span>,
-  diag = <span class='fl'>FALSE</span>,
-  export = <span class='fl'>FALSE</span>,
-  main = <span class='st'>"auto"</span>,
-  file.type = <span class='st'>"pdf"</span>,
-  file.name = <span class='kw'>NULL</span>,
-  width = <span class='fl'>8</span>,
-  height = <span class='fl'>7</span>,
-  resolution = <span class='fl'>300</span>,
-  size.point = <span class='fl'>0.5</span>,
-  shape.point = <span class='fl'>19</span>,
-  alpha.point = <span class='fl'>1</span>,
-  fill.point = <span class='kw'>NULL</span>,
-  col.point = <span class='st'>"black"</span>,
-  minsize = <span class='fl'>2</span>,
-  maxsize = <span class='fl'>3</span>,
-  signcol = <span class='st'>"green"</span>,
-  alpha = <span class='fl'>0.15</span>,
-  diagcol = <span class='st'>"gray"</span>,
-  col.up.panel = <span class='st'>"gray"</span>,
-  col.lw.panel = <span class='st'>"gray"</span>,
-  col.dia.panel = <span class='st'>"gray"</span>,
-  pan.spacing = <span class='fl'>0.15</span>,
-  digits = <span class='fl'>2</span>
-)</pre>
+    <pre class="usage"><span class='fu'>pairs_mantel</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  type <span class='op'>=</span> <span class='fl'>1</span>,
+  nrepet <span class='op'>=</span> <span class='fl'>1000</span>,
+  names <span class='op'>=</span> <span class='cn'>NULL</span>,
+  prob <span class='op'>=</span> <span class='fl'>0.05</span>,
+  diag <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  export <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  main <span class='op'>=</span> <span class='st'>"auto"</span>,
+  file.type <span class='op'>=</span> <span class='st'>"pdf"</span>,
+  file.name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='fl'>8</span>,
+  height <span class='op'>=</span> <span class='fl'>7</span>,
+  resolution <span class='op'>=</span> <span class='fl'>300</span>,
+  size.point <span class='op'>=</span> <span class='fl'>0.5</span>,
+  shape.point <span class='op'>=</span> <span class='fl'>19</span>,
+  alpha.point <span class='op'>=</span> <span class='fl'>1</span>,
+  fill.point <span class='op'>=</span> <span class='cn'>NULL</span>,
+  col.point <span class='op'>=</span> <span class='st'>"black"</span>,
+  minsize <span class='op'>=</span> <span class='fl'>2</span>,
+  maxsize <span class='op'>=</span> <span class='fl'>3</span>,
+  signcol <span class='op'>=</span> <span class='st'>"green"</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.15</span>,
+  diagcol <span class='op'>=</span> <span class='st'>"gray"</span>,
+  col.up.panel <span class='op'>=</span> <span class='st'>"gray"</span>,
+  col.lw.panel <span class='op'>=</span> <span class='st'>"gray"</span>,
+  col.dia.panel <span class='op'>=</span> <span class='st'>"gray"</span>,
+  pan.spacing <span class='op'>=</span> <span class='fl'>0.15</span>,
+  digits <span class='op'>=</span> <span class='fl'>2</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -405,21 +405,21 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># iris dataset</span>
-<span class='kw'>lpc</span> <span class='op'>&lt;-</span> <span class='kw'>iris</span> <span class='op'>%&gt;%</span>
-       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span>
-       <span class='fu'><a href='lpcor.html'>lpcor</a></span>() <span class='op'>%&gt;%</span>
-       <span class='fu'>pairs_mantel</span>(names = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span>))
+<span class='va'>lpc</span> <span class='op'>&lt;-</span> <span class='va'>iris</span> <span class='op'>%&gt;%</span>
+       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+       <span class='fu'><a href='lpcor.html'>lpcor</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+       <span class='fu'>pairs_mantel</span><span class='op'>(</span>names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'setosa'</span>, <span class='st'>'versicolor'</span>, <span class='st'>'virginica'</span><span class='op'>)</span><span class='op'>)</span>
 
 
 <span class='co'># mtcars dataset</span>
-<span class='kw'>mt_num</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_rows_cols.html'>select_numeric_cols</a></span>(<span class='kw'>mtcars</span>)
-<span class='kw'>lpdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]),
-                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]),
-                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>2</span><span class='op'>:</span><span class='fl'>6</span>]),
-                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mt_num</span>[<span class='fl'>4</span><span class='op'>:</span><span class='fl'>8</span>])) <span class='op'>%&gt;%</span>
-          <span class='fu'>pairs_mantel</span>()
+<span class='va'>mt_num</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_rows_cols.html'>select_numeric_cols</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>
+<span class='va'>lpdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='as.lpcor.html'>as.lpcor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>mt_num</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>,
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>mt_num</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>,
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>mt_num</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span><span class='op'>)</span>,
+                   <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>mt_num</span><span class='op'>[</span><span class='fl'>4</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+          <span class='fu'>pairs_mantel</span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># }</span>
 </div></pre>
   </div>

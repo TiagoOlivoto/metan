@@ -235,7 +235,7 @@ shown in the R console. The results can also be exported to the directory.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for ge_factanal</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>, export = <span class='fl'>FALSE</span>, file.name = <span class='kw'>NULL</span>, digits = <span class='fl'>4</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, export <span class='op'>=</span> <span class='cn'>FALSE</span>, file.name <span class='op'>=</span> <span class='cn'>NULL</span>, digits <span class='op'>=</span> <span class='fl'>4</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -270,13 +270,13 @@ the working directory</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span>(<span class='kw'>data_ge2</span>,
-  env = <span class='kw'>ENV</span>,
-  gen = <span class='kw'>GEN</span>,
-  rep = <span class='kw'>REP</span>,
-  resp = <span class='kw'>PH</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>model</span>)
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
+  env <span class='op'>=</span> <span class='va'>ENV</span>,
+  gen <span class='op'>=</span> <span class='va'>GEN</span>,
+  rep <span class='op'>=</span> <span class='va'>REP</span>,
+  resp <span class='op'>=</span> <span class='va'>PH</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Variable PH 
 #&gt; ------------------------------------------------------------------------------------
 #&gt; Correlation matrix among environments

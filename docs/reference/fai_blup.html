@@ -234,15 +234,15 @@ Rocha et al. (2018)." />
 Rocha et al. (2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fai_blup</span>(
-  <span class='kw'>.data</span>,
-  use_data = <span class='st'>"blup"</span>,
-  DI = <span class='kw'>NULL</span>,
-  UI = <span class='kw'>NULL</span>,
-  SI = <span class='fl'>15</span>,
-  mineval = <span class='fl'>1</span>,
-  verbose = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>fai_blup</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  use_data <span class='op'>=</span> <span class='st'>"blup"</span>,
+  DI <span class='op'>=</span> <span class='cn'>NULL</span>,
+  UI <span class='op'>=</span> <span class='cn'>NULL</span>,
+  SI <span class='op'>=</span> <span class='fl'>15</span>,
+  mineval <span class='op'>=</span> <span class='fl'>1</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -312,13 +312,13 @@ doi: <a href='https://doi.org/10.1111/gcbb.12443'>10.1111/gcbb.12443</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
-<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>,
-             env = <span class='kw'>ENV</span>,
-             gen = <span class='kw'>GEN</span>,
-             rep = <span class='kw'>REP</span>,
-             resp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>GY</span>, <span class='kw'>HM</span>))
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+             env <span class='op'>=</span> <span class='va'>ENV</span>,
+             gen <span class='op'>=</span> <span class='va'>GEN</span>,
+             rep <span class='op'>=</span> <span class='va'>REP</span>,
+             resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -328,10 +328,10 @@ doi: <a href='https://doi.org/10.1111/gcbb.12443'>10.1111/gcbb.12443</a></p>
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
-<span class='kw'>FAI</span> <span class='op'>&lt;-</span> <span class='fu'>fai_blup</span>(<span class='kw'>mod</span>,
-                SI = <span class='fl'>15</span>,
-                DI = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'max, max'</span>),
-                UI = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'min, min'</span>))
+<span class='va'>FAI</span> <span class='op'>&lt;-</span> <span class='fu'>fai_blup</span><span class='op'>(</span><span class='va'>mod</span>,
+                SI <span class='op'>=</span> <span class='fl'>15</span>,
+                DI <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'max, max'</span><span class='op'>)</span>,
+                UI <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'min, min'</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Principal Component Analysis

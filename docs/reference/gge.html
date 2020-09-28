@@ -236,16 +236,16 @@ trial dataset containing at least the columns for genotypes, environments and on
 response variable or a two-way table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gge</span>(
-  <span class='kw'>.data</span>,
-  <span class='kw'>env</span>,
-  <span class='kw'>gen</span>,
-  <span class='kw'>resp</span>,
-  centering = <span class='st'>"environment"</span>,
-  scaling = <span class='st'>"none"</span>,
-  svp = <span class='st'>"environment"</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gge</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>env</span>,
+  <span class='va'>gen</span>,
+  <span class='va'>resp</span>,
+  centering <span class='op'>=</span> <span class='st'>"environment"</span>,
+  scaling <span class='op'>=</span> <span class='st'>"none"</span>,
+  svp <span class='op'>=</span> <span class='st'>"environment"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -332,19 +332,19 @@ geneticists, and agronomists. CRC Press.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span>(<span class='kw'>data_ge</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>GY</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mod</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>GY</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
 </div><div class='img'><img src='gge-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># GGE model for all numeric variables</span>
-<span class='kw'>mod2</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span>(<span class='kw'>data_ge2</span>, <span class='kw'>ENV</span>, <span class='kw'>GEN</span>, resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mod2</span>, var = <span class='st'>"ED"</span>)
+<span class='va'>mod2</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod2</span>, var <span class='op'>=</span> <span class='st'>"ED"</span><span class='op'>)</span>
 </div><div class='img'><img src='gge-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># If we have a two-way table with the mean values for</span>
 <span class='co'># genotypes and environments</span>
 
-<span class='kw'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='make_mat.html'>make_mat</a></span>(<span class='kw'>data_ge</span>, <span class='kw'>GEN</span>, <span class='kw'>ENV</span>, <span class='kw'>GY</span>) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fl'>2</span>)
-<span class='kw'>table</span>
+<span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='make_mat.html'>make_mat</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span>, <span class='va'>ENV</span>, <span class='va'>GY</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>table</span>
 </div><div class='output co'>#&gt;       E1  E10  E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
 #&gt; G1  2.37 2.31 1.36 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78
 #&gt; G10 1.97 1.54 0.90 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15
@@ -355,9 +355,9 @@ geneticists, and agronomists. CRC Press.</p>
 #&gt; G6  2.30 2.21 1.50 1.39 2.91 1.80 3.29 3.43 3.40 3.57 2.34 1.76 2.54 3.04
 #&gt; G7  2.77 2.44 1.36 1.95 3.18 1.94 2.61 4.10 3.02 4.05 2.67 2.55 2.58 3.14
 #&gt; G8  2.90 2.57 1.68 2.00 3.52 1.99 3.44 4.11 4.14 4.81 2.91 2.26 2.88 2.83
-#&gt; G9  2.33 1.74 1.13 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</div><div class='input'><span class='fu'><a href='make_long.html'>make_long</a></span>(<span class='kw'>table</span>) <span class='op'>%&gt;%</span>
-<span class='fu'>gge</span>(<span class='kw'>ENV</span>, <span class='kw'>GEN</span>, <span class='kw'>Y</span>) <span class='op'>%&gt;%</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>()
+#&gt; G9  2.33 1.74 1.13 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</div><div class='input'><span class='fu'><a href='make_long.html'>make_long</a></span><span class='op'>(</span><span class='va'>table</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>gge</span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>Y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='gge-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

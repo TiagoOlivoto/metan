@@ -236,7 +236,7 @@ block or alpha-lattice designs and returns values such as Mean Squares,
 p-values, coefficient of variation, heritability, and accuracy of selection.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>anova_ind</span>(<span class='kw'>.data</span>, <span class='kw'>env</span>, <span class='kw'>gen</span>, <span class='kw'>rep</span>, <span class='kw'>resp</span>, block = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>anova_ind</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, block <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -316,15 +316,15 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># ANOVA for all variables in data</span>
-<span class='kw'>ind_an</span> <span class='op'>&lt;-</span> <span class='fu'>anova_ind</span>(<span class='kw'>data_ge</span>,
-                    env = <span class='kw'>ENV</span>,
-                    gen = <span class='kw'>GEN</span>,
-                    rep = <span class='kw'>REP</span>,
-                    resp = <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span>())
+<span class='va'>ind_an</span> <span class='op'>&lt;-</span> <span class='fu'>anova_ind</span><span class='op'>(</span><span class='va'>data_ge</span>,
+                    env <span class='op'>=</span> <span class='va'>ENV</span>,
+                    gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                    rep <span class='op'>=</span> <span class='va'>REP</span>,
+                    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># mean for each environment</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>ind_an</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>ind_an</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: MEAN</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV      GY    HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -343,7 +343,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; </span><span style='color: #555555;'>13</span><span> E8     2.54  45.2
 #&gt; </span><span style='color: #555555;'>14</span><span> E9     3.06  51.3</div><div class='input'>
 <span class='co'># P-value for genotype effect</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span>(<span class='kw'>ind_an</span>, <span class='st'>"PFG"</span>)
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>ind_an</span>, <span class='st'>"PFG"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_ind</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PFG</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV          GY         HM
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

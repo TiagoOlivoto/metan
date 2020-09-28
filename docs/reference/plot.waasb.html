@@ -245,37 +245,37 @@ object, normal Q-Q plot for random effects may also be obtained declaring
     </div>
 
     <pre class="usage"><span class='co'># S3 method for waasb</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(
-  <span class='kw'>x</span>,
-  var = <span class='fl'>1</span>,
-  type = <span class='st'>"res"</span>,
-  position = <span class='st'>"fill"</span>,
-  rotate = <span class='fl'>FALSE</span>,
-  conf = <span class='fl'>0.95</span>,
-  out = <span class='st'>"print"</span>,
-  n.dodge = <span class='fl'>1</span>,
-  check.overlap = <span class='fl'>FALSE</span>,
-  labels = <span class='fl'>FALSE</span>,
-  plot_theme = <span class='fu'><a href='themes.html'>theme_metan</a></span>(),
-  alpha = <span class='fl'>0.2</span>,
-  fill.hist = <span class='st'>"gray"</span>,
-  col.hist = <span class='st'>"black"</span>,
-  col.point = <span class='st'>"black"</span>,
-  col.line = <span class='st'>"red"</span>,
-  col.lab.out = <span class='st'>"red"</span>,
-  size.line = <span class='fl'>0.7</span>,
-  size.text = <span class='fl'>10</span>,
-  width.bar = <span class='fl'>0.75</span>,
-  size.lab.out = <span class='fl'>2.5</span>,
-  size.tex.lab = <span class='fl'>10</span>,
-  size.shape = <span class='fl'>1.5</span>,
-  bins = <span class='fl'>30</span>,
-  which = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>),
-  ncol = <span class='kw'>NULL</span>,
-  nrow = <span class='kw'>NULL</span>,
-  align = <span class='st'>"hv"</span>,
-  <span class='kw'>...</span>
-)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  var <span class='op'>=</span> <span class='fl'>1</span>,
+  type <span class='op'>=</span> <span class='st'>"res"</span>,
+  position <span class='op'>=</span> <span class='st'>"fill"</span>,
+  rotate <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  conf <span class='op'>=</span> <span class='fl'>0.95</span>,
+  out <span class='op'>=</span> <span class='st'>"print"</span>,
+  n.dodge <span class='op'>=</span> <span class='fl'>1</span>,
+  check.overlap <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  labels <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.2</span>,
+  fill.hist <span class='op'>=</span> <span class='st'>"gray"</span>,
+  col.hist <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.point <span class='op'>=</span> <span class='st'>"black"</span>,
+  col.line <span class='op'>=</span> <span class='st'>"red"</span>,
+  col.lab.out <span class='op'>=</span> <span class='st'>"red"</span>,
+  size.line <span class='op'>=</span> <span class='fl'>0.7</span>,
+  size.text <span class='op'>=</span> <span class='fl'>10</span>,
+  width.bar <span class='op'>=</span> <span class='fl'>0.75</span>,
+  size.lab.out <span class='op'>=</span> <span class='fl'>2.5</span>,
+  size.tex.lab <span class='op'>=</span> <span class='fl'>10</span>,
+  size.shape <span class='op'>=</span> <span class='fl'>1.5</span>,
+  bins <span class='op'>=</span> <span class='fl'>30</span>,
+  which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
+  align <span class='op'>=</span> <span class='st'>"hv"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -412,7 +412,7 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments passed on to the function
-<code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>plot_grid</a></code></p></td>
+<code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>plot_grid</a></code></p></td>
     </tr>
     </table>
 
@@ -422,12 +422,12 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span>)
-<span class='kw'>model2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span>(<span class='kw'>data_ge</span>,
-                resp = <span class='kw'>GY</span>,
-                gen = <span class='kw'>GEN</span>,
-                env = <span class='kw'>ENV</span>,
-                rep = <span class='kw'>REP</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
+<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+                resp <span class='op'>=</span> <span class='va'>GY</span>,
+                gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                env <span class='op'>=</span> <span class='va'>ENV</span>,
+                rep <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
@@ -436,7 +436,7 @@ align in both directions, <code>"none"</code> do not align the plot.</p></td>
 #&gt;       GEN 1.11e-05
 #&gt;   GEN:ENV 2.15e-11
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>model2</span>)
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='plot.waasb-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

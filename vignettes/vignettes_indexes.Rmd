@@ -16,6 +16,7 @@ vignette: >
 knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 load("indexes.RData")
 
+
 ```
 
 
@@ -55,57 +56,37 @@ MTSI_index <- data_ge2 %>%
               waasb(ENV, GEN, REP,
                     resp = c(KW, NKE, PH, EH, TKW)) %>%
               mtsi(verbose = FALSE, index = "waasb")
+
 ```
 
-
-```{r , fig.height = 5, fig.width = 5.5, fig.align = "center" , message=FALSE, warning=FALSE}
-# Correlation matrix
-print_table(MTSI_index$cormat, rownames = TRUE)
-# Principal compoment analysis
-print_table(MTSI_index$PCA)
-# Factor analysis
-print_table(MTSI_index$FA)
-# Loadings after varimax rotation
-print_table(MTSI_index$finish.loadings)
-# Scores for genotypes
-print_table(MTSI_index$scores.gen)
-# Selection differential for the 'waasb' index
-print_table(MTSI_index$sel.dif)
-# Selection differential for the variables
-print_table(MTSI_index$sel.dif.var)
-
-plot(MTSI_index)
-```
 
 ## Based on mean performance and stability
 
 The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using `wresp = 65`, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.
 
 ```{r eval=FALSE}
-MTSI_index2 <- data_ge2 %>%
-             waasb(ENV, GEN, REP,
-                   resp = c(KW, NKE, PH, EH, TKW),
-                   mresp = c(100, 100, 0, 0, 100),
-                   wresp = rep(65, 5)) %>% # Default is 50
-             mtsi()
+MTSI_index2 <- 
+  data_ge2 %>%
+  waasb(ENV, GEN, REP,
+        resp = c(KW, NKE, PH, EH, TKW),
+        mresp = c(100, 100, 0, 0, 100),
+        wresp = rep(65, 5)) %>% # Default is 50
+  mtsi(SI = 20)
+
 ```
 
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=FALSE, warning=FALSE }
-# Correlation matrix
-print_table(MTSI_index2$cormat, rownames = TRUE)
-# Principal compoment analysis
-print_table(MTSI_index2$PCA)
 # Factor analysis
-print_table(MTSI_index2$FA)
-# Loadings after varimax rotation
-print_table(MTSI_index2$finish.loadings)
+gmd(MTSI_index2, "FA") %>% print_table()
 # Scores for genotypes
-print_table(MTSI_index2$scores.gen)
+gmd(MTSI_index2, "scores_gen") %>% print_table()
 # Selection differential for the 'waasby' index
-print_table(MTSI_index2$sel.dif)
+gmd(MTSI_index2, "sel_dif") %>% print_table()
+# Selection differential for the waasb index
+gmd(MTSI_index2, "sel_dif_waasb") %>% print_table()
 # Selection differential for the variables
-print_table(MTSI_index2$sel.dif.var)
+gmd(MTSI_index2, "sel_dif_var") %>% print_table()
 
 plot(MTSI_index2)
     ```
@@ -114,13 +95,17 @@ plot(MTSI_index2)
 The MGIDI index can be seen as the MTSI index with a weigth of 100 for mean performance. This index is computed with the function `mgidi()`. Here, we will use the example data `data_g()`. By default, all traits are assumed to be increased. To change this default, use the argument `ideotype`. For example, if for three traits, the first one is assumed to be decreased and the last two are assumed to be increased, use `ideotype = c("l, h, h")`.
 
 ```{r,   eval=FALSE}
-mod <- gamem(data_g, GEN, REP, everything())
-mgidi_index <- mgidi(mod)
+mod <- gamem(data_g,
+             gen = GEN,
+             rep = REP,
+             resp =everything())
+mgidi_index <- mgidi(mod,
+                     SI = 20) # Selection intensity
 
 ```
 
 ```{r fig.width=8, fig.height=4}
-p1 <- plot(mgidi_index)
+p1 <- plot(mgidi_index, SI = 20)
 p2 <- plot(mgidi_index, type = "contribution")
 arrange_ggplot(p1, p2)
 ```
@@ -129,7 +114,7 @@ arrange_ggplot(p1, p2)
 The Smith-Hazel index ([@Smith1936; @Hazel1943]) is computed with the function `Smith_Hazel()`. Users can compute the index either by declaring known genetic and phenotypic variance-covariance matrices or by using as inpute data, a model fitted with the function `gamem()`. In this case, the variance-covariance are extracted internally. The economic weights in the argument `weights` are set by default to 1 for all traits.
 
 ```{r  eval=FALSE}
-smith <- Smith_Hazel(mod)
+smith <- Smith_Hazel(mod, SI = 20)
 
 ```
 
@@ -142,7 +127,7 @@ The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design
 
 ```{r, eval=FALSE}
 
-fai <- fai_blup(mod)
+fai <- fai_blup(mod, SI = 20)
 
 ```
 
