@@ -6,7 +6,7 @@
 #' objective is to select a group of variables that most contribute to explain
 #' the variability of the original data. The selection of the variables is based
 #' on eigenvalue/eigenvectors solution based on the following steps. \bold{1:}
-#' compute the distance matrix and the co-optic correlation with the original
+#' compute the distance matrix and the cophenetic correlation with the original
 #' variables (all numeric variables in dataset); \bold{2:} compute the
 #' eigenvalues and eigenvectors of the correlation matrix between the variables;
 #' \bold{3:} delete the variable with the largest weight (highest eigenvector in
