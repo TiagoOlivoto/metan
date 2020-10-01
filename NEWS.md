@@ -1,6 +1,8 @@
 # metan (development version)
 ## Minor improvements
+* `gamem()` now have a `by` argument and understand data passed from `group_by`.
 * `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor.
+* `plot.mtsi()` and `plot.mgidi()` now returns a radar plot by default when using `type = "contribution"`.
 
 ## New functions
 * `get_dist()` to get distance matrices from objects of class `clustering`.

@@ -287,11 +287,13 @@ The lower the contribution of a factor, the close of the ideotype the variables 
 factor are.</p></li>
 <li><p><strong>contri_fac_rank, contri_fac_rank_sel</strong> The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.</p></li>
-<li><p><strong>sel_dif</strong> The selection differential for the WAASBY index.</p></li>
-<li><p><strong>mean_sd</strong> The mean for the differential selection.</p></li>
-<li><p><strong>sel_dif_var</strong> The selection differential for the variables.</p></li>
-<li><p><strong>total_sel_dif</strong> The total selection differential.</p></li>
-<li><p><strong>sel_dif_waasb</strong> The selection differential for WAASB index.</p></li>
+<li><p><strong>sel_dif_trait, sel_dif_waasb, sel_dif_waasby</strong> The selection
+differential (gains) for the traits, and for the WAASB and WAASBY indexes.</p></li>
+<li><p><strong>stat_dif_var, stat_dif_waasb, stat_dif_waasby</strong> A descriptive
+statistic for the selection gains of the traits and WAASB and WAASBY indexes.
+The minimum, mean, confidence interval, standard deviation, maximum, and sum
+of selection gain values are computed. If traits have negative and positive
+desired gains, the statistics are computed for by strata.</p></li>
 <li><p><strong>sel_gen</strong> The selected genotypes.</p></li>
 </ul>
 
@@ -350,11 +352,6 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1   0.250 0.117 -</span><span style='color: #BB0000;'>0.134</span><span>  -</span><span style='color: #BB0000;'>53.5</span><span>
 #&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   0.614 0.373 -</span><span style='color: #BB0000;'>0.241</span><span>  -</span><span style='color: #BB0000;'>39.2</span><span>
-#&gt; ------------------------------------------------------------------------------
-#&gt; Mean of selection differential
-#&gt; -------------------------------------------------------------------------------
-#&gt;          Xo          Xs          SD      SDperc 
-#&gt;   0.4323231   0.2448764  -0.1874467 -46.3570842 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
@@ -386,8 +383,19 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 #&gt;       GEN 1.11e-05 5.07e-03
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; 
+#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> The error occurred in group 1: variable = "SDperc".</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> The error occurred in group 2: variable = "SGperc".</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> The error occurred in group 1: variable = "SDperc".</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> The error occurred in group 2: variable = "SGperc".</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
@@ -414,11 +422,6 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    48.3  76.5  28.2   58.3
 #&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1    54.1  86.2  32.1   59.3
-#&gt; ------------------------------------------------------------------------------
-#&gt; Mean of selection differential
-#&gt; -------------------------------------------------------------------------------
-#&gt;       Xo       Xs       SD   SDperc 
-#&gt; 51.22793 81.37416 30.14624 58.82034 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------

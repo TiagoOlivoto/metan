@@ -82,11 +82,11 @@ gmd(MTSI_index2, "FA") %>% print_table()
 # Scores for genotypes
 gmd(MTSI_index2, "scores_gen") %>% print_table()
 # Selection differential for the 'waasby' index
-gmd(MTSI_index2, "sel_dif") %>% print_table()
+gmd(MTSI_index2, "sel_dif_waasby") %>% print_table()
 # Selection differential for the waasb index
 gmd(MTSI_index2, "sel_dif_waasb") %>% print_table()
 # Selection differential for the variables
-gmd(MTSI_index2, "sel_dif_var") %>% print_table()
+gmd(MTSI_index2, "sel_dif_trait") %>% print_table()
 
 plot(MTSI_index2)
     ```
