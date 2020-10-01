@@ -65,7 +65,10 @@
 #' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
 #' * \strong{sel_dif} The selection differential for the variables.
-#' * \strong{total_gain} The selection differential for the variables.
+#' * \strong{stat_gain} A descriptive statistic for the selection gains. The
+#' minimum, mean, confidence interval, standard deviation, maximum, and sum of
+#' selection gain values are computed. If traits have negative and positive
+#' desired gains, the statistics are computed for by strata.
 #' * \strong{sel_gen} The selected genotypes.
 #' @md
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
@@ -269,11 +272,11 @@ mgidi <- function(.data,
         sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
         TRUE ~ 0
       ))
-    total_gain <-
+    stat_gain <-
       desc_stat(sel_dif_mean,
                 by = sense,
                 any_of(c("SDperc", "SGperc")),
-                stats = c("min, mean, max, sum"))
+                stats = c("min, mean, ci, sd.amo, max, sum"))
 
     contri_fac_rank_sel <-
       contri_long %>%
@@ -329,7 +332,7 @@ mgidi <- function(.data,
                         contri_fac_rank = contri_fac_rank,
                         contri_fac_rank_sel = contri_fac_rank_sel,
                         sel_dif = sel_dif_mean,
-                        total_gain = total_gain,
+                        stat_gain = stat_gain,
                         sel_gen = selected),
                    class = "mgidi"))
   }
@@ -379,7 +382,8 @@ mgidi <- function(.data,
 #'   Defaults to 0.75.
 #' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
 #' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
-#' @param ... Other arguments to be passed from ggplot2::theme().
+#' @param legend.position The position of the legend.
+#' @param ... Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mgidi
@@ -416,6 +420,7 @@ plot.mgidi <- function(x,
                        width.bar = 0.75,
                        col.sel = "red",
                        col.nonsel = "black",
+                       legend.position = "bottom",
                        ...) {
   if(!is.null(invert)){
     warning("Argument 'invert' is deprecated. Use 'replacement' instead.", call. = FALSE)
@@ -449,9 +454,9 @@ plot.mgidi <- function(x,
     scale_x_discrete() +
     scale_y_reverse() +
     theme_minimal() +
-    theme(legend.position = "bottom",
+    theme(legend.position = legend.position,
           legend.title = element_blank(),
-          panel.grid = element_line(size = size.line),
+          panel.grid = element_line(size = size.line / 2),
           panel.border = element_blank(),
           axis.text = element_text(colour = "black"),
           text = element_text(size = size.text),
@@ -470,10 +475,8 @@ plot.mgidi <- function(x,
       sseq <- c((tot_gen/2 + 1):tot_gen)
       fang <- c(90 - 180/length(fseq) * fseq)
       sang <- c(-90 - 180/length(sseq) * sseq)
-      p <-
-        p +
-        theme(axis.text.x = element_text(angle = c(fang, sang)),
-              legend.margin = margin(-120, 0, 0, 0), ...)
+      p <- p +
+        theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
     }
   }
   } else{
@@ -496,23 +499,37 @@ plot.mgidi <- function(x,
       p <-
         ggplot(data, aes(x = GEN, y = value)) +
         geom_polygon(aes(group = name, color = name), fill = NA, size = size.line) +
+        geom_polygon(aes(group = 1, x = GEN, y = 100 / length(unique(name))),
+                     fill = NA,
+                     color = "black",
+                     linetype = 2,
+                     size = size.line,
+                     show.legend = FALSE) +
         geom_line(aes(group = name, color = name), size = size.line) +
-        geom_point(aes(group = name, color = name), size = size.line * 2) +
         theme_minimal() +
         theme(strip.text.x = element_text(size = size.text),
               axis.text.x = element_text(color = "black", size = size.text),
               axis.ticks.y = element_blank(),
-              panel.grid = element_line(size = size.line),
+              panel.grid = element_line(size = size.line / 2),
               axis.text.y = element_text(size = size.text, color = "black"),
-              legend.position = "bottom",
-              legend.title = element_blank()) +
+              legend.position = legend.position,
+              legend.title = element_blank(),
+              ...) +
         labs(title = title,
              x = NULL,
              y = "Contribution of each factor to the MGIDI index") +
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()
-
+      if(arrange.label == TRUE){
+        tot_gen <- length(unique(data$GEN))
+        fseq <- c(1:(tot_gen/2))
+        sseq <- c((tot_gen/2 + 1):tot_gen)
+        fang <- c(90 - 180/length(fseq) * fseq)
+        sang <- c(-90 - 180/length(sseq) * sseq)
+        p <- p +
+          theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
+      }
     } else{
     p <-
       ggplot(data, aes(GEN, value, fill = name))+
@@ -522,11 +539,12 @@ plot.mgidi <- function(x,
                size = size.line,
                width = width.bar) +
         scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05))))+
-        theme_metan()+
-        theme(legend.position = "bottom",
+        theme_metan() +
+        theme(legend.position = legend.position,
               axis.ticks = element_line(size = size.line),
               plot.margin = margin(0.5, 0.5, 0, 0, "cm"),
-              panel.border = element_rect(size = size.line))+
+              panel.border = element_rect(size = size.line),
+              ...)+
         scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
                          expand = expansion(0))+
         labs(x = x.lab, y = y.lab)+

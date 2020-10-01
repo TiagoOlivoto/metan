@@ -73,7 +73,10 @@ variables in such factor are.
 \item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.
 \item \strong{sel_dif} The selection differential for the variables.
-\item \strong{total_gain} The selection differential for the variables.
+\item \strong{stat_gain} A descriptive statistic for the selection gains. The
+minimum, mean, confidence interval, standard deviation, maximum, and sum of
+selection gain values are computed. If traits have negative and positive
+desired gains, the statistics are computed for by strata.
 \item \strong{sel_gen} The selected genotypes.
 }
 }
