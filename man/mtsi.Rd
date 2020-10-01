@@ -45,11 +45,13 @@ The lower the contribution of a factor, the close of the ideotype the variables 
 factor are.
 \item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.
-\item \strong{sel_dif} The selection differential for the WAASBY index.
-\item \strong{mean_sd} The mean for the differential selection.
-\item \strong{sel_dif_var} The selection differential for the variables.
-\item \strong{total_sel_dif} The total selection differential.
-\item \strong{sel_dif_waasb} The selection differential for WAASB index.
+\item \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} The selection
+differential (gains) for the traits, and for the WAASB and WAASBY indexes.
+\item \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A descriptive
+statistic for the selection gains of the traits and WAASB and WAASBY indexes.
+The minimum, mean, confidence interval, standard deviation, maximum, and sum
+of selection gain values are computed. If traits have negative and positive
+desired gains, the statistics are computed for by strata.
 \item \strong{sel_gen} The selected genotypes.
 }
 }

@@ -34,11 +34,13 @@
 #' factor are.
 #' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
-#' * \strong{sel_dif} The selection differential for the WAASBY index.
-#' * \strong{mean_sd} The mean for the differential selection.
-#' * \strong{sel_dif_var} The selection differential for the variables.
-#' * \strong{total_sel_dif} The total selection differential.
-#' * \strong{sel_dif_waasb} The selection differential for WAASB index.
+#' * \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} The selection
+#' differential (gains) for the traits, and for the WAASB and WAASBY indexes.
+#' * \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A descriptive
+#' statistic for the selection gains of the traits and WAASB and WAASBY indexes.
+#' The minimum, mean, confidence interval, standard deviation, maximum, and sum
+#' of selection gain values are computed. If traits have negative and positive
+#' desired gains, the statistics are computed for by strata.
 #' * \strong{sel_gen} The selected genotypes.
 #' @md
 #' @importFrom purrr map_dfc
@@ -190,7 +192,8 @@ mtsi <- function(.data,
                       Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]),
                       SD = Xs - Xo,
                       SDperc = (Xs - Xo) / Xo * 100)
-    mean_sd_ind <- apply(sel_dif[, 3:6], 2, mean)
+    stat_dif_waasby <-
+      desc_stat(sel_dif, SDperc, stats = c("min, mean, ci, sd.amo, max, sum"))
     sel_dif_mean <-
       tibble(VAR = names(pos.var.factor[, 2]),
              Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
@@ -219,9 +222,11 @@ mtsi <- function(.data,
                  .after = "SDperc") %>%
         reorder_cols(h2, .after  = "SDperc")
     }
-    tota_gain <-
-      sum_by(sel_dif_mean, sense) %>%
-      select_cols(sense, one_of(c("SD", "SDperc", "SG", "SGperc")))
+    stat_gain <-
+      desc_stat(sel_dif_mean,
+                by = sense,
+                any_of(c("SDperc", "SGperc")),
+                stats = c("min, mean, ci, sd.amo, max, sum"))
     what <- ifelse(has_class(.data, "WAASB"), "WAAS", "WAASB")
     waasb_index <- gmd(.data, what, verbose = FALSE)
     waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
@@ -232,6 +237,9 @@ mtsi <- function(.data,
         Xs = waasb_selected,
         SD = Xs - Xo,
         SDperc = (Xs - Xo) / Xo * 100)
+    stat_dif_waasb <-
+      desc_stat(sel_dif_waasb, SDperc,
+                stats = c("min, mean, ci, sd.amo, max, sum"))
     contri_fac_rank_sel <-
       contri_long %>%
       subset(GEN %in% selected) %>%
@@ -240,6 +248,8 @@ mtsi <- function(.data,
       map_dfc(~.x %>% pull())
   }
   if (is.null(ngs)) {
+    stat_dif_waasb <- NULL
+    stat_dif_waasby <- NULL
     sel_dif <- NULL
     sel_dif_waasb <- NULL
     sel_dif_mean <- NULL
@@ -262,10 +272,6 @@ mtsi <- function(.data,
       cat("Selection differential for the ", index, "index\n")
       cat("-------------------------------------------------------------------------------\n")
       print(sel_dif)
-      cat("------------------------------------------------------------------------------\n")
-      cat("Mean of selection differential\n")
-      cat("-------------------------------------------------------------------------------\n")
-      print(mean_sd_ind)
       cat("-------------------------------------------------------------------------------\n")
       cat("Selection differential for the mean of the variables\n")
       cat("-------------------------------------------------------------------------------\n")
@@ -300,11 +306,12 @@ mtsi <- function(.data,
                         contri_fac = contr.factor,
                         contri_fac_rank = contri_fac_rank,
                         contri_fac_rank_sel = contri_fac_rank_sel,
-                        sel_dif = sel_dif,
-                        mean_sd = mean_sd_ind,
-                        sel_dif_var = sel_dif_mean,
-                        total_sel_dif = tota_gain,
+                        sel_dif_trait = sel_dif_mean,
+                        stat_dif_trait = stat_gain,
                         sel_dif_waasb = sel_dif_waasb,
+                        stat_dif_waasb = stat_dif_waasb,
+                        sel_dif_waasby = sel_dif,
+                        stat_dif_waasby = stat_dif_waasby,
                         sel_gen = selected),
                    class = "mtsi"))
 }
@@ -355,7 +362,8 @@ mtsi <- function(.data,
 #' @param invert Logical argument. If \code{TRUE}, rotate the plot.
 #' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
 #' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
-#' @param ... Other arguments to be passed from ggplot2::theme().
+#' @param legend.position The position of the legend.
+#' @param ... Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.
 #' @return An object of class \code{gg, ggplot}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mtsi
@@ -388,6 +396,7 @@ plot.mtsi <- function(x,
                       invert = FALSE,
                       col.sel = "red",
                       col.nonsel = "black",
+                      legend.position = "bottom",
                       ...) {
   if (!class(x) == "mtsi") {
     stop("The object 'x' is not of class 'mtsi'")
@@ -402,7 +411,7 @@ plot.mtsi <- function(x,
   data <- x$MTSI %>%
     add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
-  cutpoint <- max(subset(data, sel == "sel_gen")$MTSI)
+  cutpoint <- max(subset(data, sel == "Selected")$MTSI)
   p <-
     ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
     geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
@@ -415,14 +424,15 @@ plot.mtsi <- function(x,
                ) +
     scale_x_discrete() +
     scale_y_reverse() +
-    theme_minimal() +
-    theme(legend.position = "bottom",
+    theme_minimal()  +
+    theme(legend.position = legend.position,
           legend.title = element_blank(),
           axis.title.x = element_blank(),
           panel.border = element_blank(),
-          panel.grid = element_line(size = size.line),
+          panel.grid = element_line(size = size.line / 2),
           axis.text = element_text(colour = "black"),
-          text = element_text(size = size.text)) +
+          text = element_text(size = size.text),
+          ...) +
     labs(y = "Multitrait stability index") +
     scale_fill_manual(values = c(col.nonsel, col.sel))
   if (radar == TRUE) {
@@ -434,8 +444,8 @@ plot.mtsi <- function(x,
       sang <- c(-90 - 180/length(sseq) * sseq)
       p <-
         p +
-        coord_polar() +
-        theme(axis.text.x = element_text(angle = c(fang, sang)), legend.margin = margin(-120, 0, 0, 0), ...)
+        coord_polar()  +
+        theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
     } else{
       p <- p + coord_polar()
     }
@@ -455,24 +465,40 @@ plot.mtsi <- function(x,
     if(radar == TRUE){
       p <-
       ggplot(data, aes(x = GEN, y = value)) +
-        geom_polygon(aes(group = name, color = name), fill = NA, size = size.line) +
+        geom_polygon(aes(group = name, color = name),
+                     fill = NA,
+                     size = size.line) +
+        geom_polygon(aes(group = 1, x = GEN, y = 100 / length(unique(name))),
+                     fill = NA,
+                     color = "black",
+                     linetype = 2,
+                     size = size.line,
+                     show.legend = FALSE) +
         geom_line(aes(group = name, color = name), size = size.line) +
-        geom_point(aes(group = name, color = name), size = size.line * 2) +
-        theme_minimal() +
+        theme_minimal()  +
         theme(strip.text.x = element_text(size = size.text),
               axis.text.x = element_text(color = "black", size = size.text),
               axis.ticks.y = element_blank(),
-              panel.grid = element_line(size = size.line),
+              panel.grid = element_line(size = size.line / 2),
               axis.text.y = element_text(size = size.text, color = "black"),
-              legend.position = "bottom",
-              legend.title = element_blank()) +
+              legend.position = legend.position,
+              legend.title = element_blank(),
+              ...) +
         labs(title = "The strengths and weaknesses for genotypes",
              x = NULL,
              y = "Contribution of each factor to the MTSI index") +
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()
-
+      if(arrange.label == TRUE){
+        tot_gen <- length(unique(data$GEN))
+        fseq <- c(1:(tot_gen/2))
+        sseq <- c((tot_gen/2 + 1):tot_gen)
+        fang <- c(90 - 180/length(fseq) * fseq)
+        sang <- c(-90 - 180/length(sseq) * sseq)
+        p <- p  +
+          theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
+      }
     } else{
     p <-
       ggplot(data, aes(GEN, value, fill = name))+
@@ -482,16 +508,17 @@ plot.mtsi <- function(x,
                size = size.line,
                width = width.bar) +
       scale_y_continuous(expand = expansion(0))+
-      theme_metan()+
-      theme(legend.position = "bottom",
+      theme_metan()  +
+      theme(legend.position = legend.position,
             axis.ticks = element_line(size = size.line),
             plot.margin = margin(0.5, 0.5, 0, 0, "cm"),
-            panel.border = element_rect(size = size.line))+
+            panel.border = element_rect(size = size.line),
+            ...)+
       scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
                        expand = expansion(0))+
       labs(title = "The strengths and weaknesses for genotypes",
            x = x.lab,
-           y = y.lab)+
+           y = y.lab) +
       guides(guide_legend(nrow = 1))
     if(invert == TRUE){
       p <- p + coord_flip()
@@ -500,8 +527,6 @@ plot.mtsi <- function(x,
   }
   return(p)
 }
-
-
 
 
 
@@ -569,7 +594,7 @@ print.mtsi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   print(x$mean_sd)
   cat("\n")
   cat("------------------------- Selection differential (variables) --------------------------\n")
-  print(x$sel_dif_var)
+  print(x$sel_dif_trait)
   cat("\n")
   cat("-------------------------------- Selected genotypes -----------------------------------\n")
   cat(x$sel_gen)

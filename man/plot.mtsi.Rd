@@ -23,6 +23,7 @@
   invert = FALSE,
   col.sel = "red",
   col.nonsel = "black",
+  legend.position = "bottom",
   ...
 )
 }
@@ -78,7 +79,9 @@ prioritizing the first, last, and middle labels.}
 
 \item{col.nonsel}{The colour for nonselected genotypes. Defaults to \code{"black"}.}
 
-\item{...}{Other arguments to be passed from ggplot2::theme().}
+\item{legend.position}{The position of the legend.}
+
+\item{...}{Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.}
 }
 \value{
 An object of class \code{gg, ggplot}.
