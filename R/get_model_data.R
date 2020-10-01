@@ -415,12 +415,13 @@ get_model_data <- function(x,
                "communalities_mean", "initial_loadings", "finish_loadings",
                "canonical_loadings", "scores_gen", "scores_ide", "gen_ide",
                "MGIDI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
-               "sel_dif", "total_gain", "sel_gen")
+               "sel_dif", "stat_gain", "sel_gen")
   check28 <- c("data", "cormat", "PCA", "FA", "KMO", "MSA", "communalities",
                "communalities_mean", "initial_loadings", "finish_loadings",
                "canonical_loadings", "scores_gen", "scores_ide", "gen_ide",
                "MTSI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
-               "sel_dif", "mean_sd", "sel_dif_var", "total_sel_dif", "sel_dif_waasb", "sel_gen")
+               "sel_dif_trait", "stat_dif_trait", "sel_dif_waasb", "stat_dif_waasb",
+               "sel_dif_waasby", "stat_dif_waasby", "sel_gen")
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
@@ -430,7 +431,7 @@ get_model_data <- function(x,
 
   if(has_class(x, "mtsi")){
     if (is.null(what)){
-      what <- "sel_dif_var"
+      what <- "sel_dif_trait"
     }
     if (!what %in% check28) {
       stop("Invalid value in 'what' for object of class 'mtsi'. Allowed are ", paste(check28, collapse = ", "), call. = FALSE)
