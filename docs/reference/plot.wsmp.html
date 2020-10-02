@@ -299,7 +299,7 @@ unproductive genotypes; and (green), productive and stable genotypes.</p>
                rep <span class='op'>=</span> <span class='va'>REP</span>,
                resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
          <span class='fu'><a href='wsmp.html'>wsmp</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()' instead.</span></div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       PH
@@ -309,9 +309,9 @@ unproductive genotypes; and (green), productive and stable genotypes.</p>
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()' instead.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Vectorized input to `element_text()` is not officially supported.</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Vectorized input to `element_text()` is not officially supported.</span>
 #&gt; <span class='warning'>Results may be unexpected or may change in future versions of ggplot2.</span></div><div class='input'><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span>, type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()' instead.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Vectorized input to `element_text()` is not officially supported.</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Vectorized input to `element_text()` is not officially supported.</span>
 #&gt; <span class='warning'>Results may be unexpected or may change in future versions of ggplot2.</span></div><div class='input'><span class='fu'><a href='arrange_ggplot.html'>arrange_ggplot</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span>, ncol <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.wsmp-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 

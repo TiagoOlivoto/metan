@@ -410,11 +410,6 @@
 <p>The S3 method <a href="https://tiagoolivoto.github.io/metan/reference/predict.performs_ammi.html"><code>predict()</code></a> is implemented for objects of class <code>performs_ammi</code> and may be used to estimate the response of each genotype in each environment considering different number of Interaction Principal Component Axis (IPCA). As a example, to predict the variables GY and HM we will use four and six IPCA (number of significant IPCAs, respectively). In addition, we will create a two way table with <a href="https://tiagoolivoto.github.io/metan/reference/make_mat.html"><code>make_mat()</code></a> to show the predicted values for the variable GY.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ammi_model</span>, naxis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
-
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
 <span class="fu"><a href="../reference/make_mat.html">make_mat</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">$</span><span class="va">GY</span>, <span class="va">GEN</span>, <span class="va">ENV</span>, <span class="va">YpredAMMI</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#       E1  E10  E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9</span>
@@ -528,11 +523,6 @@
 <p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can obtain this statistic with the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a> combined with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a> using <code>what = "WAASB"</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="va">model3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
-
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">model3</span>, what <span class="op">=</span> <span class="st">"WAASB"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Class of the model: waasb</span>
@@ -621,8 +611,6 @@
 <p>To compute all the stability statistics at once, we can use the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. Again we get the results with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit">
 <span class="va">stat_ge</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stat_ge</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
