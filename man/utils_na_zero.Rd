@@ -2,6 +2,7 @@
 % Please edit documentation in R/utils_na.R
 \name{utils_na_zero}
 \alias{utils_na_zero}
+\alias{fill_na}
 \alias{has_na}
 \alias{remove_rows_na}
 \alias{remove_cols_na}
@@ -17,6 +18,8 @@
 \alias{replace_zero}
 \title{Utilities for handling with NA and zero values}
 \usage{
+fill_na(.data, ..., direction = "down")
+
 has_na(.data)
 
 remove_rows_na(.data, verbose = TRUE)
@@ -44,17 +47,20 @@ select_rows_zero(.data, verbose = TRUE)
 replace_zero(.data, ..., replacement = NA)
 }
 \arguments{
-\item{.data}{A data frame or tibble}
+\item{.data}{A data frame.}
+
+\item{...}{Variables to fill  \code{NAs} in \code{fill_na()}, replace
+\code{NAs} in \code{replace_na()} or zeros in \code{replace_zero()}. If
+\code{...} is null then all variables in \code{.data} will be evaluated. It
+must be a single variable name or a comma-separated list of unquoted
+variables names. Select helpers are also allowed.}
+
+\item{direction}{Direction in which to fill missing values. Currently either
+"down" (the default), "up", "downup" (i.e. first down and then up) or
+"updown" (first up and then down).}
 
 \item{verbose}{Logical argument. If \code{TRUE} (default) shows in console
 the rows or columns deleted.}
-
-\item{...}{Variables to replace \code{NAs} in \code{replace_na()} or zeros in
-\code{replace_zero()}  . If \code{...} is null then all variables with
-\code{NA} or \code{0} will be replaced by the value in \code{replacement}
-argument of such functions. It must be a single variable name or a
-comma-separated list of unquoted variables names. Select helpers are also
-allowed.}
 
 \item{replace}{Deprecated argument as of 1.8.0. Use \code{replacement} instead.}
 
@@ -73,7 +79,9 @@ analysis. This collection of functions will make it easier to deal with
 them.
 
 \itemize{
-\item \code{has_na(), has_zero() }: Check for \code{NAs} and \code{0s} in the
+\item \code{fill_na()}: Fills \code{NA} in selected columns using the next or
+previous entry.
+\item \code{has_na(), has_zero()}: Check for \code{NAs} and \code{0s} in the
 data and return a logical value.
 \item \code{random_na()}: Generate random \code{NA} values in a two-way table
 based on a desired proportion.
@@ -85,18 +93,21 @@ and \code{0s}, respectively.
 and \code{0s}, respectively.
 \item \code{select_rows_na(), select_rows_zero()}: Select rows with \code{NAs}
 and \code{0s}, respectively.
-\item \code{replace_na(), replace_zero()} Replace \code{NAs} and \code{0s},
+\item \code{replace_na(), replace_zero()}: Replace \code{NAs} and \code{0s},
 respectively, with a \code{replacement} value.
 }
 }
 \examples{
 \donttest{
 library(metan)
-data_naz <- data_g
-data_naz[c(1, 5, 10), c(3:5, 10:15)] <- NA
-data_naz[c(2, 6, 9), c(6:7, 12:13)] <- 0
+data_naz <- iris \%>\% group_by(Species) \%>\% doo(~head(.))
+data_naz[c(2:3, 6, 15), c(1:2, 4, 5)] <- NA
+data_naz[c(2, 7, 16), c(2, 3, 4)] <- 0
 has_na(data_naz)
 has_zero(data_naz)
+
+# Fill NA values of column GEN
+fill_na(data_naz, GEN)
 
 # Remove columns
 remove_cols_na(data_naz)

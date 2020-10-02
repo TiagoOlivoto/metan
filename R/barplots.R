@@ -167,7 +167,7 @@ plot_bars <- function(.data,
   cl <- match.call()
   datac <-
     .data %>%
-    to_factor({{x}}) %>%
+    as_factor({{x}}) %>%
     select({{x}}, {{y}}) %>%
     group_by({{x}}) %>%
     desc_stat({{y}}, stats = c("n, mean, sd.amo, ci, se"), level = level)
