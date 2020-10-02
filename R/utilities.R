@@ -184,7 +184,7 @@ all_title_case <- function(.data, ...){
     .data <- as.data.frame(.data)
     if(!missing(...)){
       mutate(.data, across(c(...), to_title)) %>%
-      as_tibble(rownames = NA)
+        as_tibble(rownames = NA)
     } else{
       mutate(.data, across(where(~!is.numeric(.x)), to_title)) %>%
         as_tibble(rownames = NA)
@@ -204,23 +204,23 @@ extract_number <- function(.data,
                            .before = NULL,
                            .after  = NULL){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-  if (drop == FALSE){
-    results <- .data %>%
-      mutate({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
-    if (pull == TRUE){
-      results <- pull(results)
+    if (drop == FALSE){
+      results <- .data %>%
+        mutate({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
+      if (pull == TRUE){
+        results <- pull(results)
+      }
+      if (!missing(.before) | !missing(.after)){
+        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
+      }
+    } else{
+      results <- .data %>%
+        transmute({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
     }
-    if (!missing(.before) | !missing(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-    }
-  } else{
-    results <- .data %>%
-      transmute({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
-    if(pull == TRUE){
-      results <- pull(results)
-    }
-  }
-  return(results)
+    return(results)
   } else{
     as.numeric(gsub("[^0-9.-]+", "", .data))
   }
@@ -235,23 +235,23 @@ extract_string <- function(.data,
                            .before = NULL,
                            .after  = NULL){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-  if (drop == FALSE){
-    results <- .data %>%
-      mutate({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
-    if(pull == TRUE){
-      results <- pull(results)
+    if (drop == FALSE){
+      results <- .data %>%
+        mutate({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
+      if (!missing(.before) | !missing(.after)){
+        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
+      }
+    } else{
+      results <- .data %>%
+        transmute({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
     }
-    if (!missing(.before) | !missing(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-    }
-  } else{
-    results <- .data %>%
-      transmute({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
-    if(pull == TRUE){
-      results <- pull(results)
-    }
-  }
-  return(results)
+    return(results)
   } else{
     as.character(gsub("[^A-z.-]+", "", .data))
   }
@@ -301,16 +301,16 @@ remove_space <- function(.data, ...){
 #' @export
 remove_strings <- function(.data, ...){
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-  if(missing(...)){
-    results <-
-      mutate(.data, across(everything(), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
-      mutate(across(everything(), as.numeric))
-  } else{
-    results <-
-      mutate(.data, across(c(...), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
-      mutate(across(c(...), as.numeric))
-  }
-  return(results)
+    if(missing(...)){
+      results <-
+        mutate(.data, across(everything(), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
+        mutate(across(everything(), as.numeric))
+    } else{
+      results <-
+        mutate(.data, across(c(...), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
+        mutate(across(c(...), as.numeric))
+    }
+    return(results)
   } else{
     return(gsub(pattern = "[^0-9.-]", replacement = "", .data)) %>%
       remove_space() %>%
@@ -334,23 +334,23 @@ replace_number <- function(.data,
     pattern <- pattern
   }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-  if (drop == FALSE){
-    results <- .data %>%
-      mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
-    if(pull == TRUE){
-      results <- pull(results)
+    if (drop == FALSE){
+      results <- .data %>%
+        mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
+      if (!missing(.before) | !missing(.after)){
+        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
+      }
+    } else{
+      results <- .data %>%
+        transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
     }
-    if (!missing(.before) | !missing(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-    }
-  } else{
-    results <- .data %>%
-      transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
-    if(pull == TRUE){
-      results <- pull(results)
-    }
-  }
-  return(results)
+    return(results)
   } else{
     return(gsub(pattern, replacement, .data))
   }
@@ -373,23 +373,23 @@ replace_string <- function(.data,
     pattern <- pattern
   }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-  if (drop == FALSE){
-    results <- .data %>%
-      mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
-    if(pull == TRUE){
-      results <- pull(results)
+    if (drop == FALSE){
+      results <- .data %>%
+        mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
+      if (!missing(.before) | !missing(.after)){
+        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
+      }
+    } else{
+      results <- .data %>%
+        transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
+      if(pull == TRUE){
+        results <- pull(results)
+      }
     }
-    if (!missing(.before) | !missing(.after)){
-      results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-    }
-  } else{
-    results <- .data %>%
-      transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
-    if(pull == TRUE){
-      results <- pull(results)
-    }
-  }
-  return(results)
+    return(results)
   } else{
     return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
   }
@@ -882,9 +882,8 @@ select_rows <- function(.data, ...){
 #'  variable names to compute the statistics. If no variables are informed in n
 #'  \code{...}, the statistic will be computed for all numeric variables in
 #'  \code{.data}.
-#'
-#' @param na.rm A logical value indicating whether \code{NA} values should be
-#'    stripped before the computation proceeds. Defaults to \code{FALSE}.
+#' @param na.rm If \code{FALSE}, the default, missing values are removed with a
+#'   warning. If \code{TRUE}, missing values are silently removed.
 #' @param level The confidence level for the confidence interval of the mean.
 #'   Defaults to 0.95.
 #' @return
@@ -928,10 +927,11 @@ select_rows <- function(.data, ...){
 #' @export
 av_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sum(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(df)))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -942,7 +942,7 @@ av_dev <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -952,10 +952,11 @@ av_dev <- function(.data, ..., na.rm = FALSE) {
 #' @export
 ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     qt((0.5 + level/2), (length(which(!is.na(df))) - 1)) * sd(df, na.rm = na.rm)/sqrt(length(which(!is.na(df))))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -966,7 +967,7 @@ ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -976,10 +977,11 @@ ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
 #' @export
 cv <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sd(df, na.rm = na.rm)/mean(df, na.rm = na.rm) * 100
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -990,7 +992,7 @@ cv <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1011,10 +1013,11 @@ freq_table <- function(.data, ...){
 #' @export
 hmean <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     1 / mean(1 / df, na.rm = na.rm)
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1035,10 +1038,11 @@ hmean <- function(.data, ..., na.rm = FALSE) {
 #' @export
 gmean <- function(.data, ..., na.rm = FALSE){
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     exp(sum(log(df[df > 0]), na.rm = na.rm) / length(df))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1059,12 +1063,13 @@ gmean <- function(.data, ..., na.rm = FALSE){
 #' @export
 kurt <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     n <- length(which(!is.na(df)))
     tmp <- sum((df - mean(df, na.rm = na.rm))^4, na.rm = na.rm)/(var(df, na.rm = na.rm))^2
     n * (n + 1) * tmp/((n - 1) * (n - 2) * (n - 3)) - 3 * (n - 1)^2/((n - 2) * (n - 3))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1075,7 +1080,7 @@ kurt <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1085,7 +1090,97 @@ kurt <- function(.data, ..., na.rm = FALSE) {
 #' @export
 pseudo_sigma <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     IQR(df, na.rm = na.rm) / 1.35
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
+range_data <- function(.data, ..., na.rm = FALSE){
+  funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
+    max(df, na.rm = na.rm) - min(df, na.rm = na.rm)
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
+row_col_mean <- function(.data, na.rm = FALSE) {
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(!any(sapply(.data, is.numeric))){
+    stop("All columns in '.data' must be numeric")
+  }
+  mat <- as.matrix(.data)
+  row_means <- rowMeans(mat, na.rm = na.rm)
+  col_means <- colMeans(mat, na.rm = na.rm)
+  cmeans <- suppressWarnings(cbind(mat,  row_means) %>% rbind(col_means))
+  rownames(cmeans) <- c(rownames(mat), "col_means")
+  cmeans[nrow(cmeans), ncol(cmeans)] <- mean(mat)
+  return(cmeans)
+}
+#' @name utils_stats
+#' @export
+row_col_sum <- function(.data, na.rm = FALSE) {
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
+  if(!any(sapply(.data, is.numeric))){
+    stop("All columns in '.data' must be numeric")
+  }
+  mat <- as.matrix(.data)
+  row_sums <- rowSums(mat, na.rm = na.rm)
+  col_sums <- colSums(mat, na.rm = na.rm)
+  cmeans <- suppressWarnings(cbind(mat,  row_sums) %>% rbind(col_sums))
+  rownames(cmeans) <- c(rownames(mat), "col_sums")
+  cmeans[nrow(cmeans), ncol(cmeans)] <- sum(mat)
+  return(cmeans)
+}
+#' @name utils_stats
+#' @export
+sd_amo <- function(.data, ..., na.rm = FALSE) {
+  funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
+    sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(df))) - 1))
   }
   if(has_na(.data) && na.rm == FALSE){
     stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
@@ -1107,84 +1202,12 @@ pseudo_sigma <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
-range_data <- function(.data, ..., na.rm = FALSE){
-  funct <- function(df){
-    max(df, na.rm = na.rm) - min(df, na.rm = na.rm)
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
-  }
-  if(is.null(nrow(.data))){
-    funct(.data)
-  } else{
-    if(missing(...)){
-      .data %>%
-        summarise(across(where(is.numeric), funct)) %>%
-        ungroup()
-    } else{
-      .data %>%
-       select_cols(group_vars(.), ...) %>%
-        summarise(across(where(is.numeric), funct)) %>%
-        ungroup()
-    }
-  }
-}
-#' @name utils_stats
-#' @export
-row_col_mean <- function(.data, na.rm = FALSE) {
-  if(!any(sapply(.data, is.numeric))){
-    stop("All columns in '.data' must be numeric")
-  }
-  mat <- as.matrix(.data)
-  row_means <- rowMeans(mat, na.rm = na.rm)
-  col_means <- colMeans(mat, na.rm = na.rm)
-  cmeans <- suppressWarnings(cbind(mat,  row_means) %>% rbind(col_means))
-  rownames(cmeans) <- c(rownames(mat), "col_means")
-  cmeans[nrow(cmeans), ncol(cmeans)] <- mean(mat)
-  return(cmeans)
-}
-#' @name utils_stats
-#' @export
-row_col_sum <- function(.data, na.rm = FALSE) {
-  if(!any(sapply(.data, is.numeric))){
-    stop("All columns in '.data' must be numeric")
-  }
-  mat <- as.matrix(.data)
-  row_sums <- rowSums(mat, na.rm = na.rm)
-  col_sums <- colSums(mat, na.rm = na.rm)
-  cmeans <- suppressWarnings(cbind(mat,  row_sums) %>% rbind(col_sums))
-  rownames(cmeans) <- c(rownames(mat), "col_sums")
-  cmeans[nrow(cmeans), ncol(cmeans)] <- sum(mat)
-  return(cmeans)
-}
-#' @name utils_stats
-#' @export
-sd_amo <- function(.data, ..., na.rm = FALSE) {
-  funct <- function(df){
-    sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(df))) - 1))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
-  }
-  if(is.null(nrow(.data))){
-    funct(.data)
-  } else{
-    if(missing(...)){
-      .data %>%
-        summarise(across(where(is.numeric), funct)) %>%
-        ungroup()
-    } else{
-      .data %>%
-       select_cols(group_vars(.), ...) %>%
-        summarise(across(where(is.numeric), funct)) %>%
-        ungroup()
-    }
-  }
-}
-#' @name utils_stats
-#' @export
 sd_pop <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(df))))
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1199,7 +1222,7 @@ sd_pop <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1209,6 +1232,10 @@ sd_pop <- function(.data, ..., na.rm = FALSE) {
 #' @export
 sem <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sd(df, na.rm = na.rm) / sqrt(length(which(!is.na(df))))
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1223,7 +1250,7 @@ sem <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1233,6 +1260,10 @@ sem <- function(.data, ..., na.rm = FALSE) {
 #' @export
 skew <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     n <- length(which(!is.na(df)))
     sum((df - mean(df, na.rm = na.rm))^3, na.rm = na.rm)/sd(df, na.rm = na.rm)^3 * n / ((n - 1) * (n - 2))
   }
@@ -1248,7 +1279,7 @@ skew <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1258,6 +1289,10 @@ skew <- function(.data, ..., na.rm = FALSE) {
 #' @export
 sum_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sum(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm)
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1272,7 +1307,7 @@ sum_dev <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1282,6 +1317,10 @@ sum_dev <- function(.data, ..., na.rm = FALSE) {
 #' @export
 sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1296,7 +1335,7 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1306,6 +1345,10 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
 #' @export
 var_pop <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sd_pop(df, na.rm = na.rm)^2
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1320,7 +1363,7 @@ var_pop <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1330,6 +1373,10 @@ var_pop <- function(.data, ..., na.rm = FALSE) {
 #' @export
 var_amo <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     sd_amo(df, na.rm = na.rm)^2
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1344,7 +1391,7 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1354,6 +1401,10 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
 #' @export
 valid_n <- function(.data, ..., na.rm = FALSE){
   funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
     length(which(!is.na(df)))
   }
   if(has_na(.data) && na.rm == FALSE){
@@ -1368,7 +1419,7 @@ valid_n <- function(.data, ..., na.rm = FALSE){
         ungroup()
     } else{
       .data %>%
-       select_cols(group_vars(.), ...) %>%
+        select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
     }
@@ -1378,48 +1429,80 @@ valid_n <- function(.data, ..., na.rm = FALSE){
 #' @name utils_stats
 #' @export
 cv_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), cv, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 max_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), max, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 means_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 min_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), min, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 n_by <- function(.data, ..., na.rm = FALSE){
-    group_by(.data, ...) %>%
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
+  group_by(.data, ...) %>%
     summarise(across(everything(), ~sum(!is.na(.))), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 sd_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 sem_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export
 sum_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
+  }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), sum, na.rm = na.rm), .groups = "drop")
 }
@@ -1587,7 +1670,7 @@ doo <- function(.data, .fun, ..., unnest = TRUE){
 #'
 add_class <- function(x, class){
   class(x) <- unique(c(class(x), class))
- return(x)
+  return(x)
 }
 #' @name utils_class
 #' @export
@@ -1803,4 +1886,4 @@ coord_radar <- function (theta = "x", start = 0, direction = 1) {
   ggproto("CoordRadar", CoordPolar, theta = theta, r = r, start = start,
           direction = sign(direction),
           is_linear = function(coord) TRUE)
-  }
+}

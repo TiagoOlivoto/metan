@@ -104,8 +104,8 @@ variable names to compute the statistics. If no variables are informed in n
 \code{.data}.
 }}
 
-\item{na.rm}{A logical value indicating whether \code{NA} values should be
-stripped before the computation proceeds. Defaults to \code{FALSE}.}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a
+warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{level}{The confidence level for the confidence interval of the mean.
 Defaults to 0.95.}

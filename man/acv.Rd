@@ -12,8 +12,8 @@ acv(mean, var, na.rm = FALSE)
 
 \item{var}{A numeric vector with variance values.}
 
-\item{na.rm}{A logical value indicating whether \code{NA} values should be
-stripped before the computation proceeds. Defaults to \code{FALSE}.}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a
+warning. If \code{TRUE}, missing values are silently removed.}
 }
 \value{
 A tibble with the following columns

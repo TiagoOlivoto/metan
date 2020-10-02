@@ -179,8 +179,9 @@ desc_stat <- function(.data = NULL,
     data <- select(.data, ...) %>%
       select_numeric_cols()
   }
-  if(has_na(data) == TRUE && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
+  if(na.rm == FALSE & has_na(data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    na.rm <- TRUE
   }
   if(hist == TRUE){
     stats_facet <- data %>% select_numeric_cols() %>%  pivot_longer(everything())

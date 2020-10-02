@@ -19,8 +19,8 @@
 #' regression.
 #' @param mean A numeric vector with mean values.
 #' @param var A numeric vector with variance values.
-#' @param na.rm A logical value indicating whether \code{NA} values should be
-#'   stripped before the computation proceeds. Defaults to \code{FALSE}.
+#' @param na.rm If \code{FALSE}, the default, missing values are removed with a
+#'   warning. If \code{TRUE}, missing values are silently removed.
 #'
 #' @return A tibble with the following columns
 #' * \strong{mean} The mean values;
@@ -53,8 +53,10 @@
 #' acv(u, v)
 #' }
 acv <- function(mean, var, na.rm = FALSE) {
-  if(has_na(mean) | has_na(var)){
-    stop("NA values in 'mean' or 'var'. Use 'na.rm = TRUE' to remove them.")
+  if(na.rm == FALSE & has_na(mean) | na.rm == FALSE & has_na(var)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    mean <- na.omit(mean)
+    var <- na.omit(var)
   }
   if(na.rm == TRUE){
     mean <- na.omit(mean)
