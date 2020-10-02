@@ -440,7 +440,7 @@ plot.wsmp <- function(x,
     data <-
       dat %>%
       rownames_to_column("GEN") %>%
-      to_factor(1) %>%
+      as_factor(1) %>%
       pivot_longer(-GEN) %>%
       rowid_to_column()
     if(type == 1){

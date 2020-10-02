@@ -374,7 +374,7 @@ if(is_grouped_df(.data)){
       blupBWR <- data.frame(Names = rownames(regen$`REP:BLOCK`)) %>%
         separate(Names, into = c("REP", "BLOCK"), sep = ":") %>%
         add_cols(BLUPbre = regen$`REP:BLOCK`[[1]]) %>%
-        to_factor(1:2)
+        as_factor(1:2)
       ranef <-
         suppressWarnings(
           left_join(data_factors, BLUPgen, by = "GEN") %>%

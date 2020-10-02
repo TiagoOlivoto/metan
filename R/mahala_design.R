@@ -78,7 +78,7 @@ mahala_design <- function(.data,
   factors <- select(.data,
                     GEN = {{gen}},
                     REP = {{rep}}) %>%
-    to_factor(1:2)
+    as_factor(1:2)
   GEN <- factors$GEN
   REP <- factors$REP
     vars <- .data %>%

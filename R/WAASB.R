@@ -424,7 +424,7 @@ waasb <- function(.data,
             data.frame(Names = rownames(bups[["GEN:ENV"]])) %>%
             separate(Names, into = c("GEN", "ENV"), sep = ":") %>%
             add_cols(BLUPge = bups[["GEN:ENV"]][[1]]) %>%
-            to_factor(1:2)
+            as_factor(1:2)
         intmatrix <- as.matrix(make_mat(bINT, GEN, ENV, BLUPge))
         if(has_na(intmatrix)){
             intmatrix <- impute_missing_val(intmatrix, verbose = verbose, ...)$.data
@@ -521,7 +521,7 @@ waasb <- function(.data,
                 data.frame(Names = rownames(bups$`BLOCK:(REP:ENV)`)) %>%
                 separate(Names, into = c("BLOCK", "REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPbre = bups$`BLOCK:(REP:ENV)`[[1]]) %>%
-                to_factor(1:3)
+                as_factor(1:3)
             BLUPint <-
                 suppressWarnings(
                     left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
@@ -547,7 +547,7 @@ waasb <- function(.data,
                 data.frame(Names = rownames(bups$`REP:ENV`)) %>%
                 separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
-                to_factor(1:2)
+                as_factor(1:2)
             BLUPint <-
                 suppressWarnings(
                     left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
@@ -573,18 +573,18 @@ waasb <- function(.data,
                 data.frame(Names = rownames(bups$`REP:ENV`)) %>%
                 separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
-                to_factor(1:2)
+                as_factor(1:2)
             blupBRE <-
                 data.frame(Names = rownames(bups$`BLOCK:(REP:ENV)`)) %>%
                 separate(Names, into = c("BLOCK", "REP", "ENV")) %>%
                 add_cols(BLUPbre = bups$`BLOCK:(REP:ENV)`[[1]]) %>%
-                to_factor(1:3)
+                as_factor(1:3)
             genCOEF <- summary(Complete)[["coefficients"]] %>%
                 as_tibble(rownames = NA) %>%
                 rownames_to_column("GEN") %>%
                 replace_string(GEN, pattern = "GEN", new_var = GEN) %>%
                 rename(Y = Estimate) %>%
-                to_factor(1)
+                as_factor(1)
             BLUPint <-
                 suppressWarnings(
                     left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
@@ -618,7 +618,7 @@ waasb <- function(.data,
                 separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
                 arrange(ENV) %>%
-                to_factor(1:2)
+                as_factor(1:2)
             BLUPint <-
                 suppressWarnings(
                     left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%
@@ -652,12 +652,12 @@ waasb <- function(.data,
                 separate(Names, into = c("REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPre = bups$`REP:ENV`[[1]]) %>%
                 arrange(ENV) %>%
-                to_factor(1:2)
+                as_factor(1:2)
             blupBRE <-
                 data.frame(Names = rownames(bups$`BLOCK:(REP:ENV)`)) %>%
                 separate(Names, into = c("BLOCK", "REP", "ENV"), sep = ":") %>%
                 add_cols(BLUPbre = bups$`BLOCK:(REP:ENV)`[[1]]) %>%
-                to_factor(1:3)
+                as_factor(1:3)
             BLUPint <-
                 suppressWarnings(
                     left_join(data_factors, bINT, by = c("ENV", "GEN")) %>%

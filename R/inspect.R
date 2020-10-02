@@ -69,7 +69,7 @@ inspect <- function (.data,
     if(esp_nrows != nrow(.data)){
       warning("Considering the levels of factors, .data should have ",
               esp_nrows, " rows, but it has ", nrow(.data),
-              ". Use 'to_factor()' for coercing a variable to a factor.", call. = F)
+              ". Use 'as_factor()' for coercing a variable to a factor.", call. = F)
     }
     if(any(sapply(.data, grepl, pattern = ":"))){
       warning("Using ':' in labels can result an error in some functions. Use '_' instead.", call. = FALSE)

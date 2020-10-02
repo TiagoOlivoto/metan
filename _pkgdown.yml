@@ -302,6 +302,9 @@ reference:
   - subtitle: "Copy-Paste"
     contents:
       - utils_data
+  - subtitle: "Coerce variables to a specific type"
+    contents:
+      - utils_as
   - subtitle: "Numbers and strings"
     contents:
       - utils_num_str

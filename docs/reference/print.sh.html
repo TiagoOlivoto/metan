@@ -271,7 +271,7 @@ to the working directory</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='va'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>vcov</span><span class='op'>$</span><span class='va'>means</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()' instead.</span></div><div class='input'><span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>vcov</span><span class='op'>$</span><span class='va'>means</span><span class='op'>)</span>
 <span class='va'>pcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>phen_cov</span>
 <span class='va'>gcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>geno_cov</span>
 

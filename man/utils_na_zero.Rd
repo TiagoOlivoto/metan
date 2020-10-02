@@ -100,14 +100,18 @@ respectively, with a \code{replacement} value.
 \examples{
 \donttest{
 library(metan)
-data_naz <- iris \%>\% group_by(Species) \%>\% doo(~head(.))
-data_naz[c(2:3, 6, 15), c(1:2, 4, 5)] <- NA
-data_naz[c(2, 7, 16), c(2, 3, 4)] <- 0
+data_naz <- iris \%>\%
+              group_by(Species) \%>\%
+              doo(~head(., n = 3)) \%>\%
+              as_character(Species)
+data_naz
+data_naz[c(2:3, 6, 8), c(1:2, 4, 5)] <- NA
+data_naz[c(2, 7, 9), c(2, 3, 4)] <- 0
 has_na(data_naz)
 has_zero(data_naz)
 
 # Fill NA values of column GEN
-fill_na(data_naz, GEN)
+fill_na(data_naz, Species)
 
 # Remove columns
 remove_cols_na(data_naz)

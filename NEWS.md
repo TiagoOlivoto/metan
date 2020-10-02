@@ -6,6 +6,7 @@
 
 ## New functions
 * `get_dist()` to get distance matrices from objects of class `clustering`.
+* `as_numeric()`, `as_integer()`, `as_logical()`, `as_character()`, and `as_factor()` to coerce variables to specific formats quicly.
 
 # metan 1.9.0
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.

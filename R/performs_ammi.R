@@ -408,7 +408,7 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
         MEANS <-
             objectin$MeansGxE %>%
             select(ENV, GEN, Y) %>%
-            to_factor(1:2)
+            as_factor(1:2)
         MEANS <-
             MEANS %>%
             mutate(RESIDUAL = residuals(lm(Y ~ ENV + GEN, data = MEANS)))
