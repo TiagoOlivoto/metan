@@ -29,9 +29,9 @@
 #' * \strong{scores_gen} The scores for genotypes in all retained factors.
 #' * \strong{scores_ide} The scores for the ideotype in all retained factors.
 #' * \strong{MTSI} The multi-trait stability index.
-#' * \strong{contri_fac} The relative contribution of each factor on the MTSI value.
-#' The lower the contribution of a factor, the close of the ideotype the variables in such
-#' factor are.
+#' * \strong{contri_fac} The relative contribution of each factor on the MTSI
+#' value. The lower the contribution of a factor, the close of the ideotype the
+#' variables in such factor are.
 #' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
 #' * \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} The selection
