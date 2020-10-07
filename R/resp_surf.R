@@ -38,9 +38,12 @@
 resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
                       prob = 0.05, verbose = TRUE) {
   if (!missing(rep)) {
-    data <- .data %>% dplyr::select(!!dplyr::enquo(factor1),
-                                    !!dplyr::enquo(factor2), !!dplyr::enquo(rep), !!dplyr::enquo(resp)) %>%
-      mutate(across(1:3, as.factor))
+    data <-
+      .data %>% select({{factor1}}, {{factor2}}, {{rep}}, {{resp}}) %>%
+      as_factor(1:3)
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+    }
     names <- colnames(data)
     A <- names[1]
     D <- names[2]
@@ -50,9 +53,12 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
                             paste(A), "+", paste(D), "+", paste(A), "*", paste(D)))
     ANOVA <- aov(F1, data = data)
   } else {
-    data <- .data %>% dplyr::select(!!dplyr::enquo(factor1),
-                                    !!dplyr::enquo(factor2), !!dplyr::enquo(resp)) %>%
-      mutate(across(1:2, as.factor))
+    data <-
+      .data %>% select({{factor1}}, {{factor2}}, {{resp}}) %>%
+      as_factor(1:2)
+    if(has_na(data)){
+      data <- remove_rows_na(data)
+    }
     names <- colnames(data)
     A <- names[1]
     D <- names[2]
@@ -75,6 +81,7 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
   Pontos <- -0.5 * (invA %*% X)
   dA <- Pontos[1]
   dD <- Pontos[2]
+  pred_val <- B0 + B1 * dA + B2 * dD + B3 * dA^2 + B4 * dD^2 + B5 * dA * dD
   AV1 <- eigen(P)$values[1]
   AV2 <- eigen(P)$values[2]
   results <- dplyr::mutate(data, predicted = SurfMod$fitted.values,
@@ -152,10 +159,9 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
     cat("Stacionary point obtained with the following original units:",
         "\n")
     cat("-----------------------------------------------------------------\n")
-    cat(paste0("Optimal dose (", A, "): ", round(dA, 4),
-               "\n"))
-    cat(paste0("Optimal dose (", D, "): ", round(dD, 4),
-               "\n"))
+    cat(paste0("Optimal dose (", A, "): ", round(dA, 4), "\n"))
+    cat(paste0("Optimal dose (", D, "): ", round(dD, 4), "\n"))
+    cat(paste0("Predicted: ", round(pred_val, 4), "\n"))
     cat("-----------------------------------------------------------------\n")
     cat("Fitted model", "\n")
     cat("-----------------------------------------------------------------\n")
@@ -178,7 +184,9 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
       cat("------------------------------------------------------------------\n")
     }
   }
-  invisible(structure(list(results = results, model = SurfMod),
+  invisible(structure(list(results = results,
+                           anova = ANOVA,
+                           model = SurfMod),
                       class = "resp_surf"))
 }
 
