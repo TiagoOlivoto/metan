@@ -1,7 +1,7 @@
 # metan (development version)
 ## Minor improvements
-* `gamem()` now have a `by` argument and understand data passed from `group_by`.
-* `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor.
+* `gamem()` and `waasb()` now have a `by` argument and understand data passed from `group_by`.
+* `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor and understand models fitted with `gamem()` and `waasb()` using the `by` argument.
 * `plot.mtsi()` and `plot.mgidi()` now returns a radar plot by default when using `type = "contribution"`.
 
 ## New functions

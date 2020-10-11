@@ -9,6 +9,7 @@
 \alias{hmean}
 \alias{gmean}
 \alias{kurt}
+\alias{n_unique}
 \alias{pseudo_sigma}
 \alias{range_data}
 \alias{row_col_mean}
@@ -45,6 +46,8 @@ hmean(.data, ..., na.rm = FALSE)
 gmean(.data, ..., na.rm = FALSE)
 
 kurt(.data, ..., na.rm = FALSE)
+
+n_unique(.data, ..., na.rm = FALSE)
 
 pseudo_sigma(.data, ..., na.rm = FALSE)
 
@@ -149,6 +152,7 @@ products.
 \itemize{
 \item \code{kurt()} computes the kurtosis like used in SAS and SPSS.
 \item \code{range_data()} Computes the range of the values.
+\item \code{n_unique()} Number of unique values.
 \item \code{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
 each variable and a column with the the mean/sum for each row of the data.
 \item \code{sd_amo(), sd_pop()} Computes sample and populational standard
