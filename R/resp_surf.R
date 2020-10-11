@@ -63,6 +63,7 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
     A <- names[1]
     D <- names[2]
     Resp <- names[3]
+    ANOVA <- NULL
   }
   F2 <- as.formula(paste0(Resp, " ~", paste(A), "*", paste(D),
                           "+", "I(", paste(A), "^2)", "+", "I(", paste(D), "^2)"))
