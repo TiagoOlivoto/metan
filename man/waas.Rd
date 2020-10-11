@@ -42,11 +42,11 @@ alpha-lattice design (Patterson and Williams, 1976) is employed.
 
 \item{mresp}{The new maximum value after rescaling the response variable. By
 default, all variables in \code{resp} are rescaled so that de maximum value
-is 100 and the minimum value is 0 (i.e., \code{mresp = 100}). It must be a
-numeric vector of the same length of \code{resp} if rescaling is assumed to
-be different across variables, e.g., if for the first variable smaller
+is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
+character vector of the same length of \code{resp} if rescaling is assumed
+to be different across variables, e.g., if for the first variable smaller
 values are better and for the second one, higher values are better, then
-\code{mresp = c(0, 100)} must be used. Numeric value of length 1 will be
+\code{mresp = c("l, h")} must be used. Character value of length 1 will be
 recycled with a warning message.}
 
 \item{wresp}{The weight for the response variable(s) for computing the WAASBY
@@ -179,7 +179,7 @@ model3 <- waas(data_ge,
                gen = GEN,
                rep = REP,
                resp = c(GY, HM),
-               mresp = c(100, 0),
+               mresp = c("h, l"),
                wresp = c(60, 40))
 
 

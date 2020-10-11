@@ -29,10 +29,14 @@ environments.}
 single procedure a vector of variables may be used. For example \code{resp
   = c(var1, var2, var3)}. Select helpers are also allowed.}
 
-\item{mresp}{A numeric vector of the same length of \code{resp}. The
-\code{mresp} will be the new maximum value after rescaling. By default, all
-variables in \code{resp} are rescaled so that de maximum value is 100 and
-the minimum value is 0.}
+\item{mresp}{The new maximum value after rescaling the response variable. By
+default, all variables in \code{resp} are rescaled so that de maximum value
+is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
+character vector of the same length of \code{resp} if rescaling is assumed
+to be different across variables, e.g., if for the first variable smaller
+values are better and for the second one, higher values are better, then
+\code{mresp = c("l, h")} must be used. Character value of length 1 will be
+recycled with a warning message.}
 
 \item{wresp}{The weight for the response variable(s) for computing the WAASBY
 index. Must be a numeric vector of the same length of \code{resp}. Defaults

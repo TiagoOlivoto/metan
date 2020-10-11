@@ -69,7 +69,7 @@
 #'mtsi_index2 <- data_ge %>%
 #'  waasb(ENV, GEN, REP,
 #'        resp = c(GY, HM),
-#'        mresp = c(100, 0)) %>%
+#'        mresp = c("h, l")) %>%
 #'  mtsi()
 #'}
 mtsi <- function(.data,
@@ -77,6 +77,16 @@ mtsi <- function(.data,
                  SI = 15,
                  mineval = 1,
                  verbose = TRUE) {
+  if(has_class(.data, "waasb_group")){
+    bind <-
+      .data %>%
+      mutate(data = map(data, ~.x %>%
+                          mtsi(index = index,
+                                SI = SI,
+                                mineval = mineval,
+                                verbose)))
+    return(set_class(bind, c("tbl_df",  "mtsi_group", "mgidi", "tbl",  "data.frame")))
+  } else{
   if (!index %in% c("waasb", "waasby")) {
     stop("The argument 'index' must be of of the 'waasb' or 'waasby'.", call. = FALSE)
   }
@@ -314,6 +324,7 @@ mtsi <- function(.data,
                         stat_dif_waasby = stat_dif_waasby,
                         sel_gen = selected),
                    class = "mtsi"))
+}
 }
 
 
@@ -586,12 +597,6 @@ print.mtsi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   cat("\n")
   cat("---------------------------- Multitrait stability index ------------------------------\n")
   print(x$MTSI)
-  cat("\n")
-  cat("--------------------------- Selection differential (index) ----------------------------\n")
-  print(x$sel_dif)
-  cat("\n")
-  cat("-------------------------- Mean of Selection differential -----------------------------\n")
-  print(x$mean_sd)
   cat("\n")
   cat("------------------------- Selection differential (variables) --------------------------\n")
   print(x$sel_dif_trait)

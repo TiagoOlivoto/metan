@@ -11,6 +11,7 @@ waasb(
   rep,
   resp,
   block = NULL,
+  by = NULL,
   mresp = NULL,
   wresp = NULL,
   random = "gen",
@@ -43,13 +44,20 @@ information, whereas the complete replicate effect is always taken as
 fixed, as no inter-replicate information was to be recovered (Mohring et
 al., 2015).}
 
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+when the researcher what to compute the indexes by mega-environments. In
+this case, an object of class waasb_grouped is returned.
+\code{\link{mtsi}()} can then be used to compute the mtsi index within each
+mega-environment.}
+
 \item{mresp}{The new maximum value after rescaling the response variable. By
 default, all variables in \code{resp} are rescaled so that de maximum value
-is 100 and the minimum value is 0 (i.e., \code{mresp = 100}). It must be a
-numeric vector of the same length of \code{resp} if rescaling is assumed to
-be different across variables, e.g., if for the first variable smaller
+is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
+character vector of the same length of \code{resp} if rescaling is assumed
+to be different across variables, e.g., if for the first variable smaller
 values are better and for the second one, higher values are better, then
-\code{mresp = c(0, 100)} must be used. Numeric value of length 1 will be
+\code{mresp = c("l, h")} must be used. Character value of length 1 will be
 recycled with a warning message.}
 
 \item{wresp}{The weight for the response variable(s) for computing the WAASBY
@@ -241,7 +249,7 @@ model3 <- waasb(data_ge,
                 rep = REP,
                 resp = c(GY, HM),
                 random = "all",
-                mresp = c(100, 0),
+                mresp = c("h, l"),
                 wresp = c(60, 40))
 
 # Get Likelihood-ratio test
@@ -250,8 +258,25 @@ get_model_data(model3, "lrt")
 # Get the random effects
 get_model_data(model3, what = "ranef")
 
-# Get the ranks for the WAASB index
-get_model_data(model3, what = "OrWAASB")
+
+#===============================================================#
+# Example 4: Analyzing GY and HM assuming a mixed-effect model #
+# within mega-environments and extract variance components
+#===============================================================#
+
+
+data_mega <- data_ge \%>\%
+  add_cols(MEGA = ifelse(ENV \%in\% c("E1", "E2", "E3", "E4"), "ME1", "ME2"))
+
+mega <- waasb(data_mega,
+             env = ENV,
+             gen = GEN,
+             rep = REP,
+             resp = everything(),
+             by = MEGA,
+             verbose = FALSE)
+get_model_data(mega, "vcomp")
+
 }
 
 }

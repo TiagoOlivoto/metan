@@ -77,7 +77,7 @@ mtsi_index <- mtsi(mtsi_model, index = 'waasb')
 mtsi_index2 <- data_ge \%>\%
  waasb(ENV, GEN, REP,
        resp = c(GY, HM),
-       mresp = c(100, 0)) \%>\%
+       mresp = c("h, l")) \%>\%
  mtsi()
 }
 }

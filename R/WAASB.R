@@ -74,13 +74,19 @@
 #'   information, whereas the complete replicate effect is always taken as
 #'   fixed, as no inter-replicate information was to be recovered (Mohring et
 #'   al., 2015).
+#'@param by One variable (factor) to compute the function by. It is a shortcut
+#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  when the researcher what to compute the indexes by mega-environments. In
+#'  this case, an object of class waasb_grouped is returned.
+#'  \code{\link{mtsi}()} can then be used to compute the mtsi index within each
+#'  mega-environment.
 #' @param mresp  The new maximum value after rescaling the response variable. By
 #'   default, all variables in \code{resp} are rescaled so that de maximum value
-#'   is 100 and the minimum value is 0 (i.e., \code{mresp = 100}). It must be a
-#'   numeric vector of the same length of \code{resp} if rescaling is assumed to
-#'   be different across variables, e.g., if for the first variable smaller
+#'   is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
+#'   character vector of the same length of \code{resp} if rescaling is assumed
+#'   to be different across variables, e.g., if for the first variable smaller
 #'   values are better and for the second one, higher values are better, then
-#'   \code{mresp = c(0, 100)} must be used. Numeric value of length 1 will be
+#'   \code{mresp = c("l, h")} must be used. Character value of length 1 will be
 #'   recycled with a warning message.
 #' @param wresp The weight for the response variable(s) for computing the WAASBY
 #'   index. By default, all variables in \code{resp} have equal weights for mean
@@ -238,7 +244,7 @@
 #'                 rep = REP,
 #'                 resp = c(GY, HM),
 #'                 random = "all",
-#'                 mresp = c(100, 0),
+#'                 mresp = c("h, l"),
 #'                 wresp = c(60, 40))
 #'
 #' # Get Likelihood-ratio test
@@ -247,8 +253,25 @@
 #' # Get the random effects
 #' get_model_data(model3, what = "ranef")
 #'
-#' # Get the ranks for the WAASB index
-#' get_model_data(model3, what = "OrWAASB")
+#'
+#' #===============================================================#
+#' # Example 4: Analyzing GY and HM assuming a mixed-effect model #
+#' # within mega-environments and extract variance components
+#' #===============================================================#
+#'
+#'
+#' data_mega <- data_ge %>%
+#'   add_cols(MEGA = ifelse(ENV %in% c("E1", "E2", "E3", "E4"), "ME1", "ME2"))
+#'
+#'mega <- waasb(data_mega,
+#'              env = ENV,
+#'              gen = GEN,
+#'              rep = REP,
+#'              resp = everything(),
+#'              by = MEGA,
+#'              verbose = FALSE)
+#' get_model_data(mega, "vcomp")
+#'
 #' }
 #'
 waasb <- function(.data,
@@ -257,6 +280,7 @@ waasb <- function(.data,
                   rep,
                   resp,
                   block = NULL,
+                  by = NULL,
                   mresp = NULL,
                   wresp = NULL,
                   random = "gen",
@@ -264,8 +288,52 @@ waasb <- function(.data,
                   ind_anova = FALSE,
                   verbose = TRUE,
                   ...) {
+    if (!missing(by)){
+        if(length(as.list(substitute(by))[-1L]) != 0){
+            stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+        }
+        .data <- group_by(.data, {{by}})
+    }
+    if(is_grouped_df(.data)){
+        if(!missing(block)){
+            results <-
+                .data %>%
+                doo(waasb,
+                    env = {{env}},
+                    gen = {{gen}},
+                    rep = {{rep}},
+                    resp = {{resp}},
+                    block = {{block}},
+                    mresp = mresp,
+                    wresp = wresp,
+                    random = random,
+                    prob = prob,
+                    ind_anova = ind_anova,
+                    verbose = verbose,
+                    ...)
+        } else{
+            results <-
+                .data %>%
+                doo(waasb,
+                    env = {{env}},
+                    gen = {{gen}},
+                    rep = {{rep}},
+                    resp = {{resp}},
+                    mresp = mresp,
+                    wresp = wresp,
+                    random = random,
+                    prob = prob,
+                    ind_anova = ind_anova,
+                    verbose = verbose,
+                    ...)
+        }
+        return(set_class(results, c("tbl_df",  "waasb_group", "tbl",  "data.frame")))
+    }
     if (!random %in% c("env", "gen", "all")) {
-        stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
+        stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.", call. = FALSE)
+    }
+    if(is.numeric(mresp)){
+        stop("Using a numeric vector in 'mresp' is deprecated as of metan 1.9.0. use 'h' or 'l' instead.\nOld code: 'mresp = c(100, 100, 0)'.\nNew code: 'mresp = c(\"h, h, l\")", call. = FALSE)
     }
     block_test <- missing(block)
     if(!missing(block)){
@@ -319,17 +387,24 @@ waasb <- function(.data,
         mresp <- replicate(nvar, 100)
         minresp <- 100 - mresp
     } else {
-        mresp <- mresp
-        minresp <- 100 - mresp
+        mresp <- unlist(strsplit(mresp, split="\\s*(\\s|,)\\s*")) %>% all_lower_case()
+        if(!any(mresp %in% c("h", "l", "H", "L"))){
+            if(!mresp[[1]] %in% c("h", "l")){
+                stop("Argument 'mresp' must have only h or l.", call. = FALSE)
+            } else{
+            warning("Argument 'mresp' must have only h or l. Setting mresp = ", mresp[[1]],
+                    " to all the ", nvar, " variables.", call. = FALSE)
+                mresp <- replicate(nvar, mresp[[1]])
+            }
+        }
         if (length(mresp) != nvar) {
             warning("Invalid length in 'mresp'. Setting mresp = ", mresp[[1]],
                     " to all the ", nvar, " variables.", call. = FALSE)
             mresp <- replicate(nvar, mresp[[1]])
-            minresp <- 100 - mresp
         }
-        if (sum(mresp == 100) + sum(mresp == 0) != nvar) {
-            stop("The values of the numeric vector 'mresp' must be 0 or 100.")
-        }
+
+        mresp <- ifelse(mresp == "h", 100, 0)
+        minresp <- 100 - mresp
     }
     if (is.null(wresp)) {
         PesoResp <- replicate(nvar, 50)

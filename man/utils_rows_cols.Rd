@@ -25,6 +25,7 @@
 \alias{select_non_numeric_cols}
 \alias{select_cols}
 \alias{select_rows}
+\alias{tidy_colnames}
 \title{Utilities for handling with rows and columns}
 \usage{
 add_cols(.data, ..., .before = NULL, .after = NULL)
@@ -83,6 +84,8 @@ select_non_numeric_cols(.data)
 select_cols(.data, ...)
 
 select_rows(.data, ...)
+
+tidy_colnames(.data, sep = "_")
 }
 \arguments{
 \item{.data}{A data frame}
@@ -177,6 +180,8 @@ frame.
 \item \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
 data frame.
 \item \code{select_rows()}: Select one or more rows from a data frame.
+\item \code{tidy_colnames()}: Tidy up column names with
+\code{\link{tidy_strings}()}.
 }
 }
 \examples{

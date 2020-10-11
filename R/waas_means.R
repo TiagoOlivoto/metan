@@ -21,10 +21,14 @@
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure a vector of variables may be used. For example \code{resp
 #'   = c(var1, var2, var3)}. Select helpers are also allowed.
-#' @param mresp A numeric vector of the same length of \code{resp}. The
-#'   \code{mresp} will be the new maximum value after rescaling. By default, all
-#'   variables in \code{resp} are rescaled so that de maximum value is 100 and
-#'   the minimum value is 0.
+#' @param mresp  The new maximum value after rescaling the response variable. By
+#'   default, all variables in \code{resp} are rescaled so that de maximum value
+#'   is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
+#'   character vector of the same length of \code{resp} if rescaling is assumed
+#'   to be different across variables, e.g., if for the first variable smaller
+#'   values are better and for the second one, higher values are better, then
+#'   \code{mresp = c("l, h")} must be used. Character value of length 1 will be
+#'   recycled with a warning message.
 #' @param wresp The weight for the response variable(s) for computing the WAASBY
 #'   index. Must be a numeric vector of the same length of \code{resp}. Defaults
 #'   to 50, i.e., equal weights for stability and mean performance.
@@ -95,6 +99,9 @@ waas_means <- function(.data,
                        min_expl_var = 85,
                        verbose = TRUE,
                        ...){
+  if(is.numeric(mresp)){
+    stop("Using a numeric vector in 'mresp' is deprecated as of metan 1.9.0. use 'h' or 'l' instead.\nOld code: 'mresp = c(100, 100, 0)'.\nNew code: 'mresp = c(\"h, h, l\")", call. = FALSE)
+  }
   factors  <-
     .data %>%
     select({{env}}, {{gen}}) %>%
@@ -114,13 +121,23 @@ waas_means <- function(.data,
     mresp <- replicate(nvar, 100)
     minresp <- 100 - mresp
   } else {
+    mresp <- unlist(strsplit(mresp, split="\\s*(\\s|,)\\s*")) %>% all_lower_case()
+    if(!any(mresp %in% c("h", "l", "H", "L"))){
+      if(!mresp[[1]] %in% c("h", "l")){
+        stop("Argument 'mresp' must have only h or l.", call. = FALSE)
+      } else{
+        warning("Argument 'mresp' must have only h or l. Setting mresp = ", mresp[[1]],
+                " to all the ", nvar, " variables.", call. = FALSE)
+        mresp <- replicate(nvar, mresp[[1]])
+      }
+    }
     if (length(mresp) != nvar) {
-      stop("The length of the numeric vector 'mresp' must be ", nvar, ", the number of variables in argument 'resp'")
+      warning("Invalid length in 'mresp'. Setting mresp = ", mresp[[1]],
+              " to all the ", nvar, " variables.", call. = FALSE)
+      mresp <- replicate(nvar, mresp[[1]])
     }
-    if (sum(mresp == 100) + sum(mresp == 0) != nvar) {
-      stop("The values of the numeric vector 'mresp' must be 0 or 100.")
-    }
-    mresp <- mresp
+
+    mresp <- ifelse(mresp == "h", 100, 0)
     minresp <- 100 - mresp
   }
   if (is.null(wresp)) {

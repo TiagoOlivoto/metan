@@ -362,8 +362,8 @@ get_model_data <- function(x,
                            type = "GEN",
                            verbose = TRUE) {
   call_f <- match.call()
-  if (!has_class(x, c("waasb", "waas","waas_means", "gamem", "performs_ammi", "Res_ind",
-                      "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
+  if (!has_class(x, c("waasb", "waasb_group", "waas","waas_means", "gamem", "performs_ammi",
+                      "Res_ind", "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gamem_group", "anova_ind", "gge", "can_cor",
@@ -422,7 +422,7 @@ get_model_data <- function(x,
                "MTSI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
                "sel_dif_trait", "stat_dif_trait", "sel_dif_waasb", "stat_dif_waasb",
                "sel_dif_waasby", "stat_dif_waasby", "sel_gen")
-  if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "gamem", "gamem_group", "gafem", "anova_joint"))) {
+  if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "waasb_group", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
@@ -543,7 +543,6 @@ get_model_data <- function(x,
         arrange(-SI)
     }
   }
-
   if(has_class(x, c("can_cor", "can_cor_group"))){
     if (is.null(what)){
       what <- "coefs"
@@ -615,11 +614,11 @@ get_model_data <- function(x,
     }
   }
 
-  if (has_class(x, c("waasb", "gamem", "gamem_group"))) {
+  if (has_class(x, c("waasb", "waasb_group", "gamem", "gamem_group"))) {
     if (is.null(what)){
       what <- "genpar"
     }
-    if(has_class(x, "gamem_group")){
+    if(has_class(x, c("gamem_group", "waasb_group"))){
       bind <-
       x %>%
         mutate(bind = map(data, ~.x %>% gmd(what = what, verbose = verbose))) %>%
