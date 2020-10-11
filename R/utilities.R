@@ -490,6 +490,9 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' * \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
 #' data frame.
 #' * \code{select_rows()}: Select one or more rows from a data frame.
+#' * \code{tidy_colnames()}: Tidy up column names with
+#' \code{\link{tidy_strings}()}.
+#'
 #'
 #' @param .data A data frame
 #' @param ... The argument depends on the function used.
@@ -826,6 +829,12 @@ select_cols <- function(.data, ...){
 select_rows <- function(.data, ...){
   slice(.data, ...)
 }
+#' @name utils_rows_cols
+#' @export
+tidy_colnames <- function(.data, sep = "_"){
+  colnames(.data) <- tidy_strings(colnames(.data), sep = sep)
+  .data
+}
 
 
 
@@ -857,6 +866,7 @@ select_rows <- function(.data, ...){
 #' products.
 #'    - \code{kurt()} computes the kurtosis like used in SAS and SPSS.
 #'    - \code{range_data()} Computes the range of the values.
+#'    - \code{n_unique()} Number of unique values.
 #'    - \code{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
 #'    each variable and a column with the the mean/sum for each row of the data.
 #'    - \code{sd_amo(), sd_pop()} Computes sample and populational standard
@@ -1083,6 +1093,29 @@ kurt <- function(.data, ..., na.rm = FALSE) {
         select_cols(group_vars(.), ...) %>%
         summarise(across(where(is.numeric), funct)) %>%
         ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
+n_unique <- function(.data, ..., na.rm = FALSE) {
+  funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
+    length(unique(df))
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(everything(), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        summarise(across(c(...), funct))
     }
   }
 }
