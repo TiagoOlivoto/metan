@@ -62,6 +62,10 @@
 #'   information, whereas the complete replicate effect is always taken as
 #'   fixed, as no inter-replicate information was to be recovered (Mohring et
 #'   al., 2015).
+#'@param by One variable (factor) to compute the function by. It is a shortcut
+#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  when the researcher what to analyze environments within mega-environments.
+#'  In this case, an object of class waasb_grouped is returned.
 #' @param random The effects of the model assumed to be random. Defaults to
 #'   \code{random = "gen"}. See \strong{Details} to see the random effects
 #'   assumed depending on the experimental design of the trials.
@@ -180,11 +184,45 @@ gamem_met <- function(.data,
                       rep,
                       resp,
                       block = NULL,
+                      by = NULL,
                       random = "gen",
                       prob = 0.05,
                       verbose = TRUE) {
   if (!random %in% c("env", "gen", "all")) {
     stop("The argument 'random' must be one of the 'gen', 'env', or 'all'.")
+  }
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- group_by(.data, {{by}})
+  }
+  if(is_grouped_df(.data)){
+    if(!missing(block)){
+      results <-
+        .data %>%
+        doo(gamem_met,
+            env = {{env}},
+            gen = {{gen}},
+            rep = {{rep}},
+            resp = {{resp}},
+            block = {{block}},
+            random = random,
+            prob = prob,
+            verbose = verbose)
+    } else{
+      results <-
+        .data %>%
+        doo(gamem_met,
+            env = {{env}},
+            gen = {{gen}},
+            rep = {{rep}},
+            resp = {{resp}},
+            random = random,
+            prob = prob,
+            verbose = verbose)
+    }
+    return(set_class(results, c("tbl_df",  "waasb_group", "tbl",  "data.frame")))
   }
   block_test <- missing(block)
   if(!missing(block)){
