@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# metan <img src="man/figures/logo.png" align="right" height=140/>
+# metan <img src="man/figures/logo.png" align="right" height="140/"/>
 
 <!-- badges: start -->
 
@@ -12,7 +12,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Downloads](http://cranlogs.r-pkg.org/badges/metan)](https://CRAN.R-project.org/package=metan)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](https://cran.r-project.org/package=metan)
-[![DOI](https://zenodo.org/badge/130062661.svg)](https://zenodo.org/badge/latestdoi/130062661)
+[<img src="https://zenodo.org/badge/130062661.svg" alt="DOI" width="186"/>](https://zenodo.org/badge/latestdoi/130062661)
 
 <!-- badges: end -->
 
@@ -20,29 +20,51 @@ Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange)](ht
 useful functions for analyzing multi-environment trial data using
 parametric and non-parametric methods. The package will help you to:
 
-  - Inspect data for possible common errors;
-  - Manipulate rows and columns;
-  - Manipulate numbers and strings;
-  - Compute descriptive statistics;
-  - Compute within-environment analysis of variance;
-  - Compute AMMI analysis with prediction considering different numbers
-    of interaction principal component axes;
-  - Compute AMMI-based stability indexes;
-  - Compute GGE biplot analysis;
-  - Compute GT and GYT biplot analysis;
-  - Compute BLUP-based stability indexes;
-  - Compute variance components and genetic parameters in mixed-effect
+  - [Inspect](https://tiagoolivoto.github.io/metan/reference/inspect.html)
+    data for possible common errors;
+  - Manipulate [rows and
+    columns](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html);
+  - Manipulate [numbers and
+    strings](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html);
+  - Manipulate [`NA`s and
+    `0`s](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html);
+  - Compute [descriptive
+    statistics](https://tiagoolivoto.github.io/metan/reference/desc_stat.html);
+  - Compute
+    [within-environment](https://tiagoolivoto.github.io/metan/reference/anova_ind.html)
+    and [joint-analysis of
+    variance](https://tiagoolivoto.github.io/metan/reference/anova_joint.html);
+  - Compute[AMMI
+    analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html)
+    with prediction considering different numbers of interaction
+    principal component axes;
+  - Compute [AMMI-based stability
+    indexes](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html);
+  - Compute [GGE biplot
+    analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
+  - Compute
+    [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html) and
+    [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html)
+    biplot analysis;
+  - Compute[BLUP-based stability
+    indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);
+  - Compute variance components and genetic parameters in [single
+    environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)and
+    [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html)
+    trials using mixed-effect models;
+  - Perform cross-validation procedures for
+    [AMMI-family](https://tiagoolivoto.github.io/metan/reference/cv_ammif.html)
+    and
+    [BLUP](https://tiagoolivoto.github.io/metan/reference/cv_blup.html)
     models;
-  - Perform cross-validation procedures for AMMI-family and BLUP models;
-  - Compute parametric and nonparametric stability statistics
-  - Implement biometrical models
-
-For more details see the [complete
-vignette](https://tiagoolivoto.github.io/metan/).
+  - Compute parametric and nonparametric[stability
+    statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
+  - Implement [biometrical
+    models](https://tiagoolivoto.github.io/metan/reference/index.html#section-biometry).
 
 # Installation
 
-Install the released version of metan from
+Install the released version of `metan` from
 [CRAN](https://CRAN.R-project.org/package=metan) with:
 
 ``` r
@@ -68,7 +90,7 @@ file](https://tiagoolivoto.github.io/metan/news/index.html).
 
 ## Cheatsheet
 
-<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="740" height="520"/></a>
+<a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="935" height="640"/></a>
 
 # Getting started
 
@@ -100,9 +122,11 @@ outliers, missing values, etc.) consider using
 [`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html)
 to find possible outliers in the data set or any `metan`’s data
 manipulation tool such as
-[`remove_na_rows()`](https://tiagoolivoto.github.io/metan/reference/utils_na.html)
+[remove\_rows\_na()](https://tiagoolivoto.github.io/metan/reference/utils_na.html)
 to remove rows with `NA` values,
-[`as_factor()`](https://tiagoolivoto.github.io/metan/reference/utils_as.html)
+[replace\_zero()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html)
+to replace 0’s with `NA`,
+[as\_factor()](https://tiagoolivoto.github.io/metan/reference/utils_as.html)
 to convert desired columns to factor,
 [`find_text_in_num()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html)
 to find text fragments in columns assumed to be numeric, or even
@@ -229,22 +253,18 @@ arrange_ggplot(d, e, f, labels = letters[4:6], nrow = 1)
 
 Linear-mixed effect models to predict the response variable in METs are
 fitted using the function
-[`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
+[gamem\_met()](https://tiagoolivoto.github.io/metan/reference/gamem_met.html).
 Here we will obtain the predicted means for genotypes in the variables
 `GY` and `HM`. For more details, see the [complete
 vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ``` r
-model2 <- waasb(data_ge,
-                env = ENV,
-                gen = GEN,
-                rep = REP,
-                resp = everything())
-# Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'
-# instead.
-
-# Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'
-# instead.
+model2 <- 
+  gamem_met(data_ge,
+            env = ENV,
+            gen = GEN,
+            rep = REP,
+            resp = everything())
 # Method: REML/BLUP
 # Random effects: GEN, GEN:ENV
 # Fixed effects: ENV, REP(ENV)
@@ -278,8 +298,9 @@ To produce a plot with the predicted means, use the function
 ``` r
 g <- plot_blup(model2)
 h <- plot_blup(model2,
-               prob = 0.1,
-               col.shape  =  c("gray20", "gray80")) + ggplot2::coord_flip()
+               prob = 0.2,
+               col.shape = c("gray20", "gray80"),
+               invert = TRUE)
 arrange_ggplot(g, h, labels = letters[7:8])
 ```
 
@@ -298,8 +319,6 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'
-# instead.
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats

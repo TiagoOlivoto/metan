@@ -182,27 +182,28 @@
 <!-- badges: end -->
 <p><code>metan</code> (<strong>m</strong>ulti-<strong>e</strong>nvironment <strong>t</strong>rials <strong>an</strong>alysis) provides useful functions for analyzing multi-environment trial data using parametric and non-parametric methods. The package will help you to:</p>
 <ul>
-<li>Inspect data for possible common errors;</li>
-<li>Manipulate rows and columns;</li>
-<li>Manipulate numbers and strings;</li>
-<li>Compute descriptive statistics;</li>
-<li>Compute within-environment analysis of variance;</li>
-<li>Compute AMMI analysis with prediction considering different numbers of interaction principal component axes;</li>
-<li>Compute AMMI-based stability indexes;</li>
-<li>Compute GGE biplot analysis;</li>
-<li>Compute GT and GYT biplot analysis;</li>
-<li>Compute BLUP-based stability indexes;</li>
-<li>Compute variance components and genetic parameters in mixed-effect models;</li>
-<li>Perform cross-validation procedures for AMMI-family and BLUP models;</li>
-<li>Compute parametric and nonparametric stability statistics</li>
-<li>Implement biometrical models</li>
+<li>
+<a href="https://tiagoolivoto.github.io/metan/reference/inspect.html">Inspect</a> data for possible common errors;</li>
+<li>Manipulate <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html">rows and columns</a>;</li>
+<li>Manipulate <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html">numbers and strings</a>;</li>
+<li>Manipulate <a href="https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html"><code>NA</code>s and <code>0</code>s</a>;</li>
+<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/desc_stat.html">descriptive statistics</a>;</li>
+<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/anova_ind.html">within-environment</a> and <a href="https://tiagoolivoto.github.io/metan/reference/anova_joint.html">joint-analysis of variance</a>;</li>
+<li>Compute<a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html">AMMI analysis</a> with prediction considering different numbers of interaction principal component axes;</li>
+<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html">AMMI-based stability indexes</a>;</li>
+<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/gge.html">GGE biplot analysis</a>;</li>
+<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/gtb.html">GT</a> and <a href="https://tiagoolivoto.github.io/metan/reference/gytb.html">GYT</a> biplot analysis;</li>
+<li>Compute<a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html">BLUP-based stability indexes</a>;</li>
+<li>Compute variance components and genetic parameters in <a href="https://tiagoolivoto.github.io/metan/reference/gamem.html">single environment</a>and <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html">multi-environment</a> trials using mixed-effect models;</li>
+<li>Perform cross-validation procedures for <a href="https://tiagoolivoto.github.io/metan/reference/cv_ammif.html">AMMI-family</a> and <a href="https://tiagoolivoto.github.io/metan/reference/cv_blup.html">BLUP</a> models;</li>
+<li>Compute parametric and nonparametric<a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html">stability statistics</a>;</li>
+<li>Implement <a href="https://tiagoolivoto.github.io/metan/reference/index.html#section-biometry">biometrical models</a>.</li>
 </ul>
-<p>For more details see the <a href="https://tiagoolivoto.github.io/metan/">complete vignette</a>.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>Install the released version of metan from <a href="https://CRAN.R-project.org/package=metan">CRAN</a> with:</p>
+<p>Install the released version of <code>metan</code> from <a href="https://CRAN.R-project.org/package=metan">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"metan"</span><span class="op">)</span></pre></div>
 <p>Or install the development version from <a href="https://github.com/TiagoOlivoto/metan">GitHub</a> with:</p>
@@ -216,7 +217,7 @@
 <div id="cheatsheet" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cheatsheet" class="anchor"></a>Cheatsheet</h2>
-<p><a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="740" height="520"></a></p>
+<p><a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="935" height="640"></a></p>
 </div>
 </div>
 <div id="getting-started" class="section level1">
@@ -236,7 +237,7 @@
 <span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span>
 <span class="co"># 5 HM       numeric No      -          420 38     48    58          0</span></pre></div>
 <p><img src="reference/figures/README-INSPECT-1.png" style="display: block; margin: auto;"></p>
-<p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code>find_outliers()</code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na.html"><code>remove_na_rows()</code></a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/utils_as.html"><code>as_factor()</code></a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>find_text_in_num()</code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> to tidy up strings.</p>
+<p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code>find_outliers()</code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na.html">remove_rows_na()</a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html">replace_zero()</a> to replace 0’s with <code>NA</code>, <a href="https://tiagoolivoto.github.io/metan/reference/utils_as.html">as_factor()</a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>find_text_in_num()</code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> to tidy up strings.</p>
 </div>
 <div id="descriptive-statistics" class="section level1">
 <h1 class="hasAnchor">
@@ -332,18 +333,14 @@
 <div id="blup-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
-<p>Linear-mixed effect models to predict the response variable in METs are fitted using the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a>. Here we will obtain the predicted means for genotypes in the variables <code>GY</code> and <code>HM</code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
+<p>Linear-mixed effect models to predict the response variable in METs are fitted using the function <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html">gamem_met()</a>. Here we will obtain the predicted means for genotypes in the variables <code>GY</code> and <code>HM</code>. For more details, see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html">complete vignette</a>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">data_ge</span>,
-                env <span class="op">=</span> <span class="va">ENV</span>,
-                gen <span class="op">=</span> <span class="va">GEN</span>,
-                rep <span class="op">=</span> <span class="va">REP</span>,
-                resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
-
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
+<span class="va">model2</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="reference/gamem_met.html">gamem_met</a></span><span class="op">(</span><span class="va">data_ge</span>,
+            env <span class="op">=</span> <span class="va">ENV</span>,
+            gen <span class="op">=</span> <span class="va">GEN</span>,
+            rep <span class="op">=</span> <span class="va">REP</span>,
+            resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Method: REML/BLUP</span>
 <span class="co"># Random effects: GEN, GEN:ENV</span>
 <span class="co"># Fixed effects: ENV, REP(ENV)</span>
@@ -374,8 +371,9 @@
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span>
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">model2</span>,
-               prob <span class="op">=</span> <span class="fl">0.1</span>,
-               col.shape  <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray20"</span>, <span class="st">"gray80"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span>
+               prob <span class="op">=</span> <span class="fl">0.2</span>,
+               col.shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray20"</span>, <span class="st">"gray80"</span><span class="op">)</span>,
+               invert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">7</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-BLUP-1.png"><!-- --></p>
 </div>
@@ -386,8 +384,6 @@
 <p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>gmd()</code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="co"># Warning: 'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()'</span>
-<span class="co"># instead.</span>
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
@@ -493,7 +489,7 @@
 <li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://CRAN.R-project.org/package=metan"><img src="http://cranlogs.r-pkg.org/badges/metan" alt="Downloads"></a></li>
 <li><a href="https://cran.r-project.org/package=metan"><img src="https://cranlogs.r-pkg.org/badges/grand-total/metan?color=orange" alt="Total Downloads"></a></li>
-<li><a href="https://zenodo.org/badge/latestdoi/130062661"><img src="https://zenodo.org/badge/130062661.svg" alt="DOI"></a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/130062661"><img src="https://zenodo.org/badge/130062661.svg" alt="DOI" width="186"></a></li>
 </ul>
 </div>
 </div>
