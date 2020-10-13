@@ -860,7 +860,7 @@ tidy_colnames <- function(.data, sep = "_"){
 #'    - \code{ci_mean()} computes the confidence interval for the mean.
 #'    - \code{cv()} computes the coefficient of variation.
 #'    - \code{freq_table()} Computes frequency fable. Handles grouped data.
-#' - \code{hmean(), gmean()} computes the harmonic and geometric means,
+#'    - \code{hmean(), gmean()} computes the harmonic and geometric means,
 #' respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 #' the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
 #' products.

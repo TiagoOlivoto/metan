@@ -306,6 +306,9 @@ following:</p><ul>
 <li><p><code>"median"</code>: median.</p></li>
 <li><p><code>"min"</code>: minimum value.</p></li>
 <li><p><code>"n"</code>: the length of the data.</p></li>
+<li><p><code>"n.valid"</code>: The valid (Not <code>NA</code>) number of elements</p></li>
+<li><p><code>"n.missing"</code>: The number of missing values</p></li>
+<li><p><code>"n.unique"</code>: The length of unique elements.</p></li>
 <li><p><code>"ps"</code>: the pseudo-sigma (iqr / 1.35).</p></li>
 <li><p><code>"q2.5", "q25", "q75", "q97.5"</code>: the percentile 2.5\<!-- %, first -->
 quartile, third quartile, and percentile 97.5\<!-- %, respectively. --></p></li>
@@ -316,7 +319,7 @@ quartile, third quartile, and percentile 97.5\<!-- %, respectively. --></p></li>
 <li><p><code>"sum"</code>. the sum of the values.</p></li>
 <li><p><code>"sum.dev"</code>: the sum of the absolute deviations.</p></li>
 <li><p><code>"sum.sq.dev"</code>: the sum of the squared deviations.</p></li>
-<li><p><code>"valid.n"</code>: The size of sample with valid number (not NA).</p></li>
+<li><p><code>"n.valid"</code>: The size of sample with valid number (not NA).</p></li>
 <li><p><code>"var.amo", "var.pop"</code>: the sample and population variance.</p></li>
 </ul>
 
@@ -417,10 +420,10 @@ factors in rows.</p></li>
 <span class='co'># are removed before analysis with a warning message            #</span>
 <span class='co'>#===============================================================#</span>
 <span class='fu'>desc_stat</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>13</span>, <span class='fl'>19</span>, <span class='fl'>21</span>, <span class='fl'>8</span>, <span class='cn'>NA</span>, <span class='fl'>23</span>, <span class='cn'>NA</span><span class='op'>)</span>,
-          stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'mean, se, cv, n, valid.n'</span><span class='op'>)</span>,
+          stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'mean, se, cv, n, n.valid'</span><span class='op'>)</span>,
           na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
-#&gt;   variable  mean    se    cv     n valid.n
+#&gt;   variable  mean    se    cv     n n.valid
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> val         16  2.39  36.7     8       6</div><div class='input'>
 <span class='co'>#===============================================================#</span>

@@ -243,6 +243,7 @@ environments using linear mixed-effect models.</p>
   <span class='va'>rep</span>,
   <span class='va'>resp</span>,
   block <span class='op'>=</span> <span class='cn'>NULL</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
   mresp <span class='op'>=</span> <span class='cn'>NULL</span>,
   wresp <span class='op'>=</span> <span class='cn'>NULL</span>,
   random <span class='op'>=</span> <span class='st'>"gen"</span>,
@@ -290,14 +291,23 @@ fixed, as no inter-replicate information was to be recovered (Mohring et
 al., 2015).</p></td>
     </tr>
     <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+when the researcher what to compute the indexes by mega-environments. In
+this case, an object of class waasb_grouped is returned.
+<code><a href='mtsi.html'>mtsi</a>()</code> can then be used to compute the mtsi index within each
+mega-environment.</p></td>
+    </tr>
+    <tr>
       <th>mresp</th>
       <td><p>The new maximum value after rescaling the response variable. By
 default, all variables in <code>resp</code> are rescaled so that de maximum value
-is 100 and the minimum value is 0 (i.e., <code>mresp = 100</code>). It must be a
-numeric vector of the same length of <code>resp</code> if rescaling is assumed to
-be different across variables, e.g., if for the first variable smaller
+is 100 and the minimum value is 0 (i.e., <code>mresp = NULL</code>). It must be a
+character vector of the same length of <code>resp</code> if rescaling is assumed
+to be different across variables, e.g., if for the first variable smaller
 values are better and for the second one, higher values are better, then
-<code>mresp = c(0, 100)</code> must be used. Numeric value of length 1 will be
+<code>mresp = c("l, h")</code> must be used. Character value of length 1 will be
 recycled with a warning message.</p></td>
     </tr>
     <tr>
@@ -560,7 +570,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
                 rep <span class='op'>=</span> <span class='va'>REP</span>,
                 resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
                 random <span class='op'>=</span> <span class='st'>"all"</span>,
-                mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>0</span><span class='op'>)</span>,
+                mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"h, l"</span><span class='op'>)</span>,
                 wresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>60</span>, <span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: -</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
@@ -1229,21 +1239,34 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; 419  E9  G9   2 -0.2384685674  4.47876570
 #&gt; 420  E9  G9   3 -0.5723710495  4.60476947
 #&gt; </div><div class='input'>
-<span class='co'># Get the ranks for the WAASB index</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model3</span>, what <span class='op'>=</span> <span class='st'>"OrWAASB"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAASB</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
-#&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G1        2     2
-#&gt; </span><span style='color: #555555;'> 2</span><span> G10      10    10
-#&gt; </span><span style='color: #555555;'> 3</span><span> G2        4     8
-#&gt; </span><span style='color: #555555;'> 4</span><span> G3        1     1
-#&gt; </span><span style='color: #555555;'> 5</span><span> G4        6     6
-#&gt; </span><span style='color: #555555;'> 6</span><span> G5        5     9
-#&gt; </span><span style='color: #555555;'> 7</span><span> G6        3     3
-#&gt; </span><span style='color: #555555;'> 8</span><span> G7        8     7
-#&gt; </span><span style='color: #555555;'> 9</span><span> G8        7     4
-#&gt; </span><span style='color: #555555;'>10</span><span> G9        9     5</div><div class='input'><span class='co'># }</span>
+
+<span class='co'>#===============================================================#</span>
+<span class='co'># Example 4: Analyzing GY and HM assuming a mixed-effect model #</span>
+<span class='co'># within mega-environments and extract variance components</span>
+<span class='co'>#===============================================================#</span>
+
+
+<span class='va'>data_mega</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='utils_rows_cols.html'>add_cols</a></span><span class='op'>(</span>MEGA <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>ENV</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"E1"</span>, <span class='st'>"E2"</span>, <span class='st'>"E3"</span>, <span class='st'>"E4"</span><span class='op'>)</span>, <span class='st'>"ME1"</span>, <span class='st'>"ME2"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>mega</span> <span class='op'>&lt;-</span> <span class='fu'>waasb</span><span class='op'>(</span><span class='va'>data_mega</span>,
+             env <span class='op'>=</span> <span class='va'>ENV</span>,
+             gen <span class='op'>=</span> <span class='va'>GEN</span>,
+             rep <span class='op'>=</span> <span class='va'>REP</span>,
+             resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,
+             by <span class='op'>=</span> <span class='va'>MEGA</span>,
+             verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>mega</span>, <span class='st'>"vcomp"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; <span class='message'>Class of the model: tbl_df, waasb_group, tbl, data.frame</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: vcomp</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
+#&gt;   MEGA  Group        GY    HM
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> ME1   GEN      0.030</span><span style='text-decoration: underline;'>5</span><span> 1.48 
+#&gt; </span><span style='color: #555555;'>2</span><span> ME1   GEN:ENV  0.033</span><span style='text-decoration: underline;'>8</span><span> 0.639
+#&gt; </span><span style='color: #555555;'>3</span><span> ME1   Residual 0.160  2.23 
+#&gt; </span><span style='color: #555555;'>4</span><span> ME2   GEN      0.036</span><span style='text-decoration: underline;'>4</span><span> 0.163
+#&gt; </span><span style='color: #555555;'>5</span><span> ME2   GEN:ENV  0.056</span><span style='text-decoration: underline;'>6</span><span> 2.74 
+#&gt; </span><span style='color: #555555;'>6</span><span> ME2   Residual 0.071</span><span style='text-decoration: underline;'>5</span><span> 3.08 </div><div class='input'>
+<span class='co'># }</span>
 
 </div></span></pre>
   </div>

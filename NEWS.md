@@ -1,12 +1,17 @@
 # metan (development version)
 ## Minor improvements
-* `gamem()` and `waasb()` now have a `by` argument and understand data passed from `group_by`.
+* `gamem()`, `gamem_met()`, and `waasb()` now have a `by` argument and understand data passed from `group_by`.
 * `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor and understand models fitted with `gamem()` and `waasb()` using the `by` argument.
 * `plot.mtsi()` and `plot.mgidi()` now returns a radar plot by default when using `type = "contribution"`.
 
 ## New functions
 * `get_dist()` to get distance matrices from objects of class `clustering`.
-* `as_numeric()`, `as_integer()`, `as_logical()`, `as_character()`, and `as_factor()` to coerce variables to specific formats quicly.
+* `as_numeric()`, `as_integer()`, `as_logical()`, `as_character()`, and `as_factor()` to coerce variables to specific formats quickly.
+* `n_valid()`, `n_missing()`, and `n_unique()` to count valid, missing, and unique values, respectively.
+* `tidy colnames()` to clean up column names. It is a shortcut to `tidy strings()` applied to the column names of a data frame.
+* `env_stratification()` to perform environment stratification using factor analysis.
+* 
+
 
 # metan 1.9.0
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.

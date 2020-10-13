@@ -93,6 +93,8 @@ frame.
 select_non_numeric_cols(): Select all the non-numeric columns of a
 data frame.
 select_rows(): Select one or more rows from a data frame.
+tidy_colnames(): Tidy up column names with
+tidy_strings().
 
 " />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -310,6 +312,8 @@ frame.</p></li>
 <li><p><code>select_non_numeric_cols()</code>: Select all the non-numeric columns of a
 data frame.</p></li>
 <li><p><code>select_rows()</code>: Select one or more rows from a data frame.</p></li>
+<li><p><code>tidy_colnames()</code>: Tidy up column names with
+<code><a href='utils_num_str.html'>tidy_strings</a>()</code>.</p></li>
 </ul>
 
     </div>
@@ -369,7 +373,9 @@ data frame.</p></li>
 
 <span class='fu'>select_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>select_rows</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>select_rows</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>tidy_colnames</span><span class='op'>(</span><span class='va'>.data</span>, sep <span class='op'>=</span> <span class='st'>"_"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

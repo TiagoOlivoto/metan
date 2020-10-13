@@ -279,10 +279,14 @@ single procedure a vector of variables may be used. For example <code>resp
     </tr>
     <tr>
       <th>mresp</th>
-      <td><p>A numeric vector of the same length of <code>resp</code>. The
-<code>mresp</code> will be the new maximum value after rescaling. By default, all
-variables in <code>resp</code> are rescaled so that de maximum value is 100 and
-the minimum value is 0.</p></td>
+      <td><p>The new maximum value after rescaling the response variable. By
+default, all variables in <code>resp</code> are rescaled so that de maximum value
+is 100 and the minimum value is 0 (i.e., <code>mresp = NULL</code>). It must be a
+character vector of the same length of <code>resp</code> if rescaling is assumed
+to be different across variables, e.g., if for the first variable smaller
+values are better and for the second one, higher values are better, then
+<code>mresp = c("l, h")</code> must be used. Character value of length 1 will be
+recycled with a warning message.</p></td>
     </tr>
     <tr>
       <th>wresp</th>

@@ -196,6 +196,7 @@ reference:
       - corr_stab_ind
       - ecovalence
       - env_dissimilarity
+      - env_stratification
       - ge_acv
       - ge_factanal
       - ge_polar
@@ -204,6 +205,7 @@ reference:
       - gai
       - plot.anova_joint
       - plot.env_dissimilarity
+      - plot.env_stratification
       - plot.ge_cluster
       - plot.ge_effects
       - plot.ge_factanal
@@ -213,6 +215,7 @@ reference:
       - print.anova_joint
       - print.ecovalence
       - print.env_dissimilarity
+      - print.env_stratification
       - print.ge_factanal
       - print.ge_reg
       - print.ge_stats

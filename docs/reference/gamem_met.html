@@ -241,6 +241,7 @@ random-effect models.</p>
   <span class='va'>rep</span>,
   <span class='va'>resp</span>,
   block <span class='op'>=</span> <span class='cn'>NULL</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
   random <span class='op'>=</span> <span class='st'>"gen"</span>,
   prob <span class='op'>=</span> <span class='fl'>0.05</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
@@ -282,6 +283,13 @@ design is employed considering block as random to make use of inter-block
 information, whereas the complete replicate effect is always taken as
 fixed, as no inter-replicate information was to be recovered (Mohring et
 al., 2015).</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+when the researcher what to analyze environments within mega-environments.
+In this case, an object of class waasb_grouped is returned.</p></td>
     </tr>
     <tr>
       <th>random</th>

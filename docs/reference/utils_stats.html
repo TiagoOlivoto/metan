@@ -72,15 +72,15 @@ av_dev() computes the average absolute deviation.
 ci_mean() computes the confidence interval for the mean.
 cv() computes the coefficient of variation.
 freq_table() Computes frequency fable. Handles grouped data.
-
-
-
 hmean(), gmean() computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the nth root of n
 products.
 kurt() computes the kurtosis like used in SAS and SPSS.
 range_data() Computes the range of the values.
+n_valid() The valid (not NA) length of a data.
+n_unique() Number of unique values.
+n_missing() Number of missing values.
 row_col_mean(), row_col_sum() Adds a row with the mean/sum of
 each variable and a column with the the mean/sum for each row of the data.
 sd_amo(), sd_pop() Computes sample and populational standard
@@ -90,7 +90,6 @@ skew() computes the skewness like used in SAS and SPSS.
 sum_dev() computes the sum of the absolute deviations.
 sum_sq_dev() computes the sum of the squared deviations.
 var_amo(), var_pop() computes sample and populational variance.
-valid_n() Return the valid (not NA) length of a data.
 
 
 
@@ -290,15 +289,15 @@ numeric variables from <code>.data</code> by default).</strong></p><ul>
 <li><p><code>ci_mean()</code> computes the confidence interval for the mean.</p></li>
 <li><p><code>cv()</code> computes the coefficient of variation.</p></li>
 <li><p><code>freq_table()</code> Computes frequency fable. Handles grouped data.</p></li>
-</ul></li>
-</ul>
-<ul>
 <li><p><code>hmean(), gmean()</code> computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the <em>n</em>th root of <em>n</em>
-products.</p><ul>
+products.</p></li>
 <li><p><code>kurt()</code> computes the kurtosis like used in SAS and SPSS.</p></li>
 <li><p><code>range_data()</code> Computes the range of the values.</p></li>
+<li><p><code>n_valid()</code> The valid (not <code>NA</code>) length of a data.</p></li>
+<li><p><code>n_unique()</code> Number of unique values.</p></li>
+<li><p><code>n_missing()</code> Number of missing values.</p></li>
 <li><p><code>row_col_mean(), row_col_sum()</code> Adds a row with the mean/sum of
 each variable and a column with the the mean/sum for each row of the data.</p></li>
 <li><p><code>sd_amo(), sd_pop()</code> Computes sample and populational standard
@@ -308,7 +307,6 @@ deviation, respectively.</p></li>
 <li><p><code>sum_dev()</code> computes the sum of the absolute deviations.</p></li>
 <li><p><code>sum_sq_dev()</code> computes the sum of the squared deviations.</p></li>
 <li><p><code>var_amo(), var_pop()</code> computes sample and populational variance.</p></li>
-<li><p><code>valid_n()</code> Return the valid (not <code>NA</code>) length of a data.</p></li>
 </ul></li>
 </ul>
 
@@ -329,6 +327,12 @@ used to compute quickly all these statistics at once.</p>
 <span class='fu'>gmean</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='fu'>kurt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>n_missing</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>n_unique</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>n_valid</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='fu'>pseudo_sigma</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 

@@ -69,8 +69,8 @@ MTSI_index2 <-
   data_ge2 %>%
   waasb(ENV, GEN, REP,
         resp = c(KW, NKE, PH, EH, TKW),
-        mresp = c(100, 100, 0, 0, 100),
-        wresp = rep(65, 5)) %>% # Default is 50
+        mresp = c("h, h, l, l, h"),
+        wresp = 65) %>% # Default is 50
   mtsi(SI = 20)
 
 ```

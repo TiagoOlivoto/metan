@@ -282,9 +282,9 @@ shown in the console.</p></td>
 <li><p><strong>scores_gen</strong> The scores for genotypes in all retained factors.</p></li>
 <li><p><strong>scores_ide</strong> The scores for the ideotype in all retained factors.</p></li>
 <li><p><strong>MTSI</strong> The multi-trait stability index.</p></li>
-<li><p><strong>contri_fac</strong> The relative contribution of each factor on the MTSI value.
-The lower the contribution of a factor, the close of the ideotype the variables in such
-factor are.</p></li>
+<li><p><strong>contri_fac</strong> The relative contribution of each factor on the MTSI
+value. The lower the contribution of a factor, the close of the ideotype the
+variables in such factor are.</p></li>
 <li><p><strong>contri_fac_rank, contri_fac_rank_sel</strong> The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.</p></li>
 <li><p><strong>sel_dif_trait, sel_dif_waasb, sel_dif_waasby</strong> The selection
@@ -373,7 +373,7 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 <span class='va'>mtsi_index2</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
  <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>,
        resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
-       mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+       mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"h, l"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
  <span class='fu'>mtsi</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits

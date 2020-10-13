@@ -235,9 +235,9 @@
 <a href="#minor-improvements" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
-<code><a href="../reference/gamem.html">gamem()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</li>
+<code><a href="../reference/gamem.html">gamem()</a></code>, <code><a href="../reference/gamem_met.html">gamem_met()</a></code>, and <code><a href="../reference/waasb.html">waasb()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</li>
 <li>
-<code><a href="../reference/mtsi.html">mtsi()</a></code> and <code><a href="../reference/mgidi.html">mgidi()</a></code> now returns the ranks for the contribution of each factor.</li>
+<code><a href="../reference/mtsi.html">mtsi()</a></code> and <code><a href="../reference/mgidi.html">mgidi()</a></code> now returns the ranks for the contribution of each factor and understand models fitted with <code><a href="../reference/gamem.html">gamem()</a></code> and <code><a href="../reference/waasb.html">waasb()</a></code> using the <code>by</code> argument.</li>
 <li>
 <code><a href="../reference/plot.mtsi.html">plot.mtsi()</a></code> and <code><a href="../reference/plot.mgidi.html">plot.mgidi()</a></code> now returns a radar plot by default when using <code>type = "contribution"</code>.</li>
 </ul>
@@ -249,7 +249,15 @@
 <li>
 <code><a href="../reference/get_dist.html">get_dist()</a></code> to get distance matrices from objects of class <code>clustering</code>.</li>
 <li>
-<code><a href="../reference/utils_as.html">as_numeric()</a></code>, <code><a href="../reference/utils_as.html">as_integer()</a></code>, <code><a href="../reference/utils_as.html">as_logical()</a></code>, <code><a href="../reference/utils_as.html">as_character()</a></code>, and <code><a href="../reference/utils_as.html">as_factor()</a></code> to coerce variables to specific formats quicly.</li>
+<code><a href="../reference/utils_as.html">as_numeric()</a></code>, <code><a href="../reference/utils_as.html">as_integer()</a></code>, <code><a href="../reference/utils_as.html">as_logical()</a></code>, <code><a href="../reference/utils_as.html">as_character()</a></code>, and <code><a href="../reference/utils_as.html">as_factor()</a></code> to coerce variables to specific formats quickly.</li>
+<li>
+<code><a href="../reference/utils_stats.html">n_valid()</a></code>, <code><a href="../reference/utils_stats.html">n_missing()</a></code>, and <code><a href="../reference/utils_stats.html">n_unique()</a></code> to count valid, missing, and unique values, respectively.</li>
+<li>
+<code>tidy colnames()</code> to clean up column names. It is a shortcut to <code>tidy strings()</code> applied to the column names of a data frame.</li>
+<li>
+<code><a href="../reference/env_stratification.html">env_stratification()</a></code> to perform environment stratification using factor analysis.</li>
+<li>
+</li>
 </ul>
 </div>
 </div>

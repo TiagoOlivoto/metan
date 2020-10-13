@@ -148,14 +148,10 @@ numeric variables from \code{.data} by default).}
 \item \code{ci_mean()} computes the confidence interval for the mean.
 \item \code{cv()} computes the coefficient of variation.
 \item \code{freq_table()} Computes frequency fable. Handles grouped data.
-}
-}
-\itemize{
 \item \code{hmean(), gmean()} computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
 products.
-\itemize{
 \item \code{kurt()} computes the kurtosis like used in SAS and SPSS.
 \item \code{range_data()} Computes the range of the values.
 \item \code{n_valid()} The valid (not \code{NA}) length of a data.
