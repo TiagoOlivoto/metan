@@ -16,7 +16,7 @@
 #' factor analysis.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
 #'   silently.
-#' @return An object of class \code{ge_factanal} which is a list with one
+#' @return An object of class \code{env_stratification} which is a list with one
 #'   element per analyzed trait. For each trait, the following values are given.
 #' \item{data}{The genotype-environment means.}
 #' \item{cormat}{The correlation matrix among the environments.}
