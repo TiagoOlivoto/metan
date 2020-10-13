@@ -54,6 +54,9 @@ following:
 \item \code{"median"}: median.
 \item \code{"min"}: minimum value.
 \item \code{"n"}: the length of the data.
+\item \code{"n.valid"}: The valid (Not \code{NA}) number of elements
+\item \code{"n.missing"}: The number of missing values
+\item \code{"n.unique"}: The length of unique elements.
 \item \code{"ps"}: the pseudo-sigma (iqr / 1.35).
 \item \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\\%, first
 quartile, third quartile, and percentile 97.5\\%, respectively.
@@ -64,7 +67,7 @@ quartile, third quartile, and percentile 97.5\\%, respectively.
 \item \code{"sum"}. the sum of the values.
 \item \code{"sum.dev"}: the sum of the absolute deviations.
 \item \code{"sum.sq.dev"}: the sum of the squared deviations.
-\item \code{"valid.n"}: The size of sample with valid number (not NA).
+\item \code{"n.valid"}: The size of sample with valid number (not NA).
 \item \code{"var.amo", "var.pop"}: the sample and population variance.
 }
 
@@ -132,7 +135,7 @@ desc_stat(vect, stats = "robust")
 # are removed before analysis with a warning message            #
 #===============================================================#
 desc_stat(c(12, 13, 19, 21, 8, NA, 23, NA),
-          stats = c('mean, se, cv, n, valid.n'),
+          stats = c('mean, se, cv, n, n.valid'),
           na.rm = TRUE)
 
 #===============================================================#

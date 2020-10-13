@@ -36,6 +36,9 @@
 #'  * \code{"median"}: median.
 #'  * \code{"min"}: minimum value.
 #'  * \code{"n"}: the length of the data.
+#'  * \code{"n.valid"}: The valid (Not \code{NA}) number of elements
+#'  * \code{"n.missing"}: The number of missing values
+#'  * \code{"n.unique"}: The length of unique elements.
 #'  * \code{"ps"}: the pseudo-sigma (iqr / 1.35).
 #'  * \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\%, first
 #'  quartile, third quartile, and percentile 97.5\%, respectively.
@@ -46,7 +49,7 @@
 #'  * \code{"sum"}. the sum of the values.
 #'  * \code{"sum.dev"}: the sum of the absolute deviations.
 #'  * \code{"sum.sq.dev"}: the sum of the squared deviations.
-#'  * \code{"valid.n"}: The size of sample with valid number (not NA).
+#'  * \code{"n.valid"}: The size of sample with valid number (not NA).
 #'  * \code{"var.amo", "var.pop"}: the sample and population variance.
 #'
 #'  Use a names to select the statistics. For example, \code{stats = c("median,
@@ -99,7 +102,7 @@
 #' # are removed before analysis with a warning message            #
 #' #===============================================================#
 #' desc_stat(c(12, 13, 19, 21, 8, NA, 23, NA),
-#'           stats = c('mean, se, cv, n, valid.n'),
+#'           stats = c('mean, se, cv, n, n.valid'),
 #'           na.rm = TRUE)
 #'
 #' #===============================================================#
@@ -154,18 +157,18 @@ desc_stat <- function(.data = NULL,
           plot_theme = plot_theme)
     return(results)
   }
-  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev", "valid.n", "var.amo", "var.pop")
+  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "n.valid", "n.missing", "n.unique", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev",  "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
       all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci"),
-      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, var.pop"),
+      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, n.valid, var.amo, var.pop"),
       all_lower_case(stats) == "robust" ~ c("n, median, iqr, ps"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),
       TRUE ~ all_lower_case(stats)
     ), "\\s*(\\s|,)\\s*")[[1]]
 
   if (!any(stats %in% c("all", "main", "robust", "quantile", all))) {
-    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, valid.n, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
+    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, n.valid, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
   }
   if(has_class(.data, "numeric")){
     .data <- data.frame(val = .data)
@@ -202,7 +205,9 @@ desc_stat <- function(.data = NULL,
     group_by(variable) %>%
     summarise(across(value,
                      list(n = ~n(),
-                          valid.n = ~valid_n(., na.rm = na.rm),
+                          n.valid = ~n_valid(., na.rm = na.rm),
+                          n.missing = ~n_missing(., na.rm = na.rm),
+                          n.unique = ~n_unique(., na.rm = na.rm),
                           mean = ~mean(., na.rm = na.rm),
                           gmean = ~gmean(., na.rm = na.rm),
                           hmean = ~hmean(., na.rm = na.rm),

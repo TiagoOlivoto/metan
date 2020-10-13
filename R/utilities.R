@@ -866,7 +866,9 @@ tidy_colnames <- function(.data, sep = "_"){
 #' products.
 #'    - \code{kurt()} computes the kurtosis like used in SAS and SPSS.
 #'    - \code{range_data()} Computes the range of the values.
+#'    - \code{n_valid()} The valid (not \code{NA}) length of a data.
 #'    - \code{n_unique()} Number of unique values.
+#'    - \code{n_missing()} Number of missing values.
 #'    - \code{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
 #'    each variable and a column with the the mean/sum for each row of the data.
 #'    - \code{sd_amo(), sd_pop()} Computes sample and populational standard
@@ -876,7 +878,6 @@ tidy_colnames <- function(.data, sep = "_"){
 #'    - \code{sum_dev()} computes the sum of the absolute deviations.
 #'    - \code{sum_sq_dev()} computes the sum of the squared deviations.
 #'    - \code{var_amo(), var_pop()} computes sample and populational variance.
-#'    - \code{valid_n()} Return the valid (not \code{NA}) length of a data.
 #'
 #' \code{\link{desc_stat}} is wrapper function around the above ones and can be
 #' used to compute quickly all these statistics at once.
@@ -1098,6 +1099,25 @@ kurt <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
+n_missing <- function(.data, ..., na.rm = FALSE) {
+  funct <- function(df){
+    sum(is.na(df))
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(everything(), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        summarise(across(c(...), funct))
+    }
+  }
+}
+#' @name utils_stats
+#' @export
 n_unique <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
@@ -1116,6 +1136,31 @@ n_unique <- function(.data, ..., na.rm = FALSE) {
     } else{
       .data %>%
         summarise(across(c(...), funct))
+    }
+  }
+}
+#' @name utils_stats
+#' @export
+n_valid <- function(.data, ..., na.rm = FALSE){
+  funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
+    length(which(!is.na(df)))
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
     }
   }
 }
@@ -1433,30 +1478,8 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 valid_n <- function(.data, ..., na.rm = FALSE){
-  funct <- function(df){
-    if(na.rm == FALSE & has_na(df)){
-      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
-      na.rm <- TRUE
-    }
-    length(which(!is.na(df)))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
-  }
-  if(is.null(nrow(.data))){
-    funct(.data)
-  } else{
-    if(missing(...)){
-      .data %>%
-        summarise(across(where(is.numeric), funct)) %>%
-        ungroup()
-    } else{
-      .data %>%
-        select_cols(group_vars(.), ...) %>%
-        summarise(across(where(is.numeric), funct)) %>%
-        ungroup()
-    }
-  }
+  warning("valid_n() is deprecated as of metan 1.9.0. Use n_valid() instead.", call. = FALSE)
+  return(n_valid(.data, ..., na.rm = TRUE))
 }
 # main statistics, possible by one or more factors
 #' @name utils_stats
