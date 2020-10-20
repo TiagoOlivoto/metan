@@ -251,9 +251,11 @@ objects of class \code{waas}).
 \item \code{"details"} The details of the trial.
 \item \code{"genpar"} Genetic parameters (default).
 \item \code{"gcov"} The genotypic variance-covariance matrix.
+\item \code{"pcov"} The phenotypic variance-covariance matrix.
+\item \code{"gcor"} The genotypic correlation matrix.
+\item \code{"pcor"} The phenotypic correlation matrix.
 \item \code{"h2"} The broad-sense heritability.
 \item \code{"lrt"} The likelihood-ratio test for random effects.
-\item \code{"pcov"} The phenotypic variance-covariance matrix.
 \item \code{"vcomp"} The variance components for random effects.
 \item \code{"ranef"} Random effects.
 }
