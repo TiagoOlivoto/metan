@@ -248,6 +248,8 @@ reference:
       - corr_ss
       - correlated_vars
       - covcor_design
+      - get_corvars
+      - get_covmat
       - is.lpcor
       - lpcor
       - mantel_test
@@ -349,6 +351,7 @@ reference:
       - stars_pval
       - to_factor
       - themes
+      - transpose_df
       - tukey_hsd
 
 
