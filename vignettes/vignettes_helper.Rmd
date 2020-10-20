@@ -282,7 +282,7 @@ library(tidyverse)
 
 
 _______________________________________________________________________________________________
-**Rendering engine**
+# Rendering engine
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

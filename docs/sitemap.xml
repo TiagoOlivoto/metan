@@ -124,6 +124,12 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/gamem_met.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/get_corvars.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/get_covmat.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/get_dist.html</loc>
   </url>
   <url>
@@ -485,6 +491,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/tidyeval.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/transpose_df.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/tukey_hsd.html</loc>
