@@ -4,6 +4,7 @@
 \alias{utils_mat}
 \alias{make_upper_tri}
 \alias{make_lower_tri}
+\alias{make_lower_upper}
 \alias{make_sym}
 \alias{tidy_sym}
 \title{Utilities for handling with matrices}
@@ -11,6 +12,8 @@
 make_upper_tri(x, diag = NA)
 
 make_lower_tri(x, diag = NA)
+
+make_lower_upper(lower, upper, diag = NA)
 
 make_sym(x, make = "upper", diag = NA)
 
@@ -23,6 +26,10 @@ triangular matrix in \code{make_sym()}. \code{tidy_sym()} accepts both
 symmetrical or triangular matrices.}
 
 \item{diag}{What show in the diagonal of the matrix. Default to \code{NA}.}
+
+\item{lower}{A square matrix to fill the lower diagonal of the new matrix.}
+
+\item{upper}{A square matrix to fill the upper diagonal of the new matrix.}
 
 \item{make}{The triangular to built. Default is \code{"upper"}. In this case,
 a symmetric matrix will be built based on the values of a lower triangular

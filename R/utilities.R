@@ -1573,6 +1573,8 @@ sum_by <- function(.data, ..., na.rm = FALSE){
 #'   matrix in \code{make_upper_tri()} and \code{make_lower_tri()} or a
 #'   triangular matrix in \code{make_sym()}. \code{tidy_sym()} accepts both
 #'   symmetrical or triangular matrices.
+#' @param lower A square matrix to fill the lower diagonal of the new matrix.
+#' @param upper A square matrix to fill the upper diagonal of the new matrix.
 #' @param diag What show in the diagonal of the matrix. Default to \code{NA}.
 #' @param make The triangular to built. Default is \code{"upper"}. In this case,
 #'   a symmetric matrix will be built based on the values of a lower triangular
@@ -1614,6 +1616,31 @@ make_lower_tri<-function(x, diag = NA){
   x[upper.tri(x)] <- NA
   diag(x) <- diag
   return(x)
+}
+#' @name utils_mat
+#' @export
+make_lower_upper<-function(lower, upper, diag = NA){
+  if(any(rownames(upper) == rownames(lower)) == FALSE){
+    stop("Row names of 'upper' and 'lower' don't match.")
+  }
+  if(any(colnames(upper) == colnames(lower)) == FALSE){
+    stop("Column names of 'upper' and 'lower' don't match.")
+  }
+  if (nrow(lower) != ncol(lower)) {
+    stop("lower matrix must be square")
+  }
+  if (nrow(upper) != ncol(upper)) {
+    stop("upper matrix must be square")
+  }
+  if (nrow(lower) != ncol(upper)) {
+    stop("lower and upper matrices must have the same dimensions")
+  }
+  result <- matrix(NA, nrow = nrow(upper), ncol = ncol(upper))
+  result[lower.tri(result)] <- t(lower)[lower.tri(t(lower))]
+  result[upper.tri(result)] <- t(upper)[upper.tri(t(upper))]
+  diag(result) <- diag
+  rownames(result) <- colnames(result) <- rownames(lower)
+  return(result)
 }
 #' @name utils_mat
 #' @export
