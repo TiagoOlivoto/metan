@@ -301,6 +301,7 @@ fai_blup <- function(.data,
     }
   }
   return(structure(list(data = means,
+                        cormat = cor.means,
                         eigen = data.frame(pca) %>% rownames_to_column("PC") %>% as_tibble(),
                         FA = data.frame(fa) %>% rownames_to_column("Variable") %>% as_tibble(),
                         canonical_loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
