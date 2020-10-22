@@ -9,6 +9,7 @@
 #'   correlation matrix of the variables.
 #' @param tol Tolerance (relative to largest variance) for numerical lack of
 #'   positive-definiteness in sigma.
+#' @param seed An integer value interpreted as seed.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @return
 #' A tibble containing the simulated data.
@@ -21,12 +22,15 @@
 #'                   0,   .9,  1),3,3)
 #' mu <- c(6,50,5)
 #'
-#' set.seed(04182019)
-#' df <- get_corvars(n = 10000, mu = mu, sigma = sigma)
+#' df <- get_corvars(n = 10000, mu = mu, sigma = sigma, seed = 101010)
 #'means_by(df)
 #' cor(df)
 #' }
-get_corvars <- function (n = 10, mu, sigma, tol = 1e-06) {
+get_corvars <- function (n = 10,
+                         mu,
+                         sigma,
+                         tol = 1e-06,
+                         seed = NULL) {
   # Adapted from MASS::mvrnorm()
   p <- length(mu)
   if (!all(dim(sigma) == c(p, p))) {
@@ -37,6 +41,10 @@ get_corvars <- function (n = 10, mu, sigma, tol = 1e-06) {
   if (!all(ev >= -tol * abs(ev[1L]))) {
     stop("'sigma' is not positive definite")
   }
+  if(missing(seed)){
+    seed <- .Random.seed[3]
+  }
+  set.seed(seed)
   X <- matrix(rnorm(p * n), n)
   X <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
   nm <- names(mu)

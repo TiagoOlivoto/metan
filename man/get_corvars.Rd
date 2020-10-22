@@ -4,7 +4,7 @@
 \alias{get_corvars}
 \title{Generate normal, correlated variables}
 \usage{
-get_corvars(n = 10, mu, sigma, tol = 1e-06)
+get_corvars(n = 10, mu, sigma, tol = 1e-06, seed = NULL)
 }
 \arguments{
 \item{n}{The number of samples required.}
@@ -16,6 +16,8 @@ correlation matrix of the variables.}
 
 \item{tol}{Tolerance (relative to largest variance) for numerical lack of
 positive-definiteness in sigma.}
+
+\item{seed}{An integer value interpreted as seed.}
 }
 \value{
 A tibble containing the simulated data.
@@ -31,8 +33,7 @@ sigma <- matrix(c(1,  .3,  0,
                   0,   .9,  1),3,3)
 mu <- c(6,50,5)
 
-set.seed(04182019)
-df <- get_corvars(n = 10000, mu = mu, sigma = sigma)
+df <- get_corvars(n = 10000, mu = mu, sigma = sigma, seed = 101010)
 means_by(df)
 cor(df)
 }
