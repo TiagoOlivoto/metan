@@ -51,16 +51,21 @@
 #'  maximum observed, \code{MinGEN} the winner genotype, \code{MaxGEN}, the
 #'  loser genotype.
 #'
-#' * \strong{ESTIMATES:} A tibble with the values for: \code{Gen_var}, the
-#' genotypic variance; \code{rep:block_var} block-within-replicate variance (if
+#' * \strong{ESTIMATES:} A tibble with the values:
+#'    - \code{Gen_var}, the genotypic variance and ;
+#'    - \code{rep:block_var} block-within-replicate variance (if
 #' an alpha-lattice design is used by informing the block in \code{block});
-#' \code{Res_var}, the residual variance and their respective contribution to
-#' the phenotypic variance (\code{Gen (%), rep:block (%), and Res (%)});
-#' \code{H2}, broad-sense heritability; \code{h2mg}, heritability on the
-#' entry-mean basis, \code{Accuracy}, the accuracy of selection (square root of
-#' \code{h2mg}); \code{CVg}, genotypic coefficient of variation; \code{CVr},
-#' residual coefficient of variation; and \code{CV ratio}, the ratio between
-#' genotypic and residual coefficient of variation.
+#'    - \code{Res_var}, the residual variance;
+#'    - \code{Gen (%), rep:block (%), and Res (%)} the respective contribution
+#'    of variance components to the phenotypic variance;
+#'    - \code{H2}, broad-sense heritability;
+#'    - \code{h2mg}, heritability on the entry-mean basis;
+#'    - \code{Accuracy}, the accuracy of selection (square root of
+#' \code{h2mg});
+#'    - \code{CVg}, genotypic coefficient of variation;
+#'    - \code{CVr}, residual coefficient of variation;
+#'    - \code{CV ratio}, the ratio between genotypic and residual coefficient of
+#' variation.
 #'
 #'  * \strong{residuals:} The residuals of the model.
 #'
