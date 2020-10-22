@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0</span>
       </span>
     </div>
 
@@ -226,9 +226,9 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
+    <div id="metan-1100" class="section level1">
+<h1 class="page-header" data-toc-text="1.10.0">
+<a href="#metan-1100" class="anchor"></a>metan 1.10.0<small> Unreleased </small>
 </h1>
 <div id="minor-improvements" class="section level2">
 <h2 class="hasAnchor">
@@ -251,11 +251,15 @@
 <li>
 <code><a href="../reference/get_dist.html">get_dist()</a></code> to get distance matrices from objects of class <code>clustering</code>.</li>
 <li>
+<code><a href="../reference/get_corvars.html">get_corvars()</a></code> to get normal, multivariate correlated variables.</li>
+<li>
+<code><a href="../reference/get_covmat.html">get_covmat()</a></code> to obtain covariance matrix based on variances and correlation values.</li>
+<li>
 <code><a href="../reference/utils_as.html">as_numeric()</a></code>, <code><a href="../reference/utils_as.html">as_integer()</a></code>, <code><a href="../reference/utils_as.html">as_logical()</a></code>, <code><a href="../reference/utils_as.html">as_character()</a></code>, and <code><a href="../reference/utils_as.html">as_factor()</a></code> to coerce variables to specific formats quickly.</li>
 <li>
 <code><a href="../reference/utils_stats.html">n_valid()</a></code>, <code><a href="../reference/utils_stats.html">n_missing()</a></code>, and <code><a href="../reference/utils_stats.html">n_unique()</a></code> to count valid, missing, and unique values, respectively.</li>
 <li>
-<code>tidy colnames()</code> to clean up column names. It is a shortcut to <code>tidy strings()</code> applied to the column names of a data frame.</li>
+<code><a href="../reference/utils_rows_cols.html">tidy_colnames()</a></code> to clean up column names. It is a shortcut to <code><a href="../reference/utils_num_str.html">tidy_strings()</a></code> applied to the column names of a data frame.</li>
 <li>
 <code><a href="../reference/env_stratification.html">env_stratification()</a></code> to perform environment stratification using factor analysis.</li>
 <li>
