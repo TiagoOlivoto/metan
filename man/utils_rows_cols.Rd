@@ -227,8 +227,7 @@ data_ge2 \%>\%
           .after = GEN) \%>\%
  replace_string(ENV_GEN,
                 pattern = "H",
-                replacement = "HYB_",
-                .after = ENV_GEN)
+                replacement = "HYB_")
 
 # Use prefixes and suffixes
 concatenate(data_ge2, REP, prefix = "REP", new_var = REP)

@@ -133,35 +133,21 @@ round_cols(data_ge2, PH, EP, digits = 1)  %>% print_table()
 
 ## Extracting and replacing numbers
 
-The functions `extract_number()`, and `replace_number()` can be used to extract or replace numbers. As an example, we will extract the number of each genotype in `data_g`. By default, the extracted numbers are put as a new variable called `new_var` after the last column of the data.
+The functions `extract_number()`, and `replace_number()` can be used to extract or replace numbers. As an example, we will extract the number of each genotype in `data_g`.
 
 ```{r}
-extract_number(data_ge, GEN, .after = "GEN") %>% print_table()
+extract_number(data_ge, GEN) %>% print_table()
 ```
 
-If the argument `drop` is set to `TRUE` then, only the new variable is kept and all others are dropped.
 
-```{r}
-extract_number(data_ge, GEN, drop = TRUE) %>% print_table()
-```
-
-To pull out the results into a vector, use the argument `pull = TRUE`. This is particularly useful when `extract_*` or `replace_*` are used within a function like `add_cols()`.
-
-
-```{r}
-extract_number(data_ge, GEN, pull = TRUE)
-```
-
-To replace numbers of a given column with a specified replacement, use `replace_number()`. By default, numbers are replaced with "". The argument `drop` and `pull` can also be used, as shown above.
+To replace numbers of a given column with a specified replacement, use `replace_number()`. By default, numbers are replaced with "".
 
 ```{r}
 replace_number(data_ge, GEN) %>% print_table()
 replace_number(data_ge,
-               var = REP,
-               pattern = "1",
-               replacement = "Rep_1",
-               new_var = R_ONE,
-               .after = "REP") %>% 
+               REP,
+               pattern = 1,
+               replacement = "Rep_1") %>% 
   print_table()
 ```
 
@@ -175,10 +161,8 @@ extract_string(data_ge, GEN) %>% print_table()
 To replace strings, we can use the function `replace_strings()`.
 ```{r}
 replace_string(data_ge,
-               var = GEN,
-               new_var = GENOTYPE,
-               replacement = "GENOTYPE_",
-               .after = "GEN") %>% 
+               GEN,
+               replacement = "GENOTYPE_") %>% 
   print_table()
 ```
 

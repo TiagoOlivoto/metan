@@ -2,29 +2,24 @@
 #' @name utils_num_str
 #' @param .data A data frame
 #' @param ... The argument depends on the function used.
-#' * For \code{round_cols()} \code{...} are the variables to round. If no
-#' variable is informed, all the numeric variables from \code{data} are used.
-#' * For \code{all_lower_case()}, \code{all_upper_case()},
-#' \code{all_title_case()}, \code{remove_strings()}, and \code{tidy_strings()}
-#' \code{...} are the variables to apply the function. If no variable is
-#' informed, the function will be applied to all non-numeric variables in
-#' \code{.data}.
+#'  * For \code{round_cols()} \code{...} are the variables to round. If no
+#'  variable is informed, all the numeric variables from \code{data} are used.
+#'  * For \code{all_lower_case()}, \code{all_upper_case()},
+#'   \code{all_title_case()}, \code{stract_number()}, \code{stract_string()},
+#'   \code{remove_strings()}, and \code{tidy_strings()} \code{...} are the
+#'   variables to apply the function. If no variable is informed, the function
+#'   will be applied to all non-numeric variables in \code{.data}.
 #' @param digits The number of significant figures.
 #' @param var The variable to extract or replace numbers or strings.
-#' @param new_var The name of the new variable containing the numbers or
-#'   strings extracted or replaced. Defaults to \code{new_var}.
-#' @param drop Logical argument. If \code{TRUE} keeps the new variable
-#'   \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.
+#' @param new_var Deprecated argument as of metan 1.10.0.
+#' @param drop Deprecated argument as of metan 1.10.0.
 #' @param pattern A string to be matched. Regular Expression Syntax is also
 #'   allowed.
 #' @param replacement A string for replacement.
 #' @param ignore_case If \code{FALSE} (default), the pattern matching is case
 #'   sensitive and if \code{TRUE}, case is ignored during matching.
-#' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
-#'   assumption that's the column you've created most recently), as a vector.
-#' @param .before,.after For \code{replace_sting()}, \code{replace_number()},
-#'   \code{extract_string()}, ,and  \code{extract_number()} one-based column
-#'   index or column name where to add the new columns.
+#' @param pull Deprecated argument as of metan 1.10.0.
+#' @param .before,.after Deprecated argument as of metan 1.10.0.
 #' @param sep A character string to separate the terms. Defaults to "_".
 #' @description
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
@@ -71,33 +66,23 @@
 #' ########### Extract or replace numbers ##########
 #' # Extract numbers
 #' extract_number(data_ge, GEN)
-#' extract_number(data_ge,
-#'                var = GEN,
-#'                drop = TRUE,
-#'                new_var = g_number)
-#'
+
 #' # Replace numbers
-#'
 #' replace_number(data_ge, GEN)
 #' replace_number(data_ge,
-#'                var = GEN,
-#'                pattern = "1",
-#'                replacement = "_one",
-#'                pull = TRUE)
+#'                GEN,
+#'                pattern = 1,
+#'                replacement = "_one")
 #'
 #' ########## Extract, replace or remove strings ##########
 #' # Extract strings
 #' extract_string(data_ge, GEN)
-#' extract_string(data_ge,
-#'                var = GEN,
-#'                drop = TRUE,
-#'                new_var = g_name)
+
 #'
 #' # Replace strings
 #' replace_string(data_ge, GEN)
 #' replace_string(data_ge,
-#'                var = GEN,
-#'                new_var = GENOTYPE,
+#'                GEN,
 #'                pattern = "G",
 #'                replacement = "GENOTYPE_")
 #'
@@ -196,64 +181,95 @@ all_title_case <- function(.data, ...){
 
 #' @name utils_num_str
 #' @export
+#'
 extract_number <- function(.data,
-                           var,
-                           new_var = new_var,
-                           drop = FALSE,
-                           pull = FALSE,
-                           .before = NULL,
-                           .after  = NULL){
+                           ...,
+                           pattern = NULL,
+                           var = "deprecated",
+                           new_var = "deprecated",
+                           drop =  "deprecated",
+                           pull =  "deprecated",
+                           .before =  "deprecated",
+                           .after  =  "deprecated"){
+  if(var != "deprecated"){
+    warning("Argument 'var' is deprecated as of metan 1.10.0")
+  }
+  if(new_var != "deprecated"){
+    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
+  }
+  if(drop != "deprecated"){
+    warning("Argument 'drop' is deprecated as of metan 1.10.0")
+  }
+  if(pull != "deprecated"){
+    warning("Argument 'pull' is deprecated as of metan 1.10.0")
+  }
+  if(.before != "deprecated"){
+    warning("Argument '.before' is deprecated as of metan 1.10.0")
+  }
+  if(.after != "deprecated"){
+    warning("Argument '.after' is deprecated as of metan 1.10.0")
+  }
+  if(missing(pattern)){
+    pattern <- "[^0-9.-]+"
+  }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    if (drop == FALSE){
-      results <- .data %>%
-        mutate({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
-      if (pull == TRUE){
-        results <- pull(results)
-      }
-      if (!missing(.before) | !missing(.after)){
-        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-      }
+    if(missing(...)){
+      results <-
+        mutate(.data, across(where(~!is.numeric(.)), gsub, pattern = pattern, replacement = "")) %>%
+        as_numeric(everything())
     } else{
-      results <- .data %>%
-        transmute({{new_var}} :=   as.numeric(gsub("[^0-9.-]+", "", as.character({{var}}))))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
+      results <-
+        mutate(.data, across(c(...), gsub, pattern = pattern, replacement = "")) %>%
+        as_numeric(...)
     }
     return(results)
   } else{
-    as.numeric(gsub("[^0-9.-]+", "", .data))
+    return(as.numeric(gsub("[^0-9.-]+", "", .data)))
   }
 }
 #' @name utils_num_str
 #' @export
 extract_string <- function(.data,
-                           var,
-                           new_var = new_var,
-                           drop = FALSE,
-                           pull = FALSE,
-                           .before = NULL,
-                           .after  = NULL){
+                           ...,
+                           pattern = NULL,
+                           var = "deprecated",
+                           new_var = "deprecated",
+                           drop =  "deprecated",
+                           pull =  "deprecated",
+                           .before =  "deprecated",
+                           .after  =  "deprecated"){
+  if(var != "deprecated"){
+    warning("Argument 'var' is deprecated as of metan 1.10.0")
+  }
+  if(new_var != "deprecated"){
+    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
+  }
+  if(drop != "deprecated"){
+    warning("Argument 'drop' is deprecated as of metan 1.10.0")
+  }
+  if(pull != "deprecated"){
+    warning("Argument 'pull' is deprecated as of metan 1.10.0")
+  }
+  if(.before != "deprecated"){
+    warning("Argument '.before' is deprecated as of metan 1.10.0")
+  }
+  if(.after != "deprecated"){
+    warning("Argument '.after' is deprecated as of metan 1.10.0")
+  }
+  if(missing(pattern)){
+    pattern <- "[^A-z.-]+"
+  }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    if (drop == FALSE){
-      results <- .data %>%
-        mutate({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
-      if (!missing(.before) | !missing(.after)){
-        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-      }
+    if(missing(...)){
+      results <-
+        mutate(.data, across(where(~!is.numeric(.)), gsub, pattern = pattern, replacement = ""))
     } else{
-      results <- .data %>%
-        transmute({{new_var}} := as.character(gsub("[^A-z.-]+", "", as.character({{var}}))))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
+      results <-
+        mutate(.data, across(c(...), gsub, pattern = pattern, replacement = ""))
     }
     return(results)
   } else{
-    as.character(gsub("[^A-z.-]+", "", .data))
+    return(as.character(gsub("[^A-z.-]+", "", .data)))
   }
 }
 #' @name utils_num_str
@@ -304,11 +320,11 @@ remove_strings <- function(.data, ...){
     if(missing(...)){
       results <-
         mutate(.data, across(everything(), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
-        mutate(across(everything(), as.numeric))
+        as_numeric(everything())
     } else{
       results <-
         mutate(.data, across(c(...), gsub, pattern = "[^0-9.-]", replacement = "")) %>%
-        mutate(across(c(...), as.numeric))
+        as_numeric(...)
     }
     return(results)
   } else{
@@ -320,80 +336,94 @@ remove_strings <- function(.data, ...){
 #' @name utils_num_str
 #' @export
 replace_number <- function(.data,
-                           var,
-                           new_var = new_var,
+                           ...,
                            pattern = NULL,
                            replacement = "",
-                           drop = FALSE,
-                           pull = FALSE,
-                           .before = NULL,
-                           .after  = NULL){
+                           ignore_case = FALSE,
+                           var = "deprecated",
+                           new_var = "deprecated",
+                           drop =  "deprecated",
+                           pull =  "deprecated",
+                           .before =  "deprecated",
+                           .after  =  "deprecated"){
+  if(var != "deprecated"){
+    warning("Argument 'var' is deprecated as of metan 1.10.0")
+  }
+  if(new_var != "deprecated"){
+    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
+  }
+  if(drop != "deprecated"){
+    warning("Argument 'drop' is deprecated as of metan 1.10.0")
+  }
+  if(pull != "deprecated"){
+    warning("Argument 'pull' is deprecated as of metan 1.10.0")
+  }
+  if(.before != "deprecated"){
+    warning("Argument '.before' is deprecated as of metan 1.10.0")
+  }
+  if(.after != "deprecated"){
+    warning("Argument '.after' is deprecated as of metan 1.10.0")
+  }
   if(missing(pattern)){
     pattern <- "[0-9]"
   } else{
     pattern <- pattern
   }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    if (drop == FALSE){
-      results <- .data %>%
-        mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
-      if (!missing(.before) | !missing(.after)){
-        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-      }
-    } else{
-      results <- .data %>%
-        transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}})))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
-    }
+    results <-
+      .data %>%
+      mutate(across(..., ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
     return(results)
   } else{
-    return(gsub(pattern, replacement, .data))
+    return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
   }
 }
 #' @name utils_num_str
 #' @export
 replace_string <- function(.data,
-                           var,
-                           new_var = new_var,
+                           ...,
                            pattern = NULL,
                            replacement = "",
                            ignore_case = FALSE,
-                           drop = FALSE,
-                           pull = FALSE,
-                           .before = NULL,
-                           .after  = NULL){
+                           var = "deprecated",
+                           new_var = "deprecated",
+                           drop =  "deprecated",
+                           pull =  "deprecated",
+                           .before =  "deprecated",
+                           .after  =  "deprecated"){
+  if(var != "deprecated"){
+    warning("Argument 'var' is deprecated as of metan 1.10.0")
+  }
+  if(new_var != "deprecated"){
+    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
+  }
+  if(drop != "deprecated"){
+    warning("Argument 'drop' is deprecated as of metan 1.10.0")
+  }
+  if(pull != "deprecated"){
+    warning("Argument 'pull' is deprecated as of metan 1.10.0")
+  }
+  if(.before != "deprecated"){
+    warning("Argument '.before' is deprecated as of metan 1.10.0")
+  }
+  if(.after != "deprecated"){
+    warning("Argument '.after' is deprecated as of metan 1.10.0")
+  }
   if(missing(pattern)){
     pattern <- "[A-z]"
   } else {
     pattern <- pattern
   }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    if (drop == FALSE){
-      results <- .data %>%
-        mutate({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
-      if (!missing(.before) | !missing(.after)){
-        results <- reorder_cols(results, {{new_var}}, .before = {{.before}}, .after = {{.after}})
-      }
-    } else{
-      results <- .data %>%
-        transmute({{new_var}} := gsub(pattern, replacement, as.character({{var}}), ignore.case = ignore_case))
-      if(pull == TRUE){
-        results <- pull(results)
-      }
-    }
-    return(results)
+      results <-
+        .data %>%
+        mutate(across(..., ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
+      return(results)
   } else{
     return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
   }
 }
+
 #' @name utils_num_str
 #' @export
 #' @importFrom dplyr transmute
@@ -585,8 +615,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #'           .after = GEN) %>%
 #'  replace_string(ENV_GEN,
 #'                 pattern = "H",
-#'                 replacement = "HYB_",
-#'                 .after = ENV_GEN)
+#'                 replacement = "HYB_")
 #'
 #' # Use prefixes and suffixes
 #' concatenate(data_ge2, REP, prefix = "REP", new_var = REP)
@@ -884,12 +913,12 @@ tidy_colnames <- function(.data, sep = "_"){
 #'
 #' @param .data A data frame or a numeric vector.
 #' @param ... The argument depends on the function used.
-#'  * For \code{*_by} functions, \code{...} is one or more categorical variables
+#' * For \code{*_by} functions, \code{...} is one or more categorical variables
 #'  for grouping the data. Then the statistic required will be computed for all
 #'  numeric variables in the data. If no variables are informed in \code{...},
 #'  the statistic will be computed ignoring all non-numeric variables in
 #'  \code{.data}.
-#'  * For the other statistics, \code{...} is a comma-separated of unquoted
+#' * For the other statistics, \code{...} is a comma-separated of unquoted
 #'  variable names to compute the statistics. If no variables are informed in n
 #'  \code{...}, the statistic will be computed for all numeric variables in
 #'  \code{.data}.

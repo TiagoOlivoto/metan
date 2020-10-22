@@ -4,6 +4,7 @@
 * `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor and understand models fitted with `gamem()` and `waasb()` using the `by` argument.
 * `plot.mtsi()` and `plot.mgidi()` now returns a radar plot by default when using `type = "contribution"`.
 * `get_model_data()` now returns the genotypic and phenotypic correlation matrices from objects of class `waasb` and `gamem`.
+* `replace_string()`, `replace_number()`, `extract_string()`, and `extract_number()` now accepts [tidy evaluation](https://tidyeval.tidyverse.org/index.html) in the new `...` argument.
 
 ## New functions
 * `get_dist()` to get distance matrices from objects of class `clustering`.

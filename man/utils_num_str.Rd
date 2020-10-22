@@ -25,22 +25,26 @@ all_title_case(.data, ...)
 
 extract_number(
   .data,
-  var,
-  new_var = new_var,
-  drop = FALSE,
-  pull = FALSE,
-  .before = NULL,
-  .after = NULL
+  ...,
+  pattern = NULL,
+  var = "deprecated",
+  new_var = "deprecated",
+  drop = "deprecated",
+  pull = "deprecated",
+  .before = "deprecated",
+  .after = "deprecated"
 )
 
 extract_string(
   .data,
-  var,
-  new_var = new_var,
-  drop = FALSE,
-  pull = FALSE,
-  .before = NULL,
-  .after = NULL
+  ...,
+  pattern = NULL,
+  var = "deprecated",
+  new_var = "deprecated",
+  drop = "deprecated",
+  pull = "deprecated",
+  .before = "deprecated",
+  .after = "deprecated"
 )
 
 find_text_in_num(.data, ...)
@@ -53,27 +57,30 @@ remove_strings(.data, ...)
 
 replace_number(
   .data,
-  var,
-  new_var = new_var,
+  ...,
   pattern = NULL,
   replacement = "",
-  drop = FALSE,
-  pull = FALSE,
-  .before = NULL,
-  .after = NULL
+  ignore_case = FALSE,
+  var = "deprecated",
+  new_var = "deprecated",
+  drop = "deprecated",
+  pull = "deprecated",
+  .before = "deprecated",
+  .after = "deprecated"
 )
 
 replace_string(
   .data,
-  var,
-  new_var = new_var,
+  ...,
   pattern = NULL,
   replacement = "",
   ignore_case = FALSE,
-  drop = FALSE,
-  pull = FALSE,
-  .before = NULL,
-  .after = NULL
+  var = "deprecated",
+  new_var = "deprecated",
+  drop = "deprecated",
+  pull = "deprecated",
+  .before = "deprecated",
+  .after = "deprecated"
 )
 
 round_cols(.data, ..., digits = 2)
@@ -88,29 +95,24 @@ tidy_strings(.data, ..., sep = "_")
 \item For \code{round_cols()} \code{...} are the variables to round. If no
 variable is informed, all the numeric variables from \code{data} are used.
 \item For \code{all_lower_case()}, \code{all_upper_case()},
-\code{all_title_case()}, \code{remove_strings()}, and \code{tidy_strings()}
-\code{...} are the variables to apply the function. If no variable is
-informed, the function will be applied to all non-numeric variables in
-\code{.data}.
+\code{all_title_case()}, \code{stract_number()}, \code{stract_string()},
+\code{remove_strings()}, and \code{tidy_strings()} \code{...} are the
+variables to apply the function. If no variable is informed, the function
+will be applied to all non-numeric variables in \code{.data}.
 }}
-
-\item{var}{The variable to extract or replace numbers or strings.}
-
-\item{new_var}{The name of the new variable containing the numbers or
-strings extracted or replaced. Defaults to \code{new_var}.}
-
-\item{drop}{Logical argument. If \code{TRUE} keeps the new variable
-\code{new_var} and drops the existing ones. Defaults to \code{FALSE}.}
-
-\item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
-assumption that's the column you've created most recently), as a vector.}
-
-\item{.before, .after}{For \code{replace_sting()}, \code{replace_number()},
-\code{extract_string()}, ,and  \code{extract_number()} one-based column
-index or column name where to add the new columns.}
 
 \item{pattern}{A string to be matched. Regular Expression Syntax is also
 allowed.}
+
+\item{var}{The variable to extract or replace numbers or strings.}
+
+\item{new_var}{Deprecated argument as of metan 1.10.0.}
+
+\item{drop}{Deprecated argument as of metan 1.10.0.}
+
+\item{pull}{Deprecated argument as of metan 1.10.0.}
+
+\item{.before, .after}{Deprecated argument as of metan 1.10.0.}
 
 \item{replacement}{A string for replacement.}
 
@@ -167,33 +169,21 @@ round_cols(data_ge2, EP, digits = 1)
 ########### Extract or replace numbers ##########
 # Extract numbers
 extract_number(data_ge, GEN)
-extract_number(data_ge,
-               var = GEN,
-               drop = TRUE,
-               new_var = g_number)
-
 # Replace numbers
-
 replace_number(data_ge, GEN)
 replace_number(data_ge,
-               var = GEN,
-               pattern = "1",
-               replacement = "_one",
-               pull = TRUE)
+               GEN,
+               pattern = 1,
+               replacement = "_one")
 
 ########## Extract, replace or remove strings ##########
 # Extract strings
 extract_string(data_ge, GEN)
-extract_string(data_ge,
-               var = GEN,
-               drop = TRUE,
-               new_var = g_name)
 
 # Replace strings
 replace_string(data_ge, GEN)
 replace_string(data_ge,
-               var = GEN,
-               new_var = GENOTYPE,
+               GEN,
                pattern = "G",
                replacement = "GENOTYPE_")
 

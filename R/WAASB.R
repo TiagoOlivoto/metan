@@ -657,7 +657,7 @@ waasb <- function(.data,
             genCOEF <- summary(Complete)[["coefficients"]] %>%
                 as_tibble(rownames = NA) %>%
                 rownames_to_column("GEN") %>%
-                replace_string(GEN, pattern = "GEN", new_var = GEN) %>%
+                replace_string(GEN, pattern = "GEN") %>%
                 rename(Y = Estimate) %>%
                 as_factor(1)
             BLUPint <-
