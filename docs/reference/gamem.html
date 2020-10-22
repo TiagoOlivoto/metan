@@ -313,13 +313,16 @@ number of genotypes; <code>OVmean</code>, the grand mean; <code>Min</code>, the 
 observed (returning the genotype and replication/block); <code>Max</code> the
 maximum observed, <code>MinGEN</code> the winner genotype, <code>MaxGEN</code>, the
 loser genotype.</p></li>
-<li><p><strong>ESTIMATES:</strong> A tibble with the values for the genotypic variance,
-block-within-replicate variance (if an alpha-lattice design is used by
-informing the block in <code>block</code>), the residual variance and their
-respective contribution to the phenotypic variance; broad-sence heritability,
-heritability on the entry-mean basis, genotypic coefficient of variation
-residual coefficient of variation and ratio between genotypic and residual
-coefficient of variation.</p></li>
+<li><p><strong>ESTIMATES:</strong> A tibble with the values for: <code>Gen_var</code>, the
+genotypic variance; <code>rep:block_var</code> block-within-replicate variance (if
+an alpha-lattice design is used by informing the block in <code>block</code>);
+<code>Res_var</code>, the residual variance and their respective contribution to
+the phenotypic variance (<code>Gen (%), rep:block (%), and Res (%)</code>);
+<code>H2</code>, broad-sense heritability; <code>h2mg</code>, heritability on the
+entry-mean basis, <code>Accuracy</code>, the accuracy of selection (square root of
+<code>h2mg</code>); <code>CVg</code>, genotypic coefficient of variation; <code>CVr</code>,
+residual coefficient of variation; and <code>CV ratio</code>, the ratio between
+genotypic and residual coefficient of variation.</p></li>
 <li><p><strong>residuals:</strong> The residuals of the model.</p></li>
 <li><p><strong>formula</strong> The formula used to fit the model.</p></li>
 </ul>
