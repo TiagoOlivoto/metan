@@ -11,14 +11,14 @@ This is a minor release (v1.10.0) that add new functions and minor improvements.
 
 
 # R CMD check results (run with --run-donttest --as-cran)
-0 errors | 0 warnings | 1 notes
+0 errors | 0 warnings | 2 notes
 
-> 
-checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
-Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>'
+* checking CRAN incoming feasibility ... Note_to_CRAN_maintainers Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>'
 
-**I think the following note doesn't matter.**
+   - I think the following note doesn't matter.
 
+* checking top-level files ... NOTE Files 'README.md' or 'NEWS.md' cannot be checked without 'pandoc' being installed.
+   - I can put these in `.Rbuildignore` but CRAN supports `NEWS.md` now.
 
 
 
