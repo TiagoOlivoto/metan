@@ -23,10 +23,10 @@ to_factor(.data, ...)
 as_factor(.data, ..., .keep = "all", .pull = FALSE)
 }
 \arguments{
-\item{.data}{A data frame}
+\item{.data}{A data frame or a vector.}
 
-\item{...}{<\code{\link[=dplyr_tidy_select]{tidy-select}}>. The variable(s) to encode to
-a format.}
+\item{...}{<\code{\link[=dplyr_tidy_select]{tidy-select}}>. If \code{.data} is a data
+frame, then \code{...} are the variable(s) to encode to a format.}
 
 \item{.keep}{Allows you to control which columns from \code{.data} are
 retained in the output.
@@ -44,7 +44,7 @@ An object of the same class of \code{.data} with the variables in
 \code{...} encoded to the specified format.
 }
 \description{
-Function to quick encode columns to a specific format.
+Function to quick encode vector or columns to a specific format.
 \itemize{
 \item \code{as_numeric()}: Encode columns to numeric using
 \code{\link{as.numeric}()}.
@@ -72,6 +72,7 @@ df
 
 # Convert y to integer
 as_integer(df, y)
+as_integer(df$y)
 
 # convert x3 to factor
 as_factor(df, x3)

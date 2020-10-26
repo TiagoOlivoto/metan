@@ -1,6 +1,6 @@
 #' @title Encode variables to a specific format
 #'
-#' @description Function to quick encode columns to a specific format.
+#' @description Function to quick encode vector or columns to a specific format.
 #' * \code{as_numeric()}: Encode columns to numeric using
 #' \code{\link{as.numeric}()}.
 #' * \code{as_integer()}: Encode columns to integer using
@@ -13,9 +13,9 @@
 #' \code{\link{as.factor}()}.
 #'
 #' @name utils_as
-#' @param .data A data frame
-#' @param ... <[`tidy-select`][dplyr_tidy_select]>. The variable(s) to encode to
-#'   a format.
+#' @param .data A data frame or a vector.
+#' @param ... <[`tidy-select`][dplyr_tidy_select]>. If \code{.data} is a data
+#'   frame, then \code{...} are the variable(s) to encode to a format.
 #' @return An object of the same class of \code{.data} with the variables in
 #'   \code{...} encoded to the specified format.
 #' @param .keep Allows you to control which columns from \code{.data} are
@@ -42,6 +42,7 @@
 #'
 #' # Convert y to integer
 #' as_integer(df, y)
+#' as_integer(df$y)
 #'
 #' # convert x3 to factor
 #' as_factor(df, x3)
@@ -54,38 +55,54 @@
 #' }
 #'
 as_numeric <- function(.data, ..., .keep = "all", .pull = FALSE){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     res <- mutate(.data, across(c(...), as.numeric), .keep = .keep)
     if (.pull == TRUE){
       res <- pull(res)
     }
-return(res)
+    return(res)
+  } else{
+    return(as.numeric(.data))
+  }
 }
 #' @name utils_as
 #' @export
 as_integer <- function(.data, ..., .keep = "all", .pull = FALSE){
-  res <- mutate(.data, across(c(...), as.integer), .keep = .keep)
-  if (.pull == TRUE){
-    res <- pull(res)
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    res <- mutate(.data, across(c(...), as.integer), .keep = .keep)
+    if (.pull == TRUE){
+      res <- pull(res)
+    }
+    return(res)
+  } else{
+    return(as.integer(.data))
   }
-  return(res)
 }
 #' @name utils_as
 #' @export
 as_logical <- function(.data, ..., .keep = "all", .pull = FALSE){
-  res <- mutate(.data, across(c(...), as.logical), .keep = .keep)
-  if (.pull == TRUE){
-    res <- pull(res)
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    res <- mutate(.data, across(c(...), as.logical), .keep = .keep)
+    if (.pull == TRUE){
+      res <- pull(res)
+    }
+    return(res)
+  } else{
+    return(as.logical(.data))
   }
-  return(res)
 }
 #' @name utils_as
 #' @export
 as_character <-function(.data, ..., .keep = "all", .pull = FALSE){
-  res <- mutate(.data, across(c(...), as.character), .keep = .keep)
-  if (.pull == TRUE){
-    res <- pull(res)
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    res <- mutate(.data, across(c(...), as.character), .keep = .keep)
+    if (.pull == TRUE){
+      res <- pull(res)
+    }
+    return(res)
+  } else{
+    return(as.character(.data))
   }
-  return(res)
 }
 #' @name utils_as
 #' @export
@@ -96,10 +113,13 @@ to_factor <- function(.data, ...){
 #' @name utils_as
 #' @export
 as_factor <- function(.data, ..., .keep = "all", .pull = FALSE){
-  res <- mutate(.data, across(c(...), as.factor), .keep = .keep)
-  if (.pull == TRUE){
-    res <- pull(res)
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    res <- mutate(.data, across(c(...), as.factor), .keep = .keep)
+    if (.pull == TRUE){
+      res <- pull(res)
+    }
+    return(res)
+  } else{
+    return(as.factor(.data))
   }
-  return(res)
 }
-

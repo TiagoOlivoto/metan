@@ -1,3 +1,6 @@
+# metan (development version)
+* `as_*()` now handles vectors.
+
 # metan 1.10.0
 ## Minor improvements
 * `gamem()`, `gamem_met()`, and `waasb()` now have a `by` argument and understand data passed from `group_by`.
