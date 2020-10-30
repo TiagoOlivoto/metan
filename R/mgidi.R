@@ -252,7 +252,7 @@ mgidi <- function(.data,
     data_order <- data[colnames(observed)]
     sel_dif_mean <-
       tibble(VAR = names(pos.var.factor[, 2]),
-             Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
+             Factor = paste("FA", as.numeric(pos.var.factor[, 2]), sep = ""),
              Xo = colMeans(data_order, na.rm = TRUE),
              Xs = colMeans(data_order[selected, ], na.rm = TRUE),
              SD = Xs - colMeans(data_order, na.rm = TRUE),

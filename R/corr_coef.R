@@ -121,14 +121,14 @@ print.corr_coef <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
     file.name <- ifelse(is.null(file.name) == TRUE, "corr_coef print", file.name)
     sink(paste0(file.name, ".txt"))
   }
-    cat("---------------------------------------------------------------------------\n")
-    cat("Pearson's correlation coefficient\n")
-    cat("---------------------------------------------------------------------------\n")
-    print(x$cor, digits = digits)
-    cat("---------------------------------------------------------------------------\n")
-    cat("p-values for the correlation coefficients\n")
-    cat("---------------------------------------------------------------------------\n")
-    print(x$pval, digits = digits)
+  cat("---------------------------------------------------------------------------\n")
+  cat("Pearson's correlation coefficient\n")
+  cat("---------------------------------------------------------------------------\n")
+  print(x$cor, digits = digits)
+  cat("---------------------------------------------------------------------------\n")
+  cat("p-values for the correlation coefficients\n")
+  cat("---------------------------------------------------------------------------\n")
+  print(x$pval, digits = digits)
   cat("\n\n\n")
   if (export == TRUE) {
     sink()
@@ -151,8 +151,14 @@ NULL
 #'   triangular heat map.
 #' @param diag Plot diagonal elements? Defaults to \code{FALSE}.
 #' @param reorder Reorder the correlation matrix to identify the hidden pattern?
-#'   Defaults to \code{FALSE}.
-#' @param digits The digits to show in the heat map.
+#'   Defaults to \code{TRUE}.
+#' @param signif How to show significant correlations. If \code{"stars"} is used
+#'   (default), stars are used showing the significance at 0.05 ("*"), 0.01
+#'   ("**") and 0.001 ("***") probability error. If \code{signif = "pval"}, then
+#'   the p-values are shown.
+#' @param digits Deprecated. Use \code{digits.cor} instead.
+#' @param digits.cor,digits.pval The significant digits to show for correlations
+#'   and p-values, respectively.
 #' @param col.low,col.mid,col.high The color for the low (-1), mid(0) and high
 #'   (1) points in the color key. Defaults to \code{blue}, \code{white}, and
 #'   \code{red}, respectively.
@@ -162,10 +168,11 @@ NULL
 #' @param legend.position The legend position in the plot.
 #' @param legend.title The title of the color key. Defaults to \code{"Pearson's
 #'   Correlation"}.
-#' @param size.text.plot,size.text.lab The size of the text in plot area
-#'   (Defaults to \code{3}) and labels (Defaults to \code{10}), respectively.
-#'   triangle heatmap.
-#' @param ... Not used currently.
+#' @param size.text.plot Deprecated. use \code{size.text.cor} instead.
+#' @param size.text.cor The size of the text for correlation values. Defaults to 3.
+#' @param size.text.signif The size of the text for significance values (stars or p-values). Defaults to 3.
+#' @param size.text.lab The size of the text for labels. Defaults to 10.
+#' @param ... Currently not used.
 #' @method plot corr_coef
 #' @return An object of class \code{gg, ggplot}
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -191,7 +198,10 @@ plot.corr_coef <- function(x,
                            type = "lower",
                            diag = FALSE,
                            reorder = TRUE,
-                           digits = 2,
+                           signif = "stars",
+                           digits = "deprecated",
+                           digits.cor = 2,
+                           digits.pval = 3,
                            col.low = "blue",
                            col.mid = "white",
                            col.high = "red",
@@ -199,9 +209,22 @@ plot.corr_coef <- function(x,
                            lab.y.position = NULL,
                            legend.position = NULL,
                            legend.title = "Pearson's\nCorrelation",
-                           size.text.plot = 3,
+                           size.text.plot = "deprecated",
+                           size.text.cor = 3,
+                           size.text.signif = 3,
                            size.text.lab = 10,
                            ...){
+  if(size.text.plot != "deprecated"){
+    warning("The argument 'size.text.plot' is deprecated as of metan 1.10.0. Use 'size.text.cor' instead")
+    size.text.cor <- size.text.plot
+  }
+  if(digits != "deprecated"){
+    warning("The argument 'digits' is deprecated as of metan 1.10.0. Use 'digits.cor' instead")
+    digits.cor <- digits
+  }
+  if(!signif %in% c("stars", "pval")){
+    stop("The argument 'signif' must be one of 'stars' or 'pval'.")
+  }
   pval <- x$pval
   correl <- x$cor
   if(reorder == TRUE){
@@ -216,18 +239,27 @@ plot.corr_coef <- function(x,
     pval <- make_upper_tri(pval)
     correl <- make_upper_tri(correl)
   }
-  bind_data <- expand.grid(dimnames(correl)) %>%
-    mutate(cor = as.vector(correl),
-           pval = as.vector(pval),
-           pval_star <- case_when(
-             pval < 0.001 ~ "***",
-             between(pval, 0.001, 0.01) ~ "**",
-             between(pval, 0.01, 0.05) ~ "*",
-             pval == NA ~ "",
-             FALSE  ~ ""
-           )) %>%
-    set_names("v1", "v2", "cor", "pval", "pval_star") %>%
-    dplyr::filter(!is.na(pval))
+  if(signif == "stars"){
+    bind_data <- expand.grid(dimnames(correl)) %>%
+      mutate(cor = as.vector(correl),
+             pval = as.vector(pval),
+             pval_star <- case_when(
+               pval < 0.001 ~ "***",
+               between(pval, 0.001, 0.01) ~ "**",
+               between(pval, 0.01, 0.05) ~ "*",
+               pval == NA ~ "",
+               FALSE  ~ ""
+             )) %>%
+      set_names("v1", "v2", "cor", "pval", "pval_star") %>%
+      dplyr::filter(!is.na(pval))
+  } else{
+    bind_data <-
+      expand.grid(dimnames(correl)) %>%
+      mutate(cor = as.vector(correl),
+             pval_star = as.vector(signif(pval, digits = digits.pval))) %>%
+      set_names("v1", "v2", "cor", "pval_star") %>%
+      dplyr::filter(!is.na(pval_star))
+  }
 
   if(diag == FALSE){
     bind_data <- dplyr::filter(bind_data, !v1 == v2)
@@ -254,12 +286,12 @@ plot.corr_coef <- function(x,
     ggplot(bind_data, aes(v1, v2, fill = cor)) +
     geom_tile(aes(fill = cor),
               colour = "white") +
-    geom_text(aes(label = round(cor, digits)),
+    geom_text(aes(label = round(cor, digits.cor)),
               vjust = 0,
-              size = size.text.plot) +
+              size = size.text.cor) +
     geom_text(aes(label = pval_star),
               vjust = 1.5,
-              size = size.text.plot)+
+              size = size.text.signif)+
     scale_fill_gradient2(low = col.low,
                          high = col.high,
                          mid = col.mid,
@@ -289,6 +321,5 @@ plot.corr_coef <- function(x,
                                  barheight = 1,
                                  title.position = "top",
                                  title.hjust = 0.5))
- suppressWarnings(return(p))
+  suppressWarnings(return(p))
 }
-

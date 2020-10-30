@@ -9,7 +9,10 @@
   type = "lower",
   diag = FALSE,
   reorder = TRUE,
-  digits = 2,
+  signif = "stars",
+  digits = "deprecated",
+  digits.cor = 2,
+  digits.pval = 3,
   col.low = "blue",
   col.mid = "white",
   col.high = "red",
@@ -17,7 +20,9 @@
   lab.y.position = NULL,
   legend.position = NULL,
   legend.title = "Pearson's\\nCorrelation",
-  size.text.plot = 3,
+  size.text.plot = "deprecated",
+  size.text.cor = 3,
+  size.text.signif = 3,
   size.text.lab = 10,
   ...
 )
@@ -32,9 +37,17 @@ triangular heat map.}
 \item{diag}{Plot diagonal elements? Defaults to \code{FALSE}.}
 
 \item{reorder}{Reorder the correlation matrix to identify the hidden pattern?
-Defaults to \code{FALSE}.}
+Defaults to \code{TRUE}.}
 
-\item{digits}{The digits to show in the heat map.}
+\item{signif}{How to show significant correlations. If \code{"stars"} is used
+(default), stars are used showing the significance at 0.05 ("*"), 0.01
+("**") and 0.001 ("***") probability error. If \code{signif = "pval"}, then
+the p-values are shown.}
+
+\item{digits}{Deprecated. Use \code{digits.cor} instead.}
+
+\item{digits.cor, digits.pval}{The significant digits to show for correlations
+and p-values, respectively.}
 
 \item{col.low, col.mid, col.high}{The color for the low (-1), mid(0) and high
 (1) points in the color key. Defaults to \code{blue}, \code{white}, and
@@ -49,11 +62,15 @@ Defaults to \code{"bottom"} and \code{"right"} if \code{type = "lower"} or
 \item{legend.title}{The title of the color key. Defaults to \code{"Pearson's
 Correlation"}.}
 
-\item{size.text.plot, size.text.lab}{The size of the text in plot area
-(Defaults to \code{3}) and labels (Defaults to \code{10}), respectively.
-triangle heatmap.}
+\item{size.text.plot}{Deprecated. use \code{size.text.cor} instead.}
 
-\item{...}{Not used currently.}
+\item{size.text.cor}{The size of the text for correlation values. Defaults to 3.}
+
+\item{size.text.signif}{The size of the text for significance values (stars or p-values). Defaults to 3.}
+
+\item{size.text.lab}{The size of the text for labels. Defaults to 10.}
+
+\item{...}{Currently not used.}
 }
 \value{
 An object of class \code{gg, ggplot}
