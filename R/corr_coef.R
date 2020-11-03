@@ -156,6 +156,8 @@ NULL
 #'   (default), stars are used showing the significance at 0.05 ("*"), 0.01
 #'   ("**") and 0.001 ("***") probability error. If \code{signif = "pval"}, then
 #'   the p-values are shown.
+#' @param caption Logical. If \code{TRUE} (Default) includes a caption with the
+#'   significance meaning for stars.
 #' @param digits Deprecated. Use \code{digits.cor} instead.
 #' @param digits.cor,digits.pval The significant digits to show for correlations
 #'   and p-values, respectively.
@@ -199,6 +201,7 @@ plot.corr_coef <- function(x,
                            diag = FALSE,
                            reorder = TRUE,
                            signif = "stars",
+                           caption = TRUE,
                            digits = "deprecated",
                            digits.cor = 2,
                            digits.pval = 3,
@@ -321,5 +324,9 @@ plot.corr_coef <- function(x,
                                  barheight = 1,
                                  title.position = "top",
                                  title.hjust = 0.5))
+  if(signif == "stars" & caption == TRUE){
+    p <-
+      p + labs(caption = c("* p < 0.05; ** p < 0.01; and *** p < 0.001"))
+  }
   suppressWarnings(return(p))
 }

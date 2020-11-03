@@ -10,6 +10,7 @@
   diag = FALSE,
   reorder = TRUE,
   signif = "stars",
+  caption = TRUE,
   digits = "deprecated",
   digits.cor = 2,
   digits.pval = 3,
@@ -43,6 +44,9 @@ Defaults to \code{TRUE}.}
 (default), stars are used showing the significance at 0.05 ("*"), 0.01
 ("**") and 0.001 ("***") probability error. If \code{signif = "pval"}, then
 the p-values are shown.}
+
+\item{caption}{Logical. If \code{TRUE} (Default) includes a caption with the
+significance meaning for stars.}
 
 \item{digits}{Deprecated. Use \code{digits.cor} instead.}
 
