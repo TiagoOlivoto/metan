@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
       </span>
     </div>
 
@@ -238,7 +238,11 @@
   type <span class='op'>=</span> <span class='st'>"lower"</span>,
   diag <span class='op'>=</span> <span class='cn'>FALSE</span>,
   reorder <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  digits <span class='op'>=</span> <span class='fl'>2</span>,
+  signif <span class='op'>=</span> <span class='st'>"stars"</span>,
+  caption <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  digits <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  digits.cor <span class='op'>=</span> <span class='fl'>2</span>,
+  digits.pval <span class='op'>=</span> <span class='fl'>3</span>,
   col.low <span class='op'>=</span> <span class='st'>"blue"</span>,
   col.mid <span class='op'>=</span> <span class='st'>"white"</span>,
   col.high <span class='op'>=</span> <span class='st'>"red"</span>,
@@ -246,7 +250,9 @@
   lab.y.position <span class='op'>=</span> <span class='cn'>NULL</span>,
   legend.position <span class='op'>=</span> <span class='cn'>NULL</span>,
   legend.title <span class='op'>=</span> <span class='st'>"Pearson's\nCorrelation"</span>,
-  size.text.plot <span class='op'>=</span> <span class='fl'>3</span>,
+  size.text.plot <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  size.text.cor <span class='op'>=</span> <span class='fl'>3</span>,
+  size.text.signif <span class='op'>=</span> <span class='fl'>3</span>,
   size.text.lab <span class='op'>=</span> <span class='fl'>10</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -271,11 +277,28 @@ triangular heat map.</p></td>
     <tr>
       <th>reorder</th>
       <td><p>Reorder the correlation matrix to identify the hidden pattern?
-Defaults to <code>FALSE</code>.</p></td>
+Defaults to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>signif</th>
+      <td><p>How to show significant correlations. If <code>"stars"</code> is used
+(default), stars are used showing the significance at 0.05 ("*"), 0.01
+("**") and 0.001 ("***") probability error. If <code>signif = "pval"</code>, then
+the p-values are shown.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>Logical. If <code>TRUE</code> (Default) includes a caption with the
+significance meaning for stars.</p></td>
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>The digits to show in the heat map.</p></td>
+      <td><p>Deprecated. Use <code>digits.cor</code> instead.</p></td>
+    </tr>
+    <tr>
+      <th>digits.cor, digits.pval</th>
+      <td><p>The significant digits to show for correlations
+and p-values, respectively.</p></td>
     </tr>
     <tr>
       <th>col.low, col.mid, col.high</th>
@@ -299,14 +322,24 @@ Defaults to <code>"bottom"</code> and <code>"right"</code> if <code>type = "lowe
 Correlation"</code>.</p></td>
     </tr>
     <tr>
-      <th>size.text.plot, size.text.lab</th>
-      <td><p>The size of the text in plot area
-(Defaults to <code>3</code>) and labels (Defaults to <code>10</code>), respectively.
-triangle heatmap.</p></td>
+      <th>size.text.plot</th>
+      <td><p>Deprecated. use <code>size.text.cor</code> instead.</p></td>
+    </tr>
+    <tr>
+      <th>size.text.cor</th>
+      <td><p>The size of the text for correlation values. Defaults to 3.</p></td>
+    </tr>
+    <tr>
+      <th>size.text.signif</th>
+      <td><p>The size of the text for significance values (stars or p-values). Defaults to 3.</p></td>
+    </tr>
+    <tr>
+      <th>size.text.lab</th>
+      <td><p>The size of the text for labels. Defaults to 10.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Not used currently.</p></td>
+      <td><p>Currently not used.</p></td>
     </tr>
     </table>
 
@@ -332,7 +365,7 @@ triangle heatmap.</p></td>
      reorder <span class='op'>=</span> <span class='cn'>FALSE</span>,
      size.text.lab <span class='op'>=</span> <span class='fl'>14</span>,
      size.text.plot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='img'><img src='plot.corr_coef-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: The argument 'size.text.plot' is deprecated as of metan 1.10.0. Use 'size.text.cor' instead</span></div><div class='img'><img src='plot.corr_coef-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

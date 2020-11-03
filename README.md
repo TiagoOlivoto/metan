@@ -34,7 +34,7 @@ parametric and non-parametric methods. The package will help you to:
     [within-environment](https://tiagoolivoto.github.io/metan/reference/anova_ind.html)
     and [joint-analysis of
     variance](https://tiagoolivoto.github.io/metan/reference/anova_joint.html);
-  - Compute[AMMI
+  - Compute [AMMI
     analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html)
     with prediction considering different numbers of interaction
     principal component axes;
@@ -46,10 +46,11 @@ parametric and non-parametric methods. The package will help you to:
     [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html) and
     [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html)
     biplot analysis;
-  - Compute[BLUP-based stability
+  - Compute [BLUP-based stability
     indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);
   - Compute variance components and genetic parameters in [single
-    environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)and
+    environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)
+    and
     [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html)
     trials using mixed-effect models;
   - Perform cross-validation procedures for
@@ -57,7 +58,7 @@ parametric and non-parametric methods. The package will help you to:
     and
     [BLUP](https://tiagoolivoto.github.io/metan/reference/cv_blup.html)
     models;
-  - Compute parametric and nonparametric[stability
+  - Compute parametric and nonparametric [stability
     statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
   - Implement [biometrical
     models](https://tiagoolivoto.github.io/metan/reference/index.html#section-biometry).

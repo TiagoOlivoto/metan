@@ -30,14 +30,14 @@ knitr::opts_chunk$set(
 -   Manipulate [`NA`s and `0`s](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html);
 -   Compute [descriptive statistics](https://tiagoolivoto.github.io/metan/reference/desc_stat.html);
 -   Compute [within-environment](https://tiagoolivoto.github.io/metan/reference/anova_ind.html) and [joint-analysis of variance](https://tiagoolivoto.github.io/metan/reference/anova_joint.html);
--   Compute[AMMI analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) with prediction considering different numbers of interaction principal component axes;
+-   Compute [AMMI analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) with prediction considering different numbers of interaction principal component axes;
 -   Compute [AMMI-based stability indexes](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html);
 -   Compute [GGE biplot analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
 -   Compute [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html) and [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html) biplot analysis;
--   Compute[BLUP-based stability indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);
--   Compute variance components and genetic parameters in [single environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)and [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html) trials using mixed-effect models;
+-   Compute [BLUP-based stability indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);
+-   Compute variance components and genetic parameters in [single environment](https://tiagoolivoto.github.io/metan/reference/gamem.html) and [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html) trials using mixed-effect models;
 -   Perform cross-validation procedures for [AMMI-family](https://tiagoolivoto.github.io/metan/reference/cv_ammif.html) and [BLUP](https://tiagoolivoto.github.io/metan/reference/cv_blup.html) models;
--   Compute parametric and nonparametric[stability statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
+-   Compute parametric and nonparametric [stability statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
 -   Implement [biometrical models](https://tiagoolivoto.github.io/metan/reference/index.html#section-biometry).
 
 # Installation

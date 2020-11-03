@@ -127,7 +127,7 @@ tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
       </span>
     </div>
 
@@ -302,22 +302,26 @@ level in plant breeding trials, e.g., environment 1) is subjected to
 
 <span class='fu'>extract_number</span><span class='op'>(</span>
   <span class='va'>.data</span>,
-  <span class='va'>var</span>,
-  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
-  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
-  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+  <span class='va'>...</span>,
+  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
+  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
 <span class='op'>)</span>
 
 <span class='fu'>extract_string</span><span class='op'>(</span>
   <span class='va'>.data</span>,
-  <span class='va'>var</span>,
-  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
-  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
-  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+  <span class='va'>...</span>,
+  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
+  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
 <span class='op'>)</span>
 
 <span class='fu'>find_text_in_num</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -330,27 +334,30 @@ level in plant breeding trials, e.g., environment 1) is subjected to
 
 <span class='fu'>replace_number</span><span class='op'>(</span>
   <span class='va'>.data</span>,
-  <span class='va'>var</span>,
-  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  <span class='va'>...</span>,
   pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
   replacement <span class='op'>=</span> <span class='st'>""</span>,
-  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
-  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
 <span class='op'>)</span>
 
 <span class='fu'>replace_string</span><span class='op'>(</span>
   <span class='va'>.data</span>,
-  <span class='va'>var</span>,
-  new_var <span class='op'>=</span> <span class='va'>new_var</span>,
+  <span class='va'>...</span>,
   pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
   replacement <span class='op'>=</span> <span class='st'>""</span>,
   ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  drop <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  pull <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  .before <span class='op'>=</span> <span class='cn'>NULL</span>,
-  .after <span class='op'>=</span> <span class='cn'>NULL</span>
+  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
 <span class='op'>)</span>
 
 <span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
@@ -370,11 +377,16 @@ level in plant breeding trials, e.g., environment 1) is subjected to
 <li><p>For <code>round_cols()</code> <code>...</code> are the variables to round. If no
 variable is informed, all the numeric variables from <code>data</code> are used.</p></li>
 <li><p>For <code>all_lower_case()</code>, <code>all_upper_case()</code>,
-<code>all_title_case()</code>, <code>remove_strings()</code>, and <code>tidy_strings()</code>
-<code>...</code> are the variables to apply the function. If no variable is
-informed, the function will be applied to all non-numeric variables in
-<code>.data</code>.</p></li>
+<code>all_title_case()</code>, <code>stract_number()</code>, <code>stract_string()</code>,
+<code>remove_strings()</code>, and <code>tidy_strings()</code> <code>...</code> are the
+variables to apply the function. If no variable is informed, the function
+will be applied to all non-numeric variables in <code>.data</code>.</p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>pattern</th>
+      <td><p>A string to be matched. Regular Expression Syntax is also
+allowed.</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -382,29 +394,19 @@ informed, the function will be applied to all non-numeric variables in
     </tr>
     <tr>
       <th>new_var</th>
-      <td><p>The name of the new variable containing the numbers or
-strings extracted or replaced. Defaults to <code>new_var</code>.</p></td>
+      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
     </tr>
     <tr>
       <th>drop</th>
-      <td><p>Logical argument. If <code>TRUE</code> keeps the new variable
-<code>new_var</code> and drops the existing ones. Defaults to <code>FALSE</code>.</p></td>
+      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
     </tr>
     <tr>
       <th>pull</th>
-      <td><p>Logical argument. If <code>TRUE</code>, returns the last column (on the
-assumption that's the column you've created most recently), as a vector.</p></td>
+      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
     </tr>
     <tr>
       <th>.before, .after</th>
-      <td><p>For <code>replace_sting()</code>, <code>replace_number()</code>,
-<code>extract_string()</code>, ,and  <code>extract_number()</code> one-based column
-index or column name where to add the new columns.</p></td>
-    </tr>
-    <tr>
-      <th>pattern</th>
-      <td><p>A string to be matched. Regular Expression Syntax is also
-allowed.</p></td>
+      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
     </tr>
     <tr>
       <th>replacement</th>
@@ -471,178 +473,101 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 <span class='co'>########### Extract or replace numbers ##########</span>
 <span class='co'># Extract numbers</span>
 <span class='fu'>extract_number</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
-#&gt;    ENV   GEN   REP      GY    HM new_var
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1      2.17  44.9       1
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2      2.50  46.9       1
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3      2.43  47.8       1
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2       2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3       2
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5       2
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7       3
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2       3
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8       3
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9       4
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_number</span><span class='op'>(</span><span class='va'>data_ge</span>,
-               var <span class='op'>=</span> <span class='va'>GEN</span>,
-               drop <span class='op'>=</span> <span class='cn'>TRUE</span>,
-               new_var <span class='op'>=</span> <span class='va'>g_number</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
-#&gt;    g_number
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>        1
-#&gt; </span><span style='color: #555555;'> 2</span><span>        1
-#&gt; </span><span style='color: #555555;'> 3</span><span>        1
-#&gt; </span><span style='color: #555555;'> 4</span><span>        2
-#&gt; </span><span style='color: #555555;'> 5</span><span>        2
-#&gt; </span><span style='color: #555555;'> 6</span><span>        2
-#&gt; </span><span style='color: #555555;'> 7</span><span>        3
-#&gt; </span><span style='color: #555555;'> 8</span><span>        3
-#&gt; </span><span style='color: #555555;'> 9</span><span>        3
-#&gt; </span><span style='color: #555555;'>10</span><span>        4
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
-<span class='co'># Replace numbers</span>
-
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV     GEN REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1        1 1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1        1 2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1        1 3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1        2 1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1        2 2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1        2 3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1        3 1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1        3 2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1        3 3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span> E1        4 1      2.36  47.9
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># Replace numbers</span>
 <span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
-#&gt;    ENV   GEN   REP      GY    HM new_var
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1      2.17  44.9 G      
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2      2.50  46.9 G      
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3      2.43  47.8 G      
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2 G      
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3 G      
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5 G      
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7 G      
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 G      
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 G      
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 G      
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV   GEN   REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G     1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G     2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G     3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G     1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G     2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G     3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G     1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G     2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G     3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G     1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>,
-               var <span class='op'>=</span> <span class='va'>GEN</span>,
-               pattern <span class='op'>=</span> <span class='st'>"1"</span>,
-               replacement <span class='op'>=</span> <span class='st'>"_one"</span>,
-               pull <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1] "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"    
-#&gt;   [9] "G3"     "G4"     "G4"     "G4"     "G5"     "G5"     "G5"     "G6"    
-#&gt;  [17] "G6"     "G6"     "G7"     "G7"     "G7"     "G8"     "G8"     "G8"    
-#&gt;  [25] "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one" 
-#&gt;  [33] "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"     "G3"     "G4"    
-#&gt;  [41] "G4"     "G4"     "G5"     "G5"     "G5"     "G6"     "G6"     "G6"    
-#&gt;  [49] "G7"     "G7"     "G7"     "G8"     "G8"     "G8"     "G9"     "G9"    
-#&gt;  [57] "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one"  "G_one"  "G2"    
-#&gt;  [65] "G2"     "G2"     "G3"     "G3"     "G3"     "G4"     "G4"     "G4"    
-#&gt;  [73] "G5"     "G5"     "G5"     "G6"     "G6"     "G6"     "G7"     "G7"    
-#&gt;  [81] "G7"     "G8"     "G8"     "G8"     "G9"     "G9"     "G9"     "G_one0"
-#&gt;  [89] "G_one0" "G_one0" "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"    
-#&gt;  [97] "G3"     "G3"     "G3"     "G4"     "G4"     "G4"     "G5"     "G5"    
-#&gt; [105] "G5"     "G6"     "G6"     "G6"     "G7"     "G7"     "G7"     "G8"    
-#&gt; [113] "G8"     "G8"     "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0"
-#&gt; [121] "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"    
-#&gt; [129] "G3"     "G4"     "G4"     "G4"     "G5"     "G5"     "G5"     "G6"    
-#&gt; [137] "G6"     "G6"     "G7"     "G7"     "G7"     "G8"     "G8"     "G8"    
-#&gt; [145] "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one" 
-#&gt; [153] "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"     "G3"     "G4"    
-#&gt; [161] "G4"     "G4"     "G5"     "G5"     "G5"     "G6"     "G6"     "G6"    
-#&gt; [169] "G7"     "G7"     "G7"     "G8"     "G8"     "G8"     "G9"     "G9"    
-#&gt; [177] "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one"  "G_one"  "G2"    
-#&gt; [185] "G2"     "G2"     "G3"     "G3"     "G3"     "G4"     "G4"     "G4"    
-#&gt; [193] "G5"     "G5"     "G5"     "G6"     "G6"     "G6"     "G7"     "G7"    
-#&gt; [201] "G7"     "G8"     "G8"     "G8"     "G9"     "G9"     "G9"     "G_one0"
-#&gt; [209] "G_one0" "G_one0" "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"    
-#&gt; [217] "G3"     "G3"     "G3"     "G4"     "G4"     "G4"     "G5"     "G5"    
-#&gt; [225] "G5"     "G6"     "G6"     "G6"     "G7"     "G7"     "G7"     "G8"    
-#&gt; [233] "G8"     "G8"     "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0"
-#&gt; [241] "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"    
-#&gt; [249] "G3"     "G4"     "G4"     "G4"     "G5"     "G5"     "G5"     "G6"    
-#&gt; [257] "G6"     "G6"     "G7"     "G7"     "G7"     "G8"     "G8"     "G8"    
-#&gt; [265] "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one" 
-#&gt; [273] "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"     "G3"     "G4"    
-#&gt; [281] "G4"     "G4"     "G5"     "G5"     "G5"     "G6"     "G6"     "G6"    
-#&gt; [289] "G7"     "G7"     "G7"     "G8"     "G8"     "G8"     "G9"     "G9"    
-#&gt; [297] "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one"  "G_one"  "G2"    
-#&gt; [305] "G2"     "G2"     "G3"     "G3"     "G3"     "G4"     "G4"     "G4"    
-#&gt; [313] "G5"     "G5"     "G5"     "G6"     "G6"     "G6"     "G7"     "G7"    
-#&gt; [321] "G7"     "G8"     "G8"     "G8"     "G9"     "G9"     "G9"     "G_one0"
-#&gt; [329] "G_one0" "G_one0" "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"    
-#&gt; [337] "G3"     "G3"     "G3"     "G4"     "G4"     "G4"     "G5"     "G5"    
-#&gt; [345] "G5"     "G6"     "G6"     "G6"     "G7"     "G7"     "G7"     "G8"    
-#&gt; [353] "G8"     "G8"     "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0"
-#&gt; [361] "G_one"  "G_one"  "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"    
-#&gt; [369] "G3"     "G4"     "G4"     "G4"     "G5"     "G5"     "G5"     "G6"    
-#&gt; [377] "G6"     "G6"     "G7"     "G7"     "G7"     "G8"     "G8"     "G8"    
-#&gt; [385] "G9"     "G9"     "G9"     "G_one0" "G_one0" "G_one0" "G_one"  "G_one" 
-#&gt; [393] "G_one"  "G2"     "G2"     "G2"     "G3"     "G3"     "G3"     "G4"    
-#&gt; [401] "G4"     "G4"     "G5"     "G5"     "G5"     "G6"     "G6"     "G6"    
-#&gt; [409] "G7"     "G7"     "G7"     "G8"     "G8"     "G8"     "G9"     "G9"    
-#&gt; [417] "G9"     "G_one0" "G_one0" "G_one0"</div><div class='input'>
+               <span class='va'>GEN</span>,
+               pattern <span class='op'>=</span> <span class='fl'>1</span>,
+               replacement <span class='op'>=</span> <span class='st'>"_one"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV   GEN   REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G_one 1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G_one 2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G_one 3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9
+#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'>########## Extract, replace or remove strings ##########</span>
 <span class='co'># Extract strings</span>
 <span class='fu'>extract_string</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
-#&gt;    ENV   GEN   REP      GY    HM new_var
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1      2.17  44.9 G      
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2      2.50  46.9 G      
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3      2.43  47.8 G      
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2 G      
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3 G      
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5 G      
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7 G      
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 G      
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 G      
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 G      
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>extract_string</span><span class='op'>(</span><span class='va'>data_ge</span>,
-               var <span class='op'>=</span> <span class='va'>GEN</span>,
-               drop <span class='op'>=</span> <span class='cn'>TRUE</span>,
-               new_var <span class='op'>=</span> <span class='va'>g_name</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 1</span><span>
-#&gt;    g_name
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'> 1</span><span> G     
-#&gt; </span><span style='color: #555555;'> 2</span><span> G     
-#&gt; </span><span style='color: #555555;'> 3</span><span> G     
-#&gt; </span><span style='color: #555555;'> 4</span><span> G     
-#&gt; </span><span style='color: #555555;'> 5</span><span> G     
-#&gt; </span><span style='color: #555555;'> 6</span><span> G     
-#&gt; </span><span style='color: #555555;'> 7</span><span> G     
-#&gt; </span><span style='color: #555555;'> 8</span><span> G     
-#&gt; </span><span style='color: #555555;'> 9</span><span> G     
-#&gt; </span><span style='color: #555555;'>10</span><span> G     
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV   GEN   REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G     1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G     2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G     3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G     1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G     2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G     3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G     1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G     2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G     3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    G     1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Replace strings</span>
 <span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
-#&gt;    ENV   GEN   REP      GY    HM new_var
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1      2.17  44.9 1      
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2      2.50  46.9 1      
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3      2.43  47.8 1      
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2 2      
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3 2      
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5 2      
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7 3      
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 3      
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 3      
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 4      
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV   GEN   REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    1     1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    1     2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    1     3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    2     1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    2     2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    2     3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    3     1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    3     2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    3     3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    4     1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>,
-               var <span class='op'>=</span> <span class='va'>GEN</span>,
-               new_var <span class='op'>=</span> <span class='va'>GENOTYPE</span>,
+               <span class='va'>GEN</span>,
                pattern <span class='op'>=</span> <span class='st'>"G"</span>,
                replacement <span class='op'>=</span> <span class='st'>"GENOTYPE_"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 6</span><span>
-#&gt;    ENV   GEN   REP      GY    HM GENOTYPE  
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1      2.17  44.9 GENOTYPE_1
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2      2.50  46.9 GENOTYPE_1
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3      2.43  47.8 GENOTYPE_1
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2 GENOTYPE_2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3 GENOTYPE_2
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5 GENOTYPE_2
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7 GENOTYPE_3
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2 GENOTYPE_3
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8 GENOTYPE_3
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9 GENOTYPE_4
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    ENV   GEN        REP      GY    HM
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> E1    GENOTYPE_1 1      2.17  44.9
+#&gt; </span><span style='color: #555555;'> 2</span><span> E1    GENOTYPE_1 2      2.50  46.9
+#&gt; </span><span style='color: #555555;'> 3</span><span> E1    GENOTYPE_1 3      2.43  47.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> E1    GENOTYPE_2 1      3.21  45.2
+#&gt; </span><span style='color: #555555;'> 5</span><span> E1    GENOTYPE_2 2      2.93  45.3
+#&gt; </span><span style='color: #555555;'> 6</span><span> E1    GENOTYPE_2 3      2.56  45.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> E1    GENOTYPE_3 1      2.77  46.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> E1    GENOTYPE_3 2      3.62  43.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> E1    GENOTYPE_3 3      2.28  47.8
+#&gt; </span><span style='color: #555555;'>10</span><span> E1    GENOTYPE_4 1      2.36  47.9
 #&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Remove strings</span>
 <span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>

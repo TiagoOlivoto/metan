@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
       </span>
     </div>
 
@@ -226,24 +226,24 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-1100" class="section level1">
-<h1 class="page-header" data-toc-text="1.10.0">
-<a href="#metan-1100" class="anchor"></a>metan 1.10.0<small> Unreleased </small>
+    <div id="metan-development-version" class="section level1">
+<h1 class="page-header" data-toc-text="development version">
+<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
 </h1>
-<div id="minor-improvements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#minor-improvements" class="anchor"></a>Minor improvements</h2>
 <ul>
+<li><p><code>as_*()</code> now handles vectors.</p></li>
 <li>
-<code><a href="../reference/gamem.html">gamem()</a></code>, <code><a href="../reference/gamem_met.html">gamem_met()</a></code>, and <code><a href="../reference/waasb.html">waasb()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</li>
-<li>
-<code><a href="../reference/mtsi.html">mtsi()</a></code> and <code><a href="../reference/mgidi.html">mgidi()</a></code> now returns the ranks for the contribution of each factor and understand models fitted with <code><a href="../reference/gamem.html">gamem()</a></code> and <code><a href="../reference/waasb.html">waasb()</a></code> using the <code>by</code> argument.</li>
-<li>
-<code><a href="../reference/plot.mtsi.html">plot.mtsi()</a></code> and <code><a href="../reference/plot.mgidi.html">plot.mgidi()</a></code> now returns a radar plot by default when using <code>type = "contribution"</code>.</li>
-<li>
-<code><a href="../reference/get_model_data.html">get_model_data()</a></code> now returns the genotypic and phenotypic correlation matrices from objects of class <code>waasb</code> and <code>gamem</code>.</li>
+<p><code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> now shows both stars or p-values for reporting the significance of correlations.s</p>
+<h1 id="metan-1100" class="page-header" data-toc-text="development version">metan 1.10.0<small> Unreleased </small>
+</h1>
+<h2 id="minor-improvements">Minor improvements</h2>
+</li>
+<li><p><code><a href="../reference/gamem.html">gamem()</a></code>, <code><a href="../reference/gamem_met.html">gamem_met()</a></code>, and <code><a href="../reference/waasb.html">waasb()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</p></li>
+<li><p><code><a href="../reference/mtsi.html">mtsi()</a></code> and <code><a href="../reference/mgidi.html">mgidi()</a></code> now returns the ranks for the contribution of each factor and understand models fitted with <code><a href="../reference/gamem.html">gamem()</a></code> and <code><a href="../reference/waasb.html">waasb()</a></code> using the <code>by</code> argument.</p></li>
+<li><p><code><a href="../reference/plot.mtsi.html">plot.mtsi()</a></code> and <code><a href="../reference/plot.mgidi.html">plot.mgidi()</a></code> now returns a radar plot by default when using <code>type = "contribution"</code>.</p></li>
+<li><p><code><a href="../reference/get_model_data.html">get_model_data()</a></code> now returns the genotypic and phenotypic correlation matrices from objects of class <code>waasb</code> and <code>gamem</code>.</p></li>
+<li><p><code><a href="../reference/utils_num_str.html">replace_string()</a></code>, <code><a href="../reference/utils_num_str.html">replace_number()</a></code>, <code><a href="../reference/utils_num_str.html">extract_string()</a></code>, and <code><a href="../reference/utils_num_str.html">extract_number()</a></code> now accepts <a href="https://tidyeval.tidyverse.org/index.html">tidy evaluation</a> in the new <code>...</code> argument.</p></li>
 </ul>
-</div>
 <div id="new-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h2>
