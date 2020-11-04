@@ -64,7 +64,7 @@
 #'   al., 2015).
 #'@param by One variable (factor) to compute the function by. It is a shortcut
 #'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
-#'  when the researcher what to analyze environments within mega-environments.
+#'  when the researcher want to analyze environments within mega-environments.
 #'  In this case, an object of class waasb_grouped is returned.
 #' @param random The effects of the model assumed to be random. Defaults to
 #'   \code{random = "gen"}. See \strong{Details} to see the random effects

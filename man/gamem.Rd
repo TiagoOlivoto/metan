@@ -38,7 +38,7 @@ al., 2015).}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
 to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
-when the researcher what to fit a mixed-effect model for each environment.
+when the researcher want to fit a mixed-effect model for each environment.
 In this case, an object of class gamem_grouped is returned.
 \code{\link{mgidi}} can then be used to compute the mgidi index within each
 environment.}

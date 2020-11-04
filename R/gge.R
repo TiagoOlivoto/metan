@@ -29,8 +29,9 @@
 #'  visualizing either the relationship among genotypes or that among the environments).
 #' @param by One variable (factor) to compute the function by. It is a shortcut
 #'   to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
-#'   when the researcher what to produce gge biplots for mega-environment. In
-#'   this case, an object of class gge_grouped is returned.
+#'   when the researcher want to produce GGE biplots for each level of a
+#'   categorical variable. In this case, an object of class gge_grouped is
+#'   returned.
 #' @param ... Arguments passed to the function
 #'   \code{\link{impute_missing_val}()} for imputation of missing values in case
 #'   of unbalanced data.

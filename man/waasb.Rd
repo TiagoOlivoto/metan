@@ -46,7 +46,7 @@ al., 2015).}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
 to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
-when the researcher what to compute the indexes by mega-environments. In
+when the researcher want to compute the indexes by mega-environments. In
 this case, an object of class waasb_grouped is returned.
 \code{\link{mtsi}()} can then be used to compute the mtsi index within each
 mega-environment.}
