@@ -1,4 +1,8 @@
 # metan (development version)
+* `gge()` now have a `by` argument and understand data passed from `group_by`.
+* New arguments `col.stroke` and `size.stroke` in `plot.gge()`
+
+# metan 1.10.0
 * `as_*()` now handles vectors.
 * `plot.corr_coef()` now shows both stars or p-values for reporting the significance of correlations.s
 # metan 1.10.0
@@ -17,7 +21,7 @@
 * `n_valid()`, `n_missing()`, and `n_unique()` to count valid, missing, and unique values, respectively.
 * `tidy_colnames()` to clean up column names. It is a shortcut to `tidy_strings()` applied to the column names of a data frame.
 * `env_stratification()` to perform environment stratification using factor analysis.
-* 
+
 
 
 # metan 1.9.0
