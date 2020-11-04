@@ -24,7 +24,7 @@
   size.text = 10,
   width.bar = 0.75,
   col.sel = "red",
-  col.nonsel = "black",
+  col.nonsel = "gray",
   legend.position = "bottom",
   ...
 )
@@ -84,7 +84,7 @@ Defaults to 0.75.}
 
 \item{col.sel}{The colour for selected genotypes. Defaults to \code{"red"}.}
 
-\item{col.nonsel}{The colour for nonselected genotypes. Defaults to \code{"black"}.}
+\item{col.nonsel}{The colour for nonselected genotypes. Defaults to \code{"gray"}.}
 
 \item{legend.position}{The position of the legend.}
 

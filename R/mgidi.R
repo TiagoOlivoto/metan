@@ -381,7 +381,7 @@ mgidi <- function(.data,
 #' @param width.bar The width of the bars if \code{type = "contribution"}.
 #'   Defaults to 0.75.
 #' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
-#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"gray"}.
 #' @param legend.position The position of the legend.
 #' @param ... Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.
 #' @return An object of class \code{gg, ggplot}.
@@ -419,7 +419,7 @@ plot.mgidi <- function(x,
                        size.text = 10,
                        width.bar = 0.75,
                        col.sel = "red",
-                       col.nonsel = "black",
+                       col.nonsel = "gray",
                        legend.position = "bottom",
                        ...) {
   if(!is.null(invert)){
