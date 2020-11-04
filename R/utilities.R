@@ -905,6 +905,7 @@ tidy_colnames <- function(.data, sep = "_"){
 #'    - \code{sem()} computes the standard error of the mean.
 #'    - \code{skew()} computes the skewness like used in SAS and SPSS.
 #'    - \code{sum_dev()} computes the sum of the absolute deviations.
+#'    - \code{sum_sq()} computes the sum of the squared values.
 #'    - \code{sum_sq_dev()} computes the sum of the squared deviations.
 #'    - \code{var_amo(), var_pop()} computes sample and populational variance.
 #'
@@ -1429,6 +1430,34 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
       na.rm <- TRUE
     }
     sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
+  }
+  if(has_na(.data) && na.rm == FALSE){
+    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    }
+  }
+}
+#' @name utils_stats
+#' @export
+sum_sq <- function(.data, ..., na.rm = FALSE) {
+  funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      na.rm <- TRUE
+    }
+    sum(df ^ 2, na.rm = na.rm)
   }
   if(has_na(.data) && na.rm == FALSE){
     stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
