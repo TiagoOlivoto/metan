@@ -16,9 +16,12 @@
   shape.env = 23,
   size.shape = 2.2,
   size.shape.win = 3.2,
-  size.bor.tick = 0.3,
+  size.bor.tick = "deprecated",
+  size.stroke = 0.3,
+  col.stroke = "black",
   col.gen = "blue",
   col.env = "forestgreen",
+  col.line = "forestgreen",
   col.alpha = 1,
   col.circle = "gray",
   col.alpha.circle = 0.5,
@@ -73,12 +76,17 @@ environments). Defaults to \code{2.2}.}
 \item{size.shape.win}{The size of the shape for winners genotypes when
 \code{type = 3}. Defaults to \code{3.2}.}
 
-\item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
-size of the shape will be \code{size.shape + size.bor.tick}}
+\item{size.bor.tick}{Deprecated as of metan 1.10.0. Use \code{size.stroke}
+instead.}
 
-\item{col.gen, col.env}{Color for genotype and environment attributes in the
-biplot. Defaults to \code{col.gen = 'blue'} and \code{col.env =
-'forestgreen'}}
+\item{size.stroke, col.stroke}{The width and color of the border,
+respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke =
+"black"}. The size of the shape will be \code{size.shape + size.stroke}}
+
+\item{col.gen, col.env, col.line}{Color for genotype/environment labels and for
+the line that passes through the biplot origin. Defaults to \code{col.gen =
+'blue'}, \code{col.env = 'forestgreen'}, and \code{col.line =
+'forestgreen'}.}
 
 \item{col.alpha}{The alpha value for the color. Defaults to \code{1}. Values
 must be between \code{0} (full transparency) to \code{1} (full color).}

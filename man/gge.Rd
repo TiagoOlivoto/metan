@@ -12,6 +12,7 @@ gge(
   centering = "environment",
   scaling = "none",
   svp = "environment",
+  by = NULL,
   ...
 )
 }
@@ -43,6 +44,11 @@ environment eigenvectors, also called column metric preserving); or \code{'symme
 (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 visualizing either the relationship among genotypes or that among the environments).}
+
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+when the researcher what to produce gge biplots for mega-environment. In
+this case, an object of class gge_grouped is returned.}
 
 \item{...}{Arguments passed to the function
 \code{\link{impute_missing_val}()} for imputation of missing values in case

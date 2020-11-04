@@ -27,7 +27,10 @@
 #'  (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 #'  This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 #'  visualizing either the relationship among genotypes or that among the environments).
-#'
+#' @param by One variable (factor) to compute the function by. It is a shortcut
+#'   to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'   when the researcher what to produce gge biplots for mega-environment. In
+#'   this case, an object of class gge_grouped is returned.
 #' @param ... Arguments passed to the function
 #'   \code{\link{impute_missing_val}()} for imputation of missing values in case
 #'   of unbalanced data.
@@ -94,7 +97,27 @@ gge <- function(.data,
                 centering = "environment",
                 scaling = "none",
                 svp = "environment",
+                by = NULL,
                 ...) {
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- group_by(.data, {{by}})
+  }
+  if(is_grouped_df(.data)){
+      results <-
+        .data %>%
+        doo(gge,
+            env = {{env}},
+            gen = {{gen}},
+            resp = {{resp}},
+            centering = centering,
+            scaling = scaling,
+            svp = svp,
+            ...)
+      return(set_class(results, c("tbl_df",  "gge_group", "tbl",  "data.frame")))
+    } else{
   factors  <-
     .data %>%
     select({{env}}, {{gen}}) %>%
@@ -210,11 +233,8 @@ gge <- function(.data,
     }
   }
   return(structure(listres, class = "gge"))
+    }
 }
-
-
-
-
 
 
 
@@ -254,11 +274,15 @@ gge <- function(.data,
 #'   environments). Defaults to \code{2.2}.
 #' @param size.shape.win The size of the shape for winners genotypes when
 #'   \code{type = 3}. Defaults to \code{3.2}.
-#' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
-#'   size of the shape will be \code{size.shape + size.bor.tick}
-#' @param col.gen,col.env Color for genotype and environment attributes in the
-#'   biplot. Defaults to \code{col.gen = 'blue'} and \code{col.env =
-#'   'forestgreen'}
+#' @param size.bor.tick Deprecated as of metan 1.10.0. Use \code{size.stroke}
+#'   instead.
+#' @param size.stroke,col.stroke The width and color of the border,
+#'   respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke =
+#'   "black"}. The size of the shape will be \code{size.shape + size.stroke}
+#' @param col.gen,col.env,col.line Color for genotype/environment labels and for
+#'   the line that passes through the biplot origin. Defaults to \code{col.gen =
+#'   'blue'}, \code{col.env = 'forestgreen'}, and \code{col.line =
+#'   'forestgreen'}.
 #' @param col.alpha The alpha value for the color. Defaults to \code{1}. Values
 #'   must be between \code{0} (full transparency) to \code{1} (full color).
 #' @param col.circle,col.alpha.circle The color and alpha values for the circle
@@ -309,9 +333,12 @@ plot.gge <- function(x,
                      shape.env = 23,
                      size.shape = 2.2,
                      size.shape.win = 3.2,
-                     size.bor.tick = 0.3,
+                     size.bor.tick = "deprecated",
+                     size.stroke = 0.3,
+                     col.stroke = "black",
                      col.gen = "blue",
                      col.env = "forestgreen",
+                     col.line = "forestgreen",
                      col.alpha = 1,
                      col.circle = "gray",
                      col.alpha.circle = 0.5,
@@ -325,7 +352,10 @@ plot.gge <- function(x,
                      title = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
-
+if(size.bor.tick != "deprecated"){
+  warning("Argument 'size.bor.tick' is deprecated as of metan 1.10.0.\nUse 'size.stroke' instead.")
+  size.stroke <- size.bor.tick
+}
   if(is.null(leg.lab)){
   leg.lab <- case_when(
     has_class(x, "gytb") ~ c("Y-Trait", "Gen"),
@@ -396,11 +426,12 @@ plot.gge <- function(x,
       geom_segment(xend = 0,
                    yend = 0,
                    size = size.line,
-                   col = alpha(col.env, col.alpha),
+                   col = alpha(col.line, col.alpha),
                    data = subset(plotdata, type == "environment")) +
       geom_point(aes(d1, d2, fill = type, shape = type),
                  size = size.shape,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
+                 color = col.stroke,
                  alpha = col.alpha) +
       scale_shape_manual(labels = leg.lab,
                          values = c(shape.env, shape.gen)) +
@@ -445,11 +476,11 @@ plot.gge <- function(x,
                    data = subset(plotdata, type == "genotype")) +
       geom_abline(intercept = 0,
                   slope = med2/med1,
-                  color = col.env,
+                  color = col.line,
                   size = size.line) +
       geom_abline(intercept = 0,
                   slope = -med1/med2,
-                  color = col.env,
+                  color = col.line,
                   size = size.line) +
       geom_segment(x = 0,
                    y = 0,
@@ -457,7 +488,7 @@ plot.gge <- function(x,
                    yend = med2,
                    arrow = arrow(length = unit(0.3, "cm")),
                    size = size.line,
-                   color = col.env) +
+                   color = col.line) +
       geom_text(aes(color = type,
                     label = label,
                     size = type),
@@ -525,8 +556,9 @@ plot.gge <- function(x,
       geom_point(data = subset(df_winners, win == "no"),
                  aes(d1, d2, fill = type, shape = type),
                  size = size.shape,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
                  alpha = col.alpha,
+                 color = col.stroke,
                  show.legend = FALSE) +
       geom_text_repel(data = subset(df_winners, win == "no"),
                       aes(col = type, label = label, size = type),
@@ -534,7 +566,8 @@ plot.gge <- function(x,
       geom_point(data = subset(df_winners, win == "yes"),
                  aes(d1, d2, fill = type, shape = type),
                  size = size.shape.win,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
+                 color = col.stroke,
                  alpha = col.alpha) +
       geom_text_repel(data = subset(df_winners, win == "yes"),
                       aes(col = type, label = label),
@@ -592,21 +625,22 @@ plot.gge <- function(x,
                    y = mean(coord_env[, 2]),
                    arrow = arrow(ends = "first", length = unit(0.1, "inches")),
                    size = size.line,
-                   color = col.env) +
+                   color = col.line) +
       geom_abline(intercept = 0,
                   slope = mean(coord_env[, 2])/mean(coord_env[, 1]),
-                  color = col.env,
+                  color = col.line,
                   size = size.line) +
       geom_point(aes(d1, d2, fill = type, shape = type),
                  size = size.shape,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
+                 color = col.stroke,
                  alpha = col.alpha) +
       scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab,  values = c(col.env, col.gen)) +
       geom_segment(data = subset(plotdata, type == "environment"),
                    xend = 0,
                    yend = 0,
-                   color = alpha(col.env, col.alpha),
+                   color = alpha(col.line, col.alpha),
                    size = size.line) +
       geom_text_repel(aes(col = type, label = label, size = type),
                       show.legend = FALSE,
@@ -642,15 +676,15 @@ plot.gge <- function(x,
                             linetype = "dotted") +
       geom_abline(slope = coord_env[venvironment, 2]/coord_env[venvironment, 1],
                   intercept = 0,
-                  color = alpha(col.env, col.alpha),
+                  color = alpha(col.line, col.alpha),
                   size = size.line) +
       geom_abline(slope = -coord_env[venvironment, 1]/coord_env[venvironment, 2],
                   intercept = 0,
-                  col = alpha(col.env, col.alpha),
+                  col = alpha(col.line, col.alpha),
                   size = size.line) +
       geom_segment(data = subset(plotdata, type == "environment" & label == sel_env),xend = 0,
                    yend = 0,
-                   col = alpha(col.env, col.alpha),
+                   col = alpha(col.line, col.alpha),
                    size = size.line,
                    arrow = arrow(ends = "first", length = unit(0.5, "cm"))) +
       geom_text(data = subset(plotdata, type == "genotype"),
@@ -669,6 +703,7 @@ plot.gge <- function(x,
       geom_point(data = subset(plotdata, type == "environment" & label == sel_env),
                  aes(d1, d2),
                  shape = 1,
+                 color = col.stroke,
                  size = 4)
     if (title == TRUE) {
       ggt <- ggtitle(paste("Environment:", sel_env))
@@ -688,11 +723,11 @@ plot.gge <- function(x,
                           radio = 1:8 * ((xcoord - med1)^2 + (ycoord - med2)^2)^0.5/3)
     P2 <- P1 + geom_abline(intercept = 0,
                            slope = med2/med1,
-                           col = col.env,
+                           col = col.line,
                            size = size.line) +
       geom_abline(intercept = 0,
                   slope = -med1/med2,
-                  color = col.env,
+                  color = col.line,
                   size = size.line) +
       geom_arc(data = circles,
                aes(r = radio,
@@ -710,11 +745,12 @@ plot.gge <- function(x,
                    yend = ycoord,
                    arrow = arrow(length = unit(0.15, "inches")),
                    size = size.line,
-                   color = col.env) +
+                   color = col.line) +
       geom_point(fill = col.env,
                  shape = shape.env,
                  size = size.shape,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
+                 color = col.stroke,
                  alpha = col.alpha,
                  data = subset(plotdata, type == "environment")) +
       geom_text_repel(data = subset(plotdata, type == "environment"),
@@ -722,7 +758,10 @@ plot.gge <- function(x,
                       size = size.text.env,
                       show.legend = FALSE,
                       col = col.env) +
-      geom_point(aes(xcoord, ycoord), shape = 1, size = 4)
+      geom_point(aes(xcoord, ycoord),
+                 shape = 1,
+                 size = 4,
+                 color = col.stroke)
     if (title == TRUE) {
       ggt <- ggtitle("Ranking Environments")
     }
@@ -751,7 +790,7 @@ plot.gge <- function(x,
     plotdata$x1_y[plotdata$type == "environment"] <- x1[, 2]
     P2 <- P1 + geom_segment(data = subset(plotdata, type == "environment"),
                             aes(xend = x1_x, yend = x1_y),
-                            col = col.env,
+                            col = col.line,
                             linetype = "dotted") +
       geom_abline(slope = coord_gen[vgenotype, 2]/coord_gen[vgenotype, 1],
                   intercept = 0,
@@ -783,6 +822,7 @@ plot.gge <- function(x,
       geom_point(data = subset(plotdata, type == "genotype" & label == sel_gen),
                  aes(d1, d2),
                  shape = 1,
+                 color = col.stroke,
                  size = 4)
     if (title == TRUE) {
       ggt <- ggtitle(paste("Genotype:", sel_gen))
@@ -835,14 +875,18 @@ plot.gge <- function(x,
                    color = col.gen) +
       geom_point(aes(d1, d2, fill = type, shape = type),
                  size = size.shape,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
+                 color = col.stroke,
                  alpha = col.alpha) +
       scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen)) +
       geom_text_repel(aes(col = type, label = label, size = type),
                       show.legend = FALSE,
                       color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
-      geom_point(aes(coordx, coordy), shape = 1, size = 3)
+      geom_point(aes(coordx, coordy),
+                 shape = 1,
+                 color = col.stroke,
+                 size = 3)
     if (title == TRUE) {
       ggt <- ggtitle("Ranking Genotypes")
     }
@@ -892,6 +936,7 @@ plot.gge <- function(x,
       geom_point(data = subset(plotdata, type == "genotype" & label %in% c(sel_gen1, sel_gen2)),
                  shape = shape.gen,
                  fill = col.gen,
+                 color = col.stroke,
                  size = size.shape) +
       plot_theme
     if (title == TRUE) {
@@ -904,13 +949,14 @@ plot.gge <- function(x,
       geom_segment(data = subset(plotdata, type == "environment"),
                    xend = 0,
                    yend = 0,
-                   col = alpha(col.env, col.alpha),
+                   col = alpha(col.line, col.alpha),
                    size = size.line) +
       geom_point(data = subset(plotdata, type == "environment"),
                  shape = shape.env,
                  fill = col.env,
                  size = size.shape,
-                 stroke = size.bor.tick,
+                 stroke = size.stroke,
+                 color = col.stroke,
                  alpha = col.alpha) +
       geom_text_repel(data = subset(plotdata, type == "environment"),
                       aes(label = label),
