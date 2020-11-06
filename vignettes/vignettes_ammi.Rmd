@@ -185,9 +185,8 @@ b <- plot_scores(AMMI_model,
                  col.segm.env = "gray70",
                  axis.expand = 1.5,
                  plot_theme = theme_metan(grid = "both"))
-arrange_ggplot(a, b, labels = letters[1:2])
+arrange_ggplot(a, b, tag_levels = "a")
 ```
-
 
 ### biplot type 2:
 
@@ -201,7 +200,7 @@ d <- plot_scores(AMMI_model,
                  polygon = T,
                  col.segm.env = "transparent",
                  plot_theme = theme_metan_minimal())
-arrange_ggplot(c, d, labels = letters[3:4])
+arrange_ggplot(c, d, tag_levels = list(c("c", "d")))
 
 ```
 
@@ -227,7 +226,7 @@ f <- plot_scores(waas_index,
                  x.breaks = seq(2.4, 3.1, by = 0.1), # Markers of x axis
                  y.lim = c(0, 0.7))+
   ggplot2::ggtitle("WAASB vs GY plot", subtitle = "Zoom in genotypes' scores")
-arrange_ggplot(e, f, labels = letters[5:6])
+arrange_ggplot(e, f, tag_levels = list(c("e", "f")))
 
 ```
 
@@ -240,7 +239,7 @@ g <- plot_scores(AMMI_model, type = 4)
 h <- plot_scores(AMMI_model,
                  type = 4,
                  color = FALSE)
-arrange_ggplot(g, h, labels = letters[7:8])
+arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
 
 ```
 
@@ -262,7 +261,7 @@ i <- plot_waasby(waas_index)
 j <- plot_waasby(waas_index,
                  col.shape = c("gray20", "gray80"),
                  plot_theme = theme_metan(grid = "x"))
-arrange_ggplot(i, j, labels = letters[9:10])
+arrange_ggplot(i, j, tag_levels = list(c("i", "j")))
     ```
 
 The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the `wresp` argument of the `waas()` function.
@@ -388,7 +387,7 @@ mod_comp <-
   performs_ammi(ENV, GEN, REP, PH)
 p2 <- plot_scores(mod_comp, type = 2, title = FALSE)  
 
-arrange_ggplot(p1, p2, labels = c("Missing data", "Complete data"))
+arrange_ggplot(p1, p2, tag_levels = list(c("Missing data", "Complete data")))
 
 
 

@@ -2,46 +2,85 @@
 % Please edit documentation in R/arrange_ggplot.R
 \name{arrange_ggplot}
 \alias{arrange_ggplot}
-\title{Arrange multiple ggplot2 graphics in a single image window}
+\title{Arrange separate ggplots into the same graphic}
 \usage{
 arrange_ggplot(
   ...,
-  plotlist = NULL,
   nrow = NULL,
   ncol = NULL,
-  rel_widths = 1,
-  rel_heights = 1,
-  labels = NULL,
-  hjust = -0.5,
-  vjust = 1.5,
-  align = "hv"
+  widths = NULL,
+  heights = NULL,
+  guides = "collect",
+  design = NULL,
+  legend.position = "bottom",
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  tag_levels = NULL,
+  tag_prefix = NULL,
+  tag_suffix = NULL,
+  tag_sep = NULL,
+  plotlist = "deprecated",
+  labels = "deprecated",
+  rel_widths = "deprecated",
+  rel_heights = "deprecated",
+  hjust = "deprecated",
+  vjust = "deprecated",
+  align = "deprecated"
 )
 }
 \arguments{
-\item{...}{An object of class \code{gg}}
-
-\item{plotlist}{List of plots to display.}
+\item{...}{multiple \code{ggplot}s or a list containing \code{ggplot}
+objects.}
 
 \item{nrow, ncol}{The number of rows and columns, respectively.}
 
-\item{rel_widths, rel_heights}{The Numerical vector of relative columns widths
-and rows heights, respectively.}
+\item{widths, heights}{The relative widths and heights of each column and row
+in the grid. Will get repeated to match the dimensions of the grid.}
 
-\item{labels}{List of labels to be added to the plots.}
+\item{guides}{A string specifying how guides should be treated in the layout.
+Defaults to `'collect'` (will collect guides below to the given nesting
+level, removing duplicates). Other possible values are `'keep'` and
+`'auto'`.}
 
-\item{hjust, vjust}{Adjusts the horizontal and vertical position of each label.}
+\item{design}{Specification of the location of areas in the layout.}
 
-\item{align}{Specifies whether graphs in the grid should be horizontally
-(\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
-align in both directions, \code{"none"} do not align the plot.}
+\item{legend.position}{The position of the legends in the plot. Default to
+`'bottom'`.}
+
+\item{title, subtitle, caption}{Text strings to use for the various plot
+annotations.}
+
+\item{tag_levels}{A character vector defining the enumeration format to use
+at each level. Possible values are `'a'` for lowercase letters, `'A'` for
+uppercase letters, `'1'` for numbers, `'i'` for lowercase Roman numerals, and
+`'I'` for uppercase Roman numerals. It can also be a list containing
+character vectors defining arbitrary tag sequences. If any element in the
+list is a scalar and one of `'a'`, `'A'`, `'1'`, `'i`, or `'I'`, this level
+will be expanded to the expected sequence.}
+
+\item{tag_prefix, tag_suffix}{Strings that should appear before or after the
+tag.}
+
+\item{tag_sep}{A separator between different tag levels.}
+
+\item{plotlist}{Deprecated as of metan 1.10.0.}
+
+\item{labels}{Deprecated as of metan 1.10.0. Use \code{tag_levels} instead.}
+
+\item{rel_widths, rel_heights}{Deprecated as of metan 1.10.0. Use \code{widths
+and heights} instead.}
+
+\item{hjust, vjust}{Deprecated as of metan 1.10.0.}
+
+\item{align}{Deprecated as of metan 1.10.0.}
 }
 \value{
-None.
+A `patchwork` object
 }
 \description{
-This is a helper function to arrange ggplot2 objects in the metan package. It
-imports \code{\link[cowplot]{plot_grid}}. For a complete usability use that
-function.
+This is a wraper function around \code{\link[patchwork]{wrap_plots}()} and
+\code{\link[patchwork]{plot_annotation}()} to arrange ggplot2 objects.
 }
 \examples{
 \donttest{
@@ -54,6 +93,11 @@ p2 <- ggplot(mpg, aes(class, hwy)) +
              geom_boxplot()
 
 arrange_ggplot(p1, p2)
+arrange_ggplot(p1, p2,
+               ncol = 1,
+               tag_levels = list(c("(P1)", "(P2)")),
+               title = "My grouped ggplot",
+               caption = "A = scatter plot\nB = boxplot")
 }
 
 }

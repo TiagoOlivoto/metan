@@ -109,7 +109,7 @@ b <- plot(gge_model,
           col.gen = "orange",
           size.text.env = 2,
           plot_theme = theme_metan(grid =  "both"))
-arrange_ggplot(a, b, labels = letters[1:2])
+arrange_ggplot(a, b, tag_levels = "a")
 
 ```
 
@@ -131,7 +131,7 @@ d <- plot(gge_model,
           col.env = "red",
           axis_expand = 1.5,
           plot_theme = theme_metan_minimal())
-arrange_ggplot(c, d, labels = letters[3:4])
+arrange_ggplot(c, d, tag_levels = list(c("c", "d")))
 
 ```
 
@@ -152,7 +152,7 @@ f <- plot(gge_model,
           col.gen = "black",
           col.env = "gray",
           title = FALSE)
-arrange_ggplot(e, f, labels = letters[5:6])
+arrange_ggplot(e, f, tag_levels = list(c("e", "f")))
 
 ```
 
@@ -165,7 +165,7 @@ g <- plot(gge_model, type = 4)
 h <- plot(gge_model,
           type = 4,
           plot_theme = theme_metan_minimal())
-arrange_ggplot(g, h, labels = letters[7:8])
+arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
 
 ```
 
@@ -186,7 +186,7 @@ j <- plot(gge_model,
           col.env = "black",
           size.text.env = 10,
           axis_expand = 1.5)
-arrange_ggplot(i, j, labels = letters[9:10])
+arrange_ggplot(i, j, tag_levels = list(c("i", "j")))
 
 ```
 
@@ -207,7 +207,7 @@ l <- plot(gge_model,
           size.text.env = 10,
           axis_expand = 1.5,
           plot_theme = theme_metan(color.background = "white"))
-arrange_ggplot(k, l, labels = letters[11:12])
+arrange_ggplot(k, l, tag_levels = list(c("k", "l")))
 
 ```
 
@@ -228,7 +228,7 @@ n <- plot(gge_model,
           size.text.env = 10,
           axis_expand = 1.5,
           plot_theme = theme_metan(grid = "both"))
-arrange_ggplot(m, n, labels = letters[13:14])
+arrange_ggplot(m, n, tag_levels = list(c("m", "n")))
 
 ```
 
@@ -244,7 +244,7 @@ p <- plot(gge_model,
           col.env = "gray",
           size.text.gen = 6,
           plot_theme = theme_metan_minimal())
-arrange_ggplot(o, p, labels = letters[15:16])
+arrange_ggplot(o, p, tag_levels = list(c("o", "p")))
 
 ```
 
@@ -262,7 +262,7 @@ r <- plot(gge_model,
           sel_gen2 = "G10",
           col.gen = "black",
           title = FALSE)
-arrange_ggplot(q, r, labels = letters[17:18])
+arrange_ggplot(q, r, tag_levels = list(c("q", "r")))
 
 ```
 
@@ -275,7 +275,7 @@ t <- plot(gge_model,
           type = 10,
           col.gen = "black",
           title = FALSE)
-arrange_ggplot(s, t, labels = letters[19:20])
+arrange_ggplot(s, t, tag_levels = list(c("s", "t")))
 
 ```
 

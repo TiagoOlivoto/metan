@@ -260,7 +260,7 @@ b <- plot_blup(mixed_mod,
                col.shape  =  c("gray20", "gray80"),
                plot_theme = theme_metan(grid = "y")) +
   coord_flip()
-arrange_ggplot(a, b, labels = letters[1:2])
+arrange_ggplot(a, b, tag_levels = "a")
 
 ```
 
@@ -382,7 +382,7 @@ d <- plot_scores(waasb_model,
                  col.env = "red",
                  col.segm.env = "red",
                  axis.expand = 1.5)
-arrange_ggplot(c, d, labels = letters[3:4])
+arrange_ggplot(c, d, tag_levels = list(c("c", "d")))
 ```
 
 
@@ -396,7 +396,7 @@ f <- plot_scores(waasb_model,
                  polygon = TRUE,
                  col.segm.env = "transparent",
                  plot_theme = theme_metan_minimal())
-arrange_ggplot(e, f, labels = letters[5:6])
+arrange_ggplot(e, f, tag_levels = list(c("e", "f")))
 ```
 
 ### biplot type 3: GY x WAASB
@@ -413,7 +413,7 @@ h <- plot_scores(waasb_model, type = 3,
                  x.lim = c(1.2, 4.7),
                  x.breaks = seq(1.5, 4.5, by = 0.5),
                  plot_theme = theme_metan(color.background = "white"))
-arrange_ggplot(g, h, labels = letters[7:8])
+arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
 ```
 
 To obtain the WAASB index for a set of variables, the function `get_model_data()` is used, as shown bellow.
@@ -437,7 +437,7 @@ j <- plot_scores(waasb_model,
                  col.alpha.gen = 0,
                  col.alpha.env = 0,
                  plot_theme = theme_metan(color.background = "white"))
-arrange_ggplot(i, j, labels = letters[9:10])
+arrange_ggplot(i, j, tag_levels = list(c("i", "j")))
 ```
 
 
@@ -456,7 +456,7 @@ This index was also already computed and stored into AMMI_model>GY>model. An int
 ```{r  echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F}
 i <- plot_waasby(waasb_model)
 j <- plot_waasby(waasb_model, col.shape = c("gray20", "gray80"))
-arrange_ggplot(i, j, labels = letters[9:10])
+arrange_ggplot(i, j, tag_levels = list(c("e", "f")))
 
 ```
 

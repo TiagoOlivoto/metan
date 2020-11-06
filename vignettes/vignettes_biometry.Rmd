@@ -180,7 +180,7 @@ corr_plot(data_ge2, CD, EL, PERK, NKR, CW, NKE,
           col.dia.panel = "black",
           pan.spacing = 0,
           lab.position = "tl")
-arrange_ggplot(a, b, c, d, labels = letters[1:4])
+arrange_ggplot(a, b, c, d, tag_levels = "a")
 ```
 
 It is also possible to use a categorical variable of the data to map the scatterplot by colors.

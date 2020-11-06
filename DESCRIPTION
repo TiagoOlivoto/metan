@@ -42,7 +42,6 @@ BugReports: https://github.com/TiagoOlivoto/metan/issues
 Depends: 
     R (>= 3.5.0)
 Imports: 
-    cowplot,
     dplyr (>= 1.0.0),
     GGally,
     ggforce,
@@ -54,6 +53,7 @@ Imports:
     magrittr,
     mathjaxr,
     methods,
+    patchwork,
     progress,
     purrr,
     rlang (>= 0.1.2),

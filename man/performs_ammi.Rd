@@ -91,7 +91,7 @@ mod <-
    droplevels() \%>\%
    performs_ammi(ENV, GEN, REP, GY)
 p2 <- plot_scores(mod)
-arrange_ggplot(p1, p2, labels = c("Balanced data", "Unbalanced data"))
+arrange_ggplot(p1, p2, tag_levels = list(c("Balanced data", "Unbalanced data")))
 
 }
 }

@@ -139,7 +139,7 @@ b <- plot(bind2,
           width.boxplot = 0.6,
           order_box = TRUE,
           plot_theme = theme_metan_minimal())
-arrange_ggplot(a, b, labels = letters[1:2])
+arrange_ggplot(a, b, tag_levels = "a")
 
 ```
 

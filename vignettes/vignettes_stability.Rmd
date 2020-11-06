@@ -51,7 +51,7 @@ The function `ge_plot()` may be used to visualize the genotype's performance acr
 library(metan)
 a <- ge_plot(data_ge, ENV, GEN, GY)
 b <- ge_plot(data_ge, ENV, GEN, GY) + ggplot2::coord_flip()
-arrange_ggplot(a, b, labels = letters[1:2])
+arrange_ggplot(a, b, tag_levels = "a")
 ```
 
 To identify the winner genotype within each environment, we can use the function `ge_winners()`.

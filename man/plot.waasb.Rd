@@ -32,7 +32,7 @@
   which = c(1:4),
   ncol = NULL,
   nrow = NULL,
-  align = "hv",
+  align = "deprecated",
   ...
 )
 }
@@ -108,12 +108,10 @@ c(1:4)} that means that the first four graphics will be plotted.}
 \item{ncol, nrow}{The number of columns and rows of the plot pannel. Defaults
 to \code{NULL}}
 
-\item{align}{Specifies whether graphs in the grid should be horizontally
-(\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
-align in both directions, \code{"none"} do not align the plot.}
+\item{align}{Deprecated as of metan 1.10.0.}
 
 \item{...}{Additional arguments passed on to the function
-\code{\link[cowplot]{plot_grid}}}
+\code{\link[patchwork]{wrap_plots}()}.}
 }
 \description{
 Residual plots for a output model of class \code{waas} and \code{waasb}. Six types

@@ -17,7 +17,6 @@
 #' @param plot_theme The graphical theme of the plot. Default is
 #'   \code{plot_theme = theme_metan()}. For more details, see
 #'   \code{\link[ggplot2]{theme}}.
-#' @importFrom cowplot ggdraw draw_label
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
@@ -168,16 +167,13 @@ find_outliers <- function(.data =  NULL,
       labs(x = "Observed value",
            y = "Count")
 
-    plist1 <- plot_grid(plotlist = list(with_box, with_hist), nrow = 1)
-    title_with <- ggdraw() +
-      draw_label("With outliers", fontface='bold')
-    p1 <- plot_grid(title_with, plist1, ncol=1, rel_heights=c(0.1, 1))
-
-    plist2 <- plot_grid(plotlist = list(without_box, without_hist), nrow = 1)
-    title_without <- ggdraw() +
-      draw_label("Without outliers", fontface='bold')
-    p2 <- plot_grid(title_without, plist2, ncol=1, rel_heights=c(0.1, 1))
-    plot(plot_grid(p1, p2, nrow = 2))
+    p1 <- wrap_plots(with_box + labs(title = "With outliers"),
+                     with_hist,
+                     nrow = 1)
+    p2 <- wrap_plots(without_box + labs(title = "Without outliers"),
+                     without_hist,
+                     nrow = 1)
+    plot(p1 / p2)
   }
   if ((na2 - na1) == 0) {
     if(verbose == TRUE){
