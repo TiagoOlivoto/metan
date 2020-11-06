@@ -177,7 +177,7 @@
       <h1 data-toc-skip>Analyzing multienvironment trials using GGE</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-11-03</h4>
+            <h4 class="date">2020-11-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_gge.Rmd"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_gge.Rmd</code></div>
@@ -304,7 +304,7 @@
           col.gen <span class="op">=</span> <span class="st">"orange"</span>,
           size.text.env <span class="op">=</span> <span class="fl">2</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>grid <span class="op">=</span>  <span class="st">"both"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-2-mean-performance-vs--stability" class="section level2">
@@ -321,7 +321,7 @@
           col.env <span class="op">=</span> <span class="st">"red"</span>,
           axis_expand <span class="op">=</span> <span class="fl">1.5</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">c</span>, <span class="va">d</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">c</span>, <span class="va">d</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-3-which-won-where" class="section level2">
@@ -339,7 +339,7 @@
           col.gen <span class="op">=</span> <span class="st">"black"</span>,
           col.env <span class="op">=</span> <span class="st">"gray"</span>,
           title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">f</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">f</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-4-discriminativeness-vs--representativeness" class="section level2">
@@ -350,7 +350,7 @@
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
           type <span class="op">=</span> <span class="fl">4</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">7</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"g"</span>, <span class="st">"h"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-5-examine-an-environment" class="section level2">
@@ -367,7 +367,7 @@
           col.env <span class="op">=</span> <span class="st">"black"</span>,
           size.text.env <span class="op">=</span> <span class="fl">10</span>,
           axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">j</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">9</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">j</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"i"</span>, <span class="st">"j"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-6-ranking-environments" class="section level2">
@@ -387,7 +387,7 @@
           size.text.env <span class="op">=</span> <span class="fl">10</span>,
           axis_expand <span class="op">=</span> <span class="fl">1.5</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>color.background <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">l</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">l</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"k"</span>, <span class="st">"l"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-7-examine-a-genotype" class="section level2">
@@ -405,7 +405,7 @@
           size.text.env <span class="op">=</span> <span class="fl">10</span>,
           axis_expand <span class="op">=</span> <span class="fl">1.5</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>grid <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">13</span><span class="op">:</span><span class="fl">14</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-8-ranking-genotypes" class="section level2">
@@ -420,7 +420,7 @@
           col.env <span class="op">=</span> <span class="st">"gray"</span>,
           size.text.gen <span class="op">=</span> <span class="fl">6</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">o</span>, <span class="va">p</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">15</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">o</span>, <span class="va">p</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"o"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-9-compare-two-genotypes" class="section level2">
@@ -436,7 +436,7 @@
           sel_gen2 <span class="op">=</span> <span class="st">"G10"</span>,
           col.gen <span class="op">=</span> <span class="st">"black"</span>,
           title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">q</span>, <span class="va">r</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">17</span><span class="op">:</span><span class="fl">18</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">q</span>, <span class="va">r</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"q"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="biplot-type-10-relationship-among-environments" class="section level2">
@@ -449,7 +449,7 @@
           type <span class="op">=</span> <span class="fl">10</span>,
           col.gen <span class="op">=</span> <span class="st">"black"</span>,
           title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">19</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"s"</span>, <span class="st">"t"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 </div>

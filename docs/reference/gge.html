@@ -244,6 +244,7 @@ response variable or a two-way table.</p>
   centering <span class='op'>=</span> <span class='st'>"environment"</span>,
   scaling <span class='op'>=</span> <span class='st'>"none"</span>,
   svp <span class='op'>=</span> <span class='st'>"environment"</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -291,6 +292,14 @@ environment eigenvectors, also called column metric preserving); or <code>'symme
 (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 visualizing either the relationship among genotypes or that among the environments).</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+when the researcher want to produce GGE biplots for each level of a
+categorical variable. In this case, an object of class gge_grouped is
+returned.</p></td>
     </tr>
     <tr>
       <th>...</th>

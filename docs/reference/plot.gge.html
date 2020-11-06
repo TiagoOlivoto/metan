@@ -247,9 +247,12 @@ functions <code><a href='gge.html'>gge</a>()</code>, <code><a href='gtb.html'>gt
   shape.env <span class='op'>=</span> <span class='fl'>23</span>,
   size.shape <span class='op'>=</span> <span class='fl'>2.2</span>,
   size.shape.win <span class='op'>=</span> <span class='fl'>3.2</span>,
-  size.bor.tick <span class='op'>=</span> <span class='fl'>0.3</span>,
+  size.bor.tick <span class='op'>=</span> <span class='st'>"deprecated"</span>,
+  size.stroke <span class='op'>=</span> <span class='fl'>0.3</span>,
+  col.stroke <span class='op'>=</span> <span class='st'>"black"</span>,
   col.gen <span class='op'>=</span> <span class='st'>"blue"</span>,
   col.env <span class='op'>=</span> <span class='st'>"forestgreen"</span>,
+  col.line <span class='op'>=</span> <span class='st'>"forestgreen"</span>,
   col.alpha <span class='op'>=</span> <span class='fl'>1</span>,
   col.circle <span class='op'>=</span> <span class='st'>"gray"</span>,
   col.alpha.circle <span class='op'>=</span> <span class='fl'>0.5</span>,
@@ -324,14 +327,21 @@ environments). Defaults to <code>2.2</code>.</p></td>
     </tr>
     <tr>
       <th>size.bor.tick</th>
-      <td><p>The size of tick of shape. Default is <code>0.3</code>. The
-size of the shape will be <code>size.shape + size.bor.tick</code></p></td>
+      <td><p>Deprecated as of metan 1.10.0. Use <code>size.stroke</code>
+instead.</p></td>
     </tr>
     <tr>
-      <th>col.gen, col.env</th>
-      <td><p>Color for genotype and environment attributes in the
-biplot. Defaults to <code>col.gen = 'blue'</code> and <code>col.env =
-'forestgreen'</code></p></td>
+      <th>size.stroke, col.stroke</th>
+      <td><p>The width and color of the border,
+respectively. Default to <code>size.stroke = 0.3</code> and <code>col.stroke =
+"black"</code>. The size of the shape will be <code>size.shape + size.stroke</code></p></td>
+    </tr>
+    <tr>
+      <th>col.gen, col.env, col.line</th>
+      <td><p>Color for genotype/environment labels and for
+the line that passes through the biplot origin. Defaults to <code>col.gen =
+'blue'</code>, <code>col.env = 'forestgreen'</code>, and <code>col.line =
+'forestgreen'</code>.</p></td>
     </tr>
     <tr>
       <th>col.alpha</th>

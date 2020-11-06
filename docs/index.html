@@ -308,7 +308,7 @@
                  col.segm.env <span class="op">=</span> <span class="st">"gray70"</span>,
                  axis.expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 <span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">model</span>, type <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-AMMI-1.png"><!-- --></p>
 </div>
 </div>
@@ -327,7 +327,7 @@
           col.gen <span class="op">=</span> <span class="st">"black"</span>,
           col.env <span class="op">=</span> <span class="st">"gray70"</span>,
           axis.expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
-<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">e</span>, <span class="va">f</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">e</span>, <span class="va">f</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-GGE-1.png"><!-- --></p>
 </div>
 <div id="blup-model" class="section level1">
@@ -374,7 +374,7 @@
                prob <span class="op">=</span> <span class="fl">0.2</span>,
                col.shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray20"</span>, <span class="st">"gray80"</span><span class="op">)</span>,
                invert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, labels <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">7</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"g"</span>, <span class="st">"h"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-BLUP-1.png"><!-- --></p>
 </div>
 </div>
