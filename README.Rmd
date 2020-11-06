@@ -117,7 +117,7 @@ b <- plot_scores(model,
                  col.segm.env = "gray70",
                  axis.expand = 1.5)
 c <- plot_scores(model, type = 4)
-arrange_ggplot(a, b, c, labels = letters[1:3], nrow = 1)
+arrange_ggplot(a, b, c, tag_levels = "a", nrow = 1)
 
 ```
 
@@ -136,7 +136,7 @@ f <- plot(model2,
           col.gen = "black",
           col.env = "gray70",
           axis.expand = 1.5)
-arrange_ggplot(d, e, f, labels = letters[4:6], nrow = 1)
+arrange_ggplot(d, e, f, tag_levels = list(c("d", "e", "f")), nrow = 1)
 
 ```
 
@@ -166,7 +166,7 @@ h <- plot_blup(model2,
                prob = 0.2,
                col.shape = c("gray20", "gray80"),
                invert = TRUE)
-arrange_ggplot(g, h, labels = letters[7:8])
+arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
 
 ```
 

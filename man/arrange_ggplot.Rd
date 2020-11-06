@@ -10,7 +10,7 @@ arrange_ggplot(
   ncol = NULL,
   widths = NULL,
   heights = NULL,
-  guides = "collect",
+  guides = NULL,
   design = NULL,
   legend.position = "bottom",
   title = NULL,
@@ -39,13 +39,13 @@ objects.}
 in the grid. Will get repeated to match the dimensions of the grid.}
 
 \item{guides}{A string specifying how guides should be treated in the layout.
-Defaults to `'collect'` (will collect guides below to the given nesting
-level, removing duplicates). Other possible values are `'keep'` and
-`'auto'`.}
+Defaults to `'auto'`. Other possible values are `'keep'` and `'collect'`.
+In this case, will collect guides below to the given nesting level,
+removing duplicates.}
 
 \item{design}{Specification of the location of areas in the layout.}
 
-\item{legend.position}{The position of the legends in the plot. Default to
+\item{legend.position}{The position of the legends in the plot if \code{guides = "collect"} Default to
 `'bottom'`.}
 
 \item{title, subtitle, caption}{Text strings to use for the various plot

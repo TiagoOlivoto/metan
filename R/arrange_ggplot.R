@@ -1,20 +1,39 @@
-#' Arrange multiple ggplot2 graphics in a single image window
+#' Arrange separate ggplots into the same graphic
 #'
-#' This is a helper function to arrange ggplot2 objects in the metan package. It
-#' imports \code{\link[cowplot]{plot_grid}}. For a complete usability use that
-#' function.
-#' @param ... An object of class \code{gg}
-#' @param plotlist List of plots to display.
+#' This is a wraper function around \code{\link[patchwork]{wrap_plots}()} and
+#' \code{\link[patchwork]{plot_annotation}()} to arrange ggplot2 objects.
+#' @param ... multiple \code{ggplot}s or a list containing \code{ggplot}
+#'   objects.
 #' @param nrow,ncol The number of rows and columns, respectively.
-#' @param rel_widths,rel_heights The Numerical vector of relative columns widths
-#'   and rows heights, respectively.
-#' @param labels List of labels to be added to the plots.
-#' @param hjust,vjust Adjusts the horizontal and vertical position of each label.
-#' @param align Specifies whether graphs in the grid should be horizontally
-#'   (\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
-#'   align in both directions, \code{"none"} do not align the plot.
-#' @return None.
-#' @importFrom GGally ggmatrix_gtable
+#' @param widths,heights The relative widths and heights of each column and row
+#'   in the grid. Will get repeated to match the dimensions of the grid.
+#' @param guides A string specifying how guides should be treated in the layout.
+#'   Defaults to `'auto'`. Other possible values are `'keep'` and `'collect'`.
+#'   In this case, will collect guides below to the given nesting level,
+#'   removing duplicates.
+#' @param design Specification of the location of areas in the layout.
+#' @param legend.position The position of the legends in the plot if \code{guides = "collect"} Default to
+#'   `'bottom'`.
+#' @param title,subtitle,caption Text strings to use for the various plot
+#' annotations.
+#' @param tag_levels A character vector defining the enumeration format to use
+#' at each level. Possible values are `'a'` for lowercase letters, `'A'` for
+#' uppercase letters, `'1'` for numbers, `'i'` for lowercase Roman numerals, and
+#' `'I'` for uppercase Roman numerals. It can also be a list containing
+#' character vectors defining arbitrary tag sequences. If any element in the
+#' list is a scalar and one of `'a'`, `'A'`, `'1'`, `'i`, or `'I'`, this level
+#' will be expanded to the expected sequence.
+#' @param tag_prefix,tag_suffix Strings that should appear before or after the
+#' tag.
+#' @param tag_sep A separator between different tag levels.
+#' @param rel_widths,rel_heights Deprecated as of metan 1.10.0. Use \code{widths
+#'   and heights} instead.
+#' @param plotlist Deprecated as of metan 1.10.0.
+#' @param labels Deprecated as of metan 1.10.0. Use \code{tag_levels} instead.
+#' @param hjust,vjust Deprecated as of metan 1.10.0.
+#' @param align Deprecated as of metan 1.10.0.
+#' @return A `patchwork` object
+#' @import patchwork
 #' @export
 #'
 #' @examples
@@ -28,39 +47,55 @@
 #'              geom_boxplot()
 #'
 #' arrange_ggplot(p1, p2)
+#' arrange_ggplot(p1, p2,
+#'                ncol = 1,
+#'                tag_levels = list(c("(P1)", "(P2)")),
+#'                title = "My grouped ggplot",
+#'                caption = "A = scatter plot\nB = boxplot")
 #' }
 #'
 arrange_ggplot <- function(...,
-                           plotlist = NULL,
                            nrow = NULL,
                            ncol = NULL,
-                           rel_widths = 1,
-                           rel_heights = 1,
-                           labels = NULL,
-                           hjust = -0.5,
-                           vjust = 1.5,
-                           align = "hv") {
-if(any(sapply(list(...), function(x) class(x) == "ggmatrix") == TRUE)) {
-  plotlist <-  lapply(list(...), function(x) ggmatrix_gtable(x))
-  plot_grid(plotlist = plotlist,
-            nrow = nrow,
-            ncol = ncol,
-            rel_widths = rel_widths,
-            rel_heights = rel_heights,
-            labels = labels,
-            hjust = hjust,
-            vjust = vjust,
-            align = align)
-} else{
-plot_grid(plotlist = ...,
-          plotlist = plotlist,
-          nrow = nrow,
-          ncol = ncol,
-          rel_widths = rel_widths,
-          rel_heights = rel_heights,
-          labels = labels,
-          hjust = hjust,
-          vjust = vjust,
-          align = align)
-}
+                           widths = NULL,
+                           heights = NULL,
+                           guides = NULL,
+                           design = NULL,
+                           legend.position = "bottom",
+                           title = NULL,
+                           subtitle = NULL,
+                           caption = NULL,
+                           tag_levels = NULL,
+                           tag_prefix = NULL,
+                           tag_suffix = NULL,
+                           tag_sep = NULL,
+                           plotlist = "deprecated",
+                           labels = "deprecated",
+                           rel_widths = "deprecated",
+                           rel_heights = "deprecated",
+                           hjust = "deprecated",
+                           vjust = "deprecated",
+                           align = "deprecated") {
+  p <-
+  wrap_plots(...,
+             ncol = ncol,
+             nrow = nrow,
+             widths = widths,
+             heights = heights,
+             design = design,
+             guides = guides) +
+    plot_annotation(title = title,
+                    subtitle = subtitle,
+                    caption = caption,
+                    tag_levels = tag_levels,
+                    tag_prefix = tag_prefix,
+                    tag_suffix = tag_suffix,
+                    tag_sep = tag_sep)
+  if(!missing(guides)){
+    p <-
+      p +
+      plot_layout(guides = guides) &
+      theme(legend.position = legend.position)
+  }
+  return(p)
 }

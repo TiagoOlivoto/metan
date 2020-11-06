@@ -861,13 +861,10 @@ waasb <- function(.data,
 #' c(1:4)} that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
 #'   to \code{NULL}
-#' @param align Specifies whether graphs in the grid should be horizontally
-#'   (\code{"h"}) or vertically (\code{"v"}) aligned. \code{"hv"} (default)
-#'   align in both directions, \code{"none"} do not align the plot.
+#' @param align Deprecated as of metan 1.10.0.
 #' @param ... Additional arguments passed on to the function
-#'   \code{\link[cowplot]{plot_grid}}
+#'  \code{\link[patchwork]{wrap_plots}()}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @importFrom cowplot plot_grid
 #' @importFrom dplyr distinct_all
 #' @importFrom tibble tribble
 #' @method plot waasb
@@ -910,8 +907,11 @@ plot.waasb <- function(x,
                        which = c(1:4),
                        ncol = NULL,
                        nrow = NULL,
-                       align = "hv",
+                       align = "deprecated",
                        ...) {
+    if(align != "deprecated"){
+        warning("Argument 'align' is deprecated as of metan 1.10.0.")
+    }
     if(!type  %in% c("res", 're', "vcomp")){
         stop("Argument type = '", match.call()[["type"]], "' invalid. Use one of 'res', 're', or 'vcomp'", call. = FALSE)
     }
@@ -1108,22 +1108,11 @@ plot.waasb <- function(x,
                   plot.title = element_text(size = size.tex.lab, hjust = 0, vjust = 1),
                   panel.spacing = unit(0, "cm"))
         plots <- list(p1, p2, p3, p4, p5, p6, p7)
-        p1 <-
-            plot_grid(plotlist = plots[c(which)],
-                      ncol = ncol,
-                      nrow = nrow,
-                      align = align,
-                      ...)
-        title <- ggdraw() +
-            draw_label(var_name,
-                       fontface = 'bold',
-                       x = 0,
-                       hjust = 0) +
-            theme(plot.margin = margin(0, 0, 0, 7))
-        p1 <-
-            plot_grid(title, p1,
-                      ncol = 1,
-                      rel_heights = c(0.05, 1))
+        p1 <- wrap_plots(plots[c(which)],
+                         ncol = ncol,
+                         nrow = nrow,
+                         ...) +
+            plot_annotation(title = var_name)
         return(p1)
     }
     if (type == "re") {
