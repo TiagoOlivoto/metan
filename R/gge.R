@@ -271,6 +271,8 @@ gge <- function(.data,
 #'   \code{shape.env = 23} (rhombus) for environments. Values must be between
 #'   \code{21-25}: \code{21} (circle), \code{22} (square), \code{23} (rhombus),
 #'   \code{24} (up triangle), and \code{25} (low triangle).
+#' @param line.type.gen The line type to highlith the genotype's vectors.
+#'   Defaults to `line.type.gen == "dotted`.
 #' @param size.shape The size of the shape (both for genotypes and
 #'   environments). Defaults to \code{2.2}.
 #' @param size.shape.win The size of the shape for winners genotypes when
@@ -332,6 +334,7 @@ plot.gge <- function(x,
                      sel_gen2 = NA,
                      shape.gen = 21,
                      shape.env = 23,
+                     line.type.gen = "dotted",
                      size.shape = 2.2,
                      size.shape.win = 3.2,
                      size.bor.tick = "deprecated",
@@ -488,7 +491,7 @@ if(size.bor.tick != "deprecated"){
     P2 <- P1 +
       geom_segment(aes(xend = x1_x, yend = x1_y),
                    color = col.gen,
-                   linetype = 2,
+                   linetype = line.type.gen,
                    size = size.line,
                    data = subset(plotdata, type == "genotype")) +
       geom_abline(intercept = 0,
@@ -567,7 +570,7 @@ if(size.bor.tick != "deprecated"){
                    aes(x = X1, y = X2),
                    xend = 0,
                    yend = 0,
-                   linetype = 2,
+                   linetype = line.type.gen,
                    color = col.gen,
                    size = size.line) +
       geom_point(data = subset(df_winners, win == "no"),
@@ -690,7 +693,7 @@ if(size.bor.tick != "deprecated"){
     P2 <- P1 + geom_segment(data = subset(plotdata, type == "genotype"),
                             aes(xend = x1_x, yend = x1_y),
                             col = col.gen,
-                            linetype = "dotted") +
+                            linetype = line.type.gen) +
       geom_abline(slope = coord_env[venvironment, 2]/coord_env[venvironment, 1],
                   intercept = 0,
                   color = alpha(col.line, col.alpha),
@@ -808,7 +811,7 @@ if(size.bor.tick != "deprecated"){
     P2 <- P1 + geom_segment(data = subset(plotdata, type == "environment"),
                             aes(xend = x1_x, yend = x1_y),
                             col = col.line,
-                            linetype = "dotted") +
+                            linetype = line.type.gen) +
       geom_abline(slope = coord_gen[vgenotype, 2]/coord_gen[vgenotype, 1],
                   intercept = 0,
                   color = alpha(col.gen, col.alpha),

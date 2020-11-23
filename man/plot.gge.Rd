@@ -14,6 +14,7 @@
   sel_gen2 = NA,
   shape.gen = 21,
   shape.env = 23,
+  line.type.gen = "dotted",
   size.shape = 2.2,
   size.shape.win = 3.2,
   size.bor.tick = "deprecated",
@@ -69,6 +70,9 @@ in the biplot. Defaults to \code{shape.gen = 21} (circle) for genotypes and
 \code{shape.env = 23} (rhombus) for environments. Values must be between
 \code{21-25}: \code{21} (circle), \code{22} (square), \code{23} (rhombus),
 \code{24} (up triangle), and \code{25} (low triangle).}
+
+\item{line.type.gen}{The line type to highlith the genotype's vectors.
+Defaults to `line.type.gen == "dotted`.}
 
 \item{size.shape}{The size of the shape (both for genotypes and
 environments). Defaults to \code{2.2}.}
