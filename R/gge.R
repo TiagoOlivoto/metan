@@ -423,7 +423,23 @@ if(size.bor.tick != "deprecated"){
           axis.title = element_text(size = size.text.lab, colour = "black"))
   # Basic plot
   if (type == 1) {
-    P2 <- P1 +
+      if(has_class(model, c("gtb", "gytb"))){
+        P2 <- P1 +
+        geom_segment(xend = 0,
+                     yend = 0,
+                     size = size.line,
+                     aes(col = type),
+                     data = plotdata,
+                     show.legend = FALSE)
+      } else{
+        P2 <- P1 +
+          geom_segment(xend = 0,
+                       yend = 0,
+                       size = size.line,
+                       col = alpha(col.line, col.alpha),
+                       data = subset(plotdata, type == "environment"))
+      }
+    P2 <- P2 +
       geom_segment(xend = 0,
                    yend = 0,
                    size = size.line,
