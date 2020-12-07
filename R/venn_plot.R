@@ -120,6 +120,7 @@ venn_plot <- function(...,
                            label_sep = label_sep) {
     # Adapted from ggvenn' ggvenn()
     # https://github.com/yanlinlin82/ggvenn/blob/master/R/ggvenn.R
+    # Copyright (c) 2019-2020 Linlin Yan
     # Thanks to @yanlinlin82 (https://twitter.com/yanlinlin82)
     get_shape <- function(group,
                            x_offset = 0,
@@ -136,6 +137,7 @@ venn_plot <- function(...,
                y = y_offset + x_raw * sin(theta_offset) + y_raw * cos(theta_offset))
     }
     columns <- names(data) %>% head(4)
+    # Two sets
     if (length(columns) == 2) {
       d <-   rbind(get_shape(1L, -.6, 0, 1),
                    get_shape(2L,  .6, 0, 1))
@@ -158,8 +160,7 @@ venn_plot <- function(...,
         mutate(label = columns)
       return(list(shapes = d, texts = texts, labels = labels))
     }
-
-
+    # Three sets
     if (length(columns) == 3) {
       d <-
         rbind(get_shape(1L, -.6, (sqrt(1) + 2) / 6, 1),
@@ -190,6 +191,7 @@ venn_plot <- function(...,
         mutate(label = columns)
       return(list(shapes = d, texts = texts, labels = labels))
     }
+    # Four sets
     if (length(columns) == 4) {
       d <-   rbind(get_shape(1L, -.7, -1/2, .75, 1.5, pi/4),
                    get_shape(2L, -.72+2/3, -1/6, .75, 1.5, pi/4),
