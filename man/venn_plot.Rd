@@ -2,7 +2,7 @@
 % Please edit documentation in R/venn_plot.R
 \name{venn_plot}
 \alias{venn_plot}
-\title{Draw a Venn diagram for 23 sets}
+\title{Draw Venn diagrams}
 \usage{
 venn_plot(
   ...,
@@ -37,7 +37,7 @@ objects in \code{...} (\code{names = NULL}). Use \code{names} to override this d
 \item{show_sets}{Show set names instead of count. Defaults to \code{FALSE}.}
 
 \item{fill}{Filling colors in circles. Defaults to the default ggplot2 color
-palette.}
+palette. A vector of length 1 will be recycled.}
 
 \item{alpha}{Transparency for filling circles. Defaults to \code{0.5}.}
 
@@ -64,7 +64,8 @@ to \code{","}.}
 A ggplot object.
 }
 \description{
-Produces ggplot2-based Venn plots for 2, 3 or 4 sets.
+Produces ggplot2-based Venn plots for 2, 3 or 4 sets. A Venn diagram shows
+all possible logical relationships between several sets of data.
 }
 \examples{
 \donttest{

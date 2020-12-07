@@ -1,6 +1,7 @@
-#' Draw a Venn diagram for 23 sets
+#' Draw Venn diagrams
 #'
-#' Produces ggplot2-based Venn plots for 2, 3 or 4 sets.
+#' Produces ggplot2-based Venn plots for 2, 3 or 4 sets. A Venn diagram shows
+#' all possible logical relationships between several sets of data.
 #' @param ... A list or a comma-separated list of vectors in the same class. If
 #'   vector contains duplicates they will be discarded. If the list doesn't have
 #'   names the sets will be named as `"set_1"`, "`Set_2"`, `"Set_3"` and so on.
@@ -11,7 +12,7 @@
 #' @param show_elements Show set elements instead of count. Defaults to `FALSE`.
 #' @param show_sets Show set names instead of count. Defaults to `FALSE`.
 #' @param fill Filling colors in circles. Defaults to the default ggplot2 color
-#'   palette.
+#'   palette. A vector of length 1 will be recycled.
 #' @param alpha Transparency for filling circles. Defaults to `0.5`.
 #' @param stroke_color Stroke color for drawing circles.
 #' @param stroke_alpha Transparency for drawing circles.
@@ -115,6 +116,11 @@ venn_plot <- function(...,
   if (!(alpha >= 0 & alpha <= 1)) {
     stop("'alpha' should be between 0 and 1.", call. = FALSE)
   }
+  if(length(fill) == 1){
+    fill_color <- rep(fill, length(sets))
+  } else{
+    fill_color <- fill
+  }
   prepare_data <- function(data,
                            show_elements = show_elements,
                            label_sep = label_sep) {
@@ -137,6 +143,7 @@ venn_plot <- function(...,
                y = y_offset + x_raw * sin(theta_offset) + y_raw * cos(theta_offset))
     }
     columns <- names(data) %>% head(4)
+
     # Two sets
     if (length(columns) == 2) {
       d <-   rbind(get_shape(1L, -.6, 0, 1),
@@ -252,9 +259,9 @@ venn_plot <- function(...,
               aes(x = x, y = y, label = label, hjust = 0.5, vjust = 0.5),
               color = text_color,
               size = text_size) +
-    scale_x_continuous(limits = c(-2, 2)) +
-    scale_y_continuous(limits = c(-2, 2)) +
-    scale_fill_manual(values = fill) +
+    scale_x_continuous(expand = expansion(0.1)) +
+    scale_y_continuous(expand = expansion(0.1)) +
+    scale_fill_manual(values = fill_color) +
     guides(fill = FALSE) +
     coord_fixed() +
     theme_void()
