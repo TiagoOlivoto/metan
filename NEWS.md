@@ -1,6 +1,12 @@
 # metan (development version)
+## New functions
+* `set_union()`, `set_difference()` and `set_intersect()` for set operations with many sets.
+* `venn_plot()` to produce Venn diagrams.
+
+# Minor improvements
 * `gge()` now have a `by` argument and understand data passed from `group_by`.
 * New arguments `col.stroke` and `size.stroke` in `plot.gge()`
+* `gtb` and `gytb` now produces biplots with lines for genotype's vectors in `type = 1`.
 
 # metan 1.10.0
 * `as_*()` now handles vectors.
