@@ -5,6 +5,7 @@
 \alias{theme_metan}
 \alias{theme_metan_minimal}
 \alias{transparent_color}
+\alias{ggplot_color}
 \alias{alpha_color}
 \title{Personalized theme for ggplot2-based graphics}
 \usage{
@@ -13,6 +14,8 @@ theme_metan(grid = "none", col.grid = "white", color.background = "gray95")
 theme_metan_minimal()
 
 transparent_color()
+
+ggplot_color(n)
 
 alpha_color(color, alpha = 50)
 }
@@ -26,6 +29,9 @@ grids.}
 
 \item{color.background}{The color for the panel background.}
 
+\item{n}{The number of colors. This works well for up to about eight colours,
+but after that it becomes hard to tell the different colours apart.}
+
 \item{color}{A color name.}
 
 \item{alpha}{An alpha value for transparency (0 < alpha < 1).}
@@ -37,6 +43,8 @@ grids.}
 background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
 \item \code{transparent_color()}: A helper function to return a transparent color
 with Hex value of "#000000FF"
+\item \code{ggplot_color()}: A helper function to emulate ggplot2 default color
+palette.
 \item \code{alpha_color()}: Return a semi-transparent color based on a color name
 and an alpha value. For more details see \code{\link[grDevices]{colors}}.
 }

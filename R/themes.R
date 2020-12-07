@@ -8,6 +8,8 @@
 #' @param color.background The color for the panel background.
 #' @param alpha An alpha value for transparency (0 < alpha < 1).
 #' @param color A color name.
+#' @param n The number of colors. This works well for up to about eight colours,
+#'   but after that it becomes hard to tell the different colours apart.
 #'
 #' @name themes
 #' @description
@@ -16,6 +18,8 @@
 #'   background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
 #' * \code{transparent_color()}: A helper function to return a transparent color
 #' with Hex value of "#000000FF"
+#' * \code{ggplot_color()}: A helper function to emulate ggplot2 default color
+#' palette.
 #' * \code{alpha_color()}: Return a semi-transparent color based on a color name
 #' and an alpha value. For more details see \code{\link[grDevices]{colors}}.
 #' @md
@@ -89,7 +93,14 @@ theme_metan_minimal = function () {
 transparent_color <- function() {
   return("#FFFFFF00")
 }
-
+#' @name themes
+#' @export
+#' @importFrom grDevices hcl
+ggplot_color <- function(n) {
+  # adapted from https://stackoverflow.com/a/8197703
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
 #' @name themes
 #' @importFrom grDevices col2rgb rgb
 #' @export
