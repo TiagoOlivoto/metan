@@ -537,7 +537,8 @@ waasb <- function(.data,
             t() %>%
             as.data.frame() %>%
             mutate(Percent = Pesos$Percent)
-        WAASAbs <- mutate(Escores, WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent)) %>%
+        WAASAbs <-
+            mutate(Escores, WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent)) %>%
             group_by(type) %>%
             mutate(PctResp = (mresp[vin] - minresp[vin])/(max(Y) - min(Y)) * (Y - max(Y)) + mresp[vin],
                    PctWAASB = (0 - 100)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + 0,
@@ -546,7 +547,7 @@ waasb <- function(.data,
                    OrResp = rank(-Y),
                    OrWAASB = rank(WAASB),
                    OrPC1 = rank(abs(PC1)),
-                   WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                   WAASBY = ifelse(is.na(((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB)), PctResp, ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB)),
                    OrWAASBY = rank(-WAASBY)) %>%
             ungroup()
         Details <-
@@ -790,16 +791,19 @@ waasb <- function(.data,
                 x[["LRT"]][which(x[["LRT"]][[1]] == "GEN:ENV"), 7]
             })) > prob)), "\n")
             cat("---------------------------------------------------------------------------\n")
+            chek_na_waasb <- listres %>% map(~.x[["model"]] %>% has_na)
+            if(any(chek_na_waasb == TRUE)){
+            cat("The following traits had p-value for GE interaction = 1\n")
+            cat(names(which(chek_na_waasb == TRUE)), "\n")
+            cat("WAASBY value for these traits is based on mean performance only (PctResp)\n")
+            cat("---------------------------------------------------------------------------\n")
+            }
         } else {
             cat("All variables with significant (p < 0.05) genotype-vs-environment interaction\n")
         }
     }
     invisible(structure(listres, class = "waasb"))
 }
-
-
-
-
 
 
 
