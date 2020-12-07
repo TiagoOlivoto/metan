@@ -4,7 +4,14 @@
 \alias{mtsi}
 \title{Multi-trait stability index}
 \usage{
-mtsi(.data, index = "waasby", SI = 15, mineval = 1, verbose = TRUE)
+mtsi(
+  .data,
+  index = "waasby",
+  ideotype = NULL,
+  SI = 15,
+  mineval = 1,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{An object of class \code{waasb} or \code{waas}.}
@@ -13,6 +20,13 @@ mtsi(.data, index = "waasby", SI = 15, mineval = 1, verbose = TRUE)
 performance are considered. If \code{index = 'waasb'} the multi-trait index
 will be computed considering the stability of genotypes only.  More details
 can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
+
+\item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the
+number of variables used to plan the ideotype. Use \code{'h'} to indicate
+the traits in which higher values are desired or \code{'l'} to indicate the
+variables in which lower values are desired. For example, \code{ideotype =
+  c("h, h, h, h, l")} will consider that the ideotype has higher values for
+the first four traits and lower values for the last trait.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}

@@ -8,6 +8,12 @@
 #'   performance are considered. If \code{index = 'waasb'} the multi-trait index
 #'   will be computed considering the stability of genotypes only.  More details
 #'   can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
+#' @param ideotype A vector of length \code{nvar} where \code{nvar} is the
+#'   number of variables used to plan the ideotype. Use \code{'h'} to indicate
+#'   the traits in which higher values are desired or \code{'l'} to indicate the
+#'   variables in which lower values are desired. For example, \code{ideotype =
+#'   c("h, h, h, h, l")} will consider that the ideotype has higher values for
+#'   the first four traits and lower values for the last trait.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
@@ -74,6 +80,7 @@
 #'}
 mtsi <- function(.data,
                  index = "waasby",
+                 ideotype = NULL,
                  SI = 15,
                  mineval = 1,
                  verbose = TRUE) {
@@ -93,9 +100,7 @@ mtsi <- function(.data,
   if (length(.data) == 1) {
     stop("The multi-trait stability index cannot be computed with one single variable.", call. = FALSE)
   }
-  if (index == "waasby") {
-    ideotype.D <- rep(100, length(.data))
-  }
+
 
   if (has_class(.data, c("waas", "waas_means"))){
     if (index == "waasb") {
@@ -116,6 +121,32 @@ mtsi <- function(.data,
   if(has_na(data)){
     stop("Missing values for traits ")
   }
+    if (index == "waasby") {
+      if(is.null(ideotype)){
+        rescaled <- rep(100, length(data) - 1)
+        ideotype.D <- rep(100, length(data) - 1)
+        names(ideotype.D) <- names(.data)
+      } else{
+        rescaled <- unlist(strsplit(ideotype, split="\\s*(\\s|,)\\s*")) %>% all_lower_case()
+        if(length(rescaled) != ncol(data)-1){
+          stop("Ideotype must have length ", ncol(data)-1, ", the number of traits in the model.")
+        }
+        if(!all(rescaled %in% c("h", "l", "m"))){
+          stop("argument 'ideotype' must have 'h', 'l', or 'm' only", call. = FALSE)
+        }
+        # ideotype.D <- ifelse(rescaled == "m", 50, 100)
+        ideotype.D <- case_when(
+          rescaled == "h" ~ 100,
+          rescaled == "m" ~ 50,
+          rescaled == "l" ~ 0)
+        names(ideotype.D) <- names(.data)
+      }
+      df_ideotype <-
+        data.frame(ideotype.D) %>%
+        rownames_to_column("VAR") %>%
+        set_names("VAR", "sense")
+    }
+
   if (is.null(SI)) {
     ngs <- NULL
   } else {
@@ -210,19 +241,32 @@ mtsi <- function(.data,
              Xo = colMeans(observed),
              Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
              SD = Xs - colMeans(observed),
-             SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100) %>%
-      left_join(
-        gmd(.data, "details", verbose = FALSE) %>%
-          pivot_longer(-Parameters) %>%
-          subset(Parameters == "mresp") %>%
-          remove_cols(Parameters) %>%
-          set_names("VAR", "sense"),
-        by = "VAR") %>%
-      mutate(sense = ifelse(sense == 0, "decrease", "increase"),
+             SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100)
+      if(missing(ideotype)){
+        sel_dif_mean <-
+          sel_dif_mean %>%
+          left_join(
+            gmd(.data, "details", verbose = FALSE) %>%
+              pivot_longer(-Parameters) %>%
+              subset(Parameters == "mresp") %>%
+              remove_cols(Parameters) %>%
+              set_names("VAR", "sense"),
+            by = "VAR")
+      } else{
+        sel_dif_mean <- left_join(sel_dif_mean, df_ideotype, by = "VAR")
+      }
+    sel_dif_mean <-
+      sel_dif_mean %>%
+      mutate(sense = case_when(sense == 0 ~ "decrease",
+                               sense == 50 ~ "average",
+                               sense == 100 ~ "increase"),
              goal = case_when(
-               sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
+               sense == "decrease" & SDperc < 0 ~ 100,
+               sense == "increase" & SDperc > 0 ~ 100,
+               sense == "average" & SDperc == 0 ~ 100,
                TRUE ~ 0
              ))
+
     if (class(.data) == "waasb") {
       h2 <- gmd(.data, "h2", verbose = FALSE)
       sel_dif_mean <-
