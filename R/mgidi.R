@@ -71,10 +71,9 @@
 #' desired gains, the statistics are computed for by strata.
 #' * \strong{sel_gen} The selected genotypes.
 #' @md
-#' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
-#'   M.I. Diel. 2019. Mean performance and stability in multi-environment trials
-#'   II: Selection based on multiple traits. Agron. J. 111:2961-2969.
-#' \doi{10.2134/agronj2019.03.0220}
+#' @references Olivoto, T., and Nardino, M. (2020). MGIDI: toward an effective
+#'   multivariate selection in biological experiments. Bioinformatics.
+#' \doi{10.1093/bioinformatics/btaa981}
 #' @importFrom tidyselect any_of all_of
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -368,7 +367,6 @@ mgidi <- function(.data,
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param invert Deprecated argument as of 1.8.0. Use \code{rotate} instead.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
 #'   set to null when a radar plot is produced.
 #' @param title The plot title when \code{type = "contribution"}.
@@ -409,7 +407,6 @@ plot.mgidi <- function(x,
                        genotypes = "selected",
                        n.dodge = 1,
                        check.overlap = FALSE,
-                       invert = NULL,
                        x.lab = NULL,
                        y.lab = NULL,
                        title = NULL,
@@ -422,10 +419,6 @@ plot.mgidi <- function(x,
                        col.nonsel = "gray",
                        legend.position = "bottom",
                        ...) {
-  if(!is.null(invert)){
-    warning("Argument 'invert' is deprecated. Use 'replacement' instead.", call. = FALSE)
-    rotate <- invert
-  }
   if(!type %in% c("index", "contribution")){
     stop("The argument index must be one of the 'index' or 'contribution'", call. = FALSE)
   }

@@ -30,7 +30,7 @@ select_cols_na(.data, verbose = TRUE)
 
 select_rows_na(.data, verbose = TRUE)
 
-replace_na(.data, ..., replace = 0, replacement = 0)
+replace_na(.data, ..., replacement = 0)
 
 random_na(.data, prop)
 
@@ -61,8 +61,6 @@ variables names. Select helpers are also allowed.}
 
 \item{verbose}{Logical argument. If \code{TRUE} (default) shows in console
 the rows or columns deleted.}
-
-\item{replace}{Deprecated argument as of 1.8.0. Use \code{replacement} instead.}
 
 \item{replacement}{The value used for replacement. Defaults to \code{0}. Use
 \code{replacement. = "colmean"} to replace missing values with column mean.}

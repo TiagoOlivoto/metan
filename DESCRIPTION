@@ -1,7 +1,7 @@
 Type: Package
 Package: metan
 Title: Multi Environment Trials Analysis
-Version: 1.10.0.9000
+Version: 1.11.0
 Authors@R: 
     person(given = "Tiago",
            family = "Olivoto",

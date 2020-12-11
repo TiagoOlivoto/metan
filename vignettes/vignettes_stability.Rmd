@@ -43,10 +43,10 @@ print_table <- function(table, rownames = FALSE, digits = 3, ...){
 
 ```
 
-
+See the section [Rendering engine](#rendering) to know how HTML tables were generated.
 
 # Genotype-environment performance
-The function `ge_plot()` may be used to visualize the genotype's performance across the environments.
+The function `ge_plot()` may be used to visualize the genotype's performance across the environments. 
 ```{r, fig.width=10, fig.height=5, warning = FALSE, message = FALSE}
 library(metan)
 a <- ge_plot(data_ge, ENV, GEN, GY)
@@ -257,7 +257,7 @@ corr_stab_ind(stat_ge)
 
 
 _______________________________________________________________________________________________
-# Rendering engine
+# Rendering engine {#rendering}
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

@@ -21,7 +21,7 @@ load("indexes.RData")
 
 
 # Getting started
-In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).
+In this section we will use the data examples `data_ge` and `data_ge2`  provided in the **metan** package. For more information, please, see `?data_ge` and `?data_ge2`. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). See the section [Rendering engine](#rendering) to know how HTML tables were generated.
 
 
 ```{r warning = FALSE, message = FALSE, echo=FALSE}
@@ -98,7 +98,7 @@ The MGIDI index can be seen as the MTSI index with a weigth of 100 for mean perf
 mod <- gamem(data_g,
              gen = GEN,
              rep = REP,
-             resp =everything())
+             resp = everything())
 mgidi_index <- mgidi(mod,
                      SI = 20) # Selection intensity
 
@@ -142,6 +142,19 @@ The function `coincidence_indexes()` can be used to compute the coincidence inde
 
 ```{r}
 coincidence <- coincidence_index(mgidi_index, fai, smith, total = 13)
+coincidence
+
+```
+
+We can also produce a Venn plot to show the relationships between the indexes
+
+```{r}
+MGIDI <- gmd(mgidi_index, "sel_gen")
+FAI <- gmd(fai, "sel_gen")
+SH <- gmd(smith, "sel_gen")
+
+# Create the plot
+venn_plot(MGIDI, FAI, SH, show_elements = TRUE)
 ```
 
 
@@ -149,7 +162,7 @@ coincidence <- coincidence_index(mgidi_index, fai, smith, total = 13)
 
 
 _______________________________________________________________________________________________
-# Rendering engine
+# Rendering engine {#rendering}
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

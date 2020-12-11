@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -226,16 +226,22 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
+    <div id="metan-1110" class="section level1">
+<h1 class="page-header" data-toc-text="1.11.0">
+<a href="#metan-1110" class="anchor"></a>metan 1.11.0<small> Unreleased </small>
 </h1>
+<div id="new-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h2>
 <ul>
 <li>
-<code><a href="../reference/gge.html">gge()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</li>
-<li>New arguments <code>col.stroke</code> and <code>size.stroke</code> in <code><a href="../reference/plot.gge.html">plot.gge()</a></code>
-</li>
+<code><a href="../reference/utils_sets.html">set_union()</a></code>, <code><a href="../reference/utils_sets.html">set_difference()</a></code> and <code><a href="../reference/utils_sets.html">set_intersect()</a></code> for set operations with many sets.</li>
+<li>
+<code><a href="../reference/venn_plot.html">venn_plot()</a></code> to produce Venn diagrams.</li>
+<li>
+<code>as_vector()</code> to coerce data frame variables to vectors in the global environment quickly.</li>
 </ul>
+</div>
 </div>
     <div id="metan-1100" class="section level1">
 <h1 class="page-header" data-toc-text="1.10.0">
@@ -247,7 +253,7 @@
 <p><code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> now shows both stars or p-values for reporting the significance of correlations.s</p>
 <h1 id="metan-1100-1" class="page-header" data-toc-text="1.10.0">metan 1.10.0<small> 2020-10-24 </small>
 </h1>
-<h2 id="minor-improvements">Minor improvements</h2>
+<h2 id="minor-improvements-1">Minor improvements</h2>
 </li>
 <li><p><code><a href="../reference/gamem.html">gamem()</a></code>, <code><a href="../reference/gamem_met.html">gamem_met()</a></code>, and <code><a href="../reference/waasb.html">waasb()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</p></li>
 <li><p><code><a href="../reference/mtsi.html">mtsi()</a></code> and <code><a href="../reference/mgidi.html">mgidi()</a></code> now returns the ranks for the contribution of each factor and understand models fitted with <code><a href="../reference/gamem.html">gamem()</a></code> and <code><a href="../reference/waasb.html">waasb()</a></code> using the <code>by</code> argument.</p></li>
@@ -255,9 +261,9 @@
 <li><p><code><a href="../reference/get_model_data.html">get_model_data()</a></code> now returns the genotypic and phenotypic correlation matrices from objects of class <code>waasb</code> and <code>gamem</code>.</p></li>
 <li><p><code><a href="../reference/utils_num_str.html">replace_string()</a></code>, <code><a href="../reference/utils_num_str.html">replace_number()</a></code>, <code><a href="../reference/utils_num_str.html">extract_string()</a></code>, and <code><a href="../reference/utils_num_str.html">extract_number()</a></code> now accepts <a href="https://tidyeval.tidyverse.org/index.html">tidy evaluation</a> in the new <code>...</code> argument.</p></li>
 </ul>
-<div id="new-functions" class="section level2">
+<div id="new-functions-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions" class="anchor"></a>New functions</h2>
+<a href="#new-functions-1" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/get_dist.html">get_dist()</a></code> to get distance matrices from objects of class <code>clustering</code>.</li>
@@ -349,9 +355,9 @@
 <h1 class="page-header" data-toc-text="1.6.0">
 <a href="#metan-160" class="anchor"></a>metan 1.6.0<small> 2020-05-21 </small>
 </h1>
-<div id="new-functions-1" class="section level2">
+<div id="new-functions-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h2>
+<a href="#new-functions-2" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/Smith_Hazel.html">Smith_Hazel()</a></code> and <code><a href="../reference/print.sh.html">print.sh()</a></code> and <code><a href="../reference/plot.sh.html">plot.sh()</a></code> for computing the Smith and Hazel selection index.</li>
@@ -359,9 +365,9 @@
 <code><a href="../reference/coincidence_index.html">coincidence_index()</a></code> for computing the coincidence index.</li>
 </ul>
 </div>
-<div id="minor-improvements-1" class="section level2">
+<div id="minor-improvements-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-1" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-2" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now extracts the genotypic and phenotypic variance-covariance matrix from objects of class <code>gamem</code> and <code>waasb</code>.</li>
@@ -396,9 +402,9 @@
 <h1 class="page-header" data-toc-text="1.5.0">
 <a href="#metan-150" class="anchor"></a>metan 1.5.0<small> 2020-04-12 </small>
 </h1>
-<div id="new-functions-2" class="section level2">
+<div id="new-functions-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions-2" class="anchor"></a>New functions</h2>
+<a href="#new-functions-3" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/utils_na_zero.html">select_rows_na()</a></code> and <code><a href="../reference/utils_na_zero.html">select_cols_na()</a></code> to select rows or columns with with <code>NA</code> values.</li>
@@ -459,9 +465,9 @@
 <li>Factor columns can now have custom names rather than <code>ENV</code>, <code>GEN</code>, and <code>REP</code> only (<a href="https://github.com/TiagoOlivoto/metan/issues/2"><a href='https://github.com/TiagoOlivoto/metan/issues/2'>#2</a></a>).</li>
 </ul>
 </div>
-<div id="new-functions-3" class="section level2">
+<div id="new-functions-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions-3" class="anchor"></a>New functions</h2>
+<a href="#new-functions-4" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/get_model_data.html">gmd()</a></code> a shortcut to <code><a href="../reference/get_model_data.html">get_model_data()</a></code>
@@ -508,9 +514,9 @@
 <h1 class="page-header" data-toc-text="1.3.0">
 <a href="#metan-130" class="anchor"></a>metan 1.3.0<small> 2020-02-11 </small>
 </h1>
-<div id="new-functions-4" class="section level2">
+<div id="new-functions-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions-4" class="anchor"></a>New functions</h2>
+<a href="#new-functions-5" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/themes.html">alpha_color()</a></code> To get a semi-transparent color</li>
@@ -566,7 +572,7 @@
 <li>
 <code><a href="../reference/utils_stats.html">var_amo()</a></code>, <code><a href="../reference/utils_stats.html">var_pop()</a></code> computes sample and populational variance.</li>
 <li>
-<code><a href="../reference/utils_stats.html">valid_n()</a></code> Return the valid (not NA) length of a data.</li>
+<code>valid_n()</code> Return the valid (not NA) length of a data.</li>
 </ul>
 </div>
 <div id="utils_rows_cols" class="section level3">
@@ -755,7 +761,7 @@
 <li>New function <code><a href="../reference/desc_stat.html">desc_wider()</a></code> to convert an output of the function <code><a href="../reference/desc_stat.html">desc_stat()</a></code> to a ‘wide’ format;</li>
 <li>New function <code><a href="../reference/Fox.html">Fox()</a></code> for Stability analysis;</li>
 <li>New function <code><a href="../reference/Shukla.html">Shukla()</a></code> for stability analysis;</li>
-<li>New function <code><a href="../reference/utils_as.html">to_factor()</a></code> to quickly convert variables to factors;</li>
+<li>New function <code>to_factor()</code> to quickly convert variables to factors;</li>
 <li>Improve usability of <code><a href="../reference/get_model_data.html">get_model_data()</a></code> function;</li>
 <li>Update function’s documentation;</li>
 <li>Update vignettes;</li>

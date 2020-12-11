@@ -15,7 +15,6 @@
 #'   "updown" (first up and then down).
 #' @param prop The proportion (percentage) of \code{NA} values to generate in
 #'   \code{.data}.
-#' @param replace Deprecated argument as of 1.8.0. Use \code{replacement} instead.
 #' @param replacement The value used for replacement. Defaults to \code{0}. Use
 #'   \code{replacement. = "colmean"} to replace missing values with column mean.
 #' @param verbose Logical argument. If \code{TRUE} (default) shows in console
@@ -132,11 +131,7 @@ select_rows_na <- function(.data, verbose = TRUE){
 }
 #' @name utils_na_zero
 #' @export
-replace_na <- function(.data, ..., replace = 0, replacement = 0){
-  if(replace != 0){
-      warning("Argument 'replace' deprecated. Use 'replacement' instead.", call. = FALSE)
-    replacement <- replace
-  }
+replace_na <- function(.data, ..., replacement = 0){
   test <- !is.na(replacement) && replacement == "colmean"
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     if(has_rownames(.data)){

@@ -111,6 +111,9 @@ alpha lattice design only).
 \item \code{"rank"} Rank for ecovalence.
 }
 
+\strong{Objects of class \code{fai_blup}:} See the \strong{Value} section of
+\code{\link{fai_blup}()} to see valid options for \code{what} argument.
+
 \strong{Objects of class \code{ge_acv}:}
 \itemize{
 \item \code{"ACV"} The adjusted coefficient of variation (default).
@@ -170,6 +173,9 @@ analyzed traits (default).
 \item \code{"rShukaVar"} Rank for Shukla's stablity variance.
 \item \code{"ssiShukaVar"} Simultaneous selection index.
 }
+
+\strong{Objects of class \code{sh}:} See the \strong{Value} section of
+\code{\link{Smith_Hazel}()} to see valid options for \code{what} argument.
 
 \strong{Objects of class \code{Fox}:}
 \itemize{
@@ -411,7 +417,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 \code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
 \code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
 \code{\link{ge_acv}}, \code{\link{ge_polar}} \code{\link{ge_means}},
-\code{\link{ge_reg}}, \code{\link{performs_ammi}},
+\code{\link{ge_reg}}, \code{\link{mgidi}}, \code{\link{mtsi}}, \code{\link{performs_ammi}},
 \code{\link{Resende_indexes}}, \code{\link{Shukla}},
 \code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
 }

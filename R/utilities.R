@@ -10,16 +10,11 @@
 #'   variables to apply the function. If no variable is informed, the function
 #'   will be applied to all non-numeric variables in \code{.data}.
 #' @param digits The number of significant figures.
-#' @param var The variable to extract or replace numbers or strings.
-#' @param new_var Deprecated argument as of metan 1.10.0.
-#' @param drop Deprecated argument as of metan 1.10.0.
 #' @param pattern A string to be matched. Regular Expression Syntax is also
 #'   allowed.
 #' @param replacement A string for replacement.
 #' @param ignore_case If \code{FALSE} (default), the pattern matching is case
 #'   sensitive and if \code{TRUE}, case is ignored during matching.
-#' @param pull Deprecated argument as of metan 1.10.0.
-#' @param .before,.after Deprecated argument as of metan 1.10.0.
 #' @param sep A character string to separate the terms. Defaults to "_".
 #' @description
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
@@ -184,31 +179,7 @@ all_title_case <- function(.data, ...){
 #'
 extract_number <- function(.data,
                            ...,
-                           pattern = NULL,
-                           var = "deprecated",
-                           new_var = "deprecated",
-                           drop =  "deprecated",
-                           pull =  "deprecated",
-                           .before =  "deprecated",
-                           .after  =  "deprecated"){
-  if(var != "deprecated"){
-    warning("Argument 'var' is deprecated as of metan 1.10.0")
-  }
-  if(new_var != "deprecated"){
-    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
-  }
-  if(drop != "deprecated"){
-    warning("Argument 'drop' is deprecated as of metan 1.10.0")
-  }
-  if(pull != "deprecated"){
-    warning("Argument 'pull' is deprecated as of metan 1.10.0")
-  }
-  if(.before != "deprecated"){
-    warning("Argument '.before' is deprecated as of metan 1.10.0")
-  }
-  if(.after != "deprecated"){
-    warning("Argument '.after' is deprecated as of metan 1.10.0")
-  }
+                           pattern = NULL){
   if(missing(pattern)){
     pattern <- "[^0-9.-]+"
   }
@@ -231,31 +202,7 @@ extract_number <- function(.data,
 #' @export
 extract_string <- function(.data,
                            ...,
-                           pattern = NULL,
-                           var = "deprecated",
-                           new_var = "deprecated",
-                           drop =  "deprecated",
-                           pull =  "deprecated",
-                           .before =  "deprecated",
-                           .after  =  "deprecated"){
-  if(var != "deprecated"){
-    warning("Argument 'var' is deprecated as of metan 1.10.0")
-  }
-  if(new_var != "deprecated"){
-    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
-  }
-  if(drop != "deprecated"){
-    warning("Argument 'drop' is deprecated as of metan 1.10.0")
-  }
-  if(pull != "deprecated"){
-    warning("Argument 'pull' is deprecated as of metan 1.10.0")
-  }
-  if(.before != "deprecated"){
-    warning("Argument '.before' is deprecated as of metan 1.10.0")
-  }
-  if(.after != "deprecated"){
-    warning("Argument '.after' is deprecated as of metan 1.10.0")
-  }
+                           pattern = NULL){
   if(missing(pattern)){
     pattern <- "[^A-z.-]+"
   }
@@ -339,31 +286,7 @@ replace_number <- function(.data,
                            ...,
                            pattern = NULL,
                            replacement = "",
-                           ignore_case = FALSE,
-                           var = "deprecated",
-                           new_var = "deprecated",
-                           drop =  "deprecated",
-                           pull =  "deprecated",
-                           .before =  "deprecated",
-                           .after  =  "deprecated"){
-  if(var != "deprecated"){
-    warning("Argument 'var' is deprecated as of metan 1.10.0")
-  }
-  if(new_var != "deprecated"){
-    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
-  }
-  if(drop != "deprecated"){
-    warning("Argument 'drop' is deprecated as of metan 1.10.0")
-  }
-  if(pull != "deprecated"){
-    warning("Argument 'pull' is deprecated as of metan 1.10.0")
-  }
-  if(.before != "deprecated"){
-    warning("Argument '.before' is deprecated as of metan 1.10.0")
-  }
-  if(.after != "deprecated"){
-    warning("Argument '.after' is deprecated as of metan 1.10.0")
-  }
+                           ignore_case = FALSE){
   if(missing(pattern)){
     pattern <- "[0-9]"
   } else{
@@ -384,31 +307,7 @@ replace_string <- function(.data,
                            ...,
                            pattern = NULL,
                            replacement = "",
-                           ignore_case = FALSE,
-                           var = "deprecated",
-                           new_var = "deprecated",
-                           drop =  "deprecated",
-                           pull =  "deprecated",
-                           .before =  "deprecated",
-                           .after  =  "deprecated"){
-  if(var != "deprecated"){
-    warning("Argument 'var' is deprecated as of metan 1.10.0")
-  }
-  if(new_var != "deprecated"){
-    warning("Argument 'new_var' is deprecated as of metan 1.10.0")
-  }
-  if(drop != "deprecated"){
-    warning("Argument 'drop' is deprecated as of metan 1.10.0")
-  }
-  if(pull != "deprecated"){
-    warning("Argument 'pull' is deprecated as of metan 1.10.0")
-  }
-  if(.before != "deprecated"){
-    warning("Argument '.before' is deprecated as of metan 1.10.0")
-  }
-  if(.after != "deprecated"){
-    warning("Argument '.after' is deprecated as of metan 1.10.0")
-  }
+                           ignore_case = FALSE){
   if(missing(pattern)){
     pattern <- "[A-z]"
   } else {
@@ -1533,12 +1432,7 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
     }
   }
 }
-#' @name utils_stats
-#' @export
-valid_n <- function(.data, ..., na.rm = FALSE){
-  warning("valid_n() is deprecated as of metan 1.9.0. Use n_valid() instead.", call. = FALSE)
-  return(n_valid(.data, ..., na.rm = TRUE))
-}
+
 # main statistics, possible by one or more factors
 #' @name utils_stats
 #' @export

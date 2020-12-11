@@ -37,7 +37,7 @@ An object of class \code{hz} containing:
 \itemize{
 \item \strong{b}: the vector of index coefficient.
 \item \strong{index}: The genetic worth.
-\item \strong{sel_dif}: The selection differencial.
+\item \strong{sel_dif_trait}: The selection differencial.
 \item \strong{sel_gen}: The selected genotypes.
 \item \strong{gcov}: The genotypic variance-covariance matrix
 \item \strong{pcov}: The phenotypic variance-covariance matrix

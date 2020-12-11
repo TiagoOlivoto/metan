@@ -52,7 +52,7 @@
 #' @return An object of class \code{hz} containing:
 #'  * \strong{b}: the vector of index coefficient.
 #'  * \strong{index}: The genetic worth.
-#'  * \strong{sel_dif}: The selection differencial.
+#'  * \strong{sel_dif_trait}: The selection differencial.
 #'  * \strong{sel_gen}: The selected genotypes.
 #'  * \strong{gcov}: The genotypic variance-covariance matrix
 #'  * \strong{pcov}: The phenotypic variance-covariance matrix
@@ -118,7 +118,7 @@ Smith_Hazel <- function(.data,
     rownames_to_column("GEN") %>%
     arrange(-V1)
   sel_gen <- head(index, ngs)[[1]]
-  sel_dif <-
+  sel_dif_trait <-
     tibble(VAR = colnames(mat),
            Xo = colMeans(mat),
            Xs = colMeans(mat[sel_gen, ]),
@@ -128,20 +128,20 @@ Smith_Hazel <- function(.data,
                  sense = weights) %>%
     mutate(sense = ifelse(sense < 0, "decrease", "increase"))
   if(has_class(.data, "gamem")){
-    sel_dif <-
-      left_join(sel_dif, h2, by = "VAR") %>%
+    sel_dif_trait <-
+      left_join(sel_dif_trait, h2, by = "VAR") %>%
       add_cols(SG = SD * h2,
                SGperc = SG / Xo * 100)
   }
-  sel_dif <-
-    sel_dif %>%
+  sel_dif_trait <-
+    sel_dif_trait %>%
     left_join(vars, by = "VAR") %>%
     mutate(goal = case_when(
       sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
       TRUE ~ 0
     ))
   total_gain <-
-    desc_stat(sel_dif,
+    desc_stat(sel_dif_trait,
               by = sense,
               any_of(c("SDperc", "SGperc")),
               stats = c("min, mean, max, sum"))
@@ -155,7 +155,7 @@ Smith_Hazel <- function(.data,
   results <-
     list(b = b,
          index = index,
-         sel_dif = sel_dif,
+         sel_dif_trait = sel_dif_trait,
          total_gain = total_gain,
          sel_gen = sel_gen,
          gcov = gcov,
@@ -296,7 +296,7 @@ print.sh <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
   cat("\n-----------------------------------------------------------------------------------\n")
   cat("Selection gain\n")
   cat("-----------------------------------------------------------------------------------\n")
-  print(x$sel_dif)
+  print(x$sel_dif_trait)
   cat("\n-----------------------------------------------------------------------------------\n")
   cat("Phenotypic variance-covariance matrix\n")
   cat("-----------------------------------------------------------------------------------\n")

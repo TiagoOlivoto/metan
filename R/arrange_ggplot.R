@@ -26,12 +26,12 @@
 #' @param tag_prefix,tag_suffix Strings that should appear before or after the
 #' tag.
 #' @param tag_sep A separator between different tag levels.
-#' @param rel_widths,rel_heights Deprecated as of metan 1.10.0. Use \code{widths
+#' @param rel_widths,rel_heights Deprecated as of metan 1.11.0. Use \code{widths
 #'   and heights} instead.
-#' @param plotlist Deprecated as of metan 1.10.0.
-#' @param labels Deprecated as of metan 1.10.0. Use \code{tag_levels} instead.
-#' @param hjust,vjust Deprecated as of metan 1.10.0.
-#' @param align Deprecated as of metan 1.10.0.
+#' @param plotlist Deprecated as of metan 1.11.0.
+#' @param labels Deprecated as of metan 1.11.0. Use \code{tag_levels} instead.
+#' @param hjust,vjust Deprecated as of metan 1.11.0.
+#' @param align Deprecated as of metan 1.11.0.
 #' @return A `patchwork` object
 #' @import patchwork
 #' @export

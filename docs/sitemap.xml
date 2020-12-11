@@ -163,6 +163,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/ge_reg.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/ge_simula.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/ge_stats.html</loc>
   </url>
   <url>
@@ -520,7 +523,13 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_rows_cols.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_sets.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/venn_plot.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/waas.html</loc>

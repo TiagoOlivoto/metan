@@ -188,6 +188,7 @@ reference:
       - ge_effects
       - ge_means
       - ge_plot
+      - ge_simula
       - ge_winners
       - is_balanced_trial
   - subtitle: "Parametric methods"
@@ -325,6 +326,10 @@ reference:
       - make_upper_tri
       - reorder_cormat
       - solve_svd
+  - subtitle: "Sets"
+    contents:
+      - utils_sets
+      - venn_plot
 
 
   - subtitle: "Select helpers"

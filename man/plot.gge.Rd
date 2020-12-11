@@ -17,7 +17,6 @@
   line.type.gen = "dotted",
   size.shape = 2.2,
   size.shape.win = 3.2,
-  size.bor.tick = "deprecated",
   size.stroke = 0.3,
   col.stroke = "black",
   col.gen = "blue",
@@ -30,8 +29,9 @@
   size.text.gen = 4,
   size.text.env = 4,
   size.text.lab = 12,
+  size.text.win = 4.5,
   size.line = 0.5,
-  large_label = 4.5,
+  large_label = "deprecated",
   axis_expand = 1.2,
   title = TRUE,
   plot_theme = theme_metan(),
@@ -80,9 +80,6 @@ environments). Defaults to \code{2.2}.}
 \item{size.shape.win}{The size of the shape for winners genotypes when
 \code{type = 3}. Defaults to \code{3.2}.}
 
-\item{size.bor.tick}{Deprecated as of metan 1.10.0. Use \code{size.stroke}
-instead.}
-
 \item{size.stroke, col.stroke}{The width and color of the border,
 respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke =
 "black"}. The size of the shape will be \code{size.shape + size.stroke}}
@@ -103,11 +100,14 @@ lines. Defaults to \code{'gray'} and \code{0.4}, respectively.}
 \item{size.text.gen, size.text.env, size.text.lab}{The size of the text for
 genotypes, environments and labels, respectively.}
 
+\item{size.text.win}{The text size to use for winner genotypes where
+\code{type = 3} and for the two selected genotypes where \code{type = 9}.
+Defaults to 4.5.}
+
 \item{size.line}{The size of the line in biplots (Both for segments and circles).}
 
-\item{large_label}{The text size to use for larger labels where \code{type =
-3}, used for the outermost genotypes and where \code{type = 9}, used for
-the two selected genotypes. Defaults to 4.5}
+\item{large_label}{Deprecated as of metan 1.11.0. Use \code{size.text.win}
+instead.}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2}

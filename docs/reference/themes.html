@@ -60,6 +60,8 @@ theme_metan_minimal(): A minimalistic theme with half-open frame, white
 background, and no grid. For more details see theme.
 transparent_color(): A helper function to return a transparent color
 with Hex value of &quot;#000000FF&quot;
+ggplot_color(): A helper function to emulate ggplot2 default color
+palette.
 alpha_color(): Return a semi-transparent color based on a color name
 and an alpha value. For more details see colors.
 
@@ -106,7 +108,7 @@ and an alpha value. For more details see colors.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -246,6 +248,8 @@ and an alpha value. For more details see colors.
 background, and no grid. For more details see <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></li>
 <li><p><code>transparent_color()</code>: A helper function to return a transparent color
 with Hex value of "#000000FF"</p></li>
+<li><p><code>ggplot_color()</code>: A helper function to emulate ggplot2 default color
+palette.</p></li>
 <li><p><code>alpha_color()</code>: Return a semi-transparent color based on a color name
 and an alpha value. For more details see <code><a href='https://rdrr.io/r/grDevices/colors.html'>colors</a></code>.</p></li>
 </ul>
@@ -257,6 +261,8 @@ and an alpha value. For more details see <code><a href='https://rdrr.io/r/grDevi
 <span class='fu'>theme_metan_minimal</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='fu'>transparent_color</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>ggplot_color</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
 
 <span class='fu'>alpha_color</span><span class='op'>(</span><span class='va'>color</span>, alpha <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span></pre>
 
@@ -277,6 +283,11 @@ grids.</p></td>
     <tr>
       <th>color.background</th>
       <td><p>The color for the panel background.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>The number of colors. This works well for up to about eight colours,
+but after that it becomes hard to tell the different colours apart.</p></td>
     </tr>
     <tr>
       <th>color</th>

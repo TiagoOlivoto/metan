@@ -25,7 +25,6 @@
 \alias{sum_sq}
 \alias{var_pop}
 \alias{var_amo}
-\alias{valid_n}
 \alias{cv_by}
 \alias{max_by}
 \alias{means_by}
@@ -81,8 +80,6 @@ sum_sq(.data, ..., na.rm = FALSE)
 var_pop(.data, ..., na.rm = FALSE)
 
 var_amo(.data, ..., na.rm = FALSE)
-
-valid_n(.data, ..., na.rm = FALSE)
 
 cv_by(.data, ..., na.rm = FALSE)
 

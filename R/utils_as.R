@@ -11,7 +11,6 @@
 #' \code{\link{as.character}()}.
 #' * \code{as_factor()}: Encode columns to factor using
 #' \code{\link{as.factor}()}.
-#'
 #' @name utils_as
 #' @param .data A data frame or a vector.
 #' @param ... <[`tidy-select`][dplyr_tidy_select]>. If \code{.data} is a data
@@ -103,12 +102,6 @@ as_character <-function(.data, ..., .keep = "all", .pull = FALSE){
   } else{
     return(as.character(.data))
   }
-}
-#' @name utils_as
-#' @export
-to_factor <- function(.data, ...){
-  warning("'to_factor()' is deprecated as of metan 1.9.0. Use 'as_factor()' instead.", call. = FALSE)
-  return(mutate(.data, across(c(...), as.factor)))
 }
 #' @name utils_as
 #' @export

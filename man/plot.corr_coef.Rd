@@ -11,7 +11,6 @@
   reorder = TRUE,
   signif = "stars",
   caption = TRUE,
-  digits = "deprecated",
   digits.cor = 2,
   digits.pval = 3,
   col.low = "blue",
@@ -21,7 +20,6 @@
   lab.y.position = NULL,
   legend.position = NULL,
   legend.title = "Pearson's\\nCorrelation",
-  size.text.plot = "deprecated",
   size.text.cor = 3,
   size.text.signif = 3,
   size.text.lab = 10,
@@ -48,8 +46,6 @@ the p-values are shown.}
 \item{caption}{Logical. If \code{TRUE} (Default) includes a caption with the
 significance meaning for stars.}
 
-\item{digits}{Deprecated. Use \code{digits.cor} instead.}
-
 \item{digits.cor, digits.pval}{The significant digits to show for correlations
 and p-values, respectively.}
 
@@ -65,8 +61,6 @@ Defaults to \code{"bottom"} and \code{"right"} if \code{type = "lower"} or
 
 \item{legend.title}{The title of the color key. Defaults to \code{"Pearson's
 Correlation"}.}
-
-\item{size.text.plot}{Deprecated. use \code{size.text.cor} instead.}
 
 \item{size.text.cor}{The size of the text for correlation values. Defaults to 3.}
 

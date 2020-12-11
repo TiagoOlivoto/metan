@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -182,7 +182,7 @@
       <h1 data-toc-skip>Indexes for simultaneous selection</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2020-11-10</h4>
+            <h4 class="date">2020-12-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_indexes.Rmd"><code>vignettes/vignettes_indexes.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_indexes.Rmd</code></div>
@@ -194,7 +194,7 @@
 <div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h1>
-<p>In this section we will use the data examples <code>data_ge</code> and <code>data_ge2</code> provided in the <strong>metan</strong> package. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code> and <code><a href="../reference/data_ge2.html">?data_ge2</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s).</p>
+<p>In this section we will use the data examples <code>data_ge</code> and <code>data_ge2</code> provided in the <strong>metan</strong> package. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code> and <code><a href="../reference/data_ge2.html">?data_ge2</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). See the section <a href="#rendering">Rendering engine</a> to know how HTML tables were generated.</p>
 </div>
 <div id="multi-trait-stability-index" class="section level1">
 <h1 class="hasAnchor">
@@ -204,48 +204,48 @@
 <h2 class="hasAnchor">
 <a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>
 <p>In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function <code><a href="../reference/waasb.html">waasb()</a></code> is passed to the function <code><a href="../reference/mtsi.html">mtsi()</a></code> by the forward-pipe operator <code><a href="../reference/%&gt;%.html">%&gt;%</a></code>. Finally, the MTSI index is plotted using the function <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan">metan</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan">metan</a></span><span class="op">)</span>
 <span class="va">MTSI_index</span> <span class="op">&lt;-</span> <span class="va">data_ge2</span> <span class="op">%&gt;%</span>
               <span class="fu"><a href="../reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
                     resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">KW</span>, <span class="va">NKE</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">TKW</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-              <span class="fu"><a href="../reference/mtsi.html">mtsi</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span>, index <span class="op">=</span> <span class="st">"waasb"</span><span class="op">)</span></pre></div>
+              <span class="fu"><a href="../reference/mtsi.html">mtsi</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span>, index <span class="op">=</span> <span class="st">"waasb"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="based-on-mean-performance-and-stability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using <code>wresp = 65</code>, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">MTSI_index2</span> <span class="op">&lt;-</span> 
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">MTSI_index2</span> <span class="op">&lt;-</span> 
   <span class="va">data_ge2</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
         resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">KW</span>, <span class="va">NKE</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">TKW</span><span class="op">)</span>,
         mresp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"h, h, l, l, h"</span><span class="op">)</span>,
         wresp <span class="op">=</span> <span class="fl">65</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># Default is 50</span>
-  <span class="fu"><a href="../reference/mtsi.html">mtsi</a></span><span class="op">(</span>SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># Factor analysis</span>
-<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"FA"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></pre></div>
-<div id="htmlwidget-c9f05880fff49f025753" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c9f05880fff49f025753">{"x":{"filter":"none","extensions":["Buttons"],"data":[["KW","NKE","PH","EH","TKW"],[-0.499747076677228,-0.000686573381208784,0.94024901178732,0.964342010010544,-0.583477725982307],[-0.837790827878125,-0.924228938503857,0.193879951591237,0.162960266525672,-0.655746249173821],[0.951640611924149,0.854199602150975,0.921657639796052,0.956511560737295,0.77044940002302],[0.0483593880758514,0.145800397849025,0.0783423602039482,0.0434884392627048,0.22955059997698]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n      <th>Communality<\/th>\n      <th>Uniquenesses<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># Scores for genotypes</span>
-<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"scores_gen"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></pre></div>
-<div id="htmlwidget-f1c0a776402623a1dd98" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f1c0a776402623a1dd98">{"x":{"filter":"none","extensions":["Buttons"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[0.0826069165710057,3.07308175311733,2.91389062625203,2.0985118174361,2.01418675673767,1.20650518587513,0.525787630815449,1.8029774370447,2.67074915320108,1.43061736460374,2.7097202888841,2.63893177713191,3.34897361202653],[-2.92497099000764,-3.20546444284095,-3.59854531329736,-2.24445101181493,-3.89676362996834,-3.58885463725425,-2.00050191908342,-4.52094338414682,-4.86408461901238,-3.45584163816848,-3.17822938438037,-1.93022878140175,-1.58351756505255]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GEN<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># Selection differential for the 'waasby' index</span>
-<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"sel_dif_waasby"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></pre></div>
-<div id="htmlwidget-ac1e5c1a7d1134f11c20" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac1e5c1a7d1134f11c20">{"x":null,"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co"># Selection differential for the waasb index</span>
-<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"sel_dif_waasb"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></pre></div>
-<div id="htmlwidget-5a6bf231eed610a8b94a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5a6bf231eed610a8b94a">{"x":{"filter":"none","extensions":["Buttons"],"data":[["KW","NKE","PH","EH","TKW"],[1.99456391801316,2.13291139046467,0.264946372995414,0.23561518385855,2.43997199932824],[1.07933837249185,1.00694092713806,0.216278790707776,0.187713071601076,1.34850858999212],[-0.915225545521307,-1.1259704633266,-0.0486675822876377,-0.0479021122574736,-1.09146340933613],[-45.8859972977446,-52.7903066372254,-18.3688426217784,-20.3306558911039,-44.7326202774713]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>TRAIT<\/th>\n      <th>Xo<\/th>\n      <th>Xs<\/th>\n      <th>SD<\/th>\n      <th>SDperc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co"># Selection differential for the variables</span>
-<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"sel_dif_trait"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></pre></div>
-<div id="htmlwidget-a76a6957d20acdbd4e82" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a76a6957d20acdbd4e82">{"x":null,"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb8"><pre class="downlit">
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">MTSI_index2</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/mtsi.html">mtsi</a></span><span class="op">(</span>SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Factor analysis</span>
+<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"FA"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-45ebad1270932157175d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-45ebad1270932157175d">{"x":{"filter":"none","extensions":["Buttons"],"data":[["KW","NKE","PH","EH","TKW"],[-0.499747076677228,-0.000686573381208784,0.94024901178732,0.964342010010544,-0.583477725982307],[-0.837790827878125,-0.924228938503857,0.193879951591237,0.162960266525672,-0.655746249173821],[0.951640611924149,0.854199602150975,0.921657639796052,0.956511560737295,0.77044940002302],[0.0483593880758514,0.145800397849025,0.0783423602039482,0.0434884392627048,0.22955059997698]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n      <th>Communality<\/th>\n      <th>Uniquenesses<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Scores for genotypes</span>
+<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"scores_gen"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-535ff1d83b0a11df0015" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-535ff1d83b0a11df0015">{"x":{"filter":"none","extensions":["Buttons"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[0.0826069165710057,3.07308175311733,2.91389062625203,2.0985118174361,2.01418675673767,1.20650518587513,0.525787630815449,1.8029774370447,2.67074915320108,1.43061736460374,2.7097202888841,2.63893177713191,3.34897361202653],[-2.92497099000764,-3.20546444284095,-3.59854531329736,-2.24445101181493,-3.89676362996834,-3.58885463725425,-2.00050191908342,-4.52094338414682,-4.86408461901238,-3.45584163816848,-3.17822938438037,-1.93022878140175,-1.58351756505255]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GEN<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Selection differential for the 'waasby' index</span>
+<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"sel_dif_waasby"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-86a206ae85d97b4a0d13" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-86a206ae85d97b4a0d13">{"x":{"filter":"none","extensions":["Buttons"],"data":[["PH","EH","KW","NKE","TKW"],["FA 1","FA 1","FA 2","FA 2","FA 2"],[44.4300803863228,49.2377193010016,53.2546497958841,44.9768329182192,53.7788780765005],[48.6005725681239,52.9065619648361,74.3199220341875,72.3454631173596,63.4794931075345],[4.1704921818011,3.66884266383448,21.0652722383034,27.3686301991403,9.70061503103406],[9.38664108986158,7.45128473844614,39.5557426798279,60.8505055233754,18.0379646768289]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>Factor<\/th>\n      <th>Xo<\/th>\n      <th>Xs<\/th>\n      <th>SD<\/th>\n      <th>SDperc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Selection differential for the waasb index</span>
+<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"sel_dif_waasb"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-f3aa9af892394ed28d4b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f3aa9af892394ed28d4b">{"x":{"filter":"none","extensions":["Buttons"],"data":[["KW","NKE","PH","EH","TKW"],[1.99456391801316,2.13291139046467,0.264946372995414,0.23561518385855,2.43997199932824],[1.07933837249185,1.00694092713806,0.216278790707776,0.187713071601076,1.34850858999212],[-0.915225545521307,-1.1259704633266,-0.0486675822876377,-0.0479021122574736,-1.09146340933613],[-45.8859972977446,-52.7903066372254,-18.3688426217784,-20.3306558911039,-44.7326202774713]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>TRAIT<\/th>\n      <th>Xo<\/th>\n      <th>Xs<\/th>\n      <th>SD<\/th>\n      <th>SDperc<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Selection differential for the variables</span>
+<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"sel_dif_trait"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-808639f3dff397fad719" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-808639f3dff397fad719">{"x":{"filter":"none","extensions":["Buttons"],"data":[["PH","EH","KW","NKE","TKW"],["FA 1","FA 1","FA 2","FA 2","FA 2"],[2.48481282051282,1.34332564102564,172.938866694231,511.64358974359,338.666314183666],[2.51266666666667,1.35416666666667,178.378298958333,525.894444444445,339.980285932597],[0.027853846153846,0.0108410256410256,5.43943226410255,14.2508547008547,1.31397174893175],[1.12096355604353,0.80702886254359,3.14529195667732,2.78530895070855,0.387984187945883],[0.0351303365511455,7.95128277706683e-09,0.204288750337347,0,2.22107917690488e-15],[0.000978514989628441,8.6200060465227e-11,1.11121481977816,0,2.91843529059359e-15],[0.039379826985378,6.41691469533868e-09,0.642547763275718,0,8.6174360081495e-16],["decrease","decrease","increase","increase","increase"],[0,0,100,100,100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>Factor<\/th>\n      <th>Xo<\/th>\n      <th>Xs<\/th>\n      <th>SD<\/th>\n      <th>SDperc<\/th>\n      <th>h2<\/th>\n      <th>SG<\/th>\n      <th>SGperc<\/th>\n      <th>sense<\/th>\n      <th>goal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,7,8,10]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">MTSI_index2</span><span class="op">)</span></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-4-6.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -253,51 +253,76 @@
 <h1 class="hasAnchor">
 <a href="#mgidi-index" class="anchor"></a>MGIDI index</h1>
 <p>The MGIDI index can be seen as the MTSI index with a weigth of 100 for mean performance. This index is computed with the function <code><a href="../reference/mgidi.html">mgidi()</a></code>. Here, we will use the example data <code><a href="../reference/data_g.html">data_g()</a></code>. By default, all traits are assumed to be increased. To change this default, use the argument <code>ideotype</code>. For example, if for three traits, the first one is assumed to be decreased and the last two are assumed to be increased, use <code>ideotype = c("l, h, h")</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gamem.html">gamem</a></span><span class="op">(</span><span class="va">data_g</span>,
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gamem.html">gamem</a></span><span class="op">(</span><span class="va">data_g</span>,
              gen <span class="op">=</span> <span class="va">GEN</span>,
              rep <span class="op">=</span> <span class="va">REP</span>,
-             resp <span class="op">=</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+             resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">mgidi_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mgidi.html">mgidi</a></span><span class="op">(</span><span class="va">mod</span>,
-                     SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="co"># Selection intensity</span></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
+                     SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="co"># Selection intensity</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, type <span class="op">=</span> <span class="st">"contribution"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 </div>
 <div id="smith-hazel-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#smith-hazel-index" class="anchor"></a>Smith-Hazel index</h1>
 <p>The Smith-Hazel index (<span class="citation">(Smith <a href="#ref-Smith1936" role="doc-biblioref">1936</a>; Hazel <a href="#ref-Hazel1943" role="doc-biblioref">1943</a>)</span>) is computed with the function <code><a href="../reference/Smith_Hazel.html">Smith_Hazel()</a></code>. Users can compute the index either by declaring known genetic and phenotypic variance-covariance matrices or by using as inpute data, a model fitted with the function <code><a href="../reference/gamem.html">gamem()</a></code>. In this case, the variance-covariance are extracted internally. The economic weights in the argument <code>weights</code> are set by default to 1 for all traits.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">smith</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smith_Hazel.html">Smith_Hazel</a></span><span class="op">(</span><span class="va">mod</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">smith</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smith_Hazel.html">Smith_Hazel</a></span><span class="op">(</span><span class="va">mod</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="fai-blup-index" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
 <p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation">Rocha, Machado, and Carneiro (<a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(Rocha, Machado, and Carneiro <a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. Here we will use the mixed-model <code>mod</code> as inpute data. By default, the selection is made to increase the value of all traits. Change this default with the arguments <code>DI</code> and <code>UI</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-
-<span class="va">fai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fai_blup.html">fai_blup</a></span><span class="op">(</span><span class="va">mod</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fai</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">fai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fai_blup.html">fai_blup</a></span><span class="op">(</span><span class="va">mod</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fai</span><span class="op">)</span></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-9-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="comparing-the-indexes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#comparing-the-indexes" class="anchor"></a>Comparing the indexes</h1>
 <p>The function <code>coincidence_indexes()</code> can be used to compute the coincidence index described by <span class="citation">Hamblin and Zimmermann (<a href="#ref-Hamblin1986" role="doc-biblioref">1986</a>)</span>, among the multi-trait indexes implemented in <code>metan</code>. To do that, just use a comma-separated list of indexes as inpute data and inform the total number of genotypes.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">coincidence</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coincidence_index.html">coincidence_index</a></span><span class="op">(</span><span class="va">mgidi_index</span>, <span class="va">fai</span>, <span class="va">smith</span>, total <span class="op">=</span> <span class="fl">13</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">coincidence</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coincidence_index.html">coincidence_index</a></span><span class="op">(</span><span class="va">mgidi_index</span>, <span class="va">fai</span>, <span class="va">smith</span>, total <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>
+<span class="va">coincidence</span>
+<span class="co"># ---------------------------------------------------------------------------</span>
+<span class="co"># Coincidence index and common genotypes</span>
+<span class="co"># ---------------------------------------------------------------------------</span>
+<span class="co"># # A tibble: 3 x 5</span>
+<span class="co">#   V1          V2     index common genotypes</span>
+<span class="co">#   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;    </span>
+<span class="co"># 1 mgidi_index fai   100         3 H13,H5,H2</span>
+<span class="co"># 2 mgidi_index smith  56.71      2 H13,H5   </span>
+<span class="co"># 3 fai         smith  56.71      2 H5,H13</span></code></pre></div>
+<p>We can also produce a Venn plot to show the relationships between the indexes</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">MGIDI</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">mgidi_index</span>, <span class="st">"sel_gen"</span><span class="op">)</span>
+<span class="co"># Class of the model: mgidi</span>
+<span class="co"># Variable extracted: sel_gen</span>
+<span class="va">FAI</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">fai</span>, <span class="st">"sel_gen"</span><span class="op">)</span>
+<span class="co"># Class of the model: fai_blup</span>
+<span class="co"># Variable extracted: sel_gen</span>
+<span class="va">SH</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">smith</span>, <span class="st">"sel_gen"</span><span class="op">)</span>
+<span class="co"># Class of the model: sh</span>
+<span class="co"># Variable extracted: sel_gen</span>
+
+<span class="co"># Create the plot</span>
+<span class="fu"><a href="../reference/venn_plot.html">venn_plot</a></span><span class="op">(</span><span class="va">MGIDI</span>, <span class="va">FAI</span>, <span class="va">SH</span>, show_elements <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <hr>
 </div>
-<div id="rendering-engine" class="section level1">
+<div id="rendering" class="section level1">
 <h1 class="hasAnchor">
-<a href="#rendering-engine" class="anchor"></a>Rendering engine</h1>
+<a href="#rendering" class="anchor"></a>Rendering engine</h1>
 <p>This vignette was built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>. All tables were produced with the package <a href="https://rstudio.github.io/DT/"><code>DT</code></a> using the following function.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT">DT</a></span><span class="op">)</span> <span class="co"># Used to make the tables</span>
 <span class="co"># Function to make HTML tables</span>
 <span class="va">print_table</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">table</span>, <span class="va">rownames</span> <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">digits</span> <span class="op">=</span> <span class="fl">3</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span>
@@ -311,7 +336,7 @@
   <span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
     <span class="va">df</span>
   <span class="op">}</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">

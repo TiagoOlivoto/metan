@@ -636,7 +636,6 @@ predict.gamem <- function(object, ...) {
 #' c(1:4)} that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
 #'   to \code{NULL}
-#' @param align Deprecated as of metan 1.10.0.
 #' @param ... Additional arguments passed on to the function
 #'  \code{\link[patchwork]{wrap_plots}()}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -679,11 +678,7 @@ plot.gamem <- function(x,
                        which = c(1:4),
                        ncol = NULL,
                        nrow = NULL,
-                       align = "deprecated",
                        ...) {
-  if(align != "deprecated"){
-    warning("Argument 'align' is deprecated as of metan 1.10.0.")
-  }
   if(!type  %in% c("res", 're', "vcomp")){
     stop("Argument type = '", match.call()[["type"]], "' invalid. Use one of 'res', 're', or 'vcomp'", call. = FALSE)
   }

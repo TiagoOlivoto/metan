@@ -36,6 +36,7 @@ print_table <- function(table, rownames = FALSE, digits = 3, ...){
 
 ```
 
+See the section [Rendering engine](#rendering) to know how HTML tables were generated.
 
 # Utilities for rows and columns
 ## Add columns and rows
@@ -204,7 +205,7 @@ tidy_strings(df, gen) %>% print_table()
 
 
 _______________________________________________________________________________________________
-# Rendering engine
+# Rendering engine {#rendering}
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

@@ -8,8 +8,8 @@ coincidence_index(..., total, sel1 = NULL, sel2 = NULL)
 }
 \arguments{
 \item{...}{A comma-separated list of objects of class \code{mgidi},
-\code{fai_blup}, or \code{sh}. When a model is informed, then the selected
-genotypes are extracted automatically.}
+\code{mtsi} \code{fai_blup}, or \code{sh}. When a model is informed, then
+the selected genotypes are extracted automatically.}
 
 \item{total}{The total number of genotypes in the study.}
 

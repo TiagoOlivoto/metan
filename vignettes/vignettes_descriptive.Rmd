@@ -32,7 +32,7 @@ print_table <- function(table, rownames = FALSE, digits = 3, ...){
 ```
 
 # Getting started
-`metan` provides a simple and intuitive pipe-friendly framework for performing descriptive statistics.  A [set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) can be used to compute the most used descriptive statistics quickly. In this tutorial, we will use the data example `data_ge2` as motivation examples.
+`metan` provides a simple and intuitive pipe-friendly framework for performing descriptive statistics.  A [set of functions](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) can be used to compute the most used descriptive statistics quickly. In this tutorial, we will use the data example `data_ge2` as motivation examples.  See the section [Rendering engine](#rendering) to know how HTML tables were generated.
 ```{r}
 library(metan)
 inspect(data_ge2, verbose = FALSE) %>%
@@ -191,7 +191,7 @@ print_table(stats_grp)
 ```
 
 _______________________________________________________________________________________________
-# Rendering engine
+# Rendering engine {#rendering}
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

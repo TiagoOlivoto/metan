@@ -127,7 +127,7 @@ tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -300,29 +300,9 @@ level in plant breeding trials, e.g., environment 1) is subjected to
 
 <span class='fu'>all_title_case</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>extract_number</span><span class='op'>(</span>
-  <span class='va'>.data</span>,
-  <span class='va'>...</span>,
-  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
-  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
-<span class='op'>)</span>
+<span class='fu'>extract_number</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, pattern <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>extract_string</span><span class='op'>(</span>
-  <span class='va'>.data</span>,
-  <span class='va'>...</span>,
-  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
-  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
-<span class='op'>)</span>
+<span class='fu'>extract_string</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, pattern <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='fu'>find_text_in_num</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
@@ -337,13 +317,7 @@ level in plant breeding trials, e.g., environment 1) is subjected to
   <span class='va'>...</span>,
   pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
   replacement <span class='op'>=</span> <span class='st'>""</span>,
-  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
+  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
 <span class='fu'>replace_string</span><span class='op'>(</span>
@@ -351,13 +325,7 @@ level in plant breeding trials, e.g., environment 1) is subjected to
   <span class='va'>...</span>,
   pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
   replacement <span class='op'>=</span> <span class='st'>""</span>,
-  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  new_var <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  drop <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  pull <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .before <span class='op'>=</span> <span class='st'>"deprecated"</span>,
-  .after <span class='op'>=</span> <span class='st'>"deprecated"</span>
+  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
 <span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
@@ -387,26 +355,6 @@ will be applied to all non-numeric variables in <code>.data</code>.</p></li>
       <th>pattern</th>
       <td><p>A string to be matched. Regular Expression Syntax is also
 allowed.</p></td>
-    </tr>
-    <tr>
-      <th>var</th>
-      <td><p>The variable to extract or replace numbers or strings.</p></td>
-    </tr>
-    <tr>
-      <th>new_var</th>
-      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
-    </tr>
-    <tr>
-      <th>drop</th>
-      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
-    </tr>
-    <tr>
-      <th>pull</th>
-      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
-    </tr>
-    <tr>
-      <th>.before, .after</th>
-      <td><p>Deprecated argument as of metan 1.10.0.</p></td>
     </tr>
     <tr>
       <th>replacement</th>

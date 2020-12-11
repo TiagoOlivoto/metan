@@ -31,8 +31,10 @@ datatable(table, rownames = rownames, extensions = 'Buttons',
 
 ```
 
+See the section [Rendering engine](#rendering) to know how HTML tables were generated.
+ 
 # Find possible outliers in a data frame
-The function `find_outlier()` may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked out.
+The function `find_outlier()` may be used to identify possible outliers in a dataframe. It is suggested that before applying any statistical procedures, outliers be checked out. 
 
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 library(metan)
@@ -571,7 +573,7 @@ D2 %>% as.dist() %>% hclust() %>% as.dendrogram() %>% plot()
 
 
 _______________________________________________________________________________________________
-# Rendering engine
+# Rendering engine {#rendering}
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

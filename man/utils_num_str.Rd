@@ -23,29 +23,9 @@ all_lower_case(.data, ...)
 
 all_title_case(.data, ...)
 
-extract_number(
-  .data,
-  ...,
-  pattern = NULL,
-  var = "deprecated",
-  new_var = "deprecated",
-  drop = "deprecated",
-  pull = "deprecated",
-  .before = "deprecated",
-  .after = "deprecated"
-)
+extract_number(.data, ..., pattern = NULL)
 
-extract_string(
-  .data,
-  ...,
-  pattern = NULL,
-  var = "deprecated",
-  new_var = "deprecated",
-  drop = "deprecated",
-  pull = "deprecated",
-  .before = "deprecated",
-  .after = "deprecated"
-)
+extract_string(.data, ..., pattern = NULL)
 
 find_text_in_num(.data, ...)
 
@@ -60,13 +40,7 @@ replace_number(
   ...,
   pattern = NULL,
   replacement = "",
-  ignore_case = FALSE,
-  var = "deprecated",
-  new_var = "deprecated",
-  drop = "deprecated",
-  pull = "deprecated",
-  .before = "deprecated",
-  .after = "deprecated"
+  ignore_case = FALSE
 )
 
 replace_string(
@@ -74,13 +48,7 @@ replace_string(
   ...,
   pattern = NULL,
   replacement = "",
-  ignore_case = FALSE,
-  var = "deprecated",
-  new_var = "deprecated",
-  drop = "deprecated",
-  pull = "deprecated",
-  .before = "deprecated",
-  .after = "deprecated"
+  ignore_case = FALSE
 )
 
 round_cols(.data, ..., digits = 2)
@@ -103,16 +71,6 @@ will be applied to all non-numeric variables in \code{.data}.
 
 \item{pattern}{A string to be matched. Regular Expression Syntax is also
 allowed.}
-
-\item{var}{The variable to extract or replace numbers or strings.}
-
-\item{new_var}{Deprecated argument as of metan 1.10.0.}
-
-\item{drop}{Deprecated argument as of metan 1.10.0.}
-
-\item{pull}{Deprecated argument as of metan 1.10.0.}
-
-\item{.before, .after}{Deprecated argument as of metan 1.10.0.}
 
 \item{replacement}{A string for replacement.}
 

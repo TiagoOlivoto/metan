@@ -37,6 +37,7 @@ print_table <- function(table, rownames = FALSE, digits = 3, ...){
 
 ```
 
+See the section [Rendering engine](#rendering) to know how HTML tables were generated.
 
 # Select helpers
 The package `metan` reexports the  [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) and implements own select helpers based on operations with prefixes and suffixes (`difference_var()`, `intersect_var()`, and `union_var()`), length of variable names (`width_of()`, `width_greater_than()`, and `width_less_than()`), and on case type (`lower_case_only()`, `upper_case_only()`, and `title_case_only()`).
@@ -282,7 +283,7 @@ library(tidyverse)
 
 
 _______________________________________________________________________________________________
-# Rendering engine
+# Rendering engine {#rendering}
 
 This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables were produced with the package [`DT`](https://rstudio.github.io/DT/) using the following function.
 

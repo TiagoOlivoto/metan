@@ -158,7 +158,6 @@ NULL
 #'   the p-values are shown.
 #' @param caption Logical. If \code{TRUE} (Default) includes a caption with the
 #'   significance meaning for stars.
-#' @param digits Deprecated. Use \code{digits.cor} instead.
 #' @param digits.cor,digits.pval The significant digits to show for correlations
 #'   and p-values, respectively.
 #' @param col.low,col.mid,col.high The color for the low (-1), mid(0) and high
@@ -170,7 +169,6 @@ NULL
 #' @param legend.position The legend position in the plot.
 #' @param legend.title The title of the color key. Defaults to \code{"Pearson's
 #'   Correlation"}.
-#' @param size.text.plot Deprecated. use \code{size.text.cor} instead.
 #' @param size.text.cor The size of the text for correlation values. Defaults to 3.
 #' @param size.text.signif The size of the text for significance values (stars or p-values). Defaults to 3.
 #' @param size.text.lab The size of the text for labels. Defaults to 10.
@@ -202,7 +200,6 @@ plot.corr_coef <- function(x,
                            reorder = TRUE,
                            signif = "stars",
                            caption = TRUE,
-                           digits = "deprecated",
                            digits.cor = 2,
                            digits.pval = 3,
                            col.low = "blue",
@@ -212,19 +209,10 @@ plot.corr_coef <- function(x,
                            lab.y.position = NULL,
                            legend.position = NULL,
                            legend.title = "Pearson's\nCorrelation",
-                           size.text.plot = "deprecated",
                            size.text.cor = 3,
                            size.text.signif = 3,
                            size.text.lab = 10,
                            ...){
-  if(size.text.plot != "deprecated"){
-    warning("The argument 'size.text.plot' is deprecated as of metan 1.10.0. Use 'size.text.cor' instead")
-    size.text.cor <- size.text.plot
-  }
-  if(digits != "deprecated"){
-    warning("The argument 'digits' is deprecated as of metan 1.10.0. Use 'digits.cor' instead")
-    digits.cor <- digits
-  }
   if(!signif %in% c("stars", "pval")){
     stop("The argument 'signif' must be one of 'stars' or 'pval'.")
   }

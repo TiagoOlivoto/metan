@@ -24,7 +24,6 @@ residual_plots(
   which = c(1:4),
   ncol = NULL,
   nrow = NULL,
-  align = "deprecated",
   ...
 )
 }
@@ -73,8 +72,6 @@ c(1:4)} that means that the first four graphics will be plotted.}
 
 \item{ncol, nrow}{The number of columns and rows of the plot pannel. Defaults
 to \code{NULL}}
-
-\item{align}{Deprecated as of metan 1.10.0.}
 
 \item{...}{Additional arguments passed on to the function
 \code{\link[patchwork]{wrap_plots}()}.}

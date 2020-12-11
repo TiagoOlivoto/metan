@@ -82,6 +82,9 @@
 #' * \code{"Ecov_perc"} Ecovalence in percentage value.
 #' * \code{"rank"} Rank for ecovalence.
 #'
+#'  \strong{Objects of class \code{fai_blup}:} See the \strong{Value} section of
+#'  \code{\link{fai_blup}()} to see valid options for \code{what} argument.
+#'
 #'  \strong{Objects of class \code{ge_acv}:}
 #' * \code{"ACV"} The adjusted coefficient of variation (default).
 #' * \code{"ACV_R"} The rank for adjusted coefficient of variation.
@@ -126,6 +129,9 @@
 #' * \code{"ShuklaVar"} Shukla's stablity variance (default).
 #' * \code{"rShukaVar"} Rank for Shukla's stablity variance.
 #' * \code{"ssiShukaVar"} Simultaneous selection index.
+#'
+#'  \strong{Objects of class \code{sh}:} See the \strong{Value} section of
+#'  \code{\link{Smith_Hazel}()} to see valid options for \code{what} argument.
 #'
 #'  \strong{Objects of class \code{Fox}:}
 #' * \code{"TOP"} The proportion of locations at which the genotype occurred in
@@ -280,7 +286,7 @@
 #'   \code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
 #'   \code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
 #'   \code{\link{ge_acv}}, \code{\link{ge_polar}} \code{\link{ge_means}},
-#'   \code{\link{ge_reg}}, \code{\link{performs_ammi}},
+#'   \code{\link{ge_reg}}, \code{\link{mgidi}}, \code{\link{mtsi}}, \code{\link{performs_ammi}},
 #'   \code{\link{Resende_indexes}}, \code{\link{Shukla}},
 #'   \code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
 #' @importFrom dplyr bind_rows
@@ -372,7 +378,7 @@ get_model_data <- function(x,
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gamem_group", "anova_ind", "gge", "can_cor",
                       "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi", "mtsi",
-                      "env_stratification"))) {
+                      "env_stratification", "fai_blup", "sh"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
@@ -428,11 +434,38 @@ get_model_data <- function(x,
                "sel_dif_trait", "stat_dif_trait", "sel_dif_waasb", "stat_dif_waasb",
                "sel_dif_waasby", "stat_dif_waasby", "sel_gen")
   check29 <- c("FA", "env_strat", "mega_env_stat")
+  check30 <- c("data", "eigen", "FA", "canonical_loadings", "FAI", "sel_dif_trait",
+               "sel_gen", "construction_ideotypes")
+  check31 <- c("b", "index", "sel_dif_trait", "total_gain", "sel_gen", "gcov", "pcov")
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "waasb_group", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
+  }
+
+  if(has_class(x, "sh")){
+    if (is.null(what)){
+      what <- "sel_dif_trait"
+    }
+    if (!what %in% check31) {
+      stop("Invalid value in 'what' for object of class 'sh'. Allowed are ", paste(check31, collapse = ", "), call. = FALSE)
+    }
+    bind <- x[[what]]
+  }
+
+  if(has_class(x, "fai_blup")){
+    if (is.null(what)){
+      what <- "sel_dif_trait"
+    }
+    if (!what %in% check30) {
+      stop("Invalid value in 'what' for object of class 'fai_blup'. Allowed are ", paste(check30, collapse = ", "), call. = FALSE)
+    }
+    if(what == "sel_dif_trait"){
+      bind <- x[[what]][[1]]
+    } else{
+      bind <- x[[what]]
+    }
   }
 
   if(has_class(x, "env_stratification")){

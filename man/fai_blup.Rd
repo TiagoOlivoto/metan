@@ -48,7 +48,7 @@ An object of class \code{fai_blup} with the following items:
 \item \strong{FA} The results of the factor analysis.
 \item \strong{canonical_loadings} The canonical loadings for each factor retained.
 \item \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
-\item \strong{selection_diferential} A list with the selection differential for each ideotype design.
+\item \strong{sel_dif_trait} A list with the selection differential for each ideotype design.
 \item \strong{sel_gen} The selected genotypes.
 \item \strong{ideotype_construction} A list with the construction of the ideotypes.
 \item \strong{total_gain} A list with the total gain for variables to be increased or decreased.

@@ -36,7 +36,6 @@
 #' c(1:4)} that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
 #'   to \code{NULL}
-#' @param align Deprecated as of metan 1.10.0.
 #' @param ... Additional arguments passed on to the function
 #'  \code{\link[patchwork]{wrap_plots}()}.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -82,11 +81,7 @@ residual_plots <- function(x,
                            which = c(1:4),
                            ncol = NULL,
                            nrow = NULL,
-                           align = "deprecated",
                            ...) {
-  if(align != "deprecated"){
-    warning("Argument 'align' is deprecated as of metan 1.10.0.")
-  }
   if(is.numeric(var)){
     var_name <- names(x)[var]
   } else{

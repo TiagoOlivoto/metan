@@ -29,7 +29,6 @@ corr_plot(
   progress = NULL,
   smooth = FALSE,
   col.smooth = "red",
-  size.smooth = "deprecated",
   confint = TRUE,
   size.point = 1,
   shape.point = 19,
@@ -124,8 +123,6 @@ sessions with more than 15 plots, \code{TRUE} for a progress bar,
 to \code{FALSE}.}
 
 \item{col.smooth}{The color for the smooth line.}
-
-\item{size.smooth}{Deprecated argument. Use \code{size.line} instead.}
 
 \item{confint}{Should a confidence band be shown with the smooth line? Set to
 \code{TRUE}.}

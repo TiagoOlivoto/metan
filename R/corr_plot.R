@@ -56,7 +56,6 @@
 #' @param smooth Should a linear smooth line be shown in the scatterplots? Set
 #'   to \code{FALSE}.
 #' @param col.smooth The color for the smooth line.
-#' @param size.smooth Deprecated argument. Use \code{size.line} instead.
 #' @param confint Should a confidence band be shown with the smooth line? Set to
 #'   \code{TRUE}.
 #' @param size.point The size of the points in the plot. Set to \code{0.5}.
@@ -157,7 +156,6 @@ corr_plot <- function(.data, ...,
                       progress = NULL,
                       smooth = FALSE,
                       col.smooth = "red",
-                      size.smooth = "deprecated",
                       confint = TRUE,
                       size.point = 1,
                       shape.point = 19,
@@ -175,10 +173,6 @@ corr_plot <- function(.data, ...,
                       width = 8,
                       height = 7,
                       resolution = 300) {
-  if(!size.smooth == "deprecated"){
-    warning("Argument 'size.smooth' is deprecated. Use 'size.line' instead.")
-    size.line <- size.smooth
-  }
   if(!show.labels.in %in% c("show", "internal", "none")){
     stop("The argument 'show.labels.in' must be one of the 'show', 'internal', or 'none'. ")
   }

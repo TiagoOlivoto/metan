@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -232,7 +232,14 @@
     <p>Computes the multi-trait stability index proposed by Olivoto et al. (2019)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mtsi</span><span class='op'>(</span><span class='va'>.data</span>, index <span class='op'>=</span> <span class='st'>"waasby"</span>, SI <span class='op'>=</span> <span class='fl'>15</span>, mineval <span class='op'>=</span> <span class='fl'>1</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mtsi</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  index <span class='op'>=</span> <span class='st'>"waasby"</span>,
+  ideotype <span class='op'>=</span> <span class='cn'>NULL</span>,
+  SI <span class='op'>=</span> <span class='fl'>15</span>,
+  mineval <span class='op'>=</span> <span class='fl'>1</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -247,6 +254,15 @@
 performance are considered. If <code>index = 'waasb'</code> the multi-trait index
 will be computed considering the stability of genotypes only.  More details
 can be seen in <code><a href='waasb.html'>waasb</a></code> and <code><a href='waas.html'>waas</a></code> functions.</p></td>
+    </tr>
+    <tr>
+      <th>ideotype</th>
+      <td><p>A vector of length <code>nvar</code> where <code>nvar</code> is the
+number of variables used to plan the ideotype. Use <code>'h'</code> to indicate
+the traits in which higher values are desired or <code>'l'</code> to indicate the
+variables in which lower values are desired. For example, <code>ideotype =
+  c("h, h, h, h, l")</code> will consider that the ideotype has higher values for
+the first four traits and lower values for the last trait.</p></td>
     </tr>
     <tr>
       <th>SI</th>

@@ -14,7 +14,6 @@
   genotypes = "selected",
   n.dodge = 1,
   check.overlap = FALSE,
-  invert = NULL,
   x.lab = NULL,
   y.lab = NULL,
   title = NULL,
@@ -61,8 +60,6 @@ This is useful for displaying labels that would otherwise overlap.}
 
 \item{check.overlap}{Silently remove overlapping labels, (recursively)
 prioritizing the first, last, and middle labels.}
-
-\item{invert}{Deprecated argument as of 1.8.0. Use \code{rotate} instead.}
 
 \item{x.lab, y.lab}{The labels for the axes x and y, respectively. x label is
 set to null when a radar plot is produced.}

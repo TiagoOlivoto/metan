@@ -6,7 +6,6 @@
 \alias{as_integer}
 \alias{as_logical}
 \alias{as_character}
-\alias{to_factor}
 \alias{as_factor}
 \title{Encode variables to a specific format}
 \usage{
@@ -17,8 +16,6 @@ as_integer(.data, ..., .keep = "all", .pull = FALSE)
 as_logical(.data, ..., .keep = "all", .pull = FALSE)
 
 as_character(.data, ..., .keep = "all", .pull = FALSE)
-
-to_factor(.data, ...)
 
 as_factor(.data, ..., .keep = "all", .pull = FALSE)
 }

@@ -117,7 +117,7 @@ respectively, with a replacement value.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -286,7 +286,7 @@ respectively, with a <code>replacement</code> value.</p></li>
 
 <span class='fu'>select_rows_na</span><span class='op'>(</span><span class='va'>.data</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>replace_na</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, replace <span class='op'>=</span> <span class='fl'>0</span>, replacement <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+<span class='fu'>replace_na</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, replacement <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
 
 <span class='fu'>random_na</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>prop</span><span class='op'>)</span>
 
@@ -327,10 +327,6 @@ variables names. Select helpers are also allowed.</p></td>
       <th>verbose</th>
       <td><p>Logical argument. If <code>TRUE</code> (default) shows in console
 the rows or columns deleted.</p></td>
-    </tr>
-    <tr>
-      <th>replace</th>
-      <td><p>Deprecated argument as of 1.8.0. Use <code>replacement</code> instead.</p></td>
     </tr>
     <tr>
       <th>replacement</th>

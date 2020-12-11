@@ -29,7 +29,7 @@
 #' * \strong{FA} The results of the factor analysis.
 #' * \strong{canonical_loadings} The canonical loadings for each factor retained.
 #' * \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
-#' * \strong{selection_diferential} A list with the selection differential for each ideotype design.
+#' * \strong{sel_dif_trait} A list with the selection differential for each ideotype design.
 #' * \strong{sel_gen} The selected genotypes.
 #' * \strong{ideotype_construction} A list with the construction of the ideotypes.
 #' * \strong{total_gain} A list with the total gain for variables to be increased or decreased.
@@ -306,7 +306,7 @@ fai_blup <- function(.data,
                         FA = data.frame(fa) %>% rownames_to_column("Variable") %>% as_tibble(),
                         canonical_loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
                         FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype") %>% as_tibble(),
-                        selection_diferential = selection.diferential,
+                        sel_dif_trait = selection.diferential,
                         sel_gen = names(ideotype.rank[[1]])[1:ngs],
                         construction_ideotypes = construction.ideotypes,
                         total_gain = total_gain),

@@ -64,16 +64,16 @@ tag.}
 
 \item{tag_sep}{A separator between different tag levels.}
 
-\item{plotlist}{Deprecated as of metan 1.10.0.}
+\item{plotlist}{Deprecated as of metan 1.11.0.}
 
-\item{labels}{Deprecated as of metan 1.10.0. Use \code{tag_levels} instead.}
+\item{labels}{Deprecated as of metan 1.11.0. Use \code{tag_levels} instead.}
 
-\item{rel_widths, rel_heights}{Deprecated as of metan 1.10.0. Use \code{widths
+\item{rel_widths, rel_heights}{Deprecated as of metan 1.11.0. Use \code{widths
 and heights} instead.}
 
-\item{hjust, vjust}{Deprecated as of metan 1.10.0.}
+\item{hjust, vjust}{Deprecated as of metan 1.11.0.}
 
-\item{align}{Deprecated as of metan 1.10.0.}
+\item{align}{Deprecated as of metan 1.11.0.}
 }
 \value{
 A `patchwork` object

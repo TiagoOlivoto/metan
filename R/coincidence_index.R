@@ -11,8 +11,8 @@
 #' intensity.
 #'
 #' @param ... A comma-separated list of objects of class \code{mgidi},
-#'   \code{fai_blup}, or \code{sh}. When a model is informed, then the selected
-#'   genotypes are extracted automatically.
+#'   \code{mtsi} \code{fai_blup}, or \code{sh}. When a model is informed, then
+#'   the selected genotypes are extracted automatically.
 #' @param total The total number of genotypes in the study.
 #' @param sel1,sel2 The selected genotypes by the method 1 and 2, respectively. Defaults to \code{NULL}.
 #' @return A list with the following elements:
@@ -55,8 +55,8 @@ coincidence_index <- function(..., total, sel1 = NULL, sel2 = NULL){
       stop("The coincidence index cannot be computed with only one model.", call. = FALSE)
     }
     models <- list(...)
-    if(any(sapply(models, class) %in% c("mgidi", "fai_blup", "sh") == FALSE)){
-      stop("Only objects of class 'mgidi', 'fai_blup', and 'sh' are accepted.")
+    if(any(sapply(models, class) %in% c("mgidi", "fai_blup", "sh", "mtsi") == FALSE)){
+      stop("Only objects of class 'mgidi', 'mtsi', 'fai_blup', and 'sh' are accepted.")
     }
     selected <- lapply(models, function(x){
       x[["sel_gen"]]

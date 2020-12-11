@@ -277,8 +277,6 @@ gge <- function(.data,
 #'   environments). Defaults to \code{2.2}.
 #' @param size.shape.win The size of the shape for winners genotypes when
 #'   \code{type = 3}. Defaults to \code{3.2}.
-#' @param size.bor.tick Deprecated as of metan 1.10.0. Use \code{size.stroke}
-#'   instead.
 #' @param size.stroke,col.stroke The width and color of the border,
 #'   respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke =
 #'   "black"}. The size of the shape will be \code{size.shape + size.stroke}
@@ -293,10 +291,12 @@ gge <- function(.data,
 #' @param leg.lab The labs of legend. Defaults to \code{NULL} is \code{c('Env', 'Gen')}.
 #' @param size.text.gen,size.text.env,size.text.lab The size of the text for
 #'   genotypes, environments and labels, respectively.
+#' @param size.text.win The text size to use for winner genotypes where
+#'   \code{type = 3} and for the two selected genotypes where \code{type = 9}.
+#'   Defaults to 4.5.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
-#' @param large_label The text size to use for larger labels where \code{type =
-#'   3}, used for the outermost genotypes and where \code{type = 9}, used for
-#'   the two selected genotypes. Defaults to 4.5
+#' @param large_label Deprecated as of metan 1.11.0. Use \code{size.text.win}
+#'   instead.
 #' @param axis_expand multiplication factor to expand the axis limits by to
 #'   enable fitting of labels. Defaults to 1.2
 #' @param title Logical values (Defaults to \code{TRUE}) to include
@@ -337,7 +337,6 @@ plot.gge <- function(x,
                      line.type.gen = "dotted",
                      size.shape = 2.2,
                      size.shape.win = 3.2,
-                     size.bor.tick = "deprecated",
                      size.stroke = 0.3,
                      col.stroke = "black",
                      col.gen = "blue",
@@ -350,15 +349,16 @@ plot.gge <- function(x,
                      size.text.gen = 4,
                      size.text.env = 4,
                      size.text.lab = 12,
+                     size.text.win = 4.5,
                      size.line = 0.5,
-                     large_label = 4.5,
+                     large_label = "deprecated",
                      axis_expand = 1.2,
                      title = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
-if(size.bor.tick != "deprecated"){
-  warning("Argument 'size.bor.tick' is deprecated as of metan 1.10.0.\nUse 'size.stroke' instead.")
-  size.stroke <- size.bor.tick
+if(large_label != "deprecated"){
+  warning("Argument 'large_label' is deprecated as of metan 1.11.0.\nUse 'size.text.win' instead.")
+  size.text.win <- large_label
 }
   if(is.null(leg.lab)){
   leg.lab <- case_when(
@@ -593,7 +593,7 @@ if(size.bor.tick != "deprecated"){
                       aes(col = type, label = label),
                       show.legend = FALSE,
                       fontface = "bold",
-                      size = large_label)
+                      size = size.text.win)
     if("genotype" %in% others$type){
       P2 <-
         P2 +
@@ -950,7 +950,7 @@ if(size.bor.tick != "deprecated"){
                 aes(label = label),
                 show.legend = FALSE,
                 col = col.gen,
-                size = large_label,
+                size = size.text.win,
                 hjust = "outward",
                 vjust = "outward") +
       geom_point(data = subset(plotdata, type == "genotype" & label %in% c(sel_gen1, sel_gen2)),
