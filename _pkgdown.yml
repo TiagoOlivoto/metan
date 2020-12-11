@@ -354,7 +354,6 @@ reference:
       - residual_plots
       - split_factors
       - stars_pval
-      - to_factor
       - themes
       - transpose_df
       - tukey_hsd
