@@ -2,7 +2,6 @@
 ## New functions
 * `set_union()`, `set_difference()` and `set_intersect()` for set operations with many sets.
 * `venn_plot()` to produce Venn diagrams.
-* `as_vector()` to coerce data frame variables to vectors in the global environment quickly.
 
 # Minor improvements
 * `gge()` now have a `by` argument and understand data passed from `group_by`.
@@ -13,7 +12,7 @@
 # metan 1.10.0
 * `as_*()` now handles vectors.
 * `plot.corr_coef()` now shows both stars or p-values for reporting the significance of correlations.s
-# metan 1.10.0
+
 ## Minor improvements
 * `gamem()`, `gamem_met()`, and `waasb()` now have a `by` argument and understand data passed from `group_by`.
 * `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor and understand models fitted with `gamem()` and `waasb()` using the `by` argument.

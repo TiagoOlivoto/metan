@@ -1,5 +1,5 @@
 # Release summary
-This is a minor release (v1.10.0) that add new functions and minor improvements. See `News.md` for more information.
+This is a minor release (v1.11.0) that add new functions and minor improvements. See `News.md` for more information.
 
 # Test environments
 - local OS X install, R 4.0.0
