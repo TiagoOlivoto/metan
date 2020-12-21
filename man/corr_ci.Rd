@@ -4,7 +4,15 @@
 \alias{corr_ci}
 \title{Confidence interval for correlation coefficient}
 \usage{
-corr_ci(.data = NA, ..., r = NULL, n = NULL, by = NULL, verbose = TRUE)
+corr_ci(
+  .data = NA,
+  ...,
+  r = NULL,
+  n = NULL,
+  by = NULL,
+  sel.var = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The data to be analyzed. It can be a data frame (possible with
@@ -23,6 +31,9 @@ informed.}
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
 to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 one grouping variable use that function.}
+
+\item{sel.var}{A variable to shows the correlation with. This will omit all
+the pairwise correlations that doesn't contain `sel.var`.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}

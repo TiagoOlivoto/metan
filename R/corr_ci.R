@@ -23,6 +23,8 @@
 #'@param by One variable (factor) to compute the function by. It is a shortcut
 #'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 #'  one grouping variable use that function.
+#' @param sel.var A variable to shows the correlation with. This will omit all
+#'   the pairwise correlations that doesn't contain `sel.var`.
 #' @param verbose If \code{verbose = TRUE} then some results are shown in the
 #'   console.
 #' @return A tibble containing the values of the correlation, confidence
@@ -54,6 +56,7 @@ corr_ci <- function(.data = NA,
                     r = NULL,
                     n = NULL,
                     by = NULL,
+                    sel.var = NULL,
                     verbose = TRUE) {
   if (!missing(by)){
     if(length(as.list(substitute(by))[-1L]) != 0){
@@ -67,6 +70,7 @@ corr_ci <- function(.data = NA,
           ...,
           r = r,
           n = n,
+          sel.var = sel.var,
           verbose = verbose)
     return(results)
   }
@@ -90,13 +94,17 @@ corr_ci <- function(.data = NA,
         n <- nrow(x)
       }
       m <- as.matrix(cor.x)
-
-      results <- tibble(Pair = names(sapply(combn(colnames(x), 2, paste, collapse = " x "), names)),
+      Pair <- names(sapply(combn(colnames(x), 2, paste, collapse = "x"), names))
+      results <- tibble(Pair = Pair,
                         Corr = as.vector(t(m)[lower.tri(m, diag = F)]),
                         n = n,
                         CI = (0.45304^abs(Corr)) * 2.25152 * (n^-0.50089),
                         LL = Corr - CI,
-                        UL = Corr + CI)
+                        UL = Corr + CI) %>%
+        separate(Pair, into = c("V1", "V2"), sep = "x")
+      if(!is.null(sel.var)){
+        results %<>% subset(V1 == sel.var | V2 == sel.var)
+      }
       return(results)
     }
     if (is.matrix(.data)) {
