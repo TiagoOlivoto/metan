@@ -407,6 +407,7 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' concatenated variable is pull out to a vector. This is specially useful when
 #' using \code{concatenate} to add columns to a data frame with \code{add_cols()}.
 #' * \code{get_levels()}: Get the levels of a factor variable.
+#' * \code{get_levels_comb()}: Get the combination of the levels of a factor.
 #' * \code{get_level_size()}: Get the size of each level of a factor variable.
 #' * \code{remove_cols()}: Remove one or more columns from a data frame.
 #' * \code{remove_rows()}: Remove one or more rows from a data frame.
@@ -446,6 +447,11 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #'
 #' * For \code{concatenate()}, \code{...} is the unquoted variable names to be
 #' concatenated.
+#'
+#' * For \code{get_levels()}, \code{get_level_comb()}, and
+#' \code{get_level_size()} \code{...} is the unquoted variable names to get the
+#' levels, levels combinations and levels size, respectively.
+#'
 #' @param .before,.after For \code{add_cols()}, \code{concatenate()}, and
 #'   \code{reorder_cols()}, one-based column index or column name where to add
 #'   the new columns, default: .after last column. For \code{add_rows()},
@@ -461,7 +467,6 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
 #'   assumption that's the column you've created most recently), as a vector.
 #' @param cols A quoted variable name to check if it exists in \code{.data}.
-#' @param group A factor variable to get the levels.
 #' @param levels The levels of a factor or a numeric vector.
 #' @param offset Set it to \emph{n} to select the \emph{n}th variable from the
 #'   end (for \code{select_last_col()}) of from the begin (for
@@ -546,8 +551,9 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' ########## checking if a column exists ###########
 #' column_exists(data_g, "GEN")
 #'
-#' ####### get the levels and size of levels ########
+#' ####### get the levels, level combinations and size of levels ########
 #' get_levels(data_g, GEN)
+#' get_levels_comb(data_ge, ENV, GEN)
 #' get_level_size(data_g, GEN)
 #'
 #' ############## all possible pairs ################
@@ -683,22 +689,43 @@ concatenate <- function(.data,
 }
 #' @name utils_rows_cols
 #' @export
-get_levels <- function(.data, group){
-  .data %>%
-    mutate(across(where(~!is.numeric(.x)), as.factor)) %>%
-    pull({{group}}) %>%
-    levels()
+get_levels <- function(.data, ...){
+  if(missing(...)){
+    df <-
+      select(.data, everything()) %>% select_non_numeric_cols()
+  } else{
+    df <- select(.data, ...) %>% select_non_numeric_cols()
+  }
+  results <-
+  df %>%
+    as_factor() %>%
+    map(levels)
+  if(length(results) == 1){
+    return(results[[1]])
+  } else{
+    return(results)
+  }
+}
+#' @name utils_rows_cols
+#' @export
+get_levels_comb <- function(.data, ...){
+  if(missing(...)){
+    df <-
+      select(.data, everything()) %>% select_non_numeric_cols()
+  } else{
+    df <- select(.data, ...) %>% select_non_numeric_cols()
+  }
+  df %>%
+  as_factor() %>%
+    map(levels) %>%
+    expand.grid() %>%
+    as_tibble()
 }
 #' @name utils_rows_cols
 #' @importFrom dplyr count
 #' @export
-get_level_size <- function(.data, group){
-  result <- .data %>%
-    group_by({{group}}) %>%
-    count()
-  n <- result$n
-  names(n) <- result %>% pull(1)
-  return(n)
+get_level_size <- function(.data, ...){
+  return(n_by(.data, ...))
 }
 #' @name utils_rows_cols
 #' @importFrom rlang quos

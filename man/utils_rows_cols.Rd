@@ -15,6 +15,7 @@
 \alias{column_exists}
 \alias{concatenate}
 \alias{get_levels}
+\alias{get_levels_comb}
 \alias{get_level_size}
 \alias{reorder_cols}
 \alias{remove_cols}
@@ -63,9 +64,11 @@ concatenate(
   .after = NULL
 )
 
-get_levels(.data, group)
+get_levels(.data, ...)
 
-get_level_size(.data, group)
+get_levels_comb(.data, ...)
+
+get_level_size(.data, ...)
 
 reorder_cols(.data, ..., .before = NULL, .after = NULL)
 
@@ -108,6 +111,9 @@ last in \code{.data}.
 row value.
 \item For \code{concatenate()}, \code{...} is the unquoted variable names to be
 concatenated.
+\item For \code{get_levels()}, \code{get_level_comb()}, and
+\code{get_level_size()} \code{...} is the unquoted variable names to get the
+levels, levels combinations and levels size, respectively.
 }}
 
 \item{.before, .after}{For \code{add_cols()}, \code{concatenate()}, and
@@ -133,8 +139,6 @@ values. Defaults to \code{new_var}.}
 
 \item{pull}{Logical argument. If \code{TRUE}, returns the last column (on the
 assumption that's the column you've created most recently), as a vector.}
-
-\item{group}{A factor variable to get the levels.}
 
 \item{offset}{Set it to \emph{n} to select the \emph{n}th variable from the
 end (for \code{select_last_col()}) of from the begin (for
@@ -168,6 +172,7 @@ TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
 concatenated variable is pull out to a vector. This is specially useful when
 using \code{concatenate} to add columns to a data frame with \code{add_cols()}.
 \item \code{get_levels()}: Get the levels of a factor variable.
+\item \code{get_levels_comb()}: Get the combination of the levels of a factor.
 \item \code{get_level_size()}: Get the size of each level of a factor variable.
 \item \code{remove_cols()}: Remove one or more columns from a data frame.
 \item \code{remove_rows()}: Remove one or more rows from a data frame.
@@ -259,8 +264,9 @@ data_ge \%>\%
 ########## checking if a column exists ###########
 column_exists(data_g, "GEN")
 
-####### get the levels and size of levels ########
+####### get the levels, level combinations and size of levels ########
 get_levels(data_g, GEN)
+get_levels_comb(data_ge, ENV, GEN)
 get_level_size(data_g, GEN)
 
 ############## all possible pairs ################
