@@ -53,12 +53,13 @@
 #' # Group by environment
 #' # Traits PH, EH, EP, EL, and ED
 #' # Select only correlations with PH
+#'
 #'data_ge2 %>%
-#'  corr_ci(PH:ED,
+#'  corr_ci(PH, EP, EL, ED, CW,
 #'          sel.var = "PH",
-#'          by = ENV,
-#'          verbose = TRUE) %>%
+#'          by = ENV) %>%
 #'  plot_ci(fill = ENV)
+
 #'}
 plot_ci <- function(object,
                     fill = NULL,
