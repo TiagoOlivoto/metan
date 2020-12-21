@@ -1,3 +1,8 @@
+# metan (development version)
+## Minor improvements
+* New argument `sel.var()` in `corr_ci()` to filter correlations with a selected variable
+* New arguments `fill` and `position.fill()` in `plot_ci()` to fill correlations by levels of a factor variable.
+
 # metan 1.11.0
 ## New functions
 * `set_union()`, `set_difference()` and `set_intersect()` for set operations with many sets.
