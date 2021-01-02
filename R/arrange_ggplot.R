@@ -26,12 +26,6 @@
 #' @param tag_prefix,tag_suffix Strings that should appear before or after the
 #' tag.
 #' @param tag_sep A separator between different tag levels.
-#' @param rel_widths,rel_heights Deprecated as of metan 1.11.0. Use \code{widths
-#'   and heights} instead.
-#' @param plotlist Deprecated as of metan 1.11.0.
-#' @param labels Deprecated as of metan 1.11.0. Use \code{tag_levels} instead.
-#' @param hjust,vjust Deprecated as of metan 1.11.0.
-#' @param align Deprecated as of metan 1.11.0.
 #' @return A `patchwork` object
 #' @import patchwork
 #' @export
@@ -68,14 +62,7 @@ arrange_ggplot <- function(...,
                            tag_levels = NULL,
                            tag_prefix = NULL,
                            tag_suffix = NULL,
-                           tag_sep = NULL,
-                           plotlist = "deprecated",
-                           labels = "deprecated",
-                           rel_widths = "deprecated",
-                           rel_heights = "deprecated",
-                           hjust = "deprecated",
-                           vjust = "deprecated",
-                           align = "deprecated") {
+                           tag_sep = NULL) {
   p <-
   wrap_plots(...,
              ncol = ncol,

@@ -107,134 +107,134 @@ gge <- function(.data,
     .data <- group_by(.data, {{by}})
   }
   if(is_grouped_df(.data)){
-      results <-
-        .data %>%
-        doo(gge,
-            env = {{env}},
-            gen = {{gen}},
-            resp = {{resp}},
-            centering = centering,
-            scaling = scaling,
-            svp = svp,
-            ...)
-      return(set_class(results, c("tbl_df",  "gge_group", "tbl",  "data.frame")))
-    } else{
-  factors  <-
-    .data %>%
-    select({{env}}, {{gen}}) %>%
-    mutate(across(everything(), as.factor))
-  vars <- .data %>% select({{resp}}, -names(factors))
-  vars %<>% select_numeric_cols()
-  factors %<>% set_names("ENV", "GEN")
-  listres <- list()
-  nvar <- ncol(vars)
-  for (var in 1:nvar) {
-    ge_mat <-
-      factors %>%
-      mutate(Y = vars[[var]]) %>%
-      make_mat(GEN, ENV, Y) %>%
-      as.matrix()
-    if(has_na(ge_mat)){
-      ge_mat <- impute_missing_val(ge_mat, verbose = FALSE, ...)$.data
-      warning("Data imputation used to fill the GxE matrix", call. = FALSE)
-    }
-    grand_mean <- mean(ge_mat)
-    mean_env <- colMeans(ge_mat)
-    mean_gen <- rowMeans(ge_mat)
-    scale_val <- apply(ge_mat, 2, sd)
-    labelgen <- rownames(ge_mat)
-    labelenv <- colnames(ge_mat)
-    if (any(is.na(ge_mat))) {
-      stop("missing data in input data frame")
-    }
-    if (any(apply(ge_mat, 2, is.numeric) == FALSE)) {
-      stop("not all columns are of class 'numeric'")
-    }
-    if (!(centering %in% c("none", "environment", "global", "double") |
-          centering %in% 0:3)) {
-      warning(paste("Centering method", centering, "not found; defaulting to environment centered"))
-      centering <- "environment"
-    }
-    if (!(svp %in% c("genotype", "environment", "symmetrical") |
-          svp %in% 1:3)) {
-      warning(paste("svp method", svp, "not found; defaulting to column metric preserving"))
-      svp <- "environment"
-    }
-    if (!(scaling %in% c("none", "sd") | scaling %in% 0:1)) {
-      warning(paste("scaling method", scaling, "not found; defaulting to no scaling"))
-      sd <- "none"
-    }
-    labelaxes <- paste("PC", 1:ncol(diag(svd(ge_mat)$d)), sep = "")
-    # Centering
-    if (centering == 1 | centering == "global") {
-      ge_mat <- ge_mat - mean(ge_mat)
-    }
-    if (centering == 2 | centering == "environment") {
-      ge_mat <- sweep(ge_mat, 2, colMeans(ge_mat))
-    }
-    if (centering == 3 | centering == "double") {
+    results <-
+      .data %>%
+      doo(gge,
+          env = {{env}},
+          gen = {{gen}},
+          resp = {{resp}},
+          centering = centering,
+          scaling = scaling,
+          svp = svp,
+          ...)
+    return(set_class(results, c("tbl_df",  "gge_group", "tbl",  "data.frame")))
+  } else{
+    factors  <-
+      .data %>%
+      select({{env}}, {{gen}}) %>%
+      mutate(across(everything(), as.factor))
+    vars <- .data %>% select({{resp}}, -names(factors))
+    vars %<>% select_numeric_cols()
+    factors %<>% set_names("ENV", "GEN")
+    listres <- list()
+    nvar <- ncol(vars)
+    for (var in 1:nvar) {
+      ge_mat <-
+        factors %>%
+        mutate(Y = vars[[var]]) %>%
+        make_mat(GEN, ENV, Y) %>%
+        as.matrix()
+      if(has_na(ge_mat)){
+        ge_mat <- impute_missing_val(ge_mat, verbose = FALSE, ...)$.data
+        warning("Data imputation used to fill the GxE matrix", call. = FALSE)
+      }
       grand_mean <- mean(ge_mat)
       mean_env <- colMeans(ge_mat)
       mean_gen <- rowMeans(ge_mat)
-      for (i in 1:nrow(ge_mat)) {
-        for (j in 1:ncol(ge_mat)) {
-          ge_mat[i, j] <- ge_mat[i, j] + grand_mean - mean_env[j] -
-            mean_gen[i]
+      scale_val <- apply(ge_mat, 2, sd)
+      labelgen <- rownames(ge_mat)
+      labelenv <- colnames(ge_mat)
+      if (any(is.na(ge_mat))) {
+        stop("missing data in input data frame")
+      }
+      if (any(apply(ge_mat, 2, is.numeric) == FALSE)) {
+        stop("not all columns are of class 'numeric'")
+      }
+      if (!(centering %in% c("none", "environment", "global", "double") |
+            centering %in% 0:3)) {
+        warning(paste("Centering method", centering, "not found; defaulting to environment centered"))
+        centering <- "environment"
+      }
+      if (!(svp %in% c("genotype", "environment", "symmetrical") |
+            svp %in% 1:3)) {
+        warning(paste("svp method", svp, "not found; defaulting to column metric preserving"))
+        svp <- "environment"
+      }
+      if (!(scaling %in% c("none", "sd") | scaling %in% 0:1)) {
+        warning(paste("scaling method", scaling, "not found; defaulting to no scaling"))
+        sd <- "none"
+      }
+      labelaxes <- paste("PC", 1:ncol(diag(svd(ge_mat)$d)), sep = "")
+      # Centering
+      if (centering == 1 | centering == "global") {
+        ge_mat <- ge_mat - mean(ge_mat)
+      }
+      if (centering == 2 | centering == "environment") {
+        ge_mat <- sweep(ge_mat, 2, colMeans(ge_mat))
+      }
+      if (centering == 3 | centering == "double") {
+        grand_mean <- mean(ge_mat)
+        mean_env <- colMeans(ge_mat)
+        mean_gen <- rowMeans(ge_mat)
+        for (i in 1:nrow(ge_mat)) {
+          for (j in 1:ncol(ge_mat)) {
+            ge_mat[i, j] <- ge_mat[i, j] + grand_mean - mean_env[j] -
+              mean_gen[i]
+          }
         }
       }
+      # Scaling
+      if (scaling == 1 | scaling == "sd") {
+        ge_mat <- sweep(ge_mat, 2, apply(ge_mat, 2, sd), FUN = "/")
+      }
+      # Singular value partitioning
+      if (svp == 1 | svp == "genotype") {
+        coordgen <- svd(ge_mat)$u %*% diag(svd(ge_mat)$d)
+        coordenv <- svd(ge_mat)$v
+        d1 <- (max(coordenv[, 1]) - min(coordenv[, 1]))/(max(coordgen[,
+                                                                      1]) - min(coordgen[, 1]))
+        d2 <- (max(coordenv[, 2]) - min(coordenv[, 2]))/(max(coordgen[,
+                                                                      2]) - min(coordgen[, 2]))
+        coordenv <- coordenv/max(d1, d2)
+      }
+      if (svp == 2 | svp == "environment") {
+        coordgen <- svd(ge_mat)$u
+        coordenv <- svd(ge_mat)$v %*% diag(svd(ge_mat)$d)
+        d1 <- (max(coordgen[, 1]) - min(coordgen[, 1]))/(max(coordenv[,
+                                                                      1]) - min(coordenv[, 1]))
+        d2 <- (max(coordgen[, 2]) - min(coordgen[, 2]))/(max(coordenv[,
+                                                                      2]) - min(coordenv[, 2]))
+        coordgen <- coordgen/max(d1, d2)
+      }
+      if (svp == 3 | svp == "symmetrical") {
+        coordgen <- svd(ge_mat)$u %*% diag(sqrt(svd(ge_mat)$d))
+        coordenv <- svd(ge_mat)$v %*% diag(sqrt(svd(ge_mat)$d))
+      }
+      eigenvalues <- svd(ge_mat)$d
+      totalvar <- round(as.numeric(sum(eigenvalues^2)), 2)
+      varexpl <- round(as.numeric((eigenvalues^2/totalvar) * 100),
+                       2)
+      if (svp == "genotype" | svp == "environment") {
+        d <- max(d1, d2)
+      } else {
+        d <- NULL
+      }
+      tmp <- structure(
+        list(coordgen = coordgen, coordenv = coordenv, eigenvalues = eigenvalues,
+             totalvar = totalvar, varexpl = varexpl, labelgen = labelgen,
+             labelenv = labelenv, labelaxes = labelaxes, ge_mat = ge_mat,
+             centering = centering, scaling = scaling, svp = svp,
+             d = d, grand_mean = grand_mean, mean_gen = mean_gen,
+             mean_env = mean_env, scale_val = scale_val),
+        class = "gge")
+      if (nvar > 1) {
+        listres[[paste(names(vars[var]))]] <-  tmp
+      } else {
+        listres[[paste(names(vars[var]))]] <- tmp
+      }
     }
-    # Scaling
-    if (scaling == 1 | scaling == "sd") {
-      ge_mat <- sweep(ge_mat, 2, apply(ge_mat, 2, sd), FUN = "/")
-    }
-    # Singular value partitioning
-    if (svp == 1 | svp == "genotype") {
-      coordgen <- svd(ge_mat)$u %*% diag(svd(ge_mat)$d)
-      coordenv <- svd(ge_mat)$v
-      d1 <- (max(coordenv[, 1]) - min(coordenv[, 1]))/(max(coordgen[,
-                                                                    1]) - min(coordgen[, 1]))
-      d2 <- (max(coordenv[, 2]) - min(coordenv[, 2]))/(max(coordgen[,
-                                                                    2]) - min(coordgen[, 2]))
-      coordenv <- coordenv/max(d1, d2)
-    }
-    if (svp == 2 | svp == "environment") {
-      coordgen <- svd(ge_mat)$u
-      coordenv <- svd(ge_mat)$v %*% diag(svd(ge_mat)$d)
-      d1 <- (max(coordgen[, 1]) - min(coordgen[, 1]))/(max(coordenv[,
-                                                                    1]) - min(coordenv[, 1]))
-      d2 <- (max(coordgen[, 2]) - min(coordgen[, 2]))/(max(coordenv[,
-                                                                    2]) - min(coordenv[, 2]))
-      coordgen <- coordgen/max(d1, d2)
-    }
-    if (svp == 3 | svp == "symmetrical") {
-      coordgen <- svd(ge_mat)$u %*% diag(sqrt(svd(ge_mat)$d))
-      coordenv <- svd(ge_mat)$v %*% diag(sqrt(svd(ge_mat)$d))
-    }
-    eigenvalues <- svd(ge_mat)$d
-    totalvar <- round(as.numeric(sum(eigenvalues^2)), 2)
-    varexpl <- round(as.numeric((eigenvalues^2/totalvar) * 100),
-                     2)
-    if (svp == "genotype" | svp == "environment") {
-      d <- max(d1, d2)
-    } else {
-      d <- NULL
-    }
-    tmp <- structure(
-      list(coordgen = coordgen, coordenv = coordenv, eigenvalues = eigenvalues,
-           totalvar = totalvar, varexpl = varexpl, labelgen = labelgen,
-           labelenv = labelenv, labelaxes = labelaxes, ge_mat = ge_mat,
-           centering = centering, scaling = scaling, svp = svp,
-           d = d, grand_mean = grand_mean, mean_gen = mean_gen,
-           mean_env = mean_env, scale_val = scale_val),
-      class = "gge")
-    if (nvar > 1) {
-      listres[[paste(names(vars[var]))]] <-  tmp
-    } else {
-      listres[[paste(names(vars[var]))]] <- tmp
-    }
+    return(structure(listres, class = "gge"))
   }
-  return(structure(listres, class = "gge"))
-    }
 }
 
 
@@ -295,8 +295,6 @@ gge <- function(.data,
 #'   \code{type = 3} and for the two selected genotypes where \code{type = 9}.
 #'   Defaults to 4.5.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
-#' @param large_label Deprecated as of metan 1.11.0. Use \code{size.text.win}
-#'   instead.
 #' @param axis_expand multiplication factor to expand the axis limits by to
 #'   enable fitting of labels. Defaults to 1.2
 #' @param title Logical values (Defaults to \code{TRUE}) to include
@@ -351,21 +349,16 @@ plot.gge <- function(x,
                      size.text.lab = 12,
                      size.text.win = 4.5,
                      size.line = 0.5,
-                     large_label = "deprecated",
                      axis_expand = 1.2,
                      title = TRUE,
                      plot_theme = theme_metan(),
                      ...) {
-if(large_label != "deprecated"){
-  warning("Argument 'large_label' is deprecated as of metan 1.11.0.\nUse 'size.text.win' instead.")
-  size.text.win <- large_label
-}
   if(is.null(leg.lab)){
-  leg.lab <- case_when(
-    has_class(x, "gytb") ~ c("Y-Trait", "Gen"),
-    has_class(x, "gtb") ~ c("Trait", "Gen"),
-    TRUE ~ c("Env", "Gen")
-  )
+    leg.lab <- case_when(
+      has_class(x, "gytb") ~ c("Y-Trait", "Gen"),
+      has_class(x, "gtb") ~ c("Trait", "Gen"),
+      TRUE ~ c("Env", "Gen")
+    )
   } else{
     leg.lab <- leg.lab
   }
@@ -426,22 +419,22 @@ if(large_label != "deprecated"){
           axis.title = element_text(size = size.text.lab, colour = "black"))
   # Basic plot
   if (type == 1) {
-      if(has_class(model, c("gtb", "gytb"))){
-        P2 <- P1 +
+    if(has_class(model, c("gtb", "gytb"))){
+      P2 <- P1 +
         geom_segment(xend = 0,
                      yend = 0,
                      size = size.line,
                      aes(col = type),
                      data = plotdata,
                      show.legend = FALSE)
-      } else{
-        P2 <- P1 +
-          geom_segment(xend = 0,
-                       yend = 0,
-                       size = size.line,
-                       col = alpha(col.line, col.alpha),
-                       data = subset(plotdata, type == "environment"))
-      }
+    } else{
+      P2 <- P1 +
+        geom_segment(xend = 0,
+                     yend = 0,
+                     size = size.line,
+                     col = alpha(col.line, col.alpha),
+                     data = subset(plotdata, type == "environment"))
+    }
     P2 <- P2 +
       geom_segment(xend = 0,
                    yend = 0,

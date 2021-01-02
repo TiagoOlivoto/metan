@@ -19,14 +19,7 @@ arrange_ggplot(
   tag_levels = NULL,
   tag_prefix = NULL,
   tag_suffix = NULL,
-  tag_sep = NULL,
-  plotlist = "deprecated",
-  labels = "deprecated",
-  rel_widths = "deprecated",
-  rel_heights = "deprecated",
-  hjust = "deprecated",
-  vjust = "deprecated",
-  align = "deprecated"
+  tag_sep = NULL
 )
 }
 \arguments{
@@ -63,17 +56,6 @@ will be expanded to the expected sequence.}
 tag.}
 
 \item{tag_sep}{A separator between different tag levels.}
-
-\item{plotlist}{Deprecated as of metan 1.11.0.}
-
-\item{labels}{Deprecated as of metan 1.11.0. Use \code{tag_levels} instead.}
-
-\item{rel_widths, rel_heights}{Deprecated as of metan 1.11.0. Use \code{widths
-and heights} instead.}
-
-\item{hjust, vjust}{Deprecated as of metan 1.11.0.}
-
-\item{align}{Deprecated as of metan 1.11.0.}
 }
 \value{
 A `patchwork` object

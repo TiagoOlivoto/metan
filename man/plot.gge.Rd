@@ -31,7 +31,6 @@
   size.text.lab = 12,
   size.text.win = 4.5,
   size.line = 0.5,
-  large_label = "deprecated",
   axis_expand = 1.2,
   title = TRUE,
   plot_theme = theme_metan(),
@@ -105,9 +104,6 @@ genotypes, environments and labels, respectively.}
 Defaults to 4.5.}
 
 \item{size.line}{The size of the line in biplots (Both for segments and circles).}
-
-\item{large_label}{Deprecated as of metan 1.11.0. Use \code{size.text.win}
-instead.}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2}
