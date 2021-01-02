@@ -97,7 +97,7 @@ the nonparametric method proposed by Olivoto et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
       </span>
     </div>
 
@@ -234,7 +234,15 @@ the nonparametric method proposed by Olivoto et al. (2018)." />
 the nonparametric method proposed by Olivoto et al. (2018).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>corr_ci</span><span class='op'>(</span>.data <span class='op'>=</span> <span class='cn'>NA</span>, <span class='va'>...</span>, r <span class='op'>=</span> <span class='cn'>NULL</span>, n <span class='op'>=</span> <span class='cn'>NULL</span>, by <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>corr_ci</span><span class='op'>(</span>
+  .data <span class='op'>=</span> <span class='cn'>NA</span>,
+  <span class='va'>...</span>,
+  r <span class='op'>=</span> <span class='cn'>NULL</span>,
+  n <span class='op'>=</span> <span class='cn'>NULL</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sel.var <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -265,6 +273,11 @@ informed.</p></td>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
 to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
+    </tr>
+    <tr>
+      <th>sel.var</th>
+      <td><p>A variable to shows the correlation with. This will omit all
+the pairwise correlations that doesn't contain `sel.var`.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -301,40 +314,40 @@ equation:
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 
 <span class='va'>CI1</span> <span class='op'>&lt;-</span> <span class='fu'>corr_ci</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 105 x 6</span><span>
-#&gt;    Pair      Corr     n     CI    LL    UL
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> PH x EH  0.932   156 0.085</span><span style='text-decoration: underline;'>8</span><span> 0.846 1.02 
-#&gt; </span><span style='color: #555555;'> 2</span><span> PH x EP  0.638   156 0.108  0.530 0.747
-#&gt; </span><span style='color: #555555;'> 3</span><span> PH x EL  0.380   156 0.133  0.247 0.513
-#&gt; </span><span style='color: #555555;'> 4</span><span> PH x ED  0.661   156 0.106  0.555 0.768
-#&gt; </span><span style='color: #555555;'> 5</span><span> PH x CL  0.325   156 0.139  0.186 0.464
-#&gt; </span><span style='color: #555555;'> 6</span><span> PH x CD  0.315   156 0.140  0.176 0.455
-#&gt; </span><span style='color: #555555;'> 7</span><span> PH x CW  0.505   156 0.120  0.384 0.625
-#&gt; </span><span style='color: #555555;'> 8</span><span> PH x KW  0.753   156 0.098</span><span style='text-decoration: underline;'>8</span><span> 0.655 0.852
-#&gt; </span><span style='color: #555555;'> 9</span><span> PH x NR  0.329   156 0.138  0.190 0.467
-#&gt; </span><span style='color: #555555;'>10</span><span> PH x NKR 0.353   156 0.136  0.217 0.489
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 105 x 7</span><span>
+#&gt;    V1    V2     Corr     n     CI    LL    UL
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> PH    EH    0.932   156 0.085</span><span style='text-decoration: underline;'>8</span><span> 0.846 1.02 
+#&gt; </span><span style='color: #555555;'> 2</span><span> PH    EP    0.638   156 0.108  0.530 0.747
+#&gt; </span><span style='color: #555555;'> 3</span><span> PH    EL    0.380   156 0.133  0.247 0.513
+#&gt; </span><span style='color: #555555;'> 4</span><span> PH    ED    0.661   156 0.106  0.555 0.768
+#&gt; </span><span style='color: #555555;'> 5</span><span> PH    CL    0.325   156 0.139  0.186 0.464
+#&gt; </span><span style='color: #555555;'> 6</span><span> PH    CD    0.315   156 0.140  0.176 0.455
+#&gt; </span><span style='color: #555555;'> 7</span><span> PH    CW    0.505   156 0.120  0.384 0.625
+#&gt; </span><span style='color: #555555;'> 8</span><span> PH    KW    0.753   156 0.098</span><span style='text-decoration: underline;'>8</span><span> 0.655 0.852
+#&gt; </span><span style='color: #555555;'> 9</span><span> PH    NR    0.329   156 0.138  0.190 0.467
+#&gt; </span><span style='color: #555555;'>10</span><span> PH    NKR   0.353   156 0.136  0.217 0.489
 #&gt; </span><span style='color: #555555;'># ... with 95 more rows</span><span></div><div class='input'>
 <span class='co'># By each level of the factor 'ENV'</span>
 <span class='va'>CI2</span> <span class='op'>&lt;-</span> <span class='fu'>corr_ci</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>CD</span>, <span class='va'>TKW</span>, <span class='va'>NKE</span>,
                by <span class='op'>=</span> <span class='va'>ENV</span>,
                verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='va'>CI2</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 7</span><span>
-#&gt;    ENV   Pair         Corr     n    CI      LL      UL
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A1    CD x TKW   0.385     39 0.265  0.120   0.650 
-#&gt; </span><span style='color: #555555;'> 2</span><span> A1    CD x NKE  -</span><span style='color: #BB0000;'>0.020</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>    39 0.354 -</span><span style='color: #BB0000;'>0.374</span><span>   0.333 
-#&gt; </span><span style='color: #555555;'> 3</span><span> A1    TKW x NKE -</span><span style='color: #BB0000;'>0.589</span><span>     39 0.225 -</span><span style='color: #BB0000;'>0.814</span><span>  -</span><span style='color: #BB0000;'>0.363</span><span> 
-#&gt; </span><span style='color: #555555;'> 4</span><span> A2    CD x TKW   0.518     39 0.238  0.280   0.756 
-#&gt; </span><span style='color: #555555;'> 5</span><span> A2    CD x NKE   0.710     39 0.205  0.505   0.915 
-#&gt; </span><span style='color: #555555;'> 6</span><span> A2    TKW x NKE  0.075</span><span style='text-decoration: underline;'>5</span><span>    39 0.338 -</span><span style='color: #BB0000;'>0.263</span><span>   0.414 
-#&gt; </span><span style='color: #555555;'> 7</span><span> A3    CD x TKW   0.270     39 0.290 -</span><span style='color: #BB0000;'>0.020</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  0.560 
-#&gt; </span><span style='color: #555555;'> 8</span><span> A3    CD x NKE   0.271     39 0.290 -</span><span style='color: #BB0000;'>0.019</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  0.561 
-#&gt; </span><span style='color: #555555;'> 9</span><span> A3    TKW x NKE -</span><span style='color: #BB0000;'>0.389</span><span>     39 0.264 -</span><span style='color: #BB0000;'>0.653</span><span>  -</span><span style='color: #BB0000;'>0.125</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> A4    CD x TKW   0.417     39 0.258  0.158   0.675 
-#&gt; </span><span style='color: #555555;'>11</span><span> A4    CD x NKE   0.477     39 0.246  0.230   0.723 
-#&gt; </span><span style='color: #555555;'>12</span><span> A4    TKW x NKE -</span><span style='color: #BB0000;'>0.259</span><span>     39 0.293 -</span><span style='color: #BB0000;'>0.552</span><span>   0.033</span><span style='text-decoration: underline;'>4</span><span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 8</span><span>
+#&gt;    ENV   V1    V2       Corr     n    CI      LL      UL
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> A1    CD    TKW    0.385     39 0.265  0.120   0.650 
+#&gt; </span><span style='color: #555555;'> 2</span><span> A1    CD    NKE   -</span><span style='color: #BB0000;'>0.020</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>    39 0.354 -</span><span style='color: #BB0000;'>0.374</span><span>   0.333 
+#&gt; </span><span style='color: #555555;'> 3</span><span> A1    TKW   NKE   -</span><span style='color: #BB0000;'>0.589</span><span>     39 0.225 -</span><span style='color: #BB0000;'>0.814</span><span>  -</span><span style='color: #BB0000;'>0.363</span><span> 
+#&gt; </span><span style='color: #555555;'> 4</span><span> A2    CD    TKW    0.518     39 0.238  0.280   0.756 
+#&gt; </span><span style='color: #555555;'> 5</span><span> A2    CD    NKE    0.710     39 0.205  0.505   0.915 
+#&gt; </span><span style='color: #555555;'> 6</span><span> A2    TKW   NKE    0.075</span><span style='text-decoration: underline;'>5</span><span>    39 0.338 -</span><span style='color: #BB0000;'>0.263</span><span>   0.414 
+#&gt; </span><span style='color: #555555;'> 7</span><span> A3    CD    TKW    0.270     39 0.290 -</span><span style='color: #BB0000;'>0.020</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>  0.560 
+#&gt; </span><span style='color: #555555;'> 8</span><span> A3    CD    NKE    0.271     39 0.290 -</span><span style='color: #BB0000;'>0.019</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  0.561 
+#&gt; </span><span style='color: #555555;'> 9</span><span> A3    TKW   NKE   -</span><span style='color: #BB0000;'>0.389</span><span>     39 0.264 -</span><span style='color: #BB0000;'>0.653</span><span>  -</span><span style='color: #BB0000;'>0.125</span><span> 
+#&gt; </span><span style='color: #555555;'>10</span><span> A4    CD    TKW    0.417     39 0.258  0.158   0.675 
+#&gt; </span><span style='color: #555555;'>11</span><span> A4    CD    NKE    0.477     39 0.246  0.230   0.723 
+#&gt; </span><span style='color: #555555;'>12</span><span> A4    TKW   NKE   -</span><span style='color: #BB0000;'>0.259</span><span>     39 0.293 -</span><span style='color: #BB0000;'>0.552</span><span>   0.033</span><span style='text-decoration: underline;'>4</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
