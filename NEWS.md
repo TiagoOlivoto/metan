@@ -6,7 +6,7 @@
 * New argument `sel.var()` in `corr_ci()` to filter correlations with a selected variable
 * New arguments `fill` and `position.fill` in `plot_ci()` to fill correlations by levels of a factor variable.
 * Remove deprecated arguments in `arrange_ggplot()` and `gge()`.
-
+* New argument `theme` `in arrange_ggplot()` to control the theme of the plot.
 
 # metan 1.11.0
 ## New functions

@@ -12,8 +12,8 @@
 #'   In this case, will collect guides below to the given nesting level,
 #'   removing duplicates.
 #' @param design Specification of the location of areas in the layout.
-#' @param legend.position The position of the legends in the plot if \code{guides = "collect"} Default to
-#'   `'bottom'`.
+#' @param legend.position The position of the legends in the plot if
+#'   \code{guides = "collect"} Default to `'bottom'`.
 #' @param title,subtitle,caption Text strings to use for the various plot
 #' annotations.
 #' @param tag_levels A character vector defining the enumeration format to use
@@ -42,12 +42,22 @@
 #' p2 <- ggplot(mpg, aes(class, hwy)) +
 #'              geom_boxplot()
 #'
+#' # Default plot
 #' arrange_ggplot(p1, p2)
+#'
+#' # Insert plot annotation, titles and subtitles
 #' arrange_ggplot(p1, p2,
 #'                ncol = 1,
 #'                tag_levels = list(c("(P1)", "(P2)")),
 #'                title = "My grouped ggplot",
-#'                caption = "A = scatter plot\nB = boxplot")
+#'                subtitle = "Made with arrange_ggplot()",
+#'                caption = "P1 = scatter plot\nP2 = boxplot",
+#'                theme = theme(plot.title = element_text(size = 20,
+#'                                                        face = "bold"),
+#'                              plot.subtitle = element_text(size = 10,
+#'                                                           face = "italic"),
+#'                              plot.caption  = element_text(size = 10,
+#'                                                           face = "italic")))
 #' }
 #'
 arrange_ggplot <- function(...,
