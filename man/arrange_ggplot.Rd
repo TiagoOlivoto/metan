@@ -19,7 +19,8 @@ arrange_ggplot(
   tag_levels = NULL,
   tag_prefix = NULL,
   tag_suffix = NULL,
-  tag_sep = NULL
+  tag_sep = NULL,
+  theme = NULL
 )
 }
 \arguments{
@@ -56,6 +57,9 @@ will be expanded to the expected sequence.}
 tag.}
 
 \item{tag_sep}{A separator between different tag levels.}
+
+\item{theme}{A ggplot theme specification to use for the plot. Only elements
+related to the titles as well as plot margin and background is used.}
 }
 \value{
 A `patchwork` object

@@ -26,6 +26,8 @@
 #' @param tag_prefix,tag_suffix Strings that should appear before or after the
 #' tag.
 #' @param tag_sep A separator between different tag levels.
+#' @param theme A ggplot theme specification to use for the plot. Only elements
+#'   related to the titles as well as plot margin and background is used.
 #' @return A `patchwork` object
 #' @import patchwork
 #' @export
@@ -62,7 +64,8 @@ arrange_ggplot <- function(...,
                            tag_levels = NULL,
                            tag_prefix = NULL,
                            tag_suffix = NULL,
-                           tag_sep = NULL) {
+                           tag_sep = NULL,
+                           theme = NULL) {
   p <-
   wrap_plots(...,
              ncol = ncol,
@@ -77,7 +80,8 @@ arrange_ggplot <- function(...,
                     tag_levels = tag_levels,
                     tag_prefix = tag_prefix,
                     tag_suffix = tag_suffix,
-                    tag_sep = tag_sep)
+                    tag_sep = tag_sep,
+                    theme = theme)
   if(!missing(guides)){
     p <-
       p +
