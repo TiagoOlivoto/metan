@@ -5,6 +5,7 @@
 \alias{all_upper_case}
 \alias{all_lower_case}
 \alias{all_title_case}
+\alias{first_upper_case}
 \alias{extract_number}
 \alias{extract_string}
 \alias{find_text_in_num}
@@ -22,6 +23,8 @@ all_upper_case(.data, ...)
 all_lower_case(.data, ...)
 
 all_title_case(.data, ...)
+
+first_upper_case(.data, ...)
 
 extract_number(.data, ..., pattern = NULL)
 
@@ -84,12 +87,13 @@ sensitive and if \code{TRUE}, case is ignored during matching.}
 \description{
 \itemize{
 \item \code{all_lower_case()}: Translate all non-numeric strings of a data frame
-to lower case (
-\code{"Env"} to \code{"env"}).
+to lower case.
 \item \code{all_upper_case()}: Translate all non-numeric strings of a data frame
-to upper case (e.g., \code{"Env"} to \code{"ENV"}).
+to upper case.
 \item \code{all_title_case()}: Translate all non-numeric strings of a data frame
-to title case (e.g., \code{"ENV"} to \code{"Env"}).
+to title case.
+\item \code{first_upper_case}: Translate the first word of a string to upper
+case.
 \item \code{extract_number()}: Extract the number(s) of a string.
 \item \code{extract_string()}: Extract all strings, ignoring case.
 \item \code{find_text_in_num()}: Find text characters in a numeric sequence and
@@ -157,10 +161,11 @@ mixed_text[3, 4] <- "3.2o75"
 find_text_in_num(mixed_text, GY)
 
 ############# upper, lower and title cases ############
-gen_text <- c("GEN 1", "Gen 1", "gen 1")
+gen_text <- c("This is the first string.", "this is the second one")
 all_lower_case(gen_text)
 all_upper_case(gen_text)
 all_title_case(gen_text)
+first_upper_case(gen_text)
 
 # A whole data frame
 all_lower_case(data_ge)

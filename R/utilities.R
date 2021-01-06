@@ -18,12 +18,13 @@
 #' @param sep A character string to separate the terms. Defaults to "_".
 #' @description
 #' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
-#' to lower case (
-#'  \code{"Env"} to \code{"env"}).
+#' to lower case.
 #' * \code{all_upper_case()}: Translate all non-numeric strings of a data frame
-#' to upper case (e.g., \code{"Env"} to \code{"ENV"}).
+#' to upper case.
 #' * \code{all_title_case()}: Translate all non-numeric strings of a data frame
-#' to title case (e.g., \code{"ENV"} to \code{"Env"}).
+#' to title case.
+#' * \code{first_upper_case}: Translate the first word of a string to upper
+#' case.
 #' * \code{extract_number()}: Extract the number(s) of a string.
 #' * \code{extract_string()}: Extract all strings, ignoring case.
 #' * \code{find_text_in_num()}: Find text characters in a numeric sequence and
@@ -93,10 +94,11 @@
 #' find_text_in_num(mixed_text, GY)
 #'
 #' ############# upper, lower and title cases ############
-#'gen_text <- c("GEN 1", "Gen 1", "gen 1")
+#'gen_text <- c("This is the first string.", "this is the second one")
 #'all_lower_case(gen_text)
 #'all_upper_case(gen_text)
 #'all_title_case(gen_text)
+#'first_upper_case(gen_text)
 #'
 #'# A whole data frame
 #'all_lower_case(data_ge)
@@ -123,57 +125,23 @@
 #' }
 #' @export
 all_upper_case <- function(.data, ...){
-  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    .data <- as.data.frame(.data)
-    if(!missing(...)){
-      mutate(.data, across(c(...), toupper)) %>%
-        as_tibble(rownames = NA)
-    } else{
-      mutate(.data, across(where(~!is.numeric(.x)), toupper)) %>%
-        as_tibble(rownames = NA)
-    }
-  } else{
-    toupper(.data)
-  }
+  helper_case(.data, toupper, ...)
 }
 #' @name utils_num_str
 #' @export
 all_lower_case <- function(.data, ...){
-  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    .data <- as.data.frame(.data)
-    if(!missing(...)){
-      mutate(.data, across(c(...), tolower)) %>%
-        as_tibble(rownames = NA)
-    } else{
-      mutate(.data, across(where(~!is.numeric(.x)), tolower)) %>%
-      as_tibble(rownames = NA)
-    }
-  } else{
-    tolower(.data)
-  }
+  helper_case(.data, tolower, ...)
 }
 #' @name utils_num_str
 #' @export
 all_title_case <- function(.data, ...){
-  to_title <- function(x){
-    x <- tolower(x)
-    substr(x, 1, 1) <- toupper(substr(x, 1, 1))
-    return(x)
-  }
-  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-    .data <- as.data.frame(.data)
-    if(!missing(...)){
-      mutate(.data, across(c(...), to_title)) %>%
-        as_tibble(rownames = NA)
-    } else{
-      mutate(.data, across(where(~!is.numeric(.x)), to_title)) %>%
-        as_tibble(rownames = NA)
-    }
-  } else{
-    return(to_title(.data))
-  }
+  helper_case(.data, to_title, ...)
 }
-
+#' @name utils_num_str
+#' @export
+first_upper_case <- function(.data, ...){
+  helper_case(.data, first_upper, ...)
+}
 #' @name utils_num_str
 #' @export
 #'
@@ -1923,6 +1891,33 @@ check_labels <- function(.data){
     stop("Using ':' in genotype or environment labels is not allowed. Use '_' instead.\ne.g., replace_string(data, ENV, pattern = ':', replacement = '_', new_var = ENV)", call. = FALSE)
   }
 }
+# Case
+helper_case <- function(.data, fun, ...){
+  if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
+    .data <- as.data.frame(.data)
+    if(!missing(...)){
+      mutate(.data, across(c(...), fun)) %>%
+        as_tibble(rownames = NA)
+    } else{
+      mutate(.data, across(where(~!is.numeric(.x)), fun)) %>%
+        as_tibble(rownames = NA)
+    }
+  } else{
+    fun(.data)
+  }
+}
+first_upper <- function(x){
+  x <- tolower(x)
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  return(x)
+}
+to_title <- function(x){
+  gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2",
+       all_lower_case(x),
+       perl = TRUE)
+}
+
+
 # Get the OS
 get_os <- function(){
   sysinf <- Sys.info()
