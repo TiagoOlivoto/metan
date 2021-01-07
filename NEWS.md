@@ -1,6 +1,7 @@
 # metan (development version)
 ## New functions
 * `get_levels_comb()` to get the combination of the levels of a factor.
+* `g_simula()` to simulate replicated genotype data.
 
 ## Minor improvements
 * New argument `sel.var()` in `corr_ci()` to filter correlations with a selected variable

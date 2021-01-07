@@ -188,7 +188,7 @@ reference:
       - ge_effects
       - ge_means
       - ge_plot
-      - ge_simula
+      - data_simula
       - ge_winners
       - is_balanced_trial
   - subtitle: "Parametric methods"

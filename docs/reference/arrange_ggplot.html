@@ -105,7 +105,7 @@ plot_annotation() to arrange ggplot2 objects." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
     Home
   </a>
@@ -189,19 +189,19 @@ plot_annotation() to arrange ggplot2 objects." />
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa fab fa-twitter"></span>
+    <span class="fab fa-twitter"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa fab fa-mendeley"></span>
+    <span class="fab fa-mendeley"></span>
      
   </a>
 </li>
@@ -249,7 +249,8 @@ plot_annotation() to arrange ggplot2 objects." />
   tag_levels <span class='op'>=</span> <span class='cn'>NULL</span>,
   tag_prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
   tag_suffix <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tag_sep <span class='op'>=</span> <span class='cn'>NULL</span>
+  tag_sep <span class='op'>=</span> <span class='cn'>NULL</span>,
+  theme <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -282,8 +283,8 @@ removing duplicates.</p></td>
     </tr>
     <tr>
       <th>legend.position</th>
-      <td><p>The position of the legends in the plot if <code>guides = "collect"</code> Default to
-`'bottom'`.</p></td>
+      <td><p>The position of the legends in the plot if
+<code>guides = "collect"</code> Default to `'bottom'`.</p></td>
     </tr>
     <tr>
       <th>title, subtitle, caption</th>
@@ -309,6 +310,11 @@ tag.</p></td>
       <th>tag_sep</th>
       <td><p>A separator between different tag levels.</p></td>
     </tr>
+    <tr>
+      <th>theme</th>
+      <td><p>A ggplot theme specification to use for the plot. Only elements
+related to the titles as well as plot margin and background is used.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -325,12 +331,22 @@ tag.</p></td>
 <span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mpg</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>class</span>, <span class='va'>hwy</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
              <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span>
 
+<span class='co'># Default plot</span>
 <span class='fu'>arrange_ggplot</span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span>
-</div><div class='img'><img src='arrange_ggplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>arrange_ggplot</span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span>,
+</div><div class='img'><img src='arrange_ggplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Insert plot annotation, titles and subtitles</span>
+<span class='fu'>arrange_ggplot</span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span>,
                ncol <span class='op'>=</span> <span class='fl'>1</span>,
                tag_levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(P1)"</span>, <span class='st'>"(P2)"</span><span class='op'>)</span><span class='op'>)</span>,
                title <span class='op'>=</span> <span class='st'>"My grouped ggplot"</span>,
-               caption <span class='op'>=</span> <span class='st'>"A = scatter plot\nB = boxplot"</span><span class='op'>)</span>
+               subtitle <span class='op'>=</span> <span class='st'>"Made with arrange_ggplot()"</span>,
+               caption <span class='op'>=</span> <span class='st'>"P1 = scatter plot\nP2 = boxplot"</span>,
+               theme <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>20</span>,
+                                                       face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+                             plot.subtitle <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span>,
+                                                          face <span class='op'>=</span> <span class='st'>"italic"</span><span class='op'>)</span>,
+                             plot.caption  <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span>,
+                                                          face <span class='op'>=</span> <span class='st'>"italic"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='arrange_ggplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

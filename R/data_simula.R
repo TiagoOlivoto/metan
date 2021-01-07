@@ -1,15 +1,17 @@
-#' Simulate genotype-environment data
+#' @name data_simula
+#' @title Simulate genotype and genotype-environment data
+#' @description
+#' * `g_simula()` simulate replicated genotype data.
+#' * `ge_simula()` simulate replicated genotype-environment data.
 #'
-#' Simulate genotype-environment data given a desired number of genotypes,
-#' environments and effects.
-#'
-#' Genotype, environment and genotype-environment interaction effects are
-#' sampled from an uniform distribution. For example, given 10 genotypes, and
-#' `gen_eff = 30`, the genotype effects will be sampled as `runif(10, min = -30,
-#' max = 30)`. Use the argument `seed` to ensure reproducibility. If more than
-#' one trait is used (`nvars > 1`), the effects and seed can be passed as a
-#' numeric vector. Single numeric values will be recycled with a warning when
-#' more than one trait is used.
+#' @details The functions simulate genotype or genotype-environment data given a
+#'   desired number of genotypes, environments and effects. All effects are
+#'   sampled from an uniform distribution. For example, given 10 genotypes, and
+#'   `gen_eff = 30`, the genotype effects will be sampled as `runif(10, min =
+#'   -30, max = 30)`. Use the argument `seed` to ensure reproducibility. If more
+#'   than one trait is used (`nvars > 1`), the effects and seed can be passed as
+#'   a numeric vector. Single numeric values will be recycled with a warning
+#'   when more than one trait is used.
 #'
 #' @param ngen The number of genotypes.
 #' @param nenv The number of environments.
@@ -29,8 +31,17 @@
 #' @examples
 #' \donttest{
 #' library(metan)
+#' # Genotype data (5 genotypes and 3 replicates)
+#' gen_data <-
+#'    g_simula(ngen = 5,
+#'             nrep = 3)
+#' gen_data
+#' inspect(gen_data, plot = TRUE)
+#'
+#'  # Genotype-environment data
+#'  # 5 genotypes, 3 environments, 4 replicates and 2 traits
 #' df <-
-#' ge_simula(ngen = 10,
+#' ge_simula(ngen = 5,
 #'           nenv = 3,
 #'           nrep = 4,
 #'           nvars = 2)
@@ -158,4 +169,84 @@ ge_simula <- function(ngen,
     as_factor(1:3)
   return(dfs_bind)
 }
-
+#' @name data_simula
+#' @export
+g_simula <- function(ngen,
+                     nrep,
+                     nvars = 1,
+                     gen_eff = 20,
+                     rep_eff = 5,
+                     intercept = 100,
+                     seed = NULL){
+  if(length(gen_eff) != 1 & length(gen_eff) != nvars){
+    stop("Argument 'gen_eff' must have length 1 or the same length of 'nvars'.", call. = FALSE)
+  }
+  if(length(gen_eff) == 1 & length(gen_eff) != nvars){
+    warning("'gen_eff = ", gen_eff, "' recycled for all the ", nvars, " traits.", call. = FALSE)
+  }
+  if(length(rep_eff) != 1 & length(rep_eff) != nvars){
+    stop("Argument 'rep_eff' must have length 1 or the same length of 'nvars'.", call. = FALSE)
+  }
+  if(length(rep_eff) == 1 & length(rep_eff) != nvars){
+    warning("'rep_eff = ", rep_eff, "' recycled for all the ", nvars, " traits.", call. = FALSE)
+  }
+  if(length(intercept) != 1 & length(intercept) != nvars){
+    stop("Argument 'intercept' must have length 1 or the same length of 'nvars'.", call. = FALSE)
+  }
+  if(length(intercept) == 1 & length(intercept) != nvars){
+    warning("'intercept = ", intercept, "' recycled for all the ", nvars, " traits.", call. = FALSE)
+  }
+  if(!missing(seed) & length(seed) != 1 & length(seed) != nvars){
+    stop("Argument 'seed' must have length 1 or the same length of 'nvars'.", call. = FALSE)
+  }
+  if(length(seed) == 1 & length(seed) != nvars){
+    warning("'seed = ", seed, "' recycled for all the ", nvars, " traits.", call. = FALSE)
+  }
+  compute_one_var <-
+    function(ngen = ngen,
+             nrep = nrep,
+             gen_eff = gen_eff,
+             rep_eff = rep_eff,
+             intercept = intercept,
+             seed = seed){
+      if(missing(seed)){
+        seed <- .Random.seed[3]
+      } else{
+        seed <- seed
+      }
+      df <-
+        expand_grid(GEN = paste("H", 1:ngen, sep = ""),
+                    REP = paste("B", 1:nrep, sep = ""))
+      set.seed(seed)
+      gen_eff <-
+        data.frame(GEN = paste("H", 1:ngen, sep = ""),
+                   gen_eff = runif(ngen, -gen_eff, gen_eff))
+      block_eff <-
+        data.frame(REP = paste("B", 1:nrep, sep = ""),
+                   block_eff = runif(nrep, -rep_eff, rep_eff))
+      df2 <-
+        df %>%
+        left_join(gen_eff, by = "GEN") %>%
+        left_join(block_eff, by = "REP") %>%
+        add_cols(V1 = intercept) %>%
+        mutate(across(V1, ~.x + gen_eff + block_eff)) %>%
+        remove_cols(gen_eff:block_eff)
+      return(df2)
+    }
+  dfs <- list()
+  for(i in 1:nvars){
+    temp <- compute_one_var(ngen = ngen,
+                            nrep = nrep,
+                            gen_eff = gen_eff[ifelse(length(gen_eff) != 1, i, 1)],
+                            rep_eff = rep_eff[ifelse(length(rep_eff) != 1, i, 1)],
+                            intercept = intercept[ifelse(length(intercept) != 1, i, 1)],
+                            seed = seed[ifelse(length(seed) != 1, i, 1)])
+    dfs[[paste("V", i, sep = "")]] <- temp
+  }
+  dfs_bind <-
+    dfs %>%
+    reduce(left_join, by = c("GEN", "REP")) %>%
+    set_names("GEN", "REP", paste("V", 1:nvars, sep = "")) %>%
+    as_factor(1:2)
+  return(dfs_bind)
+}
