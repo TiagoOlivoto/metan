@@ -4,7 +4,16 @@
 \alias{gafem}
 \title{Genotype analysis by fixed-effect models}
 \usage{
-gafem(.data, gen, rep, resp, prob = 0.05, block = NULL, verbose = TRUE)
+gafem(
+  .data,
+  gen,
+  rep,
+  resp,
+  block = NULL,
+  by = NULL,
+  prob = 0.05,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to, Genotypes,
@@ -20,14 +29,21 @@ be treated as random effect.}
 single procedure a vector of variables may be used. For example \code{resp =
 c(var1, var2, var3)}. Select helpers are also allowed.}
 
-\item{prob}{The error probability. Defaults to 0.05.}
-
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.} Use the
 function \code{\link{gamem}} to analyze a one-way trial with mixed-effect
 models.}
+
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+when the researcher want to fit a fixed-effect model for each environment.
+In this case, an object of class gafem_grouped is returned.
+\code{\link{mgidi}} can then be used to compute the mgidi index within each
+environment.}
+
+\item{prob}{The error probability. Defaults to 0.05.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code are run
 silently.}

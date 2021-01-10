@@ -102,7 +102,7 @@ mgidi <- function(.data,
                   ideotype = NULL,
                   use = "complete.obs",
                   verbose = TRUE) {
-  if(has_class(.data, "gamem_group")){
+  if(has_class(.data, c("gamem_group", "gafem_group"))){
     bind <-
       .data %>%
       mutate(data = map(data, ~.x %>%
@@ -426,15 +426,11 @@ plot.mgidi <- function(x,
     stop("The argument 'genotypes' must be one of the 'selected' or 'all'", call. = FALSE)
   }
   if(type == "index"){
-  if (!class(x) == "mgidi") {
-    stop("The object 'x' is not of class 'mgidi'")
-  }
   x.lab <- ifelse(!missing(x.lab), x.lab, "Genotypes")
   y.lab <- ifelse(!missing(y.lab), y.lab, "Multi-trait genotype-ideotype distance index")
   data <- x$MGIDI %>% add_cols(sel = "Selected")
   data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
   cutpoint <- max(subset(data, sel == "Selected")$MGIDI)
-
   p <-
     ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
     geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
@@ -581,9 +577,6 @@ print.mgidi <- function(x,
                         file.name = NULL,
                         digits = 4,
                         ...) {
-  if (!class(x) == "mgidi") {
-    stop("The object must be of class 'mgidi'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "mgidi print", file.name)
     sink(paste0(file.name, ".txt"))

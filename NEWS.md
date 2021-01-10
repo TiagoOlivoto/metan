@@ -8,6 +8,10 @@
 * New arguments `fill` and `position.fill` in `plot_ci()` to fill correlations by levels of a factor variable.
 * Remove deprecated arguments in `arrange_ggplot()` and `gge()`.
 * New argument `theme` `in arrange_ggplot()` to control the theme of the plot.
+* Include `by` argument in `gafem()`.
+* `mgid()` now understands models of class `gafem_grouped`.
+
+
 
 # metan 1.11.0
 ## New functions

@@ -376,7 +376,7 @@ get_model_data <- function(x,
                       "Res_ind", "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
-                      "gafem", "gamem_group", "anova_ind", "gge", "can_cor",
+                      "gafem", "gafem_group", "gamem_group", "anova_ind", "gge", "can_cor",
                       "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi", "mtsi",
                       "env_stratification", "fai_blup", "sh"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
@@ -477,7 +477,6 @@ get_model_data <- function(x,
     }
     bind <- x %>% map_dfr(~ bind_rows(!!! .x %>% .[[what]]), .id = 'TRAIT')
   }
-
   if(has_class(x, "mtsi")){
     if (is.null(what)){
       what <- "sel_dif_trait"
@@ -487,7 +486,6 @@ get_model_data <- function(x,
     }
     bind <- x[[what]]
   }
-
   if(has_class(x, "mgidi")){
     if (is.null(what)){
       what <- "sel_dif"
@@ -942,8 +940,14 @@ get_model_data <- function(x,
       mutate(ENV = x[[1]][["individual"]][["ENV"]]) %>%
       column_to_first(ENV)
   }
-
-  if (has_class(x, c("anova_joint", "gafem"))) {
+  if (has_class(x, c("anova_joint", "gafem", "gafem_group"))) {
+    if(has_class(x, c("gafem_group"))){
+      bind <-
+        x %>%
+        mutate(bind = map(data, ~.x %>% gmd(what = what, verbose = verbose))) %>%
+        unnest(bind) %>%
+        remove_cols(data)
+    } else{
     if (is.null(what)){
       what <- "fitted"
     }
@@ -982,6 +986,7 @@ get_model_data <- function(x,
         as_tibble() %>%
         mutate(Parameters = x[[1]][["details"]][["Parameters"]]) %>%
         column_to_first(Parameters)
+    }
     }
   }
 

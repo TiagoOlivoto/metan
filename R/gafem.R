@@ -13,13 +13,19 @@
 #' @param resp The response variable(s). To analyze multiple variables in a
 #' single procedure a vector of variables may be used. For example \code{resp =
 #' c(var1, var2, var3)}. Select helpers are also allowed.
-#' @param prob The error probability. Defaults to 0.05.
 #' @param block Defaults to \code{NULL}. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   \strong{All effects, except the error, are assumed to be fixed.} Use the
 #'   function \code{\link{gamem}} to analyze a one-way trial with mixed-effect
 #'   models.
+#'@param by One variable (factor) to compute the function by. It is a shortcut
+#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  when the researcher want to fit a fixed-effect model for each environment.
+#'  In this case, an object of class gafem_grouped is returned.
+#'  \code{\link{mgidi}} can then be used to compute the mgidi index within each
+#'  environment.
+#' @param prob The error probability. Defaults to 0.05.
 #' @param verbose Logical argument. If \code{verbose = FALSE} the code are run
 #' silently.
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
@@ -98,10 +104,39 @@ gafem <- function(.data,
                   gen,
                   rep,
                   resp,
-                  prob = 0.05,
                   block = NULL,
+                  by = NULL,
+                  prob = 0.05,
                   verbose = TRUE) {
-  # RCBD
+  if (!missing(by)){
+    if(length(as.list(substitute(by))[-1L]) != 0){
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- group_by(.data, {{by}})
+  }
+  if(is_grouped_df(.data)){
+    if(!missing(block)){
+      results <-
+        .data %>%
+        doo(gafem,
+            gen = {{gen}},
+            rep = {{rep}},
+            resp = {{resp}},
+            block = {{block}},
+            prob = prob,
+            verbose = verbose)
+    } else{
+      results <-
+        .data %>%
+        doo(gafem,
+            gen = {{gen}},
+            rep = {{rep}},
+            resp = {{resp}},
+            prob = prob,
+            verbose = verbose)
+    }
+    return(set_class(results, c("tbl_df",  "gafem_group", "tbl",  "data.frame")))
+  }
   if (missing(block) == TRUE) {
     factors  <-
       .data %>%
@@ -112,6 +147,12 @@ gafem <- function(.data,
     factors %<>% set_names("GEN", "REP")
     listres <- list()
     nvar <- ncol(vars)
+    if (verbose == TRUE) {
+      pb <-
+        progress_bar$new(
+        format = "Evaluating the variable :what [:bar]:percent (:eta left )",
+        clear = FALSE, total = nvar, width = 90)
+    }
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
@@ -178,12 +219,8 @@ gafem <- function(.data,
       )
       listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        cat("variable", paste(names(vars[var])),"\n")
-        cat("---------------------------------------------------------------------------\n")
-        cat("One-way ANOVA table (randomized complete block design)\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(as.data.frame(anova), digits = 3, row.names = FALSE)
-        cat("---------------------------------------------------------------------------\n\n")
+        pb$tick(tokens = list(what = names(vars[var])))
+
       }
     }
   }
@@ -198,6 +235,12 @@ gafem <- function(.data,
     factors %<>% set_names("GEN", "REP", "BLOCK")
     listres <- list()
     nvar <- ncol(vars)
+    if (verbose == TRUE) {
+      pb <-
+        progress_bar$new(
+          format = "Evaluating the variable :what [:bar]:percent (:eta left )",
+          clear = FALSE, total = nvar, width = 90)
+    }
     for (var in 1:nvar) {
       data <- factors %>%
         mutate(Y = vars[[var]])
@@ -264,16 +307,23 @@ gafem <- function(.data,
       )
       listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        cat("variable", paste(names(vars[var])),"\n")
-        cat("---------------------------------------------------------------------------\n")
-        cat("One-way ANOVA table (alpha-lattice design)\n")
-        cat("---------------------------------------------------------------------------\n")
-        print(as.data.frame(anova), digits = 3, row.names = FALSE)
-        cat("---------------------------------------------------------------------------\n\n")
+        pb$tick(tokens = list(what = names(vars[var])))
       }
     }
   }
   if (verbose == TRUE) {
+    design <- ifelse(missing(block), "rcbd", "alpha")
+    cat("---------------------------------------------------------------------------\n")
+    switch(design,
+           rcbd =  cat("One-way ANOVA table (Randomized complete block design)\n"),
+           alpha = cat("One-way ANOVA table (Alpha-lattice design)\n"))
+    cat("---------------------------------------------------------------------------\n")
+    print.data.frame(sapply(listres, function(x){
+      x$anova[["Pr(>F)"]]
+    }) %>%
+      as.data.frame() %>%
+      add_cols(model = listres[[1]][["anova"]][["Source"]]) %>%
+      column_to_first(model), row.names = FALSE, digits = 3)
     if (length(which(unlist(lapply(listres, function(x) {
       x[["anova"]][1, 6]
     })) > prob)) > 0) {
@@ -282,9 +332,8 @@ gafem <- function(.data,
       cat(names(which(unlist(lapply(listres, function(x) {
         as.numeric(x[["anova"]][2, 6])
       })) > prob)), "\n")
-      cat("---------------------------------------------------------------------------\n")
+      cat("---------------------------------------------------------------------------\n\n")
     }
-    cat("Done!\n")
   }
   invisible(structure(listres, class = "gafem"))
 }
