@@ -10,7 +10,7 @@
 * New argument `theme` `in arrange_ggplot()` to control the theme of the plot.
 * Include `by` argument in `gafem()`.
 * `mgid()` now understands models of class `gafem_grouped`.
-
+* Fix bug in `get_levels()` to get the levels even if the variable is not a factor.
 
 
 # metan 1.11.0

@@ -1,26 +1,30 @@
-#' Path coefficients with minimal multicollinearity
+#' @title Path coefficients with minimal multicollinearity
+#' @name path_coeff
+#' @description
+#' * `path_coeff()` computes a path analysis using a data frame as input data.
+#' * `path_coeff_mat()` computes a path analysis using correlation matrices as
+#' input data.
 #'
-#' Computes direct and indirect effects in path analysis. An algorithm to select
-#' a set of predictors with minimal multicollinearity and high explanatory power
-#' is implemented.
-#'
-#' When \code{brutstep = TRUE}, first, the algorithm will select a set of
-#' predictors with minimal multicollinearity. The selection is based on the
-#' variance inflation factor (VIF). An iterative process is performed until the
-#' maximum VIF observed is less than \code{maxvif}. The variables selected in
-#' this iterative process are then used in a series of stepwise-based
-#' regressions. The first model is fitted and p-1 predictor variables are
-#' retained (p is the number of variables selected in the iterative process. The
-#' second model adjusts a regression considering p-2 selected variables, and so
-#' on until the last model, which considers only two variables. Three objects
-#' are created. \code{Summary}, with the process summary, \code{Models},
-#' containing the aforementioned values for all the adjusted models; and
-#' \code{Selectedpred}, a vector with the name of the selected variables in the
-#' iterative process.
+#' @details In `path_coeff()`, when \code{brutstep = TRUE}, an algorithm to select a set of
+#' predictors with minimal multicollinearity and high explanatory power is
+#' implemented. first, the algorithm will select a set of predictors with
+#' minimal multicollinearity. The selection is based on the variance inflation
+#' factor (VIF). An iterative process is performed until the maximum VIF
+#' observed is less than \code{maxvif}. The variables selected in this iterative
+#' process are then used in a series of stepwise-based regressions. The first
+#' model is fitted and p-1 predictor variables are retained (p is the number of
+#' variables selected in the iterative process. The second model adjusts a
+#' regression considering p-2 selected variables, and so on until the last
+#' model, which considers only two variables. Three objects are created.
+#' \code{Summary}, with the process summary, \code{Models}, containing the
+#' aforementioned values for all the adjusted models; and \code{Selectedpred}, a
+#' vector with the name of the selected variables in the iterative process.
 #'
 #' @param .data The data. Must be a data frame or a grouped data passed from
 #'   \code{\link[dplyr]{group_by}()}
 #' @param resp The dependent variable.
+#' @param cor_mat Matrix of correlations containing both dependent and
+#'   independent traits.
 #' @param by One variable (factor) to compute the function by. It is a shortcut
 #'   to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
 #'   one grouping variable use that function.
@@ -57,7 +61,7 @@
 #' the dependent variable.
 #' * \strong{Coefficients} The path coefficients. Direct effects are the diagonal
 #' elements, and the indirect effects those in the off-diagonal elements
-#' (column)
+#' (lines).
 #' * \strong{Eigen} Eigenvectors and eigenvalues of the \code{Corr.x.}
 #' * \strong{VIF} The Variance Inflation Factors.
 #' * \strong{plot} A ggplot2-based graphic showing the direct effects in 21
@@ -91,6 +95,9 @@
 #' # Using KW as the response variable and all other ones as predictors
 #' pcoeff <- path_coeff(data_ge2, resp = KW)
 #'
+#' # The same as above, but using the correlation matrix
+#' cor_mat <- cor(data_ge2 %>% select_numeric_cols())
+#' pcoeff <- path_coeff_mat(cor_mat, resp = KW)
 #'
 #' # Declaring the predictors
 #' # Create a residual plot with 'plot_res = TRUE'
@@ -279,7 +286,7 @@ path_coeff <- function(.data,
     weightvarname <- paste(rownames(last), collapse = " > ")
     temp <- structure(list(Corr.x = as_tibble(cor.x, rownames = NA),
                            Corr.y = as_tibble(cor.y, rownames = NA),
-                           Coefficients = cbind(as_tibble(t(Coeff), rownames = NA), as_tibble(cor.y, rownames = NA) %>% set_names("linear")),
+                           Coefficients = cbind(as_tibble(Coeff, rownames = NA), as_tibble(cor.y, rownames = NA) %>% set_names("linear")),
                            Eigen = as_tibble(AvAvet),
                            VIF =  rownames_to_column(VIF, "VAR") %>% as_tibble(),
                            plot = p1,
@@ -426,7 +433,7 @@ path_coeff <- function(.data,
       cor.y <- data.frame(cor.y)
       Results <- list(Corr.x = data.frame(cor.x),
                       Corr.y = data.frame(cor.y),
-                      Coefficients = cbind(data.frame(t(Coeff)), data.frame(cor.y) %>% set_names("linear")),
+                      Coefficients = cbind(data.frame(Coeff), data.frame(cor.y) %>% set_names("linear")),
                       Eigen = AvAvet,
                       VIF = VIF,
                       plot = p1,
@@ -476,6 +483,148 @@ path_coeff <- function(.data,
   }
 }
 
+
+
+#' @name path_coeff
+#' @export
+path_coeff_mat <- function(cor_mat,
+                           resp,
+                           correction = NULL,
+                           knumber = 50,
+                           verbose = TRUE){
+  cor_mat <- as.matrix(cor_mat)
+  if(!isSymmetric(cor_mat)){
+    stop("Object '", test["cor_mat"], "' must be a symmetric.", call. = FALSE)
+  }
+  cor.y <-
+    cor_mat %>%
+    as.data.frame() %>%
+    select({{resp}}) %>%
+    subset(rownames(.) != colnames(.)) %>%
+    as.matrix()
+  cor.x <-
+    cor_mat %>%
+    as.data.frame() %>%
+    remove_cols({{resp}}) %>%
+    subset(rownames(.) != colnames(cor.y)) %>%
+    as.matrix()
+  kincrement <- 1/knumber
+  if (is.null(correction) == FALSE) {
+    diag(cor.x) <- diag(cor.x) + correction
+  } else {
+    cor.x <- cor.x
+  }
+  names <- colnames(cor.x)
+  if (is.null(correction) == TRUE) {
+    betas <- data.frame(matrix(nrow = knumber, ncol = ncol(cor.x) + 1))
+    cc <- 0
+    nvar <- ncol(cor.x) + 1
+    for (i in 1:knumber) {
+      cor.x2 <- cor.x
+      diag(cor.x2) <- diag(cor.x2) + cc
+      betas[i, 1] <- cc
+      betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
+      cc <- cc + kincrement
+    }
+    names(betas) <- paste0(c("K", colnames(cor.x)))
+    xx <- betas$K
+    yy <- colnames(betas)
+    fila <- knumber
+    col <- length(yy)
+    total <- fila * (col - 1)
+    x <- character(length = total)
+    y <- character(length = total)
+    z <- numeric(length = total)
+    k <- 0
+    for (i in 1:fila) {
+      for (j in 2:col) {
+        k <- k + 1
+        x[k] <- xx[i]
+        y[k] <- yy[j]
+        z[k] <- betas[i, j]
+      }
+    }
+    x <- as.numeric(x)
+    betas <- data.frame(K = x, VAR = y, direct = z)
+    p1 <- ggplot2::ggplot(betas, ggplot2::aes(K,
+                                              direct, col = VAR)) + ggplot2::geom_line(size = 1) +
+      ggplot2::theme_bw() + ggplot2::theme(axis.ticks.length = unit(0.2,
+                                                                    "cm"), axis.text = element_text(size = 12,
+                                                                                                    colour = "black"), axis.title = element_text(size = 12,
+                                                                                                                                                 colour = "black"), axis.ticks = element_line(colour = "black"),
+                                           legend.position = "bottom", plot.margin = margin(0.1,
+                                                                                            0.1, 0.1, 0.1, "cm"), legend.title = element_blank(),
+                                           panel.border = element_rect(colour = "black",
+                                                                       fill = NA, size = 1), panel.grid.major.x = element_blank(),
+                                           panel.grid.major.y = element_blank(), panel.grid.minor.x = element_blank(),
+                                           panel.grid.minor.y = element_blank()) + ggplot2::labs(x = "k values",
+                                                                                                 y = "Beta values") + ggplot2::geom_abline(intercept = 0,
+                                                                                                                                           slope = 0) + ggplot2::scale_x_continuous(breaks = seq(0,
+                                                                                                                                                                                                 1, by = 0.1))
+  } else {
+    p1 <- "No graphic generated due to correction value"
+  }
+  eigen <- eigen(cor.x)
+  Det <- det(cor.x)
+  NC <- max(eigen$values)/min(eigen$values)
+  Aval <- data.frame(eigen$values)
+  names(Aval) <- "Eigenvalues"
+  Avet <- data.frame(t(eigen$vectors))
+  names(Avet) <- names
+  AvAvet <- cbind(Aval, Avet)
+  Direct <- solve(cor.x, cor.y)
+
+  n <- ncol(cor.x)
+  Coeff <- data.frame(cor.x)
+  for (i in 1:n) {
+    for (j in 1:n) {
+      Coeff[i, j] <- Direct[j] * cor.x[i, j]
+    }
+  }
+  Residual <- 1 - t(Direct) %*% cor.y
+  R2 <- t(Direct) %*% cor.y
+  VIF <- data.frame(diag(solve_svd(cor.x)))
+  names(VIF) <- "VIF"
+  if (verbose == TRUE) {
+    if (NC > 1000) {
+      cat(paste0("Severe multicollinearity. \n",
+                 "Condition Number = ", round(NC, 3), "\n",
+                 "Please, consider using a correction factor, or use 'brutstep = TRUE'. \n"))
+    }
+    if (NC < 100) {
+      cat(paste0("Weak multicollinearity. \n", "Condition Number = ",
+                 round(NC, 3), "\n", "You will probably have path coefficients close to being unbiased. \n"))
+    }
+    if (NC > 100 & NC < 1000) {
+      cat(paste0("Moderate multicollinearity! \n",
+                 "Condition Number = ", round(NC, 3), "\n",
+                 "Please, cautiosely evaluate the VIF and matrix determinant.",
+                 "\n"))
+    }
+  }
+  last <- data.frame(weight = t(AvAvet[c(nrow(AvAvet)),
+  ])[-c(1), ])
+  abs <- data.frame(weight = abs(last[, "weight"]))
+  rownames(abs) <- rownames(last)
+  last <- abs[order(abs[, "weight"], decreasing = T),
+              , drop = FALSE]
+  weightvarname <- paste(rownames(last), collapse = " > ")
+  temp <- structure(list(Corr.x = as_tibble(cor.x, rownames = NA),
+                         Corr.y = as_tibble(cor.y, rownames = NA),
+                         Coefficients = cbind(as_tibble(Coeff, rownames = NA), as_tibble(cor.y, rownames = NA) %>% set_names("linear")),
+                         Eigen = as_tibble(AvAvet),
+                         VIF =  rownames_to_column(VIF, "VAR") %>% as_tibble(),
+                         plot = p1,
+                         Predictors = colnames(cor.x),
+                         CN = NC,
+                         Det = Det,
+                         R2 = R2,
+                         Residual = Residual,
+                         Response = colnames(cor.y),
+                         weightvar = weightvarname),
+                    class = "path_coeff")
+  return(temp)
+}
 
 
 #' Print an object of class path_coeff
@@ -531,7 +680,7 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
     cat("----------------------------------------------------------------------------------------------\n")
     cat("Correlation matrix between the predictor traits\n")
     cat("----------------------------------------------------------------------------------------------\n")
-    print(x$Corr.x)
+    print.data.frame(x$Corr.x, digits = digits)
     cat("----------------------------------------------------------------------------------------------\n")
     cat("Vector of correlations between dependent and each predictor\n")
     cat("----------------------------------------------------------------------------------------------\n")

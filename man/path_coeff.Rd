@@ -2,6 +2,7 @@
 % Please edit documentation in R/path_coeff.R
 \name{path_coeff}
 \alias{path_coeff}
+\alias{path_coeff_mat}
 \title{Path coefficients with minimal multicollinearity}
 \usage{
 path_coeff(
@@ -19,6 +20,8 @@ path_coeff(
   verbose = TRUE,
   ...
 )
+
+path_coeff_mat(cor_mat, resp, correction = NULL, knumber = 50, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data. Must be a data frame or a grouped data passed from
@@ -65,6 +68,9 @@ predicted value and a normal Q-Q plot.}
 console.}
 
 \item{...}{Additional arguments passed on to \code{\link[stats]{plot.lm}}}
+
+\item{cor_mat}{Matrix of correlations containing both dependent and
+independent traits.}
 }
 \value{
 An object of class \code{path_coeff, group_path, or brute_path} with
@@ -75,7 +81,7 @@ the following items:
 the dependent variable.
 \item \strong{Coefficients} The path coefficients. Direct effects are the diagonal
 elements, and the indirect effects those in the off-diagonal elements
-(column)
+(lines).
 \item \strong{Eigen} Eigenvectors and eigenvalues of the \code{Corr.x.}
 \item \strong{VIF} The Variance Inflation Factors.
 \item \strong{plot} A ggplot2-based graphic showing the direct effects in 21
@@ -96,24 +102,27 @@ then the results will be returned into a list-column of data frames,
 containing:
 }
 \description{
-Computes direct and indirect effects in path analysis. An algorithm to select
-a set of predictors with minimal multicollinearity and high explanatory power
-is implemented.
+\itemize{
+\item \code{path_coeff()} computes a path analysis using a data frame as input data.
+\item \code{path_coeff_mat()} computes a path analysis using correlation matrices as
+input data.
+}
 }
 \details{
-When \code{brutstep = TRUE}, first, the algorithm will select a set of
-predictors with minimal multicollinearity. The selection is based on the
-variance inflation factor (VIF). An iterative process is performed until the
-maximum VIF observed is less than \code{maxvif}. The variables selected in
-this iterative process are then used in a series of stepwise-based
-regressions. The first model is fitted and p-1 predictor variables are
-retained (p is the number of variables selected in the iterative process. The
-second model adjusts a regression considering p-2 selected variables, and so
-on until the last model, which considers only two variables. Three objects
-are created. \code{Summary}, with the process summary, \code{Models},
-containing the aforementioned values for all the adjusted models; and
-\code{Selectedpred}, a vector with the name of the selected variables in the
-iterative process.
+In \code{path_coeff()}, when \code{brutstep = TRUE}, an algorithm to select a set of
+predictors with minimal multicollinearity and high explanatory power is
+implemented. first, the algorithm will select a set of predictors with
+minimal multicollinearity. The selection is based on the variance inflation
+factor (VIF). An iterative process is performed until the maximum VIF
+observed is less than \code{maxvif}. The variables selected in this iterative
+process are then used in a series of stepwise-based regressions. The first
+model is fitted and p-1 predictor variables are retained (p is the number of
+variables selected in the iterative process. The second model adjusts a
+regression considering p-2 selected variables, and so on until the last
+model, which considers only two variables. Three objects are created.
+\code{Summary}, with the process summary, \code{Models}, containing the
+aforementioned values for all the adjusted models; and \code{Selectedpred}, a
+vector with the name of the selected variables in the iterative process.
 }
 \examples{
 \donttest{
@@ -122,6 +131,9 @@ library(metan)
 # Using KW as the response variable and all other ones as predictors
 pcoeff <- path_coeff(data_ge2, resp = KW)
 
+# The same as above, but using the correlation matrix
+cor_mat <- cor(data_ge2 \%>\% select_numeric_cols())
+pcoeff <- path_coeff_mat(cor_mat, resp = KW)
 
 # Declaring the predictors
 # Create a residual plot with 'plot_res = TRUE'

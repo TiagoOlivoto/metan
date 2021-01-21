@@ -666,7 +666,7 @@ get_levels <- function(.data, ...){
   }
   results <-
   df %>%
-    as_factor() %>%
+    as_factor(everything()) %>%
     map(levels)
   if(length(results) == 1){
     return(results[[1]])
