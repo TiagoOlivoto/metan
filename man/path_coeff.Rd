@@ -77,11 +77,11 @@ An object of class \code{path_coeff, group_path, or brute_path} with
 the following items:
 \itemize{
 \item \strong{Corr.x} A correlation matrix between the predictor variables.
-\item \strong{Corr.y} A vector of correlations between each predictor variable with
-the dependent variable.
-\item \strong{Coefficients} The path coefficients. Direct effects are the diagonal
-elements, and the indirect effects those in the off-diagonal elements
-(lines).
+\item \strong{Corr.y} A vector of correlations between each predictor variable
+with the dependent variable.
+\item \strong{Coefficients} The path coefficients. Direct effects are the
+diagonal elements, and the indirect effects those in the off-diagonal
+elements (lines).
 \item \strong{Eigen} Eigenvectors and eigenvalues of the \code{Corr.x.}
 \item \strong{VIF} The Variance Inflation Factors.
 \item \strong{plot} A ggplot2-based graphic showing the direct effects in 21
@@ -93,8 +93,8 @@ lowest eigenvalue.
 \item \strong{R2} The coefficient of determination of the model.
 \item \strong{Residual} The residual effect of the model.
 \item \strong{Response} The response variable.
-\item \strong{weightvar} The order of the predictor variables with the highest weight
-(highest eigenvector) in the lowest eigenvalue.
+\item \strong{weightvar} The order of the predictor variables with the highest
+weight (highest eigenvector) in the lowest eigenvalue.
 }
 
 If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
@@ -109,20 +109,21 @@ input data.
 }
 }
 \details{
-In \code{path_coeff()}, when \code{brutstep = TRUE}, an algorithm to select a set of
-predictors with minimal multicollinearity and high explanatory power is
-implemented. first, the algorithm will select a set of predictors with
-minimal multicollinearity. The selection is based on the variance inflation
-factor (VIF). An iterative process is performed until the maximum VIF
-observed is less than \code{maxvif}. The variables selected in this iterative
-process are then used in a series of stepwise-based regressions. The first
-model is fitted and p-1 predictor variables are retained (p is the number of
-variables selected in the iterative process. The second model adjusts a
-regression considering p-2 selected variables, and so on until the last
-model, which considers only two variables. Three objects are created.
-\code{Summary}, with the process summary, \code{Models}, containing the
-aforementioned values for all the adjusted models; and \code{Selectedpred}, a
-vector with the name of the selected variables in the iterative process.
+In \code{path_coeff()}, when \code{brutstep = TRUE}, an algorithm to
+select a set of predictors with minimal multicollinearity and high
+explanatory power is implemented. first, the algorithm will select a set of
+predictors with minimal multicollinearity. The selection is based on the
+variance inflation factor (VIF). An iterative process is performed until
+the maximum VIF observed is less than \code{maxvif}. The variables selected
+in this iterative process are then used in a series of stepwise-based
+regressions. The first model is fitted and p-1 predictor variables are
+retained (p is the number of variables selected in the iterative process.
+The second model adjusts a regression considering p-2 selected variables,
+and so on until the last model, which considers only two variables. Three
+objects are created. \code{Summary}, with the process summary,
+\code{Models}, containing the aforementioned values for all the adjusted
+models; and \code{Selectedpred}, a vector with the name of the selected
+variables in the iterative process.
 }
 \examples{
 \donttest{
