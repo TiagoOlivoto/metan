@@ -42,8 +42,10 @@
 #' library(metan)
 #' # List of matrices
 #' data <- subset(data_ge2, ENV == 'A1')
-#' matrices <- covcor_design(data, gen = GEN, rep = REP,
-#'                            resp = c(PH, EH, NKE, TKW))
+#' matrices <- covcor_design(data,
+#'                           gen = GEN,
+#'                           rep = REP,
+#'                           resp = c(PH, EH, NKE, TKW))
 #'
 #' # Genetic correlations
 #' gcor <- covcor_design(data,
@@ -130,9 +132,9 @@ covcor_design <- function(.data,
   vres <- diag(ms[, 2])
   vfen <- diag(ms[, 1]/3)
   vgen <- (diag(ms[, 1]) - diag(ms[, 2]))/3
-  means <- data.frame(cbind(GEN, covdata)) %>%
-    group_by(GEN) %>%
-    summarise(across(everything(), mean), .groups = "drop") %>%
+  means <-
+    data.frame(cbind(GEN, covdata)) %>%
+    means_by(GEN) %>%
     column_to_rownames("GEN")
   covdata2 <- comb_vars(data.frame(covdata), order = "first")
   index <- data.frame(t(combn(nvar, 2)))
