@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.12.0
 ## New functions
 * `get_levels_comb()` to get the combination of the levels of a factor.
 * `g_simula()` to simulate replicated genotype data.
