@@ -18,7 +18,8 @@ set_difference(..., pairs = FALSE)
 vector contains duplicates they will be discarded. If the list doesn't have
 names the sets will be named as \code{"set_1"}, "\verb{Set_2"}, \code{"Set_3"} and so on.
 If vectors are given in \code{...}, the set names will be named with the names
-of the objects provided.}
+of the objects provided. Data frames are also allowed, provided that common
+column names exist.}
 
 \item{pairs}{Returns the pairwise unions of the sets? Defaults to \code{FALSE}.}
 }
@@ -45,6 +46,17 @@ set_union(A, B)
 set_intersect(A, B, C)
 set_difference(B, C)
 
+# Operations with data frames
+# Add a row id for better understanding
+sets <- data_ge \%>\% add_row_id()
+
+set_1 <- sets[1:5,]
+set_2 <- sets[2:6,]
+set_3 <- sets[3:7,]
+
+set_intersect(set_1, set_2, set_3)
+set_difference(set_2, set_3)
+set_union(set_1, set_2, set_3)
 }
 
 }

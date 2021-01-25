@@ -133,7 +133,7 @@ covcor_design <- function(.data,
   vfen <- diag(ms[, 1]/3)
   vgen <- (diag(ms[, 1]) - diag(ms[, 2]))/3
   means <-
-    data.frame(cbind(GEN, covdata)) %>%
+    as_tibble(cbind(GEN, covdata)) %>%
     means_by(GEN) %>%
     column_to_rownames("GEN")
   covdata2 <- comb_vars(data.frame(covdata), order = "first")

@@ -96,7 +96,6 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso \code{\link{cv_ammi}}, \code{\link{cv_ammif}}
 #' @export
-#' @importFrom tibble rowid_to_column
 #' @importFrom utils capture.output
 #' @examples
 #'
@@ -127,7 +126,7 @@ cv_blup <- function(.data,
                           REP = {{rep}},
                           Y = {{resp}}) %>%
             mutate(across(1:3, as.factor))
-        data <- tibble::rowid_to_column(data)
+        data <- add_row_id(data)
         Nbloc <- nlevels(data$REP)
         nrepval <- Nbloc - 1
         if (Nbloc <= 2) {
@@ -145,7 +144,7 @@ cv_blup <- function(.data,
             df_test <-
                 data.frame(
                     test[which(test$test == TRUE),] %>%
-                        remove_cols(rowid,REP, test) %>%
+                        remove_cols(row_id,REP, test) %>%
                         rename(n = Y)
                 )
             message(paste0(capture.output(df_test), collapse = "\n"))
@@ -178,8 +177,8 @@ cv_blup <- function(.data,
                     dplyr::filter(REP %in% X2)
             })) %>%
                 base::as.data.frame()
-            rownames(modeling) <- modeling$rowid
-            testing <- suppressWarnings(anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "rowid"))) %>%
+            rownames(modeling) <- modeling$row_id
+            testing <- suppressWarnings(anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "row_id"))) %>%
                 arrange(ENV, GEN, REP) %>%
                 base::as.data.frame()
             MEDIAS <-
@@ -207,7 +206,7 @@ cv_blup <- function(.data,
                                  REP = {{rep}},
                                  BLOCK = {{block}},
                                  Y = {{resp}})
-        data <- tibble::rowid_to_column(data)
+        data <- add_row_id(data)
         Nbloc <- nlevels(data$REP)
         nrepval <- Nbloc - 1
         if (Nbloc <= 2) {
@@ -225,7 +224,7 @@ cv_blup <- function(.data,
             df_test <-
                 data.frame(
                     test[which(test$test == TRUE),] %>%
-                        remove_cols(rowid,REP, test) %>%
+                        remove_cols(row_id,REP, test) %>%
                         rename(n = Y)
                 )
             message(paste0(capture.output(df_test), collapse = "\n"))
@@ -258,8 +257,8 @@ cv_blup <- function(.data,
                     dplyr::filter(REP %in% X2)
             })) %>%
                 as.data.frame()
-            rownames(modeling) <- modeling$rowid
-            testing <- suppressWarnings(anti_join(data, modeling, by = c("ENV", "GEN", "REP", "BLOCK", "Y", "rowid"))) %>%
+            rownames(modeling) <- modeling$row_id
+            testing <- suppressWarnings(anti_join(data, modeling, by = c("ENV", "GEN", "REP", "BLOCK", "Y", "row_id"))) %>%
                 arrange(ENV, GEN, REP, BLOCK) %>%
                 as.data.frame()
 

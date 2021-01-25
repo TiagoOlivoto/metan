@@ -16,8 +16,6 @@
 \alias{mutate}
 \alias{group_by}
 \alias{rename}
-\alias{column_to_rownames}
-\alias{rownames_to_column}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -26,8 +24,6 @@ below to see their documentation.
 
 \describe{
   \item{dplyr}{\code{\link[dplyr]{group_by}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr]{rename}}, \code{\link[dplyr]{select}}}
-
-  \item{tibble}{\code{\link[tibble:rownames]{column_to_rownames}}, \code{\link[tibble:rownames]{rownames_to_column}}}
 
   \item{tidyselect}{\code{\link[tidyselect:starts_with]{contains}}, \code{\link[tidyselect:starts_with]{ends_with}}, \code{\link[tidyselect]{everything}}, \code{\link[tidyselect:everything]{last_col}}, \code{\link[tidyselect:starts_with]{matches}}, \code{\link[tidyselect:starts_with]{num_range}}, \code{\link[tidyselect]{one_of}}, \code{\link[tidyselect]{starts_with}}}
 }}

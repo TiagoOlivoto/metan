@@ -104,10 +104,11 @@ anova_joint <- function(.data,
                        summary(aov(mean ~ GEN + REP, data = x))[[1]][3,3]
                      }))
       model <- aov(mean ~ GEN + ENV + GEN:ENV + ENV/REP, data = data)
-      anova <- anova(model) %>%
-        as.data.frame() %>%
+      anova <-
+        anova(model) %>%
         rownames_to_column("Source") %>%
-        select_rows(2, 4, 1, 3, 5)
+        select_rows(2, 4, 1, 3, 5) %>%
+        as.data.frame()
       anova[2, 1] <- "REP(ENV)"
       anova[1, 5] <- anova[1, 4] / anova[2, 4]
       anova[1, 6] <- 1 - pf(anova[1, 5], anova[1, 2], anova[2, 2])

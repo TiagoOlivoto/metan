@@ -35,12 +35,6 @@ dplyr::group_by
 #' @importFrom dplyr rename
 #' @export
 dplyr::rename
-#' @importFrom tibble column_to_rownames
-#' @export
-tibble::column_to_rownames
-#' @importFrom tibble rownames_to_column
-#' @export
-tibble::rownames_to_column
 NULL
 
 #' @title Select helper

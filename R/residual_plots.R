@@ -92,7 +92,7 @@ residual_plots <- function(x,
   }
   x <- x[[var]]
   df <- x$augment %>%
-    rowid_to_column(var = "id") %>%
+    add_row_id(var = "id") %>%
     arrange(stdres)
   P <- ppoints(nrow(df))
   df$z <- qnorm(P)

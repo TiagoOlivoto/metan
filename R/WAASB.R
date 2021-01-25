@@ -1125,7 +1125,7 @@ plot.waasb <- function(x,
             df <-
                 data.frame(blups[i]) %>%
                 distinct_all() %>%
-                rowid_to_column(var = "id") %>%
+                add_row_id(var = "id") %>%
                 arrange(across(2))
             P <- ppoints(nrow(df))
             df$z <- qnorm(P)

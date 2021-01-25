@@ -4,7 +4,7 @@
 #' @importFrom dplyr  select  everything  mutate  group_by group_keys
 #'   group_split  left_join  sample_n  anti_join pull select_if arrange slice
 #'   contains top_n summarise ungroup rename is_grouped_df desc n funs
-#' @importFrom tibble rownames_to_column column_to_rownames tibble as_tibble
+#' @importFrom tibble tibble as_tibble
 #' @importFrom grid grobTree textGrob
 #' @importFrom ggrepel  geom_text_repel geom_label_repel
 #' @importFrom magrittr  %>% %<>%
@@ -189,5 +189,5 @@ if (getRversion() >= "2.15.1") {
       "replacement", "comparison", "group1", "group2", "p.adj", "term", "rel_freq",
       "variable", "Model", "level", "RESIDUAL", "MGIDI", "sd.amo", "SD", "SG", "data.x",
       "data.y", "sense", "win", "where", "test", "FG", "SI", "ACV", "SDperc", "MEGA_ENV",
-      "group", "hjust", "theta", "vjust", "x_raw", "y_raw"))
+      "group", "hjust", "theta", "vjust", "x_raw", "y_raw", "row_id"))
   }

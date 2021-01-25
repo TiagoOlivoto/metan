@@ -94,7 +94,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
                     Y = {{resp}})%>%
       mutate(across(1:3, as.factor))
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
-    data <- tibble::rowid_to_column(data)
+    data <- add_row_id(data)
     Nenv <- length(unique(data$ENV))
     Ngen <- length(unique(data$GEN))
     Nbloc <- length(unique(data$REP))
@@ -123,7 +123,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
       df_test <-
         data.frame(
           test[which(test$test == TRUE),] %>%
-            remove_cols(rowid,REP, test) %>%
+            remove_cols(row_id,REP, test) %>%
             rename(n = Y)
         )
       message(paste0(capture.output(df_test), collapse = "\n"))
@@ -139,9 +139,9 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
         modeling <- data %>%
           dplyr::group_by(ENV, GEN) %>%
           dplyr::sample_n(nrepval, replace = FALSE) %>%
-          arrange(rowid) %>%
+          arrange(row_id) %>%
           as.data.frame()
-        rownames(modeling) <- modeling$rowid
+        rownames(modeling) <- modeling$row_id
       }
       if (design == "RCBD") {
         tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
@@ -149,9 +149,9 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
           X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
           x %>% dplyr::group_by(GEN) %>% dplyr::filter(REP %in% X2)
         })) %>% as.data.frame()
-        rownames(modeling) <- modeling$rowid
+        rownames(modeling) <- modeling$row_id
       }
-      testing <- anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "rowid")) %>%
+      testing <- anti_join(data, modeling, by = c("ENV", "GEN", "REP", "Y", "row_id")) %>%
         arrange(ENV, GEN) %>%
         as.data.frame()
       MEDIAS <-
@@ -199,7 +199,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
                     BLOCK = {{block}},
                     Y = {{resp}})
     RMSPDres <- data.frame(RMSPD = matrix(0, nboot, 1))
-    data <- tibble::rowid_to_column(data)
+    data <- add_row_id(data)
     Nenv <- nlevels(data$ENV)
     Ngen <- nlevels(data$GEN)
     Nbloc <- nlevels(data$REP)
@@ -223,7 +223,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
       df_test <-
         data.frame(
           test[which(test$test == TRUE),] %>%
-            remove_cols(rowid,REP, test) %>%
+            remove_cols(row_id,REP, test) %>%
             rename(n = Y)
         )
       message(paste0(capture.output(df_test), collapse = "\n"))
@@ -243,8 +243,8 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
         X2 <- sample(unique(data$REP), nrepval, replace = FALSE)
         x %>% dplyr::group_by(GEN) %>% dplyr::filter(REP %in% X2)
       })) %>% as.data.frame()
-      rownames(modeling) <- modeling$rowid
-      testing <- anti_join(data, modeling, by = c("ENV", "GEN", "REP", "BLOCK", "Y", "rowid")) %>%
+      rownames(modeling) <- modeling$row_id
+      testing <- anti_join(data, modeling, by = c("ENV", "GEN", "REP", "BLOCK", "Y", "row_id")) %>%
         arrange(ENV, GEN) %>%
         as.data.frame()
       MEDIAS <- modeling %>%

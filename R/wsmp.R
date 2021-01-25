@@ -442,7 +442,7 @@ plot.wsmp <- function(x,
       rownames_to_column("GEN") %>%
       as_factor(1) %>%
       pivot_longer(-GEN) %>%
-      rowid_to_column()
+      add_row_id()
     if(type == 1){
       x.lab = ifelse(is.null(x.lab), paste0("Number of IPCAs"), x.lab)
       y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
@@ -454,11 +454,11 @@ plot.wsmp <- function(x,
 
     if(type == 1){
     p <-
-      ggplot(data, aes(reorder(name, desc(rowid)), factor(GEN, levels = grps$GEN), fill= value))
+      ggplot(data, aes(reorder(name, desc(row_id)), factor(GEN, levels = grps$GEN), fill= value))
     }
     if(type == 2){
       p <-
-        ggplot(data, aes(reorder(name, rowid), factor(GEN, levels = grps$GEN), fill= value))
+        ggplot(data, aes(reorder(name, row_id), factor(GEN, levels = grps$GEN), fill= value))
     }
     p <-  p +
       geom_tile()+
