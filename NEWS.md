@@ -3,12 +3,14 @@
 * `get_levels_comb()` to get the combination of the levels of a factor.
 * `g_simula()` to simulate replicated genotype data.
 * `add_row_id()` to add a column as the row id.
-* `remove_rownames()` to remove the row names of a data frame.
-* `column_to_rownames()` and `rownames_to_column()` to deal with rownames.
+* `remove_rownames()`, `column_to_rownames()` and `rownames_to_column()` to deal
+with rownames.
 
 ## Minor improvements
-* New argument `sel.var()` in `corr_ci()` to filter correlations with a selected variable
-* New arguments `fill` and `position.fill` in `plot_ci()` to fill correlations by levels of a factor variable.
+* New argument `sel.var()` in `corr_ci()` to filter correlations with a selected
+variable
+* New arguments `fill` and `position.fill` in `plot_ci()` to fill correlations
+by levels of a factor variable.
 * Remove deprecated arguments in `arrange_ggplot()` and `gge()`.
 * New argument `theme` `in arrange_ggplot()` to control the theme of the plot.
 * Include `by` argument in `gafem()`.
