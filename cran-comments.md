@@ -1,5 +1,5 @@
 # Release summary
-This is a minor release (v1.11.0) that add new functions and minor improvements. See `News.md` for more information.
+This is a minor release (v1.12.0) that add new functions and minor improvements. See `News.md` for more information.
 
 # Test environments
 - local OS X install, R 4.0.0
@@ -19,7 +19,3 @@ This is a minor release (v1.11.0) that add new functions and minor improvements.
 
 * checking top-level files ... NOTE Files 'README.md' or 'NEWS.md' cannot be checked without 'pandoc' being installed.
    - I can put these in `.Rbuildignore` but CRAN supports `NEWS.md` now.
-
-
-
-
