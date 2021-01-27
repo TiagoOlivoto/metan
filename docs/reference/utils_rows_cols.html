@@ -65,6 +65,8 @@ add_rows(): Add one or more rows to an existing data frame. If
 specified .before or .after rows does not exist, rows are
 appended at the end of the data. Return a data frame with all the original
 rows in .data plus the rows declared in ... argument.
+add_row_id(): Add a column with the row id as the first column in
+.data.
 add_prefix() and add_suffix() add prefixes and suffixes,
 respectively, in variable names selected in ... argument.
 all_pairs(): Get all the possible pairs between the levels of a
@@ -76,6 +78,11 @@ column_exists(): Checks if a column exists in a data frame. Return a
 logical value.
 columns_to_first(): Move columns to first positions in .data.
 columns_to_last(): Move columns to last positions in .data.
+columns_to_rownames(): Move a column of .data to its row
+names.
+rownames_to_column(): Move the row names of .data to a new
+column.
+remove_rownames(): Remove the row names of .data.
 concatenate(): Concatenate columns of a data frame. If drop =
 TRUE then the existing variables are dropped. If pull = TRUE then the
 concatenated variable is pull out to a vector. This is specially useful when
@@ -140,7 +147,7 @@ tidy_strings().
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
       </span>
     </div>
 
@@ -285,6 +292,8 @@ So, it is possible to add a column based on existing data.</p></li>
 specified <code>.before</code> or <code>.after</code> rows does not exist, rows are
 appended at the end of the data. Return a data frame with all the original
 rows in <code>.data</code> plus the rows declared in <code>...</code> argument.</p></li>
+<li><p><code>add_row_id()</code>: Add a column with the row id as the first column in
+<code>.data</code>.</p></li>
 <li><p><code>add_prefix()</code> and <code>add_suffix()</code> add prefixes and suffixes,
 respectively, in variable names selected in <code>...</code> argument.</p></li>
 <li><p><code>all_pairs()</code>: Get all the possible pairs between the levels of a
@@ -296,6 +305,11 @@ factor.</p></li>
 logical value.</p></li>
 <li><p><code>columns_to_first()</code>: Move columns to first positions in <code>.data</code>.</p></li>
 <li><p><code>columns_to_last()</code>: Move columns to last positions in <code>.data</code>.</p></li>
+<li><p><code>columns_to_rownames()</code>: Move a column of <code>.data</code> to its row
+names.</p></li>
+<li><p><code>rownames_to_column()</code>: Move the row names of <code>.data</code> to a new
+column.</p></li>
+<li><p><code>remove_rownames()</code>: Remove the row names of <code>.data</code>.</p></li>
 <li><p><code>concatenate()</code>: Concatenate columns of a data frame. If <code>drop =
 TRUE</code> then the existing variables are dropped. If <code>pull = TRUE</code> then the
 concatenated variable is pull out to a vector. This is specially useful when
@@ -324,6 +338,8 @@ data frame.</p></li>
 
 <span class='fu'>add_rows</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, .before <span class='op'>=</span> <span class='cn'>NULL</span>, .after <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
+<span class='fu'>add_row_id</span><span class='op'>(</span><span class='va'>.data</span>, var <span class='op'>=</span> <span class='st'>"row_id"</span><span class='op'>)</span>
+
 <span class='fu'>all_pairs</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>levels</span><span class='op'>)</span>
 
 <span class='fu'>add_prefix</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, <span class='va'>prefix</span>, sep <span class='op'>=</span> <span class='st'>"_"</span><span class='op'>)</span>
@@ -339,6 +355,12 @@ data frame.</p></li>
 <span class='fu'>column_to_first</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>column_to_last</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>column_to_rownames</span><span class='op'>(</span><span class='va'>.data</span>, var <span class='op'>=</span> <span class='st'>"rowname"</span><span class='op'>)</span>
+
+<span class='fu'>rownames_to_column</span><span class='op'>(</span><span class='va'>.data</span>, var <span class='op'>=</span> <span class='st'>"rowname"</span><span class='op'>)</span>
+
+<span class='fu'>remove_rownames</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>column_exists</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>cols</span><span class='op'>)</span>
 
@@ -418,6 +440,10 @@ levels, levels combinations and levels size, respectively.</p></li>
 <code>reorder_cols()</code>, one-based column index or column name where to add
 the new columns, default: .after last column. For <code>add_rows()</code>,
 one-based row index where to add the new rows, default: .after last row.</p></td>
+    </tr>
+    <tr>
+      <th>var</th>
+      <td><p>Name of column to use for rownames.</p></td>
     </tr>
     <tr>
       <th>levels</th>
@@ -802,7 +828,7 @@ end (for <code>select_last_col()</code>) of from the begin (for
 #&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span></div><div class='input'><span class='fu'>get_level_size</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 13 x 17</span><span>
 #&gt;    GEN     REP    PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> H1        3     3     3     3     3     3     3     3     3     3     3     3
 #&gt; </span><span style='color: #555555;'> 2</span><span> H10       3     3     3     3     3     3     3     3     3     3     3     3
 #&gt; </span><span style='color: #555555;'> 3</span><span> H11       3     3     3     3     3     3     3     3     3     3     3     3

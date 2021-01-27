@@ -53,9 +53,13 @@
 
 
 <meta property="og:title" content="Path coefficients with minimal multicollinearity — path_coeff" />
-<meta property="og:description" content="Computes direct and indirect effects in path analysis. An algorithm to select
-a set of predictors with minimal multicollinearity and high explanatory power
-is implemented." />
+<meta property="og:description" content="
+
+path_coeff() computes a path analysis using a data frame as input data.
+path_coeff_mat() computes a path analysis using correlation matrices as
+input data.
+
+" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -98,7 +102,7 @@ is implemented." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
       </span>
     </div>
 
@@ -231,9 +235,13 @@ is implemented." />
     </div>
 
     <div class="ref-description">
-    <p>Computes direct and indirect effects in path analysis. An algorithm to select
-a set of predictors with minimal multicollinearity and high explanatory power
-is implemented.</p>
+    
+<ul>
+<li><p><code>path_coeff()</code> computes a path analysis using a data frame as input data.</p></li>
+<li><p><code>path_coeff_mat()</code> computes a path analysis using correlation matrices as
+input data.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>path_coeff</span><span class='op'>(</span>
@@ -250,7 +258,9 @@ is implemented.</p>
   plot_res <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span>
+
+<span class='fu'>path_coeff_mat</span><span class='op'>(</span><span class='va'>cor_mat</span>, <span class='va'>resp</span>, correction <span class='op'>=</span> <span class='cn'>NULL</span>, knumber <span class='op'>=</span> <span class='fl'>50</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -326,6 +336,11 @@ console.</p></td>
       <th>...</th>
       <td><p>Additional arguments passed on to <code><a href='https://rdrr.io/r/stats/plot.lm.html'>plot.lm</a></code></p></td>
     </tr>
+    <tr>
+      <th>cor_mat</th>
+      <td><p>Matrix of correlations containing both dependent and
+independent traits.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -333,11 +348,11 @@ console.</p></td>
     <p>An object of class <code>path_coeff, group_path, or brute_path</code> with
 the following items:</p><ul>
 <li><p><strong>Corr.x</strong> A correlation matrix between the predictor variables.</p></li>
-<li><p><strong>Corr.y</strong> A vector of correlations between each predictor variable with
-the dependent variable.</p></li>
-<li><p><strong>Coefficients</strong> The path coefficients. Direct effects are the diagonal
-elements, and the indirect effects those in the off-diagonal elements
-(column)</p></li>
+<li><p><strong>Corr.y</strong> A vector of correlations between each predictor variable
+with the dependent variable.</p></li>
+<li><p><strong>Coefficients</strong> The path coefficients. Direct effects are the
+diagonal elements, and the indirect effects those in the off-diagonal
+elements (lines).</p></li>
 <li><p><strong>Eigen</strong> Eigenvectors and eigenvalues of the <code>Corr.x.</code></p></li>
 <li><p><strong>VIF</strong> The Variance Inflation Factors.</p></li>
 <li><p><strong>plot</strong> A ggplot2-based graphic showing the direct effects in 21
@@ -349,8 +364,8 @@ lowest eigenvalue.</p></li>
 <li><p><strong>R2</strong> The coefficient of determination of the model.</p></li>
 <li><p><strong>Residual</strong> The residual effect of the model.</p></li>
 <li><p><strong>Response</strong> The response variable.</p></li>
-<li><p><strong>weightvar</strong> The order of the predictor variables with the highest weight
-(highest eigenvector) in the lowest eigenvalue.</p></li>
+<li><p><strong>weightvar</strong> The order of the predictor variables with the highest
+weight (highest eigenvector) in the lowest eigenvalue.</p></li>
 </ul>
 
 <p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>
@@ -358,19 +373,21 @@ then the results will be returned into a list-column of data frames,
 containing:</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When <code>brutstep = TRUE</code>, first, the algorithm will select a set of
+    <p>In <code>path_coeff()</code>, when <code>brutstep = TRUE</code>, an algorithm to
+select a set of predictors with minimal multicollinearity and high
+explanatory power is implemented. first, the algorithm will select a set of
 predictors with minimal multicollinearity. The selection is based on the
-variance inflation factor (VIF). An iterative process is performed until the
-maximum VIF observed is less than <code>maxvif</code>. The variables selected in
-this iterative process are then used in a series of stepwise-based
+variance inflation factor (VIF). An iterative process is performed until
+the maximum VIF observed is less than <code>maxvif</code>. The variables selected
+in this iterative process are then used in a series of stepwise-based
 regressions. The first model is fitted and p-1 predictor variables are
-retained (p is the number of variables selected in the iterative process. The
-second model adjusts a regression considering p-2 selected variables, and so
-on until the last model, which considers only two variables. Three objects
-are created. <code>Summary</code>, with the process summary, <code>Models</code>,
-containing the aforementioned values for all the adjusted models; and
-<code>Selectedpred</code>, a vector with the name of the selected variables in the
-iterative process.</p>
+retained (p is the number of variables selected in the iterative process.
+The second model adjusts a regression considering p-2 selected variables,
+and so on until the last model, which considers only two variables. Three
+objects are created. <code>Summary</code>, with the process summary,
+<code>Models</code>, containing the aforementioned values for all the adjusted
+models; and <code>Selectedpred</code>, a vector with the name of the selected
+variables in the iterative process.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., V.Q. Souza, M. Nardino, I.R. Carvalho, M. Ferrari, A.J.
@@ -390,7 +407,12 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
 </div><div class='output co'>#&gt; Severe multicollinearity. 
 #&gt; Condition Number = 7865.84
 #&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
-
+<span class='co'># The same as above, but using the correlation matrix</span>
+<span class='va'>cor_mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='utils_rows_cols.html'>select_numeric_cols</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pcoeff</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff_mat</span><span class='op'>(</span><span class='va'>cor_mat</span>, resp <span class='op'>=</span> <span class='va'>KW</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Severe multicollinearity. 
+#&gt; Condition Number = 7865.84
+#&gt; Please, consider using a correction factor, or use 'brutstep = TRUE'. </div><div class='input'>
 <span class='co'># Declaring the predictors</span>
 <span class='co'># Create a residual plot with 'plot_res = TRUE'</span>
 <span class='va'>pcoeff2</span> <span class='op'>&lt;-</span> <span class='fu'>path_coeff</span><span class='op'>(</span><span class='va'>data_ge2</span>,

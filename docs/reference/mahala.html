@@ -98,7 +98,7 @@ hierarchical clustering." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
       </span>
     </div>
 
@@ -269,7 +269,7 @@ contain the inverse of the covariance matrix.</p></td>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 <span class='co'># Compute the mean for genotypes</span>
 <span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-         <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span>
+         <span class='fu'><a href='utils_rows_cols.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span>
 
 <span class='co'># Compute the covariance matrix</span>
 <span class='va'>covmat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span><span class='op'>(</span><span class='va'>means</span><span class='op'>)</span>

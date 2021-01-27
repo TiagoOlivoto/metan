@@ -101,7 +101,7 @@ ge_simula() simulate replicated genotype-environment data.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
       </span>
     </div>
 
@@ -337,27 +337,27 @@ when more than one trait is used.</p>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 3</span><span>
 #&gt;    GEN   REP      V1
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    B1    117. 
-#&gt; </span><span style='color: #555555;'> 2</span><span> H1    B2    111. 
-#&gt; </span><span style='color: #555555;'> 3</span><span> H1    B3    115. 
-#&gt; </span><span style='color: #555555;'> 4</span><span> H2    B1    121. 
-#&gt; </span><span style='color: #555555;'> 5</span><span> H2    B2    115. 
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    B3    119. 
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    B1     96.1
-#&gt; </span><span style='color: #555555;'> 8</span><span> H3    B2     90.1
-#&gt; </span><span style='color: #555555;'> 9</span><span> H3    B3     94.3
-#&gt; </span><span style='color: #555555;'>10</span><span> H4    B1     89.7
-#&gt; </span><span style='color: #555555;'>11</span><span> H4    B2     83.7
-#&gt; </span><span style='color: #555555;'>12</span><span> H4    B3     87.9
-#&gt; </span><span style='color: #555555;'>13</span><span> H5    B1     86.9
-#&gt; </span><span style='color: #555555;'>14</span><span> H5    B2     81.0
-#&gt; </span><span style='color: #555555;'>15</span><span> H5    B3     85.2</div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>gen_data</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> H1    B1    108. 
+#&gt; </span><span style='color: #555555;'> 2</span><span> H1    B2    101. 
+#&gt; </span><span style='color: #555555;'> 3</span><span> H1    B3     99.1
+#&gt; </span><span style='color: #555555;'> 4</span><span> H2    B1    123. 
+#&gt; </span><span style='color: #555555;'> 5</span><span> H2    B2    116. 
+#&gt; </span><span style='color: #555555;'> 6</span><span> H2    B3    114. 
+#&gt; </span><span style='color: #555555;'> 7</span><span> H3    B1     86.0
+#&gt; </span><span style='color: #555555;'> 8</span><span> H3    B2     78.6
+#&gt; </span><span style='color: #555555;'> 9</span><span> H3    B3     77.0
+#&gt; </span><span style='color: #555555;'>10</span><span> H4    B1    109. 
+#&gt; </span><span style='color: #555555;'>11</span><span> H4    B2    102. 
+#&gt; </span><span style='color: #555555;'>12</span><span> H4    B3    100. 
+#&gt; </span><span style='color: #555555;'>13</span><span> H5    B1     88.9
+#&gt; </span><span style='color: #555555;'>14</span><span> H5    B2     81.5
+#&gt; </span><span style='color: #555555;'>15</span><span> H5    B3     79.9</div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>gen_data</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN      factor  No      5           15  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> REP      factor  No      3           15  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> V1       numeric No      -           15  81.0   94.3  121.       0</div><div class='output co'>#&gt; <span class='warning'>Warning: Expected three or more factor variables. The data has only 2.</span></div><div class='img'><img src='data_simula-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </span><span style='color: #555555;'>1</span><span> GEN      factor  No      5           15  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> REP      factor  No      3           15  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> V1       numeric No      -           15  77.0   100.  123.       0</div><div class='output co'>#&gt; <span class='warning'>Warning: Expected three or more factor variables. The data has only 2.</span></div><div class='img'><img src='data_simula-1.png' alt='' width='700' height='433' /></div><div class='input'>
  <span class='co'># Genotype-environment data</span>
  <span class='co'># 5 genotypes, 3 environments, 4 replicates and 2 traits</span>
 <span class='va'>df</span> <span class='op'>&lt;-</span>
@@ -369,11 +369,11 @@ when more than one trait is used.</p>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
 #&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      3           60  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      5           60  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      4           60  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> V1       numeric No      -           60  70.6   90.2  131.       0
-#&gt; </span><span style='color: #555555;'>5</span><span> V2       numeric No      -           60  68.5   95.6  119.       0</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data.</span></div><div class='img'><img src='data_simula-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      3           60  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      5           60  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      4           60  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> V1       numeric No      -           60  71.8   100.  137.       1
+#&gt; </span><span style='color: #555555;'>5</span><span> V2       numeric No      -           60  58.0   109.  136.       0</div><div class='output co'>#&gt; <span class='warning'>Warning: Possible outliers in variable(s) V1. Use 'find_outliers()' for more details.</span></div><div class='img'><img src='data_simula-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Change genotype effect (trait 1 with fewer differences among genotypes)</span>
 <span class='co'># Define different intercepts for the two traits</span>
 <span class='va'>df2</span> <span class='op'>&lt;-</span>
@@ -385,13 +385,13 @@ when more than one trait is used.</p>
           intercept <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>80</span>, <span class='fl'>1500</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'env_eff = 15' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'rep_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'ge_eff = 10' recycled for all the 2 traits.</span></div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>df2</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
-#&gt;   Variable Class   Missing Levels Valid_n    Min Median   Max Outlier
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      3          120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      10         120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      4          120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> V1       numeric No      -          120   58.6   77.1  101.       0
-#&gt; </span><span style='color: #555555;'>5</span><span> V2       numeric No      -          120 </span><span style='text-decoration: underline;'>1</span><span>451.  </span><span style='text-decoration: underline;'>1</span><span>510.  </span><span style='text-decoration: underline;'>1</span><span>560.       0</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data.</span></div><div class='img'><img src='data_simula-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+#&gt;   Variable Class   Missing Levels Valid_n    Min Median    Max Outlier
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      3          120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      10         120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      4          120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> V1       numeric No      -          120   52.8   73.8   91.2       0
+#&gt; </span><span style='color: #555555;'>5</span><span> V2       numeric No      -          120 </span><span style='text-decoration: underline;'>1</span><span>443.  </span><span style='text-decoration: underline;'>1</span><span>509.  </span><span style='text-decoration: underline;'>1</span><span>554.        0</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data.</span></div><div class='img'><img src='data_simula-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

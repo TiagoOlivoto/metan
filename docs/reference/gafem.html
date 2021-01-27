@@ -97,7 +97,7 @@ complete block and alpha-lattice designs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
       </span>
     </div>
 
@@ -234,7 +234,16 @@ complete block and alpha-lattice designs." />
 complete block and alpha-lattice designs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gafem</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, prob <span class='op'>=</span> <span class='fl'>0.05</span>, block <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>gafem</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>gen</span>,
+  <span class='va'>rep</span>,
+  <span class='va'>resp</span>,
+  block <span class='op'>=</span> <span class='cn'>NULL</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  prob <span class='op'>=</span> <span class='fl'>0.05</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -261,10 +270,6 @@ single procedure a vector of variables may be used. For example <code>resp =
 c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     <tr>
-      <th>prob</th>
-      <td><p>The error probability. Defaults to 0.05.</p></td>
-    </tr>
-    <tr>
       <th>block</th>
       <td><p>Defaults to <code>NULL</code>. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
@@ -272,6 +277,19 @@ alpha-lattice design (Patterson and Williams, 1976) is employed.
 <strong>All effects, except the error, are assumed to be fixed.</strong> Use the
 function <code><a href='gamem.html'>gamem</a></code> to analyze a one-way trial with mixed-effect
 models.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>One variable (factor) to compute the function by. It is a shortcut
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+when the researcher want to fit a fixed-effect model for each environment.
+In this case, an object of class gafem_grouped is returned.
+<code><a href='mgidi.html'>mgidi</a></code> can then be used to compute the mgidi index within each
+environment.</p></td>
+    </tr>
+    <tr>
+      <th>prob</th>
+      <td><p>The error probability. Defaults to 0.05.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -342,61 +360,18 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
              gen <span class='op'>=</span> <span class='va'>GEN</span>,
              rep <span class='op'>=</span> <span class='va'>REP</span>,
              resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>EL</span>, <span class='va'>CL</span>, <span class='va'>CW</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; variable PH 
+</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+#&gt; One-way ANOVA table (Randomized complete block design)
 #&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (randomized complete block design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source Df Sum Sq Mean Sq F value Pr(&gt;F)
-#&gt;        REP  2  0.101  0.0507    1.55 0.2328
-#&gt;        GEN 12  1.008  0.0840    2.56 0.0239
-#&gt;  Residuals 24  0.786  0.0328      NA     NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable ED 
-#&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (randomized complete block design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        REP  2   10.4    5.19    2.13 1.40e-01
-#&gt;        GEN 12  222.4   18.54    7.63 1.38e-05
-#&gt;  Residuals 24   58.3    2.43      NA       NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable EL 
-#&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (randomized complete block design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source Df Sum Sq Mean Sq F value Pr(&gt;F)
-#&gt;        REP  2   1.27   0.637   0.648  0.532
-#&gt;        GEN 12  13.51   1.126   1.144  0.373
-#&gt;  Residuals 24  23.61   0.984      NA     NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable CL 
-#&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (randomized complete block design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        REP  2   16.1    8.06     5.7 9.45e-03
-#&gt;        GEN 12  170.7   14.22    10.1 1.18e-06
-#&gt;  Residuals 24   34.0    1.41      NA       NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable CW 
-#&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (randomized complete block design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        REP  2   55.2   27.59    3.66 4.10e-02
-#&gt;        GEN 12  755.0   62.92    8.34 6.34e-06
-#&gt;  Residuals 24  181.0    7.54      NA       NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
+#&gt;      model     PH       ED    EL       CL       CW
+#&gt;        REP 0.2328 1.40e-01 0.532 9.45e-03 4.10e-02
+#&gt;        GEN 0.0239 1.38e-05 0.373 1.18e-06 6.34e-06
+#&gt;  Residuals     NA       NA    NA       NA       NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variables with nonsignificant genotype effect
 #&gt; EL 
 #&gt; ---------------------------------------------------------------------------
-#&gt; Done!</div><div class='input'>
+#&gt; </div><div class='input'>
 <span class='co'># Fitted values</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>rcbd</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 39 x 8</span><span>
@@ -419,18 +394,14 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
               rep <span class='op'>=</span> <span class='va'>REP</span>,
               block <span class='op'>=</span> <span class='va'>BLOCK</span>,
               resp <span class='op'>=</span> <span class='va'>YIELD</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; variable YIELD 
+</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+#&gt; One-way ANOVA table (Alpha-lattice design)
 #&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (alpha-lattice design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;      Source Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;         REP  2   6.14  3.0677   36.76 6.59e-09
-#&gt;         GEN 23  14.08  0.6120    7.33 3.63e-07
-#&gt;  BLOCK(REP) 15   3.60  0.2402    2.88 6.25e-03
-#&gt;   Residuals 31   2.59  0.0835      NA       NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; Done!</div><div class='input'>
+#&gt;       model    YIELD
+#&gt;         REP 6.59e-09
+#&gt;         GEN 3.63e-07
+#&gt;  BLOCK(REP) 6.25e-03
+#&gt;   Residuals       NA</div><div class='input'>
 <span class='co'># Fitted values</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>alpha</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 72 x 5</span><span>

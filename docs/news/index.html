@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
       </span>
     </div>
 
@@ -226,9 +226,9 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
+    <div id="metan-1120" class="section level1">
+<h1 class="page-header" data-toc-text="1.12.0">
+<a href="#metan-1120" class="anchor"></a>metan 1.12.0<small> 2021-01-27 </small>
 </h1>
 <div id="new-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -238,6 +238,10 @@
 <code><a href="../reference/utils_rows_cols.html">get_levels_comb()</a></code> to get the combination of the levels of a factor.</li>
 <li>
 <code><a href="../reference/data_simula.html">g_simula()</a></code> to simulate replicated genotype data.</li>
+<li>
+<code><a href="../reference/utils_rows_cols.html">add_row_id()</a></code> to add a column as the row id.</li>
+<li>
+<code><a href="../reference/utils_rows_cols.html">remove_rownames()</a></code>, <code><a href="../reference/utils_rows_cols.html">column_to_rownames()</a></code> and <code><a href="../reference/utils_rows_cols.html">rownames_to_column()</a></code> to deal with rownames.</li>
 </ul>
 </div>
 <div id="minor-improvements" class="section level2">
@@ -248,6 +252,10 @@
 <li>New arguments <code>fill</code> and <code>position.fill</code> in <code><a href="../reference/plot_ci.html">plot_ci()</a></code> to fill correlations by levels of a factor variable.</li>
 <li>Remove deprecated arguments in <code><a href="../reference/arrange_ggplot.html">arrange_ggplot()</a></code> and <code><a href="../reference/gge.html">gge()</a></code>.</li>
 <li>New argument <code>theme</code> <code>in arrange_ggplot()</code> to control the theme of the plot.</li>
+<li>Include <code>by</code> argument in <code><a href="../reference/gafem.html">gafem()</a></code>.</li>
+<li>
+<code>mgid()</code> now understands models of class <code>gafem_grouped</code>.</li>
+<li>Fix bug in <code><a href="../reference/utils_rows_cols.html">get_levels()</a></code> to get the levels even if the variable is not a factor.</li>
 </ul>
 </div>
 </div>
