@@ -257,7 +257,7 @@ path_coeff <- function(.data,
         Coeff[i, j] <- Direct[j] * cor.x[i, j]
       }
     }
-    Residual <- 1 - t(Direct) %*% cor.y
+    Residual <- sqrt(1 - t(Direct) %*% cor.y)
     R2 <- t(Direct) %*% cor.y
     VIF <- data.frame(diag(solve_svd(cor.x)))
     names(VIF) <- "VIF"
@@ -420,7 +420,7 @@ path_coeff <- function(.data,
           Coeff[i, j] <- Direct[j] * cor.x[i, j]
         }
       }
-      Residual <- 1 - t(Direct) %*% cor.y
+      Residual <- sqrt(1 - t(Direct) %*% cor.y)
       R2 <- t(Direct) %*% cor.y
       VIF <- data.frame(diag(solve_svd(cor.x)))
       names(VIF) <- "VIF"
@@ -582,7 +582,7 @@ path_coeff_mat <- function(cor_mat,
       Coeff[i, j] <- Direct[j] * cor.x[i, j]
     }
   }
-  Residual <- 1 - t(Direct) %*% cor.y
+  Residual <- sqrt(1 - t(Direct) %*% cor.y)
   R2 <- t(Direct) %*% cor.y
   VIF <- data.frame(diag(solve_svd(cor.x)))
   names(VIF) <- "VIF"
