@@ -287,7 +287,7 @@ library(metan)
 ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
                resp = c(PH, EH, CD, CL, ED))
 get_model_data(ge_r)
-get_model_data(ge_r, "deviations")
+get_model_data(ge_r, "s2di")
 
 
 #################### AMMI model #####################

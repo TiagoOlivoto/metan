@@ -189,5 +189,5 @@ if (getRversion() >= "2.15.1") {
       "replacement", "comparison", "group1", "group2", "p.adj", "term", "rel_freq",
       "variable", "Model", "level", "RESIDUAL", "MGIDI", "sd.amo", "SD", "SG", "data.x",
       "data.y", "sense", "win", "where", "test", "FG", "SI", "ACV", "SDperc", "MEGA_ENV",
-      "group", "hjust", "theta", "vjust", "x_raw", "y_raw", "row_id"))
+      "group", "hjust", "theta", "vjust", "x_raw", "y_raw", "row_id", "b0", "b1", "s2di"))
   }
