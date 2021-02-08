@@ -29,7 +29,7 @@ variable of \code{x}.}
 \item{type}{The type of plot to show. \code{type = 1} produces a plot with
 the environmental index in the x axis and the genotype mean yield in the y
 axis. \code{type = 2} produces a plot with the response variable in the x
-axis and the slope of the regression in the y axis.}
+axis and the slope/deviations of the regression in the y axis.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see

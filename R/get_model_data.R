@@ -94,10 +94,16 @@
 #' * \code{"POLAR_R"} The rank for Power Law Residuals.
 #'
 #'  \strong{Objects of class \code{ge_reg}:}
-#' * \code{"deviations"} The deviations from regression.
-#' * \code{"RMSE"} The Root Mean Square Error.
-#' * \code{"R2"} The r-square of the regression.
-#' * \code{"slope"} The sloop of the regression (default).
+#' * `GEN`: the genotypes.
+#' * `b0` and `b1` (default): the intercept and slope of the regression,
+#' respectively.
+#' * `t(b1=1)`: the calculated t-value
+#' * `pval_t`: the p-value for the t test.
+#' *  `s2di` the deviations from the regression (stability parameter).
+#' * `F(s2di=0)`: the F-test for the deviations.
+#' *  `pval_f`: the p-value for the F test;
+#' *  `RMSE` the root-mean-square error.
+#' *  `R2` the determination coefficient of the regression.
 #'
 #'
 #'  \strong{Objects of class \code{ge_effects}:}
@@ -404,7 +410,7 @@ get_model_data <- function(x,
   check6 <- c("HMGV", "HMGV_R", "RPGV", "RPGV_Y", "RPGV_R", "HMRPGV", "HMRPGV_Y", "HMRPGV_R")
   check7 <- c("ASV", "SIPC", "EV", "ZA", "WAAS", "ASV_R", "SIPC_R", "EV_R", "ZA_R", "WAAS_R", "ASV_SSI", "SIPC_SSI", "EV_SSI", "ZA_SSI", "WAAS_SSI")
   check8 <- c("Ecoval", "Ecov_perc", "rank")
-  check9 <- c("slope", "deviations", "RMSE", "R2")
+  check9 <- c("GEN", "b0", "b1", "t(b1=1)", "pval_t", "s2di", "F(s2di=0)", "pval_f", "RMSE", "R2")
   check10 <- c("TOP")
   check11 <- c("ShuklaVar", "rMean", "rShukaVar", "ssiShukaVar")
   check12 <- c("Pi_a", "R_a", "Pi_f", "R_f", "Pi_u", "R_u")
@@ -1180,7 +1186,7 @@ get_model_data <- function(x,
 
   if (has_class(x,  "ge_reg")) {
     if (is.null(what)){
-      what <- "slope"
+      what <- "b1"
     }
     if (!what %in% c(check9)) {
       stop("Invalid value in 'what' for object of class 'ge_reg'. Allowed are ", paste(check9, collapse = ", "), call. = FALSE)

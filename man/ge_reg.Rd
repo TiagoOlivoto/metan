@@ -21,14 +21,25 @@ replications/blocks}
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
 
-\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run silently.}
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
+silently.}
 }
 \value{
-An object of class \code{ge_reg} with the folloing items for each variable:
-\item{data}{The data with means for genotype and environment combinations and the
-environment index}
-\item{anova}{The analysis of variance for the regression model.}
-\item{regression}{The estimated coefficients of the regression model.}
+An object of class \code{ge_reg} with the folloing items for each
+variable:
+\itemize{
+\item data: The data with means for genotype and environment combinations and the
+environment index
+\item anova: The analysis of variance for the regression model.
+\item regression: A data frame with the following columns: \code{GEN}, the genotypes;
+\code{b0} and \code{b1} the intercept and slope of the regression, respectively;
+\code{t(b1=1)} the calculated t-value; \code{pval_t} the p-value for the t test; \code{s2di}
+the deviations from the regression (stability parameter); \code{F(s2di=0)} the
+F-test for the deviations; \code{pval_f} the p-value for the F test; \code{RMSE} the
+root-mean-square error; \code{R2} the determination coefficient of the regression.
+\item b0_variance: The variance of b0.
+\item b1_variance: The variance of b1.
+}
 }
 \description{
 Regression-based stability analysis using the Eberhart and Russell (1966) model.

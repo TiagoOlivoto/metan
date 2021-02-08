@@ -128,10 +128,16 @@ alpha lattice design only).
 
 \strong{Objects of class \code{ge_reg}:}
 \itemize{
-\item \code{"deviations"} The deviations from regression.
-\item \code{"RMSE"} The Root Mean Square Error.
-\item \code{"R2"} The r-square of the regression.
-\item \code{"slope"} The sloop of the regression (default).
+\item \code{GEN}: the genotypes.
+\item \code{b0} and \code{b1} (default): the intercept and slope of the regression,
+respectively.
+\item \code{t(b1=1)}: the calculated t-value
+\item \code{pval_t}: the p-value for the t test.
+\item \code{s2di} the deviations from the regression (stability parameter).
+\item \code{F(s2di=0)}: the F-test for the deviations.
+\item \code{pval_f}: the p-value for the F test;
+\item \code{RMSE} the root-mean-square error.
+\item \code{R2} the determination coefficient of the regression.
 }
 
 \strong{Objects of class \code{ge_effects}:}
