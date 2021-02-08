@@ -1,3 +1,6 @@
+# metan (development version)
+* `ge_reg()` now returns hypotesis testing for slope and deviations from the regression. Thanks to [@LeonardoBehring](https://www.researchgate.net/profile/Leonardo_Bhering) and [@MichelSouza](https://www.escavador.com/sobre/6363700/michel-henriques-de-souza) for the suggestion.
+
 # metan 1.12.0
 ## New functions
 * `get_levels_comb()` to get the combination of the levels of a factor.
