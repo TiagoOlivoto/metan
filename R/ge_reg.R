@@ -288,7 +288,7 @@ plot.ge_reg <- function(x,
     p <-
       ggplot(x$regression, aes(x = b0, y = b1))+
       geom_point(size = 1.5)+
-      geom_hline(yintercept = mean(x$regression$b0))+
+      geom_hline(yintercept = mean(x$regression$b1))+
       geom_text_repel(aes(label = GEN))+
       labs(x = x.lab, y = y.lab) +
       plot_theme
