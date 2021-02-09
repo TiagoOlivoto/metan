@@ -64,6 +64,10 @@ fai_blup <- function(.data,
                      SI = 15,
                      mineval = 1,
                      verbose = TRUE) {
+  # Adapted from 'Rocha, J.R. do A.S. de C., J.C. Machado, and P.C.S. Carneiro.
+  # 2018. Multitrait index based on factor analysis and ideotype-design:
+  # proposal and application on elephant grass breeding for bioenergy. GCB
+  # Bioenergy 10(1): 52-60. doi: 10.1111/gcbb.12443'
   if(!use_data %in% c("blup", "pheno")){
     stop("Argument 'use_data = ", match.call()["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
   }
