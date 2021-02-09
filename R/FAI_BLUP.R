@@ -252,7 +252,7 @@ fai_blup <- function(.data,
     if(is.character(DI)){
       vars <-
         tibble(VAR = colnames(means),
-               sense = DI) %>%
+               sense = ideotype.D) %>%
         mutate(sense = case_when(sense == "max" ~ "increase",
                                  sense == "min" ~ "decrease",
                                  sense == "mean" ~ "keep",
