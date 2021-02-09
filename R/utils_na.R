@@ -240,7 +240,6 @@ replace_zero <- function(.data, ..., replacement = NA){
       rnames <- rownames(.data)
     }
     test <- !is.na(replacement) && replacement == "colmean"
-    print(test)
     if(missing(...)){
       cols_with_zero <- which(apply(.data == 0, 2, any) ==  TRUE)
       df <- mutate(.data, across(all_of(cols_with_zero), ~replace(., . == 0, replacement)))
