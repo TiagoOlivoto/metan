@@ -77,7 +77,7 @@ library(metan)
 inspect(data_ge, plot = TRUE)
 ```
 
-No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using [`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html) to find possible outliers in the data set or any `metan`'s data manipulation tool such as [remove\_rows\_na()](https://tiagoolivoto.github.io/metan/reference/utils_na.html) to remove rows with `NA` values, [replace\_zero()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html) to replace 0's with `NA`, [as\_factor()](https://tiagoolivoto.github.io/metan/reference/utils_as.html) to convert desired columns to factor, [`find_text_in_num()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) to find text fragments in columns assumed to be numeric, or even [`tidy_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) to tidy up strings.
+No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using [`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html) to find possible outliers in the data set or any `metan`'s data manipulation tool such as [remove_rows_na()](https://tiagoolivoto.github.io/metan/reference/utils_na.html) to remove rows with `NA` values, [replace_zero()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html) to replace 0's with `NA`, [as_factor()](https://tiagoolivoto.github.io/metan/reference/utils_as.html) to convert desired columns to factor, [`find_text_in_num()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) to find text fragments in columns assumed to be numeric, or even [`tidy_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) to tidy up strings.
 
 # Descriptive statistics
 
@@ -115,6 +115,9 @@ b <- plot_scores(model,
                  polygon = TRUE,
                  col.env = "gray70",
                  col.segm.env = "gray70",
+                 col.gen = transparent_color(),
+                 highlight = c("G1", "G2"),
+                 col.highlight = "black",
                  axis.expand = 1.5)
 c <- plot_scores(model, type = 4)
 arrange_ggplot(a, b, c, tag_levels = "a", nrow = 1)
@@ -142,7 +145,7 @@ arrange_ggplot(d, e, f, tag_levels = list(c("d", "e", "f")), nrow = 1)
 
 # BLUP model
 
-Linear-mixed effect models to predict the response variable in METs are fitted using the function [gamem\_met()](https://tiagoolivoto.github.io/metan/reference/gamem_met.html). Here we will obtain the predicted means for genotypes in the variables `GY` and `HM`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
+Linear-mixed effect models to predict the response variable in METs are fitted using the function [gamem_met()](https://tiagoolivoto.github.io/metan/reference/gamem_met.html). Here we will obtain the predicted means for genotypes in the variables `GY` and `HM`. For more details, see the [complete vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
 
 ```{r }
 model2 <- 
@@ -172,7 +175,7 @@ arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
 
 # Computing parametric and non-parametric stability indexes
 
-The easiest way to compute parametric and non-parametric stability indexes in `metan` is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a *"ready-to-read"* file, use [get\_model\_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) or its shortcut [`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
+The easiest way to compute parametric and non-parametric stability indexes in `metan` is by using the function [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html). It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a *"ready-to-read"* file, use [get_model_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) or its shortcut [`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
 
 ```{r}
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
