@@ -221,7 +221,6 @@ b <- plot_scores(model,
                  col.segm.env = "gray70",
                  col.gen = transparent_color(),
                  highlight = c("G1", "G2"),
-                 col.highlight = "black",
                  axis.expand = 1.5)
 c <- plot_scores(model, type = 4)
 arrange_ggplot(a, b, c, tag_levels = "a", nrow = 1)
