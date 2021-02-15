@@ -437,7 +437,6 @@ if(is_grouped_df(.data)){
         pb$tick(tokens = list(what = names(vars[var])))
       }
       listres[[paste(names(vars[var]))]] <- temp
-
     }
   }
   if (verbose == TRUE) {

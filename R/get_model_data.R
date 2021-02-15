@@ -5,6 +5,7 @@
 #' 2019a, 2019b) BLUPs, variance components, details of AMMI models and
 #' AMMI-based stability statistics.
 #' * \code{gmd()} Is a shortcut to \code{get_model_data}.
+#' * `sel_gen()` Extracts the selected genotypes by a given index.
 #' @name get_model_data
 #'
 #' @param x An object created with the functions \code{\link{AMMI_indexes}()},
@@ -1323,4 +1324,10 @@ gmd <- function(x,
                 type = "GEN",
                 verbose = TRUE){
   get_model_data(x, what, type, verbose)
+}
+
+#' @name get_model_data
+#' @export
+sel_gen <- function(x){
+  gmd(x, "sel_gen", verbose = FALSE)
 }

@@ -153,9 +153,9 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  vers <-  "v1.12.0"
+  vers <-  "v1.12.0.9000"
   packageStartupMessage("|========================================================|")
-  packageStartupMessage("| Multi-Environment Trial Analysis (metan) ", vers, "       |")
+  packageStartupMessage("| Multi-Environment Trial Analysis (metan) ", vers, "  |")
   packageStartupMessage("| Author: Tiago Olivoto                                  |")
   packageStartupMessage("| Type 'citation('metan')' to know how to cite metan     |")
   packageStartupMessage("| Type 'vignette('metan_start')' for a short tutorial    |")

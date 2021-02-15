@@ -40,13 +40,31 @@
 #' variables in such factor are.
 #' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
-#' * \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} The selection
-#' differential (gains) for the traits, and for the WAASB and WAASBY indexes.
-#' * \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A descriptive
-#' statistic for the selection gains of the traits and WAASB and WAASBY indexes.
-#' The minimum, mean, confidence interval, standard deviation, maximum, and sum
-#' of selection gain values are computed. If traits have negative and positive
-#' desired gains, the statistics are computed for by strata.
+#' * \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} A data frame
+#' containing the selection differential (gains) for the traits, and for the
+#' WAASB and WAASBY indexes. The following variables are shown.
+#'   - `VAR`: the trait's name.
+#'   - `Factor`: The factor that traits where grouped into.
+#'   - `Xo`: The original population mean.
+#'   - `Xs`: The mean of selected genotypes.
+#'   - `SD` and `SDperc`: The selection differential and selection differential in
+#'   percentage, respectively.
+#'   - `h2`: The broad-sense heritability.
+#'   - `SG` and `SGperc`: The selection gains and selection gains in percentage,
+#'   respectively.
+#'   - `sense`: The desired selection sense.
+#'   - `goal`: selection gains match desired sense? 100 for yes and 0 for no.
+#' * \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A data frame with
+#' the descriptive statistic for the selection gains of the traits and WAASB and
+#' WAASBY indexes. The following columns are shown by sense.
+#'    - `sense`: The desired selection sense.
+#'    - `variable`: the trait's name.
+#'    - `min`: the minimum value for the selection gain.
+#'    - `mean`: the mean value for the selection gain.
+#'    - `ci`: the confidence interval for the selection gain.
+#'    - `sd.amo`: the standard deviation for the selection gain.
+#'    - `max`: the maximum value for the selection gain.
+#'    - `sum`: the sum of the selection gain.
 #' * \strong{sel_gen} The selected genotypes.
 #' @md
 #' @importFrom purrr map_dfc
@@ -266,7 +284,6 @@ mtsi <- function(.data,
                sense == "average" & SDperc == 0 ~ 100,
                TRUE ~ 0
              ))
-
     if (class(.data) == "waasb") {
       h2 <- gmd(.data, "h2", verbose = FALSE)
       sel_dif_mean <-

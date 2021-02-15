@@ -2,12 +2,10 @@
 This is a minor release (v1.12.0) that add new functions and minor improvements. See `News.md` for more information.
 
 # Test environments
-- local OS X install, R 4.0.0
-- Rhub
-   - Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-   - Ubuntu Linux 16.04 LTS, R-release, GCC
-   - Fedora Linux, R-devel, clang, gfortran
-- win-builder (devel and release)
+* GitHub Actions (ubuntu-16.04): devel, release, oldrel, 3.5, 3.4, 3.3
+* GitHub Actions (windows): release, oldrel
+* GitHub Actions (macOS): release
+* win-builder: devel
 
 
 # R CMD check results (run with --run-donttest --as-cran)

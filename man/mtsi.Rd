@@ -59,13 +59,35 @@ value. The lower the contribution of a factor, the close of the ideotype the
 variables in such factor are.
 \item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.
-\item \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} The selection
-differential (gains) for the traits, and for the WAASB and WAASBY indexes.
-\item \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A descriptive
-statistic for the selection gains of the traits and WAASB and WAASBY indexes.
-The minimum, mean, confidence interval, standard deviation, maximum, and sum
-of selection gain values are computed. If traits have negative and positive
-desired gains, the statistics are computed for by strata.
+\item \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} A data frame
+containing the selection differential (gains) for the traits, and for the
+WAASB and WAASBY indexes. The following variables are shown.
+\itemize{
+\item \code{VAR}: the trait's name.
+\item \code{Factor}: The factor that traits where grouped into.
+\item \code{Xo}: The original population mean.
+\item \code{Xs}: The mean of selected genotypes.
+\item \code{SD} and \code{SDperc}: The selection differential and selection differential in
+percentage, respectively.
+\item \code{h2}: The broad-sense heritability.
+\item \code{SG} and \code{SGperc}: The selection gains and selection gains in percentage,
+respectively.
+\item \code{sense}: The desired selection sense.
+\item \code{goal}: selection gains match desired sense? 100 for yes and 0 for no.
+}
+\item \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A data frame with
+the descriptive statistic for the selection gains of the traits and WAASB and
+WAASBY indexes. The following columns are shown by sense.
+\itemize{
+\item \code{sense}: The desired selection sense.
+\item \code{variable}: the trait's name.
+\item \code{min}: the minimum value for the selection gain.
+\item \code{mean}: the mean value for the selection gain.
+\item \code{ci}: the confidence interval for the selection gain.
+\item \code{sd.amo}: the standard deviation for the selection gain.
+\item \code{max}: the maximum value for the selection gain.
+\item \code{sum}: the sum of the selection gain.
+}
 \item \strong{sel_gen} The selected genotypes.
 }
 }

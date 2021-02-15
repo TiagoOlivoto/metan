@@ -3,11 +3,14 @@
 \name{get_model_data}
 \alias{get_model_data}
 \alias{gmd}
+\alias{sel_gen}
 \title{Get data from a model easily}
 \usage{
 get_model_data(x, what = NULL, type = "GEN", verbose = TRUE)
 
 gmd(x, what = NULL, type = "GEN", verbose = TRUE)
+
+sel_gen(x)
 }
 \arguments{
 \item{x}{An object created with the functions \code{\link{AMMI_indexes}()},
@@ -39,6 +42,7 @@ A tibble showing the values of the variable chosen in argument
 2019a, 2019b) BLUPs, variance components, details of AMMI models and
 AMMI-based stability statistics.
 \item \code{gmd()} Is a shortcut to \code{get_model_data}.
+\item \code{sel_gen()} Extracts the selected genotypes by a given index.
 }
 }
 \details{
