@@ -10,6 +10,7 @@
   type = "index",
   position = "fill",
   genotypes = "selected",
+  title = TRUE,
   radar = TRUE,
   arrange.label = FALSE,
   x.lab = NULL,
@@ -47,6 +48,9 @@ genotype.}
 be shown in the plot. By default (\code{genotypes = "selected"} only
 selected genotypes are shown. Use \code{genotypes = "all"} to plot the
 contribution for all genotypes.)}
+
+\item{title}{Logical values (Defaults to \code{TRUE}) to include
+automatically generated titles.}
 
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}

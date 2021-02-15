@@ -415,6 +415,8 @@ mtsi <- function(.data,
 #'   be shown in the plot. By default (\code{genotypes = "selected"} only
 #'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
 #'   contribution for all genotypes.)
+#' @param title Logical values (Defaults to \code{TRUE}) to include
+#'   automatically generated titles.
 #' @param radar Logical argument. If true (default) a radar plot is generated
 #'   after using \code{coord_polar()}.
 #' @param arrange.label Logical argument. If \code{TRUE}, the labels are
@@ -455,6 +457,7 @@ plot.mtsi <- function(x,
                       type = "index",
                       position = "fill",
                       genotypes = "selected",
+                      title = TRUE,
                       radar = TRUE,
                       arrange.label = FALSE,
                       x.lab = NULL,
@@ -556,9 +559,9 @@ plot.mtsi <- function(x,
               legend.position = legend.position,
               legend.title = element_blank(),
               ...) +
-        labs(title = "The strengths and weaknesses for genotypes",
-             x = NULL,
+        labs(x = NULL,
              y = "Contribution of each factor to the MTSI index") +
+        {if(title)ggtitle("The strengths and weaknesses for genotypes")} +
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()
@@ -588,9 +591,9 @@ plot.mtsi <- function(x,
             ...)+
       scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
                        expand = expansion(0))+
-      labs(title = "The strengths and weaknesses for genotypes",
-           x = x.lab,
+      labs(x = x.lab,
            y = y.lab) +
+      {if(title)ggtitle("The strengths and weaknesses for genotypes")} +
       guides(guide_legend(nrow = 1))
     if(invert == TRUE){
       p <- p + coord_flip()
