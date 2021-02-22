@@ -11,14 +11,15 @@ make_long(mat, gen_in = "rows")
 rownames.}
 
 \item{gen_in}{Where are the genotypes? Defaults to \code{'rows'}. If
-genotypes are in columns and environments in rows, set to \code{gen_in =
-'cols'}.}
+genotypes are in columns and environments in rows, set to \code{gen_in = 'cols'}.}
 }
 \value{
 A tibble with three columns: GEN (genotype), ENV (environment), and Y
-  (response) variable.
+(response) variable.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Helps users to easily convert a two-way table (genotype vs environment) to a
 'long' format data. The data in \code{mat} will be gathered into three
 columns. The row names will compose the first column. The column names will

@@ -20,14 +20,14 @@ can_corr(
 }
 \arguments{
 \item{.data}{The data to be analyzed. It can be a data frame (possible with
-grouped data passed from \code{\link[dplyr]{group_by}()}.}
+grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}.}
 
 \item{FG, SG}{A comma-separated list of unquoted variable names that will
 compose the first (smallest) and second (highest) group of the correlation
 analysis, respectively. Select helpers are also allowed.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{use}{The matrix to be used. Must be one of 'cor' for analysis using the
@@ -52,7 +52,7 @@ to Olivoto et al.(2017).}
 }
 \value{
 If \code{.data} is a grouped data passed from
-\code{\link[dplyr]{group_by}()} then the results will be returned into a
+\code{\link[dplyr:group_by]{dplyr::group_by()}} then the results will be returned into a
 list-column of data frames.
 \itemize{
 \item \strong{Matrix} The correlation (or covariance) matrix of the variables
@@ -76,6 +76,8 @@ variables.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs canonical correlation analysis with collinearity diagnostic,
 estimation of canonical loads, canonical scores, and hypothesis testing for
 correlation pairs.

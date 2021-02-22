@@ -1,22 +1,25 @@
 #' Mantel test
+#' \loadmathjax
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs a Mantel test between two correlation/distance matrices. The
 #' function calculates the correlation between two matrices, the Z-score that is
 #' is the sum of the products of the corresponding elements of the matrices and
-#' a two-tailed p-value (null hypothesis: \code{r = 0}).
+#' a two-tailed p-value (null hypothesis: \mjsdeqn{r = 0}).
 #'
-#' @param mat1,mat2 A correlation matrix or an object of class \code{dist}.
-#' @param nboot The number of permutations to be used. Defaults to \code{1000}.
-#' @param plot if \code{plot = TRUE}, plots the density estimate of the
+#' @param mat1,mat2 A correlation matrix or an object of class `dist`.
+#' @param nboot The number of permutations to be used. Defaults to `1000`.
+#' @param plot if `plot = TRUE`, plots the density estimate of the
 #'   permutation distribution along with the observed Z-score as a vertical
 #'   line.
 #' @return
-#' * \code{mantel_r} The correlation between the two matrices.
-#' * \code{z_score} The Z-score.
-#' * \code{p-value} The quantile of the observed Z-score. in the permutation
+#' * `mantel_r` The correlation between the two matrices.
+#' * `z_score` The Z-score.
+#' * `p-value` The quantile of the observed Z-score. in the permutation
 #' distribution.
 #' @md
-#' @seealso \code{\link{pairs_mantel}()}
+#' @seealso [pairs_mantel()]
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

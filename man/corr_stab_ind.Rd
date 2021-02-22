@@ -15,43 +15,43 @@ corr_stab_ind(x, stats = "all", plot = TRUE, ...)
 \item{plot}{Plot the heat map with the correlations? Defaults to \code{TRUE}.}
 
 \item{...}{Other arguments to be passed to the function
-\code{\link{plot.corr_coef}}.}
+\code{\link[=plot.corr_coef]{plot.corr_coef()}}.}
 }
 \value{
 A list with the data (ranks) correlation, p-values and a heat map showing the
-  correlation coefficients.
+correlation coefficients.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the Spearman's rank correlation between the parametric and
 nonparametric stability indexes computed with the function
-\code{\link{ge_stats}}.
+\code{\link[=ge_stats]{ge_stats()}}.
 }
 \details{
 The argument \code{stats} is used to chose the statistics to show
-  the ranks. Allowed values are \code{"all"} (All statistics, default),
-  \code{"par"} (Parametric statistics), \code{"nonpar"} (Non-parametric
-  statistics), \code{"ammi"} (AMMI-based stability statistics), or the
-  following values that can be combined into comma-separated character
-  vector. \code{"Y"} (Response variable), \code{"Var"} (Genotype's variance),
-  \code{"Shukla"} (Shukla's variance), \code{"Wi_g", "Wi_f", "Wi_u"}
-  (Annichiarrico's genotypic confidence index for all, favorable and
-  unfavorable environments, respectively), \code{"Ecoval"} (Wricke's
-  ecovalence), \code{"Sij"} (Deviations from the joint-regression analysis),
-  \code{"R2"} (R-squared from the joint-regression analysis), \code{"ASV"}
-  (AMMI-stability value), \code{"SIPC"} (sum of the absolute values of the
-  IPCA scores), \code{"EV"} (Average of the squared eigenvector values),
-  \code{"ZA"} (Absolute values of the relative contributions of the IPCAs to
-  the interaction), \code{"WAAS"} (Weighted Average of Absolute Scores),
-  \code{"HMGV"} (Harmonic mean of the genotypic value), \code{"RPGV"}
-  (Relative performance of the genotypic values), \code{"HMRPGV"} (Harmonic
-  mean of the relative performance of the genotypic values), \code{"Pi_a",
-  "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and unfavorable
-  environments, respectively), \code{"Gai"} (Geometric adaptability index),
-  \code{"S1"} (mean of the absolute rank differences of a genotype over the n
-  environments), \code{"S2"} (variance among the ranks over the k
-  environments), \code{"S3"} (sum of the absolute deviations), \code{"S6"}
-  (relative sum of squares of rank for each genotype), \code{"N1", "N2",
-  "N3", "N4"} (Thennarasu"s statistics)).
+the ranks. Allowed values are \code{"all"} (All statistics, default),
+\code{"par"} (Parametric statistics), \code{"nonpar"} (Non-parametric
+statistics), \code{"ammi"} (AMMI-based stability statistics), or the
+following values that can be combined into comma-separated character
+vector. \code{"Y"} (Response variable), \code{"Var"} (Genotype's variance),
+\code{"Shukla"} (Shukla's variance), \verb{"Wi_g", "Wi_f", "Wi_u"}
+(Annichiarrico's genotypic confidence index for all, favorable and
+unfavorable environments, respectively), \code{"Ecoval"} (Wricke's
+ecovalence), \code{"Sij"} (Deviations from the joint-regression analysis),
+\code{"R2"} (R-squared from the joint-regression analysis), \code{"ASV"}
+(AMMI-stability value), \code{"SIPC"} (sum of the absolute values of the
+IPCA scores), \code{"EV"} (Average of the squared eigenvector values),
+\code{"ZA"} (Absolute values of the relative contributions of the IPCAs to
+the interaction), \code{"WAAS"} (Weighted Average of Absolute Scores),
+\code{"HMGV"} (Harmonic mean of the genotypic value), \code{"RPGV"}
+(Relative performance of the genotypic values), \code{"HMRPGV"} (Harmonic
+mean of the relative performance of the genotypic values), \verb{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and unfavorable
+environments, respectively), \code{"Gai"} (Geometric adaptability index),
+\code{"S1"} (mean of the absolute rank differences of a genotype over the n
+environments), \code{"S2"} (variance among the ranks over the k
+environments), \code{"S3"} (sum of the absolute deviations), \code{"S6"}
+(relative sum of squares of rank for each genotype), \verb{"N1", "N2", "N3", "N4"} (Thennarasu"s statistics)).
 }
 \examples{
 \donttest{

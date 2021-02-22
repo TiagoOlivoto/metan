@@ -1,4 +1,6 @@
 #' Lin e Binns' superiority index
+#' @description
+#' `r badge('stable')`
 #'
 #' Nonparametric stability analysis using the superiority index proposed by Lin
 #' & Binns (1988).
@@ -10,20 +12,20 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{superiority} where each element is the
+#' @return An object of class `superiority` where each element is the
 #'   result of one variable and contains the following items:
 #'
-#' * \strong{environments} The mean for each environment, the environment index
+#' * **environments** The mean for each environment, the environment index
 #' and classification as favorable and unfavorable environments.
-#' * \strong{index} The superiority index computed for all (\code{Pi_a}),
-#' favorable (\code{Pi_f}) and unfavorable (\code{Pi_u}) environments.
+#' * **index** The superiority index computed for all (`Pi_a`),
+#' favorable (`Pi_f`) and unfavorable (`Pi_u`) environments.
 #'
 #' @md
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{Annicchiarico}, \link{ecovalence}, \link{ge_stats}}
+#' @seealso [Annicchiarico()], [ecovalence()], [ge_stats()]
 #' @references
 #' Lin, C.S., and M.R. Binns. 1988. A superiority measure of cultivar
 #' performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
@@ -50,9 +52,7 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <- factors %>%
@@ -92,7 +92,9 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
                                 R_u = rank(lin_fun(mat_u))))
     rownames(temp) <- NULL
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- temp
   }
@@ -104,20 +106,20 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
 
 
 
-#' Print an object ofclass \code{superiority}
+#' Print an object ofclass `superiority`
 #'
-#' Print the \code{superiority} object in two ways. By default, the results are
+#' Print the `superiority` object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x An object of class \code{superiority}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `superiority`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print superiority
 #' @export

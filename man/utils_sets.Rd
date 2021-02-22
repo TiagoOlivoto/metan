@@ -27,8 +27,10 @@ column names exist.}
 A vector showing the desired operation of the sets. If \code{pairs = TRUE}, returns a list showing the pairwise operation of the sets.
 }
 \description{
-Provides alternative function to \code{\link[base]{union}()},
-\code{\link[base]{intersect}()}, and \code{\link[base]{setdiff}()}.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
+Provides alternative function to \code{\link[base:sets]{base::union()}}, \code{\link[base:sets]{base::intersect()}}, and
+\code{\link[base:sets]{base::setdiff()}}.
 \itemize{
 \item \code{set_union()}: Returns the union of the sets in \code{...}.
 \item \code{set_intersect()}: Returns the intersect of the sets in \code{...}.

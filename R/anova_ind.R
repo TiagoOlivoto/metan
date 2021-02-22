@@ -1,4 +1,6 @@
 #' Within-environment analysis of variance
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs a within-environment analysis of variance in randomized complete
 #' block or alpha-lattice designs and returns values such as Mean Squares,
@@ -14,37 +16,37 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects, except the error, are assumed to be fixed.}
+#'   **All effects, except the error, are assumed to be fixed.**
 #' @return A list where each element is the result for one variable containing:
 #'
-#' 1. \strong{individual}: A tidy tbl_df with the results of the individual
+#' 1. **individual**: A tidy tbl_df with the results of the individual
 #' analysis of variance with the following column names:
 #'
-#' * \strong{For analysis in alpha-lattice designs}: \strong{ENV}: The
-#' environment code; \strong{MEAN}: The grand mean; \strong{MSG, MSCR, MSIB_R}:
+#' * **For analysis in alpha-lattice designs**: **ENV**: The
+#' environment code; **MEAN**: The grand mean; **MSG, MSCR, MSIB_R**:
 #' The mean squares for genotype, replicates and incomplete blocks within
-#' replicates, respectively. \strong{FCG, FCR, FCIB_R}: The F-calculated for
+#' replicates, respectively. **FCG, FCR, FCIB_R**: The F-calculated for
 #' genotype, replicates and incomplete blocks within replicates,
-#' respectively.\strong{PFG, PFCR, PFIB_R}: The P-values for genotype,
+#' respectively.**PFG, PFCR, PFIB_R**: The P-values for genotype,
 #' replicates and incomplete blocks within replicates, respectively.
-#' \strong{MSE}: The mean square error. \strong{CV}: coefficient of variation.
-#' \strong{h2}: broad-sense heritability. \strong{AS}: accuracy of selection
-#' (square root of \strong{h2})
+#' **MSE**: The mean square error. **CV**: coefficient of variation.
+#' **h2**: broad-sense heritability. **AS**: accuracy of selection
+#' (square root of **h2**)
 #'
-#' * \strong{For analysis in randomized complete block design}: \strong{MSG,
-#' MSB}: The mean squares for genotype and blocks, respectively. \strong{FCG,
-#' FCB}: The F-calculated for genotype and blocks, respectively. \strong{PFG,
-#' PFB}: The P-values for genotype and blocks, respectively. \strong{MSE}: The
-#' mean square error. \strong{CV}: coefficient of variation. \strong{h2}:
-#' broad-sense heritability. \strong{AS}: accuracy of selection (square root of
-#' \strong{h2})
+#' * **For analysis in randomized complete block design**: **MSG,
+#' MSB**: The mean squares for genotype and blocks, respectively. **FCG,
+#' FCB**: The F-calculated for genotype and blocks, respectively. **PFG,
+#' PFB**: The P-values for genotype and blocks, respectively. **MSE**: The
+#' mean square error. **CV**: coefficient of variation. **h2**:
+#' broad-sense heritability. **AS**: accuracy of selection (square root of
+#' **h2**)
 #'
-#' 2. \strong{MSRatio} The ratio between the higher and lower residual mean
+#' 2. **MSRatio** The ratio between the higher and lower residual mean
 #' square.
 #'
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
@@ -182,17 +184,17 @@ anova_ind <- function(.data,
 
 #' Print an object of class anova_ind
 #'
-#' Print the \code{anova_ind} object in two ways. By default, the results are shown
+#' Print the `anova_ind` object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory into a
 #' *.txt file.
 #'
-#' @param x An object of class \code{anova_ind}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `anova_ind`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print anova_ind
 #' @export

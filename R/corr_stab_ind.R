@@ -1,40 +1,42 @@
 #' Correlation between stability indexes
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes the Spearman's rank correlation between the parametric and
 #' nonparametric stability indexes computed with the function
-#' \code{\link{ge_stats}}.
+#' [ge_stats()].
 #'
-#' @param x An object of class \code{ge_stats}.
+#' @param x An object of class `ge_stats`.
 #' @param stats The statistics to compute the correlation. See the section
-#'   \strong{Details} for more information.
-#' @param plot Plot the heat map with the correlations? Defaults to \code{TRUE}.
+#'   **Details** for more information.
+#' @param plot Plot the heat map with the correlations? Defaults to `TRUE`.
 #' @param ... Other arguments to be passed to the function
-#'   \code{\link{plot.corr_coef}}.
-#' @details The argument \code{stats} is used to chose the statistics to show
-#'   the ranks. Allowed values are \code{"all"} (All statistics, default),
-#'   \code{"par"} (Parametric statistics), \code{"nonpar"} (Non-parametric
-#'   statistics), \code{"ammi"} (AMMI-based stability statistics), or the
+#'   [plot.corr_coef()].
+#' @details The argument `stats` is used to chose the statistics to show
+#'   the ranks. Allowed values are `"all"` (All statistics, default),
+#'   `"par"` (Parametric statistics), `"nonpar"` (Non-parametric
+#'   statistics), `"ammi"` (AMMI-based stability statistics), or the
 #'   following values that can be combined into comma-separated character
-#'   vector. \code{"Y"} (Response variable), \code{"Var"} (Genotype's variance),
-#'   \code{"Shukla"} (Shukla's variance), \code{"Wi_g", "Wi_f", "Wi_u"}
+#'   vector. `"Y"` (Response variable), `"Var"` (Genotype's variance),
+#'   `"Shukla"` (Shukla's variance), `"Wi_g", "Wi_f", "Wi_u"`
 #'   (Annichiarrico's genotypic confidence index for all, favorable and
-#'   unfavorable environments, respectively), \code{"Ecoval"} (Wricke's
-#'   ecovalence), \code{"Sij"} (Deviations from the joint-regression analysis),
-#'   \code{"R2"} (R-squared from the joint-regression analysis), \code{"ASV"}
-#'   (AMMI-stability value), \code{"SIPC"} (sum of the absolute values of the
-#'   IPCA scores), \code{"EV"} (Average of the squared eigenvector values),
-#'   \code{"ZA"} (Absolute values of the relative contributions of the IPCAs to
-#'   the interaction), \code{"WAAS"} (Weighted Average of Absolute Scores),
-#'   \code{"HMGV"} (Harmonic mean of the genotypic value), \code{"RPGV"}
-#'   (Relative performance of the genotypic values), \code{"HMRPGV"} (Harmonic
-#'   mean of the relative performance of the genotypic values), \code{"Pi_a",
-#'   "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and unfavorable
-#'   environments, respectively), \code{"Gai"} (Geometric adaptability index),
-#'   \code{"S1"} (mean of the absolute rank differences of a genotype over the n
-#'   environments), \code{"S2"} (variance among the ranks over the k
-#'   environments), \code{"S3"} (sum of the absolute deviations), \code{"S6"}
-#'   (relative sum of squares of rank for each genotype), \code{"N1", "N2",
-#'   "N3", "N4"} (Thennarasu"s statistics)).
+#'   unfavorable environments, respectively), `"Ecoval"` (Wricke's
+#'   ecovalence), `"Sij"` (Deviations from the joint-regression analysis),
+#'   `"R2"` (R-squared from the joint-regression analysis), `"ASV"`
+#'   (AMMI-stability value), `"SIPC"` (sum of the absolute values of the
+#'   IPCA scores), `"EV"` (Average of the squared eigenvector values),
+#'   `"ZA"` (Absolute values of the relative contributions of the IPCAs to
+#'   the interaction), `"WAAS"` (Weighted Average of Absolute Scores),
+#'   `"HMGV"` (Harmonic mean of the genotypic value), `"RPGV"`
+#'   (Relative performance of the genotypic values), `"HMRPGV"` (Harmonic
+#'   mean of the relative performance of the genotypic values), `"Pi_a",
+#'   "Pi_f", "Pi_u"` (Superiority indexes for all, favorable and unfavorable
+#'   environments, respectively), `"Gai"` (Geometric adaptability index),
+#'   `"S1"` (mean of the absolute rank differences of a genotype over the n
+#'   environments), `"S2"` (variance among the ranks over the k
+#'   environments), `"S3"` (sum of the absolute deviations), `"S6"`
+#'   (relative sum of squares of rank for each genotype), `"N1", "N2",
+#'   "N3", "N4"` (Thennarasu"s statistics)).
 #' @return A list with the data (ranks) correlation, p-values and a heat map showing the
 #'   correlation coefficients.
 #' @export

@@ -23,14 +23,15 @@ A list where each element contains the result AMMI-based stability indexes
 for one variable.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function computes the following AMMI-based stability indexes: ASV, AMMI
 stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
 the IPCA scores (Sneller et al. 1997); EV, averages of the squared
 eigenvector values (Sneller et al. 1997); and Za, absolute value of the
 relative contribution of IPCAs to the interaction (Zali et al. 2012), and
 WAAS, weighted average of absolute scores (Olivoto et al. 2019).
-}
-\details{
+
 The ASV index is computed as follows: \deqn{AS{V_i} = {\left[ {{{\left[
 {\frac{{r\mathop \lambda \nolimits_1^2 }}{{r\mathop \lambda \nolimits_2^2 }}
 \times (\mathop \lambda \nolimits_1^{0.5} {a_{i1}}{t_{j1}})} \right]}^2} +
@@ -57,7 +58,7 @@ IPCA.
 
 where \eqn{WAAS_i} is the weighted average of absolute scores of the
 \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
-in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
+in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the \emph{k}th
 IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
 PCAs.
 

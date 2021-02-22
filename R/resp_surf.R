@@ -1,4 +1,6 @@
 #' Response surface model
+#' @description
+#' `r badge('stable')`
 #'
 #' Compute a surface model and find the best combination of factor1 and factor2
 #' to obtain the stationary point.
@@ -10,10 +12,10 @@
 #' @param factor2 The second factor, for example, dose of potassium.
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks, if a designed experiment was conducted. Defaults to
-#'   \code{NULL}.
+#'   `NULL`.
 #' @param resp The response variable(s).
 #' @param prob The probability error.
-#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#' @param verbose If `verbose = TRUE` then some results are shown in the
 #'   console.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -202,17 +204,17 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
 #' Plot the response surface model using a contour plot
 #'
 #'
-#' @param x An object of class \code{resp_surf}
+#' @param x An object of class `resp_surf`
 #' @param xlab,ylab The label for the x and y axis, respectively. Defaults to
 #'   original variable names.
 #' @param resolution The resolution of the contour plot. Defaults to 100. higher
 #'   values produce high-resolution plots but may increase the computation time.
-#' @param bins The number of bins shown in the plot. Defaults to \code{10}.
+#' @param bins The number of bins shown in the plot. Defaults to `10`.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @param ... Currently not used
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot resp_surf
 #' @export

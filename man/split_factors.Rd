@@ -29,12 +29,15 @@ If more than one grouping variable is used, then each element is the
 combination of the grouping variables.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Split a data frame into subsets grouping by one or more factors.
-}
-\details{
+
 This function is used to split a data frame into a named list where each
 element is a level of the grouping variable (or combination of grouping
 variables).
+}
+\details{
 \itemize{
 \item \code{split_factors()} Split a data frame by factors.
 \item \code{as.splict_factors()} coerce to an object of class \code{split_factors}

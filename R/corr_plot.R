@@ -1,40 +1,42 @@
 #' Visualization of a correlation matrix
+#' @description
+#' `r badge('stable')`
 #'
 #' Graphical and numerical visualization of a correlation matrix
 #'
 #'
 #' @param .data The data. Should, preferentially, contain numeric variables
-#'   only. If \code{.data} has factor-columns, these columns will be deleted
+#'   only. If `.data` has factor-columns, these columns will be deleted
 #'   with a warning message.
 #' @param ... Variables to use in the correlation. If no variable is informed
-#'   all the numeric variables from \code{.data} are used.
+#'   all the numeric variables from `.data` are used.
 #' @param col.by A categorical variable to map the color of the points by.
-#'   Defaults to \code{NULL}.
+#'   Defaults to `NULL`.
 #' @param upper The visualization method for the upper triangular correlation
-#'   matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
-#'   (the scatterplot for each pairwise combination), or \code{NULL} to set a
+#'   matrix. Must be one of `'corr'` (numeric values), `'scatter'`
+#'   (the scatterplot for each pairwise combination), or `NULL` to set a
 #'   blank diagonal.
 #' @param lower The visualization method for the lower triangular correlation
-#'   matrix. Must be one of \code{'corr'} (numeric values), \code{'scatter'}
-#'   (the scatterplot for each pairwise combination), or \code{NULL} to set a
+#'   matrix. Must be one of `'corr'` (numeric values), `'scatter'`
+#'   (the scatterplot for each pairwise combination), or `NULL` to set a
 #'   blank diagonal.
-#' @param decimal.mark The decimal mark. Defaults to \code{"."}.
+#' @param decimal.mark The decimal mark. Defaults to `"."`.
 #' @param axis.labels Should the axis labels be shown in the plot? Set to
-#'   \code{FALSE}.
+#'   `FALSE`.
 #' @param show.labels.in Where to show the axis labels. Defaults to "show"
 #'   bottom and left. Use "diag" to show the labels on the diagonal. In this
 #'   case, the diagonal layer (boxplot, density or histogram) will be
 #'   overwritten.
 #' @param size.axis.label The size of the text for axis labels if
-#'   \code{axis.labels = TRUE}. Defaults to 12.
+#'   `axis.labels = TRUE`. Defaults to 12.
 #' @param diag Should the diagonal be shown?
-#' @param diag.type The type of plot to show in the diagonal if \code{diag
-#'   TRUE}. It must be one of the 'histogram' (to show an histogram), 'density'
+#' @param diag.type The type of plot to show in the diagonal if `diag
+#'   TRUE`. It must be one of the 'histogram' (to show an histogram), 'density'
 #'   to show the Kernel density, or 'boxplot' (to show a boxplot).
 #' @param  bins The number of bins, Defaults to 20.
-#' @param col.diag If \code{diag = TRUE} then \code{diagcol} is the color for
+#' @param col.diag If `diag = TRUE` then `diagcol` is the color for
 #'   the distribution. Set to gray.
-#' @param alpha.diag Alpha-transparency scale [0-1] to make the diagonal plot
+#' @param alpha.diag Alpha-transparency scale (0-1) to make the diagonal plot
 #'   transparent. 0 = fully transparent; 1 = full color. Set to 0.15
 #' @param col.up.panel,col.lw.panel,col.dia.panel The color for the upper,
 #'   lower, and diagonal panels, respectively. Set to 'gray'.
@@ -44,27 +46,27 @@
 #'   color-highlighted.
 #' @param col.sign The color that will highlight the significant correlations.
 #'   Set to 'green'.
-#' @param alpha.sign Alpha-transparency scale [0-1] to make the plot area
+#' @param alpha.sign Alpha-transparency scale (0-1) to make the plot area
 #'   transparent. 0 = fully transparent; 1 = full color. Set to 0.15
 #' @param lab.position The position that the labels will appear. Set to
-#'   \code{'tr'}, i.e., the legends will appear in the top and right of the
-#'   plot. Other allowed options are \code{'tl'} (top and left), \code{'br'}
-#'   (bottom and right), \code{'bl'} (bottom and left).
-#' @param progress \code{NULL} (default) for a progress bar in interactive
-#'   sessions with more than 15 plots, \code{TRUE} for a progress bar,
-#'   \code{FALSE} for no progress bar.
+#'   `'tr'`, i.e., the legends will appear in the top and right of the
+#'   plot. Other allowed options are `'tl'` (top and left), `'br'`
+#'   (bottom and right), `'bl'` (bottom and left).
+#' @param progress `NULL` (default) for a progress bar in interactive
+#'   sessions with more than 15 plots, `TRUE` for a progress bar,
+#'   `FALSE` for no progress bar.
 #' @param smooth Should a linear smooth line be shown in the scatterplots? Set
-#'   to \code{FALSE}.
+#'   to `FALSE`.
 #' @param col.smooth The color for the smooth line.
 #' @param confint Should a confidence band be shown with the smooth line? Set to
-#'   \code{TRUE}.
-#' @param size.point The size of the points in the plot. Set to \code{0.5}.
-#' @param shape.point The shape of the point, set to \code{1}.
-#' @param alpha.point Alpha-transparency scale [0-1] to make the points
+#'   `TRUE`.
+#' @param size.point The size of the points in the plot. Set to `0.5`.
+#' @param shape.point The shape of the point, set to `1`.
+#' @param alpha.point Alpha-transparency scale (0-1) to make the points
 #'   transparent. 0 = fully transparent; 1 = full color. Set to 0.7
 #' @param fill.point The color to fill the points. Valid argument if points are
 #'   between 21 and 25.
-#' @param col.point The color for the edge of the point, set to \code{black}.
+#' @param col.point The color for the edge of the point, set to `black`.
 #' @param size.line The size of the line (smooth and diagonal).
 #' @param minsize The size of the letter that will represent the smallest
 #'   correlation coefficient.
@@ -72,39 +74,35 @@
 #'   correlation coefficient.
 #' @param pan.spacing The space between the panels. Set to 0.15.
 #' @param digits The number of digits to show in the plot.
-#' @param export Logical argument. If \code{TRUE}, then the plot is exported to
+#' @param export Logical argument. If `TRUE`, then the plot is exported to
 #'   the current directory.
-#' @param file.type The format of the file if \code{export = TRUE}.  Set to
-#'   \code{'pdf'}. Other possible values are \code{*.tiff} using \code{file.type
-#'   = 'tiff'}.
-#' @param file.name The name of the plot when exported. Set to \code{NULL},
+#' @param file.type The format of the file if `export = TRUE`.  Set to
+#'   `'pdf'`. Other possible values are `*.tiff` using `file.type
+#'   = 'tiff'`.
+#' @param file.name The name of the plot when exported. Set to `NULL`,
 #'   i.e., automatically.
-#' @param width The width of the plot, set to \code{8}.
-#' @param height The height of the plot, set to \code{7}.
-#' @param resolution The resolution of the plot if \code{file.type = 'tiff'} is
-#'   used. Set to \code{300} (300 dpi).
-#' @return An object of class \code{gg, ggmatrix}.
+#' @param width The width of the plot, set to `8`.
+#' @param height The height of the plot, set to `7`.
+#' @param resolution The resolution of the plot if `file.type = 'tiff'` is
+#'   used. Set to `300` (300 dpi).
+#' @return An object of class `gg, ggmatrix`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
 #' \donttest{
 #' library(metan)
-#' dataset <- data_ge2
+#' dataset <- data_ge2 %>% select_cols(1:7)
 #'
 #' # Default plot setting
 #' corr_plot(dataset)
 #'
 #' # Chosing variables to be correlated
-#' corr_plot(dataset, CD, EL, PERK, NKR)
+#' corr_plot(dataset, PH, EH, EL)
 #'
-#' # Changing the layout
-#' corr_plot(dataset, CD, EL, PERK, NKR,
-#'           lower = NULL,
-#'           upper = 'corr')
 #'
 #' # Axis labels, similar to the function pairs()
 #' # Gray scale
-#' corr_plot(dataset, CD, EL, PERK, NKR,
+#' corr_plot(dataset, PH, EH, EL,
 #'           shape.point = 19,
 #'           size.point = 2,
 #'           alpha.point = 0.5,
@@ -114,7 +112,7 @@
 #'           alpha.sign = 0.3,
 #'           axis.labels = TRUE)
 #'
-#' corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
+#' corr_plot(dataset, PH, EH, EL,
 #'           prob = 0.01,
 #'           shape.point = 21,
 #'           col.point = 'black',

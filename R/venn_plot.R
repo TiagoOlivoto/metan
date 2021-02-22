@@ -1,4 +1,6 @@
 #' Draw Venn diagrams
+#' @description
+#' `r badge('stable')`
 #'
 #' Produces ggplot2-based Venn plots for 2, 3 or 4 sets. A Venn diagram shows
 #' all possible logical relationships between several sets of data.

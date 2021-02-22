@@ -26,8 +26,7 @@ that will be treated as random effect.}
 replications (assumed to be fixed).}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp =
-c(var1, var2, var3)}. Select helpers are also allowed.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then an alpha-lattice
@@ -37,10 +36,10 @@ fixed, as no inter-replicate information was to be recovered (Mohring et
 al., 2015).}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}.This is especially useful, for example,
 when the researcher want to fit a mixed-effect model for each environment.
 In this case, an object of class gamem_grouped is returned.
-\code{\link{mgidi}} can then be used to compute the mgidi index within each
+\code{\link[=mgidi]{mgidi()}} can then be used to compute the mgidi index within each
 environment.}
 
 \item{prob}{The probability for estimating confidence interval for BLUP's
@@ -69,7 +68,7 @@ loser genotype.
 \item \code{rep:block_var} block-within-replicate variance (if
 an alpha-lattice design is used by informing the block in \code{block});
 \item \code{Res_var}, the residual variance;
-\item \code{Gen (\%), rep:block (\%), and Res (\%)} the respective contribution
+\item \verb{Gen (\%), rep:block (\%), and Res (\%)} the respective contribution
 of variance components to the phenotypic variance;
 \item \code{H2}, broad-sense heritability;
 \item \code{h2mg}, heritability on the entry-mean basis;
@@ -77,7 +76,7 @@ of variance components to the phenotypic variance;
 \code{h2mg});
 \item \code{CVg}, genotypic coefficient of variation;
 \item \code{CVr}, residual coefficient of variation;
-\item \code{CV ratio}, the ratio between genotypic and residual coefficient of
+\item \verb{CV ratio}, the ratio between genotypic and residual coefficient of
 variation.
 }
 \item \strong{residuals:} The residuals of the model.
@@ -85,6 +84,8 @@ variation.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Analysis of genotypes in single experiments using mixed-effect models with
 estimation of genetic parameters.
 }
@@ -159,7 +160,7 @@ to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 \doi{10.1007/s00122-015-2530-0}
 }
 \seealso{
-\code{\link{get_model_data}} \code{\link{waasb}}
+\code{\link[=get_model_data]{get_model_data()}} \code{\link[=waasb]{waasb()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

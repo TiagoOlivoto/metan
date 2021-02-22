@@ -1,8 +1,10 @@
 #' Cross-validation procedure
+#' @description
+#' `r badge('stable')`
 #'
 #' Cross-validation for estimation of all AMMI-family models
 #'
-#' \code{cv_ammif} provides a complete cross-validation of replicate-based data
+#' `cv_ammif` provides a complete cross-validation of replicate-based data
 #' using AMMI-family models. By default, the first validation is carried out
 #' considering the AMMIF (all possible axis used). Considering this model, the
 #' original dataset is split up into two datasets: training set and validation
@@ -10,15 +12,15 @@
 #' N-1 replications. The 'validation' set has the remaining replication. The
 #' splitting of the dataset into modeling and validation sets depends on the
 #' design informed. For Completely Randomized Block Design (default), and
-#' alpha-lattice design (declaring \code{block} arguments), complete replicates
+#' alpha-lattice design (declaring `block` arguments), complete replicates
 #' are selected within environments. The remained replicate serves as validation
-#' data. If \code{design = 'RCD'} is informed, completely randomly samples are
+#' data. If `design = 'RCD'` is informed, completely randomly samples are
 #' made for each genotype-by-environment combination (Olivoto et al. 2019). The
 #' estimated values for each member of the AMMI-family model are compared with
 #' the 'validation' data. The Root Mean Square Prediction Difference (RMSPD) is
 #' computed. At the end of boots, a list is returned.
 #'
-#' \strong{IMPORTANT:} If the data set is unbalanced (i.e., any genotype missing
+#' **IMPORTANT:** If the data set is unbalanced (i.e., any genotype missing
 #' in any environment) the function will return an error. An error is also
 #' observed if any combination of genotype-environment has a different number of
 #' replications than observed in the trial.
@@ -29,50 +31,49 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#'   replications/blocks. \strong{AT LEAST THREE REPLICATES ARE REQUIRED TO
-#'   PERFORM THE CROSS-VALIDATION}.
+#'   replications/blocks. **AT LEAST THREE REPLICATES ARE REQUIRED TO
+#'   PERFORM THE CROSS-VALIDATION**.
 #' @param resp The response variable.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects, except the error, are assumed to be fixed.}
+#'   **All effects, except the error, are assumed to be fixed.**
 #' @param nboot The number of resamples to be used in the cross-validation.
 #'   Defaults to 200.
 #' @param design The experimental design used in each environment. Defaults to
-#'   \code{RCBD} (Randomized complete Block Design). For Completely Randomized
-#'   Designs inform \code{design = 'CRD'}.
+#'   `RCBD` (Randomized complete Block Design). For Completely Randomized
+#'   Designs inform `design = 'CRD'`.
 #' @param verbose A logical argument to define if a progress bar is shown.
-#'   Default is \code{TRUE}.
+#'   Default is `TRUE`.
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
 #' resolvable incomplete block designs. Biometrika 63:83-92.
 #'
 #' @return
-#' An object of class \code{cv_ammif} with the following items:
-#' * \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared
+#' An object of class `cv_ammif` with the following items:
+#' * **RMSPD**: A vector with nboot-estimates of the Root Mean Squared
 #' Prediction Difference between predicted and validating data.
 #'
-#' * \strong{RMSPDmean}: The mean of RMSPDmean estimates.
+#' * **RMSPDmean**: The mean of RMSPDmean estimates.
 #'
-#' * \strong{Estimated}: A data frame that contain the values (predicted, observed,
+#' * **Estimated**: A data frame that contain the values (predicted, observed,
 #' validation) of the last loop.
 #'
-#' * \strong{Modeling}: The dataset used as modeling data in the last loop
+#' * **Modeling**: The dataset used as modeling data in the last loop
 #'
-#' * \strong{Testing}: The dataset used as testing data in the last loop.
+#' * **Testing**: The dataset used as testing data in the last loop.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{cv_ammi}, \link{cv_blup}}
-#' @importFrom progress progress_bar
+#' @seealso [cv_ammi()], [cv_blup()]
 #' @export
 #' @examples
 #'
 #' \donttest{
 #' library(metan)
-#' model <- cv_ammif(data_ge,
+#' model <- cv_ammif(data_ge2,
 #'                   env = ENV,
 #'                   gen = GEN,
 #'                   rep = REP,
-#'                   resp = GY,
+#'                   resp = EH,
 #'                   nboot = 5)
 #' plot(model)
 #' }
@@ -124,9 +125,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
       stop("AMMI analysis cannot be computed with unbalanced data.", call. = FALSE)
     }
     if (verbose == TRUE) {
-      pb <- progress_bar$new(
-        format = "Validating :what [:bar]:percent (:elapsedfull -:eta left)",
-        clear = FALSE, total = totalboot, width = 90)
+      pb <- progress(max = totalboot, style = 4)
     }
     for (y in 1:naxisvalidation) {
       RMSPDres <- data.frame(matrix(NA, nboot, 1))
@@ -176,8 +175,9 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
         ACTUAL <- ifelse(NAXIS == minimo, "AMMIF", sprintf("AMMI%.0f", NAXIS))
         initial <- initial + 1
         if (verbose == TRUE) {
-          ProcdAtua <- b
-          pb$tick(tokens = list(what = paste(ProcdAtua, "of", nboot, "sets", "using", ACTUAL)))
+          run_progress(pb,
+                       text = paste(b, "of", nboot, "sets using", ACTUAL),
+                       actual = initial)
         }
       }
       if (NAXIS == minimo) {
@@ -250,9 +250,7 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
       stop("AMMI analysis cannot be computed with unbalanced data.", call. = FALSE)
     }
     if (verbose == TRUE) {
-      pb <- progress_bar$new(
-        format = "Validating :what [:bar]:percent (:elapsedfull -:eta left)",
-        clear = FALSE, total = totalboot, width = 90)
+      pb <- progress(max = totalboot, style = 4)
     }
     for (y in 1:naxisvalidation) {
       RMSPDres <- data.frame(matrix(NA, nboot, 1))
@@ -299,8 +297,9 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
         ACTUAL <- ifelse(NAXIS == minimo, "AMMIF", sprintf("AMMI%.0f", NAXIS))
         initial <- initial + 1
         if (verbose == TRUE) {
-          ProcdAtua <- b
-          pb$tick(tokens = list(what = paste(ProcdAtua, "of", nboot, "sets", "using", ACTUAL)))
+          run_progress(pb,
+                       text = paste(b, "of", nboot, "sets using", ACTUAL),
+                       actual = initial)
         }
       }
       if (NAXIS == minimo) {

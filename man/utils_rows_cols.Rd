@@ -159,6 +159,7 @@ end (for \code{select_last_col()}) of from the begin (for
 \code{select_first_col()})}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{add_cols()}: Add one or more columns to an existing data frame. If
 specified \code{.before} or \code{.after} columns does not exist, columns are
@@ -188,8 +189,7 @@ names.
 \item \code{rownames_to_column()}: Move the row names of \code{.data} to a new
 column.
 \item \code{remove_rownames()}: Remove the row names of \code{.data}.
-\item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
-TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
+\item \code{concatenate()}: Concatenate columns of a data frame. If \code{drop = TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
 concatenated variable is pull out to a vector. This is specially useful when
 using \code{concatenate} to add columns to a data frame with \code{add_cols()}.
 \item \code{get_levels()}: Get the levels of a factor variable.
@@ -207,7 +207,7 @@ frame.
 data frame.
 \item \code{select_rows()}: Select one or more rows from a data frame.
 \item \code{tidy_colnames()}: Tidy up column names with
-\code{\link{tidy_strings}()}.
+\code{\link[=tidy_strings]{tidy_strings()}}.
 }
 }
 \examples{

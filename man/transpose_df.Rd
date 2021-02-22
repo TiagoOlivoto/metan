@@ -13,7 +13,9 @@ transpose_df(df)
 A tibble containing the transposed data.
 }
 \description{
-Is an alternative to \code{\link{t}()} to transpose a data frame. The first
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
+Is an alternative to \code{\link[=t]{t()}} to transpose a data frame. The first
 column of \code{df} will become column names in the transposed data.
 }
 \examples{

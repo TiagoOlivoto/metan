@@ -25,8 +25,7 @@ and the response variable(s).}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}. Select helpers are also supported.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also supported.}
 
 \item{centering}{The centering method. Must be one of the \code{'none | 0'}, for no
 centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
@@ -46,13 +45,13 @@ This SVP is most often used in AMMI analysis and other biplot analysis, but it i
 visualizing either the relationship among genotypes or that among the environments).}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}.This is especially useful, for example,
 when the researcher want to produce GGE biplots for each level of a
 categorical variable. In this case, an object of class gge_grouped is
 returned.}
 
 \item{...}{Arguments passed to the function
-\code{\link{impute_missing_val}()} for imputation of missing values in case
+\code{\link[=impute_missing_val]{impute_missing_val()}} for imputation of missing values in case
 of unbalanced data.}
 }
 \value{
@@ -78,6 +77,8 @@ are comparable when singular value partitioning is set to 'genotype' or 'environ
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Produces genotype plus genotype-by-environment model based on a multi-environment
 trial dataset containing at least the columns for genotypes, environments and one
 response variable or a two-way table.

@@ -1,13 +1,15 @@
 #' Mahalanobis Distance
+#' @description
+#' `r badge('stable')`
 #'
-#' Compute the Mahalanobis distance of all pairwise rows in \code{.means}. The
+#' Compute the Mahalanobis distance of all pairwise rows in `.means`. The
 #' result is a symmetric matrix containing the distances that may be used for
 #' hierarchical clustering.
 #'
 #'
 #' @param .means A matrix of data with, say, p columns.
 #' @param covar The covariance matrix.
-#' @param inverted Logical argument. If \code{TRUE}, \code{covar} is supposed to
+#' @param inverted Logical argument. If `TRUE`, `covar` is supposed to
 #'   contain the inverse of the covariance matrix.
 #' @return A symmetric matrix with the Mahalanobis' distance.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

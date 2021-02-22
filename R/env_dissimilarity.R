@@ -1,7 +1,9 @@
 #' Dissimilarity between environments
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes the dissimilarity between environments based on several approaches.
-#' See the section \strong{details} for more details.
+#' See the section **details** for more details.
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -11,40 +13,40 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}. Select helpers are also allowed.
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`. Select helpers are also allowed.
 #' @return A list with the following matrices:
-#' * \code{SPART_CC}: The percentage of the single (non cross-over) part of the
+#' * `SPART_CC`: The percentage of the single (non cross-over) part of the
 #' interaction between genotypes and pairs of environments according to the
 #' method proposed by Cruz and Castoldi (1991).
-#' * \code{CPART_CC}: The percentage of the complex (cross-over) part of the
+#' * `CPART_CC`: The percentage of the complex (cross-over) part of the
 #' interaction between genotypes and pairs of environments according to the
 #' method proposed by Cruz and Castoldi (1991).
-#' * \code{SPART_RO}: The percentage of the single (non cross-over) part of the
+#' * `SPART_RO`: The percentage of the single (non cross-over) part of the
 #' interaction between genotypes and pairs of environments according to the
 #' method proposed by Robertson (1959).
-#' * \code{CPART_RO}: The percentage of the complex (cross-over) part of the
+#' * `CPART_RO`: The percentage of the complex (cross-over) part of the
 #' interaction between genotypes and pairs of environments according to the
 #' method proposed by Robertson (1959).
-#' * \code{MSGE}: Interaction mean square between genotypes and pairs of
+#' * `MSGE`: Interaction mean square between genotypes and pairs of
 #' environments.
-#' * \code{SSGE}: Interaction sum of square between genotypes and pairs of
+#' * `SSGE`: Interaction sum of square between genotypes and pairs of
 #' environments.
-#' * \code{correlation}: Correlation coefficients between genotypes's average in
+#' * `correlation`: Correlation coefficients between genotypes's average in
 #' each pair of environment.
 #' @md
 #' @details Roberteson (1959) proposed the partition of the mean square of the
 #'   genotype-environment interaction  (MS_GE) into single (S) and complex (C)
 #'   parts, where \eqn{S = \frac{1}{2}(\sqrt{Q1}-\sqrt{Q2})^2)} and \eqn{C =
-#'   (1-r)\sqrt{Q1-Q2}}, being \emph{r} the correlation between the genotype's
-#'   average in the two environments; and \emph{Q1} and \emph{Q2} the genotype
+#'   (1-r)\sqrt{Q1-Q2}}, being *r* the correlation between the genotype's
+#'   average in the two environments; and *Q1* and *Q2* the genotype
 #'   mean square in the environments 1 and 2, respectively. Cruz and Castoldi
 #'   (1991) proposed a new decomposition of the MS_GE, in which the complex part
 #'   is given by \eqn{C = \sqrt{(1-r)^3\times Q1\times Q2}}.
 #' @references
 #' Cruz, C.D., Castoldi, F. (1991). Decomposicao da interacao genotipos x
 #' ambientes em partes simples e complexa. Ceres, 38:422-430. Available at:
-#' \url{http://www.ceres.ufv.br/ojs/index.php/ceres/article/view/2165/}.
+#' <http://www.ceres.ufv.br/ojs/index.php/ceres/article/view/2165/>.
 #'
 #' Robertson, A. (1959). Experimental design on the measurement of
 #' heritabilities and genetic correlations. biometrical genetics. New York:
@@ -151,14 +153,14 @@ env_dissimilarity <- function(.data,
 
 #' Print an object of class env_dissimilarity
 #'
-#' Print the \code{env_dissimilarity} object in two ways. By default, the results
+#' Print the `env_dissimilarity` object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
-#' @param x An object of class \code{env_dissimilarity}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `env_dissimilarity`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Currently not used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -271,11 +273,11 @@ print.env_dissimilarity <- function(x, export = FALSE, file.name = NULL, digits 
 #' Create dendrograms to show the dissimilarity between environments.
 #'
 #'
-#' @param x An object of class \code{env_dissimilarity}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
+#' @param x An object of class `env_dissimilarity`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
 #' @param nclust The number of clusters to show.
-#' @param ... Other arguments bo be passed to the function \code{\link[stats]{hclust}}.
+#' @param ... Other arguments bo be passed to the function [stats::hclust()].
 #' @method plot env_dissimilarity
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

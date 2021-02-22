@@ -13,20 +13,16 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 sel_gen(x)
 }
 \arguments{
-\item{x}{An object created with the functions \code{\link{AMMI_indexes}()},
-\code{\link{anova_ind}()}, \code{\link{anova_joint}()},
-\code{\link{can_corr}()} \code{\link{ecovalence}()},  \code{\link{Fox}()},
-\code{\link{gai}()}, \code{\link{gamem}()},\code{\link{gafem}()},
-\code{\link{ge_acv}}, \code{\link{ge_means}()}, \code{\link{ge_reg}()},
-\code{\link{gytb}()}, \code{\link{mgidi}()}, \code{\link{performs_ammi}()},
-\code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
-\code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.}
+\item{x}{An object created with the functions \code{\link[=AMMI_indexes]{AMMI_indexes()}},
+\code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=can_corr]{can_corr()}} \code{\link[=ecovalence]{ecovalence()}},  \code{\link[=Fox]{Fox()}},
+\code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}},\code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}},
+\code{\link[=gytb]{gytb()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=performs_ammi]{performs_ammi()}}, \code{\link[=Resende_indexes]{Resende_indexes()}}, \code{\link[=Shukla]{Shukla()}},
+\code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}} or \code{\link[=waasb]{waasb()}}.}
 
 \item{what}{What should be captured from the model. See more in section
 \strong{Details}.}
 
-\item{type}{Chose if the statistics must be show by genotype (\code{type =
-"GEN"}, default) or environment (\code{TYPE = "ENV"}), when possible.}
+\item{type}{Chose if the statistics must be show by genotype (\code{type = "GEN"}, default) or environment (\code{TYPE = "ENV"}), when possible.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
 silently.}
@@ -36,6 +32,9 @@ A tibble showing the values of the variable chosen in argument
 \code{what}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
 \itemize{
 \item \code{get_model_data()} Easily get data from some objects generated in the
 \strong{metan} package such as the WAASB and WAASBY indexes  (Olivoto et al.,
@@ -44,8 +43,7 @@ AMMI-based stability statistics.
 \item \code{gmd()} Is a shortcut to \code{get_model_data}.
 \item \code{sel_gen()} Extracts the selected genotypes by a given index.
 }
-}
-\details{
+
 Bellow are listed the options allowed in the argument \code{what} depending
 on the class of the object
 
@@ -62,13 +60,13 @@ interaction.
 \strong{Objects of class \code{anova_ind}:}
 \itemize{
 \item \code{"MEAN"}The mean value of the variable
-\item \code{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
+\item \verb{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
 genotype effect, respectively.
-\item \code{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for
+\item \verb{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for
 block effect in randomized complete block design.
-\item \code{"MSCR", "FCR", "PFCR"} The mean square, F-calculated and P-values for
+\item \verb{"MSCR", "FCR", "PFCR"} The mean square, F-calculated and P-values for
 complete replicates in alpha lattice design.
-\item \code{"MSIB_R", "FCIB_R", "PFIB_R"} The mean square, F-calculated and
+\item \verb{"MSIB_R", "FCIB_R", "PFIB_R"} The mean square, F-calculated and
 P-values for incomplete blocks within complete replicates, respectively (for
 alpha lattice design only).
 \item \code{"MSE"} The mean square of error.
@@ -116,7 +114,7 @@ alpha lattice design only).
 }
 
 \strong{Objects of class \code{fai_blup}:} See the \strong{Value} section of
-\code{\link{fai_blup}()} to see valid options for \code{what} argument.
+\code{\link[=fai_blup]{fai_blup()}} to see valid options for \code{what} argument.
 
 \strong{Objects of class \code{ge_acv}:}
 \itemize{
@@ -171,10 +169,10 @@ analyzed traits (default).
 }
 
 \strong{Objects of class \code{mgidi}:} See the \strong{Value} section of
-\code{\link{mgidi}()} to see valid options for \code{what} argument.
+\code{\link[=mgidi]{mgidi()}} to see valid options for \code{what} argument.
 
 \strong{Objects of class \code{mtsi}:} See the \strong{Value} section of
-\code{\link{mtsi}()} to see valid options for \code{what} argument.
+\code{\link[=mtsi]{mtsi()}} to see valid options for \code{what} argument.
 
 \strong{Objects of class \code{Shukla}:}
 \itemize{
@@ -185,7 +183,7 @@ analyzed traits (default).
 }
 
 \strong{Objects of class \code{sh}:} See the \strong{Value} section of
-\code{\link{Smith_Hazel}()} to see valid options for \code{what} argument.
+\code{\link[=Smith_Hazel]{Smith_Hazel()}} to see valid options for \code{what} argument.
 
 \strong{Objects of class \code{Fox}:}
 \itemize{
@@ -232,7 +230,7 @@ for the statistics.
 
 \strong{Objects of class \code{performs_ammi}:}
 \itemize{
-\item \code{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
+\item \verb{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
 principal component axis.
 \item \code{"ipca_ss"} Sum of square for each IPCA.
 \item \code{"ipca_ms"} Mean square for each IPCA.
@@ -244,7 +242,7 @@ principal component axis.
 
 \strong{Objects of class \code{waas}, \code{waas_means}, and \code{waasb}:}
 \itemize{
-\item \code{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
+\item \verb{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
 principal component axis.
 \item \code{"WAASB"}  The weighted average of the absolute scores (default for
 objects of class \code{waas}).
@@ -288,75 +286,55 @@ objects of class \code{waas}).
 library(metan)
 
 #################### joint-regression analysis #####################
-ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
+ge_r <- ge_reg(data_ge2,
+               env = ENV,
+               gen = GEN,
+               rep =  REP,
                resp = c(PH, EH, CD, CL, ED))
 get_model_data(ge_r)
-get_model_data(ge_r, "s2di")
+# Significance of deviations from the regression
+# Use gmd(), a shortcut for get_model_data
+gmd(ge_r, "pval_f")
 
 
-#################### AMMI model #####################
-# Fit an AMMI model for 7 variables.
-AMMI <- data_ge2 \%>\%
- performs_ammi(ENV, GEN, REP,
-               resp = c(PH, ED, TKW, NKR, CD, CL, CW))
-
-# Sum of squares
-get_model_data(AMMI, "ipca_ss")
-
-# Mean squares
-get_model_data(AMMI, "ipca_ms")
-
-# Examine the significance (p-value) of the IPCAs
-get_model_data(AMMI, "ipca_pval")
-
-# Explained sum of square for each IPCA
-get_model_data(AMMI)
-
-# Accumulated sum of square
-get_model_data(AMMI, "ipca_accum")
-
-### AMMI-based stability statistics ###
-# Get the AMMI stability value
-AMMI \%>\%
-AMMI_indexes() \%>\%
-get_model_data("ASV")
-
-
-#################### WAASB model #####################
+#################### WAASB index #####################
 # Fitting the WAAS index
-AMMI <- waas(data_ge2, ENV, GEN, REP,
-             resp = c(PH, ED, TKW, NKR))
+AMMI <- waasb(data_ge2,
+              env = ENV,
+              gen = GEN,
+              rep = REP,
+              resp = c(PH, ED, TKW, NKR))
 
 # Getting the weighted average of absolute scores
-get_model_data(AMMI, what = "WAAS")
+gmd(AMMI, what = "WAASB")
 
 # And the rank for the WAASB index.
-get_model_data(AMMI, what = "OrWAAS")
+gmd(AMMI, what = "OrWAASB")
 
 
 #################### BLUP model #####################
 # Fitting a mixed-effect model
-blup <- waasb(data_ge2, ENV, GEN, REP,
-              resp = c(PH, ED, TKW, NKR))
+# Genotype and interaction as random
+blup <- gamem_met(data_ge2,
+                  env = ENV,
+                  gen = GEN,
+                  rep = REP,
+                  resp = c(PH, ED, TKW, NKR))
 
 # Getting p-values for likelihood-ratio test
-get_model_data(blup, what = "lrt")
+gmd(blup, what = "lrt")
 
 # Getting the variance components
-get_model_data(blup, what = "vcomp")
+gmd(blup, what = "vcomp")
 
 # Getting the genetic parameters
-get_model_data(blup)
+gmd(blup)
 
 ### BLUP-based stability indexes ###
 blup \%>\%
 Resende_indexes() \%>\%
-get_model_data()
+gmd("HMRPGV_R")
 
-
-#################### Stability indexes #####################
-stats_ge <- ge_stats(data_ge, ENV, GEN, REP, everything())
-get_model_data(stats_ge)
 }
 
 }
@@ -423,13 +401,10 @@ Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 }
 \seealso{
-\code{\link{AMMI_indexes}}, \code{\link{anova_ind}},
-\code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
-\code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
-\code{\link{ge_acv}}, \code{\link{ge_polar}} \code{\link{ge_means}},
-\code{\link{ge_reg}}, \code{\link{mgidi}}, \code{\link{mtsi}}, \code{\link{performs_ammi}},
-\code{\link{Resende_indexes}}, \code{\link{Shukla}},
-\code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
+\code{\link[=AMMI_indexes]{AMMI_indexes()}}, \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=ecovalence]{ecovalence()}},
+\code{\link[=Fox]{Fox()}}, \code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}}, \code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_polar]{ge_polar()}}
+\code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=mtsi]{mtsi()}}, \code{\link[=performs_ammi]{performs_ammi()}},
+\code{\link[=Resende_indexes]{Resende_indexes()}}, \code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}}, \code{\link[=waasb]{waasb()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -1,86 +1,88 @@
 #' Genotype by yield*trait biplot
+#' @description
+#' `r badge('stable')`
 #'
 #' Produces a Genotype by Yield*Trait biplot (GTY) proposed by Yan and
-  #' Fregeau-Reid (2018).
+#' Fregeau-Reid (2018).
 #'
 #'
 #' @param .data The dataset containing the columns related to Genotypes, Yield,
 #'   and Traits.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param yield The column containing the yield values.
-#' @param traits The column(s) with the \emph{traits} values. Defaults to
-#'   \emph{NULL}. In this case, all numeric traits in \code{.data}, except that
-#'   in \code{yield} are selected. To select specific traits from \code{.data},
-#'   use a list of unquoted comma-separated variable names (e.g. \emph{traits =
-#'   c(var1, var2, var3)}), an specific range of variables, (e.g. \emph{traits =
-#'   c(var1:var3)}), or even a select helper like \code{starts_with("N")}.
-#' @param ideotype A vector of \code{"h"} or \code{"l"} with the same length of
-#'   \code{traits} to define which trait is desired to increase or decrease. By
-#'   default (\code{ideotype = NULL}) for all numeric traits in \code{traits}
+#' @param traits The column(s) with the *traits* values. Defaults to
+#'   *NULL*. In this case, all numeric traits in `.data`, except that
+#'   in `yield` are selected. To select specific traits from `.data`,
+#'   use a list of unquoted comma-separated variable names (e.g. *traits =
+#'   c(var1, var2, var3)*), an specific range of variables, (e.g. *traits =
+#'   c(var1:var3)*), or even a select helper like `starts_with("N")`.
+#' @param ideotype A vector of `"h"` or `"l"` with the same length of
+#'   `traits` to define which trait is desired to increase or decrease. By
+#'   default (`ideotype = NULL`) for all numeric traits in `traits`
 #'   are assumed that high values is desirable. Following the order of the
-#'   traits selected in \code{traits}, use \code{"h"} to indicate the traits in
-#'   which higher values are desired or \code{"l"} to indicate the variables in
-#'   which lower values are desired. Then, \code{yield } will be multiplied by
-#'   traits with \code{"h"} and divided by traits with \code{"l"} to generate
-#'   the Genotype by yield*trait table. For example, \code{ideotype = c("h, h,
-#'   l")} will assume that the ideotype has higher values for the first two
+#'   traits selected in `traits`, use `"h"` to indicate the traits in
+#'   which higher values are desired or `"l"` to indicate the variables in
+#'   which lower values are desired. Then, `yield ` will be multiplied by
+#'   traits with `"h"` and divided by traits with `"l"` to generate
+#'   the Genotype by yield*trait table. For example, `ideotype = c("h, h,
+#'   l")` will assume that the ideotype has higher values for the first two
 #'   traits and lower values for the last trait.
-#' @param weight The weight assumed for each trait. Similar to \code{ideotype}
-#'   argument, provide a numeric vector of the same length of \code{traits}.
+#' @param weight The weight assumed for each trait. Similar to `ideotype`
+#'   argument, provide a numeric vector of the same length of `traits`.
 #'   Suggested values are between 0 and 2.
 #' @param prefix The prefix used in the biplot for the yield*trait combinations.
-#'   Defaults to \code{"Y"}.
-#' @param centering The centering method. Must be one of the \code{'none | 0'},
-#'   for no centering; \code{'global | 1'}, for global centered (T+G+GYT);
-#'   \code{'trait | 2'} (default), for trait-centered (G+GYT); or \code{'double |
-#'   3'}, for double centered (GYT). A biplot cannot be produced with models
+#'   Defaults to `"Y"`.
+#' @param centering The centering method. Must be one of the `'none | 0'`,
+#'   for no centering; `'global | 1'`, for global centered (T+G+GYT);
+#'   `'trait | 2'` (default), for trait-centered (G+GYT); or `'double |
+#'   3'`, for double centered (GYT). A biplot cannot be produced with models
 #'   produced without centering.
-#' @param scaling The scaling method. Must be one of the \code{'none | 0'}, for
-#'   no scaling; or \code{'sd | 1'} (default), so that the mean for each trait
+#' @param scaling The scaling method. Must be one of the `'none | 0'`, for
+#'   no scaling; or `'sd | 1'` (default), so that the mean for each trait
 #'   or yield-trait combination becomes 0 and the variance becomes unit.
 #' @param svp The method for singular value partitioning. Must be one of the
-#'   \code{'genotype | 1'}, (The singular value is entirely partitioned into the
-#'   genotype eigenvectors, also called row metric preserving); \code{'trait |
-#'   2'}, default, (The singular value is entirely partitioned into the trait
-#'   eigenvectors, also called column metric preserving); or \code{'symmetrical
-#'   | 3'} (The singular value is symmetrically partitioned into the genotype
+#'   `'genotype | 1'`, (The singular value is entirely partitioned into the
+#'   genotype eigenvectors, also called row metric preserving); `'trait |
+#'   2'`, default, (The singular value is entirely partitioned into the trait
+#'   eigenvectors, also called column metric preserving); or `'symmetrical
+#'   | 3'` (The singular value is symmetrically partitioned into the genotype
 #'   and the trait eigenvectors This SVP is most often used in AMMI analysis and
 #'   other biplot analysis, but it is not ideal for visualizing either the
 #'   relationship among genotypes or that among the traits).
 #'
 #'
-#' @return The function returns a list of class \code{gge} that is compatible with the function \code{plot()} used in \code{\link{gge}()}.
-#'  * \strong{data} The Genotype by yield\*trait (GYT) data.
+#' @return The function returns a list of class `gge` that is compatible with the function `plot()` used in [gge()].
+#'  * **data** The Genotype by yield\*trait (GYT) data.
 #'
-#'  * \strong{ge_mat} The Genotype by yield\*trait (GYT) data  (scaled and centered).
+#'  * **ge_mat** The Genotype by yield\*trait (GYT) data  (scaled and centered).
 #'
-#'  * \strong{coordgen} The coordinates for genotypes for all components.
+#'  * **coordgen** The coordinates for genotypes for all components.
 #'
-#'  * \strong{coordenv} The coordinates for traits for all components.
+#'  * **coordenv** The coordinates for traits for all components.
 #'
-#'  * \strong{eigenvalues} The vector of eigenvalues.
+#'  * **eigenvalues** The vector of eigenvalues.
 #'
-#'  * \strong{totalvar} The overall variance.
+#'  * **totalvar** The overall variance.
 #'
-#'  * \strong{labelgen} The name of the genotypes.
+#'  * **labelgen** The name of the genotypes.
 #'
-#'  * \strong{labelenv} The names of the traits.
+#'  * **labelenv** The names of the traits.
 #'
-#'  * \strong{labelaxes} The axes labels.
+#'  * **labelaxes** The axes labels.
 #'
-#'  * \strong{centering} The centering method.
+#'  * **centering** The centering method.
 #'
-#'  * \strong{scaling} The scaling method.
+#'  * **scaling** The scaling method.
 #'
-#'  * \strong{svp} The singular value partitioning method.
+#'  * **svp** The singular value partitioning method.
 #'
-#'  * \strong{d} The factor used to generate in which the ranges of genotypes
+#'  * **d** The factor used to generate in which the ranges of genotypes
 #'  and traits are comparable when singular value partitioning is set to
 #'  'genotype' or 'trait'.
-#'  * \strong{grand_mean} The grand mean of the trial.
-#'  * \strong{mean_gen} A vector with the means of the genotypes.
-#'  * \strong{mean_env} A vector with the means of the traits.
-#'  * \strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
+#'  * **grand_mean** The grand mean of the trial.
+#'  * **mean_gen** A vector with the means of the genotypes.
+#'  * **mean_env** A vector with the means of the traits.
+#'  * **scale_var** The scaling vector when the scaling method is `'sd'`.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references

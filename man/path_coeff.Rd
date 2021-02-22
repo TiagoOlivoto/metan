@@ -25,12 +25,12 @@ path_coeff_mat(cor_mat, resp, correction = NULL, knumber = 50, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The data. Must be a data frame or a grouped data passed from
-\code{\link[dplyr]{group_by}()}}
+\code{\link[dplyr:group_by]{dplyr::group_by()}}}
 
 \item{resp}{The dependent variable.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{pred}{The predictor variables, set to \code{everything()}, i.e., the
@@ -42,7 +42,7 @@ the variables in \code{pred} are deleted from the data, and the analysis
 will use as predictor those that remained, except that in \code{resp}.}
 
 \item{correction}{Set to \code{NULL}. A correction value (k) that will be
-added into the diagonal elements of the \bold{X'X} matrix aiming at
+added into the diagonal elements of the \strong{X'X} matrix aiming at
 reducing the harmful problems of the multicollinearity in path analysis
 (Olivoto et al., 2017)}
 
@@ -52,14 +52,14 @@ direct effects in a set of different k values (0-1) is produced.
 
 \item{brutstep}{Logical argument, set to \code{FALSE}. If true, then an
 algorithm will select a subset of variables with minimal multicollinearity
-and fit a set of possible models. See the \bold{Details} section for more
+and fit a set of possible models. See the \strong{Details} section for more
 information.}
 
 \item{maxvif}{The maximum value for the Variance Inflation Factor (cut point)
-that will be accepted. See the \bold{Details} section for more information.}
+that will be accepted. See the \strong{Details} section for more information.}
 
 \item{missingval}{How to deal with missing values. For more information,
-please see \code{\link[stats]{cor}()}.}
+please see \code{\link[stats:cor]{stats::cor()}}.}
 
 \item{plot_res}{If \code{TRUE}, create a scatter plot of residual against
 predicted value and a normal Q-Q plot.}
@@ -67,13 +67,13 @@ predicted value and a normal Q-Q plot.}
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
 
-\item{...}{Additional arguments passed on to \code{\link[stats]{plot.lm}}}
+\item{...}{Additional arguments passed on to \code{\link[stats:plot.lm]{stats::plot.lm()}}}
 
 \item{cor_mat}{Matrix of correlations containing both dependent and
 independent traits.}
 }
 \value{
-An object of class \code{path_coeff, group_path, or brute_path} with
+An object of class \verb{path_coeff, group_path, or brute_path} with
 the following items:
 \itemize{
 \item \strong{Corr.x} A correlation matrix between the predictor variables.
@@ -97,11 +97,12 @@ lowest eigenvalue.
 weight (highest eigenvector) in the lowest eigenvalue.
 }
 
-If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+If \code{.data} is a grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}
 then the results will be returned into a list-column of data frames,
 containing:
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{path_coeff()} computes a path analysis using a data frame as input data.
 \item \code{path_coeff_mat()} computes a path analysis using correlation matrices as

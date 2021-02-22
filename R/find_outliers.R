@@ -1,22 +1,24 @@
 #' Find possible outliers in a dataset
+#' @description
+#' `r badge('stable')`
 #'
 #' Find possible outliers in the dataset.
 #'
 #'
 #' @param .data The data to be analyzed. Must be a dataframe or an object of
-#'   class \code{split_factors}.
+#'   class `split_factors`.
 #' @param var The variable to be analyzed.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param plots If \code{TRUE}, then histograms and boxplots are shown.
+#' @param plots If `TRUE`, then histograms and boxplots are shown.
 #' @param coef The multiplication coefficient, defaults to 1.5. For more details
-#'   see \code{?boxplot.stat}.
-#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#'   see `?boxplot.stat`.
+#' @param verbose If `verbose = TRUE` then some results are shown in the
 #'   console.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

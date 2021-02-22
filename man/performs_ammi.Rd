@@ -32,7 +32,7 @@ alpha-lattice design (Patterson and Williams, 1976) is employed.
 silently.}
 
 \item{...}{Arguments passed to the function
-\code{\link{impute_missing_val}()} for imputation of missing values in case
+\code{\link[=impute_missing_val]{impute_missing_val()}} for imputation of missing values in case
 of unbalanced data.}
 }
 \value{
@@ -50,6 +50,8 @@ the fitted values in the \code{se.fit} column.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute the Additive Main effects and Multiplicative interaction (AMMI)
 model. The estimate of the response variable for the \emph{i}th genotype in the
 \emph{j}th environment (\mjseqn{y_{ij}}) using the AMMI model, is given as follows:
@@ -64,7 +66,7 @@ eigenvector. A residual \mjseqn{\rho _{ij}} remains, if not all \emph{p} IPCA ar
 used, where \mjseqn{p \le min(g - 1; e - 1)}.
 
 This function also serves as a helper function for other procedures performed
-in the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
+in the \pkg{metan} package such as \code{\link[=waas]{waas()}} and \code{\link[=wsmp]{wsmp()}}
 }
 \examples{
 \donttest{
@@ -100,7 +102,7 @@ Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
-\code{\link{impute_missing_val}}, \code{\link{waas}}, \code{\link{waas_means}}, \code{\link{waasb}}, \code{\link{get_model_data}}
+\code{\link[=impute_missing_val]{impute_missing_val()}}, \code{\link[=waas]{waas()}}, \code{\link[=waas_means]{waas_means()}}, \code{\link[=waasb]{waasb()}}, \code{\link[=get_model_data]{get_model_data()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

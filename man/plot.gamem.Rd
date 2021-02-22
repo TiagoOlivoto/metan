@@ -71,7 +71,7 @@ confidence interval limits.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{alpha}{The transparency of confidence band in the Q-Q plot. Must be a
 number between 0 (opaque) and 1 (full transparency).}
@@ -101,14 +101,13 @@ number between 0 (opaque) and 1 (full transparency).}
 
 \item{bins}{The number of bins to use in the histogram. Default is 30.}
 
-\item{which}{Which graphics should be plotted. Default is \code{which =
-c(1:4)} that means that the first four graphics will be plotted.}
+\item{which}{Which graphics should be plotted. Default is \code{which = c(1:4)} that means that the first four graphics will be plotted.}
 
 \item{ncol, nrow}{The number of columns and rows of the plot pannel. Defaults
 to \code{NULL}}
 
 \item{...}{Additional arguments passed on to the function
-\code{\link[patchwork]{wrap_plots}()}.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 }
 \description{
 Residual plots for a output model of class \code{gamem}. Six types of plots
@@ -116,8 +115,7 @@ are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals,
 (3) scale-location plot (standardized residuals vs Fitted Values), (4)
 standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
 (6) standardized residuals vs observation order. For a \code{waasb} object,
-normal Q-Q plot for random effects may also be obtained declaring \code{type
-= 're'}
+normal Q-Q plot for random effects may also be obtained declaring \code{type = 're'}
 }
 \examples{
 \donttest{

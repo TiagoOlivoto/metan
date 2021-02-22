@@ -16,8 +16,7 @@ environments.}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable(s). To analyze multiple variables at once,
-a vector of variables may be used. For example \code{resp = c(var1, var2,
-  var3)}. Select helpers are also allowed.}
+a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 }
 \value{
 A list where each element is the result for one variable containing:
@@ -29,6 +28,8 @@ environments (columns).
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes genotype-environment interaction means
 }
 \examples{

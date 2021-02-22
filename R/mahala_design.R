@@ -1,4 +1,6 @@
 #' Mahalanobis distance from designed experiments
+#' @description
+#' `r badge('stable')`
 #'
 #' Compute the Mahalanobis distance using data from an experiment conducted in a
 #' randomized complete block design or completely randomized design.
@@ -6,22 +8,22 @@
 #'
 #' @param .data The dataset containing the columns related to Genotypes,
 #'   replication/block and response variables, possible with grouped data passed
-#'   from \code{\link[dplyr]{group_by}()}.
+#'   from [dplyr::group_by()].
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
-#' @param resp The response variables. For example \code{resp = c(var1, var2,
-#'   var3)}.
+#' @param resp The response variables. For example `resp = c(var1, var2,
+#'   var3)`.
 #' @param design The experimental design. Must be RCBD or CRD.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
 #' @param return What the function return? Default is 'distance', i.e., the
 #'   Mahalanobis distance. Alternatively, it is possible to return the matrix of
-#'   means \code{return = 'means'}, or the variance-covariance matrix of
-#'   residuals \code{return = 'covmat'}.
-#' @return A symmetric matrix with the Mahalanobis' distance. If \code{.data} is
-#'   a grouped data passed from \code{\link[dplyr]{group_by}()} then the results
+#'   means `return = 'means'`, or the variance-covariance matrix of
+#'   residuals `return = 'covmat'`.
+#' @return A symmetric matrix with the Mahalanobis' distance. If `.data` is
+#'   a grouped data passed from [dplyr::group_by()] then the results
 #'   will be returned into a list-column of data frames.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

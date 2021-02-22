@@ -1,6 +1,8 @@
 #' Details for genotype-environment trials
+#' @description
+#' `r badge('stable')`
 #'
-#' Details for genotype-environment trials
+#' Provide details for genotype-environment trials
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -8,17 +10,17 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}. Select helpers are also allowed.
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`. Select helpers are also allowed.
 #'
 #' @return A tibble with the following results for each variable:
-#' * \code{Mean}: The grand mean.
-#' * \code{SE}: The standard error of the mean.
-#' * \code{SD}: The standard deviation.
-#' * \code{CV}: The coefficient of variation.
-#' * \code{Min,Max}: The minimum and maximum value, indicating the genotype and environment of occurence.
-#' * \code{MinENV, MinGEN}: The environment and genotype with the lower mean.
-#' * \code{MaxENV, MaxGEN}: The environment and genotype with the higher mean.
+#' * `Mean`: The grand mean.
+#' * `SE`: The standard error of the mean.
+#' * `SD`: The standard deviation.
+#' * `CV`: The coefficient of variation.
+#' * `Min,Max`: The minimum and maximum value, indicating the genotype and environment of occurence.
+#' * `MinENV, MinGEN`: The environment and genotype with the lower mean.
+#' * `MaxENV, MaxGEN`: The environment and genotype with the higher mean.
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

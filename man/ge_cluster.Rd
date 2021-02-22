@@ -70,6 +70,8 @@ genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs clustering for genotypes or tester environments based on a dissimilarity matrix.
 }
 \examples{

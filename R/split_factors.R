@@ -1,4 +1,6 @@
 #' Split a data frame by factors
+#' @description
+#' `r badge('stable')`
 #'
 #' Split a data frame into subsets grouping by one or more factors.
 #'
@@ -8,7 +10,7 @@
 #' @name split_factors
 #' @param .data The data that will be split. Must contain at least one grouping
 #'   variable.
-#' @param x An object to check for class \code{split_factors}.
+#' @param x An object to check for class `split_factors`.
 #' @param ... Comma-separated list of unquoted variable names that will be used
 #'   to split the data.
 #' @param keep_factors Should the grouping columns be kept?
@@ -16,9 +18,9 @@
 #'   If more than one grouping variable is used, then each element is the
 #'   combination of the grouping variables.
 #' @details
-#' * \code{split_factors()} Split a data frame by factors.
-#' * \code{as.splict_factors()} coerce to an object of class \code{split_factors}
-#' * \code{is.splict_factors()} check if an object is of class \code{split_factors}
+#' * `split_factors()` Split a data frame by factors.
+#' * `as.splict_factors()` coerce to an object of class `split_factors`
+#' * `is.splict_factors()` check if an object is of class `split_factors`
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

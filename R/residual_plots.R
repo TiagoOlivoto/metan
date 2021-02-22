@@ -1,24 +1,26 @@
 #' Several types of residual plots
+#' @description
+#' `r badge('stable')`
 #'
-#' Residual plots for a output model of class \code{performs_ammi},
-#' \code{waas},  \code{anova_ind}, and  \code{anova_joint}. Seven types of plots
+#' Residual plots for a output model of class `performs_ammi`,
+#' `waas`,  `anova_ind`, and  `anova_joint`. Seven types of plots
 #' are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals,
 #' (3) scale-location plot (standardized residuals vs Fitted Values), (4)
 #' standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
 #' (6) standardized residuals vs observation order, and (7) 1:1 line plot
 #'
 #'
-#' @param x An object of class \code{performs_ammi}, \code{waas},
-#'   \code{anova_joint}, or  \code{gafem}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
+#' @param x An object of class `performs_ammi`, `waas`,
+#'   `anova_joint`, or  `gafem`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
-#' @param labels Logical argument. If \code{TRUE} labels the points outside
+#' @param labels Logical argument. If `TRUE` labels the points outside
 #' confidence interval limits.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @param band.alpha,point.alpha The transparency of confidence band in the Q-Q
 #'   plot and the points, respectively. Must be a number between 0 (opaque) and
 #'   1 (full transparency).
@@ -32,12 +34,12 @@
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param size.shape The size of the shape in the plots.
 #' @param bins The number of bins to use in the histogram. Default is 30.
-#' @param which Which graphics should be plotted. Default is \code{which =
-#' c(1:4)} that means that the first four graphics will be plotted.
+#' @param which Which graphics should be plotted. Default is `which =
+#' c(1:4)` that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
-#'   to \code{NULL}
+#'   to `NULL`
 #' @param ... Additional arguments passed on to the function
-#'  \code{\link[patchwork]{wrap_plots}()}.
+#'  [patchwork::wrap_plots()].
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -1,4 +1,6 @@
 #' Linear and Partial Correlation Coefficients
+#' @description
+#' `r badge('stable')`
 #'
 #' Estimates the linear and partial correlation coefficients using as input a
 #' data frame or a correlation matrix.
@@ -6,24 +8,24 @@
 #'
 #' @param .data The data to be analyzed. It must be a symmetric correlation
 #'   matrix or a data frame, possible with grouped data passed from
-#'   \code{\link[dplyr]{group_by}()}.
-#' @param ... Variables to use in the correlation. If \code{...} is null
-#'   (Default) then all the numeric variables from \code{.data} are used. It
+#'   [dplyr::group_by()].
+#' @param ... Variables to use in the correlation. If `...` is null
+#'   (Default) then all the numeric variables from `.data` are used. It
 #'   must be a single variable name or a comma-separated list of unquoted
 #'   variables names.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param n If a correlation matrix is provided, then \code{n} is the number of
+#' @param n If a correlation matrix is provided, then `n` is the number of
 #'   objects used to compute the correlation coefficients.
 #' @param method a character string indicating which correlation coefficient is
 #'   to be computed. One of 'pearson' (default), 'kendall', or 'spearman'.
-#' @return If \code{.data} is a grouped data passed from
-#'   \code{\link[dplyr]{group_by}()} then the results will be returned into a
+#' @return If `.data` is a grouped data passed from
+#'   [dplyr::group_by()] then the results will be returned into a
 #'   list-column of data frames, containing:
-#' * \strong{linear.mat} The matrix of linear correlation.
-#' * \strong{partial.mat} The matrix of partial correlations.
-#' * \strong{results} Hypothesis testing for each pairwise comparison.
+#' * **linear.mat** The matrix of linear correlation.
+#' * **partial.mat** The matrix of partial correlations.
+#' * **results** Hypothesis testing for each pairwise comparison.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -131,18 +133,18 @@ lpcor <- function(.data,
 
 #' Print the partial correlation coefficients
 #'
-#' Print an object of class \code{lpcor} or or \code{lpcor_group} in two ways.
+#' Print an object of class `lpcor` or or `lpcor_group` in two ways.
 #' By default, the results are shown in the R console. The results can also be
 #' exported to the directory.
 #'
 #'
-#' @param x An object of class \code{lpcor} or \code{lpcor_group}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
+#' @param x An object of class `lpcor` or `lpcor_group`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported
 #'   to the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print lpcor
 #' @export

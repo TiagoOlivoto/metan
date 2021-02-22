@@ -16,6 +16,8 @@ number of elements in the diagonal of \code{cormat}.}
 A (co)variance matrix
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Given the variances and desired correlations, generate a covariance matrix
 }
 \examples{

@@ -1,28 +1,31 @@
 #' @title Encode variables to a specific format
 #'
-#' @description Function to quick encode vector or columns to a specific format.
-#' * \code{as_numeric()}: Encode columns to numeric using
-#' \code{\link{as.numeric}()}.
-#' * \code{as_integer()}: Encode columns to integer using
-#' \code{\link{as.integer}()}.
-#' * \code{as_logical()}: Encode columns to logical using
-#' \code{\link{as.logical}()}.
-#' * \code{as_character()}: Encode columns to character using
-#' \code{\link{as.character}()}.
-#' * \code{as_factor()}: Encode columns to factor using
-#' \code{\link{as.factor}()}.
+#' @description
+#' `r badge('stable')`
+#'
+#' Function to quick encode vector or columns to a specific format.
+#' * `as_numeric()`: Encode columns to numeric using
+#' [as.numeric()].
+#' * `as_integer()`: Encode columns to integer using
+#' [as.integer()].
+#' * `as_logical()`: Encode columns to logical using
+#' [as.logical()].
+#' * `as_character()`: Encode columns to character using
+#' [as.character()].
+#' * `as_factor()`: Encode columns to factor using
+#' [as.factor()].
 #' @name utils_as
 #' @param .data A data frame or a vector.
-#' @param ... <[`tidy-select`][dplyr_tidy_select]>. If \code{.data} is a data
-#'   frame, then \code{...} are the variable(s) to encode to a format.
-#' @return An object of the same class of \code{.data} with the variables in
-#'   \code{...} encoded to the specified format.
-#' @param .keep Allows you to control which columns from \code{.data} are
+#' @param ... <[`tidy-select`][dplyr_tidy_select]>. If `.data` is a data
+#'   frame, then `...` are the variable(s) to encode to a format.
+#' @return An object of the same class of `.data` with the variables in
+#'   `...` encoded to the specified format.
+#' @param .keep Allows you to control which columns from `.data` are
 #'   retained in the output.
-#' * \code{"all"} (default) retains all variables.
-#' * \code{"used"} keeps any variables used to make new variables.
+#' * `"all"` (default) retains all variables.
+#' * `"used"` keeps any variables used to make new variables.
 #' @param .pull Allows you to pull out the last column of the output. It is
-#'   useful in combination with \code{.keep = "used"}. In this case, a vector
+#'   useful in combination with `.keep = "used"`. In this case, a vector
 #'   will be created with the used column.
 #' @md
 #' @export

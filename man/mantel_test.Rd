@@ -2,7 +2,8 @@
 % Please edit documentation in R/mantel_test.R
 \name{mantel_test}
 \alias{mantel_test}
-\title{Mantel test}
+\title{Mantel test
+\loadmathjax}
 \usage{
 mantel_test(mat1, mat2, nboot = 1000, plot = FALSE)
 }
@@ -24,10 +25,12 @@ distribution.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a Mantel test between two correlation/distance matrices. The
 function calculates the correlation between two matrices, the Z-score that is
 is the sum of the products of the corresponding elements of the matrices and
-a two-tailed p-value (null hypothesis: \code{r = 0}).
+a two-tailed p-value (null hypothesis: \mjsdeqn{r = 0}).
 }
 \examples{
 \donttest{
@@ -41,7 +44,7 @@ mantel_test(A1, A2, plot = TRUE)
 }
 }
 \seealso{
-\code{\link{pairs_mantel}()}
+\code{\link[=pairs_mantel]{pairs_mantel()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

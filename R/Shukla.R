@@ -1,4 +1,6 @@
 #' Shukla's stability variance parameter
+#' @description
+#' `r badge('stable')`
 #'
 #' The function computes the Shukla's stability variance parameter (1972) and
 #' uses the Kang's nonparametric stability (rank sum) to imcorporate the mean
@@ -13,18 +15,18 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{Shukla}, which is a list containing the results for each
-#'   variable used in the argument \code{resp}. For each variable, a tibble with the following
+#' @return An object of class `Shukla`, which is a list containing the results for each
+#'   variable used in the argument `resp`. For each variable, a tibble with the following
 #'   columns is returned.
-#' * \strong{GEN} the genotype's code.
-#' * \strong{Y} the mean for the response variable.
-#' * \strong{ShuklaVar} The Shukla's stability variance parameter.
-#' * \strong{rMean} The rank for \strong{Y} (decreasing).
-#' * \strong{rShukaVar} The rank for \strong{ShukaVar}.
-#' * \strong{ssiShukaVar} The simultaneous selection index (\eqn{ssiShukaVar = rMean + rShukaVar}).
+#' * **GEN** the genotype's code.
+#' * **Y** the mean for the response variable.
+#' * **ShuklaVar** The Shukla's stability variance parameter.
+#' * **rMean** The rank for **Y** (decreasing).
+#' * **rShukaVar** The rank for **ShukaVar**.
+#' * **ssiShukaVar** The simultaneous selection index (\eqn{ssiShukaVar = rMean + rShukaVar}).
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -62,14 +64,7 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
-  }
-  if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <- factors %>%
@@ -91,7 +86,9 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
              rShukaVar = rank(ShuklaVar),
              ssiShukaVar = rMean + rShukaVar)
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- temp
   }
@@ -105,18 +102,18 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 
 #' Print an object of class Shukla
 #'
-#' Print the \code{Shukla} object in two ways. By default, the results
+#' Print the `Shukla` object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x The \code{Shukla} x
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x The `Shukla` x
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print Shukla
 #' @export

@@ -19,7 +19,7 @@ horizontally or not.}
 \code{abline}.}
 }
 \value{
-An object of class \code{gg, ggplot} if \code{type == "cophenetic"}.
+An object of class \verb{gg, ggplot} if \code{type == "cophenetic"}.
 }
 \description{
 Plot an object of class clustering

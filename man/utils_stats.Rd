@@ -102,7 +102,7 @@ sum_by(.data, ..., na.rm = FALSE)
 
 \item{...}{The argument depends on the function used.
 \itemize{
-\item For \code{*_by} functions, \code{...} is one or more categorical variables
+\item For \verb{*_by} functions, \code{...} is one or more categorical variables
 for grouping the data. Then the statistic required will be computed for all
 numeric variables in the data. If no variables are informed in \code{...},
 the statistic will be computed ignoring all non-numeric variables in
@@ -121,13 +121,14 @@ Defaults to 0.95.}
 }
 \value{
 \itemize{
-\item Functions \code{*_by()} returns a tbl_df with the computed statistics by
+\item Functions \verb{*_by()} returns a tbl_df with the computed statistics by
 each level of the factor(s) declared in \code{...}.
 \item All other functions return a nammed integer if the input is a data frame
 or a numeric value if the input is a numeric vector.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \strong{The following functions compute descriptive statistics by levels of
 a factor or combination of factors quickly.}
@@ -141,14 +142,14 @@ a factor or combination of factors quickly.}
 \item \code{sem_by()} For computing standard error of the mean.
 }
 \item \strong{Useful functions for descriptive statistics. All of them work
-naturally with \code{\%>\%}, handle grouped data and multiple variables (all
+naturally with \verb{\\\%>\\\%}, handle grouped data and multiple variables (all
 numeric variables from \code{.data} by default).}
 \itemize{
 \item \code{av_dev()} computes the average absolute deviation.
 \item \code{ci_mean()} computes the confidence interval for the mean.
 \item \code{cv()} computes the coefficient of variation.
 \item \code{freq_table()} Computes frequency fable. Handles grouped data.
-\item \code{hmean(), gmean()} computes the harmonic and geometric means,
+\item \verb{hmean(), gmean()} computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
 products.
@@ -157,20 +158,20 @@ products.
 \item \code{n_valid()} The valid (not \code{NA}) length of a data.
 \item \code{n_unique()} Number of unique values.
 \item \code{n_missing()} Number of missing values.
-\item \code{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
+\item \verb{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
 each variable and a column with the the mean/sum for each row of the data.
-\item \code{sd_amo(), sd_pop()} Computes sample and populational standard
+\item \verb{sd_amo(), sd_pop()} Computes sample and populational standard
 deviation, respectively.
 \item \code{sem()} computes the standard error of the mean.
 \item \code{skew()} computes the skewness like used in SAS and SPSS.
 \item \code{sum_dev()} computes the sum of the absolute deviations.
 \item \code{sum_sq()} computes the sum of the squared values.
 \item \code{sum_sq_dev()} computes the sum of the squared deviations.
-\item \code{var_amo(), var_pop()} computes sample and populational variance.
+\item \verb{var_amo(), var_pop()} computes sample and populational variance.
 }
 }
 
-\code{\link{desc_stat}} is wrapper function around the above ones and can be
+\code{\link[=desc_stat]{desc_stat()}} is wrapper function around the above ones and can be
 used to compute quickly all these statistics at once.
 }
 \examples{

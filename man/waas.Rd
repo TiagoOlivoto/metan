@@ -32,8 +32,7 @@ environments.}
 replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
@@ -55,8 +54,7 @@ performance and stability (i.e., \code{wresp = 50}). It must be a numeric
 vector of the same length of \code{resp} to assign different weights across
 variables, e.g., if for the first variable equal weights for mean
 performance and stability are assumed and for the second one, a higher
-weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50,
-  65)} must be used. Numeric value of length 1 will be recycled with a
+weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50, 65)} must be used. Numeric value of length 1 will be recycled with a
 warning message.}
 
 \item{prob}{The p-value for considering an interaction principal component
@@ -106,10 +104,11 @@ the fitted values in the \code{se.fit} column.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et
 al., 2019).
-}
-\details{
+
 This function compute the weighted average of absolute scores, estimated as
 follows:
 \loadmathjax
@@ -195,7 +194,7 @@ multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 }
 \seealso{
-\code{\link{waas_means}} \code{\link{waasb}} \code{\link{get_model_data}}
+\code{\link[=waas_means]{waas_means()}} \code{\link[=waasb]{waasb()}} \code{\link[=get_model_data]{get_model_data()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

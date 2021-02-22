@@ -16,7 +16,7 @@ Smith_Hazel(
 \arguments{
 \item{.data}{The input data. It can be either a two-way table with genotypes
 in rows and traits in columns, or an object fitted with the function
-\code{\link{gamem}()}. Please, see \strong{Details} for more details.}
+\code{\link[=gamem]{gamem()}}. Please, see \strong{Details} for more details.}
 
 \item{use_data}{Define which data to use If \code{.data} is an object of
 class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
@@ -44,6 +44,8 @@ An object of class \code{hz} containing:
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the Smith (1936) and Hazel (1943) index given economic weights and
 phenotypic and genotypic variance-covariance matrices. The Smith-Hazel index
 is computed as follows:
@@ -89,7 +91,7 @@ Genetics 28:476-90.
 \href{https://pubmed.ncbi.nlm.nih.gov/17247099/}{PMID:17247099}
 }
 \seealso{
-\code{\link{mtsi}}, \code{\link{mgidi}}, \code{\link{fai_blup}}
+\code{\link[=mtsi]{mtsi()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=fai_blup]{fai_blup()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

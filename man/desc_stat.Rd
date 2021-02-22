@@ -22,7 +22,7 @@ desc_wider(.data, which)
 }
 \arguments{
 \item{.data}{The data to be analyzed. It can be a data frame (possible with
-grouped data passed from \code{\link[dplyr]{group_by}()} or a numeric
+grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}} or a numeric
 vector. For \code{desc_wider()} \code{.data} is an object of class
 \code{desc_stat}.}
 
@@ -31,7 +31,7 @@ variables names. If no variable is informed, all the numeric variables from
 \code{.data} will be used. Select helpers are allowed.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{stats}{The descriptive statistics to show. This is used to filter the
@@ -58,21 +58,20 @@ following:
 \item \code{"n.missing"}: The number of missing values
 \item \code{"n.unique"}: The length of unique elements.
 \item \code{"ps"}: the pseudo-sigma (iqr / 1.35).
-\item \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\\%, first
+\item \verb{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\\%, first
 quartile, third quartile, and percentile 97.5\\%, respectively.
 \item \code{range}: The range of data).
-\item \code{"sd.amo", "sd.pop"}: the sample and population standard deviation.
+\item \verb{"sd.amo", "sd.pop"}: the sample and population standard deviation.
 \item \code{"se"}: the standard error of the mean.
 \item \code{"skew"}: skewness.
 \item \code{"sum"}. the sum of the values.
 \item \code{"sum.dev"}: the sum of the absolute deviations.
 \item \code{"sum.sq.dev"}: the sum of the squared deviations.
 \item \code{"n.valid"}: The size of sample with valid number (not NA).
-\item \code{"var.amo", "var.pop"}: the sample and population variance.
+\item \verb{"var.amo", "var.pop"}: the sample and population variance.
 }
 
-Use a names to select the statistics. For example, \code{stats = c("median,
- mean, cv, n")}. Note that the statistic names \strong{are not}
+Use a names to select the statistics. For example, \code{stats = c("median, mean, cv, n")}. Note that the statistic names \strong{are not}
 case-sensitive. Both comma or space can be used as separator.}
 
 \item{hist}{Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
@@ -90,7 +89,7 @@ silently.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{which}{A statistic to fill the table.}
 }
@@ -103,6 +102,7 @@ factors in rows.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{desc_stat()} Computes the most used measures of central tendency,
 position, and dispersion.

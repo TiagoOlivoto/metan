@@ -1,76 +1,78 @@
 #'Descriptive statistics
+#' @description
+#' `r badge('stable')`
 #'
-#'* \code{desc_stat()} Computes the most used measures of central tendency,
+#'* `desc_stat()` Computes the most used measures of central tendency,
 #'position, and dispersion.
-#'* \code{desc_wider()} is useful to put the variables in columns and grouping
+#'* `desc_wider()` is useful to put the variables in columns and grouping
 #'variables in rows. The table is filled with a statistic chosen with the
-#'argument \code{stat}.
+#'argument `stat`.
 #'
 #'@name desc_stat
 #'@param .data The data to be analyzed. It can be a data frame (possible with
-#'  grouped data passed from \code{\link[dplyr]{group_by}()} or a numeric
-#'  vector. For \code{desc_wider()} \code{.data} is an object of class
-#'  \code{desc_stat}.
+#'  grouped data passed from [dplyr::group_by()] or a numeric
+#'  vector. For `desc_wider()` `.data` is an object of class
+#'  `desc_stat`.
 #'@param ... A single variable name or a comma-separated list of unquoted
 #'  variables names. If no variable is informed, all the numeric variables from
-#'  \code{.data} will be used. Select helpers are allowed.
+#'  `.data` will be used. Select helpers are allowed.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
 #'@param stats The descriptive statistics to show. This is used to filter the
-#'  output after computation. Defaults to \code{"main"} (cv, max, mean median,
-#'  min, sd.amo, se, ci ). Other allowed values are \code{"all"} to
-#'  show all the statistics, \code{"robust"} to show robust statistics,
-#'  \code{"quantile"} to show quantile statistics, or chose one (or more) of the
+#'  output after computation. Defaults to `"main"` (cv, max, mean median,
+#'  min, sd.amo, se, ci ). Other allowed values are `"all"` to
+#'  show all the statistics, `"robust"` to show robust statistics,
+#'  `"quantile"` to show quantile statistics, or chose one (or more) of the
 #'  following:
-#'  * \code{"av.dev"}: average deviation.
-#'  * \code{"ci"}: 95 percent confidence interval of the mean.
-#'  * \code{"cv"}: coefficient of variation.
-#'  * \code{"iqr"}: interquartile range.
-#'  * \code{"gmean"}: geometric mean.
-#'  * \code{"hmean"}: harmonic mean.
-#'  * \code{"Kurt"}: kurtosis.
-#'  * \code{"mad"}: median absolute deviation.
-#'  * \code{"max"}: maximum value.
-#'  * \code{"mean"}: arithmetic mean.
-#'  * \code{"median"}: median.
-#'  * \code{"min"}: minimum value.
-#'  * \code{"n"}: the length of the data.
-#'  * \code{"n.valid"}: The valid (Not \code{NA}) number of elements
-#'  * \code{"n.missing"}: The number of missing values
-#'  * \code{"n.unique"}: The length of unique elements.
-#'  * \code{"ps"}: the pseudo-sigma (iqr / 1.35).
-#'  * \code{"q2.5", "q25", "q75", "q97.5"}: the percentile 2.5\%, first
+#'  * `"av.dev"`: average deviation.
+#'  * `"ci"`: 95 percent confidence interval of the mean.
+#'  * `"cv"`: coefficient of variation.
+#'  * `"iqr"`: interquartile range.
+#'  * `"gmean"`: geometric mean.
+#'  * `"hmean"`: harmonic mean.
+#'  * `"Kurt"`: kurtosis.
+#'  * `"mad"`: median absolute deviation.
+#'  * `"max"`: maximum value.
+#'  * `"mean"`: arithmetic mean.
+#'  * `"median"`: median.
+#'  * `"min"`: minimum value.
+#'  * `"n"`: the length of the data.
+#'  * `"n.valid"`: The valid (Not `NA`) number of elements
+#'  * `"n.missing"`: The number of missing values
+#'  * `"n.unique"`: The length of unique elements.
+#'  * `"ps"`: the pseudo-sigma (iqr / 1.35).
+#'  * `"q2.5", "q25", "q75", "q97.5"`: the percentile 2.5\%, first
 #'  quartile, third quartile, and percentile 97.5\%, respectively.
-#'  * \code{range}: The range of data).
-#'  * \code{"sd.amo", "sd.pop"}: the sample and population standard deviation.
-#'  * \code{"se"}: the standard error of the mean.
-#'  * \code{"skew"}: skewness.
-#'  * \code{"sum"}. the sum of the values.
-#'  * \code{"sum.dev"}: the sum of the absolute deviations.
-#'  * \code{"sum.sq.dev"}: the sum of the squared deviations.
-#'  * \code{"n.valid"}: The size of sample with valid number (not NA).
-#'  * \code{"var.amo", "var.pop"}: the sample and population variance.
+#'  * `range`: The range of data).
+#'  * `"sd.amo", "sd.pop"`: the sample and population standard deviation.
+#'  * `"se"`: the standard error of the mean.
+#'  * `"skew"`: skewness.
+#'  * `"sum"`. the sum of the values.
+#'  * `"sum.dev"`: the sum of the absolute deviations.
+#'  * `"sum.sq.dev"`: the sum of the squared deviations.
+#'  * `"n.valid"`: The size of sample with valid number (not NA).
+#'  * `"var.amo", "var.pop"`: the sample and population variance.
 #'
-#'  Use a names to select the statistics. For example, \code{stats = c("median,
-#'  mean, cv, n")}. Note that the statistic names \strong{are not}
+#'  Use a names to select the statistics. For example, `stats = c("median,
+#'  mean, cv, n")`. Note that the statistic names **are not**
 #'  case-sensitive. Both comma or space can be used as separator.
-#'@param hist Logical argument defaults to \code{FALSE}. If \code{hist = TRUE}
+#'@param hist Logical argument defaults to `FALSE`. If `hist = TRUE`
 #'  then a histogram is created for each selected variable.
 #'@param level The confidence level to compute the confidence interval of mean.
 #'  Defaults to 0.95.
 #'@param digits The number of significant digits.
-#'@param na.rm Logical. Should missing values be removed? Defaults to \code{FALSE}.
-#'@param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#'@param na.rm Logical. Should missing values be removed? Defaults to `FALSE`.
+#'@param verbose Logical argument. If `verbose = FALSE` the code is run
 #'  silently.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #'@param which A statistic to fill the table.
 #'@return
-#' * \code{desc_stats()} returns a tibble with the statistics in the columns and
+#' * `desc_stats()` returns a tibble with the statistics in the columns and
 #' variables (with possible grouping factors) in rows.
-#' * \code{desc_wider()} returns a tibble with variables in columns and grouping
+#' * `desc_wider()` returns a tibble with variables in columns and grouping
 #' factors in rows.
 #'@md
 #'@author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

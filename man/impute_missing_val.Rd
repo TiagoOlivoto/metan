@@ -51,6 +51,8 @@ principal components
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Impute the missing entries of a matrix with missing values using different
 algorithms. See \strong{Details} section for more details
 }

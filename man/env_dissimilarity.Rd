@@ -19,8 +19,7 @@ environments.}
 replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}. Select helpers are also allowed.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 }
 \value{
 A list with the following matrices:
@@ -46,6 +45,8 @@ each pair of environment.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the dissimilarity between environments based on several approaches.
 See the section \strong{details} for more details.
 }

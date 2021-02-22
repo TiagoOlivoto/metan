@@ -1,4 +1,6 @@
 #' Collinearity Diagnostics
+#' @description
+#' `r badge('stable')`
 #'
 #' Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
 #' variables using several indicators, as shown by Olivoto et al. (2017).
@@ -6,45 +8,45 @@
 #'
 #' @param .data The data to be analyzed. It must be a symmetric correlation
 #'   matrix, or a data frame, possible with grouped data passed from
-#'   \code{\link[dplyr]{group_by}()}.
-#' @param ... Variables to use in the correlation. If \code{...} is null then
-#'   all the numeric variables from \code{.data} are used. It must be a single
+#'   [dplyr::group_by()].
+#' @param ... Variables to use in the correlation. If `...` is null then
+#'   all the numeric variables from `.data` are used. It must be a single
 #'   variable name or a comma-separated list of unquoted variables names.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param n If a correlation matrix is provided, then \code{n} is the number of
+#' @param n If a correlation matrix is provided, then `n` is the number of
 #'   objects used to compute the correlation coefficients.
 #' @return
 #'
-#' If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+#' If `.data` is a grouped data passed from [dplyr::group_by()]
 #' then the results will be returned into a list-column of data frames.
 #'
-#' * \strong{cormat} A symmetric Pearson's coefficient correlation matrix
+#' * **cormat** A symmetric Pearson's coefficient correlation matrix
 #' between the variables
 #'
-#' * \strong{corlist} A hypothesis testing for each of the correlation
+#' * **corlist** A hypothesis testing for each of the correlation
 #' coefficients
 #'
-#' * \strong{evalevet} The eigenvalues with associated eigenvectors of the
+#' * **evalevet** The eigenvalues with associated eigenvectors of the
 #' correlation matrix
 #'
-#' * \strong{VIF} The Variance Inflation Factors, being the diagonal elements of
+#' * **VIF** The Variance Inflation Factors, being the diagonal elements of
 #' the inverse of the correlation matrix.
 #'
-#' * \strong{CN} The Condition Number of the correlation matrix, given by the
+#' * **CN** The Condition Number of the correlation matrix, given by the
 #' ratio between the largest and smallest eigenvalue.
 #'
-#' * \strong{det} The determinant of the correlation matrix.
+#' * **det** The determinant of the correlation matrix.
 #'
-#' * \strong{ncorhigh} Number of correlation greather than |0.8|.
+#' * **ncorhigh** Number of correlation greather than |0.8|.
 #'
-#' * \strong{largest_corr} The largest correlation (in absolute value) observed.
+#' * **largest_corr** The largest correlation (in absolute value) observed.
 #'
-#' * \strong{smallest_corr} The smallest correlation (in absolute value)
+#' * **smallest_corr** The smallest correlation (in absolute value)
 #' observed.
 #'
-#' * \strong{weight_var} The variables with largest eigenvector (largest weight)
+#' * **weight_var** The variables with largest eigenvector (largest weight)
 #' in the eigenvalue of smallest value, sorted in decreasing order.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -186,18 +188,18 @@ colindiag <- function(.data,
 
 #' Print an object of class colindiag
 #'
-#' Print the \code{colindiag} object in two ways. By default, the results
+#' Print the `colindiag` object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x The object of class \code{colindiag}
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x The object of class `colindiag`
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print colindiag
 #' @export

@@ -52,9 +52,10 @@ prediction difference between predicted and validating data. *
 \strong{RMSPDmean} The mean of RMSPDmean estimates.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Cross-validation for blup prediction.
-}
-\details{
+
 This function provides a cross-validation procedure for mixed models using
 replicate-based data. By default, complete blocks are randomly selected
 within each environment. In each iteration, the original dataset is split up
@@ -64,7 +65,8 @@ combinations (genotype x environment) with R - 1 replications. The
 compared with the 'validation' data and the Root Means Square Prediction
 Difference (Olivoto et al. 2019) is computed. At the end of boots, a list is
 returned.
-
+}
+\details{
 Six models may be fitted depending upon the values in \code{block}
 and \code{random} arguments.
 \itemize{
@@ -83,20 +85,17 @@ model considers a Randomized Complete Block Design in each environment
 assuming a random-effect model, i.e., all effects (genotypes, environments,
 genotype-vs-environment interaction and blocks nested within environments)
 are assumed to be random factors.
-\item \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =
-  "gen"}. This model considers an alpha-lattice design in each environment
+\item \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =   "gen"}. This model considers an alpha-lattice design in each environment
 assuming genotype, genotype-environment interaction, and incomplete blocks
 nested within complete replicates as random to make use of inter-block
 information (Mohring et al., 2015). Complete replicates nested within
 environments and environments are assumed to be fixed factors.
-\item \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =
-  "env"}. This model considers an alpha-lattice design in each environment
+\item \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =   "env"}. This model considers an alpha-lattice design in each environment
 assuming genotype as fixed. All other sources of variation (environment,
 genotype-environment interaction, complete replicates nested within
 environments, and incomplete blocks nested within replicates) are assumed
 to be random factors.
-\item \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =
-  "all"}. This model considers an alpha-lattice design in each environment
+\item \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =   "all"}. This model considers an alpha-lattice design in each environment
 assuming all effects, except the intercept, as random factors.
 }
 
@@ -134,7 +133,7 @@ information: to recover or not to recover it? TAG. Theor. Appl. Genet.
 \doi{10.1007/s00122-015-2530-0}
 }
 \seealso{
-\code{\link{cv_ammi}}, \code{\link{cv_ammif}}
+\code{\link[=cv_ammi]{cv_ammi()}}, \code{\link[=cv_ammif]{cv_ammif()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

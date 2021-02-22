@@ -26,8 +26,7 @@ environments.}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}. Select helpers are also allowed.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 
 \item{mresp}{The new maximum value after rescaling the response variable. By
 default, all variables in \code{resp} are rescaled so that de maximum value
@@ -47,15 +46,15 @@ Interaction Principal Compoment Axis are iteractively retained up to the
 explained variance (eigenvalues in the singular value decomposition of the
 matrix with the interaction effects) be greather than or equal to
 \code{min_expl_var}. For example, if the explained variance (in percentage)
-in seven possible IPCAs are \code{56, 21, 9, 6, 4, 3, 1}, resulting in a
-cumulative proportion of \code{56,  77,  86,  92,  96, 99, 100}, then
+in seven possible IPCAs are \verb{56, 21, 9, 6, 4, 3, 1}, resulting in a
+cumulative proportion of \verb{56,  77,  86,  92,  96, 99, 100}, then
 \code{p = 3}, i.e., three IPCAs will be used to compute the index WAAS.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}
 
 \item{...}{Arguments passed to the function
-\code{\link{impute_missing_val}()} for imputation of missing values in case
+\code{\link[=impute_missing_val]{impute_missing_val()}} for imputation of missing values in case
 of unbalanced data.}
 }
 \value{
@@ -75,13 +74,14 @@ of the matrix withe the genotype-environment interaction effects.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
 on means for genotype-environment data as follows:
 \loadmathjax
 \mjsdeqn{WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
 1}^{p}EP_k}
-}
-\details{
+
 where \mjseqn{WAAS_i} is the weighted average of absolute scores of the
 \emph{i}th genotype; \mjseqn{PCA_{ik}} is the score of the \emph{i}th genotype
 in the \emph{k}th IPCA; and \mjseqn{EP_k} is the explained variance of the \emph{k}th
@@ -119,7 +119,7 @@ multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 }
 \seealso{
-\code{\link{waas} \link{waasb}}
+\code{\link[=waas]{waas()}} \code{\link[=waasb]{waasb()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

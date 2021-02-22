@@ -1,12 +1,15 @@
 #' @title Power Law Residuals as yield stability index
 #' \loadmathjax
-#' @description Performs a stability analysis based on the Power Law Residuals
-#'   (POLAR) statistics (Doring et al., 2015). POLAR is the residuals from the
-#'   linear regression of \mjseqn{log(\sigma^2}) against \mjseqn{log(\mu}) and
-#'   can be used as a measure of crop stability with lower stability (relative
-#'   to all samples with that mean yield) indicated by more positive POLAR
-#'   values, and higher stability (relative to all samples with that mean yield)
-#'   indicated by more negative POLAR values.
+#' @description
+#' `r badge('stable')`
+#'
+#' Performs a stability analysis based on the Power Law Residuals (POLAR)
+#' statistics (Doring et al., 2015). POLAR is the residuals from the linear
+#' regression of \mjseqn{log(\sigma^2}) against \mjseqn{log(\mu}) and can be
+#' used as a measure of crop stability with lower stability (relative to all
+#' samples with that mean yield) indicated by more positive POLAR values, and
+#' higher stability (relative to all samples with that mean yield) indicated by
+#' more negative POLAR values.
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -15,17 +18,17 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
 #' @param base The base with respect to which logarithms are computed. Defaults
-#'   to \code{10}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   to `10`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{ge_acv}, which is a list containing the
-#'   results for each variable used in the argument \code{resp}. For each
+#' @return An object of class `ge_acv`, which is a list containing the
+#'   results for each variable used in the argument `resp`. For each
 #'   variable, a tibble with the following columns is returned.
-#' * \strong{GEN} the genotype's code.
-#' * \strong{POLAR} The Power Law Residuals
-#' * \strong{POLAR_R} The rank for the ACV value.
+#' * **GEN** the genotype's code.
+#' * **POLAR** The Power Law Residuals
+#' * **POLAR_R** The rank for the ACV value.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Doring, T.F., S. Knapp, and J.E. Cohen. 2015. Taylor's power law
@@ -53,9 +56,7 @@ ge_polar <- function(.data, env, gen, resp, base = 10, verbose = TRUE) {
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <-
@@ -78,7 +79,9 @@ ge_polar <- function(.data, env, gen, resp, base = 10, verbose = TRUE) {
       POLAR_R = rank(ui)
     )
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- results
   }

@@ -41,6 +41,8 @@ unfavorable environments.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Stability analysis using the known genotypic confidence index (Annicchiarico,
 1992).
 }
@@ -61,7 +63,7 @@ Annicchiarico, P. 1992. Cultivar adaptation and recommendation
 from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.
 }
 \seealso{
-\code{\link{superiority}, \link{ecovalence}, \link{ge_stats}}
+\code{\link[=superiority]{superiority()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=ge_stats]{ge_stats()}}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

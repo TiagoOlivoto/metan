@@ -24,7 +24,7 @@ plot_waasby(
 )
 }
 \arguments{
-\item{x}{The \code{WAASBY object}}
+\item{x}{The \verb{WAASBY object}}
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
@@ -32,7 +32,7 @@ variable of \code{x}.}
 \item{export}{Export (or not) the plot. Default is \code{T}.}
 
 \item{file.type}{The type of file to be exported. Default is \code{pdf},
-Graphic can also be exported in \code{*.tiff} format by declaring
+Graphic can also be exported in \verb{*.tiff} format by declaring
 \code{file.type = "tiff"}.}
 
 \item{file.name}{The name of the file for exportation, default is
@@ -40,7 +40,7 @@ Graphic can also be exported in \code{*.tiff} format by declaring
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{width}{The width "inch" of the plot. Default is \code{8}.}
 
@@ -60,8 +60,7 @@ genotypes above and below of the mean, respectively. Default is
 \code{"Genotypes"}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-c(breaks)}}
+\verb{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
@@ -69,9 +68,11 @@ c(breaks)}}
 \item{...}{Currently not used.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Plot heat maps with genotype ranking in two ways.
 }
 \examples{
@@ -99,7 +100,7 @@ plot_waasby(waasby2) +
 
 }
 \seealso{
-\code{\link{plot_scores}}
+\code{\link[=plot_scores]{plot_scores()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

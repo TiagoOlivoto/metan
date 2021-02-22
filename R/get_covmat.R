@@ -1,10 +1,12 @@
 #' Generate a covariance matrix
+#' @description
+#' `r badge('stable')`
 #'
 #' Given the variances and desired correlations, generate a covariance matrix
 #'
 #' @param cormat A symmetric matrix with desired correlations.
 #' @param var A numeric vector with variances. It must have length equal to the
-#'   number of elements in the diagonal of \code{cormat}.
+#'   number of elements in the diagonal of `cormat`.
 #'
 #' @return A (co)variance matrix
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

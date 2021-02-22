@@ -1,4 +1,6 @@
 #' Genotype analysis by mixed-effect models
+#' @description
+#' `r badge('stable')`
 #'
 #' Analysis of genotypes in single experiments using mixed-effect models with
 #' estimation of genetic parameters.
@@ -11,88 +13,88 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications (assumed to be fixed).
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure a vector of variables may be used. For example \code{resp =
-#' c(var1, var2, var3)}. Select helpers are also allowed.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#' single procedure a vector of variables may be used. For example `resp =
+#' c(var1, var2, var3)`. Select helpers are also allowed.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then an alpha-lattice
 #'   design is employed considering block as random to make use of inter-block
 #'   information, whereas the complete replicate effect is always taken as
 #'   fixed, as no inter-replicate information was to be recovered (Mohring et
 #'   al., 2015).
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  to [dplyr::group_by()].This is especially useful, for example,
 #'  when the researcher want to fit a mixed-effect model for each environment.
 #'  In this case, an object of class gamem_grouped is returned.
-#'  \code{\link{mgidi}} can then be used to compute the mgidi index within each
+#'  [mgidi()] can then be used to compute the mgidi index within each
 #'  environment.
 #' @param prob The probability for estimating confidence interval for BLUP's
 #'   prediction.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code are run
+#' @param verbose Logical argument. If `verbose = FALSE` the code are run
 #' silently.
 #' @references Mohring, J., E. Williams, and H.-P. Piepho. 2015. Inter-block information:
 #' to recover or not to recover it? TAG. Theor. Appl. Genet. 128:1541-54.
 #'  \doi{10.1007/s00122-015-2530-0}
 
-#' @return An object of class \code{gamem} or \code{gamem_grouped}, which is a
+#' @return An object of class `gamem` or `gamem_grouped`, which is a
 #'   list with the following items for each element (variable):
-#'  * \strong{fixed:} Test for fixed effects.
+#'  * **fixed:** Test for fixed effects.
 #'
-#'  * \strong{random:} Variance components for random effects.
+#'  * **random:** Variance components for random effects.
 #'
-#'  * \strong{LRT:} The Likelihood Ratio Test for the random effects.
+#'  * **LRT:** The Likelihood Ratio Test for the random effects.
 #'
-#'  * \strong{BLUPgen:} The estimated BLUPS for genotypes
+#'  * **BLUPgen:** The estimated BLUPS for genotypes
 #'
-#'  * \strong{ranef:} The random effects of the model
+#'  * **ranef:** The random effects of the model
 #'
-#'  * \strong{Details:} A tibble with the following data: \code{Ngen}, the
-#'  number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
-#'  observed (returning the genotype and replication/block); \code{Max} the
-#'  maximum observed, \code{MinGEN} the winner genotype, \code{MaxGEN}, the
+#'  * **Details:** A tibble with the following data: `Ngen`, the
+#'  number of genotypes; `OVmean`, the grand mean; `Min`, the minimum
+#'  observed (returning the genotype and replication/block); `Max` the
+#'  maximum observed, `MinGEN` the winner genotype, `MaxGEN`, the
 #'  loser genotype.
 #'
-#' * \strong{ESTIMATES:} A tibble with the values:
-#'    - \code{Gen_var}, the genotypic variance and ;
-#'    - \code{rep:block_var} block-within-replicate variance (if
-#' an alpha-lattice design is used by informing the block in \code{block});
-#'    - \code{Res_var}, the residual variance;
-#'    - \code{Gen (%), rep:block (%), and Res (%)} the respective contribution
+#' * **ESTIMATES:** A tibble with the values:
+#'    - `Gen_var`, the genotypic variance and ;
+#'    - `rep:block_var` block-within-replicate variance (if
+#' an alpha-lattice design is used by informing the block in `block`);
+#'    - `Res_var`, the residual variance;
+#'    - `Gen (%), rep:block (%), and Res (%)` the respective contribution
 #'    of variance components to the phenotypic variance;
-#'    - \code{H2}, broad-sense heritability;
-#'    - \code{h2mg}, heritability on the entry-mean basis;
-#'    - \code{Accuracy}, the accuracy of selection (square root of
-#' \code{h2mg});
-#'    - \code{CVg}, genotypic coefficient of variation;
-#'    - \code{CVr}, residual coefficient of variation;
-#'    - \code{CV ratio}, the ratio between genotypic and residual coefficient of
+#'    - `H2`, broad-sense heritability;
+#'    - `h2mg`, heritability on the entry-mean basis;
+#'    - `Accuracy`, the accuracy of selection (square root of
+#' `h2mg`);
+#'    - `CVg`, genotypic coefficient of variation;
+#'    - `CVr`, residual coefficient of variation;
+#'    - `CV ratio`, the ratio between genotypic and residual coefficient of
 #' variation.
 #'
-#'  * \strong{residuals:} The residuals of the model.
+#'  * **residuals:** The residuals of the model.
 #'
-#'  * \strong{formula} The formula used to fit the model.
+#'  * **formula** The formula used to fit the model.
 #'
-#' @details \code{gamem} analyses data from a one-way genotype testing experiment.
+#' @details `gamem` analyses data from a one-way genotype testing experiment.
 #' By default, a randomized complete block design is used according to the following model:
 #' \loadmathjax
 #' \mjsdeqn{Y_{ij} = m + g_i + r_j + e_{ij}}
-#' where \mjseqn{Y_{ij}} is the response variable of the ith genotype in the \emph{j}th block;
-#'  \emph{m} is the grand mean (fixed); \mjseqn{g_i} is the effect of the \emph{i}th genotype
-#'  (assumed to be random); \mjseqn{r_j} is the effect of the \emph{j}th replicate (assumed to be fixed);
+#' where \mjseqn{Y_{ij}} is the response variable of the ith genotype in the *j*th block;
+#'  *m* is the grand mean (fixed); \mjseqn{g_i} is the effect of the *i*th genotype
+#'  (assumed to be random); \mjseqn{r_j} is the effect of the *j*th replicate (assumed to be fixed);
 #'  and \mjseqn{e_{ij}} is the random error.
 #'
-#' When \code{block} is informed, then a resolvable alpha design is implemented, according to the following model:
+#' When `block` is informed, then a resolvable alpha design is implemented, according to the following model:
 #'
 #' \mjsdeqn{Y_{ijk} = m + g_i + r_j + b_{jk} + e_{ijk}}
-#' where where \mjseqn{y_{ijk}} is the response variable of the \emph{i}th genotype in the
-#' \emph{k}th block of the \emph{j}th replicate; \emph{m} is the intercept, \mjseqn{t_i} is
-#'  the effect for the \emph{i}th genotype \mjseqn{r_j} is the effect of the \emph{j}th
-#'  replicate, \mjseqn{b_{jk}} is the effect of the \emph{k}th incomplete block of
-#'  the \emph{j}th replicate, and \mjseqn{e_{ijk}} is the plot error effect
+#' where where \mjseqn{y_{ijk}} is the response variable of the *i*th genotype in the
+#' *k*th block of the *j*th replicate; *m* is the intercept, \mjseqn{t_i} is
+#'  the effect for the *i*th genotype \mjseqn{r_j} is the effect of the *j*th
+#'  replicate, \mjseqn{b_{jk}} is the effect of the *k*th incomplete block of
+#'  the *j*th replicate, and \mjseqn{e_{ijk}} is the plot error effect
 #'  corresponding to \mjseqn{y_{ijk}}.
 #'
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{get_model_data}} \code{\link{waasb}}
+#' @seealso [get_model_data()] [waasb()]
 #' @export
 #' @examples
 #'\donttest{
@@ -186,9 +188,7 @@ if(is_grouped_df(.data)){
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
-      pb <- progress_bar$new(
-        format = "Evaluating the variable :what [:bar]:percent (:eta left )",
-        clear = FALSE, total = nvar, width = 90)
+      pb <- progress(max = nvar, style = 4)
     }
     model_formula <- "Y ~ REP + (1 | GEN)"
     ran_ef <- c("GEN")
@@ -296,7 +296,9 @@ if(is_grouped_df(.data)){
       class = "gamem"
       )
       if (verbose == TRUE) {
-        pb$tick(tokens = list(what = names(vars[var])))
+        run_progress(pb,
+                     actual = var,
+                     text = paste("Evaluating trait", names(vars[var])))
       }
       listres[[paste(names(vars[var]))]] <- temp
     }
@@ -312,9 +314,7 @@ if(is_grouped_df(.data)){
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
-      pb <- progress_bar$new(
-        format = "Evaluating the variable :what [:bar]:percent",
-        clear = FALSE, total = nvar, width = 90)
+      pb <- progress(max = nvar, style = 4)
     }
     model_formula <- "Y ~ (1 | GEN) + REP + (1 | REP:BLOCK)"
     ran_ef <- c("GEN, BLOCK(REP)")
@@ -434,7 +434,9 @@ if(is_grouped_df(.data)){
       class = "gamem"
       )
       if (verbose == TRUE) {
-        pb$tick(tokens = list(what = names(vars[var])))
+        run_progress(pb,
+                     actual = var,
+                     text = paste("Evaluating trait", names(vars[var])))
       }
       listres[[paste(names(vars[var]))]] <- temp
     }
@@ -478,17 +480,17 @@ if(is_grouped_df(.data)){
 
 #' Print an object of class gamem
 #'
-#' Print the \code{gamem} object in two ways. By default, the results are shown
+#' Print the `gamem` object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object fitted with the function \code{\link{gamem}} .
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object fitted with the function [gamem()] .
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print gamem
 #' @export
@@ -550,10 +552,10 @@ print.gamem <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 
 #' Predict method for gamem fits
 #'
-#' Obtains predictions from an object fitted with \code{\link{gamem}}.
+#' Obtains predictions from an object fitted with [gamem()].
 #'
 #'
-#' @param object An object of class \code{gamem}
+#' @param object An object of class `gamem`
 #' @param ... Currently not used
 #' @return A tibble with the predicted values for each variable in the model
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -581,27 +583,27 @@ predict.gamem <- function(object, ...) {
 
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{gamem}. Six types of plots
+#' Residual plots for a output model of class `gamem`. Six types of plots
 #' are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals,
 #' (3) scale-location plot (standardized residuals vs Fitted Values), (4)
 #' standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
-#' (6) standardized residuals vs observation order. For a \code{waasb} object,
-#' normal Q-Q plot for random effects may also be obtained declaring \code{type
-#' = 're'}
+#' (6) standardized residuals vs observation order. For a `waasb` object,
+#' normal Q-Q plot for random effects may also be obtained declaring `type
+#' = 're'`
 #'
 #'
-#' @param x An object of class \code{gamem}.
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param type One of the \code{"res"} to plot the model residuals (default),
-#'   \code{type = 're'} to plot normal Q-Q plots for the random effects, or
-#'   \code{"vcomp"} to create a bar plot with the variance components.
-#' @param position The position adjustment when \code{type = "vcomp"}. Defaults
-#'   to \code{"fill"}, which shows relative proportions at each trait by
+#' @param x An object of class `gamem`.
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param type One of the `"res"` to plot the model residuals (default),
+#'   `type = 're'` to plot normal Q-Q plots for the random effects, or
+#'   `"vcomp"` to create a bar plot with the variance components.
+#' @param position The position adjustment when `type = "vcomp"`. Defaults
+#'   to `"fill"`, which shows relative proportions at each trait by
 #'   stacking the bars and then standardizing each bar to have the same height.
-#'   Use \code{position = "stack"} to plot the phenotypic variance for each
+#'   Use `position = "stack"` to plot the phenotypic variance for each
 #'   trait.
-#' @param rotate Logical argument. If \code{rotate = TRUE} the plot is rotated,
+#' @param rotate Logical argument. If `rotate = TRUE` the plot is rotated,
 #'   i.e., traits in y axis and value in the x axis.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
@@ -611,11 +613,11 @@ predict.gamem <- function(object, ...) {
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param labels Logical argument. If \code{TRUE} labels the points outside
+#' @param labels Logical argument. If `TRUE` labels the points outside
 #' confidence interval limits.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @param alpha The transparency of confidence band in the Q-Q plot. Must be a
 #' number between 0 (opaque) and 1 (full transparency).
 #' @param fill.hist The color to fill the histogram. Default is 'gray'.
@@ -626,17 +628,17 @@ predict.gamem <- function(object, ...) {
 #' @param col.lab.out The color of the labels for the 'outlying' points.
 #' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
-#' @param width.bar The width of the bars if \code{type = "contribution"}.
+#' @param width.bar The width of the bars if `type = "contribution"`.
 #' @param size.lab.out The size of the labels for the 'outlying' points.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param size.shape The size of the shape in the plots.
 #' @param bins The number of bins to use in the histogram. Default is 30.
-#' @param which Which graphics should be plotted. Default is \code{which =
-#' c(1:4)} that means that the first four graphics will be plotted.
+#' @param which Which graphics should be plotted. Default is `which =
+#' c(1:4)` that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
-#'   to \code{NULL}
+#'   to `NULL`
 #' @param ... Additional arguments passed on to the function
-#'  \code{\link[patchwork]{wrap_plots}()}.
+#'  [patchwork::wrap_plots()].
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot gamem
 #' @export

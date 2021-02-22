@@ -1,4 +1,6 @@
 #' Confidence interval for correlation coefficient
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes the half-width confidence interval for correlation coefficient using
 #' the nonparametric method proposed by Olivoto et al. (2018).
@@ -12,20 +14,20 @@
 #' where \mjseqn{n} is the sample size and \mjseqn{r} is the correlation coefficient.
 #'
 #'@param .data The data to be analyzed. It can be a data frame (possible with
-#'  grouped data passed from \code{\link[dplyr]{group_by}()}) or a symmetric correlation
+#'  grouped data passed from [dplyr::group_by()]) or a symmetric correlation
 #'   matrix.
 #' @param ... Variables to compute the confidence interval. If not informed, all
-#'   the numeric variables from \code{.data} are used.
-#' @param r If \code{data} is not available, provide the value for correlation
+#'   the numeric variables from `.data` are used.
+#' @param r If `data` is not available, provide the value for correlation
 #'   coefficient.
-#' @param n The sample size if \code{data} is a correlation matrix or if r is
+#' @param n The sample size if `data` is a correlation matrix or if r is
 #'   informed.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
 #' @param sel.var A variable to shows the correlation with. This will omit all
 #'   the pairwise correlations that doesn't contain `sel.var`.
-#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#' @param verbose If `verbose = TRUE` then some results are shown in the
 #'   console.
 #' @return A tibble containing the values of the correlation, confidence
 #'   interval, upper and lower limits for all combination of variables.

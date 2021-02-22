@@ -10,7 +10,7 @@
 \item{x}{An object of class \code{waas}.}
 
 \item{...}{Additional arguments passed on to the function
-\code{\link{residual_plots}}}
+\code{\link[=residual_plots]{residual_plots()}}}
 }
 \description{
 Residual plots for a output model of class \code{waas}. Seven types

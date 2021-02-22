@@ -17,20 +17,19 @@ mahala_design(
 \arguments{
 \item{.data}{The dataset containing the columns related to Genotypes,
 replication/block and response variables, possible with grouped data passed
-from \code{\link[dplyr]{group_by}()}.}
+from \code{\link[dplyr:group_by]{dplyr::group_by()}}.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{rep}{The name of the column that contains the levels of the
 replications/blocks.}
 
-\item{resp}{The response variables. For example \code{resp = c(var1, var2,
-var3)}.}
+\item{resp}{The response variables. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{return}{What the function return? Default is 'distance', i.e., the
@@ -40,10 +39,12 @@ residuals \code{return = 'covmat'}.}
 }
 \value{
 A symmetric matrix with the Mahalanobis' distance. If \code{.data} is
-  a grouped data passed from \code{\link[dplyr]{group_by}()} then the results
-  will be returned into a list-column of data frames.
+a grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}} then the results
+will be returned into a list-column of data frames.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute the Mahalanobis distance using data from an experiment conducted in a
 randomized complete block design or completely randomized design.
 }

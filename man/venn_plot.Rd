@@ -64,6 +64,8 @@ to \code{","}.}
 A ggplot object.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Produces ggplot2-based Venn plots for 2, 3 or 4 sets. A Venn diagram shows
 all possible logical relationships between several sets of data.
 }

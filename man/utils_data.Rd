@@ -16,7 +16,7 @@ clip_write(.data, sep = "\\t", row_names = FALSE, col_names = TRUE, ...)
 
 \item{sep}{The separator which should be used in the copied output.}
 
-\item{...}{Further arguments to be passed to \code{\link[utils]{read.table}()}.}
+\item{...}{Further arguments to be passed to \code{\link[utils:read.table]{utils::read.table()}}.}
 
 \item{.data}{The data that should be copied to the clipboard. Only data frames and matrices are allowed}
 
@@ -30,6 +30,8 @@ defaults to \code{TRUE}.}
 Nothing
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 These functions allows interacting with the system clipboard. It is possible
 read from the clipboard or write a data frame or matrix to the clipboard.
 \itemize{

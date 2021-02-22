@@ -20,8 +20,7 @@ factor.}
 replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
@@ -50,6 +49,8 @@ the winner genotype.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a joint analysis of variance to check for the presence of
 genotype-vs-environment interactions using both randomized complete block and
 alpha-lattice designs.
@@ -76,7 +77,7 @@ Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
-\code{\link{get_model_data}} \code{\link{anova_ind}}
+\code{\link[=get_model_data]{get_model_data()}} \code{\link[=anova_ind]{anova_ind()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -31,14 +31,13 @@
 \arguments{
 \item{x}{An object of class \code{mgidi}}
 
-\item{SI}{An integer [0-100]. The selection intensity in percentage of the
+\item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}
 
 \item{radar}{Logical argument. If true (default) a radar plot is generated
 after using \code{coord_polar()}.}
 
-\item{type}{The type of the plot. Defaults to \code{"index"}. Use \code{type
-= "contribution"} to show the contribution of each factor to the MGIDI
+\item{type}{The type of the plot. Defaults to \code{"index"}. Use \code{type = "contribution"} to show the contribution of each factor to the MGIDI
 index of the selected genotypes/treatments.}
 
 \item{position}{The position adjustment when \code{type = "contribution"}.
@@ -85,10 +84,10 @@ Defaults to 0.75.}
 
 \item{legend.position}{The position of the legend.}
 
-\item{...}{Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.}
+\item{...}{Other arguments to be passed from  \code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 Makes a radar plot showing the multi-trait genotype-ideotype distance index

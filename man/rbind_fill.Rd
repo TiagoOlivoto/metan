@@ -15,6 +15,8 @@ rbind_fill(..., fill = ".")
 A data frame.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Helper function that combines data.frames by row and fills with \code{.}
 missing values.
 }

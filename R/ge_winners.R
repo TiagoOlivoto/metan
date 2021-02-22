@@ -1,4 +1,6 @@
 #' Genotype-environment winners
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes the ranking for genotypes within environments and return the winners.
 #'
@@ -8,21 +10,21 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}. Select helpers are also allowed.
-#' @param type The type of results. Defaults to \code{"winners"} (default),
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`. Select helpers are also allowed.
+#' @param type The type of results. Defaults to `"winners"` (default),
 #'   i.e., a two-way table with the winner genotype in each environment. If
-#'   \code{type = "ranks"} return the genotype ranking within each environment.
+#'   `type = "ranks"` return the genotype ranking within each environment.
 #' @param better A vector of the same length of the number of variables to rank
 #'   the genotypes according to the response variable. Each element of the
-#'   vector must be one of the \code{'h'} or \code{'l'}. If \code{'h'} is used
-#'   (default), the genotypes are ranked from maximum to minimum. If \code{'l'}
+#'   vector must be one of the `'h'` or `'l'`. If `'h'` is used
+#'   (default), the genotypes are ranked from maximum to minimum. If `'l'`
 #'   is used then the are ranked from minimum to maximum. Use a comma-separated
-#'   vector of names. For example, \code{better = c("h, h, h, h, l")}, for
+#'   vector of names. For example, `better = c("h, h, h, h, l")`, for
 #'   ranking the fifth variable from minimum to maximum.
 #' @return A tibble with two-way table with the winner genotype in each
 #'   environment (default) or the genotype ranking for each environment (if
-#'   \code{type = "ranks"}).
+#'   `type = "ranks"`).
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -25,7 +25,7 @@ response variable so that the lowest values will become 100 and the highest
 values 0.}
 
 \item{increment}{The increment in the weight ratio for stability and mean
-performance. Se the \bold{Details} section for more information.}
+performance. Se the \strong{Details} section for more information.}
 
 \item{saveWAASY}{Automatically save the WAASY values when the weight for
 stability is \code{saveWAASY}. Default is 50. Please, note that
@@ -51,13 +51,14 @@ scenarios of WAAS/GY weighting ratio.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function computes the WAASY or WAASBY indexes (Olivoto et al., 2019)
 considering different scenarios of weights for stability and mean
 performance.
-}
-\details{
-After fitting a model with the functions \code{\link{waas}} or
-\code{\link{waasb}} it is possible to compute the superiority indexes WAASY
+
+After fitting a model with the functions \code{\link[=waas]{waas()}} or
+\code{\link[=waasb]{waasb()}} it is possible to compute the superiority indexes WAASY
 or WAASBY in different scenarios of weights for stability and mean
 performance. The number of scenarios is defined by the arguments
 \code{increment}. By default, twenty-one different scenarios are computed. In
@@ -87,7 +88,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 \doi{10.2134/agronj2019.03.0220}
 }
 \seealso{
-\code{\link{resca}}
+\code{\link[=resca]{resca()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

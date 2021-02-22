@@ -1,38 +1,40 @@
 #' Variance-covariance matrices for designed experiments
+#' @description
+#' `r badge('stable')`
 #'
 #' Compute variance-covariance and correlation matrices using data from a
 #' designed (RCBD or CRD) experiment.
 #'
 #'
 #'@param .data The data to be analyzed. It can be a data frame, possible with
-#'  grouped data passed from \code{\link[dplyr]{group_by}()}.
+#'  grouped data passed from [dplyr::group_by()].
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
-#' @param resp The response variables. For example \code{resp = c(var1, var2,
-#'   var3)}.
+#' @param resp The response variables. For example `resp = c(var1, var2,
+#'   var3)`.
 #' @param design The experimental design. Must be RCBD or CRD.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
-#' @param type What the matrices should return? Set to \code{NULL}, i.e., a list
+#' @param type What the matrices should return? Set to `NULL`, i.e., a list
 #'   of matrices is returned. The argument type allow the following values
-#'   \code{'pcor', 'gcor', 'rcor'}, (which will return the phenotypic, genotypic
-#'   and residual correlation matrices, respectively) or \code{'pcov', 'gcov',
-#'   'rcov'} (which will return the phenotypic, genotypic and residual
+#'   `'pcor', 'gcor', 'rcor'`, (which will return the phenotypic, genotypic
+#'   and residual correlation matrices, respectively) or `'pcov', 'gcov',
+#'   'rcov'` (which will return the phenotypic, genotypic and residual
 #'   variance-covariance matrices, respectively). Alternatively, it is possible
 #'   to get a matrix with the means of each genotype in each trait, by using
-#'   \code{type = 'means'}.
-#' @return An object of class \code{covcor_design} containing the following
+#'   `type = 'means'`.
+#' @return An object of class `covcor_design` containing the following
 #'   items:
-#' * \strong{geno_cov} The genotypic covariance.
-#' * \strong{phen_cov} The phenotypic covariance.
-#' * \strong{resi_cov} The residual covariance.
-#' * \strong{geno_cor} The phenotypic correlation.
-#' * \strong{phen_cor} The phenotypic correlation.
-#' * \strong{resi_cor} The residual correlation.
+#' * **geno_cov** The genotypic covariance.
+#' * **phen_cov** The phenotypic covariance.
+#' * **resi_cov** The residual covariance.
+#' * **geno_cor** The phenotypic correlation.
+#' * **phen_cor** The phenotypic correlation.
+#' * **resi_cor** The residual correlation.
 #'
-#' If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+#' If `.data` is a grouped data passed from [dplyr::group_by()]
 #' then the results will be returned into a list-column of data frames.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

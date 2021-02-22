@@ -32,7 +32,7 @@ Personal data
 \description{
 This dataset contain data on 15 traits assessed in 13 maize hybrids.
 The experimental design was a RCBD with 3 blocks and 1
-replications per block. It is used as an example in the function \code{\link{gamem}}
+replications per block. It is used as an example in the function \code{\link[=gamem]{gamem()}}
 of the \pkg{metan} package.
 }
 \author{

@@ -13,6 +13,8 @@ Resende_indexes(.data)
 A dataframe containing the indexes.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function computes the following indexes proposed by Resende (2007): the
 harmonic mean of genotypic values (HMGV), the relative performance of the
 genotypic values (RPGV) and the harmonic mean of the relative performance of
@@ -59,34 +61,30 @@ res_ind <- data_ge \%>\%
 }
 \references{
 Alves, R.S., L. de Azevedo Peixoto, P.E. Teodoro, L.A. Silva,
-  E.V. Rodrigues, M.D.V. de Resende, B.G. Laviola, and L.L. Bhering. 2018.
-  Selection of Jatropha curcas families based on temporal stability and
-  adaptability of genetic values. Ind. Crops Prod. 119:290-293.
-  \doi{10.1016/J.INDCROP.2018.04.029}
+E.V. Rodrigues, M.D.V. de Resende, B.G. Laviola, and L.L. Bhering. 2018.
+Selection of Jatropha curcas families based on temporal stability and
+adaptability of genetic values. Ind. Crops Prod. 119:290-293.
+\doi{10.1016/J.INDCROP.2018.04.029}
 
+Colombari Filho, J.M., M.D.V. de Resende, O.P. de Morais, A.P. de Castro,
+E.P. Guimaraes, J.A. Pereira, M.M. Utumi, and F. Breseghello. 2013. Upland
+rice breeding in Brazil: a simultaneous genotypic evaluation of stability,
+adaptability and grain yield. Euphytica 192:117-129.
+\doi{10.1007/s10681-013-0922-2}
 
-  Colombari Filho, J.M., M.D.V. de Resende, O.P. de Morais, A.P. de Castro,
-  E.P. Guimaraes, J.A. Pereira, M.M. Utumi, and F. Breseghello. 2013. Upland
-  rice breeding in Brazil: a simultaneous genotypic evaluation of stability,
-  adaptability and grain yield. Euphytica 192:117-129.
-  \doi{10.1007/s10681-013-0922-2}
+Dias, P.C., A. Xavier, M.D.V. de Resende, M.H.P. Barbosa, F.A. Biernaski,
+R.A. Estopa. 2018. Genetic evaluation of Pinus taeda clones from somatic
+embryogenesis and their genotype x environment interaction. Crop Breed.
+Appl. Biotechnol. 18:55-64.
+\doi{10.1590/1984-70332018v18n1a8}
 
+Azevedo Peixoto, L. de, P.E. Teodoro, L.A. Silva, E.V. Rodrigues, B.G.
+Laviola, and L.L. Bhering. 2018. Jatropha half-sib family selection with
+high adaptability and genotypic stability. PLoS One 13:e0199880.
+\doi{10.1371/journal.pone.0199880}
 
-  Dias, P.C., A. Xavier, M.D.V. de Resende, M.H.P. Barbosa, F.A. Biernaski,
-  R.A. Estopa. 2018. Genetic evaluation of Pinus taeda clones from somatic
-  embryogenesis and their genotype x environment interaction. Crop Breed.
-  Appl. Biotechnol. 18:55-64.
-  \doi{10.1590/1984-70332018v18n1a8}
-
-
-  Azevedo Peixoto, L. de, P.E. Teodoro, L.A. Silva, E.V. Rodrigues, B.G.
-  Laviola, and L.L. Bhering. 2018. Jatropha half-sib family selection with
-  high adaptability and genotypic stability. PLoS One 13:e0199880.
-  \doi{10.1371/journal.pone.0199880}
-
-
-  Resende MDV (2007) Matematica e estatistica na analise de experimentos e no
-  melhoramento genetico. Embrapa Florestas, Colombo
+Resende MDV (2007) Matematica e estatistica na analise de experimentos e no
+melhoramento genetico. Embrapa Florestas, Colombo
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

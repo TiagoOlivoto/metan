@@ -63,9 +63,10 @@ observed, validation) of the last loop.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Cross-validation for estimation of AMMI models
-}
-\details{
+
 THe original dataset is split into two datasets: training set and validation
 set. The 'training' set has all combinations (genotype x environment) with
 N-1 replications. The 'validation' set has the remaining replication. The
@@ -110,7 +111,7 @@ Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
-\code{\link{cv_ammif}, \link{cv_blup}}
+\code{\link[=cv_ammif]{cv_ammif()}}, \code{\link[=cv_blup]{cv_blup()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -26,9 +26,11 @@ silently.}
 }
 \value{
 An object of class \code{ecovalence} containing the results for each
-  variable used in the argument \code{resp}.
+variable used in the argument \code{resp}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 The function computes the ecovalence (Wricke, 1965) for stability analysis.
 }
 \examples{
@@ -44,7 +46,7 @@ out <- ecovalence(data_ge2,
 }
 \references{
 Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen
-  und hafer. Z. Pflanzenzuchtg 52:127-138.
+und hafer. Z. Pflanzenzuchtg 52:127-138.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

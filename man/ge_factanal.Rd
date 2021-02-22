@@ -28,21 +28,25 @@ factor analysis.}
 }
 \value{
 An object of class \code{ge_factanal} with the following items:
-\item{data}{The data used to compute the factor analysis.}
-\item{cormat}{The correlation matrix among the environments.}
-\item{PCA}{The eigenvalues and explained variance.}
-\item{FA}{The factor analysis.}
-\item{env_strat}{The environmental stratification.}
-\item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
-\item{MSA}{The measure of sampling adequacy for individual variable.}
-\item{communalities}{The communalities.}
-\item{communalities.mean}{The communalities' mean.}
-\item{initial.loadings}{The initial loadings.}
-\item{finish.loadings}{The final loadings after varimax rotation.}
-\item{canonical.loadings}{The canonical loadings.}
-\item{scores.gen}{The scores for genotypes for the first and second factors.}
+\itemize{
+\item \code{data}: The data used to compute the factor analysis.
+\item \code{cormat}: The correlation matrix among the environments.
+\item \code{PCA}: The eigenvalues and explained variance.
+\item \code{FA}: The factor analysis.
+\item \code{env_strat}: The environmental stratification.
+\item \code{KMO}: The result for the Kaiser-Meyer-Olkin test.
+\item \code{MSA}: The measure of sampling adequacy for individual variable.
+\item \code{communalities}: The communalities.
+\item \code{communalities.mean}: The communalities' mean.
+\item \code{initial.loadings}: The initial loadings.
+\item \code{finish.loadings}: The final loadings after varimax rotation.
+\item \code{canonical.loadings}: The canonical loadings.
+\item \code{scores.gen}: The scores for genotypes for the first and second factors.
+}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function computes the stability analysis and environmental stratification
 using factor analysis as proposed by Murakami and Cruz (2004).
 }
@@ -55,6 +59,8 @@ model <- ge_factanal(data_ge2,
                      rep = REP,
                      resp = PH)
 }
+
+
 }
 \references{
 Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for
@@ -62,7 +68,7 @@ environment stratification and analysis of genotype adaptability.
 Crop Breed. Appl. Biotechnol. 4:7-11.
 }
 \seealso{
-\code{\link{superiority}, \link{ecovalence}, \link{ge_stats}, \link{ge_reg}}
+\code{\link[=superiority]{superiority()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=ge_stats]{ge_stats()}}, \code{\link[=ge_reg]{ge_reg()}}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

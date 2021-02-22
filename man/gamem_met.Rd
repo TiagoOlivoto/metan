@@ -30,8 +30,7 @@ environments.}
 replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then an alpha-lattice
@@ -41,7 +40,7 @@ fixed, as no inter-replicate information was to be recovered (Mohring et
 al., 2015).}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}.This is especially useful, for example,
 when the researcher want to analyze environments within mega-environments.
 In this case, an object of class waasb_grouped is returned.}
 
@@ -80,24 +79,23 @@ the genotype and environment); \code{MinENV} the environment with the lower
 mean, \code{MaxENV} the environment with the larger mean observed,
 \code{MinGEN} the genotype with the lower mean, \code{MaxGEN} the genotype
 with the larger.
-\item \strong{ESTIMATES} A tibble with the genetic parameters (if \code{random =
-"gen"} or \code{random = "all"}) with the following columns: \code{Phenotypic
-variance} the phenotypic variance; \code{Heritability} the broad-sense
+\item \strong{ESTIMATES} A tibble with the genetic parameters (if \code{random = "gen"} or \code{random = "all"}) with the following columns: \verb{Phenotypic variance} the phenotypic variance; \code{Heritability} the broad-sense
 heritability; \code{GEr2} the coefficient of determination of the interaction
 effects; \code{h2mg} the heritability on the mean basis;
 \code{Accuracy} the selective accuracy; \code{rge} the genotype-environment
 correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
-the residual coefficient of variation; \code{CV ratio} the ratio between
+the residual coefficient of variation; \verb{CV ratio} the ratio between
 genotypic and residual coefficient of variation.
 \item \strong{residuals} The residuals of the model.
 \item \strong{formula} The formula used to fit the model.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Genotype analysis in multi-environment trials using mixed-effect or
 random-effect models.
-}
-\details{
+
 The nature of the effects in the model is chosen with the argument
 \code{random}. By default, the experimental design considered in each
 environment is a randomized complete block design. If \code{block} is
@@ -120,20 +118,17 @@ model considers a Randomized Complete Block Design in each environment
 assuming a random-effect model, i.e., all effects (genotypes, environments,
 genotype-vs-environment interaction and blocks nested within environments)
 are assumed to be random factors.
-\item \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =
-  "gen"}. This model considers an alpha-lattice design in each environment
+\item \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =   "gen"}. This model considers an alpha-lattice design in each environment
 assuming genotype, genotype-environment interaction, and incomplete blocks
 nested within complete replicates as random to make use of inter-block
 information (Mohring et al., 2015). Complete replicates nested within
 environments and environments are assumed to be fixed factors.
-\item \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =
-  "env"}. This model considers an alpha-lattice design in each environment
+\item \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =   "env"}. This model considers an alpha-lattice design in each environment
 assuming genotype as fixed. All other sources of variation (environment,
 genotype-environment interaction, complete replicates nested within
 environments, and incomplete blocks nested within replicates) are assumed
 to be random factors.
-\item \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =
-  "all"}. This model considers an alpha-lattice design in each environment
+\item \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =   "all"}. This model considers an alpha-lattice design in each environment
 assuming all effects, except the intercept, as random factors.
 }
 }
@@ -190,8 +185,8 @@ Patterson, H.D., and E.R. Williams. 1976. A new class of resolvable
 incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
-\code{\link{mtsi}} \code{\link{waas}}
-\code{\link{get_model_data}} \code{\link{plot_scores}}
+\code{\link[=mtsi]{mtsi()}} \code{\link[=waas]{waas()}}
+\code{\link[=get_model_data]{get_model_data()}} \code{\link[=plot_scores]{plot_scores()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

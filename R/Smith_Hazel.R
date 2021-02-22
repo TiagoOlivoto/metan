@@ -1,6 +1,8 @@
 #' Smith-Hazel index
 #'
 #' @description
+#' `r badge('stable')`
+#'
 #' Computes the Smith (1936) and Hazel (1943) index given economic weights and
 #' phenotypic and genotypic variance-covariance matrices. The Smith-Hazel index
 #' is computed as follows:
@@ -12,31 +14,31 @@
 #' are vectors of index coefficients and economic weightings, respectively.
 #'
 #' The genetic worth \mjseqn{I} of an individual
-#' genotype based on traits \emph{x}, \emph{y}, ..., \emph{n}, is calculated as:
+#' genotype based on traits *x*, *y*, ..., *n*, is calculated as:
 #'
 #'\mjsdeqn{I = b_xG_x + b_yG_y + ... + b_nG_n}
 #'
-#' where \emph{b} the index coefficient for the traits \emph{x}, \emph{y}, ...,
-#' \emph{n}, respectively, and \emph{G} is the individual genotype BLUPs for the
-#' traits \emph{x}, \emph{y}, ..., \emph{n}, respectively.
+#' where *b* the index coefficient for the traits *x*, *y*, ...,
+#' *n*, respectively, and *G* is the individual genotype BLUPs for the
+#' traits *x*, *y*, ..., *n*, respectively.
 #'
 #' @details
-#' When using the phenotypic means in \code{.data}, be sure the genotype's code
-#' are in rownames. If \code{.data} is an object of class \code{gamem} them the
+#' When using the phenotypic means in `.data`, be sure the genotype's code
+#' are in rownames. If `.data` is an object of class `gamem` them the
 #' BLUPs for each genotype are used to compute the index. In this case, the
 #' genetic covariance components are estimated by mean cross products.
 #'
 #' @param .data The input data. It can be either a two-way table with genotypes
 #'   in rows and traits in columns, or an object fitted with the function
-#'   \code{\link{gamem}()}. Please, see \strong{Details} for more details.
-#' @param use_data Define which data to use If \code{.data} is an object of
-#'   class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
-#'   Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+#'   [gamem()]. Please, see **Details** for more details.
+#' @param use_data Define which data to use If `.data` is an object of
+#'   class `gamem`. Defaults to `"blup"` (the BLUPs for genotypes).
+#'   Use `"pheno"` to use phenotypic means instead BLUPs for computing the
 #'   index.
 #' @param pcov,gcov The phenotypic and genotypic variance-covariance matrix,
-#'   respectively. Defaults to \code{NULL}. If a two-way table is informed in
-#'   \code{.data} these matrices are mandatory.
-#' @param SI The selection intensity (percentage). Defaults to \code{20}
+#'   respectively. Defaults to `NULL`. If a two-way table is informed in
+#'   `.data` these matrices are mandatory.
+#' @param SI The selection intensity (percentage). Defaults to `20`
 #' @param weights The vector of economic weights. Defaults to a vector of 1s
 #'   with the same length of the number of traits.
 #'
@@ -47,20 +49,20 @@
 #'
 #' Hazel, L.N. 1943. The genetic basis for constructing selection indexes.
 #' Genetics 28:476-90.
-#' \href{https://pubmed.ncbi.nlm.nih.gov/17247099/}{PMID:17247099}
+#' [PMID:17247099](https://pubmed.ncbi.nlm.nih.gov/17247099/)
 #'
-#' @return An object of class \code{hz} containing:
-#'  * \strong{b}: the vector of index coefficient.
-#'  * \strong{index}: The genetic worth.
-#'  * \strong{sel_dif_trait}: The selection differencial.
-#'  * \strong{sel_gen}: The selected genotypes.
-#'  * \strong{gcov}: The genotypic variance-covariance matrix
-#'  * \strong{pcov}: The phenotypic variance-covariance matrix
+#' @return An object of class `hz` containing:
+#'  * **b**: the vector of index coefficient.
+#'  * **index**: The genetic worth.
+#'  * **sel_dif_trait**: The selection differencial.
+#'  * **sel_gen**: The selected genotypes.
+#'  * **gcov**: The genotypic variance-covariance matrix
+#'  * **pcov**: The phenotypic variance-covariance matrix
 #'
 #' @export
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{mtsi}}, \code{\link{mgidi}}, \code{\link{fai_blup}}
+#' @seealso [mtsi()], [mgidi()], [fai_blup()]
 #' @examples
 #' \donttest{
 #' vcov <- covcor_design(data_g, GEN, REP, everything())
@@ -169,21 +171,21 @@ Smith_Hazel <- function(.data,
 #' Makes a radar plot showing the individual genetic worth for the Smith-Hazel index
 #'
 #'
-#' @param x An object of class \code{sh}
-#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' @param x An object of class `sh`
+#' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
-#'   after using \code{coord_polar()}.
-#' @param arrange.label Logical argument. If \code{TRUE}, the labels are
+#'   after using `coord_polar()`.
+#' @param arrange.label Logical argument. If `TRUE`, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
-#' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
-#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
+#' @param col.sel The colour for selected genotypes. Defaults to `"red"`.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to `"black"`.
 #' @param ... Other arguments to be passed from ggplot2::theme().
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot sh
 #' @export
@@ -252,16 +254,16 @@ plot.sh <- function(x,
 
 #' Print an object of class sh
 #'
-#' Print a \code{sh} object in two ways. By default, the results are shown in
+#' Print a `sh` object in two ways. By default, the results are shown in
 #' the R console. The results can also be exported to the directory.
 #'
-#' @param x An object of class \code{sh}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
+#' @param x An object of class `sh`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported
 #'   to the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print sh
 #' @export

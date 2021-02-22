@@ -1,83 +1,85 @@
 #' @title Path coefficients with minimal multicollinearity
 #' @name path_coeff
 #' @description
+#' `r badge('stable')`
+#'
 #' * `path_coeff()` computes a path analysis using a data frame as input data.
 #' * `path_coeff_mat()` computes a path analysis using correlation matrices as
 #' input data.
 #'
-#' @details In `path_coeff()`, when \code{brutstep = TRUE}, an algorithm to
+#' @details In `path_coeff()`, when `brutstep = TRUE`, an algorithm to
 #'   select a set of predictors with minimal multicollinearity and high
 #'   explanatory power is implemented. first, the algorithm will select a set of
 #'   predictors with minimal multicollinearity. The selection is based on the
 #'   variance inflation factor (VIF). An iterative process is performed until
-#'   the maximum VIF observed is less than \code{maxvif}. The variables selected
+#'   the maximum VIF observed is less than `maxvif`. The variables selected
 #'   in this iterative process are then used in a series of stepwise-based
 #'   regressions. The first model is fitted and p-1 predictor variables are
 #'   retained (p is the number of variables selected in the iterative process.
 #'   The second model adjusts a regression considering p-2 selected variables,
 #'   and so on until the last model, which considers only two variables. Three
-#'   objects are created. \code{Summary}, with the process summary,
-#'   \code{Models}, containing the aforementioned values for all the adjusted
-#'   models; and \code{Selectedpred}, a vector with the name of the selected
+#'   objects are created. `Summary`, with the process summary,
+#'   `Models`, containing the aforementioned values for all the adjusted
+#'   models; and `Selectedpred`, a vector with the name of the selected
 #'   variables in the iterative process.
 #'
 #' @param .data The data. Must be a data frame or a grouped data passed from
-#'   \code{\link[dplyr]{group_by}()}
+#'   [dplyr::group_by()]
 #' @param resp The dependent variable.
 #' @param cor_mat Matrix of correlations containing both dependent and
 #'   independent traits.
 #' @param by One variable (factor) to compute the function by. It is a shortcut
-#'   to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'   to [dplyr::group_by()]. To compute the statistics by more than
 #'   one grouping variable use that function.
-#' @param pred The predictor variables, set to \code{everything()}, i.e., the
+#' @param pred The predictor variables, set to `everything()`, i.e., the
 #'   predictor variables are all the numeric variables in the data except that
-#'   in \code{resp}.
-#' @param exclude Logical argument, set to false. If \code{exclude = TRUE}, then
-#'   the variables in \code{pred} are deleted from the data, and the analysis
-#'   will use as predictor those that remained, except that in \code{resp}.
-#' @param correction Set to \code{NULL}. A correction value (k) that will be
-#'   added into the diagonal elements of the \bold{X'X} matrix aiming at
+#'   in `resp`.
+#' @param exclude Logical argument, set to false. If `exclude = TRUE`, then
+#'   the variables in `pred` are deleted from the data, and the analysis
+#'   will use as predictor those that remained, except that in `resp`.
+#' @param correction Set to `NULL`. A correction value (k) that will be
+#'   added into the diagonal elements of the **X'X** matrix aiming at
 #'   reducing the harmful problems of the multicollinearity in path analysis
 #'   (Olivoto et al., 2017)
-#' @param knumber When \code{correction = NULL}, a plot showing the values of
+#' @param knumber When `correction = NULL`, a plot showing the values of
 #'   direct effects in a set of different k values (0-1) is produced.
-#'   \code{knumber} is the number of k values used in the range of 0 to 1.
-#' @param brutstep Logical argument, set to \code{FALSE}. If true, then an
+#'   `knumber` is the number of k values used in the range of 0 to 1.
+#' @param brutstep Logical argument, set to `FALSE`. If true, then an
 #'   algorithm will select a subset of variables with minimal multicollinearity
-#'   and fit a set of possible models. See the \bold{Details} section for more
+#'   and fit a set of possible models. See the **Details** section for more
 #'   information.
 #' @param maxvif The maximum value for the Variance Inflation Factor (cut point)
-#'   that will be accepted. See the \bold{Details} section for more information.
+#'   that will be accepted. See the **Details** section for more information.
 #' @param missingval How to deal with missing values. For more information,
-#'   please see \code{\link[stats]{cor}()}.
-#' @param plot_res If \code{TRUE}, create a scatter plot of residual against
+#'   please see [stats::cor()].
+#' @param plot_res If `TRUE`, create a scatter plot of residual against
 #'   predicted value and a normal Q-Q plot.
-#' @param verbose If \code{verbose = TRUE} then some results are shown in the
+#' @param verbose If `verbose = TRUE` then some results are shown in the
 #'   console.
-#' @param ... Additional arguments passed on to \code{\link[stats]{plot.lm}}
-#' @return An object of class \code{path_coeff, group_path, or brute_path} with
+#' @param ... Additional arguments passed on to [stats::plot.lm()]
+#' @return An object of class `path_coeff, group_path, or brute_path` with
 #'   the following items:
-#' * \strong{Corr.x} A correlation matrix between the predictor variables.
-#' * \strong{Corr.y} A vector of correlations between each predictor variable
+#' * **Corr.x** A correlation matrix between the predictor variables.
+#' * **Corr.y** A vector of correlations between each predictor variable
 #' with the dependent variable.
-#' * \strong{Coefficients} The path coefficients. Direct effects are the
+#' * **Coefficients** The path coefficients. Direct effects are the
 #' diagonal elements, and the indirect effects those in the off-diagonal
 #' elements (lines).
-#' * \strong{Eigen} Eigenvectors and eigenvalues of the \code{Corr.x.}
-#' * \strong{VIF} The Variance Inflation Factors.
-#' * \strong{plot} A ggplot2-based graphic showing the direct effects in 21
+#' * **Eigen** Eigenvectors and eigenvalues of the `Corr.x.`
+#' * **VIF** The Variance Inflation Factors.
+#' * **plot** A ggplot2-based graphic showing the direct effects in 21
 #' different k values.
-#' * \strong{Predictors} The predictor variables used in the model.
-#' * \strong{CN} The Condition Number, i.e., the ratio between the highest and
+#' * **Predictors** The predictor variables used in the model.
+#' * **CN** The Condition Number, i.e., the ratio between the highest and
 #' lowest eigenvalue.
-#' * \strong{Det} The matrix determinant of the \code{Corr.x.}.
-#' * \strong{R2} The coefficient of determination of the model.
-#' * \strong{Residual} The residual effect of the model.
-#' * \strong{Response} The response variable.
-#' * \strong{weightvar} The order of the predictor variables with the highest
+#' * **Det** The matrix determinant of the `Corr.x.`.
+#' * **R2** The coefficient of determination of the model.
+#' * **Residual** The residual effect of the model.
+#' * **Response** The response variable.
+#' * **weightvar** The order of the predictor variables with the highest
 #' weight (highest eigenvector) in the lowest eigenvalue.
 #'
-#' If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+#' If `.data` is a grouped data passed from [dplyr::group_by()]
 #' then the results will be returned into a list-column of data frames,
 #' containing:
 #' @md
@@ -635,13 +637,13 @@ path_coeff_mat <- function(cor_mat,
 #' directory.
 #'
 #'
-#' @param x An object of class \code{path_coeff} or \code{group_path}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `path_coeff` or `group_path`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print path_coeff
 #' @export

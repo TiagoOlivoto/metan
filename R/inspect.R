@@ -1,27 +1,29 @@
 #' Check for common errors in multi-environment trial data
+#' @description
+#' `r badge('stable')`
 #'
-#' \code{inspect()} scans a data.frame object for errors that may affect the use
-#' of functions in \code{metan}. By default, all variables are checked regarding
+#' `inspect()` scans a data.frame object for errors that may affect the use
+#' of functions in `metan`. By default, all variables are checked regarding
 #' the class (numeric or factor), missing values, and presence of possible
 #' outliers. The function will return a warning if the data looks like
 #' unbalanced, has missing values or possible outliers.
 #'
 #' @param .data The data to be analyzed
-#' @param ... The variables in \code{.data} to check. If no variable is
-#'   informed, all the variables in \code{.data} are used.
-#' @param plot Create a plot to show the check? Defaults to \code{FALSE}.
+#' @param ... The variables in `.data` to check. If no variable is
+#'   informed, all the variables in `.data` are used.
+#' @param plot Create a plot to show the check? Defaults to `FALSE`.
 #' @param threshold Maximum number of levels allowed in a character / factor
 #'   column to produce a plot. Defaults to 15.
-#' @param verbose Logical argument. If \code{TRUE} (default) then the results
+#' @param verbose Logical argument. If `TRUE` (default) then the results
 #'   for checks are shown in the console.
 #'
 #' @return A tibble with the following variables:
-#' * \strong{Variable} The name of variable
-#' * \strong{Class} The class of the variable
-#' * \strong{Missing} Contains missing values?
-#' * \strong{Levels} The number of levels of a factor variable
-#' * \strong{Valid_n} Number of valid n (omit NAs)
-#' * \strong{Outlier} Contains possible outliers?
+#' * **Variable** The name of variable
+#' * **Class** The class of the variable
+#' * **Missing** Contains missing values?
+#' * **Levels** The number of levels of a factor variable
+#' * **Valid_n** Number of valid n (omit NAs)
+#' * **Outlier** Contains possible outliers?
 #' @md
 #' @importFrom GGally wrap
 #' @export

@@ -1,20 +1,22 @@
 #' Bind cross-validation objects
+#' @description
+#' `r badge('stable')`
 #'
-#' Helper function that combines objects of class \code{cv_ammi},
-#' \code{cv_ammif} or \code{cv_blup}. It is useful when looking for a boxplot
+#' Helper function that combines objects of class `cv_ammi`,
+#' `cv_ammif` or `cv_blup`. It is useful when looking for a boxplot
 #' containing the RMSPD values of those cross-validation procedures.
 #'
 #'
-#' @param ... Input objects of class \code{cv_ammi}, \code{cv_ammif} or
-#'   \code{cv_blup}.
+#' @param ... Input objects of class `cv_ammi`, `cv_ammif` or
+#'   `cv_blup`.
 #' @param bind What data should be used? To plot the RMSPD, use 'boot'
-#'   (default). Use \code{bind = 'means'} to return the RMSPD mean for each
+#'   (default). Use `bind = 'means'` to return the RMSPD mean for each
 #'   model.
 #' @param sort Used to sort the RMSPD mean in ascending order.
-#' @return An object of class \code{cv_ammif}. The results will depend on the
-#'   argument \code{bind}. If \code{bind = 'boot'} then the RMSPD of all models
-#'   in \code{...} will be bind to a unique data frame. If \code{bind = 'means'}
-#'   then the RMSPD mean of all models in \code{...} will be bind to an unique
+#' @return An object of class `cv_ammif`. The results will depend on the
+#'   argument `bind`. If `bind = 'boot'` then the RMSPD of all models
+#'   in `...` will be bind to a unique data frame. If `bind = 'means'`
+#'   then the RMSPD mean of all models in `...` will be bind to an unique
 #'   data frame.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
@@ -22,19 +24,19 @@
 #' \donttest{
 #' library(metan)
 #' # Two examples with only 5 resampling procedures
-#' AMMI = cv_ammif(data_ge,
+#' AMMI <- cv_ammi(data_ge,
 #'                 resp = GY,
 #'                 gen = GEN,
 #'                 env = ENV,
 #'                 rep = REP,
 #'                 nboot = 5)
-#' BLUP = cv_blup(data_ge,
-#'                resp = GY,
-#'                gen = GEN,
-#'                env = ENV,
-#'                rep = REP,
-#'                nboot = 5)
-#' bind_data = bind_cv(AMMI, BLUP)
+#' BLUP <- cv_blup(data_ge,
+#'                 resp = GY,
+#'                 gen = GEN,
+#'                 env = ENV,
+#'                 rep = REP,
+#'                 nboot = 5)
+#' bind_data <- bind_cv(AMMI, BLUP)
 #' plot(bind_data)
 #'
 #' print(bind_cv(AMMI, BLUP, bind = 'means'))

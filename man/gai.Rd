@@ -35,6 +35,8 @@ tibble with the following columns is returned.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a stability analysis based on the geometric mean (GAI), according to
 the following model (Mohammadi and Amri, 2008):
 \loadmathjax

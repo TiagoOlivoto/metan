@@ -1,20 +1,22 @@
 #' Clustering analysis
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs clustering analysis with selection of variables.
 #'
-#' When \code{selvar = TRUE} a variable selection algorithm is executed. The
+#' When `selvar = TRUE` a variable selection algorithm is executed. The
 #' objective is to select a group of variables that most contribute to explain
 #' the variability of the original data. The selection of the variables is based
-#' on eigenvalue/eigenvectors solution based on the following steps. \bold{1:}
+#' on eigenvalue/eigenvectors solution based on the following steps. **1:**
 #' compute the distance matrix and the cophenetic correlation with the original
-#' variables (all numeric variables in dataset); \bold{2:} compute the
+#' variables (all numeric variables in dataset); **2:** compute the
 #' eigenvalues and eigenvectors of the correlation matrix between the variables;
-#' \bold{3:} delete the variable with the largest weight (highest eigenvector in
-#' the lowest eigenvalue); \bold{4:} compute the distance matrix and cophenetic
-#' correlation with the remaining variables; \bold{5:} compute the Mantel's
+#' **3:** delete the variable with the largest weight (highest eigenvector in
+#' the lowest eigenvalue); **4:** compute the distance matrix and cophenetic
+#' correlation with the remaining variables; **5:** compute the Mantel's
 #' correlation between the obtained distances matrix and the original distance
-#' matrix; \bold{6:} iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is
-#' the number of original variables. At the end of the \emph{p} - 2 iterations,
+#' matrix; **6:** iterate steps 2 to 5 *p* - 2 times, where *p* is
+#' the number of original variables. At the end of the *p* - 2 iterations,
 #' a summary of the models is returned. The distance is calculated with the
 #' variables that generated the model with the largest cophenetic correlation. I
 #' suggest a careful evaluation aiming at choosing a parsimonious model, i.e.,
@@ -22,58 +24,58 @@
 #' cophenetic correlation and high similarity with the original distances.
 #'
 #'@param .data The data to be analyzed. It can be a data frame, possible with
-#'  grouped data passed from \code{\link[dplyr]{group_by}()}.
-#' @param ... The variables in \code{.data} to compute the distances. Set to
-#'   \code{NULL}, i.e., all the numeric variables in \code{.data} are used.
+#'  grouped data passed from [dplyr::group_by()].
+#' @param ... The variables in `.data` to compute the distances. Set to
+#'   `NULL`, i.e., all the numeric variables in `.data` are used.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+#'  to [dplyr::group_by()]. To compute the statistics by more than
 #'  one grouping variable use that function.
 #' @param scale Should the data be scaled before computing the distances? Set to
 #'   FALSE. If TRUE, then, each observation will be divided by the standard
 #'   deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}
-#' @param selvar Logical argument, set to \code{FALSE}. If \code{TRUE}, then an
+#' @param selvar Logical argument, set to `FALSE`. If `TRUE`, then an
 #'   algorithm for selecting variables is implemented. See the section
-#'   \bold{Details} for additional information.
-#' @param verbose Logical argument. If \code{TRUE} (default) then the results
+#'   **Details** for additional information.
+#' @param verbose Logical argument. If `TRUE` (default) then the results
 #'   for variable selection are shown in the console.
 #' @param distmethod The distance measure to be used. This must be one of
-#'   \code{'euclidean'}, \code{'maximum'}, \code{'manhattan'},
-#'   \code{'canberra'}, \code{'binary'}, \code{'minkowski'}, \code{'pearson'},
-#'   \code{'spearman'}, or \code{'kendall'}. The last three are
+#'   `'euclidean'`, `'maximum'`, `'manhattan'`,
+#'   `'canberra'`, `'binary'`, `'minkowski'`, `'pearson'`,
+#'   `'spearman'`, or `'kendall'`. The last three are
 #'   correlation-based distance.
 #' @param clustmethod The agglomeration method to be used. This should be one of
-#'   \code{'ward.D'}, \code{'ward.D2'}, \code{'single'}, \code{'complete'},
-#'   \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
-#'   WPGMC) or \code{'centroid'} (= UPGMC).
-#' @param nclust The number of clusters to be formed. Set to \code{NULL}
+#'   `'ward.D'`, `'ward.D2'`, `'single'`, `'complete'`,
+#'   `'average'` (= UPGMA), `'mcquitty'` (= WPGMA), `'median'` (=
+#'   WPGMC) or `'centroid'` (= UPGMC).
+#' @param nclust The number of clusters to be formed. Set to `NULL`
 #' @return
 #'
-#' * \strong{data} The data that was used to compute the distances.
+#' * **data** The data that was used to compute the distances.
 #'
-#' * \strong{cutpoint} The cutpoint of the dendrogram according to Mojena (1977).
+#' * **cutpoint** The cutpoint of the dendrogram according to Mojena (1977).
 #'
-#' * \strong{distance} The matrix with the distances.
+#' * **distance** The matrix with the distances.
 #'
-#' * \strong{de} The distances in an object of class \code{dist}.
+#' * **de** The distances in an object of class `dist`.
 #'
-#' * \strong{hc} The hierarchical clustering.
+#' * **hc** The hierarchical clustering.
 #'
-#' * \strong{Sqt} The total sum of squares.
+#' * **Sqt** The total sum of squares.
 #'
-#' * \strong{tab} A table with the clusters and similarity.
+#' * **tab** A table with the clusters and similarity.
 #'
-#' * \strong{clusters} The sum of square and the mean of the clusters for each
+#' * **clusters** The sum of square and the mean of the clusters for each
 #'   variable.
 #'
-#' * \strong{cofgrap} If \code{selectvar = TRUE}, then, \code{cofpgrap} is a
+#' * **cofgrap** If `selectvar = TRUE`, then, `cofpgrap` is a
 #'   ggplot2-based graphic showing the cophenetic correlation for each model
-#'   (with different number of variables). Else, will be a \code{NULL} object.
+#'   (with different number of variables). Else, will be a `NULL` object.
 #'
-#' * \strong{statistics} If \code{selectvar = TRUE}, then, \code{statistics} shows
+#' * **statistics** If `selectvar = TRUE`, then, `statistics` shows
 #'   the summary of the models fitted with different number of variables,
 #'   including cophenetic correlation, Mantel's correlation with the original
 #'   distances (all variables) and the p-value associated with the Mantel's
-#'   test. Else, will be a \code{NULL} object.
+#'   test. Else, will be a `NULL` object.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Mojena, R. 2015. Hierarchical grouping methods and stopping
@@ -306,14 +308,14 @@ clustering <- function(.data,
 #' Plot an object of class clustering
 #'
 #'
-#' @param x An object of class \code{clustering}
+#' @param x An object of class `clustering`
 #' @param horiz Logical indicating if the dendrogram should be drawn
 #'   horizontally or not.
 #' @param type The type of plot. Must be one of the 'dendrogram' or
 #'   'cophenetic'.
-#' @param ... Other arguments passed from the function \code{plot.dendrogram} or
-#'   \code{abline}.
-#' @return An object of class \code{gg, ggplot} if \code{type == "cophenetic"}.
+#' @param ... Other arguments passed from the function `plot.dendrogram` or
+#'   `abline`.
+#' @return An object of class `gg, ggplot` if `type == "cophenetic"`.
 #' @method plot clustering
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

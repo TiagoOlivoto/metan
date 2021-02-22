@@ -1,4 +1,6 @@
 #' Pairwise combinations of variables
+#' @description
+#' `r badge('stable')`
 #'
 #' Pairwise combinations of variables that will be the result of a function
 #' applied to each combination.
@@ -6,17 +8,17 @@
 #'
 #' @param .data A matrix of data with, say, p columns.
 #' @param order The order on how the results will appear in the output. Default
-#'   is \code{order = 'first'}. In this case, assuming that .data has four
-#'   columns, namely, \code{V1, V2, V3, V4}, the order of columns in the output
-#'   will be \code{V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4}. If \code{order =
-#'   'second'}, the result will be then \code{V1.V2, V1.V3, V2.V3, V1.V4, V2.V4,
-#'   V3.V4}.
+#'   is `order = 'first'`. In this case, assuming that .data has four
+#'   columns, namely, `V1, V2, V3, V4`, the order of columns in the output
+#'   will be `V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4`. If `order =
+#'   'second'`, the result will be then `V1.V2, V1.V3, V2.V3, V1.V4, V2.V4,
+#'   V3.V4`.
 #' @param FUN The function that will be applied to each combination. The default
-#'   is \code{+}, i.e., V1 + V2.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   is `+`, i.e., V1 + V2.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @return A data frame containing all possible combination of variables. Each
-#'   combination is the result of the function in \code{FUN} applied to the two
+#'   combination is the result of the function in `FUN` applied to the two
 #'   variables.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

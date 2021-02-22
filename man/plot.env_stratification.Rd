@@ -12,14 +12,14 @@
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
 
-\item{...}{Further arguments passed to \code{\link{plot.corr_coef}()}}
+\item{...}{Further arguments passed to \code{\link[=plot.corr_coef]{plot.corr_coef()}}}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 This function plots the correlation between environments generated with
-\code{\link{env_stratification}()}
+\code{\link[=env_stratification]{env_stratification()}}
 }
 \examples{
 \donttest{
@@ -33,7 +33,7 @@ plot(model)
 }
 }
 \seealso{
-\code{\link{env_dissimilarity}}
+\code{\link[=env_dissimilarity]{env_dissimilarity()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

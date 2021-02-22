@@ -14,7 +14,7 @@ variable of \code{x}.}
 
 \item{nclust}{The number of clusters to show.}
 
-\item{...}{Other arguments bo be passed to the function \code{\link[stats]{hclust}}.}
+\item{...}{Other arguments bo be passed to the function \code{\link[stats:hclust]{stats::hclust()}}.}
 }
 \description{
 Create dendrograms to show the dissimilarity between environments.

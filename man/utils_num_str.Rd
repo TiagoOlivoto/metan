@@ -85,6 +85,7 @@ sensitive and if \code{TRUE}, case is ignored during matching.}
 \item{sep}{A character string to separate the terms. Defaults to "_".}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{all_lower_case()}: Translate all non-numeric strings of a data frame
 to lower case.
@@ -110,11 +111,9 @@ significant figures.
 \item \code{tidy_strings()}: Tidy up characters strings, non-numeric columns, or
 any selected columns in a data frame by putting all word in upper case,
 replacing any space, tabulation, punctuation characters by \code{'_'}, and
-putting \code{'_'} between lower and upper case. Suppose that \code{str =
-c("Env1", "env 1", "env.1")} (which by definition should represent a unique
+putting \code{'_'} between lower and upper case. Suppose that \code{str = c("Env1", "env 1", "env.1")} (which by definition should represent a unique
 level in plant breeding trials, e.g., environment 1) is subjected to
-\code{tidy_strings(str)}: the result will be then \code{c("ENV_1", "ENV_1",
-"ENV_1")}. See Examples section for more examples.
+\code{tidy_strings(str)}: the result will be then \code{c("ENV_1", "ENV_1", "ENV_1")}. See Examples section for more examples.
 }
 }
 \examples{

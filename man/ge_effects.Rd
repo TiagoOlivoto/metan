@@ -17,8 +17,7 @@ factor.}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-= c(var1, var2, var3)}.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{type}{The type of effect to compute. Defaults to \code{"ge"}, i.e.,
 genotype-environment. To compute genotype plus genotype-environment effects
@@ -29,10 +28,12 @@ silently.}
 }
 \value{
 A list where each element is the result for one variable that
-  contains a two-way table with genotypes in rows and environments in
-  columns.
+contains a two-way table with genotypes in rows and environments in
+columns.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This is a helper function that computes the genotype-environment effects,
 i.e., the residual effect of the additive model
 }

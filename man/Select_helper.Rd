@@ -43,7 +43,7 @@ variables contains greater and less characteres than \code{n},
 respectively.}
 
 \item{vars}{A character vector of variable names. When called from inside
-selecting functions like \code{\link{select_cols}} these are automatically
+selecting functions like \code{\link[=select_cols]{select_cols()}} these are automatically
 set to the names of the table.}
 }
 \description{

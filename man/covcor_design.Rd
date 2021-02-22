@@ -8,27 +8,25 @@ covcor_design(.data, gen, rep, resp, design = "RCBD", by = NULL, type = NULL)
 }
 \arguments{
 \item{.data}{The data to be analyzed. It can be a data frame, possible with
-grouped data passed from \code{\link[dplyr]{group_by}()}.}
+grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{rep}{The name of the column that contains the levels of the
 replications/blocks.}
 
-\item{resp}{The response variables. For example \code{resp = c(var1, var2,
-var3)}.}
+\item{resp}{The response variables. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{design}{The experimental design. Must be RCBD or CRD.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{type}{What the matrices should return? Set to \code{NULL}, i.e., a list
 of matrices is returned. The argument type allow the following values
-\code{'pcor', 'gcor', 'rcor'}, (which will return the phenotypic, genotypic
-and residual correlation matrices, respectively) or \code{'pcov', 'gcov',
-  'rcov'} (which will return the phenotypic, genotypic and residual
+\verb{'pcor', 'gcor', 'rcor'}, (which will return the phenotypic, genotypic
+and residual correlation matrices, respectively) or \verb{'pcov', 'gcov', 'rcov'} (which will return the phenotypic, genotypic and residual
 variance-covariance matrices, respectively). Alternatively, it is possible
 to get a matrix with the means of each genotype in each trait, by using
 \code{type = 'means'}.}
@@ -45,10 +43,12 @@ items:
 \item \strong{resi_cor} The residual correlation.
 }
 
-If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+If \code{.data} is a grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}
 then the results will be returned into a list-column of data frames.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute variance-covariance and correlation matrices using data from a
 designed (RCBD or CRD) experiment.
 }

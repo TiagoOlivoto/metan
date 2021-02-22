@@ -42,8 +42,10 @@ matrix.}
 An upper, lower, or symmetric matrix, or a tidy data frame.
 }
 \description{
-These functions help users to make upper, lower, or symmetric
-matrices easily.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
+These functions help users to make upper, lower, or symmetric matrices
+easily.
 }
 \details{
 \itemize{

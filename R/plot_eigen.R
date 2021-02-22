@@ -1,38 +1,40 @@
 #' Plot the eigenvalues
+#' @description
+#' `r badge('stable')`
 #'
 #' Plot the eigenvalues for from singular value decomposition of BLUP
 #' interaction effects matrix.
 #'
 #'
-#' @param x The \code{waasb object}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param export Export (or not) the plot. Default is \code{TRUE}.
+#' @param x The `waasb object`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param export Export (or not) the plot. Default is `TRUE`.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
-#' @param file.type If \code{export = TRUE}, define the type of file to be
-#'   exported. Default is \code{pdf}, Graphic can also be exported in
-#'   \code{*.tiff} format by declaring \code{file.type = "tiff"}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
+#' @param file.type If `export = TRUE`, define the type of file to be
+#'   exported. Default is `pdf`, Graphic can also be exported in
+#'   `*.tiff` format by declaring `file.type = "tiff"`.
 #' @param file.name The name of the file for exportation, default is
-#'   \code{NULL}, i.e. the files are automatically named.
-#' @param width The width "inch" of the plot. Default is \code{6}.
-#' @param height The height "inch" of the plot. Default is \code{6}.
-#' @param size.shape The size of the shape. Default is \code{3.5}.
-#' @param size.line The size of the line. Default is \code{1}.
+#'   `NULL`, i.e. the files are automatically named.
+#' @param width The width "inch" of the plot. Default is `6`.
+#' @param height The height "inch" of the plot. Default is `6`.
+#' @param size.shape The size of the shape. Default is `3.5`.
+#' @param size.line The size of the line. Default is `1`.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param y.lab The label of the y-axis in the plot. Default is
-#'   \code{"Eigenvalue"}.
+#'   `"Eigenvalue"`.
 #' @param y2.lab The label of the second y-axis in the plot. Default is
-#'   \code{"Accumulated variance"}.
-#' @param x.lab The label of the x-axis in the plot. Default is \code{"Number of
-#'   multiplicative terms"}.
+#'   `"Accumulated variance"`.
+#' @param x.lab The label of the x-axis in the plot. Default is `"Number of
+#'   multiplicative terms"`.
 #' @param resolution The resolution of the plot. Parameter valid if
-#'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
+#'   `file.type = "tiff"` is used. Default is `300` (300 dpi)
 #' @param ... Currently not used.
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{plot_scores}}, \code{\link{plot_waasby}}
+#' @seealso [plot_scores()], [plot_waasby()]
 #' @export
 #' @examples
 #' \donttest{

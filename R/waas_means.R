@@ -1,4 +1,6 @@
 #' Weighted Average of Absolute Scores
+#' @description
+#' `r badge('stable')`
 #'
 #' Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
 #' on means for genotype-environment data as follows:
@@ -7,11 +9,11 @@
 #' 1}^{p}EP_k}
 #'
 #' where \mjseqn{WAAS_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \mjseqn{PCA_{ik}} is the score of the \emph{i}th genotype
-#' in the \emph{k}th IPCA; and \mjseqn{EP_k} is the explained variance of the *k*th
-#' IPCA for \emph{k = 1,2,..,p}, where \emph{p} is the number of IPCAs that
+#' *i*th genotype; \mjseqn{PCA_{ik}} is the score of the *i*th genotype
+#' in the *k*th IPCA; and \mjseqn{EP_k} is the explained variance of the *k*th
+#' IPCA for *k = 1,2,..,p*, where *p* is the number of IPCAs that
 #' explain at least an amount of the genotype-interaction variance declared in
-#' the argument \code{min_expl_var}.
+#' the argument `min_expl_var`.
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -19,31 +21,31 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}. Select helpers are also allowed.
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`. Select helpers are also allowed.
 #' @param mresp  The new maximum value after rescaling the response variable. By
-#'   default, all variables in \code{resp} are rescaled so that de maximum value
-#'   is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
-#'   character vector of the same length of \code{resp} if rescaling is assumed
+#'   default, all variables in `resp` are rescaled so that de maximum value
+#'   is 100 and the minimum value is 0 (i.e., `mresp = NULL`). It must be a
+#'   character vector of the same length of `resp` if rescaling is assumed
 #'   to be different across variables, e.g., if for the first variable smaller
 #'   values are better and for the second one, higher values are better, then
-#'   \code{mresp = c("l, h")} must be used. Character value of length 1 will be
+#'   `mresp = c("l, h")` must be used. Character value of length 1 will be
 #'   recycled with a warning message.
 #' @param wresp The weight for the response variable(s) for computing the WAASBY
-#'   index. Must be a numeric vector of the same length of \code{resp}. Defaults
+#'   index. Must be a numeric vector of the same length of `resp`. Defaults
 #'   to 50, i.e., equal weights for stability and mean performance.
 #' @param min_expl_var The minimum explained variance. Defaults to 85.
 #'   Interaction Principal Compoment Axis are iteractively retained up to the
 #'   explained variance (eigenvalues in the singular value decomposition of the
 #'   matrix with the interaction effects) be greather than or equal to
-#'   \code{min_expl_var}. For example, if the explained variance (in percentage)
-#'   in seven possible IPCAs are \code{56, 21, 9, 6, 4, 3, 1}, resulting in a
-#'   cumulative proportion of \code{56,  77,  86,  92,  96, 99, 100}, then
-#'   \code{p = 3}, i.e., three IPCAs will be used to compute the index WAAS.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#'   `min_expl_var`. For example, if the explained variance (in percentage)
+#'   in seven possible IPCAs are `56, 21, 9, 6, 4, 3, 1`, resulting in a
+#'   cumulative proportion of `56,  77,  86,  92,  96, 99, 100`, then
+#'   `p = 3`, i.e., three IPCAs will be used to compute the index WAAS.
+#' @param verbose Logical argument. If `verbose = FALSE` the code is run
 #'   silently.
 #' @param ... Arguments passed to the function
-#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   [impute_missing_val()] for imputation of missing values in case
 #'   of unbalanced data.
 #' @references
 #' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
@@ -51,22 +53,22 @@
 #' multi-environment trials I: Combining features of AMMI and BLUP techniques.
 #' Agron. J. 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 #'
-#' @return An object of class \code{waas_means} with the following items for each
+#' @return An object of class `waas_means` with the following items for each
 #'   variable:
 #'
-#' * \strong{model} A data frame with the response variable, the scores of all
+#' * **model** A data frame with the response variable, the scores of all
 #' Principal Components, the estimates of Weighted Average of Absolute Scores,
 #' and WAASY (the index that consider the weights for stability and productivity
 #' in the genotype ranking.
-#' * \strong{ge_means} A tbl_df containing the genotype-environment means.
-#' * \strong{ge_eff} A \emph{gxe} matrix containing the genotype-environment effects.
-#' * \strong{eigenvalues} The eigenvalues from the singular value decomposition
+#' * **ge_means** A tbl_df containing the genotype-environment means.
+#' * **ge_eff** A *gxe* matrix containing the genotype-environment effects.
+#' * **eigenvalues** The eigenvalues from the singular value decomposition
 #' of the matrix withe the genotype-environment interaction effects.
-#' * \strong{proportion} The proportion of the variance explained by each IPCA.
-#' * \strong{cum_proportion} The cumulative proportion of the variance explained.
+#' * **proportion** The proportion of the variance explained by each IPCA.
+#' * **cum_proportion** The cumulative proportion of the variance explained.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{waas} \link{waasb}}
+#' @seealso [waas()] [waasb()]
 #' @export
 #' @examples
 #'\donttest{
@@ -113,9 +115,7 @@ waas_means <- function(.data,
   factors %<>% set_names("ENV", "GEN")
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   if (is.null(mresp)) {
     mresp <- replicate(nvar, 100)
@@ -253,7 +253,9 @@ waas_means <- function(.data,
                            cum_proportion = cumsum(weights)),
                       class = "waas_means")
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- temp
   }
@@ -263,16 +265,16 @@ waas_means <- function(.data,
 
 #' Print an object of class waas_means
 #'
-#' Print the \code{waas_means} object in two ways. By default, the results are shown
+#' Print the `waas_means` object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{waas_means}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `waas_means`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @param ... Currently not used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print waas_means

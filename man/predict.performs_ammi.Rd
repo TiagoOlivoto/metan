@@ -17,7 +17,7 @@ vector.}
 }
 \value{
 A list where each element is the predicted values by the AMMI model
-  for each variable.
+for each variable.
 }
 \description{
 Predict the means of a performs_ammi object considering a specific number of axis.
@@ -29,15 +29,14 @@ based on AMMI model. This prediction is based on the number of multiplicative
 terms used. If \code{naxis = 0}, only the main effects (AMMI0) are used. In
 this case, the predicted mean will be the predicted value from OLS
 estimation. If \code{naxis = 1} the AMMI1 (with one multiplicative term) is
-used for predicting the response variable. If \code{naxis =
-min(gen-1;env-1)}, the AMMIF is fitted and the predicted value will be the
+used for predicting the response variable. If \verb{naxis = min(gen-1;env-1)}, the AMMIF is fitted and the predicted value will be the
 cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
 environment. The number of axis to be used must be carefully chosen.
 Procedures based on Postdictive success (such as Gollobs's d.f.) or
 Predictive success (such as cross-validation) should be used to do this. This
-package provide both. \code{\link{performs_ammi}} function compute
+package provide both. \code{\link[=performs_ammi]{performs_ammi()}} function compute
 traditional AMMI analysis showing the number of significant axis. On the
-other hand, \code{\link{cv_ammif}} function provide a cross-validation,
+other hand, \code{\link[=cv_ammif]{cv_ammif()}} function provide a cross-validation,
 estimating the RMSPD of all AMMI-family models, based on resampling
 procedures.
 }

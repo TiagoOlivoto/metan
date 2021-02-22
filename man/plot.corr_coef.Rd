@@ -39,8 +39,8 @@ triangular heat map.}
 Defaults to \code{TRUE}.}
 
 \item{signif}{How to show significant correlations. If \code{"stars"} is used
-(default), stars are used showing the significance at 0.05 ("*"), 0.01
-("**") and 0.001 ("***") probability error. If \code{signif = "pval"}, then
+(default), stars are used showing the significance at 0.05 ("\emph{"), 0.01
+("\strong{") and 0.001 ("}}") probability error. If \code{signif = "pval"}, then
 the p-values are shown.}
 
 \item{caption}{Logical. If \code{TRUE} (Default) includes a caption with the
@@ -59,8 +59,7 @@ Defaults to \code{"bottom"} and \code{"right"} if \code{type = "lower"} or
 
 \item{legend.position}{The legend position in the plot.}
 
-\item{legend.title}{The title of the color key. Defaults to \code{"Pearson's
-Correlation"}.}
+\item{legend.title}{The title of the color key. Defaults to \code{"Pearson's Correlation"}.}
 
 \item{size.text.cor}{The size of the text for correlation values. Defaults to 3.}
 
@@ -71,7 +70,7 @@ Correlation"}.}
 \item{...}{Currently not used.}
 }
 \value{
-An object of class \code{gg, ggplot}
+An object of class \verb{gg, ggplot}
 }
 \description{
 Create a correlation heat map for object of class \code{corr_coef}

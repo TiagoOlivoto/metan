@@ -72,26 +72,27 @@ the rows or columns deleted.}
 A data frame with rows or columns with \code{NA} values deleted.
 }
 \description{
-NAs and zeros can increase the noise in multi-environment trial
-analysis. This collection of functions will make it easier to deal with
-them.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
+NAs and zeros can increase the noise in multi-environment trial analysis.
+This collection of functions will make it easier to deal with them.
 
 \itemize{
 \item \code{fill_na()}: Fills \code{NA} in selected columns using the next or
 previous entry.
-\item \code{has_na(), has_zero()}: Check for \code{NAs} and \code{0s} in the
+\item \verb{has_na(), has_zero()}: Check for \code{NAs} and \verb{0s} in the
 data and return a logical value.
 \item \code{random_na()}: Generate random \code{NA} values in a two-way table
 based on a desired proportion.
-\item \code{remove_cols_na(), remove_cols_zero()}: Remove columns with \code{NAs}
-and \code{0s}, respectively.
-\item \code{remove_rows_na(), remove_rows_zero()}: Remove rows with \code{NAs}
-and \code{0s}, respectively.
-\item \code{select_cols_na(), select_cols_zero()}: Select columns with \code{NAs}
-and \code{0s}, respectively.
-\item \code{select_rows_na(), select_rows_zero()}: Select rows with \code{NAs}
-and \code{0s}, respectively.
-\item \code{replace_na(), replace_zero()}: Replace \code{NAs} and \code{0s},
+\item \verb{remove_cols_na(), remove_cols_zero()}: Remove columns with \code{NAs}
+and \verb{0s}, respectively.
+\item \verb{remove_rows_na(), remove_rows_zero()}: Remove rows with \code{NAs}
+and \verb{0s}, respectively.
+\item \verb{select_cols_na(), select_cols_zero()}: Select columns with \code{NAs}
+and \verb{0s}, respectively.
+\item \verb{select_rows_na(), select_rows_zero()}: Select rows with \code{NAs}
+and \verb{0s}, respectively.
+\item \verb{replace_na(), replace_zero()}: Replace \code{NAs} and \verb{0s},
 respectively, with a \code{replacement} value.
 }
 }

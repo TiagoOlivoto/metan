@@ -15,7 +15,7 @@
 A tibble with the predicted values for each variable in the model
 }
 \description{
-Obtains predictions from an object fitted with \code{\link{gamem}}.
+Obtains predictions from an object fitted with \code{\link[=gamem]{gamem()}}.
 }
 \examples{
 \donttest{

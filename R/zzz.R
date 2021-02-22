@@ -5,7 +5,6 @@
 #'   group_split  left_join  sample_n  anti_join pull select_if arrange slice
 #'   contains top_n summarise ungroup rename is_grouped_df desc n funs
 #' @importFrom tibble tibble as_tibble
-#' @importFrom grid grobTree textGrob
 #' @importFrom ggrepel  geom_text_repel geom_label_repel
 #' @importFrom magrittr  %>% %<>%
 #' @importFrom GGally  ggally_text  eval_data_col  ggpairs
@@ -24,7 +23,7 @@ NULL
 #'
 #' @description This dataset contains the means for grain yield of 10 genotypes cultivated
 #' in 5 environments. The interaction effects for this data is found in
-#' \code{\link{int.effects}}
+#' [int.effects()]
 #'
 #' @name meansGxE
 #' @docType data
@@ -47,13 +46,13 @@ NULL
 #' replicates(blocks). This data provide examples for several functions of
 #' \pkg{metan} package.
 #' @format A tibble with 420 observations on the following 5 variables.
-#' * \strong{ENV} A factor with 14 levels; each level represents one cultivation
+#' * **ENV** A factor with 14 levels; each level represents one cultivation
 #' environment.
-#' * \strong{GEN} A factor with 10 levels; each level represents one genotype.
-#' * \strong{REP} A factor with 3 levels; each level represents one
+#' * **GEN** A factor with 10 levels; each level represents one genotype.
+#' * **REP** A factor with 3 levels; each level represents one
 #' replication/block.
-#' * \strong{GY} A continuous variable (grain yield) observed in each plot.
-#' * \strong{HM} A continuous variable (hectoliter mass) observed in each plot.
+#' * **GY** A continuous variable (grain yield) observed in each plot.
+#' * **HM** A continuous variable (hectoliter mass) observed in each plot.
 #' @md
 #' @source Personal data
 #' @name data_ge
@@ -68,26 +67,26 @@ NULL
 #' replications per block. It may be used as example in several functions of
 #' \pkg{metan} package.
 #' @format A tibble with 156 observations on the following 18 variables.
-#' * \strong{ENV} A factor with 4 levels; each level represents one cultivation
+#' * **ENV** A factor with 4 levels; each level represents one cultivation
 #' environment.
-#' * \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
-#' * \strong{REP} A factor with 3 levels; each level represents one
+#' * **GEN** A factor with 13 levels; each level represents one maize hybrid.
+#' * **REP** A factor with 3 levels; each level represents one
 #' replication/block.
-#' * \strong{PH} Plant height, in cm.
-#' * \strong{EH} Ear height, in cm.
-#' * \strong{EP} Ear position, i.e., the ratio EH/PH.
-#' * \strong{EL} Ear length, in cm.
-#' * \strong{ED} Ear diameter, in mm.
-#' * \strong{CL} Cob length, in cm.
-#' * \strong{CD} Cob diameter, in mm.
-#' * \strong{CW} Cob weight, in g.
-#' * \strong{KW} Kernel weight, in cm.
-#' * \strong{NR} Number of rows.
-#' * \strong{NKR} Number of kernels per row.
-#' * \strong{CDED} Cob diameter / Ear diameter ratio.
-#' * \strong{PERK} Percentage of kernels.
-#' * \strong{TKW} Thousand-kernel weight
-#' * \strong{NKE} Number of kernels per row.
+#' * **PH** Plant height, in cm.
+#' * **EH** Ear height, in cm.
+#' * **EP** Ear position, i.e., the ratio EH/PH.
+#' * **EL** Ear length, in cm.
+#' * **ED** Ear diameter, in mm.
+#' * **CL** Cob length, in cm.
+#' * **CD** Cob diameter, in mm.
+#' * **CW** Cob weight, in g.
+#' * **KW** Kernel weight, in cm.
+#' * **NR** Number of rows.
+#' * **NKR** Number of kernels per row.
+#' * **CDED** Cob diameter / Ear diameter ratio.
+#' * **PERK** Percentage of kernels.
+#' * **TKW** Thousand-kernel weight
+#' * **NKE** Number of kernels per row.
 #' @md
 #' @name data_ge2
 #' @source Personal data
@@ -101,26 +100,26 @@ NULL
 #' @title Single maize trial
 #' @description This dataset contain data on 15 traits assessed in 13 maize hybrids.
 #' The experimental design was a RCBD with 3 blocks and 1
-#' replications per block. It is used as an example in the function \code{\link{gamem}}
+#' replications per block. It is used as an example in the function [gamem()]
 #'  of the \pkg{metan} package.
 #' @format A tibble with 39 observations on the following 17 variables.
-#' * \strong{GEN} A factor with 13 levels; each level represents one maize hybrid.
-#' * \strong{REP} A factor with 3 levels; each level represents one replication/block.
-#' * \strong{PH} Plant height, in cm.
-#' * \strong{EH} Ear height, in cm.
-#' * \strong{EP} Ear position, i.e., the ratio EH/PH.
-#' * \strong{EL} Ear length, in cm.
-#' * \strong{ED} Ear diameter, in mm.
-#' * \strong{CL} Cob length, in cm.
-#' * \strong{CD} Cob diameter, in mm.
-#' * \strong{CW} Cob weight, in g.
-#' * \strong{KW} Kernel weight, in cm.
-#' * \strong{NR} Number of rows.
-#' * \strong{NKR} Number of kernels per row.
-#' * \strong{CDED} Cob diameter / Ear diameter ratio.
-#' * \strong{PERK} Percentage of kernels.
-#' * \strong{TKW} Thousand-kernel weight
-#' * \strong{NKE} Number of kernels per row.
+#' * **GEN** A factor with 13 levels; each level represents one maize hybrid.
+#' * **REP** A factor with 3 levels; each level represents one replication/block.
+#' * **PH** Plant height, in cm.
+#' * **EH** Ear height, in cm.
+#' * **EP** Ear position, i.e., the ratio EH/PH.
+#' * **EL** Ear length, in cm.
+#' * **ED** Ear diameter, in mm.
+#' * **CL** Cob length, in cm.
+#' * **CD** Cob diameter, in mm.
+#' * **CW** Cob weight, in g.
+#' * **KW** Kernel weight, in cm.
+#' * **NR** Number of rows.
+#' * **NKR** Number of kernels per row.
+#' * **CDED** Cob diameter / Ear diameter ratio.
+#' * **PERK** Percentage of kernels.
+#' * **TKW** Thousand-kernel weight
+#' * **NKE** Number of kernels per row.
 #' @md
 #' @name data_g
 #' @source Personal data
@@ -134,11 +133,11 @@ NULL
 #' @title Data from an alpha lattice design
 #' @description Alpha lattice design of spring oats
 #' @format A tibble with 72 observations on the following 5 variables.
-#' * \strong{PLOT} Plot number
-#' * \strong{REP} Replicate code
-#' * \strong{BLOCK} Incomplete block code
-#' * \strong{GEN} Genotype code
-#' * \strong{YIELD} Observed dry matter yield (tonnes/ha)
+#' * **PLOT** Plot number
+#' * **REP** Replicate code
+#' * **BLOCK** Incomplete block code
+#' * **GEN** Genotype code
+#' * **YIELD** Observed dry matter yield (tonnes/ha)
 #'
 #' @details A spring oats trial grown in Craibstone. There were 24 varieties
 #'  in 3 replicates, each consisting of 6 incomplete blocks of 4 plots.

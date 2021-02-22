@@ -13,6 +13,8 @@ reorder_cormat(x)
 The ordered correlation matrix
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Reorder the correlation matrix according to the correlation coefficient by
 using  hclust for hierarchical clustering order. This is useful to identify
 the hidden pattern in the matrix.

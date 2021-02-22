@@ -1,12 +1,14 @@
 #' Coerce to an object of class lpcor
+#' @description
+#' `r badge('stable')`
 #'
-#' Functions to check if an object is of class \code{lpcor}, or coerce it if
+#' Functions to check if an object is of class `lpcor`, or coerce it if
 #' possible.
 #'
 #'
 #' @param ... A comma-separated list of matrices to be coerced to a list.
 #' @importFrom methods as
-#' @return An object of class \code{lpcor}.
+#' @return An object of class `lpcor`.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples

@@ -1,4 +1,6 @@
 #' Pseudoinverse of a square matrix
+#' @description
+#' `r badge('stable')`
 #'
 #' This function computes the Moore-Penrose pseudoinverse of a square matrix
 #' using singular value decomposition.
@@ -6,7 +8,7 @@
 #' @param x A square matrix
 #' @param tolerance The tolerance to consider an eigenvalue equals to zero.
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
-#' @return A matrix with the same dimension of \code{x}.
+#' @return A matrix with the same dimension of `x`.
 #' @export
 #' @examples
 #' \donttest{

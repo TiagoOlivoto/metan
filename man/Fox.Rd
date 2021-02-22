@@ -32,6 +32,8 @@ tibble with the following columns is returned.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a stability analysis based on the criteria of Fox et al. (1990),
 using the statistical "TOP third" only. A stratified ranking of the genotypes
 at each environment is done. The proportion of locations at which the

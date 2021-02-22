@@ -1,8 +1,8 @@
 #' Personalized theme for ggplot2-based graphics
 #'
-#' @param grid Control the grid lines in plot. Defaults to \code{"both"} (x and
-#'   y major grids). Allows also \code{grid = "x"} for grids in x axis only,
-#'   \code{grid = "y"} for grid in y axis only, or \code{grid = "none"} for no
+#' @param grid Control the grid lines in plot. Defaults to `"both"` (x and
+#'   y major grids). Allows also `grid = "x"` for grids in x axis only,
+#'   `grid = "y"` for grid in y axis only, or `grid = "none"` for no
 #'   grids.
 #' @param col.grid The color for the grid lines
 #' @param color.background The color for the panel background.
@@ -13,15 +13,15 @@
 #'
 #' @name themes
 #' @description
-#' * \code{theme_metan()}: Theme with a gray background and major grids.
-#' * \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
-#'   background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
-#' * \code{transparent_color()}: A helper function to return a transparent color
+#' * `theme_metan()`: Theme with a gray background and major grids.
+#' * `theme_metan_minimal()`: A minimalistic theme with half-open frame, white
+#'   background, and no grid. For more details see [ggplot2::theme()].
+#' * `transparent_color()`: A helper function to return a transparent color
 #' with Hex value of "#000000FF"
-#' * \code{ggplot_color()}: A helper function to emulate ggplot2 default color
+#' * `ggplot_color()`: A helper function to emulate ggplot2 default color
 #' palette.
-#' * \code{alpha_color()}: Return a semi-transparent color based on a color name
-#' and an alpha value. For more details see \code{\link[grDevices]{colors}}.
+#' * `alpha_color()`: Return a semi-transparent color based on a color name
+#' and an alpha value. For more details see [grDevices::colors()].
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

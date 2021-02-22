@@ -15,9 +15,11 @@ get_dist(..., digits = 2)
 A list of class \code{clustering}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Get the distance matrices from objects fitted with the function
-\code{\link{clustering}}. This is especially useful to get distance matrices
-from several objects to be further analyzed using \code{\link{pairs_mantel}}.
+\code{\link[=clustering]{clustering()}}. This is especially useful to get distance matrices
+from several objects to be further analyzed using \code{\link[=pairs_mantel]{pairs_mantel()}}.
 }
 \examples{
 \donttest{

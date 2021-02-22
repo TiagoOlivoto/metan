@@ -1,7 +1,10 @@
 #' @title Utilities for set operations for many sets
 #'
-#' @description Provides alternative function to \code{\link[base]{union}()},
-#'   \code{\link[base]{intersect}()}, and \code{\link[base]{setdiff}()}.
+#' @description
+#' `r badge('stable')`
+#'
+#'  Provides alternative function to [base::union()], [base::intersect()], and
+#'  [base::setdiff()].
 #' * `set_union()`: Returns the union of the sets in `...`.
 #' * `set_intersect()`: Returns the intersect of the sets in `...`.
 #' * `set_difference()`: Returns the difference of the sets in `...`.

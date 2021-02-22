@@ -1,38 +1,40 @@
 #' @name barplots
 #' @title Fast way to create bar plots
 #' @description
-#' * \code{plot_bars()} Creates a bar plot based on one categorical variable and
+#' `r badge('stable')`
+#'
+#' * `plot_bars()` Creates a bar plot based on one categorical variable and
 #' one numeric variable.  It can be used to show the results of a one-way trial
-#' with \strong{qualitative treatments}.
-#' * \code{plot_factbars()} Creates a bar plot based on two categorical
+#' with **qualitative treatments**.
+#' * `plot_factbars()` Creates a bar plot based on two categorical
 #' variables and one numeric variable.  It can be used to show the results of a
-#' two-way trial with \strong{qualitative-qualitative treatment structure}.
+#' two-way trial with **qualitative-qualitative treatment structure**.
 #' @param .data The data set.
-#' @param ... Argument valid for \code{plot_factbars()}. A comma-separated list
+#' @param ... Argument valid for `plot_factbars()`. A comma-separated list
 #'   of unquoted variable names. Sets the two variables to be mapped to the
-#'   \code{x} axis.
-#' @param resp Argument valid for \code{plot_factbars()}. The response variable
+#'   `x` axis.
+#' @param resp Argument valid for `plot_factbars()`. The response variable
 #'   to be mapped to the y axis.
-#' @param x,y Argument valid for \code{plot_bars()} The variables to be mapped
-#'   to the \code{x} and \code{y} axes, respectively.
-#' @param order Argument valid for \code{plot_bars()}. Controls the order of the
-#'   factor in the \code{x} axis. Defaults to the order of the factors in
-#'   \code{.data}. Use \code{order = "asce"} or \code{order = "desc"} to reorder
+#' @param x,y Argument valid for `plot_bars()` The variables to be mapped
+#'   to the `x` and `y` axes, respectively.
+#' @param order Argument valid for `plot_bars()`. Controls the order of the
+#'   factor in the `x` axis. Defaults to the order of the factors in
+#'   `.data`. Use `order = "asce"` or `order = "desc"` to reorder
 #'   the labels to ascending or descending order, respectively, based on the
-#'   values of the variable \code{y}.
-#' @param y.lim The range of y axis. Defaults to \code{NULL} (maximum and
-#'   minimum values of the data set). New values can be inserted as \code{y.lim
-#'   = c(y.min, y.max)}.
+#'   values of the variable `y`.
+#' @param y.lim The range of y axis. Defaults to `NULL` (maximum and
+#'   minimum values of the data set). New values can be inserted as `y.lim
+#'   = c(y.min, y.max)`.
 #' @param y.breaks The breaks to be plotted in the y-axis. Defaults to waiver().
-#'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#'   `authomatic breaks`. The same arguments than `x.breaks` can be
 #'   used.
 #' @param y.expand,y.contract A multiplication range expansion/contraction
-#'   factor. \code{y.expand} expands the upper limit of the y escale, while
-#'   \code{y.contract} contracts the lower limit of the y scale. By default
-#'   \code{y.expand = 0.05} and \code{y.contract = 0} produces a plot without
+#'   factor. `y.expand` expands the upper limit of the y escale, while
+#'   `y.contract` contracts the lower limit of the y scale. By default
+#'   `y.expand = 0.05` and `y.contract = 0` produces a plot without
 #'   spacing in the lower y limit and an expansion in the upper y limit.
 #' @param xlab,ylab The labels of the axes x and y, respectively. Defaults to
-#'   \code{NULL}.
+#'   `NULL`.
 #' @param n.dodge The number of rows that should be used to render the x labels.
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
@@ -41,63 +43,63 @@
 #' @param lab.bar.hjust,lab.bar.vjust The horizontal and vertical adjust for the
 #'   labels in the bar. Defaults to 0.5 and -0.5, respectively.
 #' @param lab.bar.angle The angle for the labels in the plot. Defaults to 0. Use
-#'   in combination with \code{lab.bar.hjust} and \code{lab.bar.vjust} to best
+#'   in combination with `lab.bar.hjust` and `lab.bar.vjust` to best
 #'   fit the labels in the plot.
 #' @param size.text.bar The size of the text in the bar labels.
 #' @param values Logical argument. Shows the values in the plot bar?
-#'   Defaults to \code{FALSE}
+#'   Defaults to `FALSE`
 #' @param values.hjust,values.vjust The horizontal and vertical adjust
 #'   for the values in the bar. Defaults to 0.5 and 1.5, respectively. If
-#'   \code{values = TRUE} the values are shown bellow the error bar.
+#'   `values = TRUE` the values are shown bellow the error bar.
 #' @param values.angle The angle for the labels in the plot. Defaults to 0.
-#'   Use in combination with \code{values.hjust} and \code{values.vjust}
+#'   Use in combination with `values.hjust` and `values.vjust`
 #'   to best fit the values in the plot bar.
-#' @param values.digits The significant digits to show if \code{values
-#'   = TRUE}. Defaults to \code{2}.
+#' @param values.digits The significant digits to show if `values
+#'   = TRUE`. Defaults to `2`.
 #' @param values.size The size of the text for values shown in the bars.
-#'   Defaults to \code{3}.
+#'   Defaults to `3`.
 #' @param lab.x.hjust,lab.x.vjust The horizontal and vertical adjust for the
 #'   labels in the bar. Defaults to 0.5 and 1, respectively.
 #' @param lab.x.angle The angle for the labels in x axis. Defaults to 0. Use
-#'   in combination with \code{lab.x.hjust} and \code{lab.x.vjust} to best
+#'   in combination with `lab.x.hjust` and `lab.x.vjust` to best
 #'   fit the labels in the axis.
 #' @param errorbar Logical argument, set to TRUE. In this case, an error bar is
 #'   shown.
 #' @param stat.erbar The statistic to be shown in the errorbar. Must be one of
-#'   the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar =
-#'   "sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
-#'   interval), based on the confidence level in the argument \code{level}.
+#'   the `stat.erbar = "se"` (standard error, default), `stat.erbar =
+#'   "sd"` (standard deviation), or `stat.erbar = "ci"` (confidence
+#'   interval), based on the confidence level in the argument `level`.
 #' @param width.erbar The width of the error bar. Defaults to 25% of
-#'   \code{width.bar}.
+#'   `width.bar`.
 #' @param level The confidence level
-#' @param invert Logical argument. If \code{TRUE}, rotate the plot in
-#'   \code{plot_bars()} and invert the order of the factors in
-#'   \code{plot_factbars()}.
-#' @param color.bar,fill.bar Argument valid for \code{plot_bars()}. The color and
+#' @param invert Logical argument. If `TRUE`, rotate the plot in
+#'   `plot_bars()` and invert the order of the factors in
+#'   `plot_factbars()`.
+#' @param color.bar,fill.bar Argument valid for `plot_bars()`. The color and
 #'   fill values of the bars.
-#' @param col Logical argument valid for \code{plot_factbars()}. If
-#'   \code{FALSE}, a gray scale is used.
-#' @param palette Argument valid for \code{plot_factbars()} The color palette to
-#'   be used. For more details, see \code{?scale_colour_brewer}
+#' @param col Logical argument valid for `plot_factbars()`. If
+#'   `FALSE`, a gray scale is used.
+#' @param palette Argument valid for `plot_factbars()` The color palette to
+#'   be used. For more details, see `?scale_colour_brewer`
 #' @param width.bar The width of the bars in the graph. Defaults to 0.9.
 #'   Possible values are in the range 0-1.
 #' @param legend.position The position of the legend in the plot.
-#' @param size.line The size of the line in the bars. Default to \code{0.5}.
-#' @param size.text The size of the text. Default to \code{12}.
-#' @param fontfam The family of the font text. Defaults to \code{"sans"}.
+#' @param size.line The size of the line in the bars. Default to `0.5`.
+#' @param size.text The size of the text. Default to `12`.
+#' @param fontfam The family of the font text. Defaults to `"sans"`.
 #' @param na.rm Should 'NA' values be removed to compute the statistics?
 #'   Defaults to true
 #' @param verbose Logical argument. If TRUE a tibble containing the mean, N,
 #'   standard deviation, standard error of mean and confidence interval is
 #'   returned.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
-#' @return An object of class \code{gg, ggplot}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
+#' @return An object of class `gg, ggplot`.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
-#' @seealso \code{\link{plot_lines}}, \code{\link{plot_factlines}}
+#' @seealso [plot_lines()], [plot_factlines()]
 #'
 #' @examples
 #' \donttest{

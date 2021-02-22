@@ -42,7 +42,7 @@ confidence interval limits.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{band.alpha, point.alpha}{The transparency of confidence band in the Q-Q
 plot and the points, respectively. Must be a number between 0 (opaque) and
@@ -67,16 +67,17 @@ plot and the points, respectively. Must be a number between 0 (opaque) and
 
 \item{bins}{The number of bins to use in the histogram. Default is 30.}
 
-\item{which}{Which graphics should be plotted. Default is \code{which =
-c(1:4)} that means that the first four graphics will be plotted.}
+\item{which}{Which graphics should be plotted. Default is \code{which = c(1:4)} that means that the first four graphics will be plotted.}
 
 \item{ncol, nrow}{The number of columns and rows of the plot pannel. Defaults
 to \code{NULL}}
 
 \item{...}{Additional arguments passed on to the function
-\code{\link[patchwork]{wrap_plots}()}.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Residual plots for a output model of class \code{performs_ammi},
 \code{waas},  \code{anova_ind}, and  \code{anova_joint}. Seven types of plots
 are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals,

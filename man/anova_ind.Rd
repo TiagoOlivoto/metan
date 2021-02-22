@@ -20,8 +20,7 @@ factor.}
 replications/blocks.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
@@ -59,6 +58,8 @@ square.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a within-environment analysis of variance in randomized complete
 block or alpha-lattice designs and returns values such as Mean Squares,
 p-values, coefficient of variation, heritability, and accuracy of selection.

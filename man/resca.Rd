@@ -33,13 +33,14 @@ rescaled variables will be kept.}
 }
 \value{
 A numeric vector if \code{values} is used as input data or a tibble
-  if a data frame is used as input in \code{.data}.
+if a data frame is used as input in \code{.data}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Helper function that rescales a continuous variable to have specified minimum
 and maximum values.
-}
-\details{
+
 The function rescale a continuous variable as follows: \deqn{Rv_i = (Nmax -
 Nmin)/(Omax - Omin) * (O_i - Omax) + Nmax} Where \eqn{Rv_i} is the rescaled
 value of the ith position of the variable/ vector; \eqn{Nmax} and \eqn{Nmin}
@@ -51,7 +52,7 @@ There are basically two options to use \code{resca} to rescale a variable.
 The first is passing a data frame to \code{.data} argument and selecting one
 or more variables to be scaled using \code{...}. The function will return the
 original variables in \code{.data} plus the rescaled variable(s) with the
-prefix \code{_res}. By using the function \code{group_by} from \bold{dplyr}
+prefix \verb{_res}. By using the function \code{group_by} from \strong{dplyr}
 package it is possible to rescale the variable(s) within each level of the
 grouping factor. The second option is pass a numeric vector in the argument
 \code{values}. The output, of course, will be a numeric vector of rescaled

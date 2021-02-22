@@ -27,6 +27,8 @@ for each variable used in the argument \code{resp}. For each variable, a
 tibble with the columns GEN, N1, N2, N3 and N4 is returned.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a stability analysis based on Thennarasu (1995) statistics.
 }
 \examples{

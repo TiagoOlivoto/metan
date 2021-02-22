@@ -1,4 +1,6 @@
 #' AMMI-based stability indexes
+#' @description
+#' `r badge('stable')`
 #'
 #' This function computes the following AMMI-based stability indexes: ASV, AMMI
 #' stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
@@ -33,9 +35,9 @@
 #' 1}^{p}EP_k}
 #'
 #' where \eqn{WAAS_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \eqn{PCA_{ik}} is the score of the \emph{i}th genotype
-#' in the \emph{k}th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
-#' IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
+#' *i*th genotype; \eqn{PCA_{ik}} is the score of the *i*th genotype
+#' in the *k*th IPCA; and \eqn{EP_k} is the explained variance of the *k*th
+#' IPCA for *k = 1,2,..,p*, considering *p* the number of significant
 #' PCAs.
 #'
 #' Five simultaneous selection indexes (ssi) are also computed by summation of
@@ -43,13 +45,13 @@
 #' yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, ssiZa,
 #' and ssiWAAS, respectively.
 #'
-#' @param .data An object of class \code{waas} or \code{performs_ammi}
-#' @param order.y A vector of the same length of \code{x} used to order the
-#' response variable. Each element of the vector must be one of the \code{'h'}
-#' or \code{'l'}. If \code{'h'} is used, the response variable will be ordered
-#' from maximum to minimum. If \code{'l'} is used then the response variable
+#' @param .data An object of class `waas` or `performs_ammi`
+#' @param order.y A vector of the same length of `x` used to order the
+#' response variable. Each element of the vector must be one of the `'h'`
+#' or `'l'`. If `'h'` is used, the response variable will be ordered
+#' from maximum to minimum. If `'l'` is used then the response variable
 #' will be ordered from minimum to maximum. Use a comma-separated vector of
-#' names. For example, \code{order.y = c("h, h, l, h, l")}.
+#' names. For example, `order.y = c("h, h, l, h, l")`.
 #' @param level The confidence level. Defaults to 0.95.
 #' @return
 #'
@@ -219,20 +221,20 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
 
 #' Print an object of class AMMI_indexes
 #'
-#' Print the \code{AMMI_indexes} object in two ways. By default, the results are shown
+#' Print the `AMMI_indexes` object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory into a
 #' *.txt file.
 #'
-#' @param x An object of class \code{AMMI_indexes}.
-#' @param which Which should be printed. Defaults to \code{"stats"}. Other
-#'   possible values are \code{"ranks"} for genotype ranking and \code{"ssi"}
+#' @param x An object of class `AMMI_indexes`.
+#' @param which Which should be printed. Defaults to `"stats"`. Other
+#'   possible values are `"ranks"` for genotype ranking and `"ssi"`
 #'   for the simultaneous selection index.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print AMMI_indexes
 #' @export

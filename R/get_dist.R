@@ -1,12 +1,14 @@
 #' Get a distance matrix
+#' @description
+#' `r badge('stable')`
 #'
 #' Get the distance matrices from objects fitted with the function
-#' \code{\link{clustering}}. This is especially useful to get distance matrices
-#' from several objects to be further analyzed using \code{\link{pairs_mantel}}.
+#' [clustering()]. This is especially useful to get distance matrices
+#' from several objects to be further analyzed using [pairs_mantel()].
 #'
-#' @param ... Object(s) of class \code{clustering}.]
-#' @param digits The number of significant figures. Defaults to \code{2}.
-#' @return A list of class \code{clustering}.
+#' @param ... Object(s) of class `clustering`.]
+#' @param digits The number of significant figures. Defaults to `2`.
+#' @return A list of class `clustering`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

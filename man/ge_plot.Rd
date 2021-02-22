@@ -30,15 +30,17 @@ for a line plot.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details,see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{colour}{Logical argument. If \code{FALSE} then the plot will not be
 colored.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function produces a line plot for a graphical interpretation of the
 genotype-vs-environment interaction. By default, environments are in the x
 axis whereas the genotypes are depicted by different lines. The y axis

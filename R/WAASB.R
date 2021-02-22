@@ -1,7 +1,9 @@
 #' Weighted Average of Absolute Scores
+#' @description
+#' `r badge('stable')`
 #'
 #' Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) for
-#' quantifying the stability of \emph{g} genotypes conducted in \emph{e}
+#' quantifying the stability of *g* genotypes conducted in *e*
 #' environments using linear mixed-effect models.
 #'
 #' The weighted average of absolute scores is computed considering all
@@ -12,50 +14,50 @@
 #' \mjsdeqn{WAASB_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k}
 #'
 #' where \mjseqn{WAASB_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \mjseqn{IPCA_{ik}} is the score of the \emph{i}th genotype
-#' in the \emph{k}th Interaction Principal Component Axis (IPCA); and \mjseqn{EP_k} is the explained variance of the *k*th
-#' IPCA for \emph{k = 1,2,..,p}, considering \mjseqn{p = min(g - 1; e - 1)}.
+#' *i*th genotype; \mjseqn{IPCA_{ik}} is the score of the *i*th genotype
+#' in the *k*th Interaction Principal Component Axis (IPCA); and \mjseqn{EP_k} is the explained variance of the *k*th
+#' IPCA for *k = 1,2,..,p*, considering \mjseqn{p = min(g - 1; e - 1)}.
 #'
 #' The nature of the effects in the model is
-#' chosen with the argument \code{random}. By default, the experimental design
+#' chosen with the argument `random`. By default, the experimental design
 #' considered in each environment is a randomized complete block design. If
-#' \code{block} is informed, a resolvable alpha-lattice design (Patterson and
+#' `block` is informed, a resolvable alpha-lattice design (Patterson and
 #' Williams, 1976) is implemented. The following six models can be fitted
-#' depending on the values of \code{random} and \code{block} arguments.
-#'   *  \strong{Model 1:} \code{block = NULL} and \code{random = "gen"} (The
+#' depending on the values of `random` and `block` arguments.
+#'   *  **Model 1:** `block = NULL` and `random = "gen"` (The
 #'   default option). This model considers a Randomized Complete Block Design in
 #'   each environment assuming genotype and genotype-environment interaction as
 #'   random effects. Environments and blocks nested within environments are
 #'   assumed to fixed factors.
 #'
-#'   *  \strong{Model 2:} \code{block = NULL} and \code{random = "env"}. This
+#'   *  **Model 2:** `block = NULL` and `random = "env"`. This
 #'   model considers a Randomized Complete Block Design in each environment
 #'   treating environment, genotype-environment interaction, and blocks nested
 #'   within environments as random factors. Genotypes are assumed to be fixed
 #'   factors.
 #'
-#'   *  \strong{Model 3:} \code{block = NULL} and \code{random = "all"}. This
+#'   *  **Model 3:** `block = NULL` and `random = "all"`. This
 #'   model considers a Randomized Complete Block Design in each environment
 #'   assuming a random-effect model, i.e., all effects (genotypes, environments,
 #'   genotype-vs-environment interaction and blocks nested within environments)
 #'   are assumed to be random factors.
 #'
-#'   *  \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =
-#'   "gen"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 4:** `block` is not `NULL` and `random =
+#'   "gen"`. This model considers an alpha-lattice design in each environment
 #'   assuming genotype, genotype-environment interaction, and incomplete blocks
 #'   nested within complete replicates as random to make use of inter-block
 #'   information (Mohring et al., 2015). Complete replicates nested within
 #'   environments and environments are assumed to be fixed factors.
 #'
-#'   *  \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =
-#'   "env"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 5:** `block` is not `NULL` and `random =
+#'   "env"`. This model considers an alpha-lattice design in each environment
 #'   assuming genotype as fixed. All other sources of variation (environment,
 #'   genotype-environment interaction, complete replicates nested within
 #'   environments, and incomplete blocks nested within replicates) are assumed
 #'   to be random factors.
 #'
-#'   *  \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =
-#'   "all"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 6:** `block` is not `NULL` and `random =
+#'   "all"`. This model considers an alpha-lattice design in each environment
 #'   assuming all effects, except the intercept, as random factors.
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -66,48 +68,48 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then an alpha-lattice
 #'   design is employed considering block as random to make use of inter-block
 #'   information, whereas the complete replicate effect is always taken as
 #'   fixed, as no inter-replicate information was to be recovered (Mohring et
 #'   al., 2015).
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  to [dplyr::group_by()].This is especially useful, for example,
 #'  when the researcher want to compute the indexes by mega-environments. In
 #'  this case, an object of class waasb_grouped is returned.
-#'  \code{\link{mtsi}()} can then be used to compute the mtsi index within each
+#'  [mtsi()] can then be used to compute the mtsi index within each
 #'  mega-environment.
 #' @param mresp  The new maximum value after rescaling the response variable. By
-#'   default, all variables in \code{resp} are rescaled so that de maximum value
-#'   is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
-#'   character vector of the same length of \code{resp} if rescaling is assumed
+#'   default, all variables in `resp` are rescaled so that de maximum value
+#'   is 100 and the minimum value is 0 (i.e., `mresp = NULL`). It must be a
+#'   character vector of the same length of `resp` if rescaling is assumed
 #'   to be different across variables, e.g., if for the first variable smaller
 #'   values are better and for the second one, higher values are better, then
-#'   \code{mresp = c("l, h")} must be used. Character value of length 1 will be
+#'   `mresp = c("l, h")` must be used. Character value of length 1 will be
 #'   recycled with a warning message.
 #' @param wresp The weight for the response variable(s) for computing the WAASBY
-#'   index. By default, all variables in \code{resp} have equal weights for mean
-#'   performance and stability (i.e., \code{wresp = 50}). It must be a numeric
-#'   vector of the same length of \code{resp} to assign different weights across
+#'   index. By default, all variables in `resp` have equal weights for mean
+#'   performance and stability (i.e., `wresp = 50`). It must be a numeric
+#'   vector of the same length of `resp` to assign different weights across
 #'   variables, e.g., if for the first variable equal weights for mean
 #'   performance and stability are assumed and for the second one, a higher
-#'   weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50,
-#'   65)} must be used. Numeric value of length 1 will be recycled with a
+#'   weight for mean performance (e.g. 65) is assumed, then `wresp = c(50,
+#'   65)` must be used. Numeric value of length 1 will be recycled with a
 #'   warning message.
 #' @param random The effects of the model assumed to be random. Defaults to
-#'   \code{random = "gen"}. See \strong{Details} to see the random effects
+#'   `random = "gen"`. See **Details** to see the random effects
 #'   assumed depending on the experimental design of the trials.
 #' @param prob The probability for estimating confidence interval for BLUP's
 #'   prediction.
-#' @param ind_anova Logical argument set to \code{FALSE}. If \code{TRUE} an
+#' @param ind_anova Logical argument set to `FALSE`. If `TRUE` an
 #'   within-environment ANOVA is performed.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @param ... Arguments passed to the function
-#'   \code{\link{impute_missing_val}()} for imputation of missing values in the
+#'   [impute_missing_val()] for imputation of missing values in the
 #'   matrix of BLUPs for genotype-environment interaction, thus allowing the
 #'   computation of the WAASB index.
 #' @references
@@ -125,69 +127,69 @@
 #' incomplete block designs. Biometrika 63:83-92.
 #'
 #'
-#' @return An object of class \code{waasb} with the following items for each
+#' @return An object of class `waasb` with the following items for each
 #'   variable:
 #'
-#' * \strong{individual} A within-environments ANOVA considering a
+#' * **individual** A within-environments ANOVA considering a
 #'   fixed-effect model.
 #'
-#' * \strong{fixed} Test for fixed effects.
+#' * **fixed** Test for fixed effects.
 #'
-#' * \strong{random} Variance components for random effects.
+#' * **random** Variance components for random effects.
 #'
-#' * \strong{LRT} The Likelihood Ratio Test for the random effects.
+#' * **LRT** The Likelihood Ratio Test for the random effects.
 #'
-#' * \strong{model} A tibble with the response variable, the scores of all
+#' * **model** A tibble with the response variable, the scores of all
 #' IPCAs, the estimates of Weighted Average of Absolute Scores, and WAASBY (the
 #' index that considers the weights for stability and mean performance in the
 #' genotype ranking), and their respective ranks.
 #'
-#' * \strong{BLUPgen} The random effects and estimated BLUPS for genotypes (If
-#' \code{random = "gen"} or \code{random = "all"})
+#' * **BLUPgen** The random effects and estimated BLUPS for genotypes (If
+#' `random = "gen"` or `random = "all"`)
 #'
-#' * \strong{BLUPenv} The random effects and estimated BLUPS for environments,
-#' (If \code{random = "env"} or \code{random = "all"}).
+#' * **BLUPenv** The random effects and estimated BLUPS for environments,
+#' (If `random = "env"` or `random = "all"`).
 #'
-#' * \strong{BLUPint} The random effects and estimated BLUPS of all genotypes in
+#' * **BLUPint** The random effects and estimated BLUPS of all genotypes in
 #' all environments.
 #'
-#' * \strong{PCA} The results of Principal Component Analysis with the
+#' * **PCA** The results of Principal Component Analysis with the
 #' eigenvalues and explained variance of the matrix of genotype-environment
 #' effects estimated by the linear fixed-effect model.
 #'
-#' * \strong{MeansGxE} The phenotypic means of genotypes in the environments.
+#' * **MeansGxE** The phenotypic means of genotypes in the environments.
 #'
-#' * \strong{Details} A list summarizing the results. The following information
-#' are shown: \code{Nenv}, the number of environments in the analysis;
-#' \code{Ngen} the number of genotypes in the analysis; \code{mresp} The value
+#' * **Details** A list summarizing the results. The following information
+#' are shown: `Nenv`, the number of environments in the analysis;
+#' `Ngen` the number of genotypes in the analysis; `mresp` The value
 #' attributed to the highest value of the response variable after rescaling it;
-#' \code{wresp} The weight of the response variable for estimating the WAASBY
-#' index. \code{Mean} the grand mean; \code{SE} the standard error of the mean;
-#' \code{SD} the standard deviation. \code{CV} the coefficient of variation of
-#' the phenotypic means, estimating WAASB, \code{Min} the minimum value observed
-#' (returning the genotype and environment), \code{Max} the maximum value
-#' observed (returning the genotype and environment); \code{MinENV} the
-#' environment with the lower mean, \code{MaxENV} the environment with the
-#' larger mean observed, \code{MinGEN} the genotype with the lower mean,
-#' \code{MaxGEN} the genotype with the larger.
+#' `wresp` The weight of the response variable for estimating the WAASBY
+#' index. `Mean` the grand mean; `SE` the standard error of the mean;
+#' `SD` the standard deviation. `CV` the coefficient of variation of
+#' the phenotypic means, estimating WAASB, `Min` the minimum value observed
+#' (returning the genotype and environment), `Max` the maximum value
+#' observed (returning the genotype and environment); `MinENV` the
+#' environment with the lower mean, `MaxENV` the environment with the
+#' larger mean observed, `MinGEN` the genotype with the lower mean,
+#' `MaxGEN` the genotype with the larger.
 #'
-#' * \strong{ESTIMATES} A tibble with the genetic parameters (if \code{random =
-#' "gen"} or \code{random = "all"}) with the following columns: \code{Phenotypic
-#' variance} the phenotypic variance; \code{Heritability} the broad-sense
-#' heritability; \code{GEr2} the coefficient of determination of the interaction
-#' effects; \code{h2mg} the heritability on the mean basis;
-#' \code{Accuracy} the selective accuracy; \code{rge} the genotype-environment
-#' correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
-#' the residual coefficient of variation; \code{CV ratio} the ratio between
+#' * **ESTIMATES** A tibble with the genetic parameters (if `random =
+#' "gen"` or `random = "all"`) with the following columns: `Phenotypic
+#' variance` the phenotypic variance; `Heritability` the broad-sense
+#' heritability; `GEr2` the coefficient of determination of the interaction
+#' effects; `h2mg` the heritability on the mean basis;
+#' `Accuracy` the selective accuracy; `rge` the genotype-environment
+#' correlation; `CVg` the genotypic coefficient of variation; `CVr`
+#' the residual coefficient of variation; `CV ratio` the ratio between
 #' genotypic and residual coefficient of variation.
 #'
-#'  * \strong{residuals} The residuals of the model.
+#'  * **residuals** The residuals of the model.
 #'
-#'  * \strong{formula} The formula used to fit the model.
+#'  * **formula** The formula used to fit the model.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{mtsi}} \code{\link{waas}}
-#'   \code{\link{get_model_data}} \code{\link{plot_scores}}
+#' @seealso [mtsi()] [waas()]
+#'   [get_model_data()] [plot_scores()]
 #' @export
 #' @examples
 #' \donttest{
@@ -252,26 +254,6 @@
 #'
 #' # Get the random effects
 #' get_model_data(model3, what = "ranef")
-#'
-#'
-#' #===============================================================#
-#' # Example 4: Analyzing GY and HM assuming a mixed-effect model #
-#' # within mega-environments and extract variance components
-#' #===============================================================#
-#'
-#'
-#' data_mega <- data_ge %>%
-#'   add_cols(MEGA = ifelse(ENV %in% c("E1", "E2", "E3", "E4"), "ME1", "ME2"))
-#'
-#'mega <- waasb(data_mega,
-#'              env = ENV,
-#'              gen = GEN,
-#'              rep = REP,
-#'              resp = everything(),
-#'              by = MEGA,
-#'              verbose = FALSE)
-#' get_model_data(mega, "vcomp")
-#'
 #' }
 #'
 waasb <- function(.data,
@@ -426,9 +408,7 @@ waasb <- function(.data,
     listres <- list()
     vin <- 0
     if (verbose == TRUE) {
-        pb <- progress_bar$new(
-            format = "Evaluating the variable :what [:bar]:percent",
-            clear = FALSE, total = nvar, width = 90)
+        pb <- progress(max = nvar, style = 4)
     }
     for (var in 1:nvar) {
         data <- factors %>%
@@ -764,7 +744,9 @@ waasb <- function(.data,
                                residuals = as_tibble(residuals),
                                formula = model_formula), class = "waasb")
         if (verbose == TRUE) {
-            pb$tick(tokens = list(what = names(vars[var])))
+            run_progress(pb,
+                         actual = var,
+                         text = paste("Evaluating trait", names(vars[var])))
         }
         listres[[paste(names(vars[var]))]] <- temp
     }
@@ -811,27 +793,27 @@ waasb <- function(.data,
 
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{waas} and \code{waasb}. Six types
+#' Residual plots for a output model of class `waas` and `waasb`. Six types
 #' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 #' residuals, (3) scale-location plot (standardized residuals vs Fitted
 #' Values), (4) standardized residuals vs Factor-levels, (5) Histogram of raw
-#' residuals and (6) standardized residuals vs observation order. For a \code{waasb}
+#' residuals and (6) standardized residuals vs observation order. For a `waasb`
 #' object, normal Q-Q plot for random effects may also be obtained declaring
-#' \code{type = 're'}
+#' `type = 're'`
 #'
 #'
-#' @param x An object of class \code{waasb}.
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param type One of the \code{"res"} to plot the model residuals (default),
-#'   \code{type = 're'} to plot normal Q-Q plots for the random effects, or
-#'   \code{"vcomp"} to create a bar plot with the variance components.
-#' @param position The position adjustment when \code{type = "vcomp"}. Defaults
-#'   to \code{"fill"}, which shows relative proportions at each trait by
+#' @param x An object of class `waasb`.
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param type One of the `"res"` to plot the model residuals (default),
+#'   `type = 're'` to plot normal Q-Q plots for the random effects, or
+#'   `"vcomp"` to create a bar plot with the variance components.
+#' @param position The position adjustment when `type = "vcomp"`. Defaults
+#'   to `"fill"`, which shows relative proportions at each trait by
 #'   stacking the bars and then standardizing each bar to have the same height.
-#'   Use \code{position = "stack"} to plot the phenotypic variance for each
+#'   Use `position = "stack"` to plot the phenotypic variance for each
 #'   trait.
-#' @param rotate Logical argument. If \code{rotate = TRUE} the plot is rotated,
+#' @param rotate Logical argument. If `rotate = TRUE` the plot is rotated,
 #'   i.e., traits in y axis and value in the x axis.
 #' @param conf Level of confidence interval to use in the Q-Q plot (0.95 by
 #' default).
@@ -841,11 +823,11 @@ waasb <- function(.data,
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param labels Logical argument. If \code{TRUE} labels the points outside
+#' @param labels Logical argument. If `TRUE` labels the points outside
 #' confidence interval limits.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @param alpha The transparency of confidence band in the Q-Q plot. Must be a
 #' number between 0 (opaque) and 1 (full transparency).
 #' @param fill.hist The color to fill the histogram. Default is 'gray'.
@@ -856,17 +838,17 @@ waasb <- function(.data,
 #' @param col.lab.out The color of the labels for the 'outlying' points.
 #' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
-#' @param width.bar The width of the bars if \code{type = "contribution"}.
+#' @param width.bar The width of the bars if `type = "contribution"`.
 #' @param size.lab.out The size of the labels for the 'outlying' points.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param size.shape The size of the shape in the plots.
 #' @param bins The number of bins to use in the histogram. Default is 30.
-#' @param which Which graphics should be plotted. Default is \code{which =
-#' c(1:4)} that means that the first four graphics will be plotted.
+#' @param which Which graphics should be plotted. Default is `which =
+#' c(1:4)` that means that the first four graphics will be plotted.
 #' @param ncol,nrow The number of columns and rows of the plot pannel. Defaults
-#'   to \code{NULL}
+#'   to `NULL`
 #' @param ... Additional arguments passed on to the function
-#'  \code{\link[patchwork]{wrap_plots}()}.
+#'  [patchwork::wrap_plots()].
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @importFrom dplyr distinct_all
 #' @importFrom tibble tribble
@@ -1184,18 +1166,18 @@ plot.waasb <- function(x,
 
 #' Print an object of class waasb
 #'
-#' Print a \code{waasb} object in two ways. By default, the results are shown in
+#' Print a `waasb` object in two ways. By default, the results are shown in
 #' the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{waasb}.
-#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' @param x An object of class `waasb`.
+#' @param export A logical argument. If `TRUE|T`, a *.txt file is exported
 #'   to the working directory
-#' @param blup A logical argument. If \code{TRUE|T}, the blups are shown.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param blup A logical argument. If `TRUE|T`, the blups are shown.
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print waasb
 #' @export
@@ -1278,10 +1260,10 @@ print.waasb <- function(x, export = FALSE, blup = FALSE, file.name = NULL, digit
 
 #' Predict method for waasb fits
 #'
-#' Obtains predictions from an object fitted with \code{\link{waasb}}.
+#' Obtains predictions from an object fitted with [waasb()].
 #'
 #'
-#' @param object An object of class \code{waasb}
+#' @param object An object of class `waasb`
 #' @param ... Currently not used
 #' @return A tibble with the predicted values for each variable in the model
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

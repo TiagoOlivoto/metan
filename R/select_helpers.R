@@ -41,34 +41,34 @@ NULL
 #' @name Select_helper
 #' @param prefix A prefix that start the variable name.
 #' @param suffix A suffix that end the variable name.
-#' @param n The length of variable names to select. For \code{width_of()} the
-#'   selected variables contains \code{n} characters. For
-#'   \code{width_greater_than()} and \code{width_less_than()} the selected
-#'   variables contains greater and less characteres than \code{n},
+#' @param n The length of variable names to select. For `width_of()` the
+#'   selected variables contains `n` characters. For
+#'   `width_greater_than()` and `width_less_than()` the selected
+#'   variables contains greater and less characteres than `n`,
 #'   respectively.
 #' @param vars A character vector of variable names. When called from inside
-#'   selecting functions like \code{\link{select_cols}} these are automatically
+#'   selecting functions like [select_cols()] these are automatically
 #'   set to the names of the table.
 #' @importFrom dplyr intersect
 #' @export
 #' @description These functions allow you to select variables based operations
 #'   with prefixes and suffixes and length of names.
-#' * \code{difference_var()}: Select variables that start with a prefix \strong{AND
-#' NOT} end wiht a suffix.
+#' * `difference_var()`: Select variables that start with a prefix **AND
+#' NOT** end wiht a suffix.
 #'
-#' * \code{intersect_var()}: Select variables that start with a prefix
-#' \strong{AND} end wiht a suffix.
+#' * `intersect_var()`: Select variables that start with a prefix
+#' **AND** end wiht a suffix.
 #'
-#' * \code{union_var()}: Select variables that start with a prefix \strong{OR}
+#' * `union_var()`: Select variables that start with a prefix **OR**
 #' end wiht a suffix.
-#' * \code{width_of()}: Select variables with width of \code{n}.
-#' * \code{width_greater_than()}: Select variables with width greater than \code{n}.
-#' * \code{width_less_than()}: Select variables with width less than \code{n}.
-#' * \code{lower_case_only()}: Select variables that contains lower case only
+#' * `width_of()`: Select variables with width of `n`.
+#' * `width_greater_than()`: Select variables with width greater than `n`.
+#' * `width_less_than()`: Select variables with width less than `n`.
+#' * `lower_case_only()`: Select variables that contains lower case only
 #' (e.g., "env").
-#' * \code{upper_case_only()}: Select variables that contains upper case only
+#' * `upper_case_only()`: Select variables that contains upper case only
 #' (e.g., "ENV").
-#' * \code{title_case_only()}: Select variables that contains upper case in the first
+#' * `title_case_only()`: Select variables that contains upper case in the first
 #' character only (e.g., "Env").
 #' @md
 #' @examples

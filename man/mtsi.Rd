@@ -19,13 +19,12 @@ mtsi(
 \item{index}{If \code{index = 'waasby'} (default) both stability and mean
 performance are considered. If \code{index = 'waasb'} the multi-trait index
 will be computed considering the stability of genotypes only.  More details
-can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.}
+can be seen in \code{\link[=waasb]{waasb()}} and \code{\link[=waas]{waas()}} functions.}
 
 \item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the
 number of variables used to plan the ideotype. Use \code{'h'} to indicate
 the traits in which higher values are desired or \code{'l'} to indicate the
-variables in which lower values are desired. For example, \code{ideotype =
-  c("h, h, h, h, l")} will consider that the ideotype has higher values for
+variables in which lower values are desired. For example, \code{ideotype = c("h, h, h, h, l")} will consider that the ideotype has higher values for
 the first four traits and lower values for the last trait.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
@@ -92,25 +91,30 @@ WAASBY indexes. The following columns are shown by sense.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the multi-trait stability index proposed by Olivoto et al. (2019)
 }
 \examples{
 \donttest{
 library(metan)
 # Based on stability only, for both GY and HM, higher is better
-mtsi_model <- waasb(data_ge,
-                    env = ENV,
-                    gen = GEN,
-                    rep = REP,
-                    resp = c(GY, HM))
-mtsi_index <- mtsi(mtsi_model, index = 'waasb')
+mtsi_model <-
+    waasb(data_ge,
+    env = ENV,
+    gen = GEN,
+    rep = REP,
+    resp = c(GY, HM))
+mtsi_index <-
+    mtsi(mtsi_model, index = 'waasb')
 
 
 # Based on mean performance and stability (using pipe operator \%>\%)
 # GY: higher is better
 # HM: lower is better
 
-mtsi_index2 <- data_ge \%>\%
+mtsi_index2 <-
+ data_ge \%>\%
  waasb(ENV, GEN, REP,
        resp = c(GY, HM),
        mresp = c("h, l")) \%>\%
@@ -122,6 +126,9 @@ Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, B.G. Sari, and
 M.I. Diel. 2019. Mean performance and stability in multi-environment trials
 II: Selection based on multiple traits. Agron. J. 111:2961-2969.
 \doi{10.2134/agronj2019.03.0220}
+}
+\seealso{
+\code{\link[=mgidi]{mgidi()}}, \code{\link[=waasb]{waasb()}}, \code{\link[=get_model_data]{get_model_data()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

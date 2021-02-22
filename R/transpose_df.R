@@ -1,7 +1,9 @@
 #' Transpose a data frame
+#' @description
+#' `r badge('experimental')`
 #'
-#' Is an alternative to \code{\link{t}()} to transpose a data frame. The first
-#' column of \code{df} will become column names in the transposed data.
+#' Is an alternative to [t()] to transpose a data frame. The first
+#' column of `df` will become column names in the transposed data.
 #' @param df A data frame to be transposed.
 #'
 #' @return A tibble containing the transposed data.

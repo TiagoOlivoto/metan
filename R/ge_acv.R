@@ -1,8 +1,10 @@
 #' Adjusted Coefficient of Variation as yield stability index
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs a stability analysis based on the scale-adjusted coefficient of
 #' variation (Doring and Reckling, 2018). For more details see
-#' \code{\link{acv}()}
+#' [acv()]
 #'
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -11,15 +13,15 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{ge_acv}, which is a list containing the
-#'   results for each variable used in the argument \code{resp}. For each
+#' @return An object of class `ge_acv`, which is a list containing the
+#'   results for each variable used in the argument `resp`. For each
 #'   variable, a tibble with the following columns is returned.
-#' * \strong{GEN} the genotype's code.
-#' * \strong{ACV} The adjusted coefficient of variation
-#' * \strong{ACV_R} The rank for the ACV value.
+#' * **GEN** the genotype's code.
+#' * **ACV** The adjusted coefficient of variation
+#' * **ACV_R** The rank for the ACV value.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Doring, T.F., and M. Reckling. 2018. Detecting global trends of
@@ -47,9 +49,7 @@ ge_acv <- function(.data, env, gen, resp, verbose = TRUE) {
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <-
@@ -70,7 +70,9 @@ ge_acv <- function(.data, env, gen, resp, verbose = TRUE) {
                ACV_R = rank(ACV)) %>%
       reorder_cols(GEN, .before = ACV)
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- results
   }

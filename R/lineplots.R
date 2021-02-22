@@ -1,39 +1,41 @@
 #' @name lineplots
 #' @title Fast way to create line plots
 #' @description
-#' * \code{plot_lines()} Creates a line plot based on one quantitative factor
+#' `r badge('stable')`
+#'
+#' * `plot_lines()` Creates a line plot based on one quantitative factor
 #' and one numeric variable.  It can be used to show the results of a one-way
-#' trial with \strong{quantitative treatments}.
-#' * \code{plot_factlines()} Creates a line plot based on: one categorical and one quantitative factor and
+#' trial with **quantitative treatments**.
+#' * `plot_factlines()` Creates a line plot based on: one categorical and one quantitative factor and
 #' one numeric variable.  It can be used to show the results of a
-#' two-way trial with \strong{qualitative-quantitative treatment structure}.
+#' two-way trial with **qualitative-quantitative treatment structure**.
 #' @param .data The data set
-#' @param x,y The variables to be mapped to the \code{x} and \code{y} axes,
+#' @param x,y The variables to be mapped to the `x` and `y` axes,
 #'   respectively.
-#' @param group The grouping variable. Valid for \code{plot_factlines()} only.
+#' @param group The grouping variable. Valid for `plot_factlines()` only.
 #' @param fit The polynomial degree to use. It must be between 1 (linear fit) to
-#'   4 (fourth-order polynomial regression.). In \code{plot_factlines()}, if
-#'   \code{fit} is a lenth 1 vector, i.e., 1, the fitted curves of all levels in
-#'   \code{group} will be fitted with polynomial degree \code{fit}. To use a
-#'   different polynomial degree for each level in \code{group}, use a numeric
-#'   vector with the same length of the variable in \code{group}.
-#' @param level The fonfidence level. Defaults to \code{0.05}.
+#'   4 (fourth-order polynomial regression.). In `plot_factlines()`, if
+#'   `fit` is a lenth 1 vector, i.e., 1, the fitted curves of all levels in
+#'   `group` will be fitted with polynomial degree `fit`. To use a
+#'   different polynomial degree for each level in `group`, use a numeric
+#'   vector with the same length of the variable in `group`.
+#' @param level The fonfidence level. Defaults to `0.05`.
 #' @param confidence Display confidence interval around smooth? (TRUE by
 #'   default)
 #' @param xlab,ylab The labels of the axes x and y, respectively. Defaults to
-#'   \code{NULL}.
+#'   `NULL`.
 #' @param n.dodge The number of rows that should be used to render the x labels.
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param legend.position Valid argument for \code{plot_factlines}. The position
+#' @param legend.position Valid argument for `plot_factlines`. The position
 #'   of the legend. Defaults to 'bottom'.
-#' @param grid Valid argument for \code{plot_factlines}. Logical argument. If
-#'   \code{TRUE} then a grid will be created.
-#' @param scales Valid argument for \code{plot_factlines}. If \code{grid = TRUE}
+#' @param grid Valid argument for `plot_factlines`. Logical argument. If
+#'   `TRUE` then a grid will be created.
+#' @param scales Valid argument for `plot_factlines`. If `grid = TRUE`
 #'   scales controls how the scales are in the plot. Possible values are
-#'   \code{'free'} (default), \code{'fixed'}, \code{'free_x'} or
-#'   \code{'free_y'}.
+#'   `'free'` (default), `'fixed'`, `'free_x'` or
+#'   `'free_y'`.
 #' @param col The colour to be used in the line plot and points.
 #' @param alpha The alpha for the color in confidence band
 #' @param size.shape The size for the shape in plot
@@ -41,13 +43,13 @@
 #' @param size.text The size of the text
 #' @param fontfam The family of the font text.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
-#' @return An object of class \code{gg, ggplot}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
+#' @return An object of class `gg, ggplot`.
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{plot_bars}} and \code{\link{plot_factbars}}
+#' @seealso [plot_bars()] and [plot_factbars()]
 #' @examples
 #' \donttest{
 #' library(metan)

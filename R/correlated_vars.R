@@ -1,17 +1,22 @@
 #' Generate correlated variables
+#' @description
+#' `r badge('experimental')`
+#'
+#' Generate correlated variables using a vector of know values and desired
+#' maximum and minimum correlations
 #'
 #' @param y A vector to generate variables correlated with.
 #' @param min_cor The minimum desired correlation.
 #' @param max_cor The maximum desired correlation.
 #' @param nvars The number of variables.
-#' @param constant A constant. Use \code{operation} to define which operation is
+#' @param constant A constant. Use `operation` to define which operation is
 #'   used.
-#' @param operation The operation to be applied to the \code{constant} value.
-#' @param x An optional vector of the same length of \code{y}. If not informed
+#' @param operation The operation to be applied to the `constant` value.
+#' @param x An optional vector of the same length of `y`. If not informed
 #'   (default) then a normally distributed variable (mean = 0, sd = 1) will be
 #'   used.
 #'
-#' @return A data frame with the \code{y} variable and the correlated variables.
+#' @return A data frame with the `y` variable and the correlated variables.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples

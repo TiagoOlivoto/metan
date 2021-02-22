@@ -1,26 +1,28 @@
 #' Computes the coincidence index of genotype selection
 #'
 #' @description
+#' `r badge('stable')`
+#'
 #' Computes the coincidence index (Hamblin and Zimmermann, 1986) as follows:
 #'
 #' \loadmathjax
 #' \mjsdeqn{CI = \frac{A-C}{M-C}\times 100}
-#' where \emph{A} is the number of selected genotypes common to different
-#' methods; \emph{C} is the number of expected genotypes selected by chance; and
-#' \emph{M} is the number of genotypes selected according to the selection
+#' where *A* is the number of selected genotypes common to different
+#' methods; *C* is the number of expected genotypes selected by chance; and
+#' *M* is the number of genotypes selected according to the selection
 #' intensity.
 #'
-#' @param ... A comma-separated list of objects of class \code{mgidi},
-#'   \code{mtsi} \code{fai_blup}, or \code{sh}. When a model is informed, then
+#' @param ... A comma-separated list of objects of class `mgidi`,
+#'   `mtsi` `fai_blup`, or `sh`. When a model is informed, then
 #'   the selected genotypes are extracted automatically.
 #' @param total The total number of genotypes in the study.
-#' @param sel1,sel2 The selected genotypes by the method 1 and 2, respectively. Defaults to \code{NULL}.
+#' @param sel1,sel2 The selected genotypes by the method 1 and 2, respectively. Defaults to `NULL`.
 #' @return A list with the following elements:
 #'
-#' * \strong{coincidence}: A data frame with the coincidence index, number of
+#' * **coincidence**: A data frame with the coincidence index, number of
 #' common genotypes and the list of common genotypes for each model combination.
-#' * \strong{coincidence_mat}: A matrix-like containing the coincidence index.
-#' * \strong{genotypes}: The number of common genotypes for all models, i.e.,
+#' * **coincidence_mat**: A matrix-like containing the coincidence index.
+#' * **genotypes**: The number of common genotypes for all models, i.e.,
 #' the insersection of the selected genotypes of all models
 #'
 #' @export
@@ -107,17 +109,17 @@ coincidence_index <- function(..., total, sel1 = NULL, sel2 = NULL){
 
 #' Print an object of class coincidence
 #'
-#' Print a \code{coincidence} object in two ways. By default, the results are shown in
+#' Print a `coincidence` object in two ways. By default, the results are shown in
 #' the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{coincidence}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported
+#' @param x An object of class `coincidence`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported
 #'   to the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print coincidence
 #' @export

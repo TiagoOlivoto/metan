@@ -40,8 +40,7 @@ traits selected in \code{traits}, use \code{"h"} to indicate the traits in
 which higher values are desired or \code{"l"} to indicate the variables in
 which lower values are desired. Then, \code{yield } will be multiplied by
 traits with \code{"h"} and divided by traits with \code{"l"} to generate
-the Genotype by yield*trait table. For example, \code{ideotype = c("h, h,
-  l")} will assume that the ideotype has higher values for the first two
+the Genotype by yield*trait table. For example, \code{ideotype = c("h, h, l")} will assume that the ideotype has higher values for the first two
 traits and lower values for the last trait.}
 
 \item{weight}{The weight assumed for each trait. Similar to \code{ideotype}
@@ -53,8 +52,7 @@ Defaults to \code{"Y"}.}
 
 \item{centering}{The centering method. Must be one of the \code{'none | 0'},
 for no centering; \code{'global | 1'}, for global centered (T+G+GYT);
-\code{'trait | 2'} (default), for trait-centered (G+GYT); or \code{'double |
-  3'}, for double centered (GYT). A biplot cannot be produced with models
+\code{'trait | 2'} (default), for trait-centered (G+GYT); or \code{'double | 3'}, for double centered (GYT). A biplot cannot be produced with models
 produced without centering.}
 
 \item{scaling}{The scaling method. Must be one of the \code{'none | 0'}, for
@@ -63,16 +61,14 @@ or yield-trait combination becomes 0 and the variance becomes unit.}
 
 \item{svp}{The method for singular value partitioning. Must be one of the
 \code{'genotype | 1'}, (The singular value is entirely partitioned into the
-genotype eigenvectors, also called row metric preserving); \code{'trait |
-  2'}, default, (The singular value is entirely partitioned into the trait
-eigenvectors, also called column metric preserving); or \code{'symmetrical
-  | 3'} (The singular value is symmetrically partitioned into the genotype
+genotype eigenvectors, also called row metric preserving); \code{'trait | 2'}, default, (The singular value is entirely partitioned into the trait
+eigenvectors, also called column metric preserving); or \code{'symmetrical | 3'} (The singular value is symmetrically partitioned into the genotype
 and the trait eigenvectors This SVP is most often used in AMMI analysis and
 other biplot analysis, but it is not ideal for visualizing either the
 relationship among genotypes or that among the traits).}
 }
 \value{
-The function returns a list of class \code{gge} that is compatible with the function \code{plot()} used in \code{\link{gge}()}.
+The function returns a list of class \code{gge} that is compatible with the function \code{plot()} used in \code{\link[=gge]{gge()}}.
 \itemize{
 \item \strong{data} The Genotype by yield\*trait (GYT) data.
 \item \strong{ge_mat} The Genotype by yield\*trait (GYT) data  (scaled and centered).
@@ -96,6 +92,8 @@ and traits are comparable when singular value partitioning is set to
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Produces a Genotype by Yield*Trait biplot (GTY) proposed by Yan and
 Fregeau-Reid (2018).
 }

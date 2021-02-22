@@ -16,8 +16,7 @@ environments.}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-  = c(var1, var2, var3)}. Select helpers are also allowed.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 }
 \value{
 A tibble with the following results for each variable:
@@ -26,13 +25,15 @@ A tibble with the following results for each variable:
 \item \code{SE}: The standard error of the mean.
 \item \code{SD}: The standard deviation.
 \item \code{CV}: The coefficient of variation.
-\item \code{Min,Max}: The minimum and maximum value, indicating the genotype and environment of occurence.
-\item \code{MinENV, MinGEN}: The environment and genotype with the lower mean.
-\item \code{MaxENV, MaxGEN}: The environment and genotype with the higher mean.
+\item \verb{Min,Max}: The minimum and maximum value, indicating the genotype and environment of occurence.
+\item \verb{MinENV, MinGEN}: The environment and genotype with the lower mean.
+\item \verb{MaxENV, MaxGEN}: The environment and genotype with the higher mean.
 }
 }
 \description{
-Details for genotype-environment trials
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
+Provide details for genotype-environment trials
 }
 \examples{
 \donttest{

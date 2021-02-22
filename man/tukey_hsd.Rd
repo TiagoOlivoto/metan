@@ -10,7 +10,7 @@ tukey_hsd(model, ..., out = "long")
 \item{model}{an object of class \code{aov} or \code{lm}.}
 
 \item{...}{other arguments passed to the function
-\code{\link[stats]{TukeyHSD}()}. These include:
+\code{\link[stats:TukeyHSD]{stats::TukeyHSD()}}. These include:
 \itemize{
 \item \strong{which}: A character vector listing terms in the fitted model for which the
 intervals should be calculated. Defaults to all the terms.
@@ -31,6 +31,8 @@ comparisons (if \code{out = "long"}) or a "list-columns" with p-values for
 each term (if \code{out = "wide"}).
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 Helper function to perform Tukey post-hoc tests. It is used in \link{gafem}.
 }
 \examples{

@@ -1,4 +1,6 @@
 #' Graphical analysis of genotype-vs-environment interaction
+#' @description
+#' `r badge('stable')`
 #'
 #' This function produces a line plot for a graphical interpretation of the
 #' genotype-vs-environment interaction. By default, environments are in the x
@@ -11,14 +13,14 @@
 #'   environments
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable.
-#' @param type The type of plot \code{type = 1} for a heatmap or \code{type = 2}
+#' @param type The type of plot `type = 1` for a heatmap or `type = 2`
 #'   for a line plot.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details,see
-#'   \code{\link[ggplot2]{theme}}.
-#' @param colour Logical argument. If \code{FALSE} then the plot will not be
+#'   `plot_theme = theme_metan()`. For more details,see
+#'   [ggplot2::theme()].
+#' @param colour Logical argument. If `FALSE` then the plot will not be
 #'   colored.
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

@@ -91,7 +91,7 @@ prioritizing the first, last, and middle labels.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{group}{The grouping variable. Valid for \code{plot_factlines()} only.}
 
@@ -107,9 +107,10 @@ scales controls how the scales are in the plot. Possible values are
 \code{'free_y'}.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{plot_lines()} Creates a line plot based on one quantitative factor
 and one numeric variable.  It can be used to show the results of a one-way
@@ -145,7 +146,7 @@ arrange_ggplot(p1, p2)
 }
 }
 \seealso{
-\code{\link{plot_bars}} and \code{\link{plot_factbars}}
+\code{\link[=plot_bars]{plot_bars()}} and \code{\link[=plot_factbars]{plot_factbars()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

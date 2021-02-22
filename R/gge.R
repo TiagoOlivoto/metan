@@ -1,4 +1,6 @@
 #' Genotype plus genotype-by-environment model
+#' @description
+#' `r badge('stable')`
 #'
 #' Produces genotype plus genotype-by-environment model based on a multi-environment
 #' trial dataset containing at least the columns for genotypes, environments and one
@@ -10,62 +12,62 @@
 #' @param env The name of the column that contains the levels of the environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}. Select helpers are also supported.
-#' @param centering The centering method. Must be one of the \code{'none | 0'}, for no
-#'  centering; \code{'global | 1'}, for global centered (E+G+GE); \code{'environment | 2'} (default),
-#'  for environment-centered (G+GE); or \code{'double | 3'}, for double centered (GE).
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`. Select helpers are also supported.
+#' @param centering The centering method. Must be one of the `'none | 0'`, for no
+#'  centering; `'global | 1'`, for global centered (E+G+GE); `'environment | 2'` (default),
+#'  for environment-centered (G+GE); or `'double | 3'`, for double centered (GE).
 #'   A biplot cannot be produced with models produced without centering.
-#' @param scaling The scaling method. Must be one of the \code{'none | 0'} (default), for no scaling;
-#'  or \code{'sd | 1'}, where each value is divided by the standard deviation of its corresponding
+#' @param scaling The scaling method. Must be one of the `'none | 0'` (default), for no scaling;
+#'  or `'sd | 1'`, where each value is divided by the standard deviation of its corresponding
 #'   environment (column). This will put all environments roughly he same rang of values.
 #'
-#' @param svp The method for singular value partitioning. Must be one of the \code{'genotype | 1'},
+#' @param svp The method for singular value partitioning. Must be one of the `'genotype | 1'`,
 #'  (The singular value is entirely partitioned into the genotype eigenvectors, also called row
-#'  metric preserving); \code{'environment | 2'}, default, (The singular value is entirely partitioned into the
-#'  environment eigenvectors, also called column metric preserving); or \code{'symmetrical | 3'}
+#'  metric preserving); `'environment | 2'`, default, (The singular value is entirely partitioned into the
+#'  environment eigenvectors, also called column metric preserving); or `'symmetrical | 3'`
 #'  (The singular value is symmetrically partitioned into the genotype and the environment eigenvectors
 #'  This SVP is most often used in AMMI analysis and other biplot analysis, but it is not ideal for
 #'  visualizing either the relationship among genotypes or that among the environments).
 #' @param by One variable (factor) to compute the function by. It is a shortcut
-#'   to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'   to [dplyr::group_by()].This is especially useful, for example,
 #'   when the researcher want to produce GGE biplots for each level of a
 #'   categorical variable. In this case, an object of class gge_grouped is
 #'   returned.
 #' @param ... Arguments passed to the function
-#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   [impute_missing_val()] for imputation of missing values in case
 #'   of unbalanced data.
 #'
-#' @return The function returns a list of class \code{gge} containing the following objects
+#' @return The function returns a list of class `gge` containing the following objects
 #'
-#'  * \strong{coordgen} The coordinates for genotypes for all components.
+#'  * **coordgen** The coordinates for genotypes for all components.
 #'
-#'  * \strong{coordenv} The coordinates for environments for all components.
+#'  * **coordenv** The coordinates for environments for all components.
 #'
-#'  * \strong{eigenvalues} The vector of eigenvalues.
+#'  * **eigenvalues** The vector of eigenvalues.
 #'
-#'  * \strong{totalvar} The overall variance.
+#'  * **totalvar** The overall variance.
 #'
-#'  * \strong{labelgen} The name of the genotypes.
+#'  * **labelgen** The name of the genotypes.
 #'
-#'  * \strong{labelenv} The names of the environments.
+#'  * **labelenv** The names of the environments.
 #'
-#'  * \strong{labelaxes} The axes labels.
+#'  * **labelaxes** The axes labels.
 #'
-#'  * \strong{ge_mat} The data used to produce the model (scaled and centered).
+#'  * **ge_mat** The data used to produce the model (scaled and centered).
 #'
-#'  * \strong{centering} The centering method.
+#'  * **centering** The centering method.
 #'
-#'  * \strong{scaling} The scaling method.
+#'  * **scaling** The scaling method.
 #'
-#'  * \strong{svp} The singular value partitioning method.
+#'  * **svp** The singular value partitioning method.
 #'
-#'  * \strong{d} The factor used to generate in which the ranges of genotypes and environments
+#'  * **d** The factor used to generate in which the ranges of genotypes and environments
 #'  are comparable when singular value partitioning is set to 'genotype' or 'environment'.
-#'  * \strong{grand_mean} The grand mean of the trial.
-#'  * \strong{mean_gen} A vector with the means of the genotypes.
-#'  * \strong{mean_env} A vector with the means of the environments.
-#'  * \strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
+#'  * **grand_mean** The grand mean of the trial.
+#'  * **mean_gen** A vector with the means of the genotypes.
+#'  * **mean_env** A vector with the means of the environments.
+#'  * **scale_var** The scaling vector when the scaling method is `'sd'`.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,
@@ -243,66 +245,67 @@ gge <- function(.data,
 #' Create GGE, GT or GYT biplots
 #'
 #' Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
-#' functions \code{\link{gge}()}, \code{\link{gtb}()}, and \code{\link{gytb}()}.
+#' functions [gge()], [gtb()], and [gytb()].
 #'
-#'@param x An object with classes \code{gge} \code{gtb}, or \code{gytb}.
-#'@param var The variable to plot (useful for \code{gge} objects. Defaults to
-#'  \code{var = 1} the first variable of \code{x}.
+#'@param x An object with classes `gge` `gtb`, or `gytb`.
+#'@param var The variable to plot (useful for `gge` objects. Defaults to
+#'  `var = 1` the first variable of `x`.
 #'@param type The type of biplot to produce.
-#' \enumerate{
-#' \item Basic biplot.
-#' \item Mean performance vs. stability (gge biplots)
-#' or the The Average Tester Coordination view for genotype-trait and genotype-yield*trait biplots.
-#' \item Which-won-where.
-#' \item Discriminativeness vs. representativeness.
-#' \item Examine an environment (or trait/yield*trait combination).
-#' \item Ranking environments (or trait/yield*trait combination).
-#' \item Examine a genotype.
-#' \item Ranking genotypes.
-#' \item Compare two genotypes.
-#' \item Relationship among environments (or trait/yield*trait combination).}
+#' 1. Basic biplot.
+#' 2. Mean performance vs. stability (gge biplots) or the The Average Tester
+#' Coordination view for genotype-trait and genotype-yield*trait biplots.
+#'
+#' 3. Which-won-where.
+#' 4. Discriminativeness vs. representativeness.
+#' 5. Examine an environment (or trait/yield*trait combination).
+#'
+#' 6. Ranking environments (or trait/yield*trait combination).
+#' 7. Examine a genotype.
+#' 8. Ranking genotypes.
+#' 9. Compare two genotypes.
+#' 10. Relationship among environments (or trait/yield*trait combination).
 #' @param sel_env,sel_gen The name of the environment (or trait/yield*trait combination) and genotype to examine
-#'   when \code{type = 5} and   \code{type = 7}, respectively. Must be a string
+#'   when `type = 5` and   `type = 7`, respectively. Must be a string
 #'   which matches a environment or genotype label.
 #' @param sel_gen1,sel_gen2 The name of genotypes to compare between when
-#'   \code{type = 9}. Must be a string present in the genotype's name.
+#'   `type = 9`. Must be a string present in the genotype's name.
 #' @param shape.gen,shape.env The shape for genotype and environment indication
-#'   in the biplot. Defaults to \code{shape.gen = 21} (circle) for genotypes and
-#'   \code{shape.env = 23} (rhombus) for environments. Values must be between
-#'   \code{21-25}: \code{21} (circle), \code{22} (square), \code{23} (rhombus),
-#'   \code{24} (up triangle), and \code{25} (low triangle).
+#'   in the biplot. Defaults to `shape.gen = 21` (circle) for genotypes and
+#'   `shape.env = 23` (rhombus) for environments. Values must be between
+#'   `21-25`: `21` (circle), `22` (square), `23` (rhombus),
+#'   `24` (up triangle), and `25` (low triangle).
 #' @param line.type.gen The line type to highlith the genotype's vectors.
 #'   Defaults to `line.type.gen == "dotted`.
 #' @param size.shape The size of the shape (both for genotypes and
-#'   environments). Defaults to \code{2.2}.
+#'   environments). Defaults to `2.2`.
 #' @param size.shape.win The size of the shape for winners genotypes when
-#'   \code{type = 3}. Defaults to \code{3.2}.
+#'   `type = 3`. Defaults to `3.2`.
 #' @param size.stroke,col.stroke The width and color of the border,
-#'   respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke =
-#'   "black"}. The size of the shape will be \code{size.shape + size.stroke}
+#'   respectively. Default to `size.stroke = 0.3` and `col.stroke =
+#'   "black"`. The size of the shape will be `size.shape + size.stroke`
 #' @param col.gen,col.env,col.line Color for genotype/environment labels and for
-#'   the line that passes through the biplot origin. Defaults to \code{col.gen =
-#'   'blue'}, \code{col.env = 'forestgreen'}, and \code{col.line =
-#'   'forestgreen'}.
-#' @param col.alpha The alpha value for the color. Defaults to \code{1}. Values
-#'   must be between \code{0} (full transparency) to \code{1} (full color).
+#'   the line that passes through the biplot origin. Defaults to `col.gen =
+#'   'blue'`, `col.env = 'forestgreen'`, and `col.line =
+#'   'forestgreen'`.
+#' @param col.alpha The alpha value for the color. Defaults to `1`. Values
+#'   must be between `0` (full transparency) to `1` (full color).
 #' @param col.circle,col.alpha.circle The color and alpha values for the circle
-#'   lines. Defaults to \code{'gray'} and \code{0.4}, respectively.
-#' @param leg.lab The labs of legend. Defaults to \code{NULL} is \code{c('Env', 'Gen')}.
+#'   lines. Defaults to `'gray'` and `0.4`, respectively.
+#' @param leg.lab The labs of legend. Defaults to `NULL` is `c('Env', 'Gen')`.
 #' @param size.text.gen,size.text.env,size.text.lab The size of the text for
 #'   genotypes, environments and labels, respectively.
 #' @param size.text.win The text size to use for winner genotypes where
-#'   \code{type = 3} and for the two selected genotypes where \code{type = 9}.
+#'   `type = 3` and for the two selected genotypes where `type = 9`.
 #'   Defaults to 4.5.
 #' @param size.line The size of the line in biplots (Both for segments and circles).
 #' @param axis_expand multiplication factor to expand the axis limits by to
 #'   enable fitting of labels. Defaults to 1.2
-#' @param title Logical values (Defaults to \code{TRUE}) to include
+#' @param title Logical values (Defaults to `TRUE`) to include
 #'   automatically generated information in the plot such as singular value
 #'   partitioning, scaling and centering.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @param ... Currently not used.
 #' @return A ggplot2-based biplot.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -311,7 +314,7 @@ gge <- function(.data,
 #' @method plot gge
 #' @importFrom ggforce geom_arc
 #' @export
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @examples
 #' \donttest{
 #' library(metan)
@@ -1021,19 +1024,19 @@ plot.gge <- function(x,
 #' model. This prediction is based on the number of principal components used.
 #' For more details see Yan and Kang (2007).
 #'
-#' @param object An object of class \code{gge}.
+#' @param object An object of class `gge`.
 #' @param naxis The the number of principal components to be used in the
 #'   prediction. Generally, two axis may be used. In this case, the estimated
 #'   values will be those shown in the biplot.
-#' @param output The type of output. It must be one of the \code{'long'}
+#' @param output The type of output. It must be one of the `'long'`
 #'   (default) returning a long-format table with the columns for environment
-#'   (ENV), genotypes (GEN) and response variable (Y); or \code{'wide'} to
+#'   (ENV), genotypes (GEN) and response variable (Y); or `'wide'` to
 #'   return a two-way table with genotypes in the row, environments in the
 #'   columns, filled by the estimated values.
 #' @param ... Currently not used.
 #' @return A two-way table with genotypes in rows and environments in columns if
-#'   \code{output = "wide"} or a long format (columns ENV, GEN and Y) if
-#'   \code{output = "long"} with the predicted values by the GGE model.
+#'   `output = "wide"` or a long format (columns ENV, GEN and Y) if
+#'   `output = "long"` with the predicted values by the GGE model.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
 #'   tool for breeders, geneticists, and agronomists. CRC Press.

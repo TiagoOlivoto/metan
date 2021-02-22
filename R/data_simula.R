@@ -1,6 +1,8 @@
 #' @name data_simula
 #' @title Simulate genotype and genotype-environment data
 #' @description
+#' `r badge('experimental')`
+#'
 #' * `g_simula()` simulate replicated genotype data.
 #' * `ge_simula()` simulate replicated genotype-environment data.
 #'

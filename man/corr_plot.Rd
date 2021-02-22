@@ -84,8 +84,7 @@ overwritten.}
 
 \item{diag}{Should the diagonal be shown?}
 
-\item{diag.type}{The type of plot to show in the diagonal if \code{diag
-TRUE}. It must be one of the 'histogram' (to show an histogram), 'density'
+\item{diag.type}{The type of plot to show in the diagonal if \verb{diag TRUE}. It must be one of the 'histogram' (to show an histogram), 'density'
 to show the Kernel density, or 'boxplot' (to show a boxplot).}
 
 \item{bins}{The number of bins, Defaults to 20.}
@@ -93,21 +92,21 @@ to show the Kernel density, or 'boxplot' (to show a boxplot).}
 \item{col.diag}{If \code{diag = TRUE} then \code{diagcol} is the color for
 the distribution. Set to gray.}
 
-\item{alpha.diag}{Alpha-transparency scale [0-1] to make the diagonal plot
+\item{alpha.diag}{Alpha-transparency scale (0-1) to make the diagonal plot
 transparent. 0 = fully transparent; 1 = full color. Set to 0.15}
 
 \item{col.up.panel, col.lw.panel, col.dia.panel}{The color for the upper,
 lower, and diagonal panels, respectively. Set to 'gray'.}
 
 \item{prob}{The probability of error. Significant correlations will be
-highlighted with '*', '**', and '***' (0.05, 0.01, and 0.001,
+highlighted with '\emph{', '\strong{', and '}}' (0.05, 0.01, and 0.001,
 respectively). Scatterplots with significant correlations may be
 color-highlighted.}
 
 \item{col.sign}{The color that will highlight the significant correlations.
 Set to 'green'.}
 
-\item{alpha.sign}{Alpha-transparency scale [0-1] to make the plot area
+\item{alpha.sign}{Alpha-transparency scale (0-1) to make the plot area
 transparent. 0 = fully transparent; 1 = full color. Set to 0.15}
 
 \item{lab.position}{The position that the labels will appear. Set to
@@ -131,7 +130,7 @@ to \code{FALSE}.}
 
 \item{shape.point}{The shape of the point, set to \code{1}.}
 
-\item{alpha.point}{Alpha-transparency scale [0-1] to make the points
+\item{alpha.point}{Alpha-transparency scale (0-1) to make the points
 transparent. 0 = fully transparent; 1 = full color. Set to 0.7}
 
 \item{fill.point}{The color to fill the points. Valid argument if points are
@@ -155,8 +154,7 @@ correlation coefficient.}
 the current directory.}
 
 \item{file.type}{The format of the file if \code{export = TRUE}.  Set to
-\code{'pdf'}. Other possible values are \code{*.tiff} using \code{file.type
-= 'tiff'}.}
+\code{'pdf'}. Other possible values are \verb{*.tiff} using \code{file.type = 'tiff'}.}
 
 \item{file.name}{The name of the plot when exported. Set to \code{NULL},
 i.e., automatically.}
@@ -169,30 +167,28 @@ i.e., automatically.}
 used. Set to \code{300} (300 dpi).}
 }
 \value{
-An object of class \code{gg, ggmatrix}.
+An object of class \verb{gg, ggmatrix}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Graphical and numerical visualization of a correlation matrix
 }
 \examples{
 \donttest{
 library(metan)
-dataset <- data_ge2
+dataset <- data_ge2 \%>\% select_cols(1:7)
 
 # Default plot setting
 corr_plot(dataset)
 
 # Chosing variables to be correlated
-corr_plot(dataset, CD, EL, PERK, NKR)
+corr_plot(dataset, PH, EH, EL)
 
-# Changing the layout
-corr_plot(dataset, CD, EL, PERK, NKR,
-          lower = NULL,
-          upper = 'corr')
 
 # Axis labels, similar to the function pairs()
 # Gray scale
-corr_plot(dataset, CD, EL, PERK, NKR,
+corr_plot(dataset, PH, EH, EL,
           shape.point = 19,
           size.point = 2,
           alpha.point = 0.5,
@@ -202,7 +198,7 @@ corr_plot(dataset, CD, EL, PERK, NKR,
           alpha.sign = 0.3,
           axis.labels = TRUE)
 
-corr_plot(dataset, CD, EL, PERK, NKR, CW, NKE,
+corr_plot(dataset, PH, EH, EL,
           prob = 0.01,
           shape.point = 21,
           col.point = 'black',

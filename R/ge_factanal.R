@@ -1,4 +1,6 @@
 #' Stability analysis and environment stratification
+#' @description
+#' `r badge('stable')`
 #'
 #' This function computes the stability analysis and environmental stratification
 #' using factor analysis as proposed by Murakami and Cruz (2004).
@@ -11,30 +13,32 @@
 #' @param rep The name of the column that contains the levels of the
 #' replications/blocks
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#' single procedure use, for example, `resp = c(var1, var2, var3)`.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run silently.
-#' @return An object of class \code{ge_factanal} with the following items:
-#' \item{data}{The data used to compute the factor analysis.}
-#' \item{cormat}{The correlation matrix among the environments.}
-#' \item{PCA}{The eigenvalues and explained variance.}
-#' \item{FA}{The factor analysis.}
-#' \item{env_strat}{The environmental stratification.}
-#' \item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
-#' \item{MSA}{The measure of sampling adequacy for individual variable.}
-#' \item{communalities}{The communalities.}
-#' \item{communalities.mean}{The communalities' mean.}
-#' \item{initial.loadings}{The initial loadings.}
-#' \item{finish.loadings}{The final loadings after varimax rotation.}
-#' \item{canonical.loadings}{The canonical loadings.}
-#' \item{scores.gen}{The scores for genotypes for the first and second factors.}
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run silently.
+#' @return An object of class `ge_factanal` with the following items:
+#' * `data`: The data used to compute the factor analysis.
+#' * `cormat`: The correlation matrix among the environments.
+#' * `PCA`: The eigenvalues and explained variance.
+#' * `FA`: The factor analysis.
+#' * `env_strat`: The environmental stratification.
+#' * `KMO`: The result for the Kaiser-Meyer-Olkin test.
+#' * `MSA`: The measure of sampling adequacy for individual variable.
+#' * `communalities`: The communalities.
+#' * `communalities.mean`: The communalities' mean.
+#' * `initial.loadings`: The initial loadings.
+#' * `finish.loadings`: The final loadings after varimax rotation.
+#' * `canonical.loadings`: The canonical loadings.
+#' * `scores.gen`: The scores for genotypes for the first and second factors.
+#' @md
 #' @references Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for
 #' environment stratification and analysis of genotype adaptability.
 #' Crop Breed. Appl. Biotechnol. 4:7-11.
 #'
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
+#' @seealso [superiority()], [ecovalence()], [ge_stats()], [ge_reg()]
 #' @examples
 #' \donttest{
 #' library(metan)
@@ -44,7 +48,6 @@
 #'                      rep = REP,
 #'                      resp = PH)
 #'}
-#' @seealso \code{\link{superiority}, \link{ecovalence}, \link{ge_stats}, \link{ge_reg}}
 #'
 #'
 ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
@@ -166,65 +169,65 @@ ge_factanal <- function(.data, env, gen, rep, resp, mineval = 1,
 #' This function plot the scores for genotypes obtained in the factor analysis
 #' to interpret the stability
 #'
-#' @param x An object of class \code{ge_factanal}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
+#' @param x An object of class `ge_factanal`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
-#'   values of the data set). New arguments can be inserted as \code{x.lim =
-#'   c(x.min, x.max)}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
+#' @param x.lim The range of x-axis. Default is `NULL` (maximum and minimum
+#'   values of the data set). New arguments can be inserted as `x.lim =
+#'   c(x.min, x.max)`.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#'   c(breaks)}
+#'   `authomatic breaks`. New arguments can be inserted as `x.breaks =
+#'   c(breaks)`
 #' @param x.lab The label of x-axis. Each plot has a default value. New
-#'   arguments can be inserted as \code{x.lab = "my label"}.
-#' @param y.lim The range of x-axis. Default is \code{NULL}. The same arguments
-#'   than \code{x.lim} can be used.
+#'   arguments can be inserted as `x.lab = "my label"`.
+#' @param y.lim The range of x-axis. Default is `NULL`. The same arguments
+#'   than `x.lim` can be used.
 #' @param y.breaks The breaks to be plotted in the x-axis. Default is
-#'   \code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+#'   `authomatic breaks`. The same arguments than `x.breaks` can be
 #'   used.
 #' @param y.lab The label of y-axis. Each plot has a default value. New
-#'   arguments can be inserted as \code{y.lab = "my label"}.
+#'   arguments can be inserted as `y.lab = "my label"`.
 #' @param shape The shape for genotype indication in the plot. Default is
-#'   \code{1} (circle). Values between  \code{21-25}: \code{21} (circle),
-#'   \code{22} (square), \code{23} (diamond), \code{24} (up triangle), and
-#'   \code{25} (low triangle) allows a color for fill the shape.
+#'   `1` (circle). Values between  `21-25`: `21` (circle),
+#'   `22` (square), `23` (diamond), `24` (up triangle), and
+#'   `25` (low triangle) allows a color for fill the shape.
 #' @param col.shape The shape color for genotypes. Must be one value or a vector
 #'   of colors with the same length of the number of genotypes. Default is
-#'   \code{"gray30"}. Other values can be attributed. For example,
-#'   \code{transparent_color()}, will make a plot with only an outline around the
+#'   `"gray30"`. Other values can be attributed. For example,
+#'   `transparent_color()`, will make a plot with only an outline around the
 #'   shape area.
-#' @param col.alpha The alpha value for the color. Default is \code{1}. Values
-#'   must be between \code{0} (full transparency) to \code{1} (full color).
+#' @param col.alpha The alpha value for the color. Default is `1`. Values
+#'   must be between `0` (full transparency) to `1` (full color).
 #' @param size.shape The size of the shape (both for genotypes and
-#'   environments). Default is \code{2.2}.
-#' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
-#'   size of the shape will be \code{size.shape + size.bor.tick}
+#'   environments). Default is `2.2`.
+#' @param size.bor.tick The size of tick of shape. Default is `0.3`. The
+#'   size of the shape will be `size.shape + size.bor.tick`
 #' @param size.tex.lab The size of the text in the axes text and labels. Default
-#'   is \code{12}.
+#'   is `12`.
 #' @param size.tex.pa The size of the text of the plot area. Default is
-#'   \code{3.5}.
+#'   `3.5`.
 #' @param force.repel Force of repulsion between overlapping text labels.
 #'   Defaults to 1.
 #' @param line.type The type of the line that indicate the means in the biplot.
-#'   Default is \code{"solid"}. Other values that can be attributed are:
-#'   \code{"blank"}, no lines in the biplot, \code{"dashed", "dotted",
-#'   "dotdash", "longdash", and "twodash"}.
+#'   Default is `"solid"`. Other values that can be attributed are:
+#'   `"blank"`, no lines in the biplot, `"dashed", "dotted",
+#'   "dotdash", "longdash", and "twodash"`.
 #' @param line.alpha The alpha value that combine the line with the background
 #'   to create the appearance of partial or full transparency. Default is
-#'   \code{0.4}. Values must be between "0" (full transparency) to "1" (full
+#'   `0.4`. Values must be between "0" (full transparency) to "1" (full
 #'   color).
 #' @param col.line The color of the line that indicate the means in the biplot.
-#'   Default is \code{"gray"}
+#'   Default is `"gray"`
 #' @param size.line The size of the line that indicate the means in the biplot.
-#'   Default is \code{0.5}.
+#'   Default is `0.5`.
 #' @param ... Currently not used..
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{ge_factanal}}
+#' @seealso [ge_factanal()]
 #' @method plot ge_factanal
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @export
 #' @examples
 #' \donttest{
@@ -292,17 +295,17 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
 
 #' Print an object of class ge_factanal
 #'
-#' Print the \code{ge_factanal} object in two ways. By default, the results are
+#' Print the `ge_factanal` object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{ge_factanal}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `ge_factanal`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print ge_factanal
 #' @export

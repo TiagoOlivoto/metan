@@ -26,21 +26,20 @@ be treated as random effect.}
 (assumed to be fixed).}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp =
-c(var1, var2, var3)}. Select helpers are also allowed.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 
 \item{block}{Defaults to \code{NULL}. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.} Use the
-function \code{\link{gamem}} to analyze a one-way trial with mixed-effect
+function \code{\link[=gamem]{gamem()}} to analyze a one-way trial with mixed-effect
 models.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}.This is especially useful, for example,
 when the researcher want to fit a fixed-effect model for each environment.
 In this case, an object of class gafem_grouped is returned.
-\code{\link{mgidi}} can then be used to compute the mgidi index within each
+\code{\link[=mgidi]{mgidi()}} can then be used to compute the mgidi index within each
 environment.}
 
 \item{prob}{The error probability. Defaults to 0.05.}
@@ -69,6 +68,8 @@ the winner genotype.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 One-way analysis of variance of genotypes conducted in both randomized
 complete block and alpha-lattice designs.
 }
@@ -126,7 +127,7 @@ Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
-\code{\link{get_model_data}} \code{\link{gamem}}
+\code{\link[=get_model_data]{get_model_data()}} \code{\link[=gamem]{gamem()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

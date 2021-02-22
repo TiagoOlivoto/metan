@@ -1,12 +1,14 @@
 #' Coerce to an object of class lpcor
+#' @description
+#' `r badge('stable')`
 #'
-#' Functions to check if an object is of class \code{lpcor}
+#' Functions to check if an object is of class `lpcor`
 #'
 #'
 #' @param x An object to check.
 #' @importFrom methods is
 #' @export
-#' @return  A logical value \code{TRUE} or \code{FALSE}.
+#' @return  A logical value `TRUE` or `FALSE`.
 #' @examples
 #' \donttest{
 #' library(metan)

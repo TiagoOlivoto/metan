@@ -16,8 +16,8 @@ corr_ci(
 }
 \arguments{
 \item{.data}{The data to be analyzed. It can be a data frame (possible with
-grouped data passed from \code{\link[dplyr]{group_by}()}) or a symmetric correlation
- matrix.}
+grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}) or a symmetric correlation
+matrix.}
 
 \item{...}{Variables to compute the confidence interval. If not informed, all
 the numeric variables from \code{.data} are used.}
@@ -29,24 +29,25 @@ coefficient.}
 informed.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{sel.var}{A variable to shows the correlation with. This will omit all
-the pairwise correlations that doesn't contain `sel.var`.}
+the pairwise correlations that doesn't contain \code{sel.var}.}
 
 \item{verbose}{If \code{verbose = TRUE} then some results are shown in the
 console.}
 }
 \value{
 A tibble containing the values of the correlation, confidence
-  interval, upper and lower limits for all combination of variables.
+interval, upper and lower limits for all combination of variables.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the half-width confidence interval for correlation coefficient using
 the nonparametric method proposed by Olivoto et al. (2018).
-}
-\details{
+
 The half-width confidence interval is computed according to the following
 equation:
 \loadmathjax
@@ -71,11 +72,11 @@ CI2
 }
 \references{
 Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
-  B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
-  interval width for Pearson's correlation coefficient: a
-  Gaussian-independent estimator based on sample size and strength of
-  association. Agron. J. 110:1-8.
-  \doi{10.2134/agronj2016.04.0196}
+B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+interval width for Pearson's correlation coefficient: a
+Gaussian-independent estimator based on sample size and strength of
+association. Agron. J. 110:1-8.
+\doi{10.2134/agronj2016.04.0196}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

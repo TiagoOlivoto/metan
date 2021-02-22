@@ -28,18 +28,16 @@ A tibble with the following columns
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the scale-adjusted coefficient of variation,
 \emph{acv}, (Doring and Reckling, 2018) to account for the systematic
 dependence of \mjseqn{\sigma^2} from \mjseqn{\mu}. The \emph{acv} is
 computed as follows:
-
 \mjsdeqn{acv = \frac{\sqrt{10^{\tilde v_i}}}{\mu_i}\times 100}
-
 where \mjseqn{\tilde v_i} is the adjusted logarithm of the variance
 computed as:
-
 \mjsdeqn{\tilde v_i = a + (b - 2)\frac{1}{n}\sum m_i + 2m_i + e_i}
-
 being \mjseqn{a} and \mjseqn{b} the coefficients of the linear regression for
 \mjseqn{log_{10}} of the variance over the \mjseqn{log_{10}} of the mean;
 \mjseqn{ m_i} is the \mjseqn{log_{10}} of the mean, and \mjseqn{ e_i} is the

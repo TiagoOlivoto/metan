@@ -15,8 +15,8 @@ mgidi(
 )
 }
 \arguments{
-\item{.data}{An object fitted with the function \code{\link{gafem}()},
-\code{\link{gamem}()} or a two-way table with BLUPs for genotypes in each
+\item{.data}{An object fitted with the function \code{\link[=gafem]{gafem()}},
+\code{\link[=gamem]{gamem()}} or a two-way table with BLUPs for genotypes in each
 trait (genotypes in rows and traits in columns). In the last case, row
 names must contain the genotypes names.}
 
@@ -34,11 +34,10 @@ factor analysis.}
 \item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the
 number of variables used to plan the ideotype. Use \code{'h'} to indicate
 the traits in which higher values are desired or \code{'l'} to indicate the
-variables in which lower values are desired. For example, \code{ideotype =
-  c("h, h, h, h, l")} will consider that the ideotype has higher values for
+variables in which lower values are desired. For example, \code{ideotype = c("h, h, h, h, l")} will consider that the ideotype has higher values for
 the first four traits and lower values for the last trait. If \code{.data}
-is a model fitted with the functions \code{\link{gafem}()} or
-\code{\link{gamem}()}, the order of the traits will be the declared in the
+is a model fitted with the functions \code{\link[=gafem]{gafem()}} or
+\code{\link[=gamem]{gamem()}}, the order of the traits will be the declared in the
 argument \code{resp} in those functions.}
 
 \item{use}{The method for computing covariances in the presence of missing
@@ -81,6 +80,8 @@ desired gains, the statistics are computed for by strata.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
 be seen as the multi-trait stability index (Olivoto et al., 2019) computed
 with weight for mean performance equals to 100. The MGIDI indes is computed

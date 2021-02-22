@@ -16,8 +16,7 @@ environments.}
 \item{gen}{The name of the column that contains the levels of the genotypes.}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example \code{resp
-= c(var1, var2, var3)}. Select helpers are also allowed.}
+single procedure a vector of variables may be used. For example \code{resp = c(var1, var2, var3)}. Select helpers are also allowed.}
 
 \item{type}{The type of results. Defaults to \code{"winners"} (default),
 i.e., a two-way table with the winner genotype in each environment. If
@@ -33,10 +32,12 @@ ranking the fifth variable from minimum to maximum.}
 }
 \value{
 A tibble with two-way table with the winner genotype in each
-  environment (default) or the genotype ranking for each environment (if
-  \code{type = "ranks"}).
+environment (default) or the genotype ranking for each environment (if
+\code{type = "ranks"}).
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes the ranking for genotypes within environments and return the winners.
 }
 \examples{

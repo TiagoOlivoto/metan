@@ -2,50 +2,52 @@
 #' @name utils_num_str
 #' @param .data A data frame
 #' @param ... The argument depends on the function used.
-#'  * For \code{round_cols()} \code{...} are the variables to round. If no
-#'  variable is informed, all the numeric variables from \code{data} are used.
-#'  * For \code{all_lower_case()}, \code{all_upper_case()},
-#'   \code{all_title_case()}, \code{stract_number()}, \code{stract_string()},
-#'   \code{remove_strings()}, and \code{tidy_strings()} \code{...} are the
+#'  * For `round_cols()` `...` are the variables to round. If no
+#'  variable is informed, all the numeric variables from `data` are used.
+#'  * For `all_lower_case()`, `all_upper_case()`,
+#'   `all_title_case()`, `stract_number()`, `stract_string()`,
+#'   `remove_strings()`, and `tidy_strings()` `...` are the
 #'   variables to apply the function. If no variable is informed, the function
 #'   will be applied to all non-numeric variables in `.data`.
 #' @param digits The number of significant figures.
 #' @param pattern A string to be matched. Regular Expression Syntax is also
 #'   allowed.
 #' @param replacement A string for replacement.
-#' @param ignore_case If \code{FALSE} (default), the pattern matching is case
-#'   sensitive and if \code{TRUE}, case is ignored during matching.
+#' @param ignore_case If `FALSE` (default), the pattern matching is case
+#'   sensitive and if `TRUE`, case is ignored during matching.
 #' @param sep A character string to separate the terms. Defaults to "_".
 #' @description
-#' * \code{all_lower_case()}: Translate all non-numeric strings of a data frame
+#' `r badge('stable')`
+#'
+#' * `all_lower_case()`: Translate all non-numeric strings of a data frame
 #' to lower case.
-#' * \code{all_upper_case()}: Translate all non-numeric strings of a data frame
+#' * `all_upper_case()`: Translate all non-numeric strings of a data frame
 #' to upper case.
-#' * \code{all_title_case()}: Translate all non-numeric strings of a data frame
+#' * `all_title_case()`: Translate all non-numeric strings of a data frame
 #' to title case.
-#' * \code{first_upper_case}: Translate the first word of a string to upper
+#' * `first_upper_case`: Translate the first word of a string to upper
 #' case.
-#' * \code{extract_number()}: Extract the number(s) of a string.
-#' * \code{extract_string()}: Extract all strings, ignoring case.
-#' * \code{find_text_in_num()}: Find text characters in a numeric sequence and
+#' * `extract_number()`: Extract the number(s) of a string.
+#' * `extract_string()`: Extract all strings, ignoring case.
+#' * `find_text_in_num()`: Find text characters in a numeric sequence and
 #' return the row index.
-#' * \code{has_text_in_num()}: Inspect columns looking for text in numeric
+#' * `has_text_in_num()`: Inspect columns looking for text in numeric
 #' sequence and return a warning if text is found.
-#' * \code{remove_space()}: Remove all blank spaces of a string.
-#' * \code{remove_strings()}: Remove all strings of a variable.
-#' * \code{replace_number()}: Replace numbers with a replacement.
-#' * \code{replace_string()}: Replace all strings with a replacement, ignoring
+#' * `remove_space()`: Remove all blank spaces of a string.
+#' * `remove_strings()`: Remove all strings of a variable.
+#' * `replace_number()`: Replace numbers with a replacement.
+#' * `replace_string()`: Replace all strings with a replacement, ignoring
 #' case.
-#' * \code{round_cols()}: Round a selected column or a whole data frame to
+#' * `round_cols()`: Round a selected column or a whole data frame to
 #' significant figures.
-#' * \code{tidy_strings()}: Tidy up characters strings, non-numeric columns, or
+#' * `tidy_strings()`: Tidy up characters strings, non-numeric columns, or
 #' any selected columns in a data frame by putting all word in upper case,
-#' replacing any space, tabulation, punctuation characters by \code{'_'}, and
-#' putting \code{'_'} between lower and upper case. Suppose that \code{str =
-#' c("Env1", "env 1", "env.1")} (which by definition should represent a unique
+#' replacing any space, tabulation, punctuation characters by `'_'`, and
+#' putting `'_'` between lower and upper case. Suppose that `str =
+#' c("Env1", "env 1", "env.1")` (which by definition should represent a unique
 #' level in plant breeding trials, e.g., environment 1) is subjected to
-#' \code{tidy_strings(str)}: the result will be then \code{c("ENV_1", "ENV_1",
-#' "ENV_1")}. See Examples section for more examples.
+#' `tidy_strings(str)`: the result will be then `c("ENV_1", "ENV_1",
+#' "ENV_1")`. See Examples section for more examples.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
@@ -282,10 +284,10 @@ replace_string <- function(.data,
     pattern <- pattern
   }
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
-      results <-
-        .data %>%
-        mutate(across(..., ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
-      return(results)
+    results <-
+      .data %>%
+      mutate(across(..., ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
+    return(results)
   } else{
     return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
   }
@@ -349,104 +351,106 @@ tidy_strings <- function(.data, ..., sep = "_"){
 #' @title Utilities for handling with rows and columns
 #' @name utils_rows_cols
 #' @description
-#' * \code{add_cols()}: Add one or more columns to an existing data frame. If
-#' specified \code{.before} or \code{.after} columns does not exist, columns are
+#' `r badge('stable')`
+#'
+#' * `add_cols()`: Add one or more columns to an existing data frame. If
+#' specified `.before` or `.after` columns does not exist, columns are
 #' appended at the end of the data. Return a data frame with all the original
-#' columns in `.data` plus the columns declared in \code{...}. In
-#' \code{add_cols()} columns in `.data` are available for the expressions.
+#' columns in `.data` plus the columns declared in `...`. In
+#' `add_cols()` columns in `.data` are available for the expressions.
 #' So, it is possible to add a column based on existing data.
-#' * \code{add_rows()}: Add one or more rows to an existing data frame. If
-#' specified \code{.before} or \code{.after} rows does not exist, rows are
+#' * `add_rows()`: Add one or more rows to an existing data frame. If
+#' specified `.before` or `.after` rows does not exist, rows are
 #' appended at the end of the data. Return a data frame with all the original
-#' rows in `.data` plus the rows declared in \code{...} argument.
-#' * \code{add_row_id()}: Add a column with the row id as the first column in
+#' rows in `.data` plus the rows declared in `...` argument.
+#' * `add_row_id()`: Add a column with the row id as the first column in
 #' `.data`.
-#' * \code{add_prefix()} and \code{add_suffix()} add prefixes and suffixes,
-#' respectively, in variable names selected in \code{...} argument.
-#' * \code{all_pairs()}: Get all the possible pairs between the levels of a
+#' * `add_prefix()` and `add_suffix()` add prefixes and suffixes,
+#' respectively, in variable names selected in `...` argument.
+#' * `all_pairs()`: Get all the possible pairs between the levels of a
 #' factor.
-#' * \code{colnames_to_lower()}: Translate all column names to lower case.
-#' * \code{colnames_to_upper()}: Translate all column names to upper case.
-#' * \code{colnames_to_title()}: Translate all column names to title case.
-#' * \code{column_exists()}: Checks if a column exists in a data frame. Return a
+#' * `colnames_to_lower()`: Translate all column names to lower case.
+#' * `colnames_to_upper()`: Translate all column names to upper case.
+#' * `colnames_to_title()`: Translate all column names to title case.
+#' * `column_exists()`: Checks if a column exists in a data frame. Return a
 #' logical value.
-#' * \code{columns_to_first()}: Move columns to first positions in `.data`.
-#' * \code{columns_to_last()}: Move columns to last positions in `.data`.
-#' * \code{columns_to_rownames()}: Move a column of `.data` to its row
+#' * `columns_to_first()`: Move columns to first positions in `.data`.
+#' * `columns_to_last()`: Move columns to last positions in `.data`.
+#' * `columns_to_rownames()`: Move a column of `.data` to its row
 #' names.
-#' * \code{rownames_to_column()}: Move the row names of `.data` to a new
+#' * `rownames_to_column()`: Move the row names of `.data` to a new
 #' column.
-#' * \code{remove_rownames()}: Remove the row names of `.data`.
-#' * \code{concatenate()}: Concatenate columns of a data frame. If \code{drop =
-#' TRUE} then the existing variables are dropped. If \code{pull = TRUE} then the
+#' * `remove_rownames()`: Remove the row names of `.data`.
+#' * `concatenate()`: Concatenate columns of a data frame. If `drop =
+#' TRUE` then the existing variables are dropped. If `pull = TRUE` then the
 #' concatenated variable is pull out to a vector. This is specially useful when
-#' using \code{concatenate} to add columns to a data frame with \code{add_cols()}.
-#' * \code{get_levels()}: Get the levels of a factor variable.
-#' * \code{get_levels_comb()}: Get the combination of the levels of a factor.
-#' * \code{get_level_size()}: Get the size of each level of a factor variable.
-#' * \code{remove_cols()}: Remove one or more columns from a data frame.
-#' * \code{remove_rows()}: Remove one or more rows from a data frame.
-#' * \code{reorder_cols()}: Reorder columns in a data frame.
-#' * \code{select_cols()}: Select one or more columns from a data frame.
-#' * \code{select_first_col()}: Select first variable, possibly with an offset.
-#' * \code{select_last_col()}: Select last variable, possibly with an offset.
-#' * \code{select_numeric_cols()}: Select all the numeric columns of a data
+#' using `concatenate` to add columns to a data frame with `add_cols()`.
+#' * `get_levels()`: Get the levels of a factor variable.
+#' * `get_levels_comb()`: Get the combination of the levels of a factor.
+#' * `get_level_size()`: Get the size of each level of a factor variable.
+#' * `remove_cols()`: Remove one or more columns from a data frame.
+#' * `remove_rows()`: Remove one or more rows from a data frame.
+#' * `reorder_cols()`: Reorder columns in a data frame.
+#' * `select_cols()`: Select one or more columns from a data frame.
+#' * `select_first_col()`: Select first variable, possibly with an offset.
+#' * `select_last_col()`: Select last variable, possibly with an offset.
+#' * `select_numeric_cols()`: Select all the numeric columns of a data
 #' frame.
-#' * \code{select_non_numeric_cols()}: Select all the non-numeric columns of a
+#' * `select_non_numeric_cols()`: Select all the non-numeric columns of a
 #' data frame.
-#' * \code{select_rows()}: Select one or more rows from a data frame.
-#' * \code{tidy_colnames()}: Tidy up column names with
-#' \code{\link{tidy_strings}()}.
+#' * `select_rows()`: Select one or more rows from a data frame.
+#' * `tidy_colnames()`: Tidy up column names with
+#' [tidy_strings()].
 #'
 #'
 #' @param .data A data frame
 #' @param ... The argument depends on the function used.
-#' * For \code{add_cols()} and \code{add_rows()} is name-value pairs. All values
+#' * For `add_cols()` and `add_rows()` is name-value pairs. All values
 #' must have one element for each row in `.data` when using
-#' \code{add_cols()} or one element for each column in `.data` when using
-#' \code{add_rows()}. Values of length 1 will be recycled when using
-#' \code{add_cols()}.
+#' `add_cols()` or one element for each column in `.data` when using
+#' `add_rows()`. Values of length 1 will be recycled when using
+#' `add_cols()`.
 #'
-#' * For \code{remove_cols()} and \code{select_cols()},  \code{...} is the
+#' * For `remove_cols()` and `select_cols()`,  `...` is the
 #' column name or column index of the variable(s) to be dropped.
 #'
-#' * For \code{add_prefix()} and \code{add_suffix()},  \code{...} is the column
+#' * For `add_prefix()` and `add_suffix()`,  `...` is the column
 #' name to add the prefix or suffix, respectively. Select helpers are allowed.
 #'
-#' * For \code{columns_to_first()} and \code{columns_to_last()},  \code{...} is
+#' * For `columns_to_first()` and `columns_to_last()`,  `...` is
 #' the column name or column index of the variable(s) to be moved to first or
 #' last in `.data`.
 #'
-#' * For \code{remove_rows()} and \code{select_rows()}, \code{...} is an integer
+#' * For `remove_rows()` and `select_rows()`, `...` is an integer
 #' row value.
 #'
-#' * For \code{concatenate()}, \code{...} is the unquoted variable names to be
+#' * For `concatenate()`, `...` is the unquoted variable names to be
 #' concatenated.
 #'
-#' * For \code{get_levels()}, \code{get_level_comb()}, and
-#' \code{get_level_size()} \code{...} is the unquoted variable names to get the
+#' * For `get_levels()`, `get_level_comb()`, and
+#' `get_level_size()` `...` is the unquoted variable names to get the
 #' levels, levels combinations and levels size, respectively.
 #'
-#' @param .before,.after For \code{add_cols()}, \code{concatenate()}, and
-#'   \code{reorder_cols()}, one-based column index or column name where to add
-#'   the new columns, default: .after last column. For \code{add_rows()},
+#' @param .before,.after For `add_cols()`, `concatenate()`, and
+#'   `reorder_cols()`, one-based column index or column name where to add
+#'   the new columns, default: .after last column. For `add_rows()`,
 #'   one-based row index where to add the new rows, default: .after last row.
-#' @param prefix,suffix The prefix and suffix used in \code{add_prefix()} and
-#'   \code{add_suffix()}, respectively.
+#' @param prefix,suffix The prefix and suffix used in `add_prefix()` and
+#'   `add_suffix()`, respectively.
 #' @param new_var The name of the new variable containing the concatenated
-#'   values. Defaults to \code{new_var}.
+#'   values. Defaults to `new_var`.
 #' @param var Name of column to use for rownames.
-#' @param sep The separator to appear when using \code{concatenate()},
-#'   \code{add_prefix()}, or \code{add_suffix()}. Defaults to to \code{"_"}.
-#' @param drop Logical argument. If \code{TRUE} keeps the new variable
-#'   \code{new_var} and drops the existing ones. Defaults to \code{FALSE}.
-#' @param pull Logical argument. If \code{TRUE}, returns the last column (on the
+#' @param sep The separator to appear when using `concatenate()`,
+#'   `add_prefix()`, or `add_suffix()`. Defaults to to `"_"`.
+#' @param drop Logical argument. If `TRUE` keeps the new variable
+#'   `new_var` and drops the existing ones. Defaults to `FALSE`.
+#' @param pull Logical argument. If `TRUE`, returns the last column (on the
 #'   assumption that's the column you've created most recently), as a vector.
 #' @param cols A quoted variable name to check if it exists in `.data`.
 #' @param levels The levels of a factor or a numeric vector.
-#' @param offset Set it to \emph{n} to select the \emph{n}th variable from the
-#'   end (for \code{select_last_col()}) of from the begin (for
-#'   \code{select_first_col()})
+#' @param offset Set it to *n* to select the *n*th variable from the
+#'   end (for `select_last_col()`) of from the begin (for
+#'   `select_first_col()`)
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @importFrom  tibble add_row
@@ -712,7 +716,7 @@ get_levels <- function(.data, ...){
     df <- select(.data, ...) %>% select_non_numeric_cols()
   }
   results <-
-  df %>%
+    df %>%
     as_factor(everything()) %>%
     map(levels)
   if(length(results) == 1){
@@ -731,7 +735,7 @@ get_levels_comb <- function(.data, ...){
     df <- select(.data, ...) %>% select_non_numeric_cols()
   }
   df %>%
-  as_factor() %>%
+    as_factor() %>%
     map(levels) %>%
     expand.grid() %>%
     as_tibble()
@@ -813,64 +817,66 @@ tidy_colnames <- function(.data, sep = "_"){
 #' @title Useful functions for computing descriptive statistics
 #' @name utils_stats
 #' @description
-#' * \strong{The following functions compute descriptive statistics by levels of
-#' a factor or combination of factors quickly.}
-#'    - \code{cv_by()} For computing coefficient of variation.
-#'    - \code{max_by()} For computing maximum values.
-#'    - \code{means_by()} For computing arithmetic means.
-#'    - \code{min_by()} For compuing minimum values.
-#'    - \code{n_by()} For getting the length.
-#'    - \code{sd_by()} For computing sample standard deviation.
-#'    - \code{sem_by()} For computing standard error of the mean.
+#' `r badge('stable')`
 #'
-#' * \strong{Useful functions for descriptive statistics. All of them work
-#' naturally with \code{\%>\%}, handle grouped data and multiple variables (all
-#' numeric variables from `.data` by default).}
-#'    - \code{av_dev()} computes the average absolute deviation.
-#'    - \code{ci_mean()} computes the confidence interval for the mean.
-#'    - \code{cv()} computes the coefficient of variation.
-#'    - \code{freq_table()} Computes frequency fable. Handles grouped data.
-#'    - \code{hmean(), gmean()} computes the harmonic and geometric means,
+#' * **The following functions compute descriptive statistics by levels of
+#' a factor or combination of factors quickly.**
+#'    - `cv_by()` For computing coefficient of variation.
+#'    - `max_by()` For computing maximum values.
+#'    - `means_by()` For computing arithmetic means.
+#'    - `min_by()` For compuing minimum values.
+#'    - `n_by()` For getting the length.
+#'    - `sd_by()` For computing sample standard deviation.
+#'    - `sem_by()` For computing standard error of the mean.
+#'
+#' * **Useful functions for descriptive statistics. All of them work
+#' naturally with `\%>\%`, handle grouped data and multiple variables (all
+#' numeric variables from `.data` by default).**
+#'    - `av_dev()` computes the average absolute deviation.
+#'    - `ci_mean()` computes the confidence interval for the mean.
+#'    - `cv()` computes the coefficient of variation.
+#'    - `freq_table()` Computes frequency fable. Handles grouped data.
+#'    - `hmean(), gmean()` computes the harmonic and geometric means,
 #' respectively. The harmonic mean is the reciprocal of the arithmetic mean of
-#' the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
+#' the reciprocals. The geometric mean is the *n*th root of *n*
 #' products.
-#'    - \code{kurt()} computes the kurtosis like used in SAS and SPSS.
-#'    - \code{range_data()} Computes the range of the values.
-#'    - \code{n_valid()} The valid (not \code{NA}) length of a data.
-#'    - \code{n_unique()} Number of unique values.
-#'    - \code{n_missing()} Number of missing values.
-#'    - \code{row_col_mean(), row_col_sum()} Adds a row with the mean/sum of
+#'    - `kurt()` computes the kurtosis like used in SAS and SPSS.
+#'    - `range_data()` Computes the range of the values.
+#'    - `n_valid()` The valid (not `NA`) length of a data.
+#'    - `n_unique()` Number of unique values.
+#'    - `n_missing()` Number of missing values.
+#'    - `row_col_mean(), row_col_sum()` Adds a row with the mean/sum of
 #'    each variable and a column with the the mean/sum for each row of the data.
-#'    - \code{sd_amo(), sd_pop()} Computes sample and populational standard
+#'    - `sd_amo(), sd_pop()` Computes sample and populational standard
 #' deviation, respectively.
-#'    - \code{sem()} computes the standard error of the mean.
-#'    - \code{skew()} computes the skewness like used in SAS and SPSS.
-#'    - \code{sum_dev()} computes the sum of the absolute deviations.
-#'    - \code{sum_sq()} computes the sum of the squared values.
-#'    - \code{sum_sq_dev()} computes the sum of the squared deviations.
-#'    - \code{var_amo(), var_pop()} computes sample and populational variance.
+#'    - `sem()` computes the standard error of the mean.
+#'    - `skew()` computes the skewness like used in SAS and SPSS.
+#'    - `sum_dev()` computes the sum of the absolute deviations.
+#'    - `sum_sq()` computes the sum of the squared values.
+#'    - `sum_sq_dev()` computes the sum of the squared deviations.
+#'    - `var_amo(), var_pop()` computes sample and populational variance.
 #'
-#' \code{\link{desc_stat}} is wrapper function around the above ones and can be
+#' [desc_stat()] is wrapper function around the above ones and can be
 #' used to compute quickly all these statistics at once.
 #'
 #' @param .data A data frame or a numeric vector.
 #' @param ... The argument depends on the function used.
-#' * For \code{*_by} functions, \code{...} is one or more categorical variables
+#' * For `*_by` functions, `...` is one or more categorical variables
 #'  for grouping the data. Then the statistic required will be computed for all
-#'  numeric variables in the data. If no variables are informed in \code{...},
+#'  numeric variables in the data. If no variables are informed in `...`,
 #'  the statistic will be computed ignoring all non-numeric variables in
 #'  `.data`.
-#' * For the other statistics, \code{...} is a comma-separated of unquoted
+#' * For the other statistics, `...` is a comma-separated of unquoted
 #'  variable names to compute the statistics. If no variables are informed in n
-#'  \code{...}, the statistic will be computed for all numeric variables in
+#'  `...`, the statistic will be computed for all numeric variables in
 #'  `.data`.
-#' @param na.rm If \code{FALSE}, the default, missing values are removed with a
-#'   warning. If \code{TRUE}, missing values are silently removed.
+#' @param na.rm If `FALSE`, the default, missing values are removed with a
+#'   warning. If `TRUE`, missing values are silently removed.
 #' @param level The confidence level for the confidence interval of the mean.
 #'   Defaults to 0.95.
 #' @return
-#'  * Functions \code{*_by()} returns a tbl_df with the computed statistics by
-#'  each level of the factor(s) declared in \code{...}.
+#'  * Functions `*_by()` returns a tbl_df with the computed statistics by
+#'  each level of the factor(s) declared in `...`.
 #'  * All other functions return a nammed integer if the input is a data frame
 #'  or a numeric value if the input is a numeric vector.
 #' @md
@@ -1558,30 +1564,32 @@ sum_by <- function(.data, ..., na.rm = FALSE){
 }
 
 #' @title Utilities for handling with matrices
+#' @description
+#' `r badge('stable')`
 #'
-#' @description These functions help users to make upper, lower, or symmetric
-#'   matrices easily.
+#'  These functions help users to make upper, lower, or symmetric matrices
+#'  easily.
 #'
 #' @name utils_mat
 #' @param x A matrix to apply the function. It must be a symmetric (square)
-#'   matrix in \code{make_upper_tri()} and \code{make_lower_tri()} or a
-#'   triangular matrix in \code{make_sym()}. \code{tidy_sym()} accepts both
+#'   matrix in `make_upper_tri()` and `make_lower_tri()` or a
+#'   triangular matrix in `make_sym()`. `tidy_sym()` accepts both
 #'   symmetrical or triangular matrices.
 #' @param lower A square matrix to fill the lower diagonal of the new matrix.
 #' @param upper A square matrix to fill the upper diagonal of the new matrix.
-#' @param diag What show in the diagonal of the matrix. Default to \code{NA}.
-#' @param make The triangular to built. Default is \code{"upper"}. In this case,
+#' @param diag What show in the diagonal of the matrix. Default to `NA`.
+#' @param make The triangular to built. Default is `"upper"`. In this case,
 #'   a symmetric matrix will be built based on the values of a lower triangular
 #'   matrix.
 #' @param keep_diag Keep diagonal values in the tidy data frame? Defaults to
-#'   \code{TRUE}.
+#'   `TRUE`.
 #' @details
-#' * \code{make_upper_tri()} makes an upper triangular matrix using a symmetric
+#' * `make_upper_tri()` makes an upper triangular matrix using a symmetric
 #' matrix.
-#' * \code{make_lower_tri()} makes a lower triangular matrix using a symmetric
+#' * `make_lower_tri()` makes a lower triangular matrix using a symmetric
 #' matrix.
-#' * \code{make_sym()} makes a lower triangular matrix using a symmetric matrix.
-#' * \code{tidy_sym()} transform a symmetric matrix into tidy data frame.
+#' * `make_sym()` makes a lower triangular matrix using a symmetric matrix.
+#' * `tidy_sym()` transform a symmetric matrix into tidy data frame.
 #' @md
 #' @return An upper, lower, or symmetric matrix, or a tidy data frame.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -1668,8 +1676,8 @@ tidy_sym <- function(x, keep_diag = TRUE){
 #'Alternative to dplyr::do for doing anything
 #'
 #'
-#' Provides an alternative to the \code{dplyr:do()} using \code{nest()},
-#' \code{mutate()} and \code{map()} to apply a function to a grouped data frame.
+#' Provides an alternative to the `dplyr:do()` using `nest()`,
+#' `mutate()` and `map()` to apply a function to a grouped data frame.
 #'
 #'  If the applied function returns a data frame, then the output will be
 #'  automatically unnested. Otherwise, the output includes the grouping
@@ -1678,10 +1686,10 @@ tidy_sym <- function(x, keep_diag = TRUE){
 #'
 #'@param .data a (grouped) data frame
 #'@param .fun A function, formula, or atomic vector.
-#'@param ... Additional arguments passed on to \code{.fun}
-#'@param unnest Logical argument defaults to \code{TRUE} to control if results
-#'  of \code{.fun} should be unnested. Valid only if the result is of class
-#'  \code{data.frame} or \code{tbl_df}.
+#'@param ... Additional arguments passed on to `.fun`
+#'@param unnest Logical argument defaults to `TRUE` to control if results
+#'  of `.fun` should be unnested. Valid only if the result is of class
+#'  `data.frame` or `tbl_df`.
 #' @export
 #'@return a data frame
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -1725,12 +1733,12 @@ doo <- function(.data, .fun, ..., unnest = TRUE){
 #' @param x An object
 #' @param class The class to add or remove
 #' @details
-#' * \code{add_class()}: add a class to the object \code{x} keeping all the other class(es).
-#' * \code{has_class()}: Check if a class exists in object \code{x} and returns a logical value.
-#' * \code{set_class()}: set a class to the object \code{x}.
-#' * \code{remove_class()}: remove a class from the object \code{x}.
+#' * `add_class()`: add a class to the object `x` keeping all the other class(es).
+#' * `has_class()`: Check if a class exists in object `x` and returns a logical value.
+#' * `set_class()`: set a class to the object `x`.
+#' * `remove_class()`: remove a class from the object `x`.
 #' @md
-#' @return The object \code{x} with the class added or removed.
+#' @return The object `x` with the class added or removed.
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #'@examples
@@ -1775,11 +1783,11 @@ set_class <- function(x, class){
 #' Generate significance stars from p-values using R's standard definitions.
 #'
 #' Mapping from p_value ranges to symbols:
-#' * \strong{0 - 0.0001}: '****'
-#' * \strong{0.0001 - 0.001}: '***'
-#' * \strong{0.001 - 0.01}: '**'
-#' * \strong{0.01 - 0.05}: '*'
-#' * \strong{0.05 - 1.0}: 'ns'
+#' * **0 - 0.0001**: '****'
+#' * **0.0001 - 0.001**: '***'
+#' * **0.001 - 0.01**: '**'
+#' * **0.01 - 0.05**: '*'
+#' * **0.05 - 1.0**: 'ns'
 #' @md
 #' @param p_value A numeric vector of p-values
 #'
@@ -1846,21 +1854,23 @@ is_balanced_trial <- function(.data, env, gen, resp){
 #' Utilities for data Copy-Pasta
 #' @name utils_data
 #' @description
+#' `r badge('stable')`
+#'
 #' These functions allows interacting with the system clipboard. It is possible
 #' read from the clipboard or write a data frame or matrix to the clipboard.
-#' * \code{clip_read()} read data from the clipboard.
-#' * \code{clip_write()} write data to the clipboard.
+#' * `clip_read()` read data from the clipboard.
+#' * `clip_write()` write data to the clipboard.
 #'
 #' @param .data The data that should be copied to the clipboard. Only data frames and matrices are allowed
 #' @param header If the copied data has a header row for dataFrame, defaults to
-#'   \code{TRUE}.
+#'   `TRUE`.
 #' @param sep The separator which should be used in the copied output.
 #' @param row_names Decides if the output should keep row names or not, defaults
-#'   to \code{FALSE}.
+#'   to `FALSE`.
 #' @param col_names Decides if the output should keep column names or not,
-#'   defaults to \code{TRUE}.
+#'   defaults to `TRUE`.
 #' @md
-#' @param ... Further arguments to be passed to \code{\link[utils]{read.table}()}.
+#' @param ... Further arguments to be passed to [utils::read.table()].
 #' @export
 #' @importFrom utils read.table write.table
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -2012,4 +2022,86 @@ all_df_in_list <- function(x){
         })
     )
   )
+}
+# convert seconds to a hh:mm:ss format.
+sec_to_hms <- function(t){
+  paste(formatC(t %/% (60*60) %% 24, width = 2, format = "d", flag = "0"),
+        formatC(t %/% 60 %% 60, width = 2, format = "d", flag = "0"),
+        formatC(t %% 60, width = 2, format = "d", flag = "0"),
+        sep = ":"
+  )
+}
+# Embed a lifecycle badge in documentation
+# Adapted from
+badge <- function(stage){
+  stages <- c("experimental", "stable", "superseded", "deprecated")
+  if(!stage %in% stages){
+    stop("'stage' must be one of the ", stages)
+  }
+  url <- paste0("https://lifecycle.r-lib.org/articles/stages.html#",
+                stage)
+  html <- sprintf("\\href{%s}{\\figure{%s}{options: alt='[%s]'}}",
+                  url, file.path(sprintf("lifecycle-%s.svg", stage)),
+                  first_upper_case(stage))
+  text <- sprintf("\\strong{[%s]}", first_upper_case(stage))
+  sprintf("\\ifelse{html}{%s}{%s}", html, text)
+}
+
+
+# Tools for deprecating functions and arguments
+build_msg <- function(when, what, with, message){
+  if(!grepl("\\(", what) && !grepl("\\)", what)){
+    stop("must have function call syntax")
+  }
+  get_arg <- function(x){
+    gsub("[\\(\\)]", "", regmatches(x, gregexpr("\\(.*?\\)", x))[[1]])
+  }
+  pkg <- ifelse(grepl("::", what), sub("::.*", "", what), ".")
+  funct <- paste(sub("\\(.*", "", sub(".*::", "", what)), "()", sep = "")
+  arg <- ifelse(!grepl("\\()\\b", what), get_arg(what) %>% remove_space(), NA)
+  if(!is.na(arg)){
+    msge <- paste0("Argument `", arg, "` of `", funct, "` is deprecated as of ", pkg, " ", when, ".")
+    if(!is.null(with)){
+      if(!grepl("\\(", with) && !grepl("\\)", with)){
+        stop("'with' must have function call syntax", call. = FALSE)
+      }
+    pkg_with <- ifelse(grepl("::", with), sub("::.*", "", with), ".")
+    funct_with <- paste(sub("\\(.*", "", sub(".*::", "", with)), "()", sep = "")
+    with_mesg <-
+      case_when(pkg_with == pkg & funct_with ==  funct ~ paste0("Please use the `", get_arg(with), "` argument instead."),
+                pkg_with == pkg & funct_with !=  funct ~ paste0("Please use the `", get_arg(with), "` argument of `", funct_with, "` instead." ),
+                pkg_with != pkg  & pkg_with == "." ~ paste0("Please use the `", get_arg(with), "` argument of `", funct_with, "` instead."),
+                pkg_with != pkg ~ paste0("Please use the `", get_arg(with), "` argument of `", paste0(pkg_with, "::", funct_with), "` instead."))
+    msge <- paste0(msge, "\n", with_mesg)
+    }
+    msge <- ifelse(is.null(message), msge, paste0(msge, "\n", message))
+  } else{
+    msge <-  paste0("`",funct, "` is deprecated as of ", pkg, " ", when)
+    if(!is.null(with)){
+      if(!grepl("\\(", with) && !grepl("\\)", with)){
+        stop("'with' must have function call syntax", call. = FALSE)
+      }
+      pkg_with <- ifelse(grepl("::", with), sub("::.*", "", with), NA)
+      funct_with <- paste(sub("\\(.*", "", sub(".*::", "", with)), "()", sep = "")
+      with_mesg <-
+        case_when(pkg_with == pkg ~ paste0("Please use `", funct_with, "` instead"),
+                  pkg_with != pkg ~ paste0("Please use the function `", funct_with, "` of the `",pkg_with, "` package."))
+      with_mesg <- ifelse(is.null(message), with_mesg, paste(message))
+      msge <- paste(msge, "\n", with_mesg, sep = "")
+    }
+    msge <- ifelse(is.null(message), msge, paste0(msge, "\n", message))
+  }
+  return(msge)
+}
+deprecated_warning <- function(when, what, with = NULL, message = NULL){
+  warning(build_msg(when, what, with, message), call. = FALSE)
+}
+deprecated_error <- function(when, what, with = NULL, message = NULL){
+  stop(build_msg(when, what, with, message), call. = FALSE)
+}
+deprecated <- function(){
+  "missing_arg"
+}
+is_present <- function(x){
+  x != "missing_arg"
 }

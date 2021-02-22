@@ -28,7 +28,7 @@
 )
 }
 \arguments{
-\item{x}{The \code{waasb object}}
+\item{x}{The \verb{waasb object}}
 
 \item{type}{The type of the plot. Defaults to \code{type = 1} (Scree-plot of
 the correlations of the canonical loadings). Use \code{type = 2}, to
@@ -38,7 +38,7 @@ second group, or \code{type = 4} to produce a circle of correlations.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details,see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{size.tex.lab}{The size of the text in axis text and labels.}
 
@@ -49,12 +49,10 @@ second group, or \code{type = 4} to produce a circle of correlations.}
 arguments can be inserted as \code{x.lab = 'my label'}.}
 
 \item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
-values of the data set). New arguments can be inserted as \code{x.lim =
-c(x.min, x.max)}.}
+values of the data set). New arguments can be inserted as \code{x.lim = c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-c(breaks)}}
+\verb{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
 \item{y.lab}{The label of y-axis. Each plot has a default value. New
 arguments can be inserted as \code{y.lab = 'my label'}.}
@@ -63,7 +61,7 @@ arguments can be inserted as \code{y.lab = 'my label'}.}
 than \code{x.lim} can be used.}
 
 \item{y.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+\verb{authomatic breaks}. The same arguments than \code{x.breaks} can be
 used.}
 
 \item{axis.expand}{Multiplication factor to expand the axis limits by to
@@ -96,7 +94,7 @@ set to \code{main = FALSE} to omit the plot title.}
 \item{...}{Currently not used.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 Graphs of the Canonical Correlation Analysis

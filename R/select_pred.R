@@ -1,27 +1,27 @@
 #' Selects a best subset of predictor variables.
 #'
-#' Selects among a set of \code{covariates} the best set of \code{npred}
-#' predictors for a given response trait \code{resp} based on AIC values.
+#' Selects among a set of `covariates` the best set of `npred`
+#' predictors for a given response trait `resp` based on AIC values.
 #'
 #' @param .data A data frame with the response variable and covariates.
 #' @param resp The response variable.
-#' @param covariates The covariates. Defaults to \emph{NULL}. In this case, all
-#'   numeric traits in \code{.data}, except that in \code{resp} are selected. To
-#'   select specific covariates from \code{.data}, use a list of unquoted
-#'   comma-separated variable names (e.g. \emph{traits = c(var1, var2, var3)}),
-#'   an specific range of variables, (e.g. \emph{traits = c(var1:var3)}), or
-#'   even a select helper like \code{starts_with("N")}.
+#' @param covariates The covariates. Defaults to *NULL*. In this case, all
+#'   numeric traits in `.data`, except that in `resp` are selected. To
+#'   select specific covariates from `.data`, use a list of unquoted
+#'   comma-separated variable names (e.g. *traits = c(var1, var2, var3)*),
+#'   an specific range of variables, (e.g. *traits = c(var1:var3)*), or
+#'   even a select helper like `starts_with("N")`.
 #' @param npred An integer specifying the size of the subset of predictors to be
 #'   selected
 #'
 #' @return A list with the following elements:
-#' * \strong{sel_mod} An object of class \code{lm} that is the selected model.
-#' * \strong{predictors} The name of the selected predictors.
-#' * \strong{AIC} The Akaike's Information Criterion for the selected model.
-#' * \strong{pred_models} The Akaike's Information Criterion and the predictors
+#' * **sel_mod** An object of class `lm` that is the selected model.
+#' * **predictors** The name of the selected predictors.
+#' * **AIC** The Akaike's Information Criterion for the selected model.
+#' * **pred_models** The Akaike's Information Criterion and the predictors
 #' selected in each step.
-#' * \strong{predicted} The predicted values considering the model in
-#' \code{sel_mod}.
+#' * **predicted** The predicted values considering the model in
+#' `sel_mod`.
 #' @md
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

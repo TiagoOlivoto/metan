@@ -36,7 +36,10 @@ used.}
 A data frame with the \code{y} variable and the correlated variables.
 }
 \description{
-Generate correlated variables
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
+Generate correlated variables using a vector of know values and desired
+maximum and minimum correlations
 }
 \examples{
 \donttest{

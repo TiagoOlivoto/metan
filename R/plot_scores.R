@@ -1,5 +1,7 @@
 #' Plot scores in different graphical interpretations
 #'
+#' @description
+#' `r badge('stable')`
 #'
 #' Plot scores of genotypes and environments in different graphical
 #' interpretations.
@@ -14,106 +16,106 @@
 #' genotypes targeted for specific environments, thus allowing the exploitation
 #' of narrow adaptations.
 #'
-#' @param x An object fitted with the functions \code{\link{performs_ammi}},
-#'   \code{\link{waas}}, \code{\link{waas_means}}, or \code{\link{waasb}}.
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
+#' @param x An object fitted with the functions [performs_ammi()],
+#'   [waas()], [waas_means()], or [waasb()].
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
 #' @param type type of biplot to produce
-#' * \code{type = 1} The default. Produces an AMMI1 biplot (Y x PC1) to make
+#' * `type = 1` The default. Produces an AMMI1 biplot (Y x PC1) to make
 #' inferences related to stability and productivity.
-#' * \code{type = 2} Produces an AMMI2 biplot (PC1 x PC2) to make inferences
-#' related to the interaction effects. Use the arguments \code{first} or
-#' \code{second} to change the default IPCA shown in the plot.
-#' * \code{type = 3} Valid for objects of class \code{waas} or \code{waasb},
+#' * `type = 2` Produces an AMMI2 biplot (PC1 x PC2) to make inferences
+#' related to the interaction effects. Use the arguments `first` or
+#' `second` to change the default IPCA shown in the plot.
+#' * `type = 3` Valid for objects of class `waas` or `waasb`,
 #' produces a biplot showing the GY x WAASB.
-#' * \code{type = 4} Produces a plot with the Nominal yield x Environment PC.
+#' * `type = 4` Produces a plot with the Nominal yield x Environment PC.
 #' @param first,second The IPCA to be shown in the first (x) and second (y)
-#'   axis. By default, IPCA1 is shown in the \code{x} axis and IPCA2 in the
-#'   \code{y} axis. For example, use \code{second = "PC3"} to shown the IPCA3 in
-#'   the \code{y} axis.
-#' @param repel If \code{TRUE} (default), the text labels repel away from each
+#'   axis. By default, IPCA1 is shown in the `x` axis and IPCA2 in the
+#'   `y` axis. For example, use `second = "PC3"` to shown the IPCA3 in
+#'   the `y` axis.
+#' @param repel If `TRUE` (default), the text labels repel away from each
 #'   other and away from the data points.
 #' @param repulsion Force of repulsion between overlapping text labels. Defaults
 #'   to `1`.
-#' @param polygon Logical argument. If \code{TRUE}, a polygon is drawn when
-#'   \code{type = 2}.
-#' @param title Logical values (Defaults to \code{TRUE}) to include
+#' @param polygon Logical argument. If `TRUE`, a polygon is drawn when
+#'   `type = 2`.
+#' @param title Logical values (Defaults to `TRUE`) to include
 #'   automatically generated titles
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
 #' @param axis.expand Multiplication factor to expand the axis limits by to
-#'   enable fitting of labels. Default is \code{1.1}.
+#'   enable fitting of labels. Default is `1.1`.
 #' @param x.lim,y.lim The range of x and y axes, respectively. Default is
-#'   \code{NULL} (maximum and minimum values of the data set). New values can be
-#'   inserted as \code{x.lim = c(x.min, x.max)} or \code{y.lim = c(y.min,
-#'   y.max)}.
+#'   `NULL` (maximum and minimum values of the data set). New values can be
+#'   inserted as `x.lim = c(x.min, x.max)` or `y.lim = c(y.min,
+#'   y.max)`.
 #' @param x.breaks,y.breaks The breaks to be plotted in the x and y axes,
-#'   respectively. Defaults to \code{waiver()} (automatic breaks). New values
-#'   can be inserted, for example, as \code{x.breaks = c(0.1, 0.2, 0.3)} or
-#'   \code{x.breaks = seq(0, 1, by = 0.2)}
+#'   respectively. Defaults to `waiver()` (automatic breaks). New values
+#'   can be inserted, for example, as `x.breaks = c(0.1, 0.2, 0.3)` or
+#'   `x.breaks = seq(0, 1, by = 0.2)`
 #' @param x.lab,y.lab The label of x and y axes, respectively. Defaults to
-#'   \code{NULL}, i.e., each plot has a default axis label. New values can be
-#'   inserted as \code{x.lab = 'my label'}.
+#'   `NULL`, i.e., each plot has a default axis label. New values can be
+#'   inserted as `x.lab = 'my label'`.
 #' @param shape.gen,shape.env The shape for genotypes and environments
-#'   indication in the biplot. Default is \code{21} (circle) for genotypes and
-#'   \code{23} (diamond) for environments. Values must be between \code{21-25}:
-#'   \code{21} (circle), \code{22} (square), \code{23} (diamond), \code{24} (up
-#'   triangle), and \code{25} (low triangle).
-#' @param size.shape Deprecated as of metan v1.13.0.
+#'   indication in the biplot. Default is `21` (circle) for genotypes and
+#'   `23` (diamond) for environments. Values must be between `21-25`:
+#'   `21` (circle), `22` (square), `23` (diamond), `24` (up
+#'   triangle), and `25` (low triangle).
+#' @param size.shape `r badge('deprecated')`
 #' @param size.shape.gen,size.shape.env The size of the shapes for genotypes and
 #'   environments respectively. Defaults to `2.2`.
-#' @param size.bor.tick The size of tick of shape. Default is \code{0.3}. The
-#'   size of the shape will be \code{max(size.shape.gen, size.shape.env) +
-#'   size.bor.tick}
-#' @param size.tex.pa Deprecated.
+#' @param size.bor.tick The size of tick of shape. Default is `0.3`. The
+#'   size of the shape will be `max(size.shape.gen, size.shape.env) +
+#'   size.bor.tick`
+#' @param size.tex.pa `r badge('deprecated')`
 #' @param size.tex.lab,size.tex.gen,size.tex.env The size of the text for axis
 #'   labels (Defaults to 12), genotypes labels, and environments labels
 #'   (Defaults to 3.5).
 #' @param size.line The size of the line that indicate the means in the biplot.
-#'   Default is \code{0.5}.
+#'   Default is `0.5`.
 #' @param size.segm.line The size of the segment that start in the origin of the
-#'   biplot and end in the scores values. Default is \code{0.5}.
+#'   biplot and end in the scores values. Default is `0.5`.
 #' @param col.bor.gen,col.bor.env The color of the shape's border for genotypes
 #'   and environments, respectively.
 #' @param col.line The color of the line that indicate the means in the biplot.
-#'   Default is \code{'gray'}
+#'   Default is `'gray'`
 #' @param col.gen,col.env The shape color for genotypes (Defaults to
-#'   \code{'blue'}) and environments (\code{'forestgreen'}). Must be length
+#'   `'blue'`) and environments (`'forestgreen'`). Must be length
 #'   one or a vector of colors with the same length of the number of
 #'   genotypes/environments.
 #' @param col.alpha.gen,col.alpha.env The alpha value for the color for
 #'   genotypes and environments, respectively. Defaults to `NA`. Values must be
-#'   between \code{0} (full transparency) to \code{1} (full color).
+#'   between `0` (full transparency) to `1` (full color).
 #' @param col.segm.gen,col.segm.env The color of segment for genotypes (Defaults
-#'   to \code{transparent_color()}) and environments (Defaults to 'forestgreen'),
-#'   respectively. Valid arguments for plots with \code{type = 1} or \code{type
-#'   = 2} graphics.
+#'   to `transparent_color()`) and environments (Defaults to 'forestgreen'),
+#'   respectively. Valid arguments for plots with `type = 1` or `type
+#'   = 2` graphics.
 #'
 #' @param highlight Genotypes/environments to be highlight in the plot. Defaults
 #'   to `NULL`.
 #' @param col.highlight The color for shape/labels when a value is provided in
 #'   `highlight.`
-#' @param leg.lab The labs of legend. Default is \code{Gen} and \code{Env}.
+#' @param leg.lab The labs of legend. Default is `Gen` and `Env`.
 #' @param line.type The type of the line that indicate the means in the biplot.
-#'   Default is \code{'solid'}. Other values that can be attributed are:
-#'   \code{'blank'}, no lines in the biplot, \code{'dashed', 'dotted',
-#'   'dotdash', 'longdash', and 'twodash'}.
+#'   Default is `'solid'`. Other values that can be attributed are:
+#'   `'blank'`, no lines in the biplot, `'dashed', 'dotted',
+#'   'dotdash', 'longdash', and 'twodash'`.
 #' @param line.alpha The alpha value that combine the line with the background
 #'   to create the appearance of partial or full transparency. Default is
-#'   \code{0.4}. Values must be between '0' (full transparency) to '1' (full
+#'   `0.4`. Values must be between '0' (full transparency) to '1' (full
 #'   color).
 #' @param resolution The resolution of the plot. Parameter valid if
-#'   \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)
+#'   `file.type = 'tiff'` is used. Default is `300` (300 dpi)
 #' @param file.type The type of file to be exported. Valid parameter if
-#'   \code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
-#'   exported in \code{*.tiff} format by declaring \code{file.type = 'tiff'}.
-#' @param export Export (or not) the plot. Default is \code{FALSE}.
+#'   `export = T|TRUE`.  Default is `'pdf'`. The graphic can also be
+#'   exported in `*.tiff` format by declaring `file.type = 'tiff'`.
+#' @param export Export (or not) the plot. Default is `FALSE`.
 #' @param file.name The name of the file for exportation, default is
-#'   \code{NULL}, i.e. the files are automatically named.
-#' @param width The width 'inch' of the plot. Default is \code{8}.
-#' @param height The height 'inch' of the plot. Default is \code{7}.
-#' @param color Should type 4 plot have colors? Default to \code{TRUE}.
+#'   `NULL`, i.e. the files are automatically named.
+#' @param width The width 'inch' of the plot. Default is `8`.
+#' @param height The height 'inch' of the plot. Default is `7`.
+#' @param color Should type 4 plot have colors? Default to `TRUE`.
 #' @param ... Currently not used.
 #' @md
 #' @references
@@ -122,9 +124,9 @@
 #' trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #' 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 #'
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{plot_eigen}}
+#' @seealso [plot_eigen()]
 #' @export
 #' @examples
 #' \donttest{
@@ -158,7 +160,8 @@
 #'            col.gen = "black",
 #'            col.env = "gray",
 #'            col.segm.env = "gray",
-#'            size.tex.pa = 2,
+#'            size.tex.gen = 5,
+#'            size.tex.env = 2,
 #'            size.tex.lab = 16,
 #'            plot_theme = theme_metan_minimal())
 #'
@@ -166,10 +169,10 @@
 #' waasb_model <- waasb(data_ge, ENV, GEN, REP, GY)
 #'
 #' # GY x WAASB
+#' # Highlight genotypes 2 and 8
 #' plot_scores(waasb_model,
 #'             type = 3,
-#'             size.tex.pa = 2,
-#'             size.tex.lab = 16)
+#'             highlight = c("G2", "G8"))
 #' }
 plot_scores <- function(x,
                         var = 1,
@@ -192,10 +195,10 @@ plot_scores <- function(x,
                         shape.env = 23,
                         size.shape.gen = 2.2,
                         size.shape.env = 2.2,
-                        size.shape = "deprecated",
+                        size.shape = deprecated(),
                         size.bor.tick = 0.3,
                         size.tex.lab = 12,
-                        size.tex.pa = "deprecated",
+                        size.tex.pa = deprecated(),
                         size.tex.gen = 3.5,
                         size.tex.env = 3.5,
                         size.line = 0.5,
@@ -222,11 +225,13 @@ plot_scores <- function(x,
                         height = 7,
                         color = TRUE,
                         ...) {
-  if(size.tex.pa != "deprecated"){
-    warning("Argument  'size.tex.pa' is deprecated as of metan v1.13.0.\nUse 'size.tex.gen' or 'size.tex.env' instead.", call. = FALSE)
+  if(is_present(size.tex.pa)){
+    deprecated_error("1.13.0", "metan::plot_scores(size.tex.pa)",
+                     message = "Use 'size.tex.gen' or 'size.tex.env' instead.")
   }
-  if(size.shape != "deprecated"){
-    warning("Argument  'size.shape' is deprecated as of metan v1.13.0.\nUse 'size.shape.gen' or 'size.shape.env' instead.", call. = FALSE)
+  if(is_present(size.shape)){
+    deprecated_error("1.13.0", "metan::plot_scores(size.shape)",
+                     message = "Use 'size.shape.gen' or 'size.shape.env' instead.")
   }
   varname <- names(x)[var]
   x <- x[[var]]
@@ -576,6 +581,7 @@ plot_scores <- function(x,
       }
       m1 <- mean(df$Y)
       m2 <- mean(df$WAASB)
+
       p3 <- ggplot(df, aes(Y, WAASB, shape = type, fill = type))+
         geom_vline(xintercept = m1,
                    linetype = line.type,
@@ -676,10 +682,30 @@ plot_scores <- function(x,
       labs(x = paste(x.lab), y = paste(y.lab)) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
-      annotation_custom(grobTree(textGrob("I", x = 0.02, y = 0.98, hjust = 0))) +
-      annotation_custom(grobTree(textGrob("II", x = 0.97, y = 0.97, hjust = 0))) +
-      annotation_custom(grobTree(textGrob("III", x = 0.01, y = 0.03, hjust = 0))) +
-      annotation_custom(grobTree(textGrob("IV", x = 0.96, y = 0.03, hjust = 0)))
+      annotate("text",
+               x = x.lim[1],
+               y = y.lim[2],
+               hjust = 3,
+               vjust = 0,
+               label = "I") +
+      annotate("text",
+               x = x.lim[2],
+               y = y.lim[2],
+               hjust = -1,
+               vjust = 0,
+               label = "II") +
+      annotate("text",
+               x = x.lim[1],
+               y = y.lim[1],
+               hjust = 1,
+               vjust = 1,
+               label = "III") +
+      annotate("text",
+               x = x.lim[2],
+               y = y.lim[1],
+               hjust = 0,
+               vjust = 1,
+               label = "IV")
     if(title == TRUE){
       p3 <- p3 + ggtitle(ifelse(class == "waasb", "Y x WAASB biplot", "Y x WAAS biplot"))
     }

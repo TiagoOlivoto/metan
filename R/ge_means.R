@@ -1,4 +1,6 @@
 #' Genotype-environment means
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes genotype-environment interaction means
 #'
@@ -8,13 +10,13 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables at once,
-#'   a vector of variables may be used. For example \code{resp = c(var1, var2,
-#'   var3)}. Select helpers are also allowed.
+#'   a vector of variables may be used. For example `resp = c(var1, var2,
+#'   var3)`. Select helpers are also allowed.
 #' @return A list where each element is the result for one variable containing:
-#' * \strong{ge_means}: A two-way table with the means for genotypes (rows) and
+#' * **ge_means**: A two-way table with the means for genotypes (rows) and
 #' environments (columns).
-#' * \strong{gen_means}: A tibble with the means for genotypes.
-#' * \strong{env_means}: A tibble with the means for environments.
+#' * **gen_means**: A tibble with the means for genotypes.
+#' * **env_means**: A tibble with the means for environments.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

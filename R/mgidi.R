@@ -1,6 +1,8 @@
 #' Genotype-Ideotype Distance Index
 #'
 #' @description
+#' `r badge('stable')`
+#'
 #' Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
 #' be seen as the multi-trait stability index (Olivoto et al., 2019) computed
 #' with weight for mean performance equals to 100. The MGIDI indes is computed
@@ -9,67 +11,67 @@
 #' \mjsdeqn{MGIDI_i = \sqrt{\sum\limits_{j = 1}^f(F_{ij} - {F_j})^2}}
 #'
 #' where \mjseqn{MGIDI_i} is the multi-trait genotype-ideotype distance index
-#' for the \emph{i}th genotype; \mjseqn{F_{ij}} is the score of the \emph{i}th
-#' genotype in the \emph{j}th factor (\emph{i = 1, 2, ..., g; j = 1, 2, ...,
-#' f}), being \emph{g} and \emph{f} the number of genotypes and factors,
-#' respectively, and \mjseqn{F_j} is the \emph{j}th score of the ideotype. The
+#' for the *i*th genotype; \mjseqn{F_{ij}} is the score of the *i*th
+#' genotype in the *j*th factor (*i = 1, 2, ..., g; j = 1, 2, ...,
+#' f*), being *g* and *f* the number of genotypes and factors,
+#' respectively, and \mjseqn{F_j} is the *j*th score of the ideotype. The
 #' genotype with the lowest MGIDI is then closer to the ideotype and therefore
 #' presents desired values for all the analyzed traits.
 #'
-#' @param .data An object fitted with the function \code{\link{gafem}()},
-#'   \code{\link{gamem}()} or a two-way table with BLUPs for genotypes in each
+#' @param .data An object fitted with the function [gafem()],
+#'   [gamem()] or a two-way table with BLUPs for genotypes in each
 #'   trait (genotypes in rows and traits in columns). In the last case, row
 #'   names must contain the genotypes names.
-#' @param use_data Define which data to use if \code{.data} is an object of
-#'   class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
-#'   Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+#' @param use_data Define which data to use if `.data` is an object of
+#'   class `gamem`. Defaults to `"blup"` (the BLUPs for genotypes).
+#'   Use `"pheno"` to use phenotypic means instead BLUPs for computing the
 #'   index.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
-#' @param ideotype A vector of length \code{nvar} where \code{nvar} is the
-#'   number of variables used to plan the ideotype. Use \code{'h'} to indicate
-#'   the traits in which higher values are desired or \code{'l'} to indicate the
-#'   variables in which lower values are desired. For example, \code{ideotype =
-#'   c("h, h, h, h, l")} will consider that the ideotype has higher values for
-#'   the first four traits and lower values for the last trait. If \code{.data}
-#'   is a model fitted with the functions \code{\link{gafem}()} or
-#'   \code{\link{gamem}()}, the order of the traits will be the declared in the
-#'   argument \code{resp} in those functions.
+#' @param ideotype A vector of length `nvar` where `nvar` is the
+#'   number of variables used to plan the ideotype. Use `'h'` to indicate
+#'   the traits in which higher values are desired or `'l'` to indicate the
+#'   variables in which lower values are desired. For example, `ideotype =
+#'   c("h, h, h, h, l")` will consider that the ideotype has higher values for
+#'   the first four traits and lower values for the last trait. If `.data`
+#'   is a model fitted with the functions [gafem()] or
+#'   [gamem()], the order of the traits will be the declared in the
+#'   argument `resp` in those functions.
 #' @param use The method for computing covariances in the presence of missing
-#'   values. Defaults to \code{complete.obs}, i.e., missing values are handled
+#'   values. Defaults to `complete.obs`, i.e., missing values are handled
 #'   by casewise deletion.
-#' @param verbose If \code{verbose = TRUE} (Default) then some results are
+#' @param verbose If `verbose = TRUE` (Default) then some results are
 #' shown in the console.
-#' @return An object of class \code{mgidi} with the following items:
-#' * \strong{data} The data used to compute the factor analysis.
-#' * \strong{cormat} The correlation matrix among the environments.
-#' * \strong{PCA} The eigenvalues and explained variance.
-#' * \strong{FA} The factor analysis.
-#' * \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
-#' * \strong{MSA} The measure of sampling adequacy for individual variable.
-#' * \strong{communalities} The communalities.
-#' * \strong{communalities_mean} The communalities' mean.
-#' * \strong{initial_loadings} The initial loadings.
-#' * \strong{finish_loadings} The final loadings after varimax rotation.
-#' * \strong{canonical_loadings} The canonical loadings.
-#' * \strong{scores_gen} The scores for genotypes in all retained factors.
-#' * \strong{scores_ide} The scores for the ideotype in all retained factors.
-#' * \strong{gen_ide} The distance between the scores of each genotype with the
+#' @return An object of class `mgidi` with the following items:
+#' * **data** The data used to compute the factor analysis.
+#' * **cormat** The correlation matrix among the environments.
+#' * **PCA** The eigenvalues and explained variance.
+#' * **FA** The factor analysis.
+#' * **KMO** The result for the Kaiser-Meyer-Olkin test.
+#' * **MSA** The measure of sampling adequacy for individual variable.
+#' * **communalities** The communalities.
+#' * **communalities_mean** The communalities' mean.
+#' * **initial_loadings** The initial loadings.
+#' * **finish_loadings** The final loadings after varimax rotation.
+#' * **canonical_loadings** The canonical loadings.
+#' * **scores_gen** The scores for genotypes in all retained factors.
+#' * **scores_ide** The scores for the ideotype in all retained factors.
+#' * **gen_ide** The distance between the scores of each genotype with the
 #' ideotype.|
-#' * \strong{MGIDI} The multi-trait genotype-ideotype distance index.
-#' * \strong{contri_fac} The relative contribution of each factor on the MGIDI
+#' * **MGIDI** The multi-trait genotype-ideotype distance index.
+#' * **contri_fac** The relative contribution of each factor on the MGIDI
 #' value. The lower the contribution of a factor, the close of the ideotype the
 #' variables in such factor are.
-#' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
+#' * **contri_fac_rank, contri_fac_rank_sel** The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
-#' * \strong{sel_dif} The selection differential for the variables.
-#' * \strong{stat_gain} A descriptive statistic for the selection gains. The
+#' * **sel_dif** The selection differential for the variables.
+#' * **stat_gain** A descriptive statistic for the selection gains. The
 #' minimum, mean, confidence interval, standard deviation, maximum, and sum of
 #' selection gain values are computed. If traits have negative and positive
 #' desired gains, the statistics are computed for by strata.
-#' * \strong{sel_gen} The selected genotypes.
+#' * **sel_gen** The selected genotypes.
 #' @md
 #' @references Olivoto, T., and Nardino, M. (2020). MGIDI: toward an effective
 #'   multivariate selection in biological experiments. Bioinformatics.
@@ -344,24 +346,24 @@ mgidi <- function(.data,
 #' Makes a radar plot showing the multi-trait genotype-ideotype distance index
 #'
 #'
-#' @param x An object of class \code{mgidi}
-#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' @param x An object of class `mgidi`
+#' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
-#'   after using \code{coord_polar()}.
-#' @param type The type of the plot. Defaults to \code{"index"}. Use \code{type
-#'   = "contribution"} to show the contribution of each factor to the MGIDI
+#'   after using `coord_polar()`.
+#' @param type The type of the plot. Defaults to `"index"`. Use `type
+#'   = "contribution"` to show the contribution of each factor to the MGIDI
 #'   index of the selected genotypes/treatments.
-#' @param position The position adjustment when \code{type = "contribution"}.
-#'   Defaults to \code{"fill"}, which shows relative proportions at each trait
+#' @param position The position adjustment when `type = "contribution"`.
+#'   Defaults to `"fill"`, which shows relative proportions at each trait
 #'   by stacking the bars and then standardizing each bar to have the same
-#'   height. Use \code{position = "stack"} to plot the MGIDI index for each
+#'   height. Use `position = "stack"` to plot the MGIDI index for each
 #'   genotype/treatment.
-#' @param rotate Logical argument. If \code{rotate = TRUE} the plot is rotated,
+#' @param rotate Logical argument. If `rotate = TRUE` the plot is rotated,
 #'   i.e., traits in y axis and value in the x axis.
-#' @param genotypes When \code{type = "contribution"} defines the genotypes to
-#'   be shown in the plot. By default (\code{genotypes = "selected"} only
-#'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
+#' @param genotypes When `type = "contribution"` defines the genotypes to
+#'   be shown in the plot. By default (`genotypes = "selected"` only
+#'   selected genotypes are shown. Use `genotypes = "all"` to plot the
 #'   contribution for all genotypes.)
 #' @param n.dodge The number of rows that should be used to render the x labels.
 #'   This is useful for displaying labels that would otherwise overlap.
@@ -369,20 +371,20 @@ mgidi <- function(.data,
 #'   prioritizing the first, last, and middle labels.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
 #'   set to null when a radar plot is produced.
-#' @param title The plot title when \code{type = "contribution"}.
-#' @param arrange.label Logical argument. If \code{TRUE}, the labels are
+#' @param title The plot title when `type = "contribution"`.
+#' @param arrange.label Logical argument. If `TRUE`, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
-#' @param width.bar The width of the bars if \code{type = "contribution"}.
+#' @param width.bar The width of the bars if `type = "contribution"`.
 #'   Defaults to 0.75.
-#' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
-#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"gray"}.
+#' @param col.sel The colour for selected genotypes. Defaults to `"red"`.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to `"gray"`.
 #' @param legend.position The position of the legend.
-#' @param ... Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.
-#' @return An object of class \code{gg, ggplot}.
+#' @param ... Other arguments to be passed from  [ggplot2::theme()].
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mgidi
 #' @export
@@ -549,16 +551,16 @@ plot.mgidi <- function(x,
 
 
 #' Print an object of class mgidi
-#' Print a \code{mgidi} object in two ways. By default, the results are shown in
+#' Print a `mgidi` object in two ways. By default, the results are shown in
 #' the R console. The results can also be exported to the directory.
 #'
-#' @param x An object of class \code{mgidi}.
-#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' @param x An object of class `mgidi`.
+#' @param export A logical argument. If `TRUE|T`, a *.txt file is exported
 #'   to the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print mgidi
 #' @export

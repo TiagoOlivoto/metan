@@ -1,100 +1,98 @@
 #' Get data from a model easily
 #'
-#' * \code{get_model_data()} Easily get data from some objects generated in the
-#' \strong{metan} package such as the WAASB and WAASBY indexes  (Olivoto et al.,
+#' `r badge('experimental')`
+#'
+#' * `get_model_data()` Easily get data from some objects generated in the
+#' **metan** package such as the WAASB and WAASBY indexes  (Olivoto et al.,
 #' 2019a, 2019b) BLUPs, variance components, details of AMMI models and
 #' AMMI-based stability statistics.
-#' * \code{gmd()} Is a shortcut to \code{get_model_data}.
+#' * `gmd()` Is a shortcut to `get_model_data`.
 #' * `sel_gen()` Extracts the selected genotypes by a given index.
-#' @name get_model_data
-#'
-#' @param x An object created with the functions \code{\link{AMMI_indexes}()},
-#'   \code{\link{anova_ind}()}, \code{\link{anova_joint}()},
-#'   \code{\link{can_corr}()} \code{\link{ecovalence}()},  \code{\link{Fox}()},
-#'   \code{\link{gai}()}, \code{\link{gamem}()},\code{\link{gafem}()},
-#'   \code{\link{ge_acv}}, \code{\link{ge_means}()}, \code{\link{ge_reg}()},
-#'   \code{\link{gytb}()}, \code{\link{mgidi}()}, \code{\link{performs_ammi}()},
-#'   \code{\link{Resende_indexes}()}, \code{\link{Shukla}()},
-#'   \code{\link{superiority}()}, \code{\link{waas}()} or \code{\link{waasb}()}.
+#' @param x An object created with the functions [AMMI_indexes()],
+#'   [anova_ind()], [anova_joint()], [can_corr()] [ecovalence()],  [Fox()],
+#'   [gai()], [gamem()],[gafem()], [ge_acv()], [ge_means()], [ge_reg()],
+#'   [gytb()], [mgidi()], [performs_ammi()], [Resende_indexes()], [Shukla()],
+#'   [superiority()], [waas()] or [waasb()].
 #' @param what What should be captured from the model. See more in section
-#'   \strong{Details}.
-#' @param type Chose if the statistics must be show by genotype (\code{type =
-#'   "GEN"}, default) or environment (\code{TYPE = "ENV"}), when possible.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   **Details**.
+#' @param type Chose if the statistics must be show by genotype (`type =
+#'   "GEN"`, default) or environment (`TYPE = "ENV"`), when possible.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @return A tibble showing the values of the variable chosen in argument
-#'   \code{what}.
+#'   `what`.
+#' @name get_model_data
 #' @details
-#' Bellow are listed the options allowed in the argument \code{what} depending
+#' Bellow are listed the options allowed in the argument `what` depending
 #' on the class of the object
 #'
-#'  \strong{Objects of class \code{AMMI_indexes}:}
-#' * \code{"ASV"} AMMI stability value.
-#' * \code{"EV"} Averages of the squared eigenvector values.
-#' * \code{"SIPC"} Sums of the absolute value of the IPCA scores.
-#' * \code{"WAAS"} Weighted average of absolute scores (default).
-#' * \code{"ZA"} Absolute value of the relative contribution of IPCAs to the
+#'  **Objects of class `AMMI_indexes`:**
+#' * `"ASV"` AMMI stability value.
+#' * `"EV"` Averages of the squared eigenvector values.
+#' * `"SIPC"` Sums of the absolute value of the IPCA scores.
+#' * `"WAAS"` Weighted average of absolute scores (default).
+#' * `"ZA"` Absolute value of the relative contribution of IPCAs to the
 #' interaction.
 #'
-#'  \strong{Objects of class \code{anova_ind}:}
-#' * \code{"MEAN"}The mean value of the variable
-#' * \code{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
+#'  **Objects of class `anova_ind`:**
+#' * `"MEAN"`The mean value of the variable
+#' * `"MSG", "FCG", "PFG"` The mean square, F-calculated and P-values for
 #' genotype effect, respectively.
-#' * \code{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for
+#' * `"MSB", "FCB", "PFB"` The mean square, F-calculated and P-values for
 #' block effect in randomized complete block design.
-#' * \code{"MSCR", "FCR", "PFCR"} The mean square, F-calculated and P-values for
+#' * `"MSCR", "FCR", "PFCR"` The mean square, F-calculated and P-values for
 #' complete replicates in alpha lattice design.
-#' * \code{"MSIB_R", "FCIB_R", "PFIB_R"} The mean square, F-calculated and
+#' * `"MSIB_R", "FCIB_R", "PFIB_R"` The mean square, F-calculated and
 #' P-values for incomplete blocks within complete replicates, respectively (for
 #' alpha lattice design only).
-#' * \code{"MSE"} The mean square of error.
-#' * \code{"CV"} The coefficient of variation.
-#' * \code{"h2"} The broad-sence heritability
-#' * \code{"MSE"} The accucary of selection (square root of h2).
+#' * `"MSE"` The mean square of error.
+#' * `"CV"` The coefficient of variation.
+#' * `"h2"` The broad-sence heritability
+#' * `"MSE"` The accucary of selection (square root of h2).
 #'
 #'
-#'  \strong{Objects of class \code{anova_joint} or \code{gafem}:}
-#' * \code{"Y"} The observed values.
-#' * \code{"h2"} The broad-sense heritability.
-#' * \code{"Sum Sq"} Sum of squares.
-#' * \code{"Mean Sq"} Mean Squares.
-#' * \code{"F value"} F-values.
-#' * \code{"Pr(>F)"} P-values.
-#' * \code{".fitted"} Fitted values (default).
-#' * \code{".resid"} Residuals.
-#' * \code{".stdresid"} Standardized residuals.
-#' * \code{".se.fit"} Standard errors of the fitted values.
-#' * \code{"details"} Details.
+#'  **Objects of class `anova_joint` or `gafem`:**
+#' * `"Y"` The observed values.
+#' * `"h2"` The broad-sense heritability.
+#' * `"Sum Sq"` Sum of squares.
+#' * `"Mean Sq"` Mean Squares.
+#' * `"F value"` F-values.
+#' * `"Pr(>F)"` P-values.
+#' * `".fitted"` Fitted values (default).
+#' * `".resid"` Residuals.
+#' * `".stdresid"` Standardized residuals.
+#' * `".se.fit"` Standard errors of the fitted values.
+#' * `"details"` Details.
 #'
-#'  \strong{Objects of class \code{Annicchiarico} and \code{Schmildt}:}
-#' * \code{"Sem_rp"} The standard error of the relative mean performance (Schmildt).
-#' * \code{"Mean_rp"} The relative performance of the mean.
-#' * \code{"rank"} The rank for genotypic confidence index.
-#' * \code{"Wi"} The genotypic confidence index.
+#'  **Objects of class `Annicchiarico` and `Schmildt`:**
+#' * `"Sem_rp"` The standard error of the relative mean performance (Schmildt).
+#' * `"Mean_rp"` The relative performance of the mean.
+#' * `"rank"` The rank for genotypic confidence index.
+#' * `"Wi"` The genotypic confidence index.
 #'
-#'  \strong{Objects of class \code{can_corr}:}
-#' * \code{"coefs"} The canonical coefficients (default).
-#' * \code{"loads"} The canonical loadings.
-#' * \code{"crossloads"} The canonical cross-loadings.
-#' * \code{"canonical"} The canonical correlations and hypothesis testing.
+#'  **Objects of class `can_corr`:**
+#' * `"coefs"` The canonical coefficients (default).
+#' * `"loads"` The canonical loadings.
+#' * `"crossloads"` The canonical cross-loadings.
+#' * `"canonical"` The canonical correlations and hypothesis testing.
 #'
-#'  \strong{Objects of class \code{ecovalence}:}
-#' * \code{"Ecoval"} Ecovalence value (default).
-#' * \code{"Ecov_perc"} Ecovalence in percentage value.
-#' * \code{"rank"} Rank for ecovalence.
+#'  **Objects of class `ecovalence`:**
+#' * `"Ecoval"` Ecovalence value (default).
+#' * `"Ecov_perc"` Ecovalence in percentage value.
+#' * `"rank"` Rank for ecovalence.
 #'
-#'  \strong{Objects of class \code{fai_blup}:} See the \strong{Value} section of
-#'  \code{\link{fai_blup}()} to see valid options for \code{what} argument.
+#'  **Objects of class `fai_blup`:** See the **Value** section of
+#'  [fai_blup()] to see valid options for `what` argument.
 #'
-#'  \strong{Objects of class \code{ge_acv}:}
-#' * \code{"ACV"} The adjusted coefficient of variation (default).
-#' * \code{"ACV_R"} The rank for adjusted coefficient of variation.
+#'  **Objects of class `ge_acv`:**
+#' * `"ACV"` The adjusted coefficient of variation (default).
+#' * `"ACV_R"` The rank for adjusted coefficient of variation.
 #'
-#'  \strong{Objects of class \code{ge_polar}:}
-#' * \code{"POLAR"} The Power Law Residuals (default).
-#' * \code{"POLAR_R"} The rank for Power Law Residuals.
+#'  **Objects of class `ge_polar`:**
+#' * `"POLAR"` The Power Law Residuals (default).
+#' * `"POLAR_R"` The rank for Power Law Residuals.
 #'
-#'  \strong{Objects of class \code{ge_reg}:}
+#'  **Objects of class `ge_reg`:**
 #' * `GEN`: the genotypes.
 #' * `b0` and `b1` (default): the intercept and slope of the regression,
 #' respectively.
@@ -107,118 +105,118 @@
 #' *  `R2` the determination coefficient of the regression.
 #'
 #'
-#'  \strong{Objects of class \code{ge_effects}:}
-#' * For objects of class \code{ge_effects} no argument \code{what} is required.
+#'  **Objects of class `ge_effects`:**
+#' * For objects of class `ge_effects` no argument `what` is required.
 #'
-#'  \strong{Objects of class \code{ge_means}:}
-#' * \code{"ge_means"} Genotype-environment interaction means (default).
-#' * \code{"env_means"} Environment means.
-#' * \code{"gen_means"} Genotype means.
+#'  **Objects of class `ge_means`:**
+#' * `"ge_means"` Genotype-environment interaction means (default).
+#' * `"env_means"` Environment means.
+#' * `"gen_means"` Genotype means.
 #'
-#'  \strong{Objects of class \code{gge}:}
-#' * \code{"scores"} The scores for genotypes and environments for all the
+#'  **Objects of class `gge`:**
+#' * `"scores"` The scores for genotypes and environments for all the
 #' analyzed traits (default).
-#' * \code{"exp_var"} The eigenvalues and explained variance.
+#' * `"exp_var"` The eigenvalues and explained variance.
 #'
-#'  \strong{Objects of class \code{gytb}:}
-#' * \code{"gyt"} Genotype by yield*trait table (Default).
-#' * \code{"stand_gyt"} The standardized (zero mean and unit variance) Genotype by yield*trait table.
-#' * \code{"si"} The superiority index (sum standardized value across all yield*trait combinations).
+#'  **Objects of class `gytb`:**
+#' * `"gyt"` Genotype by yield*trait table (Default).
+#' * `"stand_gyt"` The standardized (zero mean and unit variance) Genotype by yield*trait table.
+#' * `"si"` The superiority index (sum standardized value across all yield*trait combinations).
 #'
-#'  \strong{Objects of class \code{mgidi}:} See the \strong{Value} section of
-#'  \code{\link{mgidi}()} to see valid options for \code{what} argument.
+#'  **Objects of class `mgidi`:** See the **Value** section of
+#'  [mgidi()] to see valid options for `what` argument.
 #'
-#'  \strong{Objects of class \code{mtsi}:} See the \strong{Value} section of
-#'  \code{\link{mtsi}()} to see valid options for \code{what} argument.
+#'  **Objects of class `mtsi`:** See the **Value** section of
+#'  [mtsi()] to see valid options for `what` argument.
 #'
-#'  \strong{Objects of class \code{Shukla}:}
-#' * \code{"rMean"} Rank for the mean.
-#' * \code{"ShuklaVar"} Shukla's stablity variance (default).
-#' * \code{"rShukaVar"} Rank for Shukla's stablity variance.
-#' * \code{"ssiShukaVar"} Simultaneous selection index.
+#'  **Objects of class `Shukla`:**
+#' * `"rMean"` Rank for the mean.
+#' * `"ShuklaVar"` Shukla's stablity variance (default).
+#' * `"rShukaVar"` Rank for Shukla's stablity variance.
+#' * `"ssiShukaVar"` Simultaneous selection index.
 #'
-#'  \strong{Objects of class \code{sh}:} See the \strong{Value} section of
-#'  \code{\link{Smith_Hazel}()} to see valid options for \code{what} argument.
+#'  **Objects of class `sh`:** See the **Value** section of
+#'  [Smith_Hazel()] to see valid options for `what` argument.
 #'
-#'  \strong{Objects of class \code{Fox}:}
-#' * \code{"TOP"} The proportion of locations at which the genotype occurred in
+#'  **Objects of class `Fox`:**
+#' * `"TOP"` The proportion of locations at which the genotype occurred in
 #' the top third (default).
 #'
-#'  \strong{Objects of class \code{gai}:}
-#' * \code{"GAI"} The geometric adaptability index (default).
-#' * \code{"GAI_R"} The rank for the GAI values.
+#'  **Objects of class `gai`:**
+#' * `"GAI"` The geometric adaptability index (default).
+#' * `"GAI_R"` The rank for the GAI values.
 #'
-#'  \strong{Objects of class \code{superiority}:}
-#' * \code{"Pi_a"} The superiority measure for all environments (default).
-#' * \code{"R_a"} The rank for Pi_a.
-#' * \code{"Pi_f"} The superiority measure for favorable environments.
-#' * \code{"R_f"} The rank for Pi_f.
-#' * \code{"Pi_u"} The superiority measure for unfavorable environments.
-#' * \code{"R_u"} The rank for Pi_u.
+#'  **Objects of class `superiority`:**
+#' * `"Pi_a"` The superiority measure for all environments (default).
+#' * `"R_a"` The rank for Pi_a.
+#' * `"Pi_f"` The superiority measure for favorable environments.
+#' * `"R_f"` The rank for Pi_f.
+#' * `"Pi_u"` The superiority measure for unfavorable environments.
+#' * `"R_u"` The rank for Pi_u.
 #'
-#'  \strong{Objects of class \code{Huehn}:}
-#' * \code{"S1"} Mean of the absolute rank differences of a genotype over the n
+#'  **Objects of class `Huehn`:**
+#' * `"S1"` Mean of the absolute rank differences of a genotype over the n
 #' environments (default).
-#' * \code{"S2"} variance among the ranks over the k environments.
-#' * \code{"S3"} Sum of the absolute deviations.
-#' * \code{"S6"} Relative sum of squares of rank for each genotype.
-#' * \code{"S1_R"}, \code{"S2_R"}, \code{"S3_R"}, and  \code{"S6_R"}, the ranks
+#' * `"S2"` variance among the ranks over the k environments.
+#' * `"S3"` Sum of the absolute deviations.
+#' * `"S6"` Relative sum of squares of rank for each genotype.
+#' * `"S1_R"`, `"S2_R"`, `"S3_R"`, and  `"S6_R"`, the ranks
 #' for S1, S2, S3, and S6, respectively.
 #'
-#'  \strong{Objects of class \code{Thennarasu}:}
-#' * \code{"N1"} First statistic (default).
-#' * \code{"N2"} Second statistic.
-#' * \code{"N3"} Third statistic.
-#' * \code{"N4"} Fourth statistic.
-#' * \code{"N1_R"}, \code{"N2_R"}, \code{"N3_R"}, and \code{"N4_R"}, The ranks
+#'  **Objects of class `Thennarasu`:**
+#' * `"N1"` First statistic (default).
+#' * `"N2"` Second statistic.
+#' * `"N3"` Third statistic.
+#' * `"N4"` Fourth statistic.
+#' * `"N1_R"`, `"N2_R"`, `"N3_R"`, and `"N4_R"`, The ranks
 #' for the statistics.
 #'
 #'
-#'  \strong{Objects of class \code{performs_ammi}:}
-#' * \code{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
+#'  **Objects of class `performs_ammi`:**
+#' * `"PC1", "PC2", ..., "PCn"` The values for the nth interaction
 #' principal component axis.
-#' * \code{"ipca_ss"} Sum of square for each IPCA.
-#' * \code{"ipca_ms"} Mean square for each IPCA.
-#' * \code{"ipca_fval"} F value for each IPCA.
-#' * \code{"ipca_pval"} P-value for for each IPCA.
-#' * \code{"ipca_expl"}  Explained sum of square for each IPCA (default).
-#' * \code{"ipca_accum"} Accumulated explained sum of square.
+#' * `"ipca_ss"` Sum of square for each IPCA.
+#' * `"ipca_ms"` Mean square for each IPCA.
+#' * `"ipca_fval"` F value for each IPCA.
+#' * `"ipca_pval"` P-value for for each IPCA.
+#' * `"ipca_expl"`  Explained sum of square for each IPCA (default).
+#' * `"ipca_accum"` Accumulated explained sum of square.
 #'
 #'
-#' \strong{Objects of class \code{waas}, \code{waas_means}, and \code{waasb}:}
-#' * \code{"PC1", "PC2", ..., "PCn"} The values for the nth interaction
+#' **Objects of class `waas`, `waas_means`, and `waasb`:**
+#' * `"PC1", "PC2", ..., "PCn"` The values for the nth interaction
 #' principal component axis.
-#' * \code{"WAASB"}  The weighted average of the absolute scores (default for
-#' objects of class \code{waas}).
-#' * \code{"PctResp"} The rescaled values of the response variable.
-#' * \code{"PctWAASB"} The rescaled values of the WAASB.
-#' * \code{"wResp"} The weight for the response variable.
-#' * \code{"wWAASB"} The weight for the stability.
-#' * \code{"OrResp"} The ranking regarding the response variable.
-#' * \code{"OrWAASB"} The ranking regarding the WAASB.
-#' * \code{"OrPC1"} The ranking regarding the first principal component axix.
-#' * \code{"WAASBY"} The superiority index WAASBY.
-#' * \code{"OrWAASBY"} The ranking regarding the superiority index.
+#' * `"WAASB"`  The weighted average of the absolute scores (default for
+#' objects of class `waas`).
+#' * `"PctResp"` The rescaled values of the response variable.
+#' * `"PctWAASB"` The rescaled values of the WAASB.
+#' * `"wResp"` The weight for the response variable.
+#' * `"wWAASB"` The weight for the stability.
+#' * `"OrResp"` The ranking regarding the response variable.
+#' * `"OrWAASB"` The ranking regarding the WAASB.
+#' * `"OrPC1"` The ranking regarding the first principal component axix.
+#' * `"WAASBY"` The superiority index WAASBY.
+#' * `"OrWAASBY"` The ranking regarding the superiority index.
 #'
-#'  \strong{Objects of class \code{gamem} and \code{waasb}:}
-#' * \code{"blupge"} for genotype-vs-environment's predicted mean (class waasb).
-#' * \code{"blupg"} For genotype's predicted mean.
-#' * \code{"data"} The data used.
-#' * \code{"details"} The details of the trial.
-#' * \code{"genpar"} Genetic parameters (default).
-#' * \code{"gcov"} The genotypic variance-covariance matrix.
-#' * \code{"pcov"} The phenotypic variance-covariance matrix.
-#' * \code{"gcor"} The genotypic correlation matrix.
-#' * \code{"pcor"} The phenotypic correlation matrix.
-#' * \code{"h2"} The broad-sense heritability.
-#' * \code{"lrt"} The likelihood-ratio test for random effects.
-#' * \code{"vcomp"} The variance components for random effects.
-#' * \code{"ranef"} Random effects.
+#'  **Objects of class `gamem` and `waasb`:**
+#' * `"blupge"` for genotype-vs-environment's predicted mean (class waasb).
+#' * `"blupg"` For genotype's predicted mean.
+#' * `"data"` The data used.
+#' * `"details"` The details of the trial.
+#' * `"genpar"` Genetic parameters (default).
+#' * `"gcov"` The genotypic variance-covariance matrix.
+#' * `"pcov"` The phenotypic variance-covariance matrix.
+#' * `"gcor"` The genotypic correlation matrix.
+#' * `"pcor"` The phenotypic correlation matrix.
+#' * `"h2"` The broad-sense heritability.
+#' * `"lrt"` The likelihood-ratio test for random effects.
+#' * `"vcomp"` The variance components for random effects.
+#' * `"ranef"` Random effects.
 #'
-#'  \strong{Objects of class \code{Res_ind}}
-#' * \code{"HMGV"} For harmonic mean of genotypic values.
-#' * \code{"RPGV or RPGV_Y"} For relative performance of genotypic values
-#' * \code{"HMRPGV"} For harmonic mean of relative performance of genotypic values
+#'  **Objects of class `Res_ind`**
+#' * `"HMGV"` For harmonic mean of genotypic values.
+#' * `"RPGV or RPGV_Y"` For relative performance of genotypic values
+#' * `"HMRPGV"` For harmonic mean of relative performance of genotypic values
 #'
 #'
 #' @md
@@ -289,13 +287,10 @@
 #' Evaluation of genotype vs environment interaction in chickpea using measures
 #' of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 #'
-#' @seealso \code{\link{AMMI_indexes}}, \code{\link{anova_ind}},
-#'   \code{\link{anova_joint}}, \code{\link{ecovalence}},  \code{\link{Fox}},
-#'   \code{\link{gai}}, \code{\link{gamem}}, \code{\link{gafem}},
-#'   \code{\link{ge_acv}}, \code{\link{ge_polar}} \code{\link{ge_means}},
-#'   \code{\link{ge_reg}}, \code{\link{mgidi}}, \code{\link{mtsi}}, \code{\link{performs_ammi}},
-#'   \code{\link{Resende_indexes}}, \code{\link{Shukla}},
-#'   \code{\link{superiority}}, \code{\link{waas}}, \code{\link{waasb}}
+#' @seealso [AMMI_indexes()], [anova_ind()], [anova_joint()], [ecovalence()],
+#'   [Fox()], [gai()], [gamem()], [gafem()], [ge_acv()], [ge_polar()]
+#'   [ge_means()], [ge_reg()], [mgidi()], [mtsi()], [performs_ammi()],
+#'   [Resende_indexes()], [Shukla()], [superiority()], [waas()], [waasb()]
 #' @importFrom dplyr bind_rows
 #' @importFrom purrr map_dfr
 #' @examples
@@ -303,75 +298,55 @@
 #' library(metan)
 #'
 #' #################### joint-regression analysis #####################
-#' ge_r <- ge_reg(data_ge2, ENV, GEN, REP,
+#' ge_r <- ge_reg(data_ge2,
+#'                env = ENV,
+#'                gen = GEN,
+#'                rep =  REP,
 #'                resp = c(PH, EH, CD, CL, ED))
 #' get_model_data(ge_r)
-#' get_model_data(ge_r, "s2di")
+#' # Significance of deviations from the regression
+#' # Use gmd(), a shortcut for get_model_data
+#' gmd(ge_r, "pval_f")
 #'
 #'
-#' #################### AMMI model #####################
-#' # Fit an AMMI model for 7 variables.
-#' AMMI <- data_ge2 %>%
-#'  performs_ammi(ENV, GEN, REP,
-#'                resp = c(PH, ED, TKW, NKR, CD, CL, CW))
-#'
-#' # Sum of squares
-#' get_model_data(AMMI, "ipca_ss")
-#'
-#' # Mean squares
-#' get_model_data(AMMI, "ipca_ms")
-#'
-#' # Examine the significance (p-value) of the IPCAs
-#' get_model_data(AMMI, "ipca_pval")
-#'
-#' # Explained sum of square for each IPCA
-#' get_model_data(AMMI)
-#'
-#' # Accumulated sum of square
-#' get_model_data(AMMI, "ipca_accum")
-#'
-#' ### AMMI-based stability statistics ###
-#' # Get the AMMI stability value
-#' AMMI %>%
-#' AMMI_indexes() %>%
-#' get_model_data("ASV")
-#'
-#'
-#' #################### WAASB model #####################
+#' #################### WAASB index #####################
 #' # Fitting the WAAS index
-#' AMMI <- waas(data_ge2, ENV, GEN, REP,
-#'              resp = c(PH, ED, TKW, NKR))
+#' AMMI <- waasb(data_ge2,
+#'               env = ENV,
+#'               gen = GEN,
+#'               rep = REP,
+#'               resp = c(PH, ED, TKW, NKR))
 #'
 #' # Getting the weighted average of absolute scores
-#' get_model_data(AMMI, what = "WAAS")
+#' gmd(AMMI, what = "WAASB")
 #'
 #' # And the rank for the WAASB index.
-#' get_model_data(AMMI, what = "OrWAAS")
+#' gmd(AMMI, what = "OrWAASB")
 #'
 #'
 #' #################### BLUP model #####################
 #' # Fitting a mixed-effect model
-#' blup <- waasb(data_ge2, ENV, GEN, REP,
-#'               resp = c(PH, ED, TKW, NKR))
+#' # Genotype and interaction as random
+#' blup <- gamem_met(data_ge2,
+#'                   env = ENV,
+#'                   gen = GEN,
+#'                   rep = REP,
+#'                   resp = c(PH, ED, TKW, NKR))
 #'
 #' # Getting p-values for likelihood-ratio test
-#' get_model_data(blup, what = "lrt")
+#' gmd(blup, what = "lrt")
 #'
 #' # Getting the variance components
-#' get_model_data(blup, what = "vcomp")
+#' gmd(blup, what = "vcomp")
 #'
 #' # Getting the genetic parameters
-#' get_model_data(blup)
+#' gmd(blup)
 #'
 #' ### BLUP-based stability indexes ###
 #' blup %>%
 #' Resende_indexes() %>%
-#' get_model_data()
+#' gmd("HMRPGV_R")
 #'
-#'
-#' #################### Stability indexes #####################
-#' stats_ge <- ge_stats(data_ge, ENV, GEN, REP, everything())
-#' get_model_data(stats_ge)
 #'}
 #'
 get_model_data <- function(x,

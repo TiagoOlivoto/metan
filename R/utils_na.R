@@ -1,43 +1,45 @@
 #' @title Utilities for handling with NA and zero values
 #'
-#' @description NAs and zeros can increase the noise in multi-environment trial
-#'   analysis. This collection of functions will make it easier to deal with
-#'   them.
+#' @description
+#' `r badge('stable')`
+#'
+#'   NAs and zeros can increase the noise in multi-environment trial analysis.
+#'   This collection of functions will make it easier to deal with them.
 #' @name utils_na_zero
 #' @param .data A data frame.
-#' @param ... Variables to fill  \code{NAs} in \code{fill_na()}, replace
-#'   \code{NAs} in \code{replace_na()} or zeros in \code{replace_zero()}. If
-#'   \code{...} is null then all variables in \code{.data} will be evaluated. It
+#' @param ... Variables to fill  `NAs` in `fill_na()`, replace
+#'   `NAs` in `replace_na()` or zeros in `replace_zero()`. If
+#'   `...` is null then all variables in `.data` will be evaluated. It
 #'   must be a single variable name or a comma-separated list of unquoted
 #'   variables names. Select helpers are also allowed.
 #' @param direction Direction in which to fill missing values. Currently either
 #'   "down" (the default), "up", "downup" (i.e. first down and then up) or
 #'   "updown" (first up and then down).
-#' @param prop The proportion (percentage) of \code{NA} values to generate in
-#'   \code{.data}.
-#' @param replacement The value used for replacement. Defaults to \code{0}. Use
-#'   \code{replacement. = "colmean"} to replace missing values with column mean.
-#' @param verbose Logical argument. If \code{TRUE} (default) shows in console
+#' @param prop The proportion (percentage) of `NA` values to generate in
+#'   `.data`.
+#' @param replacement The value used for replacement. Defaults to `0`. Use
+#'   `replacement. = "colmean"` to replace missing values with column mean.
+#' @param verbose Logical argument. If `TRUE` (default) shows in console
 #'   the rows or columns deleted.
 #' @export
-#' @return A data frame with rows or columns with \code{NA} values deleted.
+#' @return A data frame with rows or columns with `NA` values deleted.
 #' @description
-#' * \code{fill_na()}: Fills \code{NA} in selected columns using the next or
+#' * `fill_na()`: Fills `NA` in selected columns using the next or
 #' previous entry.
-#' * \code{has_na(), has_zero()}: Check for \code{NAs} and \code{0s} in the
+#' * `has_na(), has_zero()`: Check for `NAs` and `0s` in the
 #' data and return a logical value.
-#' * \code{random_na()}: Generate random \code{NA} values in a two-way table
+#' * `random_na()`: Generate random `NA` values in a two-way table
 #' based on a desired proportion.
-#' * \code{remove_cols_na(), remove_cols_zero()}: Remove columns with \code{NAs}
-#' and \code{0s}, respectively.
-#' * \code{remove_rows_na(), remove_rows_zero()}: Remove rows with \code{NAs}
-#' and \code{0s}, respectively.
-#' * \code{select_cols_na(), select_cols_zero()}: Select columns with \code{NAs}
-#' and \code{0s}, respectively.
-#' * \code{select_rows_na(), select_rows_zero()}: Select rows with \code{NAs}
-#' and \code{0s}, respectively.
-#' * \code{replace_na(), replace_zero()}: Replace \code{NAs} and \code{0s},
-#' respectively, with a \code{replacement} value.
+#' * `remove_cols_na(), remove_cols_zero()`: Remove columns with `NAs`
+#' and `0s`, respectively.
+#' * `remove_rows_na(), remove_rows_zero()`: Remove rows with `NAs`
+#' and `0s`, respectively.
+#' * `select_cols_na(), select_cols_zero()`: Select columns with `NAs`
+#' and `0s`, respectively.
+#' * `select_rows_na(), select_rows_zero()`: Select rows with `NAs`
+#' and `0s`, respectively.
+#' * `replace_na(), replace_zero()`: Replace `NAs` and `0s`,
+#' respectively, with a `replacement` value.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples

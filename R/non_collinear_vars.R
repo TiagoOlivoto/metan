@@ -1,21 +1,23 @@
 #' Select a set of predictors with minimal multicollinearity
+#' @description
+#' `r badge('stable')`
 #'
 #' Select a set of predictors with minimal multicollinearity using the variance
 #' inflation factor (VIF) as criteria to remove collinear variables. The
-#' algorithm will: \strong{(i)} compute the VIF value of the correlation matrix
-#' containing the variables selected in \code{...}; \strong{(ii)} arrange the
-#' VIF values and delete the variable with the highest VIF; and \strong{(iii)}
-#' iterate step \strong{ii} until VIF value is less than or equal to
-#' \code{max_vif}.
+#' algorithm will: **(i)** compute the VIF value of the correlation matrix
+#' containing the variables selected in `...`; **(ii)** arrange the
+#' VIF values and delete the variable with the highest VIF; and **(iii)**
+#' iterate step **ii** until VIF value is less than or equal to
+#' `max_vif`.
 #'
 #' @param .data The data set containing the variables.
-#' @param ... Variables to be submitted to selection. If \code{...} is null then
-#'   all the numeric variables from \code{.data} are used. It must be a single
+#' @param ... Variables to be submitted to selection. If `...` is null then
+#'   all the numeric variables from `.data` are used. It must be a single
 #'   variable name or a comma-separated list of unquoted variables names.
 #' @param max_vif The maximum value for the Variance Inflation Factor
 #'   (threshold) that will be accepted in the set of selected predictors.
 #' @param missingval How to deal with missing values. For more information,
-#'   please see \code{\link[stats]{cor}()}.
+#'   please see [stats::cor()].
 #'
 #' @return A data frame showing the number of selected predictors, maximum VIF
 #'   value, condition number, determinant value, selected predictors and removed

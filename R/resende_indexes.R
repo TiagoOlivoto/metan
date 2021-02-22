@@ -1,4 +1,6 @@
 #' Stability indexes based on a mixed-effect model
+#' @description
+#' `r badge('stable')`
 #'
 #' This function computes the following indexes proposed by Resende (2007): the
 #' harmonic mean of genotypic values (HMGV), the relative performance of the
@@ -27,7 +29,7 @@
 #' \mjsdeqn{HMRPG{V_i} = \frac{E}{{\sum\limits_{j = 1}^E
 #' {\frac{1}{{G{v_{ij}}/{\mu _j}}}} }}}
 #'
-#' @param .data An object of class \code{waasb}
+#' @param .data An object of class `waasb`
 #' @return
 #'
 #' A dataframe containing the indexes.

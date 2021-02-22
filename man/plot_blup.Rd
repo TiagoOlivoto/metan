@@ -33,7 +33,7 @@ plot_blup(
 )
 }
 \arguments{
-\item{x}{The \code{waasb object}}
+\item{x}{The \verb{waasb object}}
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
@@ -48,14 +48,14 @@ genotype-environment combinations, used \code{which = "ge"}.}
 
 \item{file.type}{If \code{export = TRUE}, define the type of file to be
 exported. Default is \code{pdf}, Graphic can also be exported in
-\code{*.tiff} format by declaring \code{file.type = "tiff"}.}
+\verb{*.tiff} format by declaring \code{file.type = "tiff"}.}
 
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{width}{The width "inch" of the plot. Default is \code{6}.}
 
@@ -75,12 +75,10 @@ environments). Default is \code{3.5}.}
 \item{height.err.bar}{The height for error bar. Default is \code{0.3}.}
 
 \item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
-values of the data set). New arguments can be inserted as \code{x.lim =
-c(x.min, x.max)}.}
+values of the data set). New arguments can be inserted as \code{x.lim = c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-c(breaks)}}
+\verb{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
 \item{col.shape}{A vector of length 2 that contains the color of shapes for
 genotypes above and below of the mean, respectively. Default is
@@ -98,8 +96,7 @@ This is useful for displaying labels that would otherwise overlap.}
 \item{check.overlap}{Silently remove overlapping labels, (recursively)
 prioritizing the first, last, and middle labels.}
 
-\item{panel.spacing}{Defines the spacing between panels when \code{which =
-"ge"}.}
+\item{panel.spacing}{Defines the spacing between panels when \code{which = "ge"}.}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
@@ -107,9 +104,11 @@ prioritizing the first, last, and middle labels.}
 \item{...}{Currently not used.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Plot the predicted BLUP of the genotypes.
 }
 \examples{
@@ -128,7 +127,7 @@ plot_blup(BLUP, which = "ge")
 
 }
 \seealso{
-\code{\link{plot_scores}}, \code{\link{plot_waasby}}
+\code{\link[=plot_scores]{plot_scores()}}, \code{\link[=plot_waasby]{plot_waasby()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

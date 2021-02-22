@@ -32,6 +32,8 @@ A tibble with the following variables:
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 \code{inspect()} scans a data.frame object for errors that may affect the use
 of functions in \code{metan}. By default, all variables are checked regarding
 the class (numeric or factor), missing values, and presence of possible

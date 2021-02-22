@@ -58,8 +58,7 @@ the current directory.}
 \item{main}{The title of the plot, set to 'auto'.}
 
 \item{file.type}{The format of the file if \code{export = TRUE}.  Set to
-\code{'pdf'}. Other possible values are \code{*.tiff} using \code{file.type
-= 'tiff'}.}
+\code{'pdf'}. Other possible values are \verb{*.tiff} using \code{file.type = 'tiff'}.}
 
 \item{file.name}{The name of the plot when exported. Set to \code{NULL},
 i.e., automatically.}
@@ -104,9 +103,11 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.}
 \item{digits}{The number of digits to show in the plot.}
 }
 \value{
-An object of class \code{gg, ggmatrix}.
+An object of class \verb{gg, ggmatrix}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function generate a pairwise matrix of plots to compare the similarity
 of two or more correlation matrices. In the upper diagonal are presented the
 plots and in the lower diagonal the result of Mantel test based on
@@ -132,7 +133,7 @@ lpdata <- as.lpcor(cor(mt_num[1:5]),
 }
 }
 \seealso{
-\code{\link{mantel_test}()}
+\code{\link[=mantel_test]{mantel_test()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -38,20 +38,24 @@ silently.}
 }
 \value{
 An object of class \code{env_stratification} which is a list with one
-  element per analyzed trait. For each trait, the following values are given.
-\item{data}{The genotype-environment means.}
-\item{cormat}{The correlation matrix among the environments.}
-\item{PCA}{The eigenvalues and explained variance.}
-\item{FA}{The factor analysis.}
-\item{env_strat}{The environmental stratification.}
-\item{mega_env_code}{The environments within each mega-environment.}
-\item{mega_env_stat}{The statistics for each mega-environment.}
-\item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
-\item{MSA}{The measure of sampling adequacy for individual variable.}
-\item{communalities_mean}{The communalities' mean.}
-\item{initial_loadings}{The initial loadings.}
+element per analyzed trait. For each trait, the following values are given.
+\itemize{
+\item \code{data} The genotype-environment means.
+\item \code{cormat}: The correlation matrix among the environments.
+\item \code{PCA}: The eigenvalues and explained variance.
+\item \code{FA}: The factor analysis.
+\item \code{env_strat}: The environmental stratification.
+\item \code{mega_env_code}: The environments within each mega-environment.
+\item \code{mega_env_stat}: The statistics for each mega-environment.
+\item \code{KMO}: The result for the Kaiser-Meyer-Olkin test.
+\item \code{MSA}: The measure of sampling adequacy for individual variable.
+\item \code{communalities_mean}: The communalities' mean.
+\item \code{initial_loadings}: The initial loadings.
+}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Computes environment stratification based on factor analysis.
 }
 \examples{
@@ -68,11 +72,11 @@ gmd(model)
 }
 \references{
 Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of
-  methodologies for environment stratification and analysis of genotype
-  adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.
+methodologies for environment stratification and analysis of genotype
+adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.
 }
 \seealso{
-\code{\link{env_dissimilarity}()}
+\code{\link[=env_dissimilarity]{env_dissimilarity()}}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

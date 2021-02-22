@@ -7,7 +7,7 @@
 \method{print}{gamem}(x, export = FALSE, file.name = NULL, digits = 4, ...)
 }
 \arguments{
-\item{x}{An object fitted with the function \code{\link{gamem}} .}
+\item{x}{An object fitted with the function \code{\link[=gamem]{gamem()}} .}
 
 \item{export}{A logical argument. If \code{TRUE}, a *.txt file is exported to
 the working directory}

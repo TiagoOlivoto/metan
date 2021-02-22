@@ -1,14 +1,16 @@
 #' Weighting between stability and mean performance
+#' @description
+#' `r badge('stable')`
 #'
 #' This function computes the WAASY or WAASBY indexes (Olivoto et al., 2019)
 #' considering different scenarios of weights for stability and mean
 #' performance.
 #'
-#' After fitting a model with the functions \code{\link{waas}} or
-#' \code{\link{waasb}} it is possible to compute the superiority indexes WAASY
+#' After fitting a model with the functions [waas()] or
+#' [waasb()] it is possible to compute the superiority indexes WAASY
 #' or WAASBY in different scenarios of weights for stability and mean
 #' performance. The number of scenarios is defined by the arguments
-#' \code{increment}. By default, twenty-one different scenarios are computed. In
+#' `increment`. By default, twenty-one different scenarios are computed. In
 #' this case, the the superiority index is computed considering the following
 #' weights: stability (waasb or waas) = 100; mean performance = 0. In other
 #' words, only stability is considered for genotype ranking. In the next
@@ -17,42 +19,41 @@
 #' 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY
 #' matches perfectly with the ranks of the response variable.
 #'
-#' @param model Should be an object of class \code{waas} or \code{waasb}.
+#' @param model Should be an object of class `waas` or `waasb`.
 #' @param mresp A numeric value that will be the new maximum value after
-#'   rescaling. By default, the variable in \code{resp} is rescaled so that the
+#'   rescaling. By default, the variable in `resp` is rescaled so that the
 #'   original maximum and minimum values are 100 and 0, respectively. Let us
 #'   consider that for a specific trait, say, lodging incidence, lower values
-#'   are better. In this case, you should use \code{mresp = 0} to rescale the
+#'   are better. In this case, you should use `mresp = 0` to rescale the
 #'   response variable so that the lowest values will become 100 and the highest
 #'   values 0.
 #' @param increment The increment in the weight ratio for stability and mean
-#'   performance. Se the \bold{Details} section for more information.
+#'   performance. Se the **Details** section for more information.
 #' @param saveWAASY Automatically save the WAASY values when the weight for
-#'   stability is \code{saveWAASY}. Default is 50. Please, note that
-#'   \code{saveWAASY}
+#'   stability is `saveWAASY`. Default is 50. Please, note that
+#'   `saveWAASY`
 #' @param prob The p-value for considering an interaction principal component
-#'   axis significant. must be multiple of \code{increment}. If this assumption
+#'   axis significant. must be multiple of `increment`. If this assumption
 #'   is not valid, an error will be occur.
 #' @param progbar A logical argument to define if a progress bar is shown.
-#'   Default is \code{TRUE}.
+#'   Default is `TRUE`.
 #' @references
 #' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
 #' Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 #' trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #' \doi{10.2134/agronj2019.03.0220}
 #'
-#' @return An object of class \code{wsmp} with the following items for each
+#' @return An object of class `wsmp` with the following items for each
 #'   variable:
-#' * \strong{scenarios} A list with the model for all computed scenarios.
-#' * \strong{WAASY} The values of the WAASY estimated when the weight for the
-#' stability in the loop match with argument \code{saveWAASY}.
-#' * \strong{hetdata, hetcomb} The data used to produce the heatmaps.
-#' * \strong{Ranks} All the values of WAASY estimated in the different
+#' * **scenarios** A list with the model for all computed scenarios.
+#' * **WAASY** The values of the WAASY estimated when the weight for the
+#' stability in the loop match with argument `saveWAASY`.
+#' * **hetdata, hetcomb** The data used to produce the heatmaps.
+#' * **Ranks** All the values of WAASY estimated in the different
 #' scenarios of WAAS/GY weighting ratio.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{resca}}
-#' @importFrom progress progress_bar
+#' @seealso [resca()]
 #' @export
 #' @examples
 #' \donttest{
@@ -141,9 +142,10 @@ wsmp <- function(model,
         column_to_first(type)
       Pesos <- data.frame(Percent = Eigenvalue$Proportion)
       if (progbar == TRUE) {
-        pb <- progress_bar$new(
-          format = ":what [:bar]:percent (:eta left)",
-          clear = F, total = totalcomb, width = 90)
+        pb <- progress(max = totalcomb, style = 4)
+        # pb <- progress_bar$new(
+        #   format = ":what [:bar]:percent (:eta left)",
+        #   clear = F, total = totalcomb, width = 90)
       }
       for (k in 1:ncomb) {
         WAASB <-
@@ -192,7 +194,10 @@ wsmp <- function(model,
           ProcdAtua <- j
           initial <- initial + 1
           if (progbar == TRUE) {
-            pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAASB", sep = "")))
+            run_progress(pb,
+                         actual = initial,
+                         text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
+
           }
         }
         initial <- initial
@@ -260,9 +265,7 @@ wsmp <- function(model,
       totalcomb <- ncomb * nrow(PC)
       initial <- 0
       if (progbar == TRUE) {
-        pb <- progress_bar$new(
-          format = ":what [:bar]:percent (:eta left)",
-          clear = F, total = totalcomb, width = 90)
+        pb <- progress(max = totalcomb, style = 4)
       }
       for (k in 1:ncomb) {
         Escores <- model$model
@@ -317,7 +320,11 @@ wsmp <- function(model,
           ProcdAtua <- j
           initial <- initial + 1
           if (progbar == TRUE) {
-            pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAAS", sep = "")))
+            run_progress(pb,
+                         actual = initial,
+                         text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
+
+            # pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAAS", sep = "")))
           }
         }
         initial <- initial
@@ -383,12 +390,12 @@ wsmp <- function(model,
 #' unstable genotypes; (blue) productive, but unstable genotypes; (black) stable, but
 #' unproductive genotypes; and (green), productive and stable genotypes.
 #'
-#' @param x The object returned by the function \code{wsmp}.
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param type \code{1 = Heat map Ranks}: this graphic shows the genotype
+#' @param x The object returned by the function `wsmp`.
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param type `1 = Heat map Ranks`: this graphic shows the genotype
 #'   ranking considering the WAASB index estimated with different numbers of
-#'   Principal Components; \code{2 = Heat map WAASY-GY ratio}: this graphic
+#'   Principal Components; `2 = Heat map WAASY-GY ratio`: this graphic
 #'   shows the genotype ranking considering the different combinations in the
 #'   WAASB/GY ratio.
 #' @param y.lab The label of y axis. Default is 'Genotypes'.
@@ -398,7 +405,7 @@ wsmp <- function(model,
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot wsmp
 #' @export
-#' @return An object of class \code{gg}.
+#' @return An object of class `gg`.
 #' @examples
 #' \donttest{
 #' library(metan)

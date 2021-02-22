@@ -1,4 +1,6 @@
 #' Genotype by trait biplot
+#' @description
+#' `r badge('stable')`
 #'
 #' Produces a genotype-by-trait biplot model. From a genotype by environment by
 #' trait three-way table, genotype-by-trait tables in any single environment,
@@ -11,59 +13,59 @@
 #' @param .data The dataset containing the columns related to Genotypes and the
 #'   response variable(s).
 #' @param gen The name of the column that contains the levels of the genotypes.
-#' @param resp The response variables, i.e., \code{resp = c(var1, var2, var3)}.
+#' @param resp The response variables, i.e., `resp = c(var1, var2, var3)`.
 #'   Select helpers can also be used.
-#' @param centering The centering method. Must be one of the \code{'none | 0'},
-#'   for no centering; \code{'global | 1'}, for global centered (T+G+GT);
-#'   \code{'trait | 2'} (default), for trait-centered (G+GT); or \code{'double |
-#'   3'}, for double centred (GT). A biplot cannot be produced with models
+#' @param centering The centering method. Must be one of the `'none | 0'`,
+#'   for no centering; `'global | 1'`, for global centered (T+G+GT);
+#'   `'trait | 2'` (default), for trait-centered (G+GT); or `'double |
+#'   3'`, for double centred (GT). A biplot cannot be produced with models
 #'   produced without centering.
-#' @param scaling The scaling method. Must be one of the \code{'none | 0'}, for
-#'   no scaling; or \code{'sd | 1'} (default), where each value is divided by
+#' @param scaling The scaling method. Must be one of the `'none | 0'`, for
+#'   no scaling; or `'sd | 1'` (default), where each value is divided by
 #'   the standard deviation of its corresponding trait (column). This will put
 #'   all traits roughly he same rang of values.
 #' @param svp The method for singular value partitioning. Must be one of the
-#'   \code{'genotype | 1'}, (The singular value is entirely partitioned into the
-#'   genotype eigenvectors, also called row metric preserving); \code{'trait |
-#'   2'}, default, (The singular value is entirely partitioned into the trait
-#'   eigenvectors, also called column metric preserving); or \code{'symmetrical
-#'   | 3'} (The singular value is symmetrically partitioned into the genotype
+#'   `'genotype | 1'`, (The singular value is entirely partitioned into the
+#'   genotype eigenvectors, also called row metric preserving); `'trait |
+#'   2'`, default, (The singular value is entirely partitioned into the trait
+#'   eigenvectors, also called column metric preserving); or `'symmetrical
+#'   | 3'` (The singular value is symmetrically partitioned into the genotype
 #'   and the trait eigenvectors This SVP is most often used in AMMI analysis and
 #'   other biplot analysis, but it is not ideal for visualizing either the
 #'   relationship among genotypes or that among the traits).
 #'
 #'
-#' @return The function returns a list of class \code{gge} that is compatible with the function \code{plot()} used in \code{\link{gge}()}.
+#' @return The function returns a list of class `gge` that is compatible with the function `plot()` used in [gge()].
 #'
-#'  * \strong{coordgen} The coordinates for genotypes for all components.
+#'  * **coordgen** The coordinates for genotypes for all components.
 #'
-#'  * \strong{coordenv} The coordinates for traits for all components.
+#'  * **coordenv** The coordinates for traits for all components.
 #'
-#'  * \strong{eigenvalues} The vector of eigenvalues.
+#'  * **eigenvalues** The vector of eigenvalues.
 #'
-#'  * \strong{totalvar} The overall variance.
+#'  * **totalvar** The overall variance.
 #'
-#'  * \strong{labelgen} The name of the genotypes.
+#'  * **labelgen** The name of the genotypes.
 #'
-#'  * \strong{labelenv} The names of the traits.
+#'  * **labelenv** The names of the traits.
 #'
-#'  * \strong{labelaxes} The axes labels.
+#'  * **labelaxes** The axes labels.
 #'
-#'  * \strong{gt_mat} The data used to produce the model (scaled and centered).
+#'  * **gt_mat** The data used to produce the model (scaled and centered).
 #'
-#'  * \strong{centering} The centering method.
+#'  * **centering** The centering method.
 #'
-#'  * \strong{scaling} The scaling method.
+#'  * **scaling** The scaling method.
 #'
-#'  * \strong{svp} The singular value partitioning method.
+#'  * **svp** The singular value partitioning method.
 #'
-#'  * \strong{d} The factor used to generate in which the ranges of genotypes
+#'  * **d** The factor used to generate in which the ranges of genotypes
 #'  and traits are comparable when singular value partitioning is set to
 #'  'genotype' or 'trait'.
-#'  * \strong{grand_mean} The grand mean of the trial.
-#'  * \strong{mean_gen} A vector with the means of the genotypes.
-#'  * \strong{mean_env} A vector with the means of the traits.
-#'  * \strong{scale_var} The scaling vector when the scaling method is \code{'sd'}.
+#'  * **grand_mean** The grand mean of the trial.
+#'  * **mean_gen** A vector with the means of the genotypes.
+#'  * **mean_env** A vector with the means of the traits.
+#'  * **scale_var** The scaling vector when the scaling method is `'sd'`.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical tool for breeders,

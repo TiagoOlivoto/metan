@@ -1,4 +1,6 @@
 #' Weighted Average of Absolute Scores
+#' @description
+#' `r badge('stable')`
 #'
 #' Compute the Weighted Average of Absolute Scores for AMMI analysis (Olivoto et
 #' al., 2019).
@@ -10,12 +12,12 @@
 #'1}^{p}EP_k}
 #'
 #' where \mjseqn{WAAS_i} is the weighted average of absolute scores of the
-#' \emph{i}th genotype; \mjseqn{IPCA_{ik}} is the score of the \emph{i}th genotype
-#' in the \emph{k}th IPCA; and \mjseqn{EP_k} is the explained variance of the *k*th
-#' IPCA for \emph{k = 1,2,..,p}, considering \emph{p} the number of significant
-#' PCAs, or a declared number of PCAs. For example if \code{prob = 0.05}, all
+#' *i*th genotype; \mjseqn{IPCA_{ik}} is the score of the *i*th genotype
+#' in the *k*th IPCA; and \mjseqn{EP_k} is the explained variance of the *k*th
+#' IPCA for *k = 1,2,..,p*, considering *p* the number of significant
+#' PCAs, or a declared number of PCAs. For example if `prob = 0.05`, all
 #' axis that are significant considering this probability level are used. The
-#' number of axis can be also informed by declaring \code{naxis = x}. This will
+#' number of axis can be also informed by declaring `naxis = x`. This will
 #' override the number of significant axes according to the argument code{prob}.
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -26,80 +28,80 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects, except the error, are assumed to be fixed.}
+#'   **All effects, except the error, are assumed to be fixed.**
 #' @param mresp  The new maximum value after rescaling the response variable. By
-#'   default, all variables in \code{resp} are rescaled so that de maximum value
-#'   is 100 and the minimum value is 0 (i.e., \code{mresp = NULL}). It must be a
-#'   character vector of the same length of \code{resp} if rescaling is assumed
+#'   default, all variables in `resp` are rescaled so that de maximum value
+#'   is 100 and the minimum value is 0 (i.e., `mresp = NULL`). It must be a
+#'   character vector of the same length of `resp` if rescaling is assumed
 #'   to be different across variables, e.g., if for the first variable smaller
 #'   values are better and for the second one, higher values are better, then
-#'   \code{mresp = c("l, h")} must be used. Character value of length 1 will be
+#'   `mresp = c("l, h")` must be used. Character value of length 1 will be
 #'   recycled with a warning message.
 #' @param wresp The weight for the response variable(s) for computing the WAASBY
-#'   index. By default, all variables in \code{resp} have equal weights for mean
-#'   performance and stability (i.e., \code{wresp = 50}). It must be a numeric
-#'   vector of the same length of \code{resp} to assign different weights across
+#'   index. By default, all variables in `resp` have equal weights for mean
+#'   performance and stability (i.e., `wresp = 50`). It must be a numeric
+#'   vector of the same length of `resp` to assign different weights across
 #'   variables, e.g., if for the first variable equal weights for mean
 #'   performance and stability are assumed and for the second one, a higher
-#'   weight for mean performance (e.g. 65) is assumed, then \code{wresp = c(50,
-#'   65)} must be used. Numeric value of length 1 will be recycled with a
+#'   weight for mean performance (e.g. 65) is assumed, then `wresp = c(50,
+#'   65)` must be used. Numeric value of length 1 will be recycled with a
 #'   warning message.
 #' @param prob The p-value for considering an interaction principal component
 #'   axis significant.
 #' @param naxis The number of IPCAs to be used for computing the WAAS index.
-#'   Default is \code{NULL} (Significant IPCAs are used). If values are
+#'   Default is `NULL` (Significant IPCAs are used). If values are
 #'   informed, the number of IPCAS will be used independently on its
 #'   significance. Note that if two or more variables are included in
-#'   \code{resp}, then \code{naxis} must be a vector.
-#' @param ind_anova Logical argument set to \code{FALSE}. If \code{TRUE} an
+#'   `resp`, then `naxis` must be a vector.
+#' @param ind_anova Logical argument set to `FALSE`. If `TRUE` an
 #'   within-environment ANOVA is performed.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#' @param verbose Logical argument. If `verbose = FALSE` the code is run
 #'   silently.
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'   V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
 #'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
 #'   Agron. J. 111:2949-2960. \doi{10.2134/agronj2019.03.0220}
 #'
-#' @return An object of class \code{waas} with the following items for each
+#' @return An object of class `waas` with the following items for each
 #'   variable:
 #'
-#' * \strong{individual} A within-environments ANOVA considering a fixed-effect
+#' * **individual** A within-environments ANOVA considering a fixed-effect
 #' model.
-#' * \strong{model} A data frame with the response variable, the scores of all
+#' * **model** A data frame with the response variable, the scores of all
 #' Principal Components, the estimates of Weighted Average of Absolute Scores,
 #' and WAASY (the index that consider the weights for stability and productivity
 #' in the genotype ranking.
 #'
-#' * \strong{MeansGxE} The means of genotypes in the environments
+#' * **MeansGxE** The means of genotypes in the environments
 #'
-#' * \strong{PCA} Principal Component Analysis.
+#' * **PCA** Principal Component Analysis.
 #'
-#' * \strong{anova} Joint analysis of variance for the main effects and
+#' * **anova** Joint analysis of variance for the main effects and
 #' Principal Component analysis of the interaction effect.
 #'
-#' * \strong{Details} A list summarizing the results. The following information
-#' are showed. \code{WgtResponse}, the weight for the response variable in
-#' estimating WAASB, \code{WgtWAAS} the weight for stability, \code{Ngen} the
-#' number of genotypes, \code{Nenv} the number of environments, \code{OVmean}
-#' the overall mean, \code{Min} the minimum observed (returning the genotype and
-#' environment), \code{Max} the maximum observed, \code{Max} the maximum
-#' observed, \code{MinENV} the environment with the lower mean, \code{MaxENV}
-#' the environment with the larger mean observed, \code{MinGEN} the genotype
-#' with the lower mean, \code{MaxGEN} the genotype with the larger.
-#'  * \strong{augment:} Information about each observation in the dataset. This
-#'  includes predicted values in the \code{fitted} column, residuals in the
-#'  \code{resid} column, standardized residuals in the \code{stdres} column,
-#'  the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
-#'  the fitted values in the \code{se.fit} column.
-#' * \strong{probint} The p-value for the genotype-vs-environment interaction.
+#' * **Details** A list summarizing the results. The following information
+#' are showed. `WgtResponse`, the weight for the response variable in
+#' estimating WAASB, `WgtWAAS` the weight for stability, `Ngen` the
+#' number of genotypes, `Nenv` the number of environments, `OVmean`
+#' the overall mean, `Min` the minimum observed (returning the genotype and
+#' environment), `Max` the maximum observed, `Max` the maximum
+#' observed, `MinENV` the environment with the lower mean, `MaxENV`
+#' the environment with the larger mean observed, `MinGEN` the genotype
+#' with the lower mean, `MaxGEN` the genotype with the larger.
+#'  * **augment:** Information about each observation in the dataset. This
+#'  includes predicted values in the `fitted` column, residuals in the
+#'  `resid` column, standardized residuals in the `stdres` column,
+#'  the diagonal of the 'hat' matrix in the `hat`, and standard errors for
+#'  the fitted values in the `se.fit` column.
+#' * **probint** The p-value for the genotype-vs-environment interaction.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{waas_means}} \code{\link{waasb}} \code{\link{get_model_data}}
+#' @seealso [waas_means()] [waasb()] [get_model_data()]
 #' @export
 #' @examples
 #'\donttest{
@@ -380,16 +382,16 @@ waas <- function(.data,
 
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{waas}. Seven types
+#' Residual plots for a output model of class `waas`. Seven types
 #' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 #' residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
 #' (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
 #' and (6) standardized residuals vs observation order, and (7) 1:1 line plot.
 #'
 #'
-#' @param x An object of class \code{waas}.
+#' @param x An object of class `waas`.
 #' @param ... Additional arguments passed on to the function
-#'   \code{\link{residual_plots}}
+#'   [residual_plots()]
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot waas
 #' @export
@@ -412,17 +414,17 @@ plot.waas <- function(x, ...) {
 
 #' Print an object of class waas
 #'
-#' Print the \code{waas} object in two ways. By default, the results are shown
+#' Print the `waas` object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{waas}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `waas`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print waas
 #' @export
@@ -486,23 +488,23 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 #' This function is used to predict the response variable of a two-way table
 #' (for examples the yielding of the i-th genotype in the j-th environment)
 #' based on AMMI model. This prediction is based on the number of multiplicative
-#' terms used. If \code{naxis = 0}, only the main effects (AMMI0) are used. In
+#' terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In
 #' this case, the predicted mean will be the predicted value from OLS
-#' estimation. If \code{naxis = 1} the AMMI1 (with one multiplicative term) is
-#' used for predicting the response variable. If \code{naxis =
-#' min(gen-1;env-1)}, the AMMIF is fitted and the predicted value will be the
+#' estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is
+#' used for predicting the response variable. If `naxis =
+#' min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the
 #' cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
 #' environment. The number of axis to be used must be carefully chosen.
 #' Procedures based on Postdictive success (such as Gollobs's d.f.) or
 #' Predictive sucess (such as cross-validation) should be used to do this. This
-#' package provide both. \code{\link{waas}} function compute traditional AMMI
+#' package provide both. [waas()] function compute traditional AMMI
 #' analysis showing the number of significant axis. On the other hand,
-#' \code{\link{cv_ammif}} function provide a cross-validation, estimating the
+#' [cv_ammif()] function provide a cross-validation, estimating the
 #' RMSPD of all AMMI-family models, based on resampling procedures.
 #'
 #' @param object An object of class waas
 #' @param naxis The the number of axis to be use in the prediction. If
-#'   \code{object} has more than one variable, then \code{naxis} must be a
+#'   `object` has more than one variable, then `naxis` must be a
 #'   vector.
 #' @param ... Additional parameter for the function
 #' @return A list where each element is the predicted values by the AMMI model

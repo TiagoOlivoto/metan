@@ -19,7 +19,7 @@
 #' analysis, canonical correlation, partial correlation, clustering analysis, as
 #' well as tools for summarizing and plotting data.
 #'
-#' A complete guide may be found at \url{https://tiagoolivoto.github.io/metan/}
+#' A complete guide may be found at <https://tiagoolivoto.github.io/metan/>
 #' @md
 #' @name metan-package
 #' @docType package

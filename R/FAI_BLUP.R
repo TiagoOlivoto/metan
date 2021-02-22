@@ -1,38 +1,40 @@
 #' Multi-trait selection index
+#' @description
+#' `r badge('stable')`
 #'
 #' Multitrait index based on factor analysis and ideotype-design proposed by
 #' Rocha et al. (2018).
 #'
 #'
-#' @param .data An object of class \code{waasb} or a two-way table with
+#' @param .data An object of class `waasb` or a two-way table with
 #'   genotypes in the rows and traits in columns. In the last case the row names
 #'   must contain the genotypes names.
-#' @param use_data Define which data to use If \code{.data} is an object of
-#'   class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
-#'   Use \code{"pheno"} to use phenotypic means instead BLUPs for computing the
+#' @param use_data Define which data to use If `.data` is an object of
+#'   class `gamem`. Defaults to `"blup"` (the BLUPs for genotypes).
+#'   Use `"pheno"` to use phenotypic means instead BLUPs for computing the
 #'   index.
-#' @param DI,UI A vector of the same length of \code{.data} to construct the
+#' @param DI,UI A vector of the same length of `.data` to construct the
 #'   desirable (DI) and undesirable (UI) ideotypes. For each element of the
-#'   vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
-#'   numeric value. Use a comma-separated vector of text. For example, \code{DI
-#'   = c("max, max, min, min")}. By default, DI is set to \code{"max"} for all
-#'   traits and UI is set to \code{"min"} for all traits.
+#'   vector, allowed values are `'max'`, `'min'`, `'mean'`, or a
+#'   numeric value. Use a comma-separated vector of text. For example, `DI
+#'   = c("max, max, min, min")`. By default, DI is set to `"max"` for all
+#'   traits and UI is set to `"min"` for all traits.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes. Defaults to 15.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #'   factor analysis.
-#' @param verbose Logical value. If \code{TRUE} some results are shown in
+#' @param verbose Logical value. If `TRUE` some results are shown in
 #'   console.
-#' @return An object of class \code{fai_blup} with the following items:
-#' * \strong{data} The data (BLUPS) used to compute the index.
-#' * \strong{eigen} The eigenvalues and explained variance for each axis.
-#' * \strong{FA} The results of the factor analysis.
-#' * \strong{canonical_loadings} The canonical loadings for each factor retained.
-#' * \strong{FAI} A list with the FAI-BLUP index for each ideotype design.
-#' * \strong{sel_dif_trait} A list with the selection differential for each ideotype design.
-#' * \strong{sel_gen} The selected genotypes.
-#' * \strong{ideotype_construction} A list with the construction of the ideotypes.
-#' * \strong{total_gain} A list with the total gain for variables to be increased or decreased.
+#' @return An object of class `fai_blup` with the following items:
+#' * **data** The data (BLUPS) used to compute the index.
+#' * **eigen** The eigenvalues and explained variance for each axis.
+#' * **FA** The results of the factor analysis.
+#' * **canonical_loadings** The canonical loadings for each factor retained.
+#' * **FAI** A list with the FAI-BLUP index for each ideotype design.
+#' * **sel_dif_trait** A list with the selection differential for each ideotype design.
+#' * **sel_gen** The selected genotypes.
+#' * **ideotype_construction** A list with the construction of the ideotypes.
+#' * **total_gain** A list with the total gain for variables to be increased or decreased.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references
@@ -328,20 +330,20 @@ fai_blup <- function(.data,
 #' proposed by Rocha et al. (2018).
 #'
 #'
-#' @param x An object of class \code{waasb}
+#' @param x An object of class `waasb`
 #' @param ideotype The ideotype to be plotted. Default is 1.
-#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes.
 #' @param radar Logical argument. If true (default) a radar plot is generated
-#'   after using \code{coord_polar()}.
-#' @param arrange.label Logical argument. If \code{TRUE}, the labels are
+#'   after using `coord_polar()`.
+#' @param arrange.label Logical argument. If `TRUE`, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
-#' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
-#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
+#' @param col.sel The colour for selected genotypes. Defaults to `"red"`.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to `"black"`.
 #' @param ... Other arguments to be passed from ggplot2::theme().
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references
@@ -352,7 +354,7 @@ fai_blup <- function(.data,
 #'
 #' @method plot fai_blup
 #' @export
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @examples
 #' \donttest{
 #' library(metan)

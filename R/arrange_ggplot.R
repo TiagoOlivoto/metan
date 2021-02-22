@@ -1,8 +1,10 @@
 #' Arrange separate ggplots into the same graphic
+#' @description
+#' `r badge('experimental')`
 #'
-#' This is a wraper function around \code{\link[patchwork]{wrap_plots}()} and
-#' \code{\link[patchwork]{plot_annotation}()} to arrange ggplot2 objects.
-#' @param ... multiple \code{ggplot}s or a list containing \code{ggplot}
+#' This is a wraper function around [patchwork::wrap_plots()] and
+#' [patchwork::plot_annotation()] to arrange ggplot2 objects.
+#' @param ... multiple `ggplot`s or a list containing `ggplot`
 #'   objects.
 #' @param nrow,ncol The number of rows and columns, respectively.
 #' @param widths,heights The relative widths and heights of each column and row
@@ -13,7 +15,7 @@
 #'   removing duplicates.
 #' @param design Specification of the location of areas in the layout.
 #' @param legend.position The position of the legends in the plot if
-#'   \code{guides = "collect"} Default to `'bottom'`.
+#'   `guides = "collect"` Default to `'bottom'`.
 #' @param title,subtitle,caption Text strings to use for the various plot
 #' annotations.
 #' @param tag_levels A character vector defining the enumeration format to use

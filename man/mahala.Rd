@@ -18,6 +18,8 @@ contain the inverse of the covariance matrix.}
 A symmetric matrix with the Mahalanobis' distance.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute the Mahalanobis distance of all pairwise rows in \code{.means}. The
 result is a symmetric matrix containing the distances that may be used for
 hierarchical clustering.

@@ -35,6 +35,8 @@ tibble with the following columns is returned.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs a stability analysis based on Huehn (1979) statistics. The four
 nonparametric measures of phenotypic stability are: S1 (mean of the absolute
 rank differences of a genotype over the n environments), S2 (variance among

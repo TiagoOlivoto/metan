@@ -38,6 +38,8 @@ columns is returned.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 The function computes the Shukla's stability variance parameter (1972) and
 uses the Kang's nonparametric stability (rank sum) to imcorporate the mean
 performance and stability into a single selection criteria.

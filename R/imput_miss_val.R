@@ -1,11 +1,13 @@
 #' Missing value imputation
+#' @description
+#' `r badge('stable')`
 #'
 #' Impute the missing entries of a matrix with missing values using different
-#' algorithms. See \strong{Details} section for more details
+#' algorithms. See **Details** section for more details
 #' @details
-#' \strong{\code{EM-AMMI} algorithm}
+#' **`EM-AMMI` algorithm**
 #'
-#' The \code{EM-AMMI} algorithm completes a data set with missing values according to both
+#' The `EM-AMMI` algorithm completes a data set with missing values according to both
 #' main and interaction effects. The algorithm works as follows (Gauch and
 #' Zobel, 1990):
 #'  1. The initial values are calculated as the grand mean increased by main
@@ -13,31 +15,31 @@
 #'  observations is pre-filled in.
 #'  2. The parameters of the AMMI model are estimated.
 #'  3. The adjusted means are calculated based on the AMMI model with
-#'  \code{naxis} principal components.
+#'  `naxis` principal components.
 #'  4. The missing cells are filled with the adjusted means.
-#'  5. The root mean square error of the predicted values (\code{RMSE_p}) is
-#'  calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
-#'  steps 2 through 5 are repeated. Declare convergence if \code{RMSE_p < tol}.
-#'  If \code{max_iter} is achieved without convergence, the algorithm will stop
+#'  5. The root mean square error of the predicted values (`RMSE_p`) is
+#'  calculated with the two lasts iteration steps. If `RMSE_p > tol`, the
+#'  steps 2 through 5 are repeated. Declare convergence if `RMSE_p < tol`.
+#'  If `max_iter` is achieved without convergence, the algorithm will stop
 #'  with a warning.
 #'
-#' \strong{\code{EM-SVD} algorithm}
+#' **`EM-SVD` algorithm**
 #'
-#' The \code{EM-SVD} algorithm impute the missing entries using a low-rank Singular
+#' The `EM-SVD` algorithm impute the missing entries using a low-rank Singular
 #' Value Decomposition approximation estimated by the Expectation-Maximization
 #' algorithm. The algorithm works as follows (Troyanskaya et al., 2001).
-#'  1. Initialize all \code{NA} values to the column means.
-#'  2. Compute the first \code{naxis} terms of the SVD of the completed matrix
+#'  1. Initialize all `NA` values to the column means.
+#'  2. Compute the first `naxis` terms of the SVD of the completed matrix
 #'  3. Replace the previously missing values with their approximations from the SVD
-#'  4. The root mean square error of the predicted values (\code{RMSE_p}) is
-#'  calculated with the two lasts iteration steps. If \code{RMSE_p > tol}, the
-#'  steps 2 through 3 are repeated. Declare convergence if \code{RMSE_p < tol}.
-#'  If \code{max_iter} is achieved without convergence, the algorithm will stop
+#'  4. The root mean square error of the predicted values (`RMSE_p`) is
+#'  calculated with the two lasts iteration steps. If `RMSE_p > tol`, the
+#'  steps 2 through 3 are repeated. Declare convergence if `RMSE_p < tol`.
+#'  If `max_iter` is achieved without convergence, the algorithm will stop
 #'  with a warning.
 #'
-#' \strong{\code{colmeans} algorithm}
+#' **`colmeans` algorithm**
 #'
-#' The \code{colmeans} algorithm simply impute the missing entires using the
+#' The `colmeans` algorithm simply impute the missing entires using the
 #' column mean of the respective entire. Thus, there is no iteractive process.
 #'
 #'
@@ -45,30 +47,30 @@
 #'
 #' @param .data A matrix to impute the missing entries. Frequently a two-way
 #'   table of genotype means in each environment.
-#' @param naxis The rank of the Singular Value Approximation. Defaults to \code{1}.
+#' @param naxis The rank of the Singular Value Approximation. Defaults to `1`.
 #' @param algorithm The algorithm to impute missing values. Defaults to
-#'   \code{"EM-SVD"}. Other possible values are \code{"EM-AMMI"} and
-#'   \code{"colmeans"}. See \strong{Details} section.
+#'   `"EM-SVD"`. Other possible values are `"EM-AMMI"` and
+#'   `"colmeans"`. See **Details** section.
 #' @param tol The convergence tolerance for the algorithm.
-#' @param max_iter The maximum number of steps to take. If \code{max_iter} is
+#' @param max_iter The maximum number of steps to take. If `max_iter` is
 #'   achieved without convergence, the algorithm will stop with a warning.
-#' @param simplified Valid argument when \code{algorithm = "EM-AMMI"}. IF
-#'   \code{FALSE} (default), the current effects of rows and columns change from
-#'   iteration to iteration. If \code{TRUE}, the general mean and effects of
+#' @param simplified Valid argument when `algorithm = "EM-AMMI"`. IF
+#'   `FALSE` (default), the current effects of rows and columns change from
+#'   iteration to iteration. If `TRUE`, the general mean and effects of
 #'   rows and columns are computed in the first iteration only, and in next
 #'   iterations uses these values.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #'
-#' @return An object of class \code{imv} with the following values:
+#' @return An object of class `imv` with the following values:
 #'
-#'  * \strong{.data} The imputed matrix
-#'  * \strong{pc_ss} The sum of squares representing variation explained by the
+#'  * **.data** The imputed matrix
+#'  * **pc_ss** The sum of squares representing variation explained by the
 #'  principal components
-#'  * \strong{iter} The final number of iterations.
-#'  * \strong{Final_RMSE} The maximum change of the estimated values for missing cells in the last step of iteration.
-#'  * \strong{final_axis} The final number of principal component axis.
-#'  * \strong{convergence} Logical value indicating whether the modern converged.
+#'  * **iter** The final number of iterations.
+#'  * **Final_RMSE** The maximum change of the estimated values for missing cells in the last step of iteration.
+#'  * **final_axis** The final number of principal component axis.
+#'  * **convergence** Logical value indicating whether the modern converged.
 #' @export
 #'
 #' @references

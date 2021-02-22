@@ -32,6 +32,8 @@ favorable (\code{Pi_f}) and unfavorable (\code{Pi_u}) environments.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Nonparametric stability analysis using the superiority index proposed by Lin
 & Binns (1988).
 }
@@ -49,7 +51,7 @@ performance for cultivar x location data. Can. J. Plant Sci. 68:193-198.
 \doi{10.4141/cjps88-018}
 }
 \seealso{
-\code{\link{Annicchiarico}, \link{ecovalence}, \link{ge_stats}}
+\code{\link[=Annicchiarico]{Annicchiarico()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=ge_stats]{ge_stats()}}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

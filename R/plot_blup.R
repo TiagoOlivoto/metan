@@ -1,59 +1,61 @@
 #' Plot the BLUPs for genotypes
+#' @description
+#' `r badge('stable')`
 #'
 #' Plot the predicted BLUP of the genotypes.
 #'
 #'
-#' @param x The \code{waasb object}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param which Which plot to shown. If \code{which = "gen"} (default) plots the
+#' @param x The `waasb object`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param which Which plot to shown. If `which = "gen"` (default) plots the
 #'   BLUPs for genotypes. To create a plot showing the BLUPs for
-#'   genotype-environment combinations, used \code{which = "ge"}.
+#'   genotype-environment combinations, used `which = "ge"`.
 #' @param prob The probability error for constructing confidence interval.
-#' @param export Export (or not) the plot. Default is \code{TRUE}.
-#' @param file.type If \code{export = TRUE}, define the type of file to be
-#'   exported. Default is \code{pdf}, Graphic can also be exported in
-#'   \code{*.tiff} format by declaring \code{file.type = "tiff"}.
+#' @param export Export (or not) the plot. Default is `TRUE`.
+#' @param file.type If `export = TRUE`, define the type of file to be
+#'   exported. Default is `pdf`, Graphic can also be exported in
+#'   `*.tiff` format by declaring `file.type = "tiff"`.
 #' @param file.name The name of the file for exportation, default is
-#'   \code{NULL}, i.e. the files are automatically named.
+#'   `NULL`, i.e. the files are automatically named.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
-#' @param width The width "inch" of the plot. Default is \code{6}.
-#' @param height The height "inch" of the plot. Default is \code{6}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
+#' @param width The width "inch" of the plot. Default is `6`.
+#' @param height The height "inch" of the plot. Default is `6`.
 #' @param size.shape The size of the shape (both for genotypes and
-#'   environments). Default is \code{3.5}.
+#'   environments). Default is `3.5`.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param err.bar Logical value to indicate if an error bar is shown. Defaults
-#'   to \code{TRUE}.
+#'   to `TRUE`.
 #' @param size.err.bar The size of the error bar for the plot. Default is
-#'   \code{0.5}.
-#' @param height.err.bar The height for error bar. Default is \code{0.3}.
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
-#'   values of the data set). New arguments can be inserted as \code{x.lim =
-#'   c(x.min, x.max)}.
+#'   `0.5`.
+#' @param height.err.bar The height for error bar. Default is `0.3`.
+#' @param x.lim The range of x-axis. Default is `NULL` (maximum and minimum
+#'   values of the data set). New arguments can be inserted as `x.lim =
+#'   c(x.min, x.max)`.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#'   c(breaks)}
+#'   `authomatic breaks`. New arguments can be inserted as `x.breaks =
+#'   c(breaks)`
 #' @param col.shape A vector of length 2 that contains the color of shapes for
 #'   genotypes above and below of the mean, respectively. Default is
-#'   \code{c("blue", "red")}.
-#' @param x.lab The label of the x-axis in the plot. Default is \code{NULL},
+#'   `c("blue", "red")`.
+#' @param x.lab The label of the x-axis in the plot. Default is `NULL`,
 #'   i.e., the name of the selected variable.
 #' @param y.lab The label of the y-axis in the plot. Default is
-#'   \code{"Genotypes"}.
+#'   `"Genotypes"`.
 #' @param n.dodge The number of rows that should be used to render the Y labels.
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param panel.spacing Defines the spacing between panels when \code{which =
-#'   "ge"}.
+#' @param panel.spacing Defines the spacing between panels when `which =
+#'   "ge"`.
 #' @param resolution The resolution of the plot. Parameter valid if
-#'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
+#'   `file.type = "tiff"` is used. Default is `300` (300 dpi)
 #' @param ... Currently not used.
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{plot_scores}}, \code{\link{plot_waasby}}
+#' @seealso [plot_scores()], [plot_waasby()]
 #' @export
 #' @examples
 #'\donttest{

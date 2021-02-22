@@ -20,7 +20,7 @@
 \arguments{
 \item{x}{An object of class \code{sh}}
 
-\item{SI}{An integer [0-100]. The selection intensity in percentage of the
+\item{SI}{An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.}
 
 \item{radar}{Logical argument. If true (default) a radar plot is generated
@@ -43,7 +43,7 @@ genotypes is large, say, more than 30.}
 \item{...}{Other arguments to be passed from ggplot2::theme().}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 Makes a radar plot showing the individual genetic worth for the Smith-Hazel index

@@ -15,7 +15,7 @@
 A tibble with the predicted values for each variable in the model
 }
 \description{
-Obtains predictions from an object fitted with \code{\link{waasb}}.
+Obtains predictions from an object fitted with \code{\link[=waasb]{waasb()}}.
 }
 \examples{
 \donttest{

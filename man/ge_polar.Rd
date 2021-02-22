@@ -36,13 +36,15 @@ variable, a tibble with the following columns is returned.
 }
 }
 \description{
-Performs a stability analysis based on the Power Law Residuals
-(POLAR) statistics (Doring et al., 2015). POLAR is the residuals from the
-linear regression of \mjseqn{log(\sigma^2}) against \mjseqn{log(\mu}) and
-can be used as a measure of crop stability with lower stability (relative
-to all samples with that mean yield) indicated by more positive POLAR
-values, and higher stability (relative to all samples with that mean yield)
-indicated by more negative POLAR values.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
+Performs a stability analysis based on the Power Law Residuals (POLAR)
+statistics (Doring et al., 2015). POLAR is the residuals from the linear
+regression of \mjseqn{log(\sigma^2}) against \mjseqn{log(\mu}) and can be
+used as a measure of crop stability with lower stability (relative to all
+samples with that mean yield) indicated by more positive POLAR values, and
+higher stability (relative to all samples with that mean yield) indicated by
+more negative POLAR values.
 }
 \examples{
 \donttest{

@@ -1,4 +1,6 @@
 #' Huehn's stability statistics
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs a stability analysis based on Huehn (1979) statistics. The four
 #' nonparametric measures of phenotypic stability are: S1 (mean of the absolute
@@ -12,18 +14,18 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{Huehn}, which is a list containing the results
-#'   for each variable used in the argument \code{resp}. For each variable, a
+#' @return An object of class `Huehn`, which is a list containing the results
+#'   for each variable used in the argument `resp`. For each variable, a
 #'   tibble with the following columns is returned.
-#' * \strong{GEN} The genotype's code.
-#' * \strong{Y} The mean for the response variable.
-#' * \strong{S1} Mean of the absolute rank differences of a genotype over the n environments.
-#' * \strong{S2} variance among the ranks over the k environments.
-#' * \strong{S3} Sum of the absolute deviations.
-#' * \strong{S6} Relative sum of squares of rank for each genotype.
+#' * **GEN** The genotype's code.
+#' * **Y** The mean for the response variable.
+#' * **S1** Mean of the absolute rank differences of a genotype over the n environments.
+#' * **S2** variance among the ranks over the k environments.
+#' * **S3** Sum of the absolute deviations.
+#' * **S6** Relative sum of squares of rank for each genotype.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
@@ -50,9 +52,7 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <- factors %>%
@@ -95,7 +95,9 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
                    S6 = S6,
                    S6_R = rank(S6))
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- temp
   }
@@ -106,20 +108,20 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
 
 
 
-#' Print an object ofclass \code{Huehn}
+#' Print an object ofclass `Huehn`
 #'
-#' Print the \code{Huehn} object in two ways. By default, the results are
+#' Print the `Huehn` object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x An object of class \code{Huehn}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `Huehn`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print Huehn
 #' @export

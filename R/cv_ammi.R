@@ -1,4 +1,6 @@
 #' Cross-validation procedure
+#' @description
+#' `r badge('stable')`
 #'
 #' Cross-validation for estimation of AMMI models
 #'
@@ -7,15 +9,15 @@
 #' N-1 replications. The 'validation' set has the remaining replication. The
 #' splitting of the dataset into modeling and validation sets depends on the
 #' design informed. For Completely Randomized Block Design (default), and
-#' alpha-lattice design (declaring \code{block} arguments), complete replicates
+#' alpha-lattice design (declaring `block` arguments), complete replicates
 #' are selected within environments. The remained replicate serves as validation
-#' data. If \code{design = 'RCD'} is informed, completely randomly samples are
+#' data. If `design = 'RCD'` is informed, completely randomly samples are
 #' made for each genotype-by-environment combination (Olivoto et al. 2019). The
-#' estimated values considering \code{naxis}-Interaction Principal Component
+#' estimated values considering `naxis`-Interaction Principal Component
 #' Axis are compared with the 'validation' data. The Root Mean Square Prediction
 #' Difference (RMSPD) is computed. At the end of boots, a list is returned.
 #'
-#' \strong{IMPORTANT:} If the data set is unbalanced (i.e., any genotype missing
+#' **IMPORTANT:** If the data set is unbalanced (i.e., any genotype missing
 #' in any environment) the function will return an error. An error is also
 #' observed if any combination of genotype-environment has a different number of
 #' replications than observed in the trial.
@@ -26,22 +28,22 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#'   replications/blocks. \strong{AT LEAST THREE REPLICATES ARE REQUIRED TO
-#'   PERFORM THE CROSS-VALIDATION}.
+#'   replications/blocks. **AT LEAST THREE REPLICATES ARE REQUIRED TO
+#'   PERFORM THE CROSS-VALIDATION**.
 #' @param resp The response variable.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects, except the error, are assumed to be fixed.}
+#'   **All effects, except the error, are assumed to be fixed.**
 #' @param nboot The number of resamples to be used in the cross-validation.
 #'   Defaults to 200.
 #' @param naxis The number of axis to be considered for estimation of GE
 #'   effects.
-#' @param design The experimental design. Defaults to \code{RCBD} (Randomized
+#' @param design The experimental design. Defaults to `RCBD` (Randomized
 #'   complete Block Design). For Completely Randomized Designs inform
-#'   \code{design = 'CRD'}.
+#'   `design = 'CRD'`.
 #' @param verbose A logical argument to define if a progress bar is shown.
-#'   Default is \code{TRUE}.
+#'   Default is `TRUE`.
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 #'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
@@ -51,22 +53,21 @@
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
 #' resolvable incomplete block designs. Biometrika 63:83-92.
 #'
-#' @return An object of class \code{cv_ammi} with the following items: *
-#' \strong{RMSPD}: A vector with nboot-estimates of the Root Mean Squared
+#' @return An object of class `cv_ammi` with the following items: *
+#' **RMSPD**: A vector with nboot-estimates of the Root Mean Squared
 #' Prediction Difference between predicted and validating data.
 #'
-#' * \strong{RMSPDmean}: The mean of RMSPDmean estimates.
+#' * **RMSPDmean**: The mean of RMSPDmean estimates.
 #'
-#' * \strong{Estimated}: A data frame that contain the values (predicted,
+#' * **Estimated**: A data frame that contain the values (predicted,
 #' observed, validation) of the last loop.
 #'
-#' * \strong{Modeling}: The dataset used as modeling data in the last loop
+#' * **Modeling**: The dataset used as modeling data in the last loop
 #'
-#' * \strong{Testing}: The dataset used as testing data in the last loop.
+#' * **Testing**: The dataset used as testing data in the last loop.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{cv_ammif}, \link{cv_blup}}
-#' @importFrom progress progress_bar
+#' @seealso [cv_ammif()], [cv_blup()]
 #' @export
 #' @examples
 #'
@@ -108,9 +109,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
            minimo, " [min(GEN-1;ENV-1)]")
     }
     if (verbose == TRUE) {
-      pb <- progress_bar$new(
-        format = "Validating :current of :total sets [:bar] :percent (:elapsedfull -:eta left)",
-        clear = FALSE, total = nboot, width = 80)
+      pb <- progress(max = nboot, style = 4)
     }
     test <-
       data %>%
@@ -176,7 +175,9 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
       RMSPDres[, 1][b] <- ifelse(naxis == 0, sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0)),
                                  sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error)))
       if (verbose == TRUE) {
-        pb$tick()
+       run_progress(pb,
+                    text = paste("Validating", b, "of", nboot, "sets"),
+                    actual = b)
       }
     }
     RMSPDmean <- summarise(RMSPDres,
@@ -233,9 +234,7 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
       stop("AMMI analysis cannot be computed with unbalanced data.", call. = FALSE)
     }
     if (verbose == TRUE) {
-      pb <- progress_bar$new(
-        format = "Validating :current of :total sets [:bar] :percent (:elapsedfull -:eta left)",
-        clear = FALSE, total = nboot, width = 80)
+      pb <- progress(max = nboot, style = 4)
     }
     for (b in 1:nboot) {
       tmp <- split_factors(data, ENV, keep_factors = TRUE, verbose = FALSE)
@@ -269,7 +268,9 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
       RMSPDres[, 1][b] <- ifelse(naxis == 0, sqrt(sum(MEDIAS$errrorAMMI0^2)/length(MEDIAS$errrorAMMI0)),
                                  sqrt(sum(MEDIAS$error^2)/length(MEDIAS$error)))
       if (verbose == TRUE) {
-        pb$tick()
+        run_progress(pb,
+                     text = paste("Validating", b, "of", nboot, "sets"),
+                     actual = b)
       }
     }
     RMSPDmean <- summarise(RMSPDres,
@@ -308,52 +309,52 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
 #' whisker extends from the hinge to the smallest value at most 1.5 * IQR of the
 #' hinge. Data beyond the end of the whiskers are considered outlying points.
 #'
-#' @param x An object of class \code{cvalidation} fitted with the functions
-#'   \code{\link{cv_ammi}}, \code{\link{cv_ammif}}, \code{\link{cv_blup}}, or a
-#'   bound object fitted with \code{\link{bind_cv}}.
+#' @param x An object of class `cvalidation` fitted with the functions
+#'   [cv_ammi()], [cv_ammif()], [cv_blup()], or a
+#'   bound object fitted with [bind_cv()].
 #' @param violin Define if a violin plot is used with boxplot. Default is 'TRUE'
-#' @param export Export (or not) the plot. Default is \code{T}.
-#' @param order_box Logical argument. If \code{TRUE} then the boxplots will be
+#' @param export Export (or not) the plot. Default is `T`.
+#' @param order_box Logical argument. If `TRUE` then the boxplots will be
 #'   ordered according to the values of the RMSPD.
 #' @param x.lab The label of x-axis. New arguments can be inserted as
-#'   \code{x.lab = 'my x label'}.
+#'   `x.lab = 'my x label'`.
 #' @param y.lab The label of y-axis. New arguments can be inserted as
-#'   \code{y.lab = 'my y label'}.
+#'   `y.lab = 'my y label'`.
 #' @param size.tex.lab The size of the text in axis text and labels.
-#' @param file.type The type of file to be exported. Default is \code{pdf},
-#'   Graphic can also be exported in \code{*.tiff} format by declaring
-#'   \code{file.type = 'tiff'}.
+#' @param file.type The type of file to be exported. Default is `pdf`,
+#'   Graphic can also be exported in `*.tiff` format by declaring
+#'   `file.type = 'tiff'`.
 #' @param file.name The name of the file for exportation, default is
-#'   \code{NULL}, i.e. the files are automatically named.
+#'   `NULL`, i.e. the files are automatically named.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details,see
-#'   \code{\link[ggplot2]{theme}}.
-#' @param width The width 'inch' of the plot. Default is \code{6}.
-#' @param height The height 'inch' of the plot. Default is \code{6}.
+#'   `plot_theme = theme_metan()`. For more details,see
+#'   [ggplot2::theme()].
+#' @param width The width 'inch' of the plot. Default is `6`.
+#' @param height The height 'inch' of the plot. Default is `6`.
 #' @param resolution The resolution of the plot. Parameter valid if
-#'   \code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)
-#' @param col.violin Parameter valid if \code{violin = T}. Define the color of
+#'   `file.type = 'tiff'` is used. Default is `300` (300 dpi)
+#' @param col.violin Parameter valid if `violin = T`. Define the color of
 #'   the violin plot. Default is 'gray90.
 #' @param col.boxplot Define the color for boxplot. Default is 'gray70'.
 #' @param col.boxplot.win Define the color for boxplot of the best model.
 #'   Default is 'cyan'.
-#' @param width.boxplot The width of boxplots. Default is \code{0.2}.
-#' @param x.lim The range of x-axis. Default is \code{NULL} (maximum and minimum
-#'   values of the data set). New arguments can be inserted as \code{x.lim =
-#'   c(x.min, x.max)}.
+#' @param width.boxplot The width of boxplots. Default is `0.2`.
+#' @param x.lim The range of x-axis. Default is `NULL` (maximum and minimum
+#'   values of the data set). New arguments can be inserted as `x.lim =
+#'   c(x.min, x.max)`.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#'   c(breaks)}
+#'   `authomatic breaks`. New arguments can be inserted as `x.breaks =
+#'   c(breaks)`
 #' @param ... Currently not used.
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot cvalidation
 #' @export
 #' @examples
 #'
 #' \donttest{
-#' validation <- cv_ammif(data_ge,
-#'                        resp = GY,
+#' validation <- cv_ammif(data_ge2,
+#'                        resp = EH,
 #'                        gen = GEN,
 #'                        env = ENV,
 #'                        rep = REP,

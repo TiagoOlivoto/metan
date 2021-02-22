@@ -1,17 +1,19 @@
 #' Sample size planning for a desired Pearson's correlation confidence interval
 #' @description
+#' `r badge('stable')`
+#'
 #' Find the required (sufficient) sample size for computing a Pearson
 #' correlation coefficient with a desired confidence interval (Olivoto et al.,
 #' 2018) as follows
 #'\loadmathjax
-#'\mjsdeqn{n = {\left[ {\frac{{C{I_w}}}{{{{0.45304}^r} \times 2.25152}}} \right]^{{\rm{ - 0}}{\rm{.50089}}}}}
+#'\mjsdeqn{n = {\left\[ {\frac{{C{I_w}}}{{{{0.45304}^r} \times 2.25152}}} \right\]^{{\rm{ - 0}}{\rm{.50089}}}}}
 #'
 #' where \mjseqn{CI_w} is desired confidence interval and \mjseqn{r} is the
 #' correlation coefficient.
 #'
 #' @param r The magnitude of the correlation coefficient.
 #' @param CI The half-width for confidence interval at p < 0.05.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#' @param verbose Logical argument. If `verbose = FALSE` the code is run
 #'   silently.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,

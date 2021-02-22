@@ -1,6 +1,8 @@
 #' Additive Main effects and Multiplicative Interaction
 #'
 #' @description
+#' `r badge('stable')`
+#'
 #' Compute the Additive Main effects and Multiplicative interaction (AMMI)
 #' model. The estimate of the response variable for the *i*th genotype in the
 #' *j*th environment (\mjseqn{y_{ij}}) using the AMMI model, is given as follows:
@@ -15,7 +17,7 @@
 #' used, where \mjseqn{p \le min(g - 1; e - 1)}.
 #'
 #' This function also serves as a helper function for other procedures performed
-#' in the \pkg{metan} package such as \code{\link{waas}} and \code{\link{wsmp}}
+#' in the \pkg{metan} package such as [waas()] and [wsmp()]
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -26,35 +28,35 @@
 #'   replications/blocks
 #' @param resp The response variable(s). To analyze multiple variables in a
 #'   single procedure, use comma-separated list of unquoted variable names,
-#'   i.e., \code{resp = c(var1, var2, var3)}, or any select helper like
-#'   \code{resp = contains("_PLA")}.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   i.e., `resp = c(var1, var2, var3)`, or any select helper like
+#'   `resp = contains("_PLA")`.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects, except the error, are assumed to be fixed.}
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   **All effects, except the error, are assumed to be fixed.**
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @param ... Arguments passed to the function
-#'   \code{\link{impute_missing_val}()} for imputation of missing values in case
+#'   [impute_missing_val()] for imputation of missing values in case
 #'   of unbalanced data.
 #' @return
-#' * \strong{ANOVA}: The analysis of variance for the AMMI model.
+#' * **ANOVA**: The analysis of variance for the AMMI model.
 #'
-#' * \strong{PCA}: The principal component analysis
+#' * **PCA**: The principal component analysis
 #'
-#' * \strong{MeansGxE}: The means of genotypes in the environments
+#' * **MeansGxE**: The means of genotypes in the environments
 #'
-#' * \strong{model}: scores for genotypes and environments in all the possible
+#' * **model**: scores for genotypes and environments in all the possible
 #' axes.
-#'  * \strong{augment:} Information about each observation in the dataset. This
-#'  includes predicted values in the \code{fitted} column, residuals in the
-#'  \code{resid} column, standardized residuals in the \code{stdres} column,
-#'  the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
-#'  the fitted values in the \code{se.fit} column.
+#'  * **augment:** Information about each observation in the dataset. This
+#'  includes predicted values in the `fitted` column, residuals in the
+#'  `resid` column, standardized residuals in the `stdres` column,
+#'  the diagonal of the 'hat' matrix in the `hat`, and standard errors for
+#'  the fitted values in the `se.fit` column.
 #' @md
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
 #' resolvable incomplete block designs. Biometrika 63:83-92.
-#' @seealso \code{\link{impute_missing_val}}, \code{\link{waas}}, \code{\link{waas_means}}, \code{\link{waasb}}, \code{\link{get_model_data}}
+#' @seealso [impute_missing_val()], [waas()], [waas_means()], [waasb()], [get_model_data()]
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples
@@ -314,16 +316,16 @@ performs_ammi <- function(.data,
 
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{performs_ammi}. Seven types
+#' Residual plots for a output model of class `performs_ammi`. Seven types
 #' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 #' residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
 #' (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
 #' and (6) standardized residuals vs observation order, and (7) 1:1 line plot.
 #'
 #'
-#' @param x An object of class \code{performs_ammi}.
+#' @param x An object of class `performs_ammi`.
 #' @param ... Additional arguments passed on to the function
-#'   \code{\link{residual_plots}}
+#'   [residual_plots()]
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot performs_ammi
 #' @export
@@ -357,24 +359,24 @@ plot.performs_ammi <- function(x, ...) {
 #' This function is used to predict the response variable of a two-way table
 #' (for examples the yielding of the i-th genotype in the j-th environment)
 #' based on AMMI model. This prediction is based on the number of multiplicative
-#' terms used. If \code{naxis = 0}, only the main effects (AMMI0) are used. In
+#' terms used. If `naxis = 0`, only the main effects (AMMI0) are used. In
 #' this case, the predicted mean will be the predicted value from OLS
-#' estimation. If \code{naxis = 1} the AMMI1 (with one multiplicative term) is
-#' used for predicting the response variable. If \code{naxis =
-#' min(gen-1;env-1)}, the AMMIF is fitted and the predicted value will be the
+#' estimation. If `naxis = 1` the AMMI1 (with one multiplicative term) is
+#' used for predicting the response variable. If `naxis =
+#' min(gen-1;env-1)`, the AMMIF is fitted and the predicted value will be the
 #' cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
 #' environment. The number of axis to be used must be carefully chosen.
 #' Procedures based on Postdictive success (such as Gollobs's d.f.) or
 #' Predictive success (such as cross-validation) should be used to do this. This
-#' package provide both. \code{\link{performs_ammi}} function compute
+#' package provide both. [performs_ammi()] function compute
 #' traditional AMMI analysis showing the number of significant axis. On the
-#' other hand, \code{\link{cv_ammif}} function provide a cross-validation,
+#' other hand, [cv_ammif()] function provide a cross-validation,
 #' estimating the RMSPD of all AMMI-family models, based on resampling
 #' procedures.
 #'
 #' @param object An object of class performs_ammi
 #' @param naxis The the number of axis to be use in the prediction. If
-#'   \code{object} has more than one variable, then \code{naxis} must be a
+#'   `object` has more than one variable, then `naxis` must be a
 #'   vector.
 #' @param ... Additional parameter for the function
 #' @return A list where each element is the predicted values by the AMMI model
@@ -456,17 +458,17 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
 
 #' Print an object of class performs_ammi
 #'
-#' Print the \code{performs_ammi} object in two ways. By default, the results are shown
+#' Print the `performs_ammi` object in two ways. By default, the results are shown
 #' in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{performs_ammi}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `performs_ammi`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print performs_ammi
 #' @export

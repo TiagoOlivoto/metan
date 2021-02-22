@@ -41,6 +41,8 @@ unfavorable environments.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Stability analysis using the known genotypic confidence index (Annicchiarico,
 1992) modified by Schmildt et al. 2011.
 }
@@ -65,8 +67,8 @@ Avaliacao de metodologias de adaptabilidade e estabilidade de cultivares
 milho. Acta Sci. - Agron. 33:51-58. \doi{10.4025/actasciagron.v33i1.5817}
 }
 \seealso{
-\code{\link{superiority}, \link{ecovalence}, \link{ge_stats},
-  \link{Annicchiarico}}
+\code{\link[=superiority]{superiority()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=ge_stats]{ge_stats()}},
+\code{\link[=Annicchiarico]{Annicchiarico()}}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

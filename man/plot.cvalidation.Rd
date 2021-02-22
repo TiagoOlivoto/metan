@@ -29,8 +29,8 @@
 }
 \arguments{
 \item{x}{An object of class \code{cvalidation} fitted with the functions
-\code{\link{cv_ammi}}, \code{\link{cv_ammif}}, \code{\link{cv_blup}}, or a
-bound object fitted with \code{\link{bind_cv}}.}
+\code{\link[=cv_ammi]{cv_ammi()}}, \code{\link[=cv_ammif]{cv_ammif()}}, \code{\link[=cv_blup]{cv_blup()}}, or a
+bound object fitted with \code{\link[=bind_cv]{bind_cv()}}.}
 
 \item{violin}{Define if a violin plot is used with boxplot. Default is 'TRUE'}
 
@@ -48,7 +48,7 @@ ordered according to the values of the RMSPD.}
 \item{size.tex.lab}{The size of the text in axis text and labels.}
 
 \item{file.type}{The type of file to be exported. Default is \code{pdf},
-Graphic can also be exported in \code{*.tiff} format by declaring
+Graphic can also be exported in \verb{*.tiff} format by declaring
 \code{file.type = 'tiff'}.}
 
 \item{file.name}{The name of the file for exportation, default is
@@ -56,7 +56,7 @@ Graphic can also be exported in \code{*.tiff} format by declaring
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details,see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{width}{The width 'inch' of the plot. Default is \code{6}.}
 
@@ -76,17 +76,15 @@ Default is 'cyan'.}
 \item{width.boxplot}{The width of boxplots. Default is \code{0.2}.}
 
 \item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
-values of the data set). New arguments can be inserted as \code{x.lim =
-c(x.min, x.max)}.}
+values of the data set). New arguments can be inserted as \code{x.lim = c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-c(breaks)}}
+\verb{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
 \item{...}{Currently not used.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 Boxplot showing the Root Means Square Prediction Difference of of a cross
@@ -103,8 +101,8 @@ hinge. Data beyond the end of the whiskers are considered outlying points.
 \examples{
 
 \donttest{
-validation <- cv_ammif(data_ge,
-                       resp = GY,
+validation <- cv_ammif(data_ge2,
+                       resp = EH,
                        gen = GEN,
                        env = ENV,
                        rep = REP,

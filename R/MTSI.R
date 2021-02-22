@@ -1,46 +1,48 @@
 #' Multi-trait stability index
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes the multi-trait stability index proposed by Olivoto et al. (2019)
 #'
 #'
-#' @param .data An object of class \code{waasb} or \code{waas}.
-#' @param index If \code{index = 'waasby'} (default) both stability and mean
-#'   performance are considered. If \code{index = 'waasb'} the multi-trait index
+#' @param .data An object of class `waasb` or `waas`.
+#' @param index If `index = 'waasby'` (default) both stability and mean
+#'   performance are considered. If `index = 'waasb'` the multi-trait index
 #'   will be computed considering the stability of genotypes only.  More details
-#'   can be seen in \code{\link{waasb}} and \code{\link{waas}} functions.
-#' @param ideotype A vector of length \code{nvar} where \code{nvar} is the
-#'   number of variables used to plan the ideotype. Use \code{'h'} to indicate
-#'   the traits in which higher values are desired or \code{'l'} to indicate the
-#'   variables in which lower values are desired. For example, \code{ideotype =
-#'   c("h, h, h, h, l")} will consider that the ideotype has higher values for
+#'   can be seen in [waasb()] and [waas()] functions.
+#' @param ideotype A vector of length `nvar` where `nvar` is the
+#'   number of variables used to plan the ideotype. Use `'h'` to indicate
+#'   the traits in which higher values are desired or `'l'` to indicate the
+#'   variables in which lower values are desired. For example, `ideotype =
+#'   c("h, h, h, h, l")` will consider that the ideotype has higher values for
 #'   the first four traits and lower values for the last trait.
 #' @param SI An integer (0-100). The selection intensity in percentage of the
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
-#' @param verbose If \code{verbose = TRUE} (Default) then some results are
+#' @param verbose If `verbose = TRUE` (Default) then some results are
 #' shown in the console.
-#' @return An object of class \code{mtsi} with the following items:
-#' * \strong{data} The data used to compute the factor analysis.
-#' * \strong{cormat} The correlation matrix among the environments.
-#' * \strong{PCA} The eigenvalues and explained variance.
-#' * \strong{FA} The factor analysis.
-#' * \strong{KMO} The result for the Kaiser-Meyer-Olkin test.
-#' * \strong{MSA} The measure of sampling adequacy for individual variable.
-#' * \strong{communalities} The communalities.
-#' * \strong{communalities_mean} The communalities' mean.
-#' * \strong{initial_loadings} The initial loadings.
-#' * \strong{finish_loadings} The final loadings after varimax rotation.
-#' * \strong{canonical_loadings} The canonical loadings.
-#' * \strong{scores_gen} The scores for genotypes in all retained factors.
-#' * \strong{scores_ide} The scores for the ideotype in all retained factors.
-#' * \strong{MTSI} The multi-trait stability index.
-#' * \strong{contri_fac} The relative contribution of each factor on the MTSI
+#' @return An object of class `mtsi` with the following items:
+#' * **data** The data used to compute the factor analysis.
+#' * **cormat** The correlation matrix among the environments.
+#' * **PCA** The eigenvalues and explained variance.
+#' * **FA** The factor analysis.
+#' * **KMO** The result for the Kaiser-Meyer-Olkin test.
+#' * **MSA** The measure of sampling adequacy for individual variable.
+#' * **communalities** The communalities.
+#' * **communalities_mean** The communalities' mean.
+#' * **initial_loadings** The initial loadings.
+#' * **finish_loadings** The final loadings after varimax rotation.
+#' * **canonical_loadings** The canonical loadings.
+#' * **scores_gen** The scores for genotypes in all retained factors.
+#' * **scores_ide** The scores for the ideotype in all retained factors.
+#' * **MTSI** The multi-trait stability index.
+#' * **contri_fac** The relative contribution of each factor on the MTSI
 #' value. The lower the contribution of a factor, the close of the ideotype the
 #' variables in such factor are.
-#' * \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
+#' * **contri_fac_rank, contri_fac_rank_sel** The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
-#' * \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} A data frame
+#' * **sel_dif_trait, sel_dif_waasb, sel_dif_waasby** A data frame
 #' containing the selection differential (gains) for the traits, and for the
 #' WAASB and WAASBY indexes. The following variables are shown.
 #'   - `VAR`: the trait's name.
@@ -54,7 +56,7 @@
 #'   respectively.
 #'   - `sense`: The desired selection sense.
 #'   - `goal`: selection gains match desired sense? 100 for yes and 0 for no.
-#' * \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A data frame with
+#' * **stat_dif_var, stat_dif_waasb, stat_dif_waasby** A data frame with
 #' the descriptive statistic for the selection gains of the traits and WAASB and
 #' WAASBY indexes. The following columns are shown by sense.
 #'    - `sense`: The desired selection sense.
@@ -65,7 +67,7 @@
 #'    - `sd.amo`: the standard deviation for the selection gain.
 #'    - `max`: the maximum value for the selection gain.
 #'    - `sum`: the sum of the selection gain.
-#' * \strong{sel_gen} The selected genotypes.
+#' * **sel_gen** The selected genotypes.
 #' @md
 #' @importFrom purrr map_dfc
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
@@ -74,23 +76,27 @@
 #'   M.I. Diel. 2019. Mean performance and stability in multi-environment trials
 #'   II: Selection based on multiple traits. Agron. J. 111:2961-2969.
 #' \doi{10.2134/agronj2019.03.0220}
+#' @seealso [mgidi()], [waasb()], [get_model_data()]
 #' @examples
-#'\donttest{
+#' \donttest{
 #' library(metan)
 #' # Based on stability only, for both GY and HM, higher is better
-#' mtsi_model <- waasb(data_ge,
-#'                     env = ENV,
-#'                     gen = GEN,
-#'                     rep = REP,
-#'                     resp = c(GY, HM))
-#' mtsi_index <- mtsi(mtsi_model, index = 'waasb')
+#' mtsi_model <-
+#'     waasb(data_ge,
+#'     env = ENV,
+#'     gen = GEN,
+#'     rep = REP,
+#'     resp = c(GY, HM))
+#' mtsi_index <-
+#'     mtsi(mtsi_model, index = 'waasb')
 #'
 #'
 #' # Based on mean performance and stability (using pipe operator %>%)
 #' # GY: higher is better
 #' # HM: lower is better
 #'
-#'mtsi_index2 <- data_ge %>%
+#'mtsi_index2 <-
+#'  data_ge %>%
 #'  waasb(ENV, GEN, REP,
 #'        resp = c(GY, HM),
 #'        mresp = c("h, l")) %>%
@@ -400,26 +406,26 @@ mtsi <- function(.data,
 #' et al. (2019)
 #'
 #'
-#' @param x An object of class \code{mtsi}
-#' @param SI An integer [0-100]. The selection intensity in percentage of the
+#' @param x An object of class `mtsi`
+#' @param SI An integer (0-100). The selection intensity in percentage of the
 #'   total number of genotypes.
-#' @param type The type of the plot. Defaults to \code{"index"}. Use \code{type
-#'   = "contribution"} to show the contribution of each factor to the MGIDI
+#' @param type The type of the plot. Defaults to `"index"`. Use `type
+#'   = "contribution"` to show the contribution of each factor to the MGIDI
 #'   index of the selected genotypes.
-#' @param position The position adjustment when \code{type = "contribution"}.
-#'   Defaults to \code{"fill"}, which shows relative proportions at each trait
+#' @param position The position adjustment when `type = "contribution"`.
+#'   Defaults to `"fill"`, which shows relative proportions at each trait
 #'   by stacking the bars and then standardizing each bar to have the same
-#'   height. Use \code{position = "stack"} to plot the MGIDI index for each
+#'   height. Use `position = "stack"` to plot the MGIDI index for each
 #'   genotype.
-#' @param genotypes When \code{type = "contribution"} defines the genotypes to
-#'   be shown in the plot. By default (\code{genotypes = "selected"} only
-#'   selected genotypes are shown. Use \code{genotypes = "all"} to plot the
+#' @param genotypes When `type = "contribution"` defines the genotypes to
+#'   be shown in the plot. By default (`genotypes = "selected"` only
+#'   selected genotypes are shown. Use `genotypes = "all"` to plot the
 #'   contribution for all genotypes.)
-#' @param title Logical values (Defaults to \code{TRUE}) to include
+#' @param title Logical values (Defaults to `TRUE`) to include
 #'   automatically generated titles.
 #' @param radar Logical argument. If true (default) a radar plot is generated
-#'   after using \code{coord_polar()}.
-#' @param arrange.label Logical argument. If \code{TRUE}, the labels are
+#'   after using `coord_polar()`.
+#' @param arrange.label Logical argument. If `TRUE`, the labels are
 #'   arranged to avoid text overlapping. This becomes useful when the number of
 #'   genotypes is large, say, more than 30.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
@@ -427,18 +433,18 @@ mtsi <- function(.data,
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
 #' @param size.line The size of the line in graphic. Defaults to 0.7.
 #' @param size.text The size for the text in the plot. Defaults to 10.
-#' @param width.bar The width of the bars if \code{type = "contribution"}.
+#' @param width.bar The width of the bars if `type = "contribution"`.
 #'   Defaults to 0.75.
 #' @param n.dodge The number of rows that should be used to render the x labels.
 #'   This is useful for displaying labels that would otherwise overlap.
 #' @param check.overlap Silently remove overlapping labels, (recursively)
 #'   prioritizing the first, last, and middle labels.
-#' @param invert Logical argument. If \code{TRUE}, rotate the plot.
-#' @param col.sel The colour for selected genotypes. Defaults to \code{"red"}.
-#' @param col.nonsel The colour for nonselected genotypes. Defaults to \code{"black"}.
+#' @param invert Logical argument. If `TRUE`, rotate the plot.
+#' @param col.sel The colour for selected genotypes. Defaults to `"red"`.
+#' @param col.nonsel The colour for nonselected genotypes. Defaults to `"black"`.
 #' @param legend.position The position of the legend.
-#' @param ... Other arguments to be passed from  \code{\link[ggplot2]{theme}()}.
-#' @return An object of class \code{gg, ggplot}.
+#' @param ... Other arguments to be passed from  [ggplot2::theme()].
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot mtsi
 #' @export
@@ -607,16 +613,16 @@ plot.mtsi <- function(x,
 
 #' Print an object of class mtsi
 #'
-#' Print a \code{mtsi} object in two ways. By default, the results are shown in
+#' Print a `mtsi` object in two ways. By default, the results are shown in
 #' the R console. The results can also be exported to the directory.
 #'
-#' @param x An object of class \code{mtsi}.
-#' @param export A logical argument. If \code{TRUE|T}, a *.txt file is exported
+#' @param x An object of class `mtsi`.
+#' @param export A logical argument. If `TRUE|T`, a *.txt file is exported
 #'   to the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print mtsi
 #' @export

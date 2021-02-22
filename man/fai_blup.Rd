@@ -27,8 +27,7 @@ index.}
 \item{DI, UI}{A vector of the same length of \code{.data} to construct the
 desirable (DI) and undesirable (UI) ideotypes. For each element of the
 vector, allowed values are \code{'max'}, \code{'min'}, \code{'mean'}, or a
-numeric value. Use a comma-separated vector of text. For example, \code{DI
-  = c("max, max, min, min")}. By default, DI is set to \code{"max"} for all
+numeric value. Use a comma-separated vector of text. For example, \code{DI = c("max, max, min, min")}. By default, DI is set to \code{"max"} for all
 traits and UI is set to \code{"min"} for all traits.}
 
 \item{SI}{An integer (0-100). The selection intensity in percentage of the
@@ -55,6 +54,8 @@ An object of class \code{fai_blup} with the following items:
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Multitrait index based on factor analysis and ideotype-design proposed by
 Rocha et al. (2018).
 }

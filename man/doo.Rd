@@ -26,9 +26,9 @@ Provides an alternative to the \code{dplyr:do()} using \code{nest()},
 }
 \details{
 If the applied function returns a data frame, then the output will be
- automatically unnested. Otherwise, the output includes the grouping
- variables and a column named "data" , which is a "list-columns" containing
- the results for group combinations.
+automatically unnested. Otherwise, the output includes the grouping
+variables and a column named "data" , which is a "list-columns" containing
+the results for group combinations.
 }
 \examples{
 \donttest{

@@ -40,13 +40,13 @@ but after that it becomes hard to tell the different colours apart.}
 \itemize{
 \item \code{theme_metan()}: Theme with a gray background and major grids.
 \item \code{theme_metan_minimal()}: A minimalistic theme with half-open frame, white
-background, and no grid. For more details see \code{\link[ggplot2]{theme}}.
+background, and no grid. For more details see \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 \item \code{transparent_color()}: A helper function to return a transparent color
 with Hex value of "#000000FF"
 \item \code{ggplot_color()}: A helper function to emulate ggplot2 default color
 palette.
 \item \code{alpha_color()}: Return a semi-transparent color based on a color name
-and an alpha value. For more details see \code{\link[grDevices]{colors}}.
+and an alpha value. For more details see \code{\link[grDevices:colors]{grDevices::colors()}}.
 }
 }
 \author{

@@ -1,4 +1,6 @@
 #' Genotype analysis by fixed-effect models
+#' @description
+#' `r badge('stable')`
 #'
 #' One-way analysis of variance of genotypes conducted in both randomized
 #' complete block and alpha-lattice designs.
@@ -11,22 +13,22 @@
 #' @param rep The name of the column that contains the levels of the replications
 #' (assumed to be fixed).
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure a vector of variables may be used. For example \code{resp =
-#' c(var1, var2, var3)}. Select helpers are also allowed.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#' single procedure a vector of variables may be used. For example `resp =
+#' c(var1, var2, var3)`. Select helpers are also allowed.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
-#'   \strong{All effects, except the error, are assumed to be fixed.} Use the
-#'   function \code{\link{gamem}} to analyze a one-way trial with mixed-effect
+#'   **All effects, except the error, are assumed to be fixed.** Use the
+#'   function [gamem()] to analyze a one-way trial with mixed-effect
 #'   models.
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  to [dplyr::group_by()].This is especially useful, for example,
 #'  when the researcher want to fit a fixed-effect model for each environment.
 #'  In this case, an object of class gafem_grouped is returned.
-#'  \code{\link{mgidi}} can then be used to compute the mgidi index within each
+#'  [mgidi()] can then be used to compute the mgidi index within each
 #'  environment.
 #' @param prob The error probability. Defaults to 0.05.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code are run
+#' @param verbose Logical argument. If `verbose = FALSE` the code are run
 #' silently.
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
 #' resolvable incomplete block designs. Biometrika 63:83-92.
@@ -34,47 +36,47 @@
 #' @return A list where each element is the result for one variable containing
 #'   the following objects:
 #'
-#'  * \strong{anova:} The one-way ANOVA table.
-#'  * \strong{model:} The model with of \code{lm}.
-#'  * \strong{augment:} Information about each observation in the dataset. This
-#'  includes predicted values in the \code{fitted} column, residuals in the
-#'  \code{resid} column, standardized residuals in the \code{stdres} column,
-#'  the diagonal of the 'hat' matrix in the \code{hat}, and standard errors for
-#'  the fitted values in the \code{se.fit} column.
-#'  * \strong{hsd:} The Tukey's 'Honest Significant Difference' for genotype
+#'  * **anova:** The one-way ANOVA table.
+#'  * **model:** The model with of `lm`.
+#'  * **augment:** Information about each observation in the dataset. This
+#'  includes predicted values in the `fitted` column, residuals in the
+#'  `resid` column, standardized residuals in the `stdres` column,
+#'  the diagonal of the 'hat' matrix in the `hat`, and standard errors for
+#'  the fitted values in the `se.fit` column.
+#'  * **hsd:** The Tukey's 'Honest Significant Difference' for genotype
 #'  effect.
-#'  * \strong{details:} A tibble with the following data: \code{Ngen}, the
-#'  number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
-#'  observed (returning the genotype and replication/block); \code{Max} the
-#'  maximum observed, \code{MinGEN} the loser winner genotype, \code{MaxGEN},
+#'  * **details:** A tibble with the following data: `Ngen`, the
+#'  number of genotypes; `OVmean`, the grand mean; `Min`, the minimum
+#'  observed (returning the genotype and replication/block); `Max` the
+#'  maximum observed, `MinGEN` the loser winner genotype, `MaxGEN`,
 #'  the winner genotype.
 #'
-#' @details \code{gafem} analyses data from a one-way genotype testing
+#' @details `gafem` analyses data from a one-way genotype testing
 #'   experiment. By default, a randomized complete block design is used
 #'   according to the following model:
 #' \loadmathjax
 #' \mjsdeqn{Y_{ij} = m + g_i + r_j + e_{ij}}
 #' where \mjseqn{Y_{ij}} is the response variable of the ith genotype in the
-#' \emph{j}th block; \emph{m} is the grand mean (fixed); \mjseqn{g_i} is the effect
-#' of the \emph{i}th genotype; \mjseqn{r_j} is the effect of the \emph{j}th
+#' *j*th block; *m* is the grand mean (fixed); \mjseqn{g_i} is the effect
+#' of the *i*th genotype; \mjseqn{r_j} is the effect of the *j*th
 #' replicate; and \mjseqn{e_{ij}} is the random error.
 #'
-#' When \code{block} is informed, then a resolvable alpha design is implemented,
+#' When `block` is informed, then a resolvable alpha design is implemented,
 #' according to the following model:
 #'
 #' \mjsdeqn{Y_{ijk} = m + g_i + r_j + b_{jk} + e_{ijk}}
 #'  where where \mjseqn{y_{ijk}}
-#' is the response variable of the \emph{i}th genotype in the \emph{k}th block
-#' of the \emph{j}th replicate; \emph{m} is the intercept, \mjseqn{t_i} is the
-#' effect for the \emph{i}th genotype \mjseqn{r_j} is the effect of the \emph{j}th
-#' replicate, \mjseqn{b_{jk}} is the effect of the \emph{k}th incomplete block of
-#' the \emph{j}th replicate, and \mjseqn{e_{ijk}} is the plot error effect
+#' is the response variable of the *i*th genotype in the *k*th block
+#' of the *j*th replicate; *m* is the intercept, \mjseqn{t_i} is the
+#' effect for the *i*th genotype \mjseqn{r_j} is the effect of the *j*th
+#' replicate, \mjseqn{b_{jk}} is the effect of the *k*th incomplete block of
+#' the *j*th replicate, and \mjseqn{e_{ijk}} is the plot error effect
 #' corresponding to \mjseqn{y_{ijk}}. All effects, except the random error are
 #' assumed to be fixed.
 #'
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{get_model_data}} \code{\link{gamem}}
+#' @seealso [get_model_data()] [gamem()]
 #' @export
 #' @examples
 #'\donttest{
@@ -148,10 +150,7 @@ gafem <- function(.data,
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
-      pb <-
-        progress_bar$new(
-        format = "Evaluating the variable :what [:bar]:percent (:eta left )",
-        clear = FALSE, total = nvar, width = 90)
+      pb <- progress(max = nvar, style = 4)
     }
     for (var in 1:nvar) {
       data <- factors %>%
@@ -219,7 +218,9 @@ gafem <- function(.data,
       )
       listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        pb$tick(tokens = list(what = names(vars[var])))
+        run_progress(pb,
+                     actual = var,
+                     text = paste("Evaluating trait", names(vars[var])))
 
       }
     }
@@ -236,10 +237,7 @@ gafem <- function(.data,
     listres <- list()
     nvar <- ncol(vars)
     if (verbose == TRUE) {
-      pb <-
-        progress_bar$new(
-          format = "Evaluating the variable :what [:bar]:percent (:eta left )",
-          clear = FALSE, total = nvar, width = 90)
+      pb <- progress(max = nvar, style = 4)
     }
     for (var in 1:nvar) {
       data <- factors %>%
@@ -307,7 +305,9 @@ gafem <- function(.data,
       )
       listres[[paste(names(vars[var]))]] <- temp
       if (verbose == TRUE) {
-        pb$tick(tokens = list(what = names(vars[var])))
+        run_progress(pb,
+                     actual = var,
+                     text = paste("Evaluating trait", names(vars[var])))
       }
     }
   }
@@ -340,16 +340,16 @@ gafem <- function(.data,
 
 #' Several types of residual plots
 #'
-#' Residual plots for a output model of class \code{gafem}. Seven types
+#' Residual plots for a output model of class `gafem`. Seven types
 #' of plots are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the
 #' residuals, (3) scale-location plot (standardized residuals vs Fitted Values),
 #' (4) standardized residuals vs Factor-levels, (5) Histogram of raw residuals
 #' and (6) standardized residuals vs observation order, and (7) 1:1 line plot.
 #'
 #'
-#' @param x An object of class \code{gafem}.
+#' @param x An object of class `gafem`.
 #' @param ... Additional arguments passed on to the function
-#'   \code{\link{residual_plots}}
+#'   [residual_plots()]
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot gafem
 #' @export

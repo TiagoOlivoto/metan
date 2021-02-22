@@ -18,12 +18,14 @@ model.}
 }
 \value{
 An object of class \code{cv_ammif}. The results will depend on the
-  argument \code{bind}. If \code{bind = 'boot'} then the RMSPD of all models
-  in \code{...} will be bind to a unique data frame. If \code{bind = 'means'}
-  then the RMSPD mean of all models in \code{...} will be bind to an unique
-  data frame.
+argument \code{bind}. If \code{bind = 'boot'} then the RMSPD of all models
+in \code{...} will be bind to a unique data frame. If \code{bind = 'means'}
+then the RMSPD mean of all models in \code{...} will be bind to an unique
+data frame.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Helper function that combines objects of class \code{cv_ammi},
 \code{cv_ammif} or \code{cv_blup}. It is useful when looking for a boxplot
 containing the RMSPD values of those cross-validation procedures.
@@ -32,19 +34,19 @@ containing the RMSPD values of those cross-validation procedures.
 \donttest{
 library(metan)
 # Two examples with only 5 resampling procedures
-AMMI = cv_ammif(data_ge,
+AMMI <- cv_ammi(data_ge,
                 resp = GY,
                 gen = GEN,
                 env = ENV,
                 rep = REP,
                 nboot = 5)
-BLUP = cv_blup(data_ge,
-               resp = GY,
-               gen = GEN,
-               env = ENV,
-               rep = REP,
-               nboot = 5)
-bind_data = bind_cv(AMMI, BLUP)
+BLUP <- cv_blup(data_ge,
+                resp = GY,
+                gen = GEN,
+                env = ENV,
+                rep = REP,
+                nboot = 5)
+bind_data <- bind_cv(AMMI, BLUP)
 plot(bind_data)
 
 print(bind_cv(AMMI, BLUP, bind = 'means'))

@@ -12,9 +12,9 @@
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
 
-\item{type}{\code{1 = Heat map Ranks}: this graphic shows the genotype
+\item{type}{\verb{1 = Heat map Ranks}: this graphic shows the genotype
 ranking considering the WAASB index estimated with different numbers of
-Principal Components; \code{2 = Heat map WAASY-GY ratio}: this graphic
+Principal Components; \verb{2 = Heat map WAASY-GY ratio}: this graphic
 shows the genotype ranking considering the different combinations in the
 WAASB/GY ratio.}
 

@@ -22,14 +22,16 @@ variable name or a comma-separated list of unquoted variables names.}
 (threshold) that will be accepted in the set of selected predictors.}
 
 \item{missingval}{How to deal with missing values. For more information,
-please see \code{\link[stats]{cor}()}.}
+please see \code{\link[stats:cor]{stats::cor()}}.}
 }
 \value{
 A data frame showing the number of selected predictors, maximum VIF
-  value, condition number, determinant value, selected predictors and removed
-  predictors from the original set of variables.
+value, condition number, determinant value, selected predictors and removed
+predictors from the original set of variables.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Select a set of predictors with minimal multicollinearity using the variance
 inflation factor (VIF) as criteria to remove collinear variables. The
 algorithm will: \strong{(i)} compute the VIF value of the correlation matrix

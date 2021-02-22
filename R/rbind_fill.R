@@ -1,11 +1,13 @@
 #' Combines data.frames by row filling missing values
+#' @description
+#' `r badge('stable')`
 #'
-#' Helper function that combines data.frames by row and fills with \code{.}
+#' Helper function that combines data.frames by row and fills with `.`
 #' missing values.
 #'
 #'
 #' @param ... Input dataframes.
-#' @param fill What use to fill? Default is \code{"."}
+#' @param fill What use to fill? Default is `"."`
 #' @return A data frame.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export

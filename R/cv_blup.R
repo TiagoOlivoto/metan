@@ -1,4 +1,6 @@
 #' Cross-validation procedure
+#' @description
+#' `r badge('stable')`
 #'
 #' Cross-validation for blup prediction.
 #'
@@ -18,65 +20,65 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param rep The name of the column that contains the levels of the
-#'   replications/blocks. \strong{AT LEAST THREE REPLICATES ARE REQUIRED TO
-#'   PERFORM THE CROSS-VALIDATION}.
+#'   replications/blocks. **AT LEAST THREE REPLICATES ARE REQUIRED TO
+#'   PERFORM THE CROSS-VALIDATION**.
 #' @param resp The response variable.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed. See how
-#'   fixed and random effects are considered, see the section \strong{Details}.
+#'   fixed and random effects are considered, see the section **Details**.
 #' @param nboot The number of resamples to be used in the cross-validation.
 #'   Defaults to 200
 #' @param random The effects of the model assumed to be random. See
-#'   \strong{Details} for more information.
+#'   **Details** for more information.
 #' @param verbose A logical argument to define if a progress bar is shown.
-#'   Default is \code{TRUE}.
-#' @details Six models may be fitted depending upon the values in \code{block}
-#'   and \code{random} arguments.
-#'   *  \strong{Model 1:} \code{block = NULL} and \code{random = "gen"} (The
+#'   Default is `TRUE`.
+#' @details Six models may be fitted depending upon the values in `block`
+#'   and `random` arguments.
+#'   *  **Model 1:** `block = NULL` and `random = "gen"` (The
 #'   default option). This model considers a Randomized Complete Block Design in
 #'   each environment assuming genotype and genotype-environment interaction as
 #'   random effects. Environments and blocks nested within environments are
 #'   assumed to fixed factors.
 #'
-#'   *  \strong{Model 2:} \code{block = NULL} and \code{random = "env"}. This
+#'   *  **Model 2:** `block = NULL` and `random = "env"`. This
 #'   model considers a Randomized Complete Block Design in each environment
 #'   treating environment, genotype-environment interaction, and blocks nested
 #'   within environments as random factors. Genotypes are assumed to be fixed
 #'   factors.
 #'
-#'   *  \strong{Model 3:} \code{block = NULL} and \code{random = "all"}. This
+#'   *  **Model 3:** `block = NULL` and `random = "all"`. This
 #'   model considers a Randomized Complete Block Design in each environment
 #'   assuming a random-effect model, i.e., all effects (genotypes, environments,
 #'   genotype-vs-environment interaction and blocks nested within environments)
 #'   are assumed to be random factors.
 #'
-#'   *  \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =
-#'   "gen"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 4:** `block` is not `NULL` and `random =
+#'   "gen"`. This model considers an alpha-lattice design in each environment
 #'   assuming genotype, genotype-environment interaction, and incomplete blocks
 #'   nested within complete replicates as random to make use of inter-block
 #'   information (Mohring et al., 2015). Complete replicates nested within
 #'   environments and environments are assumed to be fixed factors.
 #'
-#'   *  \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =
-#'   "env"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 5:** `block` is not `NULL` and `random =
+#'   "env"`. This model considers an alpha-lattice design in each environment
 #'   assuming genotype as fixed. All other sources of variation (environment,
 #'   genotype-environment interaction, complete replicates nested within
 #'   environments, and incomplete blocks nested within replicates) are assumed
 #'   to be random factors.
 #'
-#'   *  \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =
-#'   "all"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 6:** `block` is not `NULL` and `random =
+#'   "all"`. This model considers an alpha-lattice design in each environment
 #'   assuming all effects, except the intercept, as random factors.
 #'
-#' \strong{IMPORTANT:}  An error is returned if any combination of
+#' **IMPORTANT:**  An error is returned if any combination of
 #' genotype-environment has a different number of replications than observed in
 #' the trial.
 #'
-#' @return An object of class \code{cv_blup} with the following items: *
-#' \strong{RMSPD}: A vector with nboot-estimates of the root mean squared
+#' @return An object of class `cv_blup` with the following items: *
+#' **RMSPD**: A vector with nboot-estimates of the root mean squared
 #' prediction difference between predicted and validating data. *
-#' \strong{RMSPDmean} The mean of RMSPDmean estimates.
+#' **RMSPDmean** The mean of RMSPDmean estimates.
 #' @references Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro,
 #'   V.Q. de Souza, and E. Jost. 2019. Mean performance and stability in
 #'   multi-environment trials I: Combining features of AMMI and BLUP techniques.
@@ -94,7 +96,7 @@
 #'
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{cv_ammi}}, \code{\link{cv_ammif}}
+#' @seealso [cv_ammi()], [cv_ammif()]
 #' @export
 #' @importFrom utils capture.output
 #' @examples
@@ -152,9 +154,7 @@ cv_blup <- function(.data,
         }
         data <- remove_rows_na(data, verbose = FALSE)
         if (verbose == TRUE) {
-            pb <- progress_bar$new(
-                format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left)",
-                clear = FALSE, total = nboot, width = 90)
+            pb <- progress(max = nboot, style = 4)
         }
         RMSPDres <- base::data.frame(RMSPD = matrix(NA, nboot, 1))
         model_formula <- dplyr::case_when(
@@ -196,7 +196,9 @@ cv_blup <- function(.data,
             RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))
             RMSPDres[, 1][b] <- RMSPD
             if (verbose == TRUE) {
-                pb$tick()
+                run_progress(pb,
+                             text = paste("Validating", b, "of", nboot, "sets"),
+                             actual = b)
             }
         }
     }
@@ -232,9 +234,7 @@ cv_blup <- function(.data,
         }
         data <- remove_rows_na(data, verbose = FALSE)
         if (verbose == TRUE) {
-            pb <- progress_bar$new(
-                format = "Validating :current of :total sets [:bar]:percent (:elapsedfull -:eta left)",
-                clear = FALSE, total = nboot, width = 90)
+            pb <- progress(max = nboot, style = 4)
         }
         RMSPDres <- data.frame(RMSPD = matrix(NA, nboot, 1))
         model_formula <- case_when(
@@ -274,7 +274,9 @@ cv_blup <- function(.data,
             RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))
             RMSPDres[, 1][b] <- RMSPD
             if (verbose == TRUE) {
-                pb$tick()
+                run_progress(pb,
+                             text = paste("Validating", b, "of", nboot, "sets"),
+                             actual = b)
             }
         }
     }

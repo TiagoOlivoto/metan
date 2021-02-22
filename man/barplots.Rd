@@ -105,11 +105,10 @@ the labels to ascending or descending order, respectively, based on the
 values of the variable \code{y}.}
 
 \item{y.lim}{The range of y axis. Defaults to \code{NULL} (maximum and
-minimum values of the data set). New values can be inserted as \code{y.lim
-  = c(y.min, y.max)}.}
+minimum values of the data set). New values can be inserted as \code{y.lim = c(y.min, y.max)}.}
 
 \item{y.breaks}{The breaks to be plotted in the y-axis. Defaults to waiver().
-\code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+\verb{authomatic breaks}. The same arguments than \code{x.breaks} can be
 used.}
 
 \item{y.expand, y.contract}{A multiplication range expansion/contraction
@@ -152,8 +151,7 @@ for the values in the bar. Defaults to 0.5 and 1.5, respectively. If
 Use in combination with \code{values.hjust} and \code{values.vjust}
 to best fit the values in the plot bar.}
 
-\item{values.digits}{The significant digits to show if \code{values
-= TRUE}. Defaults to \code{2}.}
+\item{values.digits}{The significant digits to show if \code{values = TRUE}. Defaults to \code{2}.}
 
 \item{values.size}{The size of the text for values shown in the bars.
 Defaults to \code{3}.}
@@ -169,8 +167,7 @@ fit the labels in the axis.}
 shown.}
 
 \item{stat.erbar}{The statistic to be shown in the errorbar. Must be one of
-the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar =
-  "sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
+the \code{stat.erbar = "se"} (standard error, default), \code{stat.erbar = "sd"} (standard deviation), or \code{stat.erbar = "ci"} (confidence
 interval), based on the confidence level in the argument \code{level}.}
 
 \item{width.erbar}{The width of the error bar. Defaults to 25\% of
@@ -200,7 +197,7 @@ returned.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{...}{Argument valid for \code{plot_factbars()}. A comma-separated list
 of unquoted variable names. Sets the two variables to be mapped to the
@@ -218,9 +215,10 @@ be used. For more details, see \code{?scale_colour_brewer}}
 \item{legend.position}{The position of the legend in the plot.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{plot_bars()} Creates a bar plot based on one categorical variable and
 one numeric variable.  It can be used to show the results of a one-way trial
@@ -253,7 +251,7 @@ arrange_ggplot(p1, p2)
 }
 }
 \seealso{
-\code{\link{plot_lines}}, \code{\link{plot_factlines}}
+\code{\link[=plot_lines]{plot_lines()}}, \code{\link[=plot_factlines]{plot_factlines()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

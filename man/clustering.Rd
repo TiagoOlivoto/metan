@@ -18,13 +18,13 @@ clustering(
 }
 \arguments{
 \item{.data}{The data to be analyzed. It can be a data frame, possible with
-grouped data passed from \code{\link[dplyr]{group_by}()}.}
+grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}.}
 
 \item{...}{The variables in \code{.data} to compute the distances. Set to
 \code{NULL}, i.e., all the numeric variables in \code{.data} are used.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{scale}{Should the data be scaled before computing the distances? Set to
@@ -33,7 +33,7 @@ deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}}
 
 \item{selvar}{Logical argument, set to \code{FALSE}. If \code{TRUE}, then an
 algorithm for selecting variables is implemented. See the section
-\bold{Details} for additional information.}
+\strong{Details} for additional information.}
 
 \item{verbose}{Logical argument. If \code{TRUE} (default) then the results
 for variable selection are shown in the console.}
@@ -73,21 +73,22 @@ test. Else, will be a \code{NULL} object.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Performs clustering analysis with selection of variables.
-}
-\details{
+
 When \code{selvar = TRUE} a variable selection algorithm is executed. The
 objective is to select a group of variables that most contribute to explain
 the variability of the original data. The selection of the variables is based
-on eigenvalue/eigenvectors solution based on the following steps. \bold{1:}
+on eigenvalue/eigenvectors solution based on the following steps. \strong{1:}
 compute the distance matrix and the cophenetic correlation with the original
-variables (all numeric variables in dataset); \bold{2:} compute the
+variables (all numeric variables in dataset); \strong{2:} compute the
 eigenvalues and eigenvectors of the correlation matrix between the variables;
-\bold{3:} delete the variable with the largest weight (highest eigenvector in
-the lowest eigenvalue); \bold{4:} compute the distance matrix and cophenetic
-correlation with the remaining variables; \bold{5:} compute the Mantel's
+\strong{3:} delete the variable with the largest weight (highest eigenvector in
+the lowest eigenvalue); \strong{4:} compute the distance matrix and cophenetic
+correlation with the remaining variables; \strong{5:} compute the Mantel's
 correlation between the obtained distances matrix and the original distance
-matrix; \bold{6:} iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is
+matrix; \strong{6:} iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is
 the number of original variables. At the end of the \emph{p} - 2 iterations,
 a summary of the models is returned. The distance is calculated with the
 variables that generated the model with the largest cophenetic correlation. I

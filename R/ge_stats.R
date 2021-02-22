@@ -1,11 +1,13 @@
 #' Statistics for genotype-vs-environment interaction
+#' @description
+#' `r badge('stable')`
 #'
-#' Computes \strong{(i)} within-environment analysis of variance, GEI effect,
-#' GEI means, and genotype plus GEI effects; \strong{(ii)} parametric statistics
+#' Computes **(i)** within-environment analysis of variance, GEI effect,
+#' GEI means, and genotype plus GEI effects; **(ii)** parametric statistics
 #' including AMMI-based indexes, Annicchiarico's genotypic confidence index
 #' (1992), Ecovalence (Wricke, 1965), regression-based stability (Eberhart and
 #' Russell., 1966), Shukla's stability variance parameter (1972); and
-#' \strong{(iii)} nonparametric statistics including Fox's stability function
+#' **(iii)** nonparametric statistics including Fox's stability function
 #' (Fox et al. 1990), superiority index (Lin and Binns, 1988), Huehn's stability
 #' statistics (Huehn, 1979), and Thennarasu (1995) statistics.
 #'
@@ -17,42 +19,42 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @param prob The probability error assumed.
 #' @details The function computes the statistics and ranks for the following
-#'   stability indexes. \code{"Y"} (Response variable), \code{"CV"} (coefficient
-#'   of variation), \code{"ACV"} (adjusted coefficient of variation calling
-#'   \code{\link{ge_acv}} internally); \code{POLAR} (Power Law Residuals,
-#'   calling \code{\link{ge_polar}} internally) \code{"Var"} (Genotype's
-#'   variance), \code{"Shukla"} (Shukla's variance, calling \code{\link{Shukla}}
-#'   internally), \code{"Wi_g", "Wi_f", "Wi_u"} (Annichiarrico's genotypic
+#'   stability indexes. `"Y"` (Response variable), `"CV"` (coefficient
+#'   of variation), `"ACV"` (adjusted coefficient of variation calling
+#'   [ge_acv()] internally); `POLAR` (Power Law Residuals,
+#'   calling [ge_polar()] internally) `"Var"` (Genotype's
+#'   variance), `"Shukla"` (Shukla's variance, calling [Shukla()]
+#'   internally), `"Wi_g", "Wi_f", "Wi_u"` (Annichiarrico's genotypic
 #'   confidence index for all, favorable and unfavorable environments,
-#'   respectively, calling \code{\link{Annicchiarico}} internally ),
-#'   \code{"Ecoval"} (Wricke's ecovalence, \code{\link{ecovalence}} internally),
-#'   \code{"Sij"} (Deviations from the joint-regression analysis) and
-#'   \code{"R2"} (R-squared from the joint-regression analysis, calling
-#'   \code{\link{ge_reg}} internally), \code{"ASV"} (AMMI-stability value),
-#'   \code{"SIPC"} (sum of the absolute values of the IPCA scores), \code{"EV"}
-#'   (Average of the squared eigenvector values), \code{"ZA"} (Absolute values
+#'   respectively, calling [Annicchiarico()] internally ),
+#'   `"Ecoval"` (Wricke's ecovalence, [ecovalence()] internally),
+#'   `"Sij"` (Deviations from the joint-regression analysis) and
+#'   `"R2"` (R-squared from the joint-regression analysis, calling
+#'   [ge_reg()] internally), `"ASV"` (AMMI-stability value),
+#'   `"SIPC"` (sum of the absolute values of the IPCA scores), `"EV"`
+#'   (Average of the squared eigenvector values), `"ZA"` (Absolute values
 #'   of the relative contributions of the IPCAs to the interaction), and
-#'   \code{"WAAS"} (Weighted Average of Absolute Scores), by calling
-#'   \code{\link{AMMI_indexes}} internally; \code{"HMGV"} (Harmonic mean of the
-#'   genotypic value), \code{"RPGV"} (Relative performance of the genotypic
-#'   values), \code{"HMRPGV"} (Harmonic mean of the relative performance of the
-#'   genotypic values), by calling \code{\link{Resende_indexes}} internally;
-#'   \code{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and
-#'   unfavorable environments, respectively, calling \code{\link{superiority}}
-#'   internally), \code{"Gai"} (Geometric adaptability index, calling
-#'   \code{\link{gai}} internally), \code{"S1"} (mean of the absolute rank
-#'   differences of a genotype over the n environments), \code{"S2"} (variance
-#'   among the ranks over the k environments), \code{"S3"} (sum of the absolute
-#'   deviations), \code{"S6"} (relative sum of squares of rank for each
-#'   genotype), by calling \code{\link{Huehn}} internally; and  \code{"N1",
-#'   "N2", "N3", "N4"} (Thennarasu"s statistics, calling
-#'   \code{\link{Thennarasu}} internally ).
-#' @return An object of class \code{ge_stats} which is a list with one data
+#'   `"WAAS"` (Weighted Average of Absolute Scores), by calling
+#'   [AMMI_indexes()] internally; `"HMGV"` (Harmonic mean of the
+#'   genotypic value), `"RPGV"` (Relative performance of the genotypic
+#'   values), `"HMRPGV"` (Harmonic mean of the relative performance of the
+#'   genotypic values), by calling [Resende_indexes()] internally;
+#'   `"Pi_a", "Pi_f", "Pi_u"` (Superiority indexes for all, favorable and
+#'   unfavorable environments, respectively, calling [superiority()]
+#'   internally), `"Gai"` (Geometric adaptability index, calling
+#'   [gai()] internally), `"S1"` (mean of the absolute rank
+#'   differences of a genotype over the n environments), `"S2"` (variance
+#'   among the ranks over the k environments), `"S3"` (sum of the absolute
+#'   deviations), `"S6"` (relative sum of squares of rank for each
+#'   genotype), by calling [Huehn()] internally; and  `"N1",
+#'   "N2", "N3", "N4"` (Thennarasu"s statistics, calling
+#'   [Thennarasu()] internally ).
+#' @return An object of class `ge_stats` which is a list with one data
 #'   frame for each variable containing the computed indexes.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references
@@ -136,9 +138,7 @@ ge_stats = function(.data,
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <- factors %>%
@@ -240,7 +240,9 @@ temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                N4 = then_mod$N4,
                N4_R = then_mod$N4_R)
 if (verbose == TRUE) {
-  pb$tick(tokens = list(what = names(vars[var])))
+  run_progress(pb,
+               actual = var,
+               text = paste("Evaluating trait", names(vars[var])))
 }
 listres[[paste(names(vars[var]))]] <- temp
   }
@@ -251,21 +253,21 @@ listres[[paste(names(vars[var]))]] <- temp
 
 #' Print an object of class ge_stats
 #'
-#' Print the \code{ge_stats} object in two ways. By default, the results are
+#' Print the `ge_stats` object in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x An object of class \code{ge_stats}.
-#' @param what What should be printed. \code{what = "all"} for both statistics
-#'   and ranks, \code{what = "stats"} for statistics, and \code{what = "ranks"}
+#' @param x An object of class `ge_stats`.
+#' @param what What should be printed. `what = "all"` for both statistics
+#'   and ranks, `what = "stats"` for statistics, and `what = "ranks"`
 #'   for ranks.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print ge_stats
 #' @export

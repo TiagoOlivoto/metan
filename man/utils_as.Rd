@@ -41,18 +41,20 @@ An object of the same class of \code{.data} with the variables in
 \code{...} encoded to the specified format.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Function to quick encode vector or columns to a specific format.
 \itemize{
 \item \code{as_numeric()}: Encode columns to numeric using
-\code{\link{as.numeric}()}.
+\code{\link[=as.numeric]{as.numeric()}}.
 \item \code{as_integer()}: Encode columns to integer using
-\code{\link{as.integer}()}.
+\code{\link[=as.integer]{as.integer()}}.
 \item \code{as_logical()}: Encode columns to logical using
-\code{\link{as.logical}()}.
+\code{\link[=as.logical]{as.logical()}}.
 \item \code{as_character()}: Encode columns to character using
-\code{\link{as.character}()}.
+\code{\link[=as.character]{as.character()}}.
 \item \code{as_factor()}: Encode columns to factor using
-\code{\link{as.factor}()}.
+\code{\link[=as.factor]{as.factor()}}.
 }
 }
 \examples{

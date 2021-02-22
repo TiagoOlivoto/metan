@@ -1,4 +1,6 @@
 #' Reorder a correlation matrix
+#' @description
+#' `r badge('stable')`
 #'
 #' Reorder the correlation matrix according to the correlation coefficient by
 #' using  hclust for hierarchical clustering order. This is useful to identify
@@ -36,8 +38,8 @@ NULL
 #'
 #' @param data The data set.
 #' @param ... Variables to use in the correlation. If no variable is informed
-#'   all the numeric variables from \code{data} are used.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code is run
+#'   all the numeric variables from `data` are used.
+#' @param verbose Logical argument. If `verbose = FALSE` the code is run
 #'  silently.
 #' @return A list with the correlation coefficients and p-values
 #' @importFrom dplyr between
@@ -92,18 +94,18 @@ NULL
 
 #' Print an object of class corr_coef
 #'
-#' Print the \code{corr_coef} object in two ways. By default, the results
+#' Print the `corr_coef` object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x An object of class \code{corr_coef}
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `corr_coef`
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble]{formatting}} for more details.
+#'   [tibble::formatting()] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print corr_coef
 #' @export
@@ -143,38 +145,38 @@ NULL
 
 #' Create a correlation heat map
 #'
-#' Create a correlation heat map for object of class \code{corr_coef}
+#' Create a correlation heat map for object of class `corr_coef`
 #'
 #' @param x The data set.
-#' @param type The type of heat map to produce. Either \code{lower} (default) to
-#'   produce a lower triangle heat map or \code{upper} to produce an upper
+#' @param type The type of heat map to produce. Either `lower` (default) to
+#'   produce a lower triangle heat map or `upper` to produce an upper
 #'   triangular heat map.
-#' @param diag Plot diagonal elements? Defaults to \code{FALSE}.
+#' @param diag Plot diagonal elements? Defaults to `FALSE`.
 #' @param reorder Reorder the correlation matrix to identify the hidden pattern?
-#'   Defaults to \code{TRUE}.
-#' @param signif How to show significant correlations. If \code{"stars"} is used
+#'   Defaults to `TRUE`.
+#' @param signif How to show significant correlations. If `"stars"` is used
 #'   (default), stars are used showing the significance at 0.05 ("*"), 0.01
-#'   ("**") and 0.001 ("***") probability error. If \code{signif = "pval"}, then
+#'   ("**") and 0.001 ("***") probability error. If `signif = "pval"`, then
 #'   the p-values are shown.
-#' @param caption Logical. If \code{TRUE} (Default) includes a caption with the
+#' @param caption Logical. If `TRUE` (Default) includes a caption with the
 #'   significance meaning for stars.
 #' @param digits.cor,digits.pval The significant digits to show for correlations
 #'   and p-values, respectively.
 #' @param col.low,col.mid,col.high The color for the low (-1), mid(0) and high
-#'   (1) points in the color key. Defaults to \code{blue}, \code{white}, and
-#'   \code{red}, respectively.
+#'   (1) points in the color key. Defaults to `blue`, `white`, and
+#'   `red`, respectively.
 #' @param lab.x.position,lab.y.position The position of the x and y axis label.
-#'   Defaults to \code{"bottom"} and \code{"right"} if \code{type = "lower"} or
-#'   \code{"top"} and \code{"left"} if \code{type = "upper"}.
+#'   Defaults to `"bottom"` and `"right"` if `type = "lower"` or
+#'   `"top"` and `"left"` if `type = "upper"`.
 #' @param legend.position The legend position in the plot.
-#' @param legend.title The title of the color key. Defaults to \code{"Pearson's
-#'   Correlation"}.
+#' @param legend.title The title of the color key. Defaults to `"Pearson's
+#'   Correlation"`.
 #' @param size.text.cor The size of the text for correlation values. Defaults to 3.
 #' @param size.text.signif The size of the text for significance values (stars or p-values). Defaults to 3.
 #' @param size.text.lab The size of the text for labels. Defaults to 10.
 #' @param ... Currently not used.
 #' @method plot corr_coef
-#' @return An object of class \code{gg, ggplot}
+#' @return An object of class `gg, ggplot`
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @export
 #' @examples

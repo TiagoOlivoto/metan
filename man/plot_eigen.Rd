@@ -24,7 +24,7 @@ plot_eigen(
 )
 }
 \arguments{
-\item{x}{The \code{waasb object}}
+\item{x}{The \verb{waasb object}}
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
@@ -33,11 +33,11 @@ variable of \code{x}.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{file.type}{If \code{export = TRUE}, define the type of file to be
 exported. Default is \code{pdf}, Graphic can also be exported in
-\code{*.tiff} format by declaring \code{file.type = "tiff"}.}
+\verb{*.tiff} format by declaring \code{file.type = "tiff"}.}
 
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
@@ -58,8 +58,7 @@ exported. Default is \code{pdf}, Graphic can also be exported in
 \item{y2.lab}{The label of the second y-axis in the plot. Default is
 \code{"Accumulated variance"}.}
 
-\item{x.lab}{The label of the x-axis in the plot. Default is \code{"Number of
-multiplicative terms"}.}
+\item{x.lab}{The label of the x-axis in the plot. Default is \code{"Number of multiplicative terms"}.}
 
 \item{resolution}{The resolution of the plot. Parameter valid if
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
@@ -67,9 +66,11 @@ multiplicative terms"}.}
 \item{...}{Currently not used.}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Plot the eigenvalues for from singular value decomposition of BLUP
 interaction effects matrix.
 }
@@ -87,7 +88,7 @@ plot_eigen(BLUP)
 
 }
 \seealso{
-\code{\link{plot_scores}}, \code{\link{plot_waasby}}
+\code{\link[=plot_scores]{plot_scores()}}, \code{\link[=plot_waasby]{plot_waasby()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

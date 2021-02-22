@@ -1,49 +1,51 @@
 #' Genotype-environment analysis by mixed-effect models
+#' @description
+#' `r badge('stable')`
 #'
 #' Genotype analysis in multi-environment trials using mixed-effect or
 #' random-effect models.
 #'
 #'
 #' The nature of the effects in the model is chosen with the argument
-#' \code{random}. By default, the experimental design considered in each
-#' environment is a randomized complete block design. If \code{block} is
+#' `random`. By default, the experimental design considered in each
+#' environment is a randomized complete block design. If `block` is
 #' informed, a resolvable alpha-lattice design (Patterson and Williams, 1976) is
 #' implemented. The following six models can be fitted depending on the values
-#' of \code{random} and \code{block} arguments.
-#'   *  \strong{Model 1:} \code{block = NULL} and \code{random = "gen"} (The
+#' of `random` and `block` arguments.
+#'   *  **Model 1:** `block = NULL` and `random = "gen"` (The
 #'   default option). This model considers a Randomized Complete Block Design in
 #'   each environment assuming genotype and genotype-environment interaction as
 #'   random effects. Environments and blocks nested within environments are
 #'   assumed to fixed factors.
 #'
-#'   *  \strong{Model 2:} \code{block = NULL} and \code{random = "env"}. This
+#'   *  **Model 2:** `block = NULL` and `random = "env"`. This
 #'   model considers a Randomized Complete Block Design in each environment
 #'   treating environment, genotype-environment interaction, and blocks nested
 #'   within environments as random factors. Genotypes are assumed to be fixed
 #'   factors.
 #'
-#'   *  \strong{Model 3:} \code{block = NULL} and \code{random = "all"}. This
+#'   *  **Model 3:** `block = NULL` and `random = "all"`. This
 #'   model considers a Randomized Complete Block Design in each environment
 #'   assuming a random-effect model, i.e., all effects (genotypes, environments,
 #'   genotype-vs-environment interaction and blocks nested within environments)
 #'   are assumed to be random factors.
 #'
-#'   *  \strong{Model 4:} \code{block} is not \code{NULL} and \code{random =
-#'   "gen"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 4:** `block` is not `NULL` and `random =
+#'   "gen"`. This model considers an alpha-lattice design in each environment
 #'   assuming genotype, genotype-environment interaction, and incomplete blocks
 #'   nested within complete replicates as random to make use of inter-block
 #'   information (Mohring et al., 2015). Complete replicates nested within
 #'   environments and environments are assumed to be fixed factors.
 #'
-#'   *  \strong{Model 5:} \code{block} is not \code{NULL} and \code{random =
-#'   "env"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 5:** `block` is not `NULL` and `random =
+#'   "env"`. This model considers an alpha-lattice design in each environment
 #'   assuming genotype as fixed. All other sources of variation (environment,
 #'   genotype-environment interaction, complete replicates nested within
 #'   environments, and incomplete blocks nested within replicates) are assumed
 #'   to be random factors.
 #'
-#'   *  \strong{Model 6:} \code{block} is not \code{NULL} and \code{random =
-#'   "all"}. This model considers an alpha-lattice design in each environment
+#'   *  **Model 6:** `block` is not `NULL` and `random =
+#'   "all"`. This model considers an alpha-lattice design in each environment
 #'   assuming all effects, except the intercept, as random factors.
 #'
 #' @param .data The dataset containing the columns related to Environments,
@@ -54,24 +56,24 @@
 #' @param rep The name of the column that contains the levels of the
 #'   replications/blocks.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure a vector of variables may be used. For example \code{resp
-#'   = c(var1, var2, var3)}.
-#' @param block Defaults to \code{NULL}. In this case, a randomized complete
+#'   single procedure a vector of variables may be used. For example `resp
+#'   = c(var1, var2, var3)`.
+#' @param block Defaults to `NULL`. In this case, a randomized complete
 #'   block design is considered. If block is informed, then an alpha-lattice
 #'   design is employed considering block as random to make use of inter-block
 #'   information, whereas the complete replicate effect is always taken as
 #'   fixed, as no inter-replicate information was to be recovered (Mohring et
 #'   al., 2015).
 #'@param by One variable (factor) to compute the function by. It is a shortcut
-#'  to \code{\link[dplyr]{group_by}()}.This is especially useful, for example,
+#'  to [dplyr::group_by()].This is especially useful, for example,
 #'  when the researcher want to analyze environments within mega-environments.
 #'  In this case, an object of class waasb_grouped is returned.
 #' @param random The effects of the model assumed to be random. Defaults to
-#'   \code{random = "gen"}. See \strong{Details} to see the random effects
+#'   `random = "gen"`. See **Details** to see the random effects
 #'   assumed depending on the experimental design of the trials.
 #' @param prob The probability for estimating confidence interval for BLUP's
 #'   prediction.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @references
 #' Olivoto, T., A.D.C. L{\'{u}}cio, J.A.G. da silva, V.S. Marchioro, V.Q. de
@@ -88,58 +90,58 @@
 #' incomplete block designs. Biometrika 63:83-92.
 #'
 #'
-#' @return An object of class \code{waasb} with the following items for each
+#' @return An object of class `waasb` with the following items for each
 #'   variable:
 #'
 #'
-#' * \strong{fixed} Test for fixed effects.
+#' * **fixed** Test for fixed effects.
 #'
-#' * \strong{random} Variance components for random effects.
+#' * **random** Variance components for random effects.
 #'
-#' * \strong{LRT} The Likelihood Ratio Test for the random effects.
+#' * **LRT** The Likelihood Ratio Test for the random effects.
 #'
 #'
-#' * \strong{BLUPgen} The random effects and estimated BLUPS for genotypes (If
-#' \code{random = "gen"} or \code{random = "all"})
+#' * **BLUPgen** The random effects and estimated BLUPS for genotypes (If
+#' `random = "gen"` or `random = "all"`)
 #'
-#' * \strong{BLUPenv} The random effects and estimated BLUPS for environments,
-#' (If \code{random = "env"} or \code{random = "all"}).
+#' * **BLUPenv** The random effects and estimated BLUPS for environments,
+#' (If `random = "env"` or `random = "all"`).
 #'
-#' * \strong{BLUPint} The random effects and estimated BLUPS of all genotypes in
+#' * **BLUPint** The random effects and estimated BLUPS of all genotypes in
 #' all environments.
 #'
 #'
-#' * \strong{MeansGxE} The phenotypic means of genotypes in the environments.
+#' * **MeansGxE** The phenotypic means of genotypes in the environments.
 #'
-#' * \strong{Details} A list summarizing the results. The following information
-#' are shown: \code{Nenv}, the number of environments in the analysis;
-#' \code{Ngen} the number of genotypes in the analysis; \code{Mean} the grand
-#' mean; \code{SE} the standard error of the mean; \code{SD} the standard
-#' deviation. \code{CV} the coefficient of variation of the phenotypic means,
-#' estimating WAASB, \code{Min} the minimum value observed (returning the
-#' genotype and environment), \code{Max} the maximum value observed (returning
-#' the genotype and environment); \code{MinENV} the environment with the lower
-#' mean, \code{MaxENV} the environment with the larger mean observed,
-#' \code{MinGEN} the genotype with the lower mean, \code{MaxGEN} the genotype
+#' * **Details** A list summarizing the results. The following information
+#' are shown: `Nenv`, the number of environments in the analysis;
+#' `Ngen` the number of genotypes in the analysis; `Mean` the grand
+#' mean; `SE` the standard error of the mean; `SD` the standard
+#' deviation. `CV` the coefficient of variation of the phenotypic means,
+#' estimating WAASB, `Min` the minimum value observed (returning the
+#' genotype and environment), `Max` the maximum value observed (returning
+#' the genotype and environment); `MinENV` the environment with the lower
+#' mean, `MaxENV` the environment with the larger mean observed,
+#' `MinGEN` the genotype with the lower mean, `MaxGEN` the genotype
 #' with the larger.
 #'
-#' * \strong{ESTIMATES} A tibble with the genetic parameters (if \code{random =
-#' "gen"} or \code{random = "all"}) with the following columns: \code{Phenotypic
-#' variance} the phenotypic variance; \code{Heritability} the broad-sense
-#' heritability; \code{GEr2} the coefficient of determination of the interaction
-#' effects; \code{h2mg} the heritability on the mean basis;
-#' \code{Accuracy} the selective accuracy; \code{rge} the genotype-environment
-#' correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
-#' the residual coefficient of variation; \code{CV ratio} the ratio between
+#' * **ESTIMATES** A tibble with the genetic parameters (if `random =
+#' "gen"` or `random = "all"`) with the following columns: `Phenotypic
+#' variance` the phenotypic variance; `Heritability` the broad-sense
+#' heritability; `GEr2` the coefficient of determination of the interaction
+#' effects; `h2mg` the heritability on the mean basis;
+#' `Accuracy` the selective accuracy; `rge` the genotype-environment
+#' correlation; `CVg` the genotypic coefficient of variation; `CVr`
+#' the residual coefficient of variation; `CV ratio` the ratio between
 #' genotypic and residual coefficient of variation.
 #'
-#'  * \strong{residuals} The residuals of the model.
+#'  * **residuals** The residuals of the model.
 #'
-#'  * \strong{formula} The formula used to fit the model.
+#'  * **formula** The formula used to fit the model.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{mtsi}} \code{\link{waas}}
-#'   \code{\link{get_model_data}} \code{\link{plot_scores}}
+#' @seealso [mtsi()] [waas()]
+#'   [get_model_data()] [plot_scores()]
 #' @export
 #' @examples
 #' \donttest{
@@ -275,9 +277,7 @@ gamem_met <- function(.data,
   listres <- list()
   vin <- 0
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+    pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <- factors %>%
@@ -549,7 +549,9 @@ gamem_met <- function(.data,
                            residuals = as_tibble(residuals),
                            formula = model_formula), class = "waasb")
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- temp
   }

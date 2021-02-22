@@ -46,8 +46,8 @@
 \item{type}{The type of biplot to produce.
 \enumerate{
 \item Basic biplot.
-\item Mean performance vs. stability (gge biplots)
-or the The Average Tester Coordination view for genotype-trait and genotype-yield*trait biplots.
+\item Mean performance vs. stability (gge biplots) or the The Average Tester
+Coordination view for genotype-trait and genotype-yield*trait biplots.
 \item Which-won-where.
 \item Discriminativeness vs. representativeness.
 \item Examine an environment (or trait/yield*trait combination).
@@ -55,7 +55,8 @@ or the The Average Tester Coordination view for genotype-trait and genotype-yiel
 \item Examine a genotype.
 \item Ranking genotypes.
 \item Compare two genotypes.
-\item Relationship among environments (or trait/yield*trait combination).}}
+\item Relationship among environments (or trait/yield*trait combination).
+}}
 
 \item{sel_env, sel_gen}{The name of the environment (or trait/yield*trait combination) and genotype to examine
 when \code{type = 5} and   \code{type = 7}, respectively. Must be a string
@@ -71,7 +72,7 @@ in the biplot. Defaults to \code{shape.gen = 21} (circle) for genotypes and
 \code{24} (up triangle), and \code{25} (low triangle).}
 
 \item{line.type.gen}{The line type to highlith the genotype's vectors.
-Defaults to `line.type.gen == "dotted`.}
+Defaults to \verb{line.type.gen == "dotted}.}
 
 \item{size.shape}{The size of the shape (both for genotypes and
 environments). Defaults to \code{2.2}.}
@@ -80,13 +81,10 @@ environments). Defaults to \code{2.2}.}
 \code{type = 3}. Defaults to \code{3.2}.}
 
 \item{size.stroke, col.stroke}{The width and color of the border,
-respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke =
-"black"}. The size of the shape will be \code{size.shape + size.stroke}}
+respectively. Default to \code{size.stroke = 0.3} and \code{col.stroke = "black"}. The size of the shape will be \code{size.shape + size.stroke}}
 
 \item{col.gen, col.env, col.line}{Color for genotype/environment labels and for
-the line that passes through the biplot origin. Defaults to \code{col.gen =
-'blue'}, \code{col.env = 'forestgreen'}, and \code{col.line =
-'forestgreen'}.}
+the line that passes through the biplot origin. Defaults to \code{col.gen = 'blue'}, \code{col.env = 'forestgreen'}, and \code{col.line = 'forestgreen'}.}
 
 \item{col.alpha}{The alpha value for the color. Defaults to \code{1}. Values
 must be between \code{0} (full transparency) to \code{1} (full color).}
@@ -114,18 +112,18 @@ partitioning, scaling and centering.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{...}{Currently not used.}
 }
 \value{
 A ggplot2-based biplot.
 
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
-functions \code{\link{gge}()}, \code{\link{gtb}()}, and \code{\link{gytb}()}.
+functions \code{\link[=gge]{gge()}}, \code{\link[=gtb]{gtb()}}, and \code{\link[=gytb]{gytb()}}.
 }
 \examples{
 \donttest{
@@ -141,7 +139,7 @@ plot(mod,
 }
 \references{
 Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
-  tool for breeders, geneticists, and agronomists. CRC Press.
+tool for breeders, geneticists, and agronomists. CRC Press.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

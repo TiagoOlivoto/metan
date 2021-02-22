@@ -34,6 +34,8 @@ replications/blocks, if a designed experiment was conducted. Defaults to
 console.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Compute a surface model and find the best combination of factor1 and factor2
 to obtain the stationary point.
 }

@@ -23,8 +23,8 @@ columns, filled by the estimated values.}
 }
 \value{
 A two-way table with genotypes in rows and environments in columns if
-  \code{output = "wide"} or a long format (columns ENV, GEN and Y) if
-  \code{output = "long"} with the predicted values by the GGE model.
+\code{output = "wide"} or a long format (columns ENV, GEN and Y) if
+\code{output = "long"} with the predicted values by the GGE model.
 }
 \description{
 Predict the means for a genotype-vs-environment trial based on a Genotype
@@ -46,7 +46,7 @@ predict(mod)
 }
 \references{
 Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
-  tool for breeders, geneticists, and agronomists. CRC Press.
+tool for breeders, geneticists, and agronomists. CRC Press.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

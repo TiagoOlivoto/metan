@@ -1,57 +1,59 @@
 #' Cluster genotypes or environments
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs clustering for genotypes or tester environments based on a dissimilarity matrix.
 #'
 
 #' @param .data The dataset containing the columns related to Environments, Genotypes
 #' and the response variable. It is also possible to use a two-way table with genotypes
-#' in lines and environments in columns as input. In this case you must use \code{table = TRUE}.
-#' @param env The name of the column that contains the levels of the environments. Defaults to \code{NULL},
+#' in lines and environments in columns as input. In this case you must use `table = TRUE`.
+#' @param env The name of the column that contains the levels of the environments. Defaults to `NULL`,
 #' in case of the input data is a two-way table.
-#' @param gen The name of the column that contains the levels of the genotypes. Defaults to \code{NULL},
+#' @param gen The name of the column that contains the levels of the genotypes. Defaults to `NULL`,
 #' in case of the input data is a two-way table.
-#' @param resp The response variable(s). Defaults to \code{NULL}, in case of the input data is a two-way table.
+#' @param resp The response variable(s). Defaults to `NULL`, in case of the input data is a two-way table.
 #' @param table Logical values indicating if the input data is a two-way table with genotypes
-#' in the rows and environments in the columns. Defaults to \code{FALSE}.
+#' in the rows and environments in the columns. Defaults to `FALSE`.
 #' @param distmethod The distance measure to be used. This must be one of
-#' \code{'euclidean'}, \code{'maximum'}, \code{'manhattan'}, \code{'canberra'},
-#' \code{'binary'}, or \code{'minkowski'}.
+#' `'euclidean'`, `'maximum'`, `'manhattan'`, `'canberra'`,
+#' `'binary'`, or `'minkowski'`.
 #' @param clustmethod The agglomeration method to be used. This should be one
-#' of \code{'ward.D'} (Default), \code{'ward.D2'}, \code{'single'}, \code{'complete'},
-#' \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
-#' WPGMC) or \code{'centroid'} (= UPGMC).
+#' of `'ward.D'` (Default), `'ward.D2'`, `'single'`, `'complete'`,
+#' `'average'` (= UPGMA), `'mcquitty'` (= WPGMA), `'median'` (=
+#' WPGMC) or `'centroid'` (= UPGMC).
 #' @param scale Should the data be scaled befor computing the distances? Set to
-#' TRUE. Let \eqn{Y_{ij}} be the yield of Hybrid \emph{i} in Location \emph{j},
+#' TRUE. Let \eqn{Y_{ij}} be the yield of Hybrid *i* in Location *j*,
 #' \eqn{\bar Y_{.j}} be the mean yield, and \eqn{S_j} be the standard deviation of
-#'  Location \emph{j}. The standardized yield (Zij) is computed as (Ouyang et al. 1995):
+#'  Location *j*. The standardized yield (Zij) is computed as (Ouyang et al. 1995):
 #'  \eqn{Z_{ij} = (Y_{ij} - Y_{.j}) / S_j}.
 #'
-#' @param cluster What should be clustered? Defaults to \code{cluster = "env"} (cluster environments).
-#'  To cluster the genotypes use \code{cluster = "gen"}.
-#' @param nclust The number of clust to be formed. Set to \code{NULL}.
+#' @param cluster What should be clustered? Defaults to `cluster = "env"` (cluster environments).
+#'  To cluster the genotypes use `cluster = "gen"`.
+#' @param nclust The number of clust to be formed. Set to `NULL`.
 #'
 #' @return
-#' * \strong{data} The data that was used to compute the distances.
+#' * **data** The data that was used to compute the distances.
 #'
-#' * \strong{cutpoint} The cutpoint of the dendrogram according to Mojena (1977).
+#' * **cutpoint** The cutpoint of the dendrogram according to Mojena (1977).
 #'
-#' * \strong{distance} The matrix with the distances.
+#' * **distance** The matrix with the distances.
 #'
-#' * \strong{de} The distances in an object of class \code{dist}.
+#' * **de** The distances in an object of class `dist`.
 #'
-#' * \strong{hc} The hierarchical clustering.
+#' * **hc** The hierarchical clustering.
 #'
-#' * \strong{cophenetic} The cophenetic correlation coefficient between distance matrix
+#' * **cophenetic** The cophenetic correlation coefficient between distance matrix
 #' and cophenetic matrix
 #'
-#' * \strong{Sqt} The total sum of squares.
+#' * **Sqt** The total sum of squares.
 #'
-#' * \strong{tab} A table with the clusters and similarity.
+#' * **tab** A table with the clusters and similarity.
 #'
-#' * \strong{clusters} The sum of square and the mean of the clusters for each
-#' genotype (if \code{cluster = "env"} or environment (if \code{cluster = "gen"}).
+#' * **clusters** The sum of square and the mean of the clusters for each
+#' genotype (if `cluster = "env"` or environment (if `cluster = "gen"`).
 #'
-#' * \strong{labclust The labels} of genotypes/environments within each cluster.
+#' * **labclust The labels** of genotypes/environments within each cluster.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Mojena, R. 2015. Hierarchical grouping methods and stopping
@@ -171,10 +173,10 @@ ge_cluster <- function(.data, env = NULL, gen = NULL, resp = NULL,
 #' Plot an object of class ge_cluster
 #'
 #'
-#' @param x An object of class \code{ge_cluster}
+#' @param x An object of class `ge_cluster`
 #' @param nclust The number of clusters to show.
 #' @param xlab The label of the x axis.
-#' @param ... Other arguments passed from the function \code{plot.hclust}.
+#' @param ... Other arguments passed from the function `plot.hclust`.
 #' @method plot ge_cluster
 #' @export
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

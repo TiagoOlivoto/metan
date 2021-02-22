@@ -1,4 +1,6 @@
 #' Generate normal, correlated variables
+#' @description
+#' `r badge('stable')`
 #'
 #' Given the mean and desired correlations, generate normal, correlated
 #' variables.

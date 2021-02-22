@@ -42,6 +42,8 @@ root-mean-square error; \code{R2} the determination coefficient of the regressio
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Regression-based stability analysis using the Eberhart and Russell (1966) model.
 }
 \examples{
@@ -61,7 +63,7 @@ Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for comparing Varie
 Crop Sci. 6:36-40. \doi{10.2135/cropsci1966.0011183X000600010011x}
 }
 \seealso{
-\code{\link{superiority}, \link{ecovalence}, \link{ge_stats}}
+\code{\link[=superiority]{superiority()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=ge_stats]{ge_stats()}}
 }
 \author{
 Tiago Olivoto, \email{tiagoolivoto@gmail.com}

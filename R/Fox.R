@@ -1,4 +1,6 @@
 #' Fox's stability function
+#' @description
+#' `r badge('stable')`
 #'
 #' Performs a stability analysis based on the criteria of Fox et al. (1990),
 #' using the statistical "TOP third" only. A stratified ranking of the genotypes
@@ -12,15 +14,15 @@
 #'   environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#'   single procedure use, for example, \code{resp = c(var1, var2, var3)}.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#'   single procedure use, for example, `resp = c(var1, var2, var3)`.
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{Fox}, which is a list containing the results
-#'   for each variable used in the argument \code{resp}. For each variable, a
+#' @return An object of class `Fox`, which is a list containing the results
+#'   for each variable used in the argument `resp`. For each variable, a
 #'   tibble with the following columns is returned.
-#' * \strong{GEN} the genotype's code.
-#' * \strong{mean} the mean for the response variable.
-#' * \strong{TOP} The proportion of locations at which the
+#' * **GEN** the genotype's code.
+#' * **mean** the mean for the response variable.
+#' * **TOP** The proportion of locations at which the
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
@@ -49,9 +51,7 @@ Fox <- function(.data, env, gen, resp, verbose = TRUE) {
   listres <- list()
   nvar <- ncol(vars)
   if (verbose == TRUE) {
-    pb <- progress_bar$new(
-      format = "Evaluating the variable :what [:bar]:percent",
-      clear = FALSE, total = nvar, width = 90)
+      pb <- progress(max = nvar, style = 4)
   }
   for (var in 1:nvar) {
     data <- factors %>%
@@ -68,7 +68,9 @@ Fox <- function(.data, env, gen, resp, verbose = TRUE) {
                 TOP = sum(grank <= 3)) %>%
       as_tibble()
     if (verbose == TRUE) {
-      pb$tick(tokens = list(what = names(vars[var])))
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
     }
     listres[[paste(names(vars[var]))]] <- temp
   }
@@ -84,18 +86,18 @@ Fox <- function(.data, env, gen, resp, verbose = TRUE) {
 
 #' Print an object of class Fox
 #'
-#' Print the \code{Fox} object in two ways. By default, the results
+#' Print the `Fox` object in two ways. By default, the results
 #' are shown in the R console. The results can also be exported to the directory
 #' into a *.txt file.
 #'
 #'
-#' @param x The \code{Fox} x
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x The `Fox` x
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory.
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Options used by the tibble package to format the output. See
-#'   \code{\link[tibble:formatting]{tibble::print()}} for more details.
+#'   [`tibble::print()`][tibble::formatting] for more details.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method print Fox
 #' @export

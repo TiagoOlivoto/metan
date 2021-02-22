@@ -54,6 +54,7 @@ g_simula(
 A data frame with the simulated traits
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 \itemize{
 \item \code{g_simula()} simulate replicated genotype data.
 \item \code{ge_simula()} simulate replicated genotype-environment data.

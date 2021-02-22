@@ -37,15 +37,13 @@ variable of \code{x}.}
 
 \item{plot_theme}{The graphical theme of the plot. Default is
 \code{plot_theme = theme_metan()}. For more details, see
-\code{\link[ggplot2]{theme}}.}
+\code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{x.lim}{The range of x-axis. Default is \code{NULL} (maximum and minimum
-values of the data set). New arguments can be inserted as \code{x.lim =
-c(x.min, x.max)}.}
+values of the data set). New arguments can be inserted as \code{x.lim = c(x.min, x.max)}.}
 
 \item{x.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-c(breaks)}}
+\verb{authomatic breaks}. New arguments can be inserted as \code{x.breaks = c(breaks)}}
 
 \item{x.lab}{The label of x-axis. Each plot has a default value. New
 arguments can be inserted as \code{x.lab = "my label"}.}
@@ -54,7 +52,7 @@ arguments can be inserted as \code{x.lab = "my label"}.}
 than \code{x.lim} can be used.}
 
 \item{y.breaks}{The breaks to be plotted in the x-axis. Default is
-\code{authomatic breaks}. The same arguments than \code{x.breaks} can be
+\verb{authomatic breaks}. The same arguments than \code{x.breaks} can be
 used.}
 
 \item{y.lab}{The label of y-axis. Each plot has a default value. New
@@ -91,8 +89,7 @@ Defaults to 1.}
 
 \item{line.type}{The type of the line that indicate the means in the biplot.
 Default is \code{"solid"}. Other values that can be attributed are:
-\code{"blank"}, no lines in the biplot, \code{"dashed", "dotted",
-"dotdash", "longdash", and "twodash"}.}
+\code{"blank"}, no lines in the biplot, \verb{"dashed", "dotted", "dotdash", "longdash", and "twodash"}.}
 
 \item{line.alpha}{The alpha value that combine the line with the background
 to create the appearance of partial or full transparency. Default is
@@ -108,7 +105,7 @@ Default is \code{0.5}.}
 \item{...}{Currently not used..}
 }
 \value{
-An object of class \code{gg, ggplot}.
+An object of class \verb{gg, ggplot}.
 }
 \description{
 This function plot the scores for genotypes obtained in the factor analysis
@@ -133,7 +130,7 @@ plot(model,
 }
 }
 \seealso{
-\code{\link{ge_factanal}}
+\code{\link[=ge_factanal]{ge_factanal()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

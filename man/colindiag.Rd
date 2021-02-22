@@ -9,21 +9,21 @@ colindiag(.data, ..., by = NULL, n = NULL)
 \arguments{
 \item{.data}{The data to be analyzed. It must be a symmetric correlation
 matrix, or a data frame, possible with grouped data passed from
-\code{\link[dplyr]{group_by}()}.}
+\code{\link[dplyr:group_by]{dplyr::group_by()}}.}
 
 \item{...}{Variables to use in the correlation. If \code{...} is null then
 all the numeric variables from \code{.data} are used. It must be a single
 variable name or a comma-separated list of unquoted variables names.}
 
 \item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr]{group_by}()}. To compute the statistics by more than
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
 one grouping variable use that function.}
 
 \item{n}{If a correlation matrix is provided, then \code{n} is the number of
 objects used to compute the correlation coefficients.}
 }
 \value{
-If \code{.data} is a grouped data passed from \code{\link[dplyr]{group_by}()}
+If \code{.data} is a grouped data passed from \code{\link[dplyr:group_by]{dplyr::group_by()}}
 then the results will be returned into a list-column of data frames.
 \itemize{
 \item \strong{cormat} A symmetric Pearson's coefficient correlation matrix
@@ -46,6 +46,8 @@ in the eigenvalue of smallest value, sorted in decreasing order.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
 variables using several indicators, as shown by Olivoto et al. (2017).
 }

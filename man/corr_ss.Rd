@@ -15,6 +15,8 @@ corr_ss(r, CI, verbose = TRUE)
 silently.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Find the required (sufficient) sample size for computing a Pearson
 correlation coefficient with a desired confidence interval (Olivoto et al.,
 2018) as follows
@@ -34,11 +36,11 @@ corr_ss(r = 0.60, CI = 0.1)
 }
 \references{
 Olivoto, T., A.D.C. Lucio, V.Q. Souza, M. Nardino, M.I. Diel,
-  B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
-  interval width for Pearson's correlation coefficient: a
-  Gaussian-independent estimator based on sample size and strength of
-  association. Agron. J. 110:1-8.
-  \doi{10.2134/agronj2016.04.0196}
+B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
+interval width for Pearson's correlation coefficient: a
+Gaussian-independent estimator based on sample size and strength of
+association. Agron. J. 110:1-8.
+\doi{10.2134/agronj2016.04.0196}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

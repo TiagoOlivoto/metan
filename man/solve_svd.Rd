@@ -15,6 +15,8 @@ solve_svd(x, tolerance = 2.220446e-16)
 A matrix with the same dimension of \code{x}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 This function computes the Moore-Penrose pseudoinverse of a square matrix
 using singular value decomposition.
 }

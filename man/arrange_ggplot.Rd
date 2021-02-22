@@ -33,24 +33,24 @@ objects.}
 in the grid. Will get repeated to match the dimensions of the grid.}
 
 \item{guides}{A string specifying how guides should be treated in the layout.
-Defaults to `'auto'`. Other possible values are `'keep'` and `'collect'`.
+Defaults to \code{'auto'}. Other possible values are \code{'keep'} and \code{'collect'}.
 In this case, will collect guides below to the given nesting level,
 removing duplicates.}
 
 \item{design}{Specification of the location of areas in the layout.}
 
 \item{legend.position}{The position of the legends in the plot if
-\code{guides = "collect"} Default to `'bottom'`.}
+\code{guides = "collect"} Default to \code{'bottom'}.}
 
 \item{title, subtitle, caption}{Text strings to use for the various plot
 annotations.}
 
 \item{tag_levels}{A character vector defining the enumeration format to use
-at each level. Possible values are `'a'` for lowercase letters, `'A'` for
-uppercase letters, `'1'` for numbers, `'i'` for lowercase Roman numerals, and
-`'I'` for uppercase Roman numerals. It can also be a list containing
+at each level. Possible values are \code{'a'} for lowercase letters, \code{'A'} for
+uppercase letters, \code{'1'} for numbers, \code{'i'} for lowercase Roman numerals, and
+\code{'I'} for uppercase Roman numerals. It can also be a list containing
 character vectors defining arbitrary tag sequences. If any element in the
-list is a scalar and one of `'a'`, `'A'`, `'1'`, `'i`, or `'I'`, this level
+list is a scalar and one of \code{'a'}, \code{'A'}, \code{'1'}, \verb{'i}, or \code{'I'}, this level
 will be expanded to the expected sequence.}
 
 \item{tag_prefix, tag_suffix}{Strings that should appear before or after the
@@ -62,11 +62,13 @@ tag.}
 related to the titles as well as plot margin and background is used.}
 }
 \value{
-A `patchwork` object
+A \code{patchwork} object
 }
 \description{
-This is a wraper function around \code{\link[patchwork]{wrap_plots}()} and
-\code{\link[patchwork]{plot_annotation}()} to arrange ggplot2 objects.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
+This is a wraper function around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}} and
+\code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}} to arrange ggplot2 objects.
 }
 \examples{
 \donttest{

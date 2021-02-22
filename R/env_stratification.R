@@ -1,4 +1,6 @@
 #' Environment stratification
+#' @description
+#' `r badge('stable')`
 #'
 #' Computes environment stratification based on factor analysis.
 #'
@@ -8,30 +10,31 @@
 #' environments.
 #' @param gen The name of the column that contains the levels of the genotypes.
 #' @param resp The response variable(s). To analyze multiple variables in a
-#' single procedure use, for example, \code{resp = c(var1, var2, var3)}.
+#' single procedure use, for example, `resp = c(var1, var2, var3)`.
 #' @param use The method for computing covariances in the presence of missing
-#'   values. Defaults to \code{complete.obs}, i.e., missing values are handled
+#'   values. Defaults to `complete.obs`, i.e., missing values are handled
 #'   by casewise deletion.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
-#' @param verbose Logical argument. If \code{verbose = FALSE} the code will run
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
-#' @return An object of class \code{env_stratification} which is a list with one
+#' @return An object of class `env_stratification` which is a list with one
 #'   element per analyzed trait. For each trait, the following values are given.
-#' \item{data}{The genotype-environment means.}
-#' \item{cormat}{The correlation matrix among the environments.}
-#' \item{PCA}{The eigenvalues and explained variance.}
-#' \item{FA}{The factor analysis.}
-#' \item{env_strat}{The environmental stratification.}
-#' \item{mega_env_code}{The environments within each mega-environment.}
-#' \item{mega_env_stat}{The statistics for each mega-environment.}
-#' \item{KMO}{The result for the Kaiser-Meyer-Olkin test.}
-#' \item{MSA}{The measure of sampling adequacy for individual variable.}
-#' \item{communalities_mean}{The communalities' mean.}
-#' \item{initial_loadings}{The initial loadings.}
+#' * `data` The genotype-environment means.
+#' * `cormat`: The correlation matrix among the environments.
+#' * `PCA`: The eigenvalues and explained variance.
+#' * `FA`: The factor analysis.
+#' * `env_strat`: The environmental stratification.
+#' * `mega_env_code`: The environments within each mega-environment.
+#' * `mega_env_stat`: The statistics for each mega-environment.
+#' * `KMO`: The result for the Kaiser-Meyer-Olkin test.
+#' * `MSA`: The measure of sampling adequacy for individual variable.
+#' * `communalities_mean`: The communalities' mean.
+#' * `initial_loadings`: The initial loadings.
 #' @references Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of
 #'   methodologies for environment stratification and analysis of genotype
 #'   adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.
+#' @md
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @importFrom tidyr chop
 #' @export
@@ -46,7 +49,7 @@
 #' gmd(model)
 #'
 #'}
-#' @seealso \code{\link{env_dissimilarity}()}
+#' @seealso [env_dissimilarity()]
 #'
 #'
 env_stratification <- function(.data,
@@ -153,15 +156,15 @@ env_stratification <- function(.data,
 #' Plot the env_stratification model
 #'
 #' This function plots the correlation between environments generated with
-#' \code{\link{env_stratification}()}
-#' @param x An object of class \code{env_stratification}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param ... Further arguments passed to \code{\link{plot.corr_coef}()}
+#' [env_stratification()]
+#' @param x An object of class `env_stratification`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param ... Further arguments passed to [plot.corr_coef()]
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{env_dissimilarity}}
+#' @seealso [env_dissimilarity()]
 #' @method plot env_stratification
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @export
 #' @examples
 #' \donttest{
@@ -189,14 +192,14 @@ plot.env_stratification <- function(x,
 
 #' Print the env_stratification model
 #'
-#' Print an object of class \code{ge_factanal} in two ways. By default, the results are
+#' Print an object of class `ge_factanal` in two ways. By default, the results are
 #' shown in the R console. The results can also be exported to the directory.
 #'
 #'
-#' @param x An object of class \code{env_stratification}.
-#' @param export A logical argument. If \code{TRUE}, a *.txt file is exported to
+#' @param x An object of class `env_stratification`.
+#' @param export A logical argument. If `TRUE`, a *.txt file is exported to
 #'   the working directory
-#' @param file.name The name of the file if \code{export = TRUE}
+#' @param file.name The name of the file if `export = TRUE`
 #' @param digits The significant digits to be shown.
 #' @param ... Currently not used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

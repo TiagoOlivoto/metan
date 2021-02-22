@@ -1,39 +1,41 @@
 #' Plot WAASBY values for genotype ranking
+#' @description
+#' `r badge('stable')`
 #'
 #' Plot heat maps with genotype ranking in two ways.
 #'
 #'
-#' @param x The \code{WAASBY object}
-#' @param var The variable to plot. Defaults to \code{var = 1} the first
-#'   variable of \code{x}.
-#' @param export Export (or not) the plot. Default is \code{T}.
-#' @param file.type The type of file to be exported. Default is \code{pdf},
-#'   Graphic can also be exported in \code{*.tiff} format by declaring
-#'   \code{file.type = "tiff"}.
+#' @param x The `WAASBY object`
+#' @param var The variable to plot. Defaults to `var = 1` the first
+#'   variable of `x`.
+#' @param export Export (or not) the plot. Default is `T`.
+#' @param file.type The type of file to be exported. Default is `pdf`,
+#'   Graphic can also be exported in `*.tiff` format by declaring
+#'   `file.type = "tiff"`.
 #' @param file.name The name of the file for exportation, default is
-#'   \code{NULL}, i.e. the files are automatically named.
+#'   `NULL`, i.e. the files are automatically named.
 #' @param plot_theme The graphical theme of the plot. Default is
-#'   \code{plot_theme = theme_metan()}. For more details, see
-#'   \code{\link[ggplot2]{theme}}.
-#' @param width The width "inch" of the plot. Default is \code{8}.
-#' @param height The height "inch" of the plot. Default is \code{7}.
-#' @param size.shape The size of the shape in the plot. Default is \code{3.5}.
+#'   `plot_theme = theme_metan()`. For more details, see
+#'   [ggplot2::theme()].
+#' @param width The width "inch" of the plot. Default is `8`.
+#' @param height The height "inch" of the plot. Default is `7`.
+#' @param size.shape The size of the shape in the plot. Default is `3.5`.
 #' @param size.tex.lab The size of the text in axis text and labels.
 #' @param col.shape A vector of length 2 that contains the color of shapes for
 #'   genotypes above and below of the mean, respectively. Default is
-#'   \code{c("blue", "red")}.
-#' @param x.lab The label of the x axis in the plot. Default is \code{"WAASBY"}.
+#'   `c("blue", "red")`.
+#' @param x.lab The label of the x axis in the plot. Default is `"WAASBY"`.
 #' @param y.lab The label of the y axis in the plot. Default is
-#'   \code{"Genotypes"}.
+#'   `"Genotypes"`.
 #' @param x.breaks The breaks to be plotted in the x-axis. Default is
-#'   \code{authomatic breaks}. New arguments can be inserted as \code{x.breaks =
-#'   c(breaks)}
+#'   `authomatic breaks`. New arguments can be inserted as `x.breaks =
+#'   c(breaks)`
 #' @param resolution The resolution of the plot. Parameter valid if
-#'   \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)
+#'   `file.type = "tiff"` is used. Default is `300` (300 dpi)
 #' @param ... Currently not used.
-#' @return An object of class \code{gg, ggplot}.
+#' @return An object of class `gg, ggplot`.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso \code{\link{plot_scores}}
+#' @seealso [plot_scores()]
 #' @export
 #' @examples
 #' \donttest{

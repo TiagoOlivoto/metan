@@ -1,17 +1,16 @@
 #' Adjusted Coefficient of Variation
 #' \loadmathjax
-#' @description Computes the scale-adjusted coefficient of variation,
-#'   \emph{acv}, (Doring and Reckling, 2018) to account for the systematic
-#'   dependence of \mjseqn{\sigma^2} from \mjseqn{\mu}. The \emph{acv} is
+#' @description
+#' `r badge('stable')`
+#'
+#'  Computes the scale-adjusted coefficient of variation,
+#'   *acv*, (Doring and Reckling, 2018) to account for the systematic
+#'   dependence of \mjseqn{\sigma^2} from \mjseqn{\mu}. The *acv* is
 #'   computed as follows:
-#'
 #'   \mjsdeqn{acv = \frac{\sqrt{10^{\tilde v_i}}}{\mu_i}\times 100}
-#'
 #'   where \mjseqn{\tilde v_i} is the adjusted logarithm of the variance
 #'   computed as:
-#'
 #' \mjsdeqn{\tilde v_i = a + (b - 2)\frac{1}{n}\sum m_i + 2m_i + e_i}
-#'
 #' being \mjseqn{a} and \mjseqn{b} the coefficients of the linear regression for
 #' \mjseqn{log_{10}} of the variance over the \mjseqn{log_{10}} of the mean;
 #' \mjseqn{ m_i} is the \mjseqn{log_{10}} of the mean, and \mjseqn{ e_i} is the
@@ -19,17 +18,17 @@
 #' regression.
 #' @param mean A numeric vector with mean values.
 #' @param var A numeric vector with variance values.
-#' @param na.rm If \code{FALSE}, the default, missing values are removed with a
-#'   warning. If \code{TRUE}, missing values are silently removed.
+#' @param na.rm If `FALSE`, the default, missing values are removed with a
+#'   warning. If `TRUE`, missing values are silently removed.
 #'
 #' @return A tibble with the following columns
-#' * \strong{mean} The mean values;
-#' * \strong{var} The variance values;
-#' * \strong{log10_mean} The base 10 logarithm of mean;
-#' * \strong{log10_var} The base 10 logarithm of variance;
-#' * \strong{POLAR} The Power Law Residuals;
-#' * \strong{cv} The standard coefficient of variation;
-#' * \strong{acv} Adjusted coefficient of variation.
+#' * **mean** The mean values;
+#' * **var** The variance values;
+#' * **log10_mean** The base 10 logarithm of mean;
+#' * **log10_var** The base 10 logarithm of variance;
+#' * **POLAR** The Power Law Residuals;
+#' * **cv** The standard coefficient of variation;
+#' * **acv** Adjusted coefficient of variation.
 #' @references Doring, T.F., and M. Reckling. 2018. Detecting global trends of
 #'   cereal yield stability by adjusting the coefficient of variation. Eur. J.
 #'   Agron. 99: 30-36. \doi{10.1016/j.eja.2018.06.007}

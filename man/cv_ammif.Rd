@@ -59,9 +59,10 @@ validation) of the last loop.
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Cross-validation for estimation of all AMMI-family models
-}
-\details{
+
 \code{cv_ammif} provides a complete cross-validation of replicate-based data
 using AMMI-family models. By default, the first validation is carried out
 considering the AMMIF (all possible axis used). Considering this model, the
@@ -87,11 +88,11 @@ replications than observed in the trial.
 
 \donttest{
 library(metan)
-model <- cv_ammif(data_ge,
+model <- cv_ammif(data_ge2,
                   env = ENV,
                   gen = GEN,
                   rep = REP,
-                  resp = GY,
+                  resp = EH,
                   nboot = 5)
 plot(model)
 }
@@ -102,7 +103,7 @@ Patterson, H.D., and E.R. Williams. 1976. A new class of
 resolvable incomplete block designs. Biometrika 63:83-92.
 }
 \seealso{
-\code{\link{cv_ammi}, \link{cv_blup}}
+\code{\link[=cv_ammi]{cv_ammi()}}, \code{\link[=cv_blup]{cv_blup()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
