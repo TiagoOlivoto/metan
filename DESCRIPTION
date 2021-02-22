@@ -47,14 +47,12 @@ Imports:
     ggforce,
     ggplot2 (>= 3.3.0),
     ggrepel,
-    grid,
     lme4,
     lmerTest,
     magrittr,
     mathjaxr,
     methods,
     patchwork,
-    progress,
     purrr,
     rlang (>= 0.1.2),
     tibble,
@@ -73,3 +71,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
