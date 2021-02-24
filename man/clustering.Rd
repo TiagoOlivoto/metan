@@ -13,7 +13,7 @@ clustering(
   verbose = TRUE,
   distmethod = "euclidean",
   clustmethod = "average",
-  nclust = NULL
+  nclust = NA
 )
 }
 \arguments{
@@ -29,7 +29,7 @@ one grouping variable use that function.}
 
 \item{scale}{Should the data be scaled before computing the distances? Set to
 FALSE. If TRUE, then, each observation will be divided by the standard
-deviation of the variable \code{Z_{ij} = X_{ij} / sd(j)}}
+deviation of the variable \mjseqn{Z_{ij} = X_{ij} / sd_j}}
 
 \item{selvar}{Logical argument, set to \code{FALSE}. If \code{TRUE}, then an
 algorithm for selecting variables is implemented. See the section
@@ -49,7 +49,7 @@ correlation-based distance.}
 \code{'average'} (= UPGMA), \code{'mcquitty'} (= WPGMA), \code{'median'} (=
 WPGMC) or \code{'centroid'} (= UPGMC).}
 
-\item{nclust}{The number of clusters to be formed. Set to \code{NULL}}
+\item{nclust}{The number of clusters to be formed. Set to \code{NA}}
 }
 \value{
 \itemize{
@@ -74,27 +74,35 @@ test. Else, will be a \code{NULL} object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-
+\loadmathjax
 Performs clustering analysis with selection of variables.
-
+}
+\details{
 When \code{selvar = TRUE} a variable selection algorithm is executed. The
 objective is to select a group of variables that most contribute to explain
 the variability of the original data. The selection of the variables is based
-on eigenvalue/eigenvectors solution based on the following steps. \strong{1:}
-compute the distance matrix and the cophenetic correlation with the original
-variables (all numeric variables in dataset); \strong{2:} compute the
-eigenvalues and eigenvectors of the correlation matrix between the variables;
-\strong{3:} delete the variable with the largest weight (highest eigenvector in
-the lowest eigenvalue); \strong{4:} compute the distance matrix and cophenetic
-correlation with the remaining variables; \strong{5:} compute the Mantel's
-correlation between the obtained distances matrix and the original distance
-matrix; \strong{6:} iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is
-the number of original variables. At the end of the \emph{p} - 2 iterations,
-a summary of the models is returned. The distance is calculated with the
-variables that generated the model with the largest cophenetic correlation. I
-suggest a careful evaluation aiming at choosing a parsimonious model, i.e.,
-the one with the fewer number of variables, that presents acceptable
-cophenetic correlation and high similarity with the original distances.
+on eigenvalue/eigenvectors solution based on the following steps.
+\enumerate{
+\item compute the distance matrix and the cophenetic correlation with the original
+variables (all numeric variables in dataset);
+\item compute the eigenvalues and eigenvectors of the correlation matrix between
+the variables;
+\item Delete the variable with the largest weight (highest eigenvector in
+the lowest eigenvalue);
+\item Compute the distance matrix and cophenetic correlation with the remaining
+variables;
+\item Compute the Mantel's correlation between the obtained distances matrix and
+the original distance matrix;
+\item Iterate steps 2 to 5 \emph{p} - 2 times, where \emph{p} is the number of original
+variables.
+}
+
+At the end of the \emph{p} - 2 iterations, a summary of the models is returned.
+The distance is calculated with the variables that generated the model with
+the largest cophenetic correlation. I suggest a careful evaluation aiming at
+choosing a parsimonious model, i.e., the one with the fewer number of
+variables, that presents acceptable cophenetic correlation and high
+similarity with the original distances.
 }
 \examples{
 \donttest{
