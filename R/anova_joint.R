@@ -117,7 +117,7 @@ anova_joint <- function(.data,
       CV <- tibble(Source = "CV(%)", Df = as.numeric(sqrt(anova[5, 4]) / mean(data$mean) * 100))
       msr <- tibble(Source = "MSR+/MSR-", Df = max(msr) / min(msr))
       ovmean <- tibble(Source = "OVmean", Df = mean(data$mean))
-      temp <- rbind_fill(anova, CV, msr, ovmean, fill = NA)
+      temp <- rbind_fill_id(anova, CV, msr, ovmean)
     } else{
       msr <- do.call(rbind,
                      lapply(msr, function(x){
@@ -133,7 +133,7 @@ anova_joint <- function(.data,
       CV <- tibble(Source = "CV(%)", Df = as.numeric(sqrt(anova[6, 4]) / mean(data$mean) * 100))
       msr <- tibble(Source = "MSR+/MSR-", Df = max(msr) / min(msr))
       ovmean <- tibble(Source = "OVmean", Df = mean(data$mean))
-      temp <- rbind_fill(anova, CV, msr, ovmean, fill = NA)
+      temp <- rbind_fill_id(anova, CV, msr, ovmean)
     }
     influence <- lm.influence(model)
     augment <- model$model %>%

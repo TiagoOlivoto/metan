@@ -254,7 +254,7 @@ performs_ammi <- function(.data,
                    Proportion = percent,
                    Accumulated = acum)
         resid <- anova[nrow(anova), ]
-        anova <- rbind_fill(anova[-nrow(anova), ], PC, resid)
+        anova <- rbind_fill_id(anova[-nrow(anova), ], PC, resid)
         anova2 <- tibble(Source = "Total",
                          Df = sum(anova$Df),
                          `Sum Sq` = sum(anova$`Sum Sq`),

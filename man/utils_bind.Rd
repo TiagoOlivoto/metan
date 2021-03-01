@@ -21,9 +21,6 @@ list. If no names are found, a numeric sequence is used instead.}
 
 \item{.fill}{When row-binding, columns are matched by name, and any missing
 columns will be filled with \code{NA} Defaults to \code{NA}.}
-
-\item{list}{A list of data frames. When row-binding, columns are matched by
-name, and any missing columns will be filled with \code{NA}.}
 }
 \value{
 A data frame.
