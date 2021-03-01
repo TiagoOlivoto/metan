@@ -10,8 +10,6 @@ citHeader("Please, support this project by citing it in your publications!")
 	         pages       = {"783-789"},
 	         year        = "2020",
 	         doi         = "10.1111/2041-210X.13384",
-	         url = {"https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13384"},
-	         eprint = {"https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.13384"},
 	         textVersion =
 	         paste("Olivoto, T., and L\u00FAcio, A.D. (2020).",
 	               "metan: an R package for multi-environment trial analysis.",
