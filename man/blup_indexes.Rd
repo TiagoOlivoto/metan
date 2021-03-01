@@ -35,6 +35,7 @@ genotypic values (HMRPGV).
 \item \code{\link[=blup_indexes]{blup_indexes()}} Is a wrapper around the above functions that also computes
 the WAASB index (Olivoto et al. 2019) if an object computed with \code{\link[=waasb]{waasb()}} is
 used as input data.
+\item \code{\link[=Resende_indexes]{Resende_indexes()}} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{blup_indexes()} instead.
 }
 }
 \details{

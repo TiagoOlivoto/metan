@@ -128,7 +128,7 @@ reference:
   - subtitle: "Fit models"
     contents:
       - gamem_met
-      - Resende_indexes
+      - blup_indexes
       - waasb
       - wsmp
   - subtitle: "Plot models"
@@ -332,6 +332,10 @@ reference:
       - venn_plot
 
 
+  - subtitle: "Progress bar"
+    contents:
+      - utils_progress
+
   - subtitle: "Select helpers"
     contents:
       - Select_helper
@@ -349,7 +353,7 @@ reference:
       - gmd
       - is.split_factors
       - metan-package
-      - rbind_fill
+      - utils_bind
       - resca
       - residual_plots
       - split_factors
@@ -357,6 +361,7 @@ reference:
       - themes
       - transpose_df
       - tukey_hsd
+      - utils
 
 
   - title: "Datasets"

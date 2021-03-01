@@ -9,6 +9,7 @@
 #' * [blup_indexes()] Is a wrapper around the above functions that also computes
 #' the WAASB index (Olivoto et al. 2019) if an object computed with [waasb()] is
 #' used as input data.
+#' * [Resende_indexes()] `r badge('deprecated')` Use `blup_indexes()` instead.
 #' @name blup_indexes
 #' @details
 #' The indexes computed with this function have been used to select genotypes
