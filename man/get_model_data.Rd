@@ -16,7 +16,7 @@ sel_gen(x)
 \item{x}{An object created with the functions \code{\link[=AMMI_indexes]{AMMI_indexes()}},
 \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=can_corr]{can_corr()}} \code{\link[=ecovalence]{ecovalence()}},  \code{\link[=Fox]{Fox()}},
 \code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}},\code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}},
-\code{\link[=gytb]{gytb()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=performs_ammi]{performs_ammi()}}, \code{\link[=Resende_indexes]{Resende_indexes()}}, \code{\link[=Shukla]{Shukla()}},
+\code{\link[=gytb]{gytb()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=performs_ammi]{performs_ammi()}}, \code{\link[=blup_indexes]{blup_indexes()}}, \code{\link[=Shukla]{Shukla()}},
 \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}} or \code{\link[=waasb]{waasb()}}.}
 
 \item{what}{What should be captured from the model. See more in section
@@ -274,11 +274,16 @@ objects of class \code{waas}).
 \item \code{"ranef"} Random effects.
 }
 
-\strong{Objects of class \code{Res_ind}}
+\strong{Objects of class \code{blup_ind}}
 \itemize{
-\item \code{"HMGV"} For harmonic mean of genotypic values.
-\item \code{"RPGV or RPGV_Y"} For relative performance of genotypic values
-\item \code{"HMRPGV"} For harmonic mean of relative performance of genotypic values
+\item \verb{"HMGV","HMGV_R"} For harmonic mean of genotypic values or its ranks.
+\item \verb{"RPGV", RPGV_Y"} For relative performance of genotypic values or its
+ranks.
+\item \verb{"HMRPGV", "HMRPGV_R"} For harmonic mean of relative performance of
+genotypic values or its ranks.
+\item \verb{"WAASB", "WAASB_R"} For the weighted average of absolute scores from the
+singular or its ranks. value decomposition of the BLUPs for GxE interaction
+or its ranks.
 }
 }
 \examples{
@@ -332,7 +337,7 @@ gmd(blup)
 
 ### BLUP-based stability indexes ###
 blup \%>\%
-Resende_indexes() \%>\%
+blup_indexes() \%>\%
 gmd("HMRPGV_R")
 
 }
@@ -404,7 +409,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 \code{\link[=AMMI_indexes]{AMMI_indexes()}}, \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=ecovalence]{ecovalence()}},
 \code{\link[=Fox]{Fox()}}, \code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}}, \code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_polar]{ge_polar()}}
 \code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=mtsi]{mtsi()}}, \code{\link[=performs_ammi]{performs_ammi()}},
-\code{\link[=Resende_indexes]{Resende_indexes()}}, \code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}}, \code{\link[=waasb]{waasb()}}
+\code{\link[=blup_indexes]{blup_indexes()}}, \code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}}, \code{\link[=waasb]{waasb()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

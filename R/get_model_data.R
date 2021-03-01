@@ -11,7 +11,7 @@
 #' @param x An object created with the functions [AMMI_indexes()],
 #'   [anova_ind()], [anova_joint()], [can_corr()] [ecovalence()],  [Fox()],
 #'   [gai()], [gamem()],[gafem()], [ge_acv()], [ge_means()], [ge_reg()],
-#'   [gytb()], [mgidi()], [performs_ammi()], [Resende_indexes()], [Shukla()],
+#'   [gytb()], [mgidi()], [performs_ammi()], [blup_indexes()], [Shukla()],
 #'   [superiority()], [waas()] or [waasb()].
 #' @param what What should be captured from the model. See more in section
 #'   **Details**.
@@ -213,11 +213,15 @@
 #' * `"vcomp"` The variance components for random effects.
 #' * `"ranef"` Random effects.
 #'
-#'  **Objects of class `Res_ind`**
-#' * `"HMGV"` For harmonic mean of genotypic values.
-#' * `"RPGV or RPGV_Y"` For relative performance of genotypic values
-#' * `"HMRPGV"` For harmonic mean of relative performance of genotypic values
-#'
+#'  **Objects of class `blup_ind`**
+#' * `"HMGV","HMGV_R"` For harmonic mean of genotypic values or its ranks.
+#' * `"RPGV", RPGV_Y"` For relative performance of genotypic values or its
+#' ranks.
+#' * `"HMRPGV", "HMRPGV_R"` For harmonic mean of relative performance of
+#' genotypic values or its ranks.
+#' * `"WAASB", "WAASB_R"` For the weighted average of absolute scores from the
+#' singular or its ranks. value decomposition of the BLUPs for GxE interaction
+#' or its ranks.
 #'
 #' @md
 #' @importFrom dplyr starts_with matches case_when full_join arrange_if
@@ -290,7 +294,7 @@
 #' @seealso [AMMI_indexes()], [anova_ind()], [anova_joint()], [ecovalence()],
 #'   [Fox()], [gai()], [gamem()], [gafem()], [ge_acv()], [ge_polar()]
 #'   [ge_means()], [ge_reg()], [mgidi()], [mtsi()], [performs_ammi()],
-#'   [Resende_indexes()], [Shukla()], [superiority()], [waas()], [waasb()]
+#'   [blup_indexes()], [Shukla()], [superiority()], [waas()], [waasb()]
 #' @importFrom dplyr bind_rows
 #' @importFrom purrr map_dfr
 #' @examples
@@ -344,7 +348,7 @@
 #'
 #' ### BLUP-based stability indexes ###
 #' blup %>%
-#' Resende_indexes() %>%
+#' blup_indexes() %>%
 #' gmd("HMRPGV_R")
 #'
 #'}
@@ -355,7 +359,7 @@ get_model_data <- function(x,
                            verbose = TRUE) {
   call_f <- match.call()
   if (!has_class(x, c("waasb", "waasb_group", "waas","waas_means", "gamem", "performs_ammi",
-                      "Res_ind", "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
+                      "blup_ind", "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gafem_group", "gamem_group", "anova_ind", "gge", "can_cor",
@@ -383,7 +387,7 @@ get_model_data <- function(x,
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
-  check6 <- c("HMGV", "HMGV_R", "RPGV", "RPGV_Y", "RPGV_R", "HMRPGV", "HMRPGV_Y", "HMRPGV_R")
+  check6 <- c("HMGV", "HMGV_R", "RPGV", "RPGV_Y", "RPGV_R", "HMRPGV", "HMRPGV_Y", "HMRPGV_R", "WAASB", "WAASB_R")
   check7 <- c("ASV", "SIPC", "EV", "ZA", "WAAS", "ASV_R", "SIPC_R", "EV_R", "ZA_R", "WAAS_R", "ASV_SSI", "SIPC_SSI", "EV_SSI", "ZA_SSI", "WAAS_SSI")
   check8 <- c("Ecoval", "Ecov_perc", "rank")
   check9 <- c("GEN", "b0", "b1", "t(b1=1)", "pval_t", "s2di", "F(s2di=0)", "pval_f", "RMSE", "R2")
@@ -1205,12 +1209,12 @@ get_model_data <- function(x,
       column_to_first(GEN)
   }
 
-  if (has_class(x,  "Res_ind")) {
+  if (has_class(x,  "blup_ind")) {
     if (is.null(what)){
       what <- "HMRPGV"
     }
     if (!what %in% c(check6)) {
-      stop("Invalid value in 'what' for object of class 'Res_ind'. Allowed are ", paste(check6, collapse = ", "), call. = FALSE)
+      stop("Invalid value in 'what' for object of class 'blup_ind'. Allowed are ", paste(check6, collapse = ", "), call. = FALSE)
     }
     bind <- sapply(x, function(x) {
       x[[what]]

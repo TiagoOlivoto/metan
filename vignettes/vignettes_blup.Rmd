@@ -408,8 +408,8 @@ The quadrants proposed by @Olivoto2019 in the following biplot represent four cl
 g <- plot_scores(waasb_model, type = 3)
 h <- plot_scores(waasb_model, type = 3,
                  x.lab = "My customized x label",
-                 size.shape = 3,
-                 size.tex.pa = 2,
+                 size.shape.gen = 3,
+                 size.tex.gen = 2,
                  x.lim = c(1.2, 4.7),
                  x.breaks = seq(1.5, 4.5, by = 0.5),
                  plot_theme = theme_metan(color.background = "white"))
@@ -432,7 +432,7 @@ waasb(data_ge2, ENV, GEN, REP,
 i <- plot_scores(waasb_model, type = 4)
 j <- plot_scores(waasb_model,
                  type = 4,
-                 size.tex.pa = 1.5,
+                 size.tex.gen = 1.5,
                  color = FALSE,
                  col.alpha.gen = 0,
                  col.alpha.env = 0,
@@ -533,7 +533,7 @@ $$
 Res_ind <- 
 data_ge %>%
 gamem_met(ENV, GEN, REP, GY, verbose = FALSE) %>% 
-Resende_indexes()
+blup_indexes()
 
 print_table(Res_ind$GY)
 

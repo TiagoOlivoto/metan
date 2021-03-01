@@ -43,7 +43,7 @@
 #'   [AMMI_indexes()] internally; `"HMGV"` (Harmonic mean of the
 #'   genotypic value), `"RPGV"` (Relative performance of the genotypic
 #'   values), `"HMRPGV"` (Harmonic mean of the relative performance of the
-#'   genotypic values), by calling [Resende_indexes()] internally;
+#'   genotypic values), by calling [blup_indexes()] internally;
 #'   `"Pi_a", "Pi_f", "Pi_u"` (Superiority indexes for all, favorable and
 #'   unfavorable environments, respectively, calling [superiority()]
 #'   internally), `"Gai"` (Geometric adaptability index, calling
@@ -172,7 +172,7 @@ then_mod <- Thennarasu(data, ENV, GEN, Y, verbose = FALSE)[[1]]
 ammm_mod <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)
 ammm_mod <- AMMI_indexes(ammm_mod)[[1]]
 blup_mod <- waasb(data, ENV, GEN, REP, Y, verbose = FALSE)
-blup_mod <- Resende_indexes(blup_mod)[[1]]
+blup_mod <- blup_indexes(blup_mod)[[1]]
 temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                Y = Mean,
                Y_R = rank(-Mean),
@@ -209,6 +209,8 @@ temp <- tibble(GEN = an_mod[[1]]$general$GEN,
                ZA_R = ammm_mod$ZA_R,
                WAAS = ammm_mod$WAAS,
                WAAS_R = ammm_mod$WAAS_R,
+               WAASB = blup_mod$WAASB,
+               WAASB_R = blup_mod$WAASB_R,
                HMGV = blup_mod$HMGV,
                HMGV_R = blup_mod$HMGV_R,
                RPGV = blup_mod$RPGV,

@@ -218,9 +218,9 @@ e <- plot_scores(waas_index, type = 3)
 f <- plot_scores(waas_index,
                  type = 3,
                  x.lab = "My custom x label",
-                 size.shape = 4, # Size of the shape point
+                 size.shape.gen = 4, # Size of the shape for genotypes
                  col.gen = "gray50", # Color for genotypes
-                 size.tex.pa = 4, # Size of the text
+                 size.tex.gen = 4, # Size of the text for genotypes
                  col.alpha.env = 0, # Transparency of environment's point
                  x.lim = c(2.4, 3.1), # Limits of x axis
                  x.breaks = seq(2.4, 3.1, by = 0.1), # Markers of x axis

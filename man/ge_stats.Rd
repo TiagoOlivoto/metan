@@ -63,7 +63,7 @@ of the relative contributions of the IPCAs to the interaction), and
 \code{\link[=AMMI_indexes]{AMMI_indexes()}} internally; \code{"HMGV"} (Harmonic mean of the
 genotypic value), \code{"RPGV"} (Relative performance of the genotypic
 values), \code{"HMRPGV"} (Harmonic mean of the relative performance of the
-genotypic values), by calling \code{\link[=Resende_indexes]{Resende_indexes()}} internally;
+genotypic values), by calling \code{\link[=blup_indexes]{blup_indexes()}} internally;
 \verb{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and
 unfavorable environments, respectively, calling \code{\link[=superiority]{superiority()}}
 internally), \code{"Gai"} (Geometric adaptability index, calling

@@ -23,7 +23,7 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
    * AMMI-based stability statistics with [`AMMI_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
    * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
-   * BLUP-based stability indexes with [`Resende_indexes()`](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html).
+   * BLUP-based stability indexes with [`blup_indexes()`](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html).
    * Ecovalence [@Wricke1965] using [`ecovalence()`](https://tiagoolivoto.github.io/metan/reference/ecovalence.html).
    * GGE biplot analysis with [`gge()`](https://tiagoolivoto.github.io/metan/reference/gge.html).
    * Genotypic confidence index [@Annicchiarico1992] using [`Annicchiarico()`](https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html).
@@ -193,10 +193,10 @@ get_model_data(model3, what = "WAASB") %>%
 ```
 
 
-The function [`Resende_indexes()`](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html) can be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details. We use the function [`get_model_data()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) to get the HMRPGV (default) for all analyzed variables.
+The function [`blup_indexes()`](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html) can be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See @Alves2018 for more details. We use the function [`get_model_data()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html) to get the HMRPGV (default) for all analyzed variables.
 
 ```{r }
-index <- Resende_indexes(model3)
+index <- blup_indexes(model3)
 get_model_data(index) %>% round_cols()
 ```
 
