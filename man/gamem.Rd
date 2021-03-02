@@ -57,6 +57,10 @@ list with the following items for each element (variable):
 \item \strong{LRT:} The Likelihood Ratio Test for the random effects.
 \item \strong{BLUPgen:} The estimated BLUPS for genotypes
 \item \strong{ranef:} The random effects of the model
+\item \strong{modellme} The mixed-effect model of class \code{lmerMod}.
+\item \strong{residuals} The residuals of the mixed-effect model.
+\item \strong{model_lm} The fixed-effect model of class \code{lm}.
+\item \strong{residuals_lm} The residuals of the fixed-effect model.
 \item \strong{Details:} A tibble with the following data: \code{Ngen}, the
 number of genotypes; \code{OVmean}, the grand mean; \code{Min}, the minimum
 observed (returning the genotype and replication/block); \code{Max} the
@@ -79,8 +83,7 @@ of variance components to the phenotypic variance;
 \item \verb{CV ratio}, the ratio between genotypic and residual coefficient of
 variation.
 }
-\item \strong{residuals:} The residuals of the model.
-\item \strong{formula} The formula used to fit the model.
+\item \strong{formula} The formula used to fit the mixed-model.
 }
 }
 \description{

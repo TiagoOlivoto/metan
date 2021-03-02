@@ -68,6 +68,10 @@ variable:
 \item \strong{BLUPint} The random effects and estimated BLUPS of all genotypes in
 all environments.
 \item \strong{MeansGxE} The phenotypic means of genotypes in the environments.
+\item \strong{modellme} The mixed-effect model of class \code{lmerMod}.
+\item \strong{residuals} The residuals of the mixed-effect model.
+\item \strong{model_lm} The fixed-effect model of class \code{lm}.
+\item \strong{residuals_lm} The residuals of the fixed-effect model.
 \item \strong{Details} A list summarizing the results. The following information
 are shown: \code{Nenv}, the number of environments in the analysis;
 \code{Ngen} the number of genotypes in the analysis; \code{Mean} the grand
@@ -86,8 +90,7 @@ effects; \code{h2mg} the heritability on the mean basis;
 correlation; \code{CVg} the genotypic coefficient of variation; \code{CVr}
 the residual coefficient of variation; \verb{CV ratio} the ratio between
 genotypic and residual coefficient of variation.
-\item \strong{residuals} The residuals of the model.
-\item \strong{formula} The formula used to fit the model.
+\item \strong{formula} The formula used to fit the mixed-model.
 }
 }
 \description{

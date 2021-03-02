@@ -47,6 +47,14 @@
 #'
 #'  * **ranef:** The random effects of the model
 #'
+#' * **modellme** The mixed-effect model of class `lmerMod`.
+#'
+#' * **residuals** The residuals of the mixed-effect model.
+#'
+#' * **model_lm** The fixed-effect model of class `lm`.
+#'
+#' * **residuals_lm** The residuals of the fixed-effect model.
+#'
 #'  * **Details:** A tibble with the following data: `Ngen`, the
 #'  number of genotypes; `OVmean`, the grand mean; `Min`, the minimum
 #'  observed (returning the genotype and replication/block); `Max` the
@@ -69,9 +77,8 @@
 #'    - `CV ratio`, the ratio between genotypic and residual coefficient of
 #' variation.
 #'
-#'  * **residuals:** The residuals of the model.
 #'
-#'  * **formula** The formula used to fit the model.
+#'  * **formula** The formula used to fit the mixed-model.
 #'
 #' @details `gamem` analyses data from a one-way genotype testing experiment.
 #' By default, a randomized complete block design is used according to the following model:
@@ -191,6 +198,7 @@ if(is_grouped_df(.data)){
       pb <- progress(max = nvar, style = 4)
     }
     model_formula <- "Y ~ REP + (1 | GEN)"
+    model_fixed <- "Y ~ REP + GEN"
     ran_ef <- c("GEN")
     fix_ef <- c("REP")
     for (var in 1:nvar) {
@@ -203,6 +211,7 @@ if(is_grouped_df(.data)){
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$Y)
+      fixed_mod <- lm(model_fixed, data = data)
       Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
         mutate(model = c("Complete", "Genotype")) %>%
@@ -282,19 +291,21 @@ if(is_grouped_df(.data)){
         )
       )
       residuals <- data.frame(fortify.merMod(Complete))
-      temp <- structure(list(
+      temp <- list(
         fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
         random = as_tibble(random),
         LRT = as_tibble(LRT),
         BLUPgen = BLUPgen,
         ranef = ranef,
+        modellme = Complete,
+        residuals = as_tibble(residuals),
+        model_lm = fixed_mod,
+        residuals_lm = tibble(fortify(fixed_mod)),
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
-        residuals = as_tibble(residuals),
         formula = model_formula
-      ),
-      class = "gamem"
-      )
+      ) %>%
+        set_class("gamem")
       if (verbose == TRUE) {
         run_progress(pb,
                      actual = var,
@@ -317,6 +328,7 @@ if(is_grouped_df(.data)){
       pb <- progress(max = nvar, style = 4)
     }
     model_formula <- "Y ~ (1 | GEN) + REP + (1 | REP:BLOCK)"
+    model_fixed <- "Y ~ GEN + REP + REP:BLOCK"
     ran_ef <- c("GEN, BLOCK(REP)")
     fix_ef <- c("REP")
     for (var in 1:nvar) {
@@ -330,6 +342,7 @@ if(is_grouped_df(.data)){
       Ngen <- nlevels(data$GEN)
       Nbloc <- nlevels(data$REP)
       ovmean <- mean(data$Y)
+      fixed_mod <- lm(model_fixed, data = data)
       Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
       LRT <- lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
         mutate(model = c("Complete", "Genotype", "rep:block")) %>%
@@ -420,19 +433,22 @@ if(is_grouped_df(.data)){
         )
       )
       residuals <- as_tibble(fortify.merMod(Complete))
-      temp <- structure(list(
+      temp <- list(
         fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
         random = as_tibble(random),
         LRT = as_tibble(LRT),
         BLUPgen = BLUPgen,
         ranef = ranef,
+        modellme = Complete,
+        residuals = as_tibble(residuals),
+        model_lm = fixed_mod,
+        residuals_lm = tibble(fortify(fixed_mod)),
         Details = as_tibble(Details),
         ESTIMATES = as_tibble(ESTIMATES),
-        residuals = as_tibble(residuals),
         formula = model_formula
-      ),
-      class = "gamem"
-      )
+      ) %>%
+        set_class("gamem")
+
       if (verbose == TRUE) {
         run_progress(pb,
                      actual = var,

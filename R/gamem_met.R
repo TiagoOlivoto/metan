@@ -113,6 +113,14 @@
 #'
 #' * **MeansGxE** The phenotypic means of genotypes in the environments.
 #'
+#' * **modellme** The mixed-effect model of class `lmerMod`.
+#'
+#' * **residuals** The residuals of the mixed-effect model.
+#'
+#' * **model_lm** The fixed-effect model of class `lm`.
+#'
+#' * **residuals_lm** The residuals of the fixed-effect model.
+#'
 #' * **Details** A list summarizing the results. The following information
 #' are shown: `Nenv`, the number of environments in the analysis;
 #' `Ngen` the number of genotypes in the analysis; `Mean` the grand
@@ -135,9 +143,7 @@
 #' the residual coefficient of variation; `CV ratio` the ratio between
 #' genotypic and residual coefficient of variation.
 #'
-#'  * **residuals** The residuals of the model.
-#'
-#'  * **formula** The formula used to fit the model.
+#'  * **formula** The formula used to fit the mixed-model.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @seealso [mtsi()] [waas()]
@@ -248,6 +254,11 @@ gamem_met <- function(.data,
   } else{
     factors %<>% set_names("ENV", "GEN", "REP")
   }
+  model_fixed <-
+    case_when(
+      block_test ~ paste("Y ~ GEN + ENV/REP + GEN:ENV"),
+     !block_test ~ paste("Y ~ GEN + ENV/REP/BLOCK + GEN:ENV")
+    )
   model_formula <-
     case_when(
       random == "gen" & block_test ~ paste("Y ~ ENV/REP + (1 | GEN) + (1 | GEN:ENV)"),
@@ -296,6 +307,7 @@ gamem_met <- function(.data,
     minimo <- min(Nenv, Ngen) - 1
     vin <- vin + 1
     ovmean <- mean(data$Y)
+    fixed_mod <- lm(model_fixed, data = data)
     Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
     LRT <- suppressWarnings(suppressMessages(lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
                                                mutate(model = lrt_groups) %>%
@@ -544,9 +556,11 @@ gamem_met <- function(.data,
                            BLUPint = BLUPint,
                            MeansGxE = means_by(data, ENV, GEN),
                            modellme = Complete,
+                           residuals = as_tibble(residuals),
+                           model_lm = fixed_mod,
+                           residuals_lm = tibble(fortify(fixed_mod)),
                            Details = as_tibble(Details),
                            ESTIMATES = genpar,
-                           residuals = as_tibble(residuals),
                            formula = model_formula), class = "waasb")
     if (verbose == TRUE) {
       run_progress(pb,

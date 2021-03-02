@@ -259,8 +259,13 @@ objects of class \code{waas}).
 
 \strong{Objects of class \code{gamem} and \code{waasb}:}
 \itemize{
-\item \code{"blupge"} for genotype-vs-environment's predicted mean (class waasb).
-\item \code{"blupg"} For genotype's predicted mean.
+\item \code{"blupge"} Best Linear Unbiased Prediction for genotype-environment
+interaction (mixed-effect model, class \code{waasb}).
+\item \code{"blupg"} Best Linear Unbiased Prediction for genotype effect.
+\item \code{"bluege"} Best Linear Unbiased Estimation for genotype-environment
+interaction (fixed-effect model, class \code{waasb}).
+\item \code{"blueg"} Best Linear Unbiased Estimation for genotype effect (fixed
+model).
 \item \code{"data"} The data used.
 \item \code{"details"} The details of the trial.
 \item \code{"genpar"} Genetic parameters (default).

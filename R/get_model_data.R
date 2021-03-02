@@ -199,8 +199,13 @@
 #' * `"OrWAASBY"` The ranking regarding the superiority index.
 #'
 #'  **Objects of class `gamem` and `waasb`:**
-#' * `"blupge"` for genotype-vs-environment's predicted mean (class waasb).
-#' * `"blupg"` For genotype's predicted mean.
+#' * `"blupge"` Best Linear Unbiased Prediction for genotype-environment
+#' interaction (mixed-effect model, class `waasb`).
+#' * `"blupg"` Best Linear Unbiased Prediction for genotype effect.
+#' * `"bluege"` Best Linear Unbiased Estimation for genotype-environment
+#' interaction (fixed-effect model, class `waasb`).
+#' * `"blueg"` Best Linear Unbiased Estimation for genotype effect (fixed
+#' model).
 #' * `"data"` The data used.
 #' * `"details"` The details of the trial.
 #' * `"genpar"` Genetic parameters (default).
@@ -377,13 +382,13 @@ get_model_data <- function(x,
     }
   }
   check <- c(
-    "blupg", "blupge", "Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB", "OrResp", "OrWAASB",
+    "blupg", "blupge","blueg","bluege", "Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB", "OrResp", "OrWAASB",
     "OrPC1", "WAASBY", "OrWAASBY", "vcomp", "lrt", "details", "genpar", "ranef", "data", "gcov",
     "gcor", "pcov", "pcor", "fixed", "h2")
   check1 <- c("Y", "WAAS", "PctResp", "PctWAAS", "wRes", "wWAAS", "OrResp", "OrWAAS", "OrPC1", "WAASY", "OrWAASY")
   check2 <- paste("PC", 1:200, sep = "")
-  check3 <- c("blupg", "blupge", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "gcor", "pcov", "pcor", "fixed")
-  check3.1 <- c("h2", "blupg", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "gcor", "pcov", "pcor", "fixed")
+  check3 <- c("blupg", "blupge", "blueg","bluege", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "gcor", "pcov", "pcor", "fixed")
+  check3.1 <- c("h2", "blupg", "blueg", "vcomp", "lrt", "genpar", "details", "ranef", "data", "gcov", "gcor", "pcov", "pcor", "fixed")
   check4 <- c("Y", "WAASB", "PctResp", "PctWAASB", "wRes", "wWAASB",
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
@@ -827,7 +832,7 @@ get_model_data <- function(x,
         names(temps) <- names(x)
         bind <- temps %>% reduce(full_join, by = names(temps[[1]]))
       }
-      if (what %in% c("blupg", "blupge")) {
+      if (what %in% c("blupg", "blupge", "blueg", "bluege")) {
         if (what == "blupg") {
           list <- lapply(x, function(x){
             x[["BLUPgen"]] %>% select(GEN, Predicted)
@@ -843,7 +848,33 @@ get_model_data <- function(x,
         }
         if (what == "blupge") {
           list <- lapply(x, function(x){
-            x[["BLUPint"]] %>% select(ENV, GEN, Predicted)
+            x[["residuals"]] %>% means_by(GEN) %>% select_cols(GEN, .fitted)
+          })
+          bind <-  suppressWarnings(
+            lapply(seq_along(list),
+                   function(i){
+                     set_names(list[[i]], "GEN", names(list)[i])
+                   }) %>%
+              reduce(full_join, by = "GEN") %>%
+              arrange(GEN)
+          )
+        }
+        if (what == "blueg") {
+          list <- lapply(x, function(x){
+            x[["residuals_lm"]] %>% select(GEN, .fitted) %>% means_by(GEN)
+          })
+          bind <-  suppressWarnings(
+            lapply(seq_along(list),
+                   function(i){
+                     set_names(list[[i]],  "GEN", names(list)[i])
+                   }) %>%
+              reduce(full_join, by = "GEN") %>%
+              arrange(GEN)
+          )
+        }
+        if (what == "bluege") {
+          list <- lapply(x, function(x){
+            x[["residuals_lm"]] %>% select(ENV, GEN, .fitted) %>% means_by(ENV, GEN)
           })
           bind <-  suppressWarnings(
             lapply(seq_along(list),
@@ -851,8 +882,7 @@ get_model_data <- function(x,
                      set_names(list[[i]], "ENV", "GEN", names(list)[i])
                    }) %>%
               reduce(full_join, by = c("ENV", "GEN")) %>%
-              arrange(ENV, GEN) %>%
-              means_by(ENV, GEN)
+              arrange(ENV, GEN)
           )
         }
       }
@@ -911,7 +941,6 @@ get_model_data <- function(x,
       }
     }
   }
-
   if (has_class(x, "anova_ind")) {
     if (is.null(what)){
       what <- "MEAN"
