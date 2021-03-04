@@ -265,7 +265,7 @@ replace_number <- function(.data,
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     results <-
       .data %>%
-      mutate(across(..., ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
+      mutate(across(c(...), ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
     return(results)
   } else{
     return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
@@ -286,7 +286,7 @@ replace_string <- function(.data,
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     results <-
       .data %>%
-      mutate(across(..., ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
+      mutate(across(c(...), ~gsub(pattern, replacement, ., ignore.case = ignore_case)))
     return(results)
   } else{
     return(gsub(pattern, replacement, .data, ignore.case = ignore_case))
