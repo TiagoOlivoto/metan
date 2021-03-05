@@ -81,6 +81,7 @@ find_outliers <- function(.data =  NULL,
   na2 <- sum(is.na(var_name2))
   if ((na2 - na1) > 0) {
     if(verbose == TRUE){
+      cat("Trait:", colnames(dd), "\n")
       cat("Number of possible outliers:", na2 - na1, "\n")
       cat("Line(s):", names_out, "\n")
       cat("Proportion: ", round((na2 - na1)/sum(!is.na(var_name2)) *
