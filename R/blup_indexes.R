@@ -120,7 +120,7 @@ rpgv <- function(model){
         Y <- model[["MeansGxE"]]
         GEMEAN <- make_mat(Y, GEN, ENV, Y)
         ovmean <- mean(Y$Y)
-        mean_env <- apply(GEMEAN, 2, FUN = mean)
+        mean_env <- apply(GEMEAN, 2, FUN = mean, na.rm = TRUE)
         RPGV <-
             tibble(GEN = rownames(GEPRED),
                    Y = model[["MeansGxE"]] %>% means_by(GEN) %>% pull(Y),
@@ -147,7 +147,7 @@ hmrpgv <- function(model){
         Y <- model[["MeansGxE"]]
         GEMEAN <- make_mat(Y, GEN, ENV, Y)
         ovmean <- mean(Y$Y)
-        mean_env <- apply(GEMEAN, 2, FUN = mean)
+        mean_env <- apply(GEMEAN, 2, FUN = mean, na.rm = TRUE)
         HMRPGV <-
             tibble(GEN = rownames(GEPRED),
                    Y = Y %>% means_by(GEN) %>% pull(Y),
