@@ -36,6 +36,10 @@
 #'
 #'  **Objects of class `anova_ind`:**
 #' * `"MEAN"`The mean value of the variable
+#' * `"DFG", "DFB", "DFCR", "DFIB_R", "DFE"`. The degree of freedom for
+#' genotypes, blocks (randomized complete block design), complete replicates,
+#' incomplete blocks within replicates (alpha-lattice design), and error,
+#' respectively.
 #' * `"MSG", "FCG", "PFG"` The mean square, F-calculated and P-values for
 #' genotype effect, respectively.
 #' * `"MSB", "FCB", "PFB"` The mean square, F-calculated and P-values for
@@ -407,7 +411,7 @@ get_model_data <- function(x,
   check18 <- c("Mean_rp", "Sem_rp", "Wi", "rank")
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Y", "h2", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
-  check21 <- c("MEAN", "MSG", "FCG", "PFG", "MSB", "FCB", "PFB", "MSCR", "FCR", "PFCR", "MSIB_R", "FCIB_R", "PFIB_R", "MSE", "CV", "h2", "AS")
+  check21 <- c("MEAN", "DFG", "MSG", "FCG", "PFG", "DFB", "MSB", "FCB", "PFB", "DFCR", "MSCR", "FCR", "PFCR", "DFIB_R", "MSIB_R", "FCIB_R", "PFIB_R", "DFE", "MSE", "CV", "h2", "AS")
   check22 <- c("scores", "exp_var")
   check23 <- c("coefs", "loads", "crossloads", "canonical")
   check24 <- c("gyt", "stand_gyt", "si")

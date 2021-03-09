@@ -22,32 +22,40 @@
 #'   block design is considered. If block is informed, then a resolvable
 #'   alpha-lattice design (Patterson and Williams, 1976) is employed.
 #'   **All effects, except the error, are assumed to be fixed.**
-#' @return A list where each element is the result for one variable containing:
+#' @param verbose Logical argument. If `verbose = FALSE` the code will run
+#'   silently.
+#' @return A list where each element is the result for one variable containing
+#'   (1) **individual**: A tidy tbl_df with the results of the individual
+#'   analysis of variance with the following column names, and (2) **MSRatio**:
+#'   The ratio between the higher and lower residual mean square. The following
+#'   columns are returned, depending on the experimental design
 #'
-#' 1. **individual**: A tidy tbl_df with the results of the individual
-#' analysis of variance with the following column names:
+#' * **For analysis in alpha-lattice designs**:
+#'    - `MEAN`: The grand mean.
+#'    - `DFG, DFCR, and DFIB_R, and DFE`: The degree of freedom for genotype,
+#'    complete replicates, incomplete blocks within replicates, and error,
+#'    respectively.
+#'    - `MSG, MSCR, MSIB_R`: The mean squares for genotype, replicates, incomplete
+#' blocks within replicates, and error, respectively.
+#'    - `FCG, FCR, FCIB_R`: The F-calculated for genotype, replicates and
+#' incomplete blocks within replicates, respectively.
+#'    - `PFG, PFCR, PFIB_R`: The P-values for genotype, replicates and incomplete
+#' blocks within replicates, respectively.
+#'    - `CV`: coefficient of variation.
+#'    - `h2`: broad-sense heritability.
+#'    - `AS`: accuracy of selection (square root of `h2`)
 #'
-#' * **For analysis in alpha-lattice designs**: **ENV**: The
-#' environment code; **MEAN**: The grand mean; **MSG, MSCR, MSIB_R**:
-#' The mean squares for genotype, replicates and incomplete blocks within
-#' replicates, respectively. **FCG, FCR, FCIB_R**: The F-calculated for
-#' genotype, replicates and incomplete blocks within replicates,
-#' respectively.**PFG, PFCR, PFIB_R**: The P-values for genotype,
-#' replicates and incomplete blocks within replicates, respectively.
-#' **MSE**: The mean square error. **CV**: coefficient of variation.
-#' **h2**: broad-sense heritability. **AS**: accuracy of selection
-#' (square root of **h2**)
+#' * **For analysis in randomized complete block design**:
+#'    - `MEAN`: The grand mean.
+#'    - `DFG, DFB, and DFE`: The degree of freedom for genotype blocks, and error, respectively.
+#'    - `MSG, MSB, and MSE`: The mean squares for genotype blocks, and error, respectively.
+#'    - `FCG and FCB`: The F-calculated for genotype and blocks, respectively.
+#'    - `PFG and PFB`: The P-values for genotype and blocks, respectively.
+#'    - `CV`: coefficient of variation.
+#'    - `h2`: broad-sense heritability.
+#'    - `AS`: accuracy of selection (square root of `h2`)
 #'
-#' * **For analysis in randomized complete block design**: **MSG,
-#' MSB**: The mean squares for genotype and blocks, respectively. **FCG,
-#' FCB**: The F-calculated for genotype and blocks, respectively. **PFG,
-#' PFB**: The P-values for genotype and blocks, respectively. **MSE**: The
-#' mean square error. **CV**: coefficient of variation. **h2**:
-#' broad-sense heritability. **AS**: accuracy of selection (square root of
-#' **h2**)
 #'
-#' 2. **MSRatio** The ratio between the higher and lower residual mean
-#' square.
 #'
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
 #' resolvable incomplete block designs. Biometrika 63:83-92.
@@ -76,7 +84,9 @@ anova_ind <- function(.data,
                       gen,
                       rep,
                       resp,
-                      block = NULL) {
+                      block = NULL,
+                      verbose = TRUE) {
+
   if(!missing(block)){
     factors  <- .data %>%
       select({{env}},
@@ -100,6 +110,9 @@ anova_ind <- function(.data,
   }
   listres <- list()
   nvar <- ncol(vars)
+  if (verbose == TRUE) {
+    pb <- progress(max = nvar, style = 4)
+  }
   for (var in 1:nvar) {
     data <- factors %>%
       mutate(Y = vars[[var]])
@@ -111,12 +124,16 @@ anova_ind <- function(.data,
     if(missing(block)){
       formula <- as.formula(paste0("Y ~ GEN + REP"))
       individual <- do.call(rbind, lapply(grouped, function(x) {
-        anova <- aov(formula, data = x) %>%
+        anova <-
+          aov(formula, data = x) %>%
           anova() %>%
           suppressMessages() %>%
           suppressWarnings()
+        DFB <- anova[2, 1]
         MSB <- anova[2, 3]
+        DFG <- anova[1, 1]
         MSG <- anova[1, 3]
+        DFE <- anova[3, 1]
         MSE <- anova[3, 3]
         h2 <- (MSG - MSE) / MSG
         if (h2 < 0) {
@@ -125,27 +142,40 @@ anova_ind <- function(.data,
           AS <- sqrt(h2)
         }
         final <- tibble(MEAN = mean(x$Y),
+                        DFG = DFG,
                         MSG = MSG,
                         FCG = anova[1, 4],
                         PFG = anova[1, 5],
+                        DFB = DFB,
                         MSB = MSB,
                         FCB = anova[2, 4],
                         PFB = anova[2, 5],
+                        DFE = DFE,
                         MSE = MSE,
                         CV = sqrt(MSE) / mean(x$Y) * 100,
                         h2 = h2,
                         AS = AS)
       }))
+      if (verbose == TRUE) {
+        run_progress(pb,
+                     actual = var,
+                     text = paste("Evaluating trait", names(vars[var])))
+      }
     } else{
       formula <- as.formula(paste0("Y ~ GEN + REP + REP:BLOCK"))
       individual <- do.call(rbind, lapply(grouped, function(x) {
-        anova <- aov(formula, data = x) %>%
+        anova <-
+          aov(formula, data = x) %>%
           anova() %>%
           suppressMessages() %>%
           suppressWarnings()
+        DFG <- anova[1, 1]
         MSG <- anova[1, 3]
+        DFCR <- anova[2, 1]
         MSB <- anova[2, 3]
+        DFIB_R <- anova[3, 1]
         MSIB_R <- anova[3, 3]
+        DFE <- anova[4, 1]
         MSE <- anova[4, 3]
         h2 <- (MSG - MSE) / MSG
         if (h2 < 0) {
@@ -154,20 +184,29 @@ anova_ind <- function(.data,
           AS <- sqrt(h2)
         }
         final <- tibble(MEAN = mean(x$Y),
+                        DFG = DFG,
                         MSG = MSG,
                         FCG = anova[1, 4],
                         PFG = anova[1, 5],
+                        DFCR = DFCR,
                         MSCR = MSB,
                         FCR = anova[2, 4],
                         PFCR = anova[2, 5],
+                        DFIB_R = DFIB_R,
                         MSIB_R = MSIB_R,
                         FCIB_R = anova[3, 4],
                         PFIB_R = anova[3, 5],
+                        DFE = DFE,
                         MSE = MSE,
                         CV = sqrt(MSE) / mean(x$Y) * 100,
                         h2 = h2,
                         AS = AS)
       }))
+      if (verbose == TRUE) {
+        run_progress(pb,
+                     actual = var,
+                     text = paste("Evaluating trait", names(vars[var])))
+      }
     }
     temp <- list(individual = as_tibble(rownames_to_column(individual, "ENV")),
                  MSRratio = max(individual$MSE) / min(individual$MSE))

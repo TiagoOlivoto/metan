@@ -60,6 +60,10 @@ interaction.
 \strong{Objects of class \code{anova_ind}:}
 \itemize{
 \item \code{"MEAN"}The mean value of the variable
+\item \verb{"DFG", "DFB", "DFCR", "DFIB_R", "DFE"}. The degree of freedom for
+genotypes, blocks (randomized complete block design), complete replicates,
+incomplete blocks within replicates (alpha-lattice design), and error,
+respectively.
 \item \verb{"MSG", "FCG", "PFG"} The mean square, F-calculated and P-values for
 genotype effect, respectively.
 \item \verb{"MSB", "FCB", "PFB"} The mean square, F-calculated and P-values for

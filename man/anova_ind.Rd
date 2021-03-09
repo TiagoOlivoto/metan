@@ -4,7 +4,7 @@
 \alias{anova_ind}
 \title{Within-environment analysis of variance}
 \usage{
-anova_ind(.data, env, gen, rep, resp, block = NULL)
+anova_ind(.data, env, gen, rep, resp, block = NULL, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -26,35 +26,44 @@ single procedure a vector of variables may be used. For example \code{resp = c(v
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 \strong{All effects, except the error, are assumed to be fixed.}}
+
+\item{verbose}{Logical argument. If \code{verbose = FALSE} the code will run
+silently.}
 }
 \value{
-A list where each element is the result for one variable containing:
-\enumerate{
-\item \strong{individual}: A tidy tbl_df with the results of the individual
-analysis of variance with the following column names:
-}
+A list where each element is the result for one variable containing
+(1) \strong{individual}: A tidy tbl_df with the results of the individual
+analysis of variance with the following column names, and (2) \strong{MSRatio}:
+The ratio between the higher and lower residual mean square. The following
+columns are returned, depending on the experimental design
 \itemize{
-\item \strong{For analysis in alpha-lattice designs}: \strong{ENV}: The
-environment code; \strong{MEAN}: The grand mean; \strong{MSG, MSCR, MSIB_R}:
-The mean squares for genotype, replicates and incomplete blocks within
-replicates, respectively. \strong{FCG, FCR, FCIB_R}: The F-calculated for
-genotype, replicates and incomplete blocks within replicates,
-respectively.\strong{PFG, PFCR, PFIB_R}: The P-values for genotype,
-replicates and incomplete blocks within replicates, respectively.
-\strong{MSE}: The mean square error. \strong{CV}: coefficient of variation.
-\strong{h2}: broad-sense heritability. \strong{AS}: accuracy of selection
-(square root of \strong{h2})
-\item \strong{For analysis in randomized complete block design}: \strong{MSG,
-MSB}: The mean squares for genotype and blocks, respectively. \strong{FCG,
-FCB}: The F-calculated for genotype and blocks, respectively. \strong{PFG,
-PFB}: The P-values for genotype and blocks, respectively. \strong{MSE}: The
-mean square error. \strong{CV}: coefficient of variation. \strong{h2}:
-broad-sense heritability. \strong{AS}: accuracy of selection (square root of
-\strong{h2})
+\item \strong{For analysis in alpha-lattice designs}:
+\itemize{
+\item \code{MEAN}: The grand mean.
+\item \verb{DFG, DFCR, and DFIB_R, and DFE}: The degree of freedom for genotype,
+complete replicates, incomplete blocks within replicates, and error,
+respectively.
+\item \verb{MSG, MSCR, MSIB_R}: The mean squares for genotype, replicates, incomplete
+blocks within replicates, and error, respectively.
+\item \verb{FCG, FCR, FCIB_R}: The F-calculated for genotype, replicates and
+incomplete blocks within replicates, respectively.
+\item \verb{PFG, PFCR, PFIB_R}: The P-values for genotype, replicates and incomplete
+blocks within replicates, respectively.
+\item \code{CV}: coefficient of variation.
+\item \code{h2}: broad-sense heritability.
+\item \code{AS}: accuracy of selection (square root of \code{h2})
 }
-\enumerate{
-\item \strong{MSRatio} The ratio between the higher and lower residual mean
-square.
+\item \strong{For analysis in randomized complete block design}:
+\itemize{
+\item \code{MEAN}: The grand mean.
+\item \verb{DFG, DFB, and DFE}: The degree of freedom for genotype blocks, and error, respectively.
+\item \verb{MSG, MSB, and MSE}: The mean squares for genotype blocks, and error, respectively.
+\item \verb{FCG and FCB}: The F-calculated for genotype and blocks, respectively.
+\item \verb{PFG and PFB}: The P-values for genotype and blocks, respectively.
+\item \code{CV}: coefficient of variation.
+\item \code{h2}: broad-sense heritability.
+\item \code{AS}: accuracy of selection (square root of \code{h2})
+}
 }
 }
 \description{
