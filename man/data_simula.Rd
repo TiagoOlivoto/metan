@@ -15,6 +15,7 @@ ge_simula(
   env_eff = 15,
   rep_eff = 5,
   ge_eff = 10,
+  res_eff = 5,
   intercept = 100,
   seed = NULL
 )
@@ -25,6 +26,7 @@ g_simula(
   nvars = 1,
   gen_eff = 20,
   rep_eff = 5,
+  res_eff = 5,
   intercept = 100,
   seed = NULL
 )
@@ -45,6 +47,10 @@ g_simula(
 \item{rep_eff}{The replication effect}
 
 \item{ge_eff}{The genotype-environment interaction effect.}
+
+\item{res_eff}{The residual effect. The effect is sampled from a normal
+distribution with zero mean and standard deviation equal to \code{res_eff}.
+Be sure to change \code{res_eff} when changin the \code{intercept} scale.}
 
 \item{intercept}{The intercept.}
 
@@ -75,18 +81,23 @@ library(metan)
 # Genotype data (5 genotypes and 3 replicates)
 gen_data <-
    g_simula(ngen = 5,
-            nrep = 3)
+            nrep = 3,
+            seed = 1)
 gen_data
 inspect(gen_data, plot = TRUE)
 
- # Genotype-environment data
- # 5 genotypes, 3 environments, 4 replicates and 2 traits
+aov(V1 ~ GEN + REP, data = gen_data) \%>\% anova()
+
+# Genotype-environment data
+# 5 genotypes, 3 environments, 4 replicates and 2 traits
 df <-
 ge_simula(ngen = 5,
           nenv = 3,
           nrep = 4,
-          nvars = 2)
-inspect(df, plot = TRUE)
+          nvars = 2,
+          seed = 1)
+ge_plot(df, ENV, GEN, V1)
+aov(V1 ~ ENV*GEN + ENV/REP, data = df) \%>\% anova()
 
 # Change genotype effect (trait 1 with fewer differences among genotypes)
 # Define different intercepts for the two traits
@@ -96,8 +107,9 @@ ge_simula(ngen = 10,
           nrep = 4,
           nvars = 2,
           gen_eff = c(1, 50),
-          intercept = c(80, 1500))
-inspect(df2, plot = TRUE)
+          intercept = c(80, 1500),
+          seed = 1)
+ge_plot(df2, ENV, GEN, V2)
 }
 }
 \author{

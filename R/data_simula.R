@@ -23,6 +23,9 @@
 #' @param env_eff The environment effect
 #' @param rep_eff The replication effect
 #' @param ge_eff The genotype-environment interaction effect.
+#' @param res_eff The residual effect. The effect is sampled from a normal
+#'   distribution with zero mean and standard deviation equal to `res_eff`.
+#'   Be sure to change `res_eff` when changin the `intercept` scale.
 #' @param intercept The intercept.
 #' @param seed The seed.
 #' @md
@@ -36,18 +39,23 @@
 #' # Genotype data (5 genotypes and 3 replicates)
 #' gen_data <-
 #'    g_simula(ngen = 5,
-#'             nrep = 3)
+#'             nrep = 3,
+#'             seed = 1)
 #' gen_data
 #' inspect(gen_data, plot = TRUE)
 #'
-#'  # Genotype-environment data
-#'  # 5 genotypes, 3 environments, 4 replicates and 2 traits
+#' aov(V1 ~ GEN + REP, data = gen_data) %>% anova()
+#'
+#' # Genotype-environment data
+#' # 5 genotypes, 3 environments, 4 replicates and 2 traits
 #' df <-
 #' ge_simula(ngen = 5,
 #'           nenv = 3,
 #'           nrep = 4,
-#'           nvars = 2)
-#' inspect(df, plot = TRUE)
+#'           nvars = 2,
+#'           seed = 1)
+#' ge_plot(df, ENV, GEN, V1)
+#' aov(V1 ~ ENV*GEN + ENV/REP, data = df) %>% anova()
 #'
 #' # Change genotype effect (trait 1 with fewer differences among genotypes)
 #' # Define different intercepts for the two traits
@@ -57,8 +65,9 @@
 #'           nrep = 4,
 #'           nvars = 2,
 #'           gen_eff = c(1, 50),
-#'           intercept = c(80, 1500))
-#' inspect(df2, plot = TRUE)
+#'           intercept = c(80, 1500),
+#'           seed = 1)
+#' ge_plot(df2, ENV, GEN, V2)
 #' }
 ge_simula <- function(ngen,
                       nenv,
@@ -68,6 +77,7 @@ ge_simula <- function(ngen,
                       env_eff = 15,
                       rep_eff = 5,
                       ge_eff = 10,
+                      res_eff = 5,
                       intercept = 100,
                       seed = NULL){
   if(length(gen_eff) != 1 & length(gen_eff) != nvars){
@@ -97,14 +107,18 @@ ge_simula <- function(ngen,
   if(length(ge_eff) == 1 & length(ge_eff) != nvars){
     warning("'ge_eff = ", ge_eff, "' recycled for all the ", nvars, " traits.", call. = FALSE)
   }
-
+  if(length(res_eff) != 1 & length(res_eff) != nvars){
+    stop("Argument 'res_eff' must have length 1 or the same length of 'nvars'.", call. = FALSE)
+  }
+  if(length(res_eff) == 1 & length(res_eff) != nvars){
+    warning("'res_eff = ", res_eff, "' recycled for all the ", nvars, " traits.", call. = FALSE)
+  }
   if(length(intercept) != 1 & length(intercept) != nvars){
     stop("Argument 'intercept' must have length 1 or the same length of 'nvars'.", call. = FALSE)
   }
   if(length(intercept) == 1 & length(intercept) != nvars){
     warning("'intercept = ", intercept, "' recycled for all the ", nvars, " traits.", call. = FALSE)
   }
-
   if(!missing(seed) & length(seed) != 1 & length(seed) != nvars){
     stop("Argument 'seed' must have length 1 or the same length of 'nvars'.", call. = FALSE)
   }
@@ -119,6 +133,7 @@ ge_simula <- function(ngen,
              env_eff = env_eff,
              rep_eff = rep_eff,
              ge_eff = ge_eff,
+             res_eff = res_eff,
              intercept = intercept,
              seed = seed){
       if(missing(seed)){
@@ -146,9 +161,10 @@ ge_simula <- function(ngen,
         left_join(gen_eff, by = "GEN") %>%
         left_join(block_eff, by = "REP") %>%
         add_cols(ge_eff = rep(runif(nenv * ngen, -ge_eff, ge_eff), each = nrep)) %>%
+        add_cols(resid = rnorm(nenv * ngen * nrep, 0, res_eff)) %>%
         add_cols(V1 = intercept) %>%
-        mutate(across(V1, ~.x + gen_eff + env_eff + block_eff + ge_eff)) %>%
-        remove_cols(env_eff:ge_eff)
+        mutate(across(V1, ~.x + gen_eff + env_eff + block_eff + ge_eff + resid)) %>%
+        remove_cols(env_eff:resid)
       return(df2)
     }
   dfs <- list()
@@ -160,6 +176,7 @@ ge_simula <- function(ngen,
                             env_eff = env_eff[ifelse(length(env_eff) != 1, i, 1)],
                             rep_eff = rep_eff[ifelse(length(rep_eff) != 1, i, 1)],
                             ge_eff = ge_eff[ifelse(length(ge_eff) != 1, i, 1)],
+                            res_eff = res_eff[ifelse(length(res_eff) != 1, i, 1)],
                             intercept = intercept[ifelse(length(intercept) != 1, i, 1)],
                             seed = seed[ifelse(length(seed) != 1, i, 1)])
     dfs[[paste("V", i, sep = "")]] <- temp
@@ -178,6 +195,7 @@ g_simula <- function(ngen,
                      nvars = 1,
                      gen_eff = 20,
                      rep_eff = 5,
+                     res_eff = 5,
                      intercept = 100,
                      seed = NULL){
   if(length(gen_eff) != 1 & length(gen_eff) != nvars){
@@ -191,6 +209,12 @@ g_simula <- function(ngen,
   }
   if(length(rep_eff) == 1 & length(rep_eff) != nvars){
     warning("'rep_eff = ", rep_eff, "' recycled for all the ", nvars, " traits.", call. = FALSE)
+  }
+  if(length(res_eff) != 1 & length(res_eff) != nvars){
+    stop("Argument 'res_eff' must have length 1 or the same length of 'nvars'.", call. = FALSE)
+  }
+  if(length(res_eff) == 1 & length(res_eff) != nvars){
+    warning("'res_eff = ", res_eff, "' recycled for all the ", nvars, " traits.", call. = FALSE)
   }
   if(length(intercept) != 1 & length(intercept) != nvars){
     stop("Argument 'intercept' must have length 1 or the same length of 'nvars'.", call. = FALSE)
@@ -209,6 +233,7 @@ g_simula <- function(ngen,
              nrep = nrep,
              gen_eff = gen_eff,
              rep_eff = rep_eff,
+             res_eff = res_eff,
              intercept = intercept,
              seed = seed){
       if(missing(seed)){
@@ -230,9 +255,10 @@ g_simula <- function(ngen,
         df %>%
         left_join(gen_eff, by = "GEN") %>%
         left_join(block_eff, by = "REP") %>%
+        add_cols(resid = rnorm(ngen * nrep, 0, res_eff)) %>%
         add_cols(V1 = intercept) %>%
-        mutate(across(V1, ~.x + gen_eff + block_eff)) %>%
-        remove_cols(gen_eff:block_eff)
+        mutate(across(V1, ~.x + gen_eff + block_eff + resid)) %>%
+        remove_cols(gen_eff:resid)
       return(df2)
     }
   dfs <- list()
@@ -241,6 +267,7 @@ g_simula <- function(ngen,
                             nrep = nrep,
                             gen_eff = gen_eff[ifelse(length(gen_eff) != 1, i, 1)],
                             rep_eff = rep_eff[ifelse(length(rep_eff) != 1, i, 1)],
+                            res_eff = res_eff[ifelse(length(res_eff) != 1, i, 1)],
                             intercept = intercept[ifelse(length(intercept) != 1, i, 1)],
                             seed = seed[ifelse(length(seed) != 1, i, 1)])
     dfs[[paste("V", i, sep = "")]] <- temp
