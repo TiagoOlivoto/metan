@@ -42,9 +42,10 @@
 #' variables in such factor are.
 #' * **contri_fac_rank, contri_fac_rank_sel** The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
-#' * **sel_dif_trait, sel_dif_waasb, sel_dif_waasby** A data frame
-#' containing the selection differential (gains) for the traits, and for the
-#' WAASB and WAASBY indexes. The following variables are shown.
+#' * **sel_dif_trait, sel_dif_stab, sel_dif_mps** A data frame containing the
+#' selection differential (gains) for the traits, for the stability (WAASB
+#' index) WAASB, and for the mean performance and stability (WAASBY indexes).
+#' The following variables are shown.
 #'   - `VAR`: the trait's name.
 #'   - `Factor`: The factor that traits where grouped into.
 #'   - `Xo`: The original population mean.
@@ -56,9 +57,11 @@
 #'   respectively.
 #'   - `sense`: The desired selection sense.
 #'   - `goal`: selection gains match desired sense? 100 for yes and 0 for no.
-#' * **stat_dif_var, stat_dif_waasb, stat_dif_waasby** A data frame with
-#' the descriptive statistic for the selection gains of the traits and WAASB and
-#' WAASBY indexes. The following columns are shown by sense.
+#' * **stat_dif_var, stat_dif_stab, stat_dif_mps** A data frame with the
+#' descriptive statistic for the selection gains for the traits, for the
+#' stability (WAASB index) WAASB, and for the mean performance and stability
+#' (WAASBY index).
+#' The following variables are shown.
 #'    - `sense`: The desired selection sense.
 #'    - `variable`: the trait's name.
 #'    - `min`: the minimum value for the selection gain.
@@ -257,7 +260,7 @@ mtsi <- function(.data,
                       Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]),
                       SD = Xs - Xo,
                       SDperc = (Xs - Xo) / Xo * 100)
-    stat_dif_waasby <-
+    stat_dif_mps <-
       desc_stat(sel_dif, SDperc, stats = c("min, mean, ci, sd.amo, max, sum"))
     sel_dif_mean <-
       tibble(VAR = names(pos.var.factor[, 2]),
@@ -307,15 +310,15 @@ mtsi <- function(.data,
     what <- ifelse(has_class(.data, "WAASB"), "WAAS", "WAASB")
     waasb_index <- gmd(.data, what, verbose = FALSE)
     waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
-    sel_dif_waasb <-
+    sel_dif_stab <-
       tibble(
         TRAIT = names(waasb_selected),
         Xo = colMeans(waasb_index %>% select_numeric_cols()),
         Xs = waasb_selected,
         SD = Xs - Xo,
         SDperc = (Xs - Xo) / Xo * 100)
-    stat_dif_waasb <-
-      desc_stat(sel_dif_waasb, SDperc,
+    stat_dif_stab <-
+      desc_stat(sel_dif_stab, SDperc,
                 stats = c("min, mean, ci, sd.amo, max, sum"))
     contri_fac_rank_sel <-
       contri_long %>%
@@ -325,10 +328,10 @@ mtsi <- function(.data,
       map_dfc(~.x %>% pull())
   }
   if (is.null(ngs)) {
-    stat_dif_waasb <- NULL
-    stat_dif_waasby <- NULL
+    stat_dif_stab <- NULL
+    stat_dif_mps <- NULL
     sel_dif <- NULL
-    sel_dif_waasb <- NULL
+    sel_dif_stab <- NULL
     sel_dif_mean <- NULL
     selected <- NULL
     contri_fac_rank_sel <- NULL
@@ -385,10 +388,10 @@ mtsi <- function(.data,
                         contri_fac_rank_sel = contri_fac_rank_sel,
                         sel_dif_trait = sel_dif_mean,
                         stat_dif_trait = stat_gain,
-                        sel_dif_waasb = sel_dif_waasb,
-                        stat_dif_waasb = stat_dif_waasb,
-                        sel_dif_waasby = sel_dif,
-                        stat_dif_waasby = stat_dif_waasby,
+                        sel_dif_stab = sel_dif_stab,
+                        stat_dif_stab = stat_dif_stab,
+                        sel_dif_mps = sel_dif,
+                        stat_dif_mps = stat_dif_mps,
                         sel_gen = selected),
                    class = "mtsi"))
 }

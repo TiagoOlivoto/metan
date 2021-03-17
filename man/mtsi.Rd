@@ -58,9 +58,10 @@ value. The lower the contribution of a factor, the close of the ideotype the
 variables in such factor are.
 \item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.
-\item \strong{sel_dif_trait, sel_dif_waasb, sel_dif_waasby} A data frame
-containing the selection differential (gains) for the traits, and for the
-WAASB and WAASBY indexes. The following variables are shown.
+\item \strong{sel_dif_trait, sel_dif_stab, sel_dif_mps} A data frame containing the
+selection differential (gains) for the traits, for the stability (WAASB
+index) WAASB, and for the mean performance and stability (WAASBY indexes).
+The following variables are shown.
 \itemize{
 \item \code{VAR}: the trait's name.
 \item \code{Factor}: The factor that traits where grouped into.
@@ -74,9 +75,11 @@ respectively.
 \item \code{sense}: The desired selection sense.
 \item \code{goal}: selection gains match desired sense? 100 for yes and 0 for no.
 }
-\item \strong{stat_dif_var, stat_dif_waasb, stat_dif_waasby} A data frame with
-the descriptive statistic for the selection gains of the traits and WAASB and
-WAASBY indexes. The following columns are shown by sense.
+\item \strong{stat_dif_var, stat_dif_stab, stat_dif_mps} A data frame with the
+descriptive statistic for the selection gains for the traits, for the
+stability (WAASB index) WAASB, and for the mean performance and stability
+(WAASBY index).
+The following variables are shown.
 \itemize{
 \item \code{sense}: The desired selection sense.
 \item \code{variable}: the trait's name.
