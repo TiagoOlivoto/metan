@@ -68,14 +68,14 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
     S.1 <- matrix(NA, nr, nc)
     S1 <- numeric()
     k <- 2
-    data_r <- sweep(data_m, 1, rowMeans(data_m), FUN = "-") + mean(data_m)
+    data_r <- sweep(data_m, 1, rowMeans(data_m, na.rm = TRUE), FUN = "-") + mean(data_m, na.rm = TRUE)
     ranks <- apply(data_r, 2, rank)
     ranks_y <- apply(data_m, 2, rank)
-    r_means <- rowMeans(ranks)
-    r_means_y <- rowMeans(ranks_y)
-    S2 <- round(rowSums(sweep(ranks, 1, r_means)^2) / (nc-1), 4)
-    S3 <- round(rowSums(sweep(ranks_y, 1, r_means_y)^2) / r_means_y, 4)
-    S6 <- round(rowSums(abs(sweep(ranks_y, 1, r_means_y))) / r_means_y, 4)
+    r_means <- rowMeans(ranks, na.rm = TRUE)
+    r_means_y <- rowMeans(ranks_y, na.rm = TRUE)
+    S2 <- round(rowSums(sweep(ranks, 1, r_means)^2, na.rm = TRUE) / (nc-1), 4)
+    S3 <- round(rowSums(sweep(ranks_y, 1, r_means_y)^2, na.rm = TRUE) / r_means_y, 4)
+    S6 <- round(rowSums(abs(sweep(ranks_y, 1, r_means_y)), na.rm = TRUE) / r_means_y, 4)
     for (i in 1:nrow(data)) {
       for (j in 1:(nc - 1)) {
         S.1[i, j] <- abs(ranks[i, j] - ranks[i, k])
@@ -84,7 +84,7 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
       S1[i] <- round((2 * (sum(S.1[i, j])))/(nc * (nc - 1)), digits = 4)
     }
     temp <- tibble(GEN = rownames(data),
-                   Y = apply(data, 1, mean),
+                   Y = apply(data, 1, mean, na.rm = TRUE),
                    Y_R = rank(-Y),
                    S1 = S1,
                    S1_R = rank(S1),

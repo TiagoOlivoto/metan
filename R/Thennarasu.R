@@ -58,14 +58,14 @@ Thennarasu <- function(.data, env, gen, resp, verbose = TRUE) {
     N4.1 <- matrix(NA, nr, nc)
     N4 <- numeric()
     k <- 2
-    data_r <- sweep(data_m, 1, rowMeans(data_m), FUN = "-")
+    data_r <- sweep(data_m, 1, rowMeans(data_m, na.rm = TRUE), FUN = "-")
     ranks <- apply(-data_r, 2, rank)
     ranks_y <- apply(-data_m, 2, rank)
-    r_means <- rowMeans(ranks)
-    r_means_y <- rowMeans(ranks_y)
-    N1 <- round( rowMeans(abs(sweep(ranks, 1, apply(ranks, 1, median)))),  4)
-    N2 <- rowMeans(sweep(abs(sweep(ranks, 1, apply(ranks, 1, median))), 1, apply(ranks_y, 1, median), FUN = "/"))
-    N3 <- round(sqrt(rowSums((sweep(ranks, 1, apply(ranks, 1, mean))^2) / nc)) / (rowMeans(ranks_y)), digits = 4)
+    r_means <- rowMeans(ranks, na.rm = TRUE)
+    r_means_y <- rowMeans(ranks_y, na.rm = TRUE)
+    N1 <- round(rowMeans(abs(sweep(ranks, 1, apply(ranks, 1, median, na.rm = TRUE))), na.rm = TRUE),  4)
+    N2 <- rowMeans(sweep(abs(sweep(ranks, 1, apply(ranks, 1, median, na.rm = TRUE))), 1, apply(ranks_y, 1, median, na.rm = TRUE), FUN = "/"))
+    N3 <- round(sqrt(rowSums((sweep(ranks, 1, apply(ranks, 1, mean, na.rm = TRUE))^2) / nc)) / (rowMeans(ranks_y, na.rm = TRUE)), digits = 4)
     for (i in 1:nrow(data)) {
       for (j in 1:(nc - 1)) {
         N4.1[i, j] <- abs(ranks[i, j] - ranks[i, k])
@@ -74,7 +74,7 @@ Thennarasu <- function(.data, env, gen, resp, verbose = TRUE) {
       N4[i] <- round((2/(nc * (nc - 1))) * (sum((N4.1[i, j])/(mean(ranks_y[i, ])))), digits = 4)
     }
     temp <- tibble(GEN = rownames(data),
-                   Y = apply(data, 1, mean),
+                   Y = apply(data, 1, mean, na.rm = TRUE),
                    Y_R = rank(-Y),
                    N1 = N1,
                    N1_R = rank(N1),

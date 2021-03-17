@@ -59,9 +59,13 @@ ge_acv <- function(.data, env, gen, resp, verbose = TRUE) {
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
+
     temp <- make_mat(data, ENV, GEN, Y)
-    varamo <- sapply(temp, var)
-    means <- sapply(temp, mean)
+    if(has_na(temp)){
+      warning("Missing values in the GxE matrix\nIndex was computed after removing them.", call. = FALSE)
+    }
+    varamo <- sapply(temp, var, na.rm = TRUE)
+    means <- sapply(temp, mean, na.rm = TRUE)
     results <-
       acv(means, varamo) %>%
       select_cols(acv) %>%

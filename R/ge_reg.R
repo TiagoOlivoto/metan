@@ -88,30 +88,40 @@ ge_reg = function(.data,
       means_by(ENV) %>%
       add_cols(IndAmb = Y - mean(Y)) %>%
       select_cols(ENV, IndAmb)
-
     iamb2 <-
       data %>%
       means_by(ENV, GEN) %>%
       left_join(iamb, by = "ENV")
     meandf <- make_mat(mydf, GEN, ENV, Y) %>% rownames_to_column("GEN")
     matx <- make_mat(mydf, GEN, ENV, Y) %>% as.matrix()
-    iij <- apply(matx, 2, mean) - mean(matx)
+    iij <- apply(matx, 2, mean, na.rm = TRUE) - mean(matx, na.rm = TRUE)
     sumij2 <- sum((iij)^2)
     YiIj <- matx %*% iij
+    if(has_na(matx)){
+      missing <- which(apply(is.na(matx), 1, function(x){any(x) == TRUE}) == TRUE)
+      YiIj_complete <- NULL
+      for(i in seq_along(missing)){
+        YiIj_complete[i] <- matx[missing[i],][!is.na(matx[missing[i],])] %*% iij[!is.na(matx[missing[i],])]
+      }
+      YiIj[which(is.na(YiIj))] <- YiIj_complete
+      warning("Genotypes ", paste(names(missing), collapse = ", "), " missing in some environments", call. = FALSE)
+      warning("Regression parameters computed after removing missing values", call. = FALSE)
+    }
     bij <- YiIj/sumij2
-    svar <- (apply(matx^2, 1, sum)) - (((apply(matx, 1, sum))^2)/ncol(matx))
+    svar <- (apply(matx^2, 1, sum, na.rm = TRUE)) - (((apply(matx, 1, sum, na.rm = TRUE))^2)/ncol(matx))
     bYijIj <- bij * YiIj
     dij <- svar - bYijIj
-    pred <- apply(matx, 1, mean) + bij %*% iij
+    pred <- apply(matx, 1, mean, na.rm = TRUE) + bij %*% iij
     gof <- function(x, y){
       R2 = NULL
       RMSE = NULL
       for (i in 1:nrow(x)){
-        R2[i] =  cor(x[i, ], y[i, ])^2
-        RMSE[i] = sqrt(sum((x[i, ] - y[i, ])^2)/ncol(x))
+        R2[i] =  cor(x[i, ], y[i, ], use = "complete.obs")^2
+        RMSE[i] = sqrt(sum((x[i, ] - y[i, ])^2, na.rm = TRUE)/ncol(x))
       }
       return(list(R2 = R2, RMSE = RMSE))
     }
+    gof <- gof(pred, matx)
     S2e <- modav$"Mean Sq"[5]
     nrep <- length(levels(data$REP))
     en <- length(levels(data$ENV))
@@ -122,7 +132,7 @@ ge_reg = function(.data,
     SSL <- amod2$"Sum Sq"[2]
     SSGxL <- amod2$"Sum Sq"[3]
     SS.L.GxL <- SSL + SSGxL
-    SSL.Linear <- (1/length(levels(data$GEN))) * (colSums(matx) %*% iij)^2/sum(iij^2)
+    SSL.Linear <- (1/length(levels(data$GEN))) * (colSums(matx, na.rm = TRUE) %*% iij)^2/sum(iij^2)
     SS.L.GxL.linear <- sum(bYijIj) - SSL.Linear
     Df <- c(en * ge - 1,
             ge - 1,
@@ -177,15 +187,15 @@ ge_reg = function(.data,
     temp <- structure(list(data = iamb2,
                            anova = as_tibble(rownames_to_column(anovadf, "SV")),
                            regression = tibble(GEN = levels(mydf$GEN),
-                                               b0 = apply(matx, 1, mean),
+                                               b0 = apply(matx, 1, mean, na.rm = TRUE),
                                                b1 = as.numeric(bij),
                                                `t(b1=1)` = tcal,
                                                pval_t = ptcal,
                                                s2di = as.numeric(S2di),
                                                `F(s2di=0)` = FVAL[7:(length(FVAL) - 1)],
                                                pval_f = PLINES,
-                                               RMSE = gof(pred, matx)$RMSE,
-                                               R2 = gof(pred, matx)$R2),
+                                               RMSE = gof$RMSE,
+                                               R2 = gof$R2),
                            bo_variance = vbo,
                            b1_variance = vb1),
                       class = "ge_reg")

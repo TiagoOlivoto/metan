@@ -417,8 +417,9 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 \seealso{
 \code{\link[=AMMI_indexes]{AMMI_indexes()}}, \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=ecovalence]{ecovalence()}},
 \code{\link[=Fox]{Fox()}}, \code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}}, \code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_polar]{ge_polar()}}
-\code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=mtsi]{mtsi()}}, \code{\link[=performs_ammi]{performs_ammi()}},
-\code{\link[=blup_indexes]{blup_indexes()}}, \code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}}, \code{\link[=waasb]{waasb()}}
+\code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=mtsi]{mtsi()}}, \code{\link[=mps]{mps()}}, \code{\link[=mtmps]{mtmps()}},
+\code{\link[=performs_ammi]{performs_ammi()}}, \code{\link[=blup_indexes]{blup_indexes()}}, \code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}},
+\code{\link[=waasb]{waasb()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

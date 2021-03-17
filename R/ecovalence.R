@@ -60,7 +60,7 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
     data3 <- mutate(data2,
                     ge = residuals(lm(Y ~ ENV + GEN, data = data2)))
     ge_effect <- make_mat(data3, GEN, ENV, ge)
-    Ecoval <- rowSums(ge_effect^2 * nlevels(data$REP))
+    Ecoval <- rowSums(ge_effect^2 * nlevels(data$REP), na.rm = TRUE)
     Ecov_perc <- (Ecoval/sum(Ecoval)) * 100
     rank <- rank(Ecoval)
     temp <- cbind(ge_effect, Ecoval, Ecov_perc, rank) %>%

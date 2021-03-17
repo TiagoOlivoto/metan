@@ -70,7 +70,7 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
     data <- left_join(data, environments %>% select(ENV, class), by = "ENV")
     lin_fun <- function(mat) {
       P <- apply(mat, 1, function(x) {
-        sum((x - apply(mat, 2, max))^2)/(2 * length(x))
+        sum((x - apply(mat, 2, max, na.rm = TRUE))^2, na.rm = TRUE)/(2 * length(na.omit(x)))
       })
       return(P)
     }
@@ -83,7 +83,7 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
                                        col = ENV, value = Y), function(x) !any(is.na(x)))
     temp <- list(environments = environments,
                  index = tibble(GEN = rownames(mat_g),
-                                Y = apply(mat_g, 1, mean),
+                                Y = apply(mat_g, 1, mean, na.rm = TRUE),
                                 Pi_a = lin_fun(mat_g),
                                 R_a = rank(lin_fun(mat_g)),
                                 Pi_f = lin_fun(mat_f),

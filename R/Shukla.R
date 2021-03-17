@@ -79,8 +79,8 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       mutate(ge = residuals(lm(Y ~ ENV + GEN, data = .))) %>%
       make_mat(GEN, ENV, ge) %>%
       as.matrix()
-    Wi <- rowSums(ge_effect^2)
-    ShuklaVar <- (g * (g - 1) * Wi - sum(Wi)) / ((e - 1) * (g - 1) * ( g - 2))
+    Wi <- rowSums(ge_effect^2, na.rm = TRUE)
+    ShuklaVar <- (g * (g - 1) * Wi - sum(Wi, na.rm = TRUE)) / ((e - 1) * (g - 1) * ( g - 2))
     temp <- as_tibble(cbind(g_means, ShuklaVar)) %>%
       mutate(rMean = rank(-Y),
              rShukaVar = rank(ShuklaVar),
