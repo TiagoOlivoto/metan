@@ -302,8 +302,9 @@
 #'
 #' @seealso [AMMI_indexes()], [anova_ind()], [anova_joint()], [ecovalence()],
 #'   [Fox()], [gai()], [gamem()], [gafem()], [ge_acv()], [ge_polar()]
-#'   [ge_means()], [ge_reg()], [mgidi()], [mtsi()], [performs_ammi()],
-#'   [blup_indexes()], [Shukla()], [superiority()], [waas()], [waasb()]
+#'   [ge_means()], [ge_reg()], [mgidi()], [mtsi()], [mps()], [mtmps()],
+#'   [performs_ammi()], [blup_indexes()], [Shukla()], [superiority()], [waas()],
+#'   [waasb()]
 #' @importFrom dplyr bind_rows
 #' @importFrom purrr map_dfr
 #' @examples
@@ -373,8 +374,8 @@ get_model_data <- function(x,
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gafem_group", "gamem_group", "anova_ind", "gge", "can_cor",
                       "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi", "mtsi",
-                      "env_stratification", "fai_blup", "sh"))) {
-    stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.")
+                      "env_stratification", "fai_blup", "sh", "mps", "mtmps"))) {
+    stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.", call. = FALSE)
   }
   if (!is.null(what) && substr(what, 1, 2) == "PC") {
     npc <- ncol(x[[1]][["model"]] %>%
@@ -426,18 +427,39 @@ get_model_data <- function(x,
                "communalities_mean", "initial_loadings", "finish_loadings",
                "canonical_loadings", "scores_gen", "scores_ide", "gen_ide",
                "MTSI", "contri_fac", "contri_fac_rank", "contri_fac_rank_sel",
-               "sel_dif_trait", "stat_dif_trait", "sel_dif_waasb", "stat_dif_waasb",
-               "sel_dif_waasby", "stat_dif_waasby", "sel_gen")
+               "sel_dif_trait", "stat_dif_trait", "sel_dif_stab", "stat_dif_stab",
+               "sel_dif_mps", "stat_dif_mps", "sel_gen")
   check29 <- c("FA", "env_strat", "mega_env_stat")
   check30 <- c("data", "eigen", "FA", "canonical_loadings", "FAI", "sel_dif_trait",
                "sel_gen", "construction_ideotypes")
   check31 <- c("b", "index", "sel_dif_trait", "total_gain", "sel_gen", "gcov", "pcov")
+  check32 <- c("observed", "performance", "performance_res", "stability",
+               "stability_res", "mps_ind", "h2", "perf_method", "wmper",
+               "sense_mper", "stab_method", "wstab", "sense_stab")
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "waasb_group", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
+  if(has_class(x, "mps")){
+    if (is.null(what)){
+      what <- "mps_ind"
+    }
+    if (!what %in% check32) {
+      stop("Invalid value in 'what' for object of class 'mps'. Allowed are ", paste(check32, collapse = ", "), call. = FALSE)
+    }
+    if(has_class(x, "mps_group")){
+      bind <-
+        x %>%
+        mutate(data = map(data, ~.x %>% .[[what]])) %>%
+        unnest(data)
+    } else{
+      bind <- x[[what]]
+    }
+  }
+
+
 
   if(has_class(x, "sh")){
     if (is.null(what)){
@@ -472,12 +494,12 @@ get_model_data <- function(x,
     }
     bind <- x %>% map_dfr(~ bind_rows(!!! .x %>% .[[what]]), .id = 'TRAIT')
   }
-  if(has_class(x, "mtsi")){
+  if(has_class(x, c("mtsi", "mtmps"))){
     if (is.null(what)){
       what <- "sel_dif_trait"
     }
     if (!what %in% check28) {
-      stop("Invalid value in 'what' for object of class 'mtsi'. Allowed are ", paste(check28, collapse = ", "), call. = FALSE)
+      stop("Invalid value in 'what' for object of class '", class(x), "'. Allowed are ", paste(check28, collapse = ", "), call. = FALSE)
     }
     bind <- x[[what]]
   }
