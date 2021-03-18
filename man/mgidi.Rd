@@ -2,7 +2,7 @@
 % Please edit documentation in R/mgidi.R
 \name{mgidi}
 \alias{mgidi}
-\title{Genotype-Ideotype Distance Index}
+\title{Multitrait Genotype-Ideotype Distance Index}
 \usage{
 mgidi(
   .data,
@@ -10,6 +10,7 @@ mgidi(
   SI = 15,
   mineval = 1,
   ideotype = NULL,
+  weights = NULL,
   use = "complete.obs",
   verbose = TRUE
 )
@@ -40,6 +41,14 @@ is a model fitted with the functions \code{\link[=gafem]{gafem()}} or
 \code{\link[=gamem]{gamem()}}, the order of the traits will be the declared in the
 argument \code{resp} in those functions.}
 
+\item{weights}{Optional weights to assign for each trait in the selection
+process. It must be a numeric vector of length equal to the number of
+traits in \code{.data}. By default (\code{NULL}) a numeric vector of weights equal to
+1 is used, i.e., all traits have the same weight in the selection process.
+It is suggested weights ranging from 0 to 1. The weights will then shrink
+the ideotype vector toward 0. This is useful, for example, to prioritize
+grain yield rather than a plant-related trait in the selection process.}
+
 \item{use}{The method for computing covariances in the presence of missing
 values. Defaults to \code{complete.obs}, i.e., missing values are handled
 by casewise deletion.}
@@ -64,7 +73,7 @@ An object of class \code{mgidi} with the following items:
 \item \strong{scores_gen} The scores for genotypes in all retained factors.
 \item \strong{scores_ide} The scores for the ideotype in all retained factors.
 \item \strong{gen_ide} The distance between the scores of each genotype with the
-ideotype.|
+ideotype.
 \item \strong{MGIDI} The multi-trait genotype-ideotype distance index.
 \item \strong{contri_fac} The relative contribution of each factor on the MGIDI
 value. The lower the contribution of a factor, the close of the ideotype the
@@ -82,37 +91,69 @@ desired gains, the statistics are computed for by strata.
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 
-Computes the multi-trait genotype-ideotype distance index (MGIDI). MGIDI can
-be seen as the multi-trait stability index (Olivoto et al., 2019) computed
-with weight for mean performance equals to 100. The MGIDI indes is computed
-as follows:
+Computes the multi-trait genotype-ideotype distance index, MGIDI, (Olivoto
+and Nardino, 2020), used to select genotypes in plant breeding programs based
+on multiple traits.The MGIDI index is computed as follows:
 \loadmathjax
 \mjsdeqn{MGIDI_i = \sqrt{\sum\limits_{j = 1}^f(F_{ij} - {F_j})^2}}
 
 where \mjseqn{MGIDI_i} is the multi-trait genotype-ideotype distance index
-for the \emph{i}th genotype; \mjseqn{F_{ij}} is the score of the \emph{i}th
-genotype in the \emph{j}th factor (\emph{i = 1, 2, ..., g; j = 1, 2, ...,
-f}), being \emph{g} and \emph{f} the number of genotypes and factors,
-respectively, and \mjseqn{F_j} is the \emph{j}th score of the ideotype. The
-genotype with the lowest MGIDI is then closer to the ideotype and therefore
-presents desired values for all the analyzed traits.
+for the \emph{i}th genotype; \mjseqn{F_{ij}} is the score of the \emph{i}th genotype in
+the \emph{j}th factor (\emph{i = 1, 2, ..., g; j = 1, 2, ..., f}), being \emph{g} and \emph{f}
+the number of genotypes and factors, respectively, and \mjseqn{F_j} is the
+\emph{j}th score of the ideotype. The genotype with the lowest MGIDI is then
+closer to the ideotype and therefore should presents desired values for all
+the analyzed traits.
 }
 \examples{
 \donttest{
 library(metan)
 
-model <- gamem(data_g,
-               gen = GEN,
-               rep = REP,
-               resp = c(NR, KW, CW, CL, NKE, TKW, PERK, PH))
+# simulate a data set
+# 10 genotypes
+# 5 replications
+# 4 traits
+df <-
+ g_simula(ngen = 10,
+          nrep = 5,
+          nvars = 4,
+          gen_eff = 35,
+          seed = c(1, 2, 3, 4))
 
-# Selection for increase all variables
-mgidi_model <- mgidi(model)
+# run a mixed-effect model (genotype as random effect)
+mod <-
+  gamem(df,
+        gen = GEN,
+        rep = REP,
+        resp = everything())
+# BLUPs for genotypes
+gmd(mod, "blupg")
 
+# Compute the MGIDI index
+# Default options (all traits with positive desired gains)
+# Equal weights for all traits
+mgidi <- mgidi(mod)
+gmd(mgidi, "MGIDI")
 
+# Higher weight for traits V1 and V4
+# This will increase the probability of selecting H7 and H9
+# 30\% selection pressure
+mgidi2 <-
+   mgidi(mod,
+         weights = c(1, .2, .2, 1),
+         SI = 30)
+gmd(mgidi2, "MGIDI")
 
 # plot the contribution of each factor on the MGIDI index
-plot(mgidi_model, type = "contribution")
+p1 <- plot(mgidi, type = "contribution")
+p2 <- plot(mgidi2, type = "contribution")
+p1 + p2
+
+# Positive desired gains for V1, V2 and V3
+# Negative desired gains for V4
+mgidi3 <-
+  mgidi(mod,
+       ideotype = c("h, h, h, l"))
 
 }
 }
