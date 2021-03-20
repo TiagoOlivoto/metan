@@ -249,11 +249,7 @@ mps <- function(.data,
                 verbose = verbose)
   }
   # mean performance
-  observed <-
-    gmd(mod, "data", verbose = FALSE) %>%
-    means_by(GEN) %>%
-    remove_rownames() %>%
-    column_to_rownames("GEN")
+  observed <- gmd(mod, "data", verbose = FALSE) %>% column_to_rownames("GEN")
   mperf <-
     switch(performance,
            blupg =  gmd(mod, "blupg", verbose = FALSE) %>% column_to_rownames("GEN"),

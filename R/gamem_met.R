@@ -308,10 +308,16 @@ gamem_met <- function(.data,
     vin <- vin + 1
     ovmean <- mean(data$Y)
     fixed_mod <- lm(model_fixed, data = data)
-    Complete <- suppressWarnings(suppressMessages(lmerTest::lmer(model_formula, data = data)))
-    LRT <- suppressWarnings(suppressMessages(lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
-                                               mutate(model = lrt_groups) %>%
-                                               column_to_first(model)))
+    Complete <-
+      lmerTest::lmer(model_formula, data = data) %>%
+      suppressWarnings() %>%
+      suppressMessages()
+    LRT <-
+      lmerTest::ranova(Complete, reduce.terms = FALSE) %>%
+      mutate(model = lrt_groups) %>%
+      column_to_first(model) %>%
+      suppressWarnings() %>%
+      suppressMessages()
     fixed <- anova(Complete)
     var_eff <-
       lme4::VarCorr(Complete) %>%

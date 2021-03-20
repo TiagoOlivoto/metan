@@ -721,12 +721,10 @@ get_model_data <- function(x,
           set_names("VAR", "h2")
       }
       if (what == "data") {
-        factors <- x[[1]][["residuals"]] %>% select_non_numeric_cols()
-        vars <- sapply(x, function(x) {
-          val <- x[["residuals"]][["Y"]]
-        }) %>%
-          as_tibble()
-        bind <- as_tibble(cbind(factors, vars))
+        bind <-
+          map(x, ~.x[["residuals"]] %>% select_cols(GEN, Y) %>% means_by(GEN)) %>%
+          rbind_fill_id(.id = "VAR") %>%
+          pivot_wider(names_from = VAR, values_from = Y)
       }
       if (what == "gcov") {
         data <- gmd(x, "data", verbose = FALSE)
