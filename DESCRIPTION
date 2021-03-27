@@ -19,7 +19,7 @@ Description: Performs stability analysis of multi-environment
     <doi:10.1007/s10681-007-9600-6>, joint regression analysis by Eberhart
     & Russel (1966) <doi:10.2135/cropsci1966.0011183X000600010011x>,
     genotypic confidence index by Annicchiarico (1992), Murakami & Cruz's
-    (2004) method <doi:10.12702/1984-7033.v04n01a02>, power law residuals
+    (2004) method, power law residuals
     (POLAR) statistics by Doring et al. (2015)
     <doi:10.1016/j.fcr.2015.08.005>, scale-adjusted coefficient of
     variation by Doring & Reckling (2018) <doi:10.1016/j.eja.2018.06.007>,

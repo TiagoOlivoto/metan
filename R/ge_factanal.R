@@ -32,9 +32,9 @@
 #' * `canonical.loadings`: The canonical loadings.
 #' * `scores.gen`: The scores for genotypes for the first and second factors.
 #' @md
-#' @references Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for
-#' environment stratification and analysis of genotype adaptability.
-#' Crop Breed. Appl. Biotechnol. 4:7-11.
+#' @references Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of
+#'   methodologies for environment stratification and analysis of genotype
+#'   adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.
 #'
 #' @author Tiago Olivoto, \email{tiagoolivoto@@gmail.com}
 #' @export
