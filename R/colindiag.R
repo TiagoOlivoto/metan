@@ -56,11 +56,6 @@
 #' analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
 #' \doi{10.2134/agronj2016.04.0196}
 #'
-#'  Olivoto, T., M. Nardino, I.I.R. Carvalho, D.N. Follmann, M. Ferrari, A.J. de
-#'  Pelegrin, V.J. Szareski, A.C. de Oliveira, B.O. Caron, and V.Q. de Souza.
-#'  2017. Optimal sample size and data arrangement method in estimating
-#'  correlation matrices with lesser collinearity: A statistical focus in maize
-#'  breeding. African J. Agric. Res. 12:93-103. \doi{10.5897/AJAR2016.11799}.
 #'
 #' @export
 #' @examples
