@@ -67,13 +67,10 @@ res_ind <- waasb(data_ge,
                  env = ENV,
                  gen = GEN,
                  rep = REP,
-                 resp = c(GY, HM))
+                 resp = c(GY, HM),
+                 verbose = FALSE)
 model_indexes <- blup_indexes(res_ind)
-
-# Alternatively using the pipe operator \%>\%
-res_ind <- data_ge \%>\%
-           waasb(ENV, GEN, REP, c(GY, HM)) \%>\%
-           blup_indexes()
+gmd(model_indexes)
 }
 
 
