@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Stability analysis and environment stratification — ge_factanal" />
-<meta property="og:description" content="This function computes the stability analysis and environmental stratification
+<meta property="og:description" content="
+This function computes the stability analysis and environmental stratification
 using factor analysis as proposed by Murakami and Cruz (2004)." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ using factor analysis as proposed by Murakami and Cruz (2004)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ using factor analysis as proposed by Murakami and Cruz (2004)." />
     </div>
 
     <div class="ref-description">
-    <p>This function computes the stability analysis and environmental stratification
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>This function computes the stability analysis and environmental stratification
 using factor analysis as proposed by Murakami and Cruz (2004).</p>
     </div>
 
@@ -276,20 +278,21 @@ factor analysis.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>ge_factanal</code> with the following items:</p>
-<dt>data</dt><dd><p>The data used to compute the factor analysis.</p></dd>
-<dt>cormat</dt><dd><p>The correlation matrix among the environments.</p></dd>
-<dt>PCA</dt><dd><p>The eigenvalues and explained variance.</p></dd>
-<dt>FA</dt><dd><p>The factor analysis.</p></dd>
-<dt>env_strat</dt><dd><p>The environmental stratification.</p></dd>
-<dt>KMO</dt><dd><p>The result for the Kaiser-Meyer-Olkin test.</p></dd>
-<dt>MSA</dt><dd><p>The measure of sampling adequacy for individual variable.</p></dd>
-<dt>communalities</dt><dd><p>The communalities.</p></dd>
-<dt>communalities.mean</dt><dd><p>The communalities' mean.</p></dd>
-<dt>initial.loadings</dt><dd><p>The initial loadings.</p></dd>
-<dt>finish.loadings</dt><dd><p>The final loadings after varimax rotation.</p></dd>
-<dt>canonical.loadings</dt><dd><p>The canonical loadings.</p></dd>
-<dt>scores.gen</dt><dd><p>The scores for genotypes for the first and second factors.</p></dd>
+    <p>An object of class <code>ge_factanal</code> with the following items:</p><ul>
+<li><p><code>data</code>: The data used to compute the factor analysis.</p></li>
+<li><p><code>cormat</code>: The correlation matrix among the environments.</p></li>
+<li><p><code>PCA</code>: The eigenvalues and explained variance.</p></li>
+<li><p><code>FA</code>: The factor analysis.</p></li>
+<li><p><code>env_strat</code>: The environmental stratification.</p></li>
+<li><p><code>KMO</code>: The result for the Kaiser-Meyer-Olkin test.</p></li>
+<li><p><code>MSA</code>: The measure of sampling adequacy for individual variable.</p></li>
+<li><p><code>communalities</code>: The communalities.</p></li>
+<li><p><code>communalities.mean</code>: The communalities' mean.</p></li>
+<li><p><code>initial.loadings</code>: The initial loadings.</p></li>
+<li><p><code>finish.loadings</code>: The final loadings after varimax rotation.</p></li>
+<li><p><code>canonical.loadings</code>: The canonical loadings.</p></li>
+<li><p><code>scores.gen</code>: The scores for genotypes for the first and second factors.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -298,7 +301,7 @@ environment stratification and analysis of genotype adaptability.
 Crop Breed. Appl. Biotechnol. 4:7-11.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='superiority.html'>superiority</a>, <a href='ecovalence.html'>ecovalence</a>, <a href='ge_stats.html'>ge_stats</a>, <a href='ge_reg.html'>ge_reg</a></code></p></div>
+    <div class='dont-index'><p><code><a href='superiority.html'>superiority()</a></code>, <code><a href='ecovalence.html'>ecovalence()</a></code>, <code><a href='ge_stats.html'>ge_stats()</a></code>, <code><a href='ge_reg.html'>ge_reg()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -312,6 +315,8 @@ Crop Breed. Appl. Biotechnol. 4:7-11.</p>
                      rep <span class='op'>=</span> <span class='va'>REP</span>,
                      resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
 <span class='co'># }</span>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

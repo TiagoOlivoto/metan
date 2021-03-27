@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Two-way table to a 'long' format — make_long" />
-<meta property="og:description" content="Helps users to easily convert a two-way table (genotype vs environment) to a
+<meta property="og:description" content="
+Helps users to easily convert a two-way table (genotype vs environment) to a
 'long' format data. The data in mat will be gathered into three
 columns. The row names will compose the first column. The column names will
 compose the second column and the third column will contain the data that
@@ -100,7 +101,7 @@ fills the two-way table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -233,7 +234,8 @@ fills the two-way table." />
     </div>
 
     <div class="ref-description">
-    <p>Helps users to easily convert a two-way table (genotype vs environment) to a
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Helps users to easily convert a two-way table (genotype vs environment) to a
 'long' format data. The data in <code>mat</code> will be gathered into three
 columns. The row names will compose the first column. The column names will
 compose the second column and the third column will contain the data that
@@ -253,15 +255,14 @@ rownames.</p></td>
     <tr>
       <th>gen_in</th>
       <td><p>Where are the genotypes? Defaults to <code>'rows'</code>. If
-genotypes are in columns and environments in rows, set to <code>gen_in =
-'cols'</code>.</p></td>
+genotypes are in columns and environments in rows, set to <code>gen_in = 'cols'</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble with three columns: GEN (genotype), ENV (environment), and Y
-  (response) variable.</p>
+(response) variable.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -276,32 +277,32 @@ genotypes are in columns and environments in rows, set to <code>gen_in =
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"G"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, sep <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 
 <span class='fu'>make_long</span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span><span>
 #&gt;   ENV   GEN       Y
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    </span><span style='text-decoration: underline;'>2</span><span>311.
-#&gt; </span><span style='color: #555555;'>2</span><span> E1    G2    </span><span style='text-decoration: underline;'>2</span><span>594.
-#&gt; </span><span style='color: #555555;'>3</span><span> E1    G3    </span><span style='text-decoration: underline;'>2</span><span>238.
-#&gt; </span><span style='color: #555555;'>4</span><span> E2    G1    </span><span style='text-decoration: underline;'>3</span><span>088.
-#&gt; </span><span style='color: #555555;'>5</span><span> E2    G2    </span><span style='text-decoration: underline;'>2</span><span>645.
-#&gt; </span><span style='color: #555555;'>6</span><span> E2    G3    </span><span style='text-decoration: underline;'>2</span><span>243.
-#&gt; </span><span style='color: #555555;'>7</span><span> E3    G1    </span><span style='text-decoration: underline;'>2</span><span>701.
-#&gt; </span><span style='color: #555555;'>8</span><span> E3    G2    </span><span style='text-decoration: underline;'>2</span><span>788.
-#&gt; </span><span style='color: #555555;'>9</span><span> E3    G3    </span><span style='text-decoration: underline;'>2</span><span>732.</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> E1    G1    </span><span style='text-decoration: underline;'>2</span><span>311.
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> E1    G2    </span><span style='text-decoration: underline;'>2</span><span>594.
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> E1    G3    </span><span style='text-decoration: underline;'>2</span><span>238.
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> E2    G1    </span><span style='text-decoration: underline;'>3</span><span>088.
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> E2    G2    </span><span style='text-decoration: underline;'>2</span><span>645.
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> E2    G3    </span><span style='text-decoration: underline;'>2</span><span>243.
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> E3    G1    </span><span style='text-decoration: underline;'>2</span><span>701.
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> E3    G2    </span><span style='text-decoration: underline;'>2</span><span>788.
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span> E3    G3    </span><span style='text-decoration: underline;'>2</span><span>732.</div><div class='input'>
 <span class='va'>gen_cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span>
 <span class='fu'>make_long</span><span class='op'>(</span><span class='va'>gen_cols</span>, gen_in <span class='op'>=</span> <span class='st'>"cols"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 9 x 3</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 3</span><span>
 #&gt;   ENV   GEN       Y
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> E1    G1    </span><span style='text-decoration: underline;'>2</span><span>311.
-#&gt; </span><span style='color: #555555;'>2</span><span> E1    G2    </span><span style='text-decoration: underline;'>2</span><span>594.
-#&gt; </span><span style='color: #555555;'>3</span><span> E1    G3    </span><span style='text-decoration: underline;'>2</span><span>238.
-#&gt; </span><span style='color: #555555;'>4</span><span> E2    G1    </span><span style='text-decoration: underline;'>3</span><span>088.
-#&gt; </span><span style='color: #555555;'>5</span><span> E2    G2    </span><span style='text-decoration: underline;'>2</span><span>645.
-#&gt; </span><span style='color: #555555;'>6</span><span> E2    G3    </span><span style='text-decoration: underline;'>2</span><span>243.
-#&gt; </span><span style='color: #555555;'>7</span><span> E3    G1    </span><span style='text-decoration: underline;'>2</span><span>701.
-#&gt; </span><span style='color: #555555;'>8</span><span> E3    G2    </span><span style='text-decoration: underline;'>2</span><span>788.
-#&gt; </span><span style='color: #555555;'>9</span><span> E3    G3    </span><span style='text-decoration: underline;'>2</span><span>732.</div><div class='input'><span class='co'># }</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> E1    G1    </span><span style='text-decoration: underline;'>2</span><span>311.
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> E1    G2    </span><span style='text-decoration: underline;'>2</span><span>594.
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> E1    G3    </span><span style='text-decoration: underline;'>2</span><span>238.
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> E2    G1    </span><span style='text-decoration: underline;'>3</span><span>088.
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> E2    G2    </span><span style='text-decoration: underline;'>2</span><span>645.
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> E2    G3    </span><span style='text-decoration: underline;'>2</span><span>243.
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> E3    G1    </span><span style='text-decoration: underline;'>2</span><span>701.
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> E3    G2    </span><span style='text-decoration: underline;'>2</span><span>788.
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span> E3    G3    </span><span style='text-decoration: underline;'>2</span><span>732.</div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>

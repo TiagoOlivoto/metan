@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -266,25 +266,23 @@ variable of <code>x</code>.</p></td>
       <td><p>The type of plot to show. <code>type = 1</code> produces a plot with
 the environmental index in the x axis and the genotype mean yield in the y
 axis. <code>type = 2</code> produces a plot with the response variable in the x
-axis and the slope of the regression in the y axis.</p></td>
+axis and the slope/deviations of the regression in the y axis.</p></td>
     </tr>
     <tr>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>x.lim</th>
       <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and minimum
-values of the data set). New arguments can be inserted as <code>x.lim =
-c(x.min, x.max)</code>.</p></td>
+values of the data set). New arguments can be inserted as <code>x.lim = c(x.min, x.max)</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks</th>
       <td><p>The breaks to be plotted in the x-axis. Default is
-<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks =
-c(breaks)</code></p></td>
+<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks = c(breaks)</code></p></td>
     </tr>
     <tr>
       <th>x.lab</th>
@@ -327,7 +325,7 @@ is <code>12</code>.</p></td>
     <p>An object of class <code>gg, ggplot</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='ge_factanal.html'>ge_factanal</a></code></p></div>
+    <div class='dont-index'><p><code><a href='ge_factanal.html'>ge_factanal()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -336,7 +334,7 @@ is <code>12</code>.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>PH</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

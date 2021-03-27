@@ -53,8 +53,9 @@
 
 
 <meta property="og:title" content="Arrange separate ggplots into the same graphic — arrange_ggplot" />
-<meta property="og:description" content="This is a wraper function around wrap_plots() and
-plot_annotation() to arrange ggplot2 objects." />
+<meta property="og:description" content="
+This is a wraper function around patchwork::wrap_plots() and
+patchwork::plot_annotation() to arrange ggplot2 objects." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -97,7 +98,7 @@ plot_annotation() to arrange ggplot2 objects." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,8 +231,9 @@ plot_annotation() to arrange ggplot2 objects." />
     </div>
 
     <div class="ref-description">
-    <p>This is a wraper function around <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>wrap_plots</a>()</code> and
-<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>plot_annotation</a>()</code> to arrange ggplot2 objects.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>This is a wraper function around <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots()</a></code> and
+<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation()</a></code> to arrange ggplot2 objects.</p>
     </div>
 
     <pre class="usage"><span class='fu'>arrange_ggplot</span><span class='op'>(</span>
@@ -273,7 +275,7 @@ in the grid. Will get repeated to match the dimensions of the grid.</p></td>
     <tr>
       <th>guides</th>
       <td><p>A string specifying how guides should be treated in the layout.
-Defaults to `'auto'`. Other possible values are `'keep'` and `'collect'`.
+Defaults to <code>'auto'</code>. Other possible values are <code>'keep'</code> and <code>'collect'</code>.
 In this case, will collect guides below to the given nesting level,
 removing duplicates.</p></td>
     </tr>
@@ -284,7 +286,7 @@ removing duplicates.</p></td>
     <tr>
       <th>legend.position</th>
       <td><p>The position of the legends in the plot if
-<code>guides = "collect"</code> Default to `'bottom'`.</p></td>
+<code>guides = "collect"</code> Default to <code>'bottom'</code>.</p></td>
     </tr>
     <tr>
       <th>title, subtitle, caption</th>
@@ -294,11 +296,11 @@ annotations.</p></td>
     <tr>
       <th>tag_levels</th>
       <td><p>A character vector defining the enumeration format to use
-at each level. Possible values are `'a'` for lowercase letters, `'A'` for
-uppercase letters, `'1'` for numbers, `'i'` for lowercase Roman numerals, and
-`'I'` for uppercase Roman numerals. It can also be a list containing
+at each level. Possible values are <code>'a'</code> for lowercase letters, <code>'A'</code> for
+uppercase letters, <code>'1'</code> for numbers, <code>'i'</code> for lowercase Roman numerals, and
+<code>'I'</code> for uppercase Roman numerals. It can also be a list containing
 character vectors defining arbitrary tag sequences. If any element in the
-list is a scalar and one of `'a'`, `'A'`, `'1'`, `'i`, or `'I'`, this level
+list is a scalar and one of <code>'a'</code>, <code>'A'</code>, <code>'1'</code>, <code>'i</code>, or <code>'I'</code>, this level
 will be expanded to the expected sequence.</p></td>
     </tr>
     <tr>
@@ -319,7 +321,7 @@ related to the titles as well as plot margin and background is used.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A `patchwork` object</p>
+    <p>A <code>patchwork</code> object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

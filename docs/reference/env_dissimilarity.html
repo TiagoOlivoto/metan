@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Dissimilarity between environments — env_dissimilarity" />
-<meta property="og:description" content="Computes the dissimilarity between environments based on several approaches.
+<meta property="og:description" content="
+Computes the dissimilarity between environments based on several approaches.
 See the section details for more details." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ See the section details for more details." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ See the section details for more details." />
     </div>
 
     <div class="ref-description">
-    <p>Computes the dissimilarity between environments based on several approaches.
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Computes the dissimilarity between environments based on several approaches.
 See the section <strong>details</strong> for more details.</p>
     </div>
 
@@ -261,8 +263,7 @@ replications/blocks.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp
-  = c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
+single procedure a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     </table>
 
@@ -314,7 +315,7 @@ Pergamon Press.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>env_dissimilarity</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Evaluating trait Y |=============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Variable GY 
 #&gt; ----------------------------------------------------------------------
 #&gt; Pearson's correlation coefficient

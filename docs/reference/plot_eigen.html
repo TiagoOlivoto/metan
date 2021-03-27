@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Plot the eigenvalues — plot_eigen" />
-<meta property="og:description" content="Plot the eigenvalues for from singular value decomposition of BLUP
+<meta property="og:description" content="
+Plot the eigenvalues for from singular value decomposition of BLUP
 interaction effects matrix." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ interaction effects matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ interaction effects matrix." />
     </div>
 
     <div class="ref-description">
-    <p>Plot the eigenvalues for from singular value decomposition of BLUP
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Plot the eigenvalues for from singular value decomposition of BLUP
 interaction effects matrix.</p>
     </div>
 
@@ -273,7 +275,7 @@ variable of <code>x</code>.</p></td>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>file.type</th>
@@ -318,8 +320,7 @@ exported. Default is <code>pdf</code>, Graphic can also be exported in
     </tr>
     <tr>
       <th>x.lab</th>
-      <td><p>The label of the x-axis in the plot. Default is <code>"Number of
-multiplicative terms"</code>.</p></td>
+      <td><p>The label of the x-axis in the plot. Default is <code>"Number of multiplicative terms"</code>.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -337,7 +338,7 @@ multiplicative terms"</code>.</p></td>
     <p>An object of class <code>gg, ggplot</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores</a></code>, <code><a href='plot_waasby.html'>plot_waasby</a></code></p></div>
+    <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores()</a></code>, <code><a href='plot_waasby.html'>plot_waasby()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -350,7 +351,7 @@ multiplicative terms"</code>.</p></td>
              gen <span class='op'>=</span> <span class='va'>GEN</span>,
              env <span class='op'>=</span> <span class='va'>ENV</span>,
              rep <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM

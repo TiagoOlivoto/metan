@@ -54,7 +54,6 @@
 
 <meta property="og:title" content="Utilities for handling with numbers and strings — utils_num_str" />
 <meta property="og:description" content="
-
 all_lower_case(): Translate all non-numeric strings of a data frame
 to lower case.
 all_upper_case(): Translate all non-numeric strings of a data frame
@@ -79,11 +78,9 @@ significant figures.
 tidy_strings(): Tidy up characters strings, non-numeric columns, or
 any selected columns in a data frame by putting all word in upper case,
 replacing any space, tabulation, punctuation characters by '_', and
-putting '_' between lower and upper case. Suppose that str =
-c(&quot;Env1&quot;, &quot;env 1&quot;, &quot;env.1&quot;) (which by definition should represent a unique
+putting '_' between lower and upper case. Suppose that str = c(&quot;Env1&quot;, &quot;env 1&quot;, &quot;env.1&quot;) (which by definition should represent a unique
 level in plant breeding trials, e.g., environment 1) is subjected to
-tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot;,
-&quot;ENV_1&quot;). See Examples section for more examples.
+tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot;, &quot;ENV_1&quot;). See Examples section for more examples.
 
 " />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -128,7 +125,7 @@ tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -261,8 +258,7 @@ tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot
     </div>
 
     <div class="ref-description">
-    
-<ul>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p><ul>
 <li><p><code>all_lower_case()</code>: Translate all non-numeric strings of a data frame
 to lower case.</p></li>
 <li><p><code>all_upper_case()</code>: Translate all non-numeric strings of a data frame
@@ -287,11 +283,9 @@ significant figures.</p></li>
 <li><p><code>tidy_strings()</code>: Tidy up characters strings, non-numeric columns, or
 any selected columns in a data frame by putting all word in upper case,
 replacing any space, tabulation, punctuation characters by <code>'_'</code>, and
-putting <code>'_'</code> between lower and upper case. Suppose that <code>str =
-c("Env1", "env 1", "env.1")</code> (which by definition should represent a unique
+putting <code>'_'</code> between lower and upper case. Suppose that <code>str = c("Env1", "env 1", "env.1")</code> (which by definition should represent a unique
 level in plant breeding trials, e.g., environment 1) is subjected to
-<code>tidy_strings(str)</code>: the result will be then <code><a href='https://rdrr.io/r/base/c.html'>c("ENV_1", "ENV_1",
-"ENV_1")</a></code>. See Examples section for more examples.</p></li>
+<code>tidy_strings(str)</code>: the result will be then <code><a href='https://rdrr.io/r/base/c.html'>c("ENV_1", "ENV_1", "ENV_1")</a></code>. See Examples section for more examples.</p></li>
 </ul>
 
     </div>
@@ -390,167 +384,167 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 <span class='co'>################ Rounding numbers ###############</span>
 <span class='co'># All numeric columns</span>
 <span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 156 x 18</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1       2.6   1.7   0.7  16.1  52.2  28.1  16.3  25.1  216.  15.6
-#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    2       2.9   1.8   0.6  14.2  50.3  27.6  14.5  21.4  184.  16  
-#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    3       2.7   1.6   0.6  16    50.7  28.4  16.4  24    208.  17.2
-#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   1       2.8   1.6   0.6  16.7  54.1  31.7  17.4  26.2  194.  15.6
-#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   2       2.8   1.7   0.6  14.9  52.7  32    15.5  20.7  176.  17.6
-#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   3       2.7   1.5   0.6  16.7  52.7  30.4  17.5  26.8  207.  16.8
-#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   1       2.8   1.5   0.5  17.4  51.7  30.6  18    26.2  217.  16.8
-#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2       2.7   1.6   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
-#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3       2.8   1.7   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
-#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1       2.7   1.5   0.6  14.9  47.5  28.2  15.5  20.1  161   14.8
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A1    H1    1       2.6   1.7   0.7  16.1  52.2  28.1  16.3  25.1  216.  15.6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A1    H1    2       2.9   1.8   0.6  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A1    H1    3       2.7   1.6   0.6  16    50.7  28.4  16.4  24    208.  17.2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A1    H10   1       2.8   1.6   0.6  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> A1    H10   2       2.8   1.7   0.6  14.9  52.7  32    15.5  20.7  176.  17.6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> A1    H10   3       2.7   1.5   0.6  16.7  52.7  30.4  17.5  26.8  207.  16.8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> A1    H11   1       2.8   1.5   0.5  17.4  51.7  30.6  18    26.2  217.  16.8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A1    H11   2       2.7   1.6   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> A1    H11   3       2.8   1.7   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> A1    H12   1       2.7   1.5   0.6  14.9  47.5  28.2  15.5  20.1  161   14.8
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Round specific columns</span>
 <span class='fu'>round_cols</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>EP</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 18</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 156 x 18</span><span>
 #&gt;    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1      2.61  1.71   0.7  16.1  52.2  28.1  16.3  25.1  217.  15.6
-#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    2      2.87  1.76   0.6  14.2  50.3  27.6  14.5  21.4  184.  16  
-#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    3      2.68  1.58   0.6  16.0  50.7  28.4  16.4  24.0  208.  17.2
-#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   1      2.83  1.64   0.6  16.7  54.1  31.7  17.4  26.2  194.  15.6
-#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   2      2.79  1.71   0.6  14.9  52.7  32.0  15.5  20.7  176.  17.6
-#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   3      2.72  1.51   0.6  16.7  52.7  30.4  17.5  26.8  207.  16.8
-#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   1      2.75  1.51   0.5  17.4  51.7  30.6  18.0  26.2  217.  16.8
-#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2      2.72  1.56   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
-#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3      2.77  1.67   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
-#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1      2.73  1.54   0.6  14.9  47.5  28.2  15.5  20.1  161.  14.8
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows, and 5 more variables: NKR </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A1    H1    1      2.61  1.71   0.7  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A1    H1    2      2.87  1.76   0.6  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A1    H1    3      2.68  1.58   0.6  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A1    H10   1      2.83  1.64   0.6  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> A1    H10   2      2.79  1.71   0.6  14.9  52.7  32.0  15.5  20.7  176.  17.6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> A1    H10   3      2.72  1.51   0.6  16.7  52.7  30.4  17.5  26.8  207.  16.8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> A1    H11   1      2.75  1.51   0.5  17.4  51.7  30.6  18.0  26.2  217.  16.8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A1    H11   2      2.72  1.56   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> A1    H11   3      2.77  1.67   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> A1    H12   1      2.73  1.54   0.6  14.9  47.5  28.2  15.5  20.1  161.  14.8
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'>########### Extract or replace numbers ##########</span>
 <span class='co'># Extract numbers</span>
 <span class='fu'>extract_number</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV     GEN REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1        1 1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1        1 2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1        1 3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1        2 1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1        2 2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1        2 3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1        3 1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1        3 2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1        3 3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1        4 1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># Replace numbers</span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1        1 1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1        1 2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1        1 3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1        2 1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1        2 2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1        2 3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1        3 1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1        3 2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1        3 3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1        4 1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># Replace numbers</span>
 <span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G     1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G     2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G     3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G     1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G     2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G     3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G     1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G     2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G     3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G     1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>,
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G     1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G     2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G     3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G     1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G     2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G     3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G     1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G     2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G     3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G     1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_number</span><span class='op'>(</span><span class='va'>data_ge</span>,
                <span class='va'>GEN</span>,
                pattern <span class='op'>=</span> <span class='fl'>1</span>,
                replacement <span class='op'>=</span> <span class='st'>"_one"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G_one 1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G_one 2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G_one 3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G_one 1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G_one 2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G_one 3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G2    1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G2    2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G2    3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G3    1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G3    2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G3    3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G4    1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'>########## Extract, replace or remove strings ##########</span>
 <span class='co'># Extract strings</span>
 <span class='fu'>extract_string</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G     1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G     2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G     3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G     1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G     2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G     3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G     1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G     2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G     3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G     1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G     1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G     2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G     3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G     1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G     2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G     3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G     1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G     2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G     3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G     1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Replace strings</span>
 <span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    1     1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    1     2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    1     3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    2     1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    2     2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    2     3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    3     1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    3     2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    3     3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    4     1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>,
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    1     1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    1     2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    1     3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    2     1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    2     2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    2     3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    3     1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    3     2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    3     3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    4     1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>replace_string</span><span class='op'>(</span><span class='va'>data_ge</span>,
                <span class='va'>GEN</span>,
                pattern <span class='op'>=</span> <span class='st'>"G"</span>,
                replacement <span class='op'>=</span> <span class='st'>"GENOTYPE_"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN        REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    GENOTYPE_1 1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    GENOTYPE_1 2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    GENOTYPE_1 3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    GENOTYPE_2 1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    GENOTYPE_2 2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    GENOTYPE_2 3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    GENOTYPE_3 1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    GENOTYPE_3 2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    GENOTYPE_3 3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    GENOTYPE_4 1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    GENOTYPE_1 1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    GENOTYPE_1 2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    GENOTYPE_1 3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    GENOTYPE_2 1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    GENOTYPE_2 2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    GENOTYPE_2 3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    GENOTYPE_3 1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    GENOTYPE_3 2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    GENOTYPE_3 3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    GENOTYPE_4 1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Remove strings</span>
 <span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;      ENV   GEN   REP    GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1     1     1  2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span>     1     1     2  2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span>     1     1     3  2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span>     1     2     1  3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span>     1     2     2  2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span>     1     2     3  2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span>     1     3     1  2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span>     1     3     2  3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span>     1     3     3  2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span>     1     4     1  2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1     1     1  2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1     1     2  2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1     1     3  2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     1     2     1  3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     1     2     2  2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     1     2     3  2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     1     3     1  2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     1     3     2  3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     1     3     3  2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     1     4     1  2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'><span class='fu'>remove_strings</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;      ENV GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1 G1    1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span>     1 G1    2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span>     1 G1    3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span>     1 G2    1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span>     1 G2    2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span>     1 G2    3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span>     1 G3    1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span>     1 G3    2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span>     1 G3    3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span>     1 G4    1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1 G1    1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1 G1    2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1 G1    3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     1 G2    1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     1 G2    2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     1 G2    3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     1 G3    1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     1 G3    2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     1 G3    3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     1 G4    1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
 
 <span class='co'>############ Find text in numeric sequences ###########</span>
 <span class='va'>mixed_text</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
@@ -567,20 +561,20 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 </div><div class='output co'>#&gt; [1] "This is the first string." "This is the second one"   </div><div class='input'>
 <span class='co'># A whole data frame</span>
 <span class='fu'>all_lower_case</span><span class='op'>(</span><span class='va'>data_ge</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> e1    g1    1      2.17  44.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> e1    g1    2      2.50  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> e1    g1    3      2.43  47.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> e1    g2    1      3.21  45.2
-#&gt; </span><span style='color: #555555;'> 5</span><span> e1    g2    2      2.93  45.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> e1    g2    3      2.56  45.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> e1    g3    1      2.77  46.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> e1    g3    2      3.62  43.2
-#&gt; </span><span style='color: #555555;'> 9</span><span> e1    g3    3      2.28  47.8
-#&gt; </span><span style='color: #555555;'>10</span><span> e1    g4    1      2.36  47.9
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> e1    g1    1      2.17  44.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> e1    g1    2      2.50  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> e1    g1    3      2.43  47.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> e1    g2    1      3.21  45.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> e1    g2    2      2.93  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> e1    g2    3      2.56  45.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> e1    g3    1      2.77  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> e1    g3    2      3.62  43.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> e1    g3    3      2.28  47.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> e1    g4    1      2.36  47.9
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
 
 <span class='co'>############### Tidy up messy text string ##############</span>
 <span class='va'>messy_env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ENV 1"</span>, <span class='st'>"Env   1"</span>, <span class='st'>"Env1"</span>, <span class='st'>"env1"</span>, <span class='st'>"Env.1"</span>, <span class='st'>"Env_1"</span><span class='op'>)</span>
@@ -599,24 +593,24 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
              Env_GEN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interaction.html'>interaction</a></span><span class='op'>(</span><span class='va'>Env</span>, <span class='va'>gen</span><span class='op'>)</span>,
              y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>300</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>df</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   Env     gen   Env_GEN           y
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV 1   GEN1  ENV 1.GEN1     300.
-#&gt; </span><span style='color: #555555;'>2</span><span> Env   1 gen 2 Env   1.gen 2  306.
-#&gt; </span><span style='color: #555555;'>3</span><span> Env1    Gen.3 Env1.Gen.3     302.
-#&gt; </span><span style='color: #555555;'>4</span><span> env1    gen-4 env1.gen-4     308.
-#&gt; </span><span style='color: #555555;'>5</span><span> Env.1   Gen_5 Env.1.Gen_5    294.
-#&gt; </span><span style='color: #555555;'>6</span><span> Env_1   GEN_6 Env_1.GEN_6    311.</div><div class='input'><span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ENV 1   GEN1  ENV 1.GEN1     288.
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Env   1 gen 2 Env   1.gen 2  310.
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Env1    Gen.3 Env1.Gen.3     280.
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> env1    gen-4 env1.gen-4     280.
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Env.1   Gen_5 Env.1.Gen_5    301.
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Env_1   GEN_6 Env_1.GEN_6    300.</div><div class='input'><span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   Env   gen   Env_GEN         y
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV_1 GEN_1 ENV_1_GEN_1  300.
-#&gt; </span><span style='color: #555555;'>2</span><span> ENV_1 GEN_2 ENV_1_GEN_2  306.
-#&gt; </span><span style='color: #555555;'>3</span><span> ENV_1 GEN_3 ENV_1_GEN_3  302.
-#&gt; </span><span style='color: #555555;'>4</span><span> ENV_1 GEN_4 ENV_1_GEN_4  308.
-#&gt; </span><span style='color: #555555;'>5</span><span> ENV_1 GEN_5 ENV_1_GEN_5  294.
-#&gt; </span><span style='color: #555555;'>6</span><span> ENV_1 GEN_6 ENV_1_GEN_6  311.</div><div class='input'><span class='co'># }</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ENV_1 GEN_1 ENV_1_GEN_1  288.
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ENV_1 GEN_2 ENV_1_GEN_2  310.
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> ENV_1 GEN_3 ENV_1_GEN_3  280.
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> ENV_1 GEN_4 ENV_1_GEN_4  280.
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> ENV_1 GEN_5 ENV_1_GEN_5  301.
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> ENV_1 GEN_6 ENV_1_GEN_6  300.</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

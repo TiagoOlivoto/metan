@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Eberhart and Russell's regression model — ge_reg" />
-<meta property="og:description" content="Regression-based stability analysis using the Eberhart and Russell (1966) model." />
+<meta property="og:description" content="
+Regression-based stability analysis using the Eberhart and Russell (1966) model." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Regression-based stability analysis using the Eberhart and Russell (1966) model.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Regression-based stability analysis using the Eberhart and Russell (1966) model.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ge_reg</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
@@ -263,17 +265,27 @@ single procedure use, for example, <code>resp = c(var1, var2, var3)</code>.</p><
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run silently.</p></td>
+      <td><p>Logical argument. If <code>verbose = FALSE</code> the code will run
+silently.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>ge_reg</code> with the folloing items for each variable:</p>
-<dt>data</dt><dd><p>The data with means for genotype and environment combinations and the
-environment index</p></dd>
-<dt>anova</dt><dd><p>The analysis of variance for the regression model.</p></dd>
-<dt>regression</dt><dd><p>The estimated coefficients of the regression model.</p></dd>
+    <p>An object of class <code>ge_reg</code> with the folloing items for each
+variable:</p><ul>
+<li><p>data: The data with means for genotype and environment combinations and the
+environment index</p></li>
+<li><p>anova: The analysis of variance for the regression model.</p></li>
+<li><p>regression: A data frame with the following columns: <code>GEN</code>, the genotypes;
+<code>b0</code> and <code>b1</code> the intercept and slope of the regression, respectively;
+<code><a href='https://rdrr.io/r/base/t.html'>t(b1=1)</a></code> the calculated t-value; <code>pval_t</code> the p-value for the t test; <code>s2di</code>
+the deviations from the regression (stability parameter); <code><a href='https://rdrr.io/r/base/logical.html'>F(s2di=0)</a></code> the
+F-test for the deviations; <code>pval_f</code> the p-value for the F test; <code>RMSE</code> the
+root-mean-square error; <code>R2</code> the determination coefficient of the regression.</p></li>
+<li><p>b0_variance: The variance of b0.</p></li>
+<li><p>b1_variance: The variance of b1.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -281,7 +293,7 @@ environment index</p></dd>
 Crop Sci. 6:36-40. doi: <a href='https://doi.org/10.2135/cropsci1966.0011183X000600010011x'>10.2135/cropsci1966.0011183X000600010011x</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='superiority.html'>superiority</a>, <a href='ecovalence.html'>ecovalence</a>, <a href='ge_stats.html'>ge_stats</a></code></p></div>
+    <div class='dont-index'><p><code><a href='superiority.html'>superiority()</a></code>, <code><a href='ecovalence.html'>ecovalence()</a></code>, <code><a href='ge_stats.html'>ge_stats()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -294,7 +306,7 @@ Crop Sci. 6:36-40. doi: <a href='https://doi.org/10.2135/cropsci1966.0011183X000
              gen <span class='op'>=</span> <span class='va'>GEN</span>,
              rep <span class='op'>=</span> <span class='va'>REP</span>,
              resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>reg</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>reg</span><span class='op'>)</span>
 </div><div class='img'><img src='ge_reg-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># }</span>
 </div></pre>

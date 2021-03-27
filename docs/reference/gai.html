@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Geometric adaptability index — gai" />
-<meta property="og:description" content="Performs a stability analysis based on the geometric mean (GAI), according to
+<meta property="og:description" content="
+Performs a stability analysis based on the geometric mean (GAI), according to
 the following model (Mohammadi and Amri, 2008):
 
 
@@ -103,7 +104,7 @@ environments, and E is the number of environments" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -236,7 +237,8 @@ environments, and E is the number of environments" />
     </div>
 
     <div class="ref-description">
-    <p>Performs a stability analysis based on the geometric mean (GAI), according to
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Performs a stability analysis based on the geometric mean (GAI), according to
 the following model (Mohammadi and Amri, 2008):
 <script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
 
@@ -246,7 +248,7 @@ the mean yields of the first, second and <em>i</em>-th genotypes across
 environments, and E is the number of environments</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gai</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>gai</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, rep <span class='op'>=</span> <span class='st'>"deprecated"</span>, <span class='va'>resp</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -267,8 +269,7 @@ environments.</p></td>
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>The name of the column that contains the levels of the
-replications/blocks.</p></td>
+      <td><p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a></p></td>
     </tr>
     <tr>
       <th>resp</th>
@@ -307,7 +308,7 @@ doi: <a href='https://doi.org/10.1007/s10681-007-9600-6'>10.1007/s10681-007-9600
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'>gai</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>EH</span>, <span class='va'>PH</span>, <span class='va'>EL</span>, <span class='va'>CD</span>, <span class='va'>ED</span>, <span class='va'>NKE</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'># }</span>
+</div><div class='output co'>#&gt; Evaluating trait EH |=======                                     | 17% 00:00:00 Evaluating trait PH |===============                             | 33% 00:00:00 Evaluating trait EL |======================                      | 50% 00:00:00 Evaluating trait CD |=============================               | 67% 00:00:00 Evaluating trait ED |=====================================       | 83% 00:00:00 Evaluating trait NKE |===========================================| 100% 00:00:00 </div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>

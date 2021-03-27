@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -496,7 +496,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="Resende_indexes.html">Resende_indexes()</a></code> </p>
+          <p><code><a href="blup_indexes.html">hmgv()</a></code> <code><a href="blup_indexes.html">rpgv()</a></code> <code><a href="blup_indexes.html">hmrpgv()</a></code> <code><a href="blup_indexes.html">Resende_indexes()</a></code> <code><a href="blup_indexes.html">blup_indexes()</a></code> </p>
         </td>
         <td><p>Stability indexes based on a mixed-effect model</p></td>
       </tr><tr>
@@ -669,6 +669,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="mps.html">mps()</a></code> </p>
+        </td>
+        <td><p>Mean performance and stability in multi-environment trials</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mtmps.html">mtmps()</a></code> </p>
+        </td>
+        <td><p>Multi-trait mean performance and stability index</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="mtsi.html">mtsi()</a></code> </p>
         </td>
         <td><p>Multi-trait stability index</p></td>
@@ -677,7 +689,7 @@
         <td>
           <p><code><a href="mgidi.html">mgidi()</a></code> </p>
         </td>
-        <td><p>Genotype-Ideotype Distance Index</p></td>
+        <td><p>Multitrait Genotype-Ideotype Distance Index</p></td>
       </tr><tr>
         
         <td>
@@ -707,6 +719,12 @@ the R console. The results can also be exported to the directory.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="plot.mtmps.html">plot(<i>&lt;mtmps&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot the multi-trait stability index</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="plot.sh.html">plot(<i>&lt;sh&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot the Smith-Hazel index</p></td>
@@ -722,6 +740,12 @@ the R console. The results can also be exported to the directory.</p></td>
           <p><code><a href="print.mtsi.html">print(<i>&lt;mtsi&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print an object of class mtsi</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.mtmps.html">print(<i>&lt;mtmps&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an object of class mtmps</p></td>
       </tr><tr>
         
         <td>
@@ -1178,7 +1202,8 @@ the R console. The results can also be exported to the directory.</p></td>
         <td>
           <p><code><a href="mantel_test.html">mantel_test()</a></code> </p>
         </td>
-        <td><p>Mantel test</p></td>
+        <td><p>Mantel test
+<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script></p></td>
       </tr><tr>
         
         <td>
@@ -1462,6 +1487,25 @@ the R console. The results can also be exported to the directory.</p></td>
       
       <tr>
         <th colspan="2">
+          <h3 id="section-data-organization" class="hasAnchor"><a href="#section-data-organization" class="anchor"></a>Data organization</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="utils_data_org.html">add_seq_block()</a></code> <code><a href="utils_data_org.html">recode_factor()</a></code> <code><a href="utils_data_org.html">df_to_selegen_54()</a></code> </p>
+        </td>
+        <td><p>Utilities for data organization</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
           <h3 id="section-coerce-variables-to-a-specific-type" class="hasAnchor"><a href="#section-coerce-variables-to-a-specific-type" class="anchor"></a>Coerce variables to a specific type</h3>
           <p class="section-desc"></p>
         </th>
@@ -1587,6 +1631,25 @@ the R console. The results can also be exported to the directory.</p></td>
       
       <tr>
         <th colspan="2">
+          <h3 id="section-progress-bar" class="hasAnchor"><a href="#section-progress-bar" class="anchor"></a>Progress bar</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="utils_progress.html">progress()</a></code> <code><a href="utils_progress.html">run_progress()</a></code> </p>
+        </td>
+        <td><p>Utilities for text progress bar in the terminal</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
           <h3 id="section-select-helpers" class="hasAnchor"><a href="#section-select-helpers" class="anchor"></a>Select helpers</h3>
           <p class="section-desc"></p>
         </th>
@@ -1653,7 +1716,7 @@ the R console. The results can also be exported to the directory.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="get_model_data.html">get_model_data()</a></code> <code><a href="get_model_data.html">gmd()</a></code> </p>
+          <p><code><a href="get_model_data.html">get_model_data()</a></code> <code><a href="get_model_data.html">gmd()</a></code> <code><a href="get_model_data.html">sel_gen()</a></code> </p>
         </td>
         <td><p>Get data from a model easily</p></td>
       </tr><tr>
@@ -1665,9 +1728,9 @@ the R console. The results can also be exported to the directory.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="rbind_fill.html">rbind_fill()</a></code> </p>
+          <p><code><a href="utils_bind.html">rbind_fill_id()</a></code> <code><a href="utils_bind.html">rbind_fill()</a></code> </p>
         </td>
-        <td><p>Combines data.frames by row filling missing values</p></td>
+        <td><p>Helper function for binding data</p></td>
       </tr><tr>
         
         <td>

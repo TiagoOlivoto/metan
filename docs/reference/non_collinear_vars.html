@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Select a set of predictors with minimal multicollinearity — non_collinear_vars" />
-<meta property="og:description" content="Select a set of predictors with minimal multicollinearity using the variance
+<meta property="og:description" content="
+Select a set of predictors with minimal multicollinearity using the variance
 inflation factor (VIF) as criteria to remove collinear variables. The
 algorithm will: (i) compute the VIF value of the correlation matrix
 containing the variables selected in ...; (ii) arrange the
@@ -102,7 +103,7 @@ max_vif." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -235,7 +236,8 @@ max_vif." />
     </div>
 
     <div class="ref-description">
-    <p>Select a set of predictors with minimal multicollinearity using the variance
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Select a set of predictors with minimal multicollinearity using the variance
 inflation factor (VIF) as criteria to remove collinear variables. The
 algorithm will: <strong>(i)</strong> compute the VIF value of the correlation matrix
 containing the variables selected in <code>...</code>; <strong>(ii)</strong> arrange the
@@ -272,15 +274,15 @@ variable name or a comma-separated list of unquoted variables names.</p></td>
     <tr>
       <th>missingval</th>
       <td><p>How to deal with missing values. For more information,
-please see <code><a href='https://rdrr.io/r/stats/cor.html'>cor</a>()</code>.</p></td>
+please see <code><a href='https://rdrr.io/r/stats/cor.html'>stats::cor()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame showing the number of selected predictors, maximum VIF
-  value, condition number, determinant value, selected predictors and removed
-  predictors from the original set of variables.</p>
+value, condition number, determinant value, selected predictors and removed
+predictors from the original set of variables.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

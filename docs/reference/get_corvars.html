@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Generate normal, correlated variables — get_corvars" />
-<meta property="og:description" content="Given the mean and desired correlations, generate normal, correlated
+<meta property="og:description" content="
+Given the mean and desired correlations, generate normal, correlated
 variables." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ variables." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ variables." />
     </div>
 
     <div class="ref-description">
-    <p>Given the mean and desired correlations, generate normal, correlated
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Given the mean and desired correlations, generate normal, correlated
 variables.</p>
     </div>
 
@@ -279,10 +281,10 @@ positive-definiteness in sigma.</p></td>
 
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>get_corvars</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10000</span>, mu <span class='op'>=</span> <span class='va'>mu</span>, sigma <span class='op'>=</span> <span class='va'>sigma</span>, seed <span class='op'>=</span> <span class='fl'>101010</span><span class='op'>)</span>
 <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 3</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 3</span><span>
 #&gt;      X1    X2    X3
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  6.01  50.0  5.00</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  6.01  50.0  5.00</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;             X1        X2          X3
 #&gt; X1 1.000000000 0.3026515 0.004851063
 #&gt; X2 0.302651488 1.0000000 0.900604867

@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Joint analysis of variance — anova_joint" />
-<meta property="og:description" content="Performs a joint analysis of variance to check for the presence of
+<meta property="og:description" content="
+Performs a joint analysis of variance to check for the presence of
 genotype-vs-environment interactions using both randomized complete block and
 alpha-lattice designs." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -98,7 +99,7 @@ alpha-lattice designs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -231,7 +232,8 @@ alpha-lattice designs." />
     </div>
 
     <div class="ref-description">
-    <p>Performs a joint analysis of variance to check for the presence of
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Performs a joint analysis of variance to check for the presence of
 genotype-vs-environment interactions using both randomized complete block and
 alpha-lattice designs.</p>
     </div>
@@ -264,8 +266,7 @@ replications/blocks.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp
-  = c(var1, var2, var3)</code>.</p></td>
+single procedure a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
       <th>block</th>
@@ -305,7 +306,7 @@ the winner genotype.</p></li>
 resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='anova_ind.html'>anova_ind</a></code></p></div>
+    <div class='dont-index'><p><code><a href='get_model_data.html'>get_model_data()</a></code> <code><a href='anova_ind.html'>anova_ind()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -352,35 +353,35 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Predicted values</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>j_an</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 420 x 6</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 420 x 6</span><span>
 #&gt;    ENV   GEN   REP   factors    GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1     G1_1     2.42  46.5
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2     G1_2     2.40  46.0
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3     G1_3     2.27  47.1
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1     G2_1     2.96  45.4
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2     G2_2     2.94  44.8
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3     G2_3     2.81  45.9
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1     G3_1     2.95  45.9
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2     G3_2     2.92  45.3
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3     G3_3     2.80  46.4
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1     G4_1     2.65  48.3
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1    1     G1_1     2.42  46.5
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G1    2     G1_2     2.40  46.0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G1    3     G1_3     2.27  47.1
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G2    1     G2_1     2.96  45.4
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G2    2     G2_2     2.94  44.8
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G2    3     G2_3     2.81  45.9
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G3    1     G3_1     2.95  45.9
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G3    2     G3_2     2.92  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G3    3     G3_3     2.80  46.4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G4    1     G4_1     2.65  48.3
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
 <span class='co'># Details</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>j_an</span>, <span class='st'>"details"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: details</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: details</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 3</span><span>
 #&gt;    Parameters GY                  HM              
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #555555;'> 1</span><span> Mean       </span><span style='color: #555555;'>"</span><span>2.67</span><span style='color: #555555;'>"</span><span>              </span><span style='color: #555555;'>"</span><span>48.09</span><span style='color: #555555;'>"</span><span>         
-#&gt; </span><span style='color: #555555;'> 2</span><span> SE         </span><span style='color: #555555;'>"</span><span>0.05</span><span style='color: #555555;'>"</span><span>              </span><span style='color: #555555;'>"</span><span>0.21</span><span style='color: #555555;'>"</span><span>          
-#&gt; </span><span style='color: #555555;'> 3</span><span> SD         </span><span style='color: #555555;'>"</span><span>0.92</span><span style='color: #555555;'>"</span><span>              </span><span style='color: #555555;'>"</span><span>4.37</span><span style='color: #555555;'>"</span><span>          
-#&gt; </span><span style='color: #555555;'> 4</span><span> CV         </span><span style='color: #555555;'>"</span><span>34.56</span><span style='color: #555555;'>"</span><span>             </span><span style='color: #555555;'>"</span><span>9.09</span><span style='color: #555555;'>"</span><span>          
-#&gt; </span><span style='color: #555555;'> 5</span><span> Min        </span><span style='color: #555555;'>"</span><span>0.67 (G10 in E11)</span><span style='color: #555555;'>"</span><span> </span><span style='color: #555555;'>"</span><span>38 (G2 in E14)</span><span style='color: #555555;'>"</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> Max        </span><span style='color: #555555;'>"</span><span>5.09 (G8 in E5)</span><span style='color: #555555;'>"</span><span>   </span><span style='color: #555555;'>"</span><span>58 (G8 in E11)</span><span style='color: #555555;'>"</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> MinENV     </span><span style='color: #555555;'>"</span><span>E11 (1.37)</span><span style='color: #555555;'>"</span><span>        </span><span style='color: #555555;'>"</span><span>E14 (41.03)</span><span style='color: #555555;'>"</span><span>   
-#&gt; </span><span style='color: #555555;'> 8</span><span> MaxENV     </span><span style='color: #555555;'>"</span><span>E3 (4.06)</span><span style='color: #555555;'>"</span><span>         </span><span style='color: #555555;'>"</span><span>E11 (54.2)</span><span style='color: #555555;'>"</span><span>    
-#&gt; </span><span style='color: #555555;'> 9</span><span> MinGEN     </span><span style='color: #555555;'>"</span><span>G10 (2.47) </span><span style='color: #555555;'>"</span><span>       </span><span style='color: #555555;'>"</span><span>G2 (46.66) </span><span style='color: #555555;'>"</span><span>   
-#&gt; </span><span style='color: #555555;'>10</span><span> MaxGEN     </span><span style='color: #555555;'>"</span><span>G8 (3) </span><span style='color: #555555;'>"</span><span>           </span><span style='color: #555555;'>"</span><span>G5 (49.3) </span><span style='color: #555555;'>"</span><span>    </div><div class='input'><span class='co'># }</span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mean       </span><span style='color: #949494;'>"</span><span>2.67</span><span style='color: #949494;'>"</span><span>              </span><span style='color: #949494;'>"</span><span>48.09</span><span style='color: #949494;'>"</span><span>         
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> SE         </span><span style='color: #949494;'>"</span><span>0.05</span><span style='color: #949494;'>"</span><span>              </span><span style='color: #949494;'>"</span><span>0.21</span><span style='color: #949494;'>"</span><span>          
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> SD         </span><span style='color: #949494;'>"</span><span>0.92</span><span style='color: #949494;'>"</span><span>              </span><span style='color: #949494;'>"</span><span>4.37</span><span style='color: #949494;'>"</span><span>          
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CV         </span><span style='color: #949494;'>"</span><span>34.56</span><span style='color: #949494;'>"</span><span>             </span><span style='color: #949494;'>"</span><span>9.09</span><span style='color: #949494;'>"</span><span>          
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Min        </span><span style='color: #949494;'>"</span><span>0.67 (G10 in E11)</span><span style='color: #949494;'>"</span><span> </span><span style='color: #949494;'>"</span><span>38 (G2 in E14)</span><span style='color: #949494;'>"</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Max        </span><span style='color: #949494;'>"</span><span>5.09 (G8 in E5)</span><span style='color: #949494;'>"</span><span>   </span><span style='color: #949494;'>"</span><span>58 (G8 in E11)</span><span style='color: #949494;'>"</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> MinENV     </span><span style='color: #949494;'>"</span><span>E11 (1.37)</span><span style='color: #949494;'>"</span><span>        </span><span style='color: #949494;'>"</span><span>E14 (41.03)</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> MaxENV     </span><span style='color: #949494;'>"</span><span>E3 (4.06)</span><span style='color: #949494;'>"</span><span>         </span><span style='color: #949494;'>"</span><span>E11 (54.2)</span><span style='color: #949494;'>"</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> MinGEN     </span><span style='color: #949494;'>"</span><span>G10 (2.47) </span><span style='color: #949494;'>"</span><span>       </span><span style='color: #949494;'>"</span><span>G2 (46.66) </span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> MaxGEN     </span><span style='color: #949494;'>"</span><span>G8 (3) </span><span style='color: #949494;'>"</span><span>           </span><span style='color: #949494;'>"</span><span>G5 (49.3) </span><span style='color: #949494;'>"</span><span>    </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>

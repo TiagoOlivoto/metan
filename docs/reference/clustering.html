@@ -53,7 +53,10 @@
 
 
 <meta property="og:title" content="Clustering analysis — clustering" />
-<meta property="og:description" content="Performs clustering analysis with selection of variables." />
+<meta property="og:description" content="
+
+
+Performs clustering analysis with selection of variables." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +99,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +232,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Performs clustering analysis with selection of variables.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a>
+<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
+
+Performs clustering analysis with selection of variables.</p>
     </div>
 
     <pre class="usage"><span class='fu'>clustering</span><span class='op'>(</span>
@@ -241,7 +247,7 @@
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   distmethod <span class='op'>=</span> <span class='st'>"euclidean"</span>,
   clustmethod <span class='op'>=</span> <span class='st'>"average"</span>,
-  nclust <span class='op'>=</span> <span class='cn'>NULL</span>
+  nclust <span class='op'>=</span> <span class='cn'>NA</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -250,7 +256,7 @@
     <tr>
       <th>.data</th>
       <td><p>The data to be analyzed. It can be a data frame, possible with
-grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
+grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -260,20 +266,20 @@ grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/gr
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
       <th>scale</th>
       <td><p>Should the data be scaled before computing the distances? Set to
 FALSE. If TRUE, then, each observation will be divided by the standard
-deviation of the variable <code>Z_{ij} = X_{ij} / sd(j)</code></p></td>
+deviation of the variable \(Z_{ij} = X_{ij} / sd_j\)</p></td>
     </tr>
     <tr>
       <th>selvar</th>
       <td><p>Logical argument, set to <code>FALSE</code>. If <code>TRUE</code>, then an
 algorithm for selecting variables is implemented. See the section
-<b>Details</b> for additional information.</p></td>
+<strong>Details</strong> for additional information.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -297,7 +303,7 @@ WPGMC) or <code>'centroid'</code> (= UPGMC).</p></td>
     </tr>
     <tr>
       <th>nclust</th>
-      <td><p>The number of clusters to be formed. Set to <code>NULL</code></p></td>
+      <td><p>The number of clusters to be formed. Set to <code>NA</code></p></td>
     </tr>
     </table>
 
@@ -329,21 +335,27 @@ test. Else, will be a <code>NULL</code> object.</p></li>
     <p>When <code>selvar = TRUE</code> a variable selection algorithm is executed. The
 objective is to select a group of variables that most contribute to explain
 the variability of the original data. The selection of the variables is based
-on eigenvalue/eigenvectors solution based on the following steps. <b>1:</b>
-compute the distance matrix and the cophenetic correlation with the original
-variables (all numeric variables in dataset); <b>2:</b> compute the
-eigenvalues and eigenvectors of the correlation matrix between the variables;
-<b>3:</b> delete the variable with the largest weight (highest eigenvector in
-the lowest eigenvalue); <b>4:</b> compute the distance matrix and cophenetic
-correlation with the remaining variables; <b>5:</b> compute the Mantel's
-correlation between the obtained distances matrix and the original distance
-matrix; <b>6:</b> iterate steps 2 to 5 <em>p</em> - 2 times, where <em>p</em> is
-the number of original variables. At the end of the <em>p</em> - 2 iterations,
-a summary of the models is returned. The distance is calculated with the
-variables that generated the model with the largest cophenetic correlation. I
-suggest a careful evaluation aiming at choosing a parsimonious model, i.e.,
-the one with the fewer number of variables, that presents acceptable
-cophenetic correlation and high similarity with the original distances.</p>
+on eigenvalue/eigenvectors solution based on the following steps.</p><ol>
+<li><p>compute the distance matrix and the cophenetic correlation with the original
+variables (all numeric variables in dataset);</p></li>
+<li><p>compute the eigenvalues and eigenvectors of the correlation matrix between
+the variables;</p></li>
+<li><p>Delete the variable with the largest weight (highest eigenvector in
+the lowest eigenvalue);</p></li>
+<li><p>Compute the distance matrix and cophenetic correlation with the remaining
+variables;</p></li>
+<li><p>Compute the Mantel's correlation between the obtained distances matrix and
+the original distance matrix;</p></li>
+<li><p>Iterate steps 2 to 5 <em>p</em> - 2 times, where <em>p</em> is the number of original
+variables.</p></li>
+</ol>
+
+<p>At the end of the <em>p</em> - 2 iterations, a summary of the models is returned.
+The distance is calculated with the variables that generated the model with
+the largest cophenetic correlation. I suggest a careful evaluation aiming at
+choosing a parsimonious model, i.e., the one with the fewer number of
+variables, that presents acceptable cophenetic correlation and high
+similarity with the original distances.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Mojena, R. 2015. Hierarchical grouping methods and stopping
@@ -370,25 +382,11 @@ rules: an evaluation. Comput. J. 20:359-363. doi: <a href='https://doi.org/10.10
 
 <span class='co'># Select variables for compute the distances</span>
 <span class='va'>d3</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span>, selvar <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Model 1 with 15 variables. 'EH' excluded in this step (7.1%).
-#&gt; Model 2 with 14 variables. 'EP' excluded in this step (14.3%).
-#&gt; Model 3 with 13 variables. 'CDED' excluded in this step (21.4%).
-#&gt; Model 4 with 12 variables. 'PH' excluded in this step (28.6%).
-#&gt; Model 5 with 11 variables. 'CL' excluded in this step (35.7%).
-#&gt; Model 6 with 10 variables. 'NR' excluded in this step (42.9%).
-#&gt; Model 7 with 9 variables. 'PERK' excluded in this step (50%).
-#&gt; Model 8 with 8 variables. 'EL' excluded in this step (57.1%).
-#&gt; Model 9 with 7 variables. 'CD' excluded in this step (64.3%).
-#&gt; Model 10 with 6 variables. 'ED' excluded in this step (71.4%).
-#&gt; Model 11 with 5 variables. 'KW' excluded in this step (78.6%).
-#&gt; Model 12 with 4 variables. 'CW' excluded in this step (85.7%).
-#&gt; Model 13 with 3 variables. 'NKR' excluded in this step (92.9%).
-#&gt; Model 14 with 2 variables. 'TKW' excluded in this step (100%).
-#&gt; Done! 
-#&gt; -------------------------------------------------------------------------- 
+</div><div class='output co'>#&gt; EH excluded in this step |===                                             | 7% EP excluded in this step |=======                                         | 14% CDED excluded in this step |==========                                    | 21% PH excluded in this step |==============                                  | 29% CL excluded in this step |=================                               | 36% NR excluded in this step |=====================                           | 43% PERK excluded in this step |=======================                       | 50% EL excluded in this step |===========================                     | 57% CD excluded in this step |===============================                 | 64% ED excluded in this step |==================================              | 71% KW excluded in this step |======================================          | 79% CW excluded in this step |=========================================       | 86% NKR excluded in this step |============================================   | 93% TKW excluded in this step |===============================================| 100% 
+#&gt; --------------------------------------------------------------------------
 #&gt; 
 #&gt; Summary of the adjusted models 
-#&gt; -------------------------------------------------------------------------- 
+#&gt; --------------------------------------------------------------------------
 #&gt;     Model excluded cophenetic remaining cormantel    pvmantel
 #&gt;   Model 1        -  0.8656190        15 1.0000000 0.000999001
 #&gt;   Model 2       EH  0.8656191        14 1.0000000 0.000999001
@@ -405,12 +403,13 @@ rules: an evaluation. Comput. J. 20:359-363. doi: <a href='https://doi.org/10.10
 #&gt;  Model 13       CW  0.8640355         3 0.9927593 0.000999001
 #&gt;  Model 14      NKR  0.8648384         2 0.9925396 0.000999001
 #&gt; --------------------------------------------------------------------------
-#&gt; Suggested variables to be used in the analysis 
-#&gt; -------------------------------------------------------------------------- 
+#&gt; Suggested variables to be used in the analysis
+#&gt; --------------------------------------------------------------------------
 #&gt; The clustering was calculated with the  Model 10 
 #&gt; The variables included in this model were...
 #&gt;  ED CW KW NKR TKW NKE 
-#&gt; --------------------------------------------------------------------------</div><div class='input'>
+#&gt; --------------------------------------------------------------------------
+#&gt; </div><div class='input'>
 <span class='co'># Compute the distances with standardized data</span>
 <span class='co'># Define 4 clusters</span>
 <span class='va'>d4</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge</span>,

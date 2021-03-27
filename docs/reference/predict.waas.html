@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -257,7 +257,7 @@ vector.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list where each element is the predicted values by the AMMI model
-  for each variable.</p>
+for each variable.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is used to predict the response variable of a two-way table
@@ -266,15 +266,14 @@ based on AMMI model. This prediction is based on the number of multiplicative
 terms used. If <code>naxis = 0</code>, only the main effects (AMMI0) are used. In
 this case, the predicted mean will be the predicted value from OLS
 estimation. If <code>naxis = 1</code> the AMMI1 (with one multiplicative term) is
-used for predicting the response variable. If <code>naxis =
-min(gen-1;env-1)</code>, the AMMIF is fitted and the predicted value will be the
+used for predicting the response variable. If <code>naxis = min(gen-1;env-1)</code>, the AMMIF is fitted and the predicted value will be the
 cell mean, i.e. the mean of R-replicates of the i-th genotype in the j-th
 environment. The number of axis to be used must be carefully chosen.
 Procedures based on Postdictive success (such as Gollobs's d.f.) or
 Predictive sucess (such as cross-validation) should be used to do this. This
-package provide both. <code><a href='waas.html'>waas</a></code> function compute traditional AMMI
+package provide both. <code><a href='waas.html'>waas()</a></code> function compute traditional AMMI
 analysis showing the number of significant axis. On the other hand,
-<code><a href='cv_ammif.html'>cv_ammif</a></code> function provide a cross-validation, estimating the
+<code><a href='cv_ammif.html'>cv_ammif()</a></code> function provide a cross-validation, estimating the
 RMSPD of all AMMI-family models, based on resampling procedures.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -293,21 +292,21 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .
+#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
+#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89
+#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
 #&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6
+#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
 #&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100
-#&gt;  Residuals 252  24.367  0.0967      NA       NA          .           .
-#&gt;      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
+#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
+#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
@@ -315,21 +314,21 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16          .           .
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05          .           .
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14          .           .
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15          .           .
+#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
+#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
+#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
+#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
 #&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00         29        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4          74
+#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
+#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
 #&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
 #&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4          93
+#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
 #&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
 #&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3         100
-#&gt;  Residuals 252  715.69   2.840      NA       NA          .           .
-#&gt;      Total 536 9112.21  17.000      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
+#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
+#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -337,36 +336,36 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 <span class='va'>predict</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model</span>, naxis <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>predict</span>
 </div><div class='output co'>#&gt; $GY
-#&gt; <span style='color: #555555;'># A tibble: 140 x 7</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 140 x 7</span><span>
 #&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1     2.37 -</span><span style='color: #BB0000;'>0.084</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>     2.45       0.077</span><span style='text-decoration: underline;'>7</span><span>          2.53
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G10    1.97 -</span><span style='color: #BB0000;'>0.344</span><span>      2.32      -</span><span style='color: #BB0000;'>0.321</span><span>           2.00
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G2     2.90  0.311      2.59       0.244           2.83
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G3     2.89  0.086</span><span style='text-decoration: underline;'>8</span><span>     2.80      -</span><span style='color: #BB0000;'>0.062</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.74
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4     2.59  0.100      2.49       0.035</span><span style='text-decoration: underline;'>4</span><span>          2.52
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G5     2.19 -</span><span style='color: #BB0000;'>0.196</span><span>      2.38      -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.30
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G6     2.30 -</span><span style='color: #BB0000;'>0.079</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.38      -</span><span style='color: #BB0000;'>0.106</span><span>           2.27
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G7     2.77  0.186      2.59       0.234           2.82
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     2.90  0.049</span><span style='text-decoration: underline;'>3</span><span>     2.85       0.011</span><span style='text-decoration: underline;'>2</span><span>          2.86
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     2.33 -</span><span style='color: #BB0000;'>0.030</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.36      -</span><span style='color: #BB0000;'>0.023</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>          2.33
-#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1     2.37 -</span><span style='color: #BB0000;'>0.084</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>     2.45       0.077</span><span style='text-decoration: underline;'>7</span><span>          2.53
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G10    1.97 -</span><span style='color: #BB0000;'>0.344</span><span>      2.32      -</span><span style='color: #BB0000;'>0.321</span><span>           2.00
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G2     2.90  0.311      2.59       0.244           2.83
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G3     2.89  0.086</span><span style='text-decoration: underline;'>8</span><span>     2.80      -</span><span style='color: #BB0000;'>0.062</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.74
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G4     2.59  0.100      2.49       0.035</span><span style='text-decoration: underline;'>4</span><span>          2.52
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G5     2.19 -</span><span style='color: #BB0000;'>0.196</span><span>      2.38      -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.30
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G6     2.30 -</span><span style='color: #BB0000;'>0.079</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.38      -</span><span style='color: #BB0000;'>0.106</span><span>           2.27
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G7     2.77  0.186      2.59       0.234           2.82
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G8     2.90  0.049</span><span style='text-decoration: underline;'>3</span><span>     2.85       0.011</span><span style='text-decoration: underline;'>2</span><span>          2.86
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G9     2.33 -</span><span style='color: #BB0000;'>0.030</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.36      -</span><span style='color: #BB0000;'>0.023</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>          2.33
+#&gt; </span><span style='color: #949494;'># ... with 130 more rows</span><span>
 #&gt; 
 #&gt; $HM
-#&gt; </span><span style='color: #555555;'># A tibble: 140 x 7</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 140 x 7</span><span>
 #&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1     46.5   0.117     46.4      0.038</span><span style='text-decoration: underline;'>1</span><span>           46.4
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G10    46.9  -</span><span style='color: #BB0000;'>0.923</span><span>     47.8     -</span><span style='color: #BB0000;'>0.242</span><span>            47.6
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G2     45.3  -</span><span style='color: #BB0000;'>0.660</span><span>     46.0      0.213            46.2
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G3     45.9  -</span><span style='color: #BB0000;'>1.05</span><span>      46.9      0.046</span><span style='text-decoration: underline;'>5</span><span>           47.0
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4     48.3   0.931     47.4     -</span><span style='color: #BB0000;'>0.027</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>           47.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G5     49.9   1.26      48.6      0.215            48.8
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G6     48.2   0.189     48.1      0.074</span><span style='text-decoration: underline;'>5</span><span>           48.1
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G7     47.4   0.154     47.3     -</span><span style='color: #BB0000;'>0.166</span><span>            47.1
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     48.0  -</span><span style='color: #BB0000;'>0.466</span><span>     48.4     -</span><span style='color: #BB0000;'>0.005</span><span style='color: #BB0000;text-decoration: underline;'>68</span><span>          48.4
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     47.7   0.450     47.2     -</span><span style='color: #BB0000;'>0.146</span><span>            47.1
-#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1     46.5   0.117     46.4      0.038</span><span style='text-decoration: underline;'>1</span><span>           46.4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G10    46.9  -</span><span style='color: #BB0000;'>0.923</span><span>     47.8     -</span><span style='color: #BB0000;'>0.242</span><span>            47.6
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G2     45.3  -</span><span style='color: #BB0000;'>0.660</span><span>     46.0      0.213            46.2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G3     45.9  -</span><span style='color: #BB0000;'>1.05</span><span>      46.9      0.046</span><span style='text-decoration: underline;'>5</span><span>           47.0
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G4     48.3   0.931     47.4     -</span><span style='color: #BB0000;'>0.027</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>           47.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G5     49.9   1.26      48.6      0.215            48.8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G6     48.2   0.189     48.1      0.074</span><span style='text-decoration: underline;'>5</span><span>           48.1
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G7     47.4   0.154     47.3     -</span><span style='color: #BB0000;'>0.166</span><span>            47.1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G8     48.0  -</span><span style='color: #BB0000;'>0.466</span><span>     48.4     -</span><span style='color: #BB0000;'>0.005</span><span style='color: #BB0000;text-decoration: underline;'>68</span><span>          48.4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G9     47.7   0.450     47.2     -</span><span style='color: #BB0000;'>0.146</span><span>            47.1
+#&gt; </span><span style='color: #949494;'># ... with 130 more rows</span><span>
 #&gt; </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>

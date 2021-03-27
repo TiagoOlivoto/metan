@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Visualization of a correlation matrix — corr_plot" />
-<meta property="og:description" content="Graphical and numerical visualization of a correlation matrix" />
+<meta property="og:description" content="
+Graphical and numerical visualization of a correlation matrix" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Graphical and numerical visualization of a correlation matrix</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Graphical and numerical visualization of a correlation matrix</p>
     </div>
 
     <pre class="usage"><span class='fu'>corr_plot</span><span class='op'>(</span>
@@ -336,8 +338,7 @@ overwritten.</p></td>
     </tr>
     <tr>
       <th>diag.type</th>
-      <td><p>The type of plot to show in the diagonal if <code>diag
-TRUE</code>. It must be one of the 'histogram' (to show an histogram), 'density'
+      <td><p>The type of plot to show in the diagonal if <code>diag TRUE</code>. It must be one of the 'histogram' (to show an histogram), 'density'
 to show the Kernel density, or 'boxplot' (to show a boxplot).</p></td>
     </tr>
     <tr>
@@ -351,7 +352,7 @@ the distribution. Set to gray.</p></td>
     </tr>
     <tr>
       <th>alpha.diag</th>
-      <td><p>Alpha-transparency scale [0-1] to make the diagonal plot
+      <td><p>Alpha-transparency scale (0-1) to make the diagonal plot
 transparent. 0 = fully transparent; 1 = full color. Set to 0.15</p></td>
     </tr>
     <tr>
@@ -362,7 +363,7 @@ lower, and diagonal panels, respectively. Set to 'gray'.</p></td>
     <tr>
       <th>prob</th>
       <td><p>The probability of error. Significant correlations will be
-highlighted with '*', '**', and '***' (0.05, 0.01, and 0.001,
+highlighted with '<em>', '<strong>', and '</strong></em>' (0.05, 0.01, and 0.001,
 respectively). Scatterplots with significant correlations may be
 color-highlighted.</p></td>
     </tr>
@@ -373,7 +374,7 @@ Set to 'green'.</p></td>
     </tr>
     <tr>
       <th>alpha.sign</th>
-      <td><p>Alpha-transparency scale [0-1] to make the plot area
+      <td><p>Alpha-transparency scale (0-1) to make the plot area
 transparent. 0 = fully transparent; 1 = full color. Set to 0.15</p></td>
     </tr>
     <tr>
@@ -413,7 +414,7 @@ to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>alpha.point</th>
-      <td><p>Alpha-transparency scale [0-1] to make the points
+      <td><p>Alpha-transparency scale (0-1) to make the points
 transparent. 0 = fully transparent; 1 = full color. Set to 0.7</p></td>
     </tr>
     <tr>
@@ -455,8 +456,7 @@ the current directory.</p></td>
     <tr>
       <th>file.type</th>
       <td><p>The format of the file if <code>export = TRUE</code>.  Set to
-<code>'pdf'</code>. Other possible values are <code>*.tiff</code> using <code>file.type
-= 'tiff'</code>.</p></td>
+<code>'pdf'</code>. Other possible values are <code>*.tiff</code> using <code>file.type = 'tiff'</code>.</p></td>
     </tr>
     <tr>
       <th>file.name</th>
@@ -488,22 +488,18 @@ used. Set to <code>300</code> (300 dpi).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>dataset</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span>
+<span class='va'>dataset</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span><span class='op'>)</span>
 
 <span class='co'># Default plot setting</span>
 <span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span><span class='op'>)</span>
 </div><div class='img'><img src='corr_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Chosing variables to be correlated</span>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>CD</span>, <span class='va'>EL</span>, <span class='va'>PERK</span>, <span class='va'>NKR</span><span class='op'>)</span>
+<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span><span class='op'>)</span>
 </div><div class='img'><img src='corr_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Changing the layout</span>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>CD</span>, <span class='va'>EL</span>, <span class='va'>PERK</span>, <span class='va'>NKR</span>,
-          lower <span class='op'>=</span> <span class='cn'>NULL</span>,
-          upper <span class='op'>=</span> <span class='st'>'corr'</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+
 <span class='co'># Axis labels, similar to the function pairs()</span>
 <span class='co'># Gray scale</span>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>CD</span>, <span class='va'>EL</span>, <span class='va'>PERK</span>, <span class='va'>NKR</span>,
+<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span>,
           shape.point <span class='op'>=</span> <span class='fl'>19</span>,
           size.point <span class='op'>=</span> <span class='fl'>2</span>,
           alpha.point <span class='op'>=</span> <span class='fl'>0.5</span>,
@@ -512,8 +508,8 @@ used. Set to <code>300</code> (300 dpi).</p></td>
           col.sign <span class='op'>=</span> <span class='st'>'gray'</span>,
           alpha.sign <span class='op'>=</span> <span class='fl'>0.3</span>,
           axis.labels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>CD</span>, <span class='va'>EL</span>, <span class='va'>PERK</span>, <span class='va'>NKR</span>, <span class='va'>CW</span>, <span class='va'>NKE</span>,
+</div><div class='img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span>,
           prob <span class='op'>=</span> <span class='fl'>0.01</span>,
           shape.point <span class='op'>=</span> <span class='fl'>21</span>,
           col.point <span class='op'>=</span> <span class='st'>'black'</span>,
@@ -531,7 +527,7 @@ used. Set to <code>300</code> (300 dpi).</p></td>
           col.dia.panel <span class='op'>=</span> <span class='st'>'black'</span>,
           pan.spacing <span class='op'>=</span> <span class='fl'>0</span>,
           lab.position <span class='op'>=</span> <span class='st'>'tl'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='corr_plot-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

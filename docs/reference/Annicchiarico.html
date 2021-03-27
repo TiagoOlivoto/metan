@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Annicchiarico's genotypic confidence index — Annicchiarico" />
-<meta property="og:description" content="Stability analysis using the known genotypic confidence index (Annicchiarico,
+<meta property="og:description" content="
+Stability analysis using the known genotypic confidence index (Annicchiarico,
 1992)." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Stability analysis using the known genotypic confidence index (Annicchiarico,
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Stability analysis using the known genotypic confidence index (Annicchiarico,
 1992).</p>
     </div>
 
@@ -294,7 +296,7 @@ unfavorable environments.</p></li>
 from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='superiority.html'>superiority</a>, <a href='ecovalence.html'>ecovalence</a>, <a href='ge_stats.html'>ge_stats</a></code></p></div>
+    <div class='dont-index'><p><code><a href='superiority.html'>superiority()</a></code>, <code><a href='ecovalence.html'>ecovalence()</a></code>, <code><a href='ge_stats.html'>ge_stats()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -307,75 +309,75 @@ from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.</p>
                     gen <span class='op'>=</span> <span class='va'>GEN</span>,
                     rep <span class='op'>=</span> <span class='va'>REP</span>,
                     resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>Ann</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>Ann</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Variable PH 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Environmental index
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 4 x 4</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span><span>
 #&gt;   ENV       Y   index class      
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'>1</span><span> A1     2.79  0.308  favorable  
-#&gt; </span><span style='color: #555555;'>2</span><span> A2     2.46 -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> unfavorable
-#&gt; </span><span style='color: #555555;'>3</span><span> A3     2.17 -</span><span style='color: #BB0000;'>0.318</span><span>  unfavorable
-#&gt; </span><span style='color: #555555;'>4</span><span> A4     2.52  0.032</span><span style='text-decoration: underline;'>9</span><span> favorable  
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1     2.79  0.308  favorable  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2     2.46 -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span> unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3     2.17 -</span><span style='color: #BB0000;'>0.318</span><span>  unfavorable
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4     2.52  0.032</span><span style='text-decoration: underline;'>9</span><span> favorable  
 #&gt; ---------------------------------------------------------------------------
 #&gt; Analysis for all environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
 #&gt;    GEN       Y Mean_rp Sd_rp    Wi  rank
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.62   106.   9.38  99.3     2
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.31    93.0  6.93  88.3    12
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.39    96.1  6.27  91.9     9
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.44    98.6 11.2   91.0    10
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.54   103.  12.4   94.4     7
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.60   105.   9.91  98.1     3
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.59   104.  11.2   96.6     6
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.58   104.   8.76  97.7     5
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.57   103.   5.55  99.5     1
-#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.56   103.   7.83  97.7     4
-#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.40    96.8  6.67  92.3     8
-#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.33    93.6  9.61  87.1    13
-#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.36    94.8  6.85  90.2    11
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1     2.62   106.   9.38  99.3     2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10    2.31    93.0  6.93  88.3    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11    2.39    96.1  6.27  91.9     9
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12    2.44    98.6 11.2   91.0    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13    2.54   103.  12.4   94.4     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2     2.60   105.   9.91  98.1     3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3     2.59   104.  11.2   96.6     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4     2.58   104.   8.76  97.7     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5     2.57   103.   5.55  99.5     1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6     2.56   103.   7.83  97.7     4
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7     2.40    96.8  6.67  92.3     8
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8     2.33    93.6  9.61  87.1    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9     2.36    94.8  6.85  90.2    11
 #&gt; ---------------------------------------------------------------------------
 #&gt; Analysis for favorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
 #&gt;    GEN       Y Mean_rp Sd_rp    Wi  rank
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.68   101.  5.09   97.6     9
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.59    97.3 3.38   95.0    12
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.66   100.  2.41   98.5     7
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.61    98.5 3.00   96.5    10
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.66   100.  1.63   99.3     5
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.66   100.  0.203 100.      3
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.70   101.  5.22   97.9     8
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.71   102.  0.839 102.      2
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.74   103.  2.32  102.      1
-#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.63    98.9 0.292  98.7     6
-#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.65    99.9 0.812  99.3     4
-#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.62    98.9 3.60   96.5    11
-#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.62    98.1 9.33   91.8    13
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1     2.68   101.  5.09   97.6     9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10    2.59    97.3 3.38   95.0    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11    2.66   100.  2.41   98.5     7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12    2.61    98.5 3.00   96.5    10
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13    2.66   100.  1.63   99.3     5
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2     2.66   100.  0.203 100.      3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3     2.70   101.  5.22   97.9     8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4     2.71   102.  0.839 102.      2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5     2.74   103.  2.32  102.      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6     2.63    98.9 0.292  98.7     6
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7     2.65    99.9 0.812  99.3     4
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8     2.62    98.9 3.60   96.5    11
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9     2.62    98.1 9.33   91.8    13
 #&gt; ---------------------------------------------------------------------------
 #&gt; Analysis for unfavorable environments
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 13 x 6</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 6</span><span>
 #&gt;    GEN       Y Mean_rp Sd_rp    Wi  rank
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1     2.56   110.  12.4  102.      1
-#&gt; </span><span style='color: #555555;'> 2</span><span> H10    2.04    88.7  7.65  83.5    12
-#&gt; </span><span style='color: #555555;'> 3</span><span> H11    2.12    92.1  6.93  87.4     9
-#&gt; </span><span style='color: #555555;'> 4</span><span> H12    2.26    98.6 19.2   85.7    11
-#&gt; </span><span style='color: #555555;'> 5</span><span> H13    2.41   105.  20.8   91.2     7
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2     2.55   110.  14.3   99.9     2
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3     2.49   107.  17.8   94.9     6
-#&gt; </span><span style='color: #555555;'> 8</span><span> H4     2.45   105.  14.9   95.1     5
-#&gt; </span><span style='color: #555555;'> 9</span><span> H5     2.40   103.   9.32  97.0     4
-#&gt; </span><span style='color: #555555;'>10</span><span> H6     2.49   107.  10.9   99.7     3
-#&gt; </span><span style='color: #555555;'>11</span><span> H7     2.16    93.6  9.69  87.1    10
-#&gt; </span><span style='color: #555555;'>12</span><span> H8     2.03    88.3 12.3   80.0    13
-#&gt; </span><span style='color: #555555;'>13</span><span> H9     2.11    91.5  3.02  89.4     8
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1     2.56   110.  12.4  102.      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10    2.04    88.7  7.65  83.5    12
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11    2.12    92.1  6.93  87.4     9
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12    2.26    98.6 19.2   85.7    11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13    2.41   105.  20.8   91.2     7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2     2.55   110.  14.3   99.9     2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3     2.49   107.  17.8   94.9     6
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4     2.45   105.  14.9   95.1     5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5     2.40   103.   9.32  97.0     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6     2.49   107.  10.9   99.7     3
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7     2.16    93.6  9.69  87.1    10
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8     2.03    88.3 12.3   80.0    13
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9     2.11    91.5  3.02  89.4     8
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># }</span>

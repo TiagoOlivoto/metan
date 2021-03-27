@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Canonical correlation analysis — can_corr" />
-<meta property="og:description" content="Performs canonical correlation analysis with collinearity diagnostic,
+<meta property="og:description" content="
+Performs canonical correlation analysis with collinearity diagnostic,
 estimation of canonical loads, canonical scores, and hypothesis testing for
 correlation pairs." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -98,7 +99,7 @@ correlation pairs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -231,7 +232,8 @@ correlation pairs." />
     </div>
 
     <div class="ref-description">
-    <p>Performs canonical correlation analysis with collinearity diagnostic,
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Performs canonical correlation analysis with collinearity diagnostic,
 estimation of canonical loads, canonical scores, and hypothesis testing for
 correlation pairs.</p>
     </div>
@@ -256,7 +258,7 @@ correlation pairs.</p>
     <tr>
       <th>.data</th>
       <td><p>The data to be analyzed. It can be a data frame (possible with
-grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
+grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p></td>
     </tr>
     <tr>
       <th>FG, SG</th>
@@ -267,7 +269,7 @@ analysis, respectively. Select helpers are also allowed.</p></td>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
@@ -309,7 +311,7 @@ to Olivoto et al.(2017).</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>If <code>.data</code> is a grouped data passed from
-<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code> then the results will be returned into a
+<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> then the results will be returned into a
 list-column of data frames.</p><ul>
 <li><p><strong>Matrix</strong> The correlation (or covariance) matrix of the variables</p></li>
 <li><p><strong>MFG, MSG</strong> The correlation (or covariance) matrix for the variables of

@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Find possible outliers in a dataset — find_outliers" />
-<meta property="og:description" content="Find possible outliers in the dataset." />
+<meta property="og:description" content="
+Find possible outliers in the dataset." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Find possible outliers in the dataset.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Find possible outliers in the dataset.</p>
     </div>
 
     <pre class="usage"><span class='fu'>find_outliers</span><span class='op'>(</span>
@@ -257,7 +259,7 @@ class <code>split_factors</code>.</p></td>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
@@ -278,7 +280,7 @@ console.</p></td>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -299,6 +301,7 @@ console.</p></td>
 #&gt; 
 #&gt; No possible outlier identified. 
 #&gt; 
+#&gt; Trait: PH 
 #&gt; Number of possible outliers: 4 
 #&gt; Line(s): 7 11 14 15 
 #&gt; Proportion: 11.4%

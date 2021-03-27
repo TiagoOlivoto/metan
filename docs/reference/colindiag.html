@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Collinearity Diagnostics — colindiag" />
-<meta property="og:description" content="Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
+<meta property="og:description" content="
+Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
 variables using several indicators, as shown by Olivoto et al. (2017)." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ variables using several indicators, as shown by Olivoto et al. (2017)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ variables using several indicators, as shown by Olivoto et al. (2017)." />
     </div>
 
     <div class="ref-description">
-    <p>Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Perform a (multi)collinearity diagnostic of a correlation matrix of predictor
 variables using several indicators, as shown by Olivoto et al. (2017).</p>
     </div>
 
@@ -243,7 +245,7 @@ variables using several indicators, as shown by Olivoto et al. (2017).</p>
       <th>.data</th>
       <td><p>The data to be analyzed. It must be a symmetric correlation
 matrix, or a data frame, possible with grouped data passed from
-<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
+<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -254,7 +256,7 @@ variable name or a comma-separated list of unquoted variables names.</p></td>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
@@ -266,7 +268,7 @@ objects used to compute the correlation coefficients.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>
+    <p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>
 then the results will be returned into a list-column of data frames.</p><ul>
 <li><p><strong>cormat</strong> A symmetric Pearson's coefficient correlation matrix
 between the variables</p></li>

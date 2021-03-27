@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -170,13 +170,13 @@
 
       
 
-      </header><script src="metan_start_files/header-attrs-2.6/header-attrs.js"></script><script src="metan_start_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="metan_start_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2021-01-27</h4>
+            <h4 class="date">2021-03-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -192,26 +192,26 @@
 <li>AMMI analysis with <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi()</code></a>.</li>
 <li>AMMI-based stability statistics with <a href="https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html"><code>AMMI_indexes()</code></a>.</li>
 <li>BLUP prediction for multi-environment trials with <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a>.</li>
-<li>BLUP-based stability indexes with <a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html"><code>Resende_indexes()</code></a>.</li>
-<li>Ecovalence <span class="citation">(Wricke <a href="#ref-Wricke1965" role="doc-biblioref">1965</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ecovalence.html"><code>ecovalence()</code></a>.</li>
+<li>BLUP-based stability indexes with <a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html"><code>blup_indexes()</code></a>.</li>
+<li>Ecovalence <span class="citation">(<a href="#ref-Wricke1965" role="doc-biblioref">Wricke 1965</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ecovalence.html"><code>ecovalence()</code></a>.</li>
 <li>GGE biplot analysis with <a href="https://tiagoolivoto.github.io/metan/reference/gge.html"><code>gge()</code></a>.</li>
-<li>Genotypic confidence index <span class="citation">(Annicchiarico <a href="#ref-Annicchiarico1992" role="doc-biblioref">1992</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html"><code>Annicchiarico()</code></a>.</li>
-<li>Geometric adaptability index <span class="citation">(Mohammadi and Amri <a href="#ref-Mohammadi2008" role="doc-biblioref">2008</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/gai.html"><code>gai()</code></a>.</li>
-<li>Joint regression analysis <span class="citation">(Eberhart and Russell <a href="#ref-Eberhart1966" role="doc-biblioref">1966</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_reg.html"><code>ge_reg()</code></a>.</li>
-<li>Modified genotypic confidence index <span class="citation">(Schmildt et al. <a href="#ref-Schmildt2011" role="doc-biblioref">2011</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Schmildt.html"><code>Schmildt()</code></a>.</li>
-<li>Power law residuals (POLAR) statistics <span class="citation">(Döring, Knapp, and Cohen <a href="#ref-Doring2015" role="doc-biblioref">2015</a>)</span> using <code><a href="../reference/ge_polar.html">ge_polar()</a></code>.</li>
-<li>Stability analysis and environmental stratification <span class="citation">(Murakami and Cruz <a href="#ref-murakami2004" role="doc-biblioref">2004</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_factanal.html"><code>ge_factanal()</code></a>.</li>
-<li>Shukla’s stability variance <span class="citation">(Shukla <a href="#ref-Shukla1972" role="doc-biblioref">1972</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Shukla.html"><code>Shukla()</code></a>.</li>
-<li>Scale-adjusted coefficient of variation <span class="citation">(Döring and Reckling <a href="#ref-Doring2018" role="doc-biblioref">2018</a>)</span> using <code><a href="../reference/ge_acv.html">ge_acv()</a></code>.</li>
-<li>Weighted Average of Absolute Scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code>waas()</code></a> (fixed-effect model) and <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a> (mixed-effect model).</li>
+<li>Genotypic confidence index <span class="citation">(<a href="#ref-Annicchiarico1992" role="doc-biblioref">Annicchiarico 1992</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html"><code>Annicchiarico()</code></a>.</li>
+<li>Geometric adaptability index <span class="citation">(<a href="#ref-Mohammadi2008" role="doc-biblioref">Mohammadi and Amri 2008</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/gai.html"><code>gai()</code></a>.</li>
+<li>Joint regression analysis <span class="citation">(<a href="#ref-Eberhart1966" role="doc-biblioref">Eberhart and Russell 1966</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_reg.html"><code>ge_reg()</code></a>.</li>
+<li>Modified genotypic confidence index <span class="citation">(<a href="#ref-Schmildt2011" role="doc-biblioref">Schmildt et al. 2011</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Schmildt.html"><code>Schmildt()</code></a>.</li>
+<li>Power law residuals (POLAR) statistics <span class="citation">(<a href="#ref-Doring2015" role="doc-biblioref">Döring, Knapp, and Cohen 2015</a>)</span> using <code><a href="../reference/ge_polar.html">ge_polar()</a></code>.</li>
+<li>Stability analysis and environmental stratification <span class="citation">(<a href="#ref-murakami2004" role="doc-biblioref">Murakami and Cruz 2004</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ge_factanal.html"><code>ge_factanal()</code></a>.</li>
+<li>Shukla’s stability variance <span class="citation">(<a href="#ref-Shukla1972" role="doc-biblioref">Shukla 1972</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Shukla.html"><code>Shukla()</code></a>.</li>
+<li>Scale-adjusted coefficient of variation <span class="citation">(<a href="#ref-Doring2018" role="doc-biblioref">Döring and Reckling 2018</a>)</span> using <code><a href="../reference/ge_acv.html">ge_acv()</a></code>.</li>
+<li>Weighted Average of Absolute Scores <span class="citation">(<a href="#ref-Olivoto2019" role="doc-biblioref">Olivoto, Lúcio, Da silva, Marchioro, et al. 2019</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code>waas()</code></a> (fixed-effect model) and <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a> (mixed-effect model).</li>
 </ul>
 </li>
 <li>Non-parametric methods
 <ul>
-<li>Superiority index <span class="citation">(Lin and Binns <a href="#ref-Lin1988" role="doc-biblioref">1988</a>)</span>, using the function <a href="https://tiagoolivoto.github.io/metan/reference/superiority.html"><code>superiority()</code></a>.</li>
-<li>Fox’s stability statistic <span class="citation">(Fox et al. <a href="#ref-Fox1990" role="doc-biblioref">1990</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Fox.html"><code>Fox()</code></a>.</li>
-<li>Huehn’s stability statistic <span class="citation">(Huehn <a href="#ref-Huehn1979" role="doc-biblioref">1979</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Huehn.html"><code>Huehn()</code></a>.</li>
-<li>Thennarasu’s stability statistics <span class="citation">(Thennarasu <a href="#ref-Thennarasu1995" role="doc-biblioref">1995</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Thennarasu.html"><code>Thennarasu()</code></a>.</li>
+<li>Superiority index <span class="citation">(<a href="#ref-Lin1988" role="doc-biblioref">Lin and Binns 1988</a>)</span>, using the function <a href="https://tiagoolivoto.github.io/metan/reference/superiority.html"><code>superiority()</code></a>.</li>
+<li>Fox’s stability statistic <span class="citation">(<a href="#ref-Fox1990" role="doc-biblioref">Fox et al. 1990</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Fox.html"><code>Fox()</code></a>.</li>
+<li>Huehn’s stability statistic <span class="citation">(<a href="#ref-Huehn1979" role="doc-biblioref">Huehn 1979</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Huehn.html"><code>Huehn()</code></a>.</li>
+<li>Thennarasu’s stability statistics <span class="citation">(<a href="#ref-Thennarasu1995" role="doc-biblioref">Thennarasu 1995</a>)</span> with <a href="https://tiagoolivoto.github.io/metan/reference/Thennarasu.html"><code>Thennarasu()</code></a>.</li>
 </ul>
 </li>
 </ul>
@@ -329,7 +329,7 @@
 <div id="fitting-the-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-the-model" class="anchor"></a>Fitting the model</h2>
-<p>The AMMI model may be fitted with with both functions <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi()</code></a> and <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code>waas()</code></a>, which is the acronym for the weighted average of absolute scores <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>The AMMI model may be fitted with with both functions <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi()</code></a> and <a href="https://tiagoolivoto.github.io/metan/reference/waas.html"><code>waas()</code></a>, which is the acronym for the weighted average of absolute scores <span class="citation">(<a href="#ref-Olivoto2019" role="doc-biblioref">Olivoto, Lúcio, Da silva, Marchioro, et al. 2019</a>)</span>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ammi_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performs_ammi.html">performs_ammi</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">GY</span>, <span class="va">HM</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># variable GY </span>
@@ -337,21 +337,21 @@
 <span class="co"># AMMI analysis table</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
-<span class="co">#        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .</span>
-<span class="co">#   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .</span>
-<span class="co">#        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .</span>
-<span class="co">#    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .</span>
+<span class="co">#        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA</span>
+<span class="co">#   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA</span>
+<span class="co">#        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA</span>
+<span class="co">#    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA</span>
 <span class="co">#        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
 <span class="co">#        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
 <span class="co">#        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
-<span class="co">#        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89</span>
+<span class="co">#        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0</span>
 <span class="co">#        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
-<span class="co">#        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6</span>
+<span class="co">#        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6</span>
 <span class="co">#        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
 <span class="co">#        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
-<span class="co">#        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100</span>
-<span class="co">#  Residuals 252  24.367  0.0967      NA       NA          .           .</span>
-<span class="co">#      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;</span>
+<span class="co">#        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0</span>
+<span class="co">#  Residuals 252  24.367  0.0967      NA       NA         NA          NA</span>
+<span class="co">#      Total 536 389.036  0.7258      NA       NA         NA          NA</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># </span>
 <span class="co"># variable HM </span>
@@ -359,21 +359,21 @@
 <span class="co"># AMMI analysis table</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co">#     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
-<span class="co">#        ENV  13 5710.32 439.255   57.22 1.11e-16          .           .</span>
-<span class="co">#   REP(ENV)  28  214.93   7.676    2.70 2.20e-05          .           .</span>
-<span class="co">#        GEN   9  269.81  29.979   10.56 7.41e-14          .           .</span>
-<span class="co">#    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15          .           .</span>
+<span class="co">#        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA</span>
+<span class="co">#   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA</span>
+<span class="co">#        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA</span>
+<span class="co">#    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA</span>
 <span class="co">#        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6</span>
-<span class="co">#        PC2  19  319.43  16.812    5.92 0.00e+00         29        63.6</span>
-<span class="co">#        PC3  17  114.26   6.721    2.37 2.10e-03       10.4          74</span>
+<span class="co">#        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6</span>
+<span class="co">#        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0</span>
 <span class="co">#        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5</span>
 <span class="co">#        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7</span>
-<span class="co">#        PC6  11   59.07   5.370    1.89 4.10e-02        5.4          93</span>
+<span class="co">#        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0</span>
 <span class="co">#        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3</span>
 <span class="co">#        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7</span>
-<span class="co">#        PC9   5    3.41   0.682    0.24 9.45e-01        0.3         100</span>
-<span class="co">#  Residuals 252  715.69   2.840      NA       NA          .           .</span>
-<span class="co">#      Total 536 9112.21  17.000      NA       NA       &lt;NA&gt;        &lt;NA&gt;</span>
+<span class="co">#        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0</span>
+<span class="co">#  Residuals 252  715.69   2.840      NA       NA         NA          NA</span>
+<span class="co">#      Total 536 9112.21  17.000      NA       NA         NA          NA</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># </span>
 <span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
@@ -429,21 +429,22 @@
 <h1 class="hasAnchor">
 <a href="#blup-model" class="anchor"></a>BLUP model</h1>
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with the function <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html"><code>gamem_met()</code></a>. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument <code>random</code> to change this default. In the following example the model is fitted to all numeric variables in <a href="https://tiagoolivoto.github.io/metan/reference/data_ge.html"><code>data_ge</code></a>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gamem_met.html">gamem_met</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># Method: REML/BLUP</span>
-<span class="co"># Random effects: GEN, GEN:ENV</span>
-<span class="co"># Fixed effects: ENV, REP(ENV)</span>
-<span class="co"># Denominador DF: Satterthwaite's method</span>
-<span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co"># P-values for Likelihood Ratio Test of the analyzed traits</span>
-<span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co">#     model       GY       HM</span>
-<span class="co">#  COMPLETE       NA       NA</span>
-<span class="co">#       GEN 1.11e-05 5.07e-03</span>
-<span class="co">#   GEN:ENV 2.15e-11 2.27e-15</span>
-<span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">gamem_met</span>(data_ge, ENV, GEN, REP, <span class="fu">everything</span>())</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluating trait GY |======================                      | 50% 00:00:00 </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Evaluating trait HM <span class="sc">|</span><span class="er">============================================|</span> <span class="dv">100</span>% <span class="dv">00</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Method: REML/BLUP</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Random effects: GEN, GEN:ENV</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed effects: ENV, REP(ENV)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Denominador DF: Satterthwaite's method</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------------------------</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># P-values for Likelihood Ratio Test of the analyzed traits</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------------------------</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     model       GY       HM</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#  COMPLETE       NA       NA</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#       GEN 1.11e-05 5.07e-03</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   GEN:ENV 2.15e-11 2.27e-15</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------------------------</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span></span></code></pre></div>
 <div id="residual-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#residual-plots" class="anchor"></a>Residual plots</h2>
@@ -502,26 +503,24 @@
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Class of the model: waasb</span>
 <span class="co"># Variable extracted: blupge</span>
-<span class="co"># Warning: Setting row names on a tibble is deprecated.</span>
-<span class="co"># # A tibble: 140 x 4</span>
-<span class="co">#    ENV   GEN      GY    HM</span>
-<span class="co">#  * &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1 E1    G1     2.4   46.6</span>
-<span class="co">#  2 E1    G10    2.11  47.2</span>
-<span class="co">#  3 E1    G2     2.78  45.7</span>
-<span class="co">#  4 E1    G3     2.84  46.2</span>
-<span class="co">#  5 E1    G4     2.55  48.0</span>
-<span class="co">#  6 E1    G5     2.27  49.4</span>
-<span class="co">#  7 E1    G6     2.34  48.1</span>
-<span class="co">#  8 E1    G7     2.7   47.4</span>
-<span class="co">#  9 E1    G8     2.86  48.0</span>
-<span class="co"># 10 E1    G9     2.35  47.6</span>
-<span class="co"># # ... with 130 more rows</span></code></pre></div>
+<span class="co"># # A tibble: 10 x 3</span>
+<span class="co">#    GEN      GY    HM</span>
+<span class="co">#    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#  1 G1     2.61  47.2</span>
+<span class="co">#  2 G10    2.48  48.5</span>
+<span class="co">#  3 G2     2.74  46.8</span>
+<span class="co">#  4 G3     2.94  47.6</span>
+<span class="co">#  5 G4     2.64  48.0</span>
+<span class="co">#  6 G5     2.55  49.2</span>
+<span class="co">#  7 G6     2.54  48.7</span>
+<span class="co">#  8 G7     2.74  48.0</span>
+<span class="co">#  9 G8     2.98  49.0</span>
+<span class="co"># 10 G9     2.52  47.9</span></code></pre></div>
 </div>
 <div id="blup-based-stability-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blup-based-stability-index" class="anchor"></a>BLUP-based stability index</h2>
-<p>The WAASB index <span class="citation">(Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can obtain this statistic with the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a> combined with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a> using <code>what = "WAASB"</code>.</p>
+<p>The WAASB index <span class="citation">(<a href="#ref-Olivoto2019" role="doc-biblioref">Olivoto, Lúcio, Da silva, Marchioro, et al. 2019</a>)</span> is a quantitative stability measure based on the weighted average of the absolute scores from the singular value decomposition of the BLUPs for genotype-vs-interaction effects. We can obtain this statistic with the function <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a> combined with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a> using <code>what = "WAASB"</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">model3</span>, what <span class="op">=</span> <span class="st">"WAASB"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -541,15 +540,15 @@
 <span class="co">#  8 G7     0.32  0.68</span>
 <span class="co">#  9 G8     0.26  0.44</span>
 <span class="co"># 10 G9     0.37  0.56</span></code></pre></div>
-<p>The function <a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html"><code>Resende_indexes()</code></a> can be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See <span class="citation">Alves et al. (<a href="#ref-Alves2018" role="doc-biblioref">2018</a>)</span> for more details. We use the function <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a> to get the HMRPGV (default) for all analyzed variables.</p>
+<p>The function <a href="https://tiagoolivoto.github.io/metan/reference/blup_indexes.html"><code>blup_indexes()</code></a> can be used to compute the harmonic mean of genotypic values (HMGV), the relative performance of the genotypic values (RPGV) and the harmonic mean of the relative performance of genotypic values (HMRPGV). See <span class="citation"><a href="#ref-Alves2018" role="doc-biblioref">Alves et al.</a> (<a href="#ref-Alves2018" role="doc-biblioref">2018</a>)</span> for more details. We use the function <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a> to get the HMRPGV (default) for all analyzed variables.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Resende_indexes.html">Resende_indexes</a></span><span class="op">(</span><span class="va">model3</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/blup_indexes.html">blup_indexes</a></span><span class="op">(</span><span class="va">model3</span><span class="op">)</span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">index</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co"># Class of the model: Res_ind</span>
+<span class="co"># Class of the model: blup_ind</span>
 <span class="co"># Variable extracted: HMRPGV</span>
 <span class="co"># # A tibble: 10 x 3</span>
 <span class="co">#    GEN      GY    HM</span>
-<span class="co">#    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#  1 G1     0.97  0.98</span>
 <span class="co">#  2 G10    0.9   1.01</span>
 <span class="co">#  3 G2     1.02  0.97</span>
@@ -575,7 +574,7 @@
 <div id="visualizing-the-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizing-the-biplot" class="anchor"></a>Visualizing the Biplot</h2>
-<p>The generic function <a href="https://tiagoolivoto.github.io/metan/reference/plot.gge.html"><code>plot()</code></a> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation">Yan and Kang (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>}.</p>
+<p>The generic function <a href="https://tiagoolivoto.github.io/metan/reference/plot.gge.html"><code>plot()</code></a> is used to generate a biplot using as input a fitted model of class <code>gge</code>. The type of biplot is chosen by the argument <code>type</code> in the function. Ten biplots type are available according to {<span class="citation"><a href="#ref-Yan2003" role="doc-biblioref">Yan and Kang</a> (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>}.</p>
 <ul>
 <li>
 <code>type = 1</code> A basic biplot.</li>
@@ -612,11 +611,12 @@
 <p>To compute all the stability statistics at once, we can use the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. Again we get the results with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stat_ge</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
+<span class="co"># Evaluating trait GY |============================================| 100% 00:00:01 </span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stat_ge</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
-<span class="co"># # A tibble: 10 x 35</span>
+<span class="co"># # A tibble: 10 x 36</span>
 <span class="co">#    var   GEN       Y    CV   ACV POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span class="co">#  1 GY    G1     2.6   35.2  34.1  0.03 10.9    0.03  84.4  89.2  81.1   1.22</span>
@@ -629,15 +629,16 @@
 <span class="co">#  8 GY    G7     2.74  27.4  28.3 -0.13  7.33   0.12  83.9  77.6  93.4   4.16</span>
 <span class="co">#  9 GY    G8     3     30.4  35.0  0.05 10.8    0.07  98.8  90.5 107.    2.57</span>
 <span class="co"># 10 GY    G9     2.51  42.4  39.4  0.15 14.8    0.17  68.8  68.9  70.3   5.56</span>
-<span class="co"># # ... with 23 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
-<span class="co"># #   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;,</span>
-<span class="co"># #   HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;,</span>
-<span class="co"># #   S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span></code></pre></div>
+<span class="co"># # ... with 24 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
+<span class="co"># #   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;, HMGV &lt;dbl&gt;,</span>
+<span class="co"># #   RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;,</span>
+<span class="co"># #   S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;,</span>
+<span class="co"># #   N4 &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="selection-based-on-multiple-traits" class="section level1">
 <h1 class="hasAnchor">
 <a href="#selection-based-on-multiple-traits" class="anchor"></a>Selection based on multiple traits</h1>
-<p>The multi-trait stability index (MTSI) was proposed by <span class="citation">Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a" role="doc-biblioref">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. For more details see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_indexes.html">complete vignette</a>.</p>
+<p>The multi-trait stability index (MTSI) was proposed by <span class="citation"><a href="#ref-Olivoto2019a" role="doc-biblioref">Olivoto, Lúcio, Da silva, Sari, et al.</a> (<a href="#ref-Olivoto2019a" role="doc-biblioref">2019</a>)</span> and is used for simultaneous selection considering mean performance and stability (of several traits) in the analysis of METs using both fixed and mixed-effect models. For more details see the <a href="https://tiagoolivoto.github.io/metan/articles/vignettes_indexes.html">complete vignette</a>.</p>
 </div>
 <div id="getting-help" class="section level1">
 <h1 class="hasAnchor">
@@ -650,57 +651,60 @@
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Alves2018">
-<p>Alves, Rodrigo Silva, Leonardo de Azevedo Peixoto, Paulo Eduardo Teodoro, Lidiane Aparecida Silva, Erina Vitório Rodrigues, Marcos Deon Vilela de Resende, Bruno Galveas Laviola, and Leonardo Lopes Bhering. 2018. “Selection of Jatropha curcas families based on temporal stability and adaptability of genetic values.” <em>Industrial Crops and Products</em> 119 (September): 290–93. <a href="https://doi.org/10.1016/J.INDCROP.2018.04.029">https://doi.org/10.1016/J.INDCROP.2018.04.029</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Alves2018" class="csl-entry">
+Alves, Rodrigo Silva, Leonardo de Azevedo Peixoto, Paulo Eduardo Teodoro, Lidiane Aparecida Silva, Erina Vitório Rodrigues, Marcos Deon Vilela de Resende, Bruno Galveas Laviola, and Leonardo Lopes Bhering. 2018. <span>“<span class="nocase">Selection of Jatropha curcas families based on temporal stability and adaptability of genetic values</span>.”</span> <em>Industrial Crops and Products</em> 119 (September): 290–93. <a href="https://doi.org/10.1016/J.INDCROP.2018.04.029">https://doi.org/10.1016/J.INDCROP.2018.04.029</a>.
 </div>
-<div id="ref-Annicchiarico1992">
-<p>Annicchiarico, P. 1992. “Cultivar adaptation and recommendation from alfalfa trials in Northern Italy.” <em>Journal of Genetics and Breeding</em> 46: 269–78.</p>
+<div id="ref-Annicchiarico1992" class="csl-entry">
+Annicchiarico, P. 1992. <span>“<span class="nocase">Cultivar adaptation and recommendation from alfalfa trials in Northern Italy</span>.”</span> <em>Journal of Genetics and Breeding</em> 46: 269–78.
 </div>
-<div id="ref-Doring2015">
-<p>Döring, Thomas F., Samuel Knapp, and Joel E. Cohen. 2015. “Taylor’s power law and the stability of crop yields.” <em>Field Crops Research</em> 183 (November): 294–302. <a href="https://doi.org/10.1016/j.fcr.2015.08.005">https://doi.org/10.1016/j.fcr.2015.08.005</a>.</p>
+<div id="ref-Doring2015" class="csl-entry">
+Döring, Thomas F., Samuel Knapp, and Joel E. Cohen. 2015. <span>“<span class="nocase">Taylor’s power law and the stability of crop yields</span>.”</span> <em>Field Crops Research</em> 183 (November): 294–302. <a href="https://doi.org/10.1016/j.fcr.2015.08.005">https://doi.org/10.1016/j.fcr.2015.08.005</a>.
 </div>
-<div id="ref-Doring2018">
-<p>Döring, Thomas F., and Moritz Reckling. 2018. “Detecting global trends of cereal yield stability by adjusting the coefficient of variation.” <em>European Journal of Agronomy</em> 99 (September): 30–36. <a href="https://doi.org/10.1016/j.eja.2018.06.007">https://doi.org/10.1016/j.eja.2018.06.007</a>.</p>
+<div id="ref-Doring2018" class="csl-entry">
+Döring, Thomas F., and Moritz Reckling. 2018. <span>“<span class="nocase">Detecting global trends of cereal yield stability by adjusting the coefficient of variation</span>.”</span> <em>European Journal of Agronomy</em> 99 (September): 30–36. <a href="https://doi.org/10.1016/j.eja.2018.06.007">https://doi.org/10.1016/j.eja.2018.06.007</a>.
 </div>
-<div id="ref-Eberhart1966">
-<p>Eberhart, S. A., and W. A. Russell. 1966. “Stability parameters for comparing Varieties.” <em>Crop Science</em> 6 (1): 36–40. <a href="https://doi.org/10.2135/cropsci1966.0011183X000600010011x">https://doi.org/10.2135/cropsci1966.0011183X000600010011x</a>.</p>
+<div id="ref-Eberhart1966" class="csl-entry">
+Eberhart, S. A., and W. A. Russell. 1966. <span>“<span class="nocase">Stability parameters for comparing Varieties</span>.”</span> <em>Crop Science</em> 6 (1): 36–40. <a href="https://doi.org/10.2135/cropsci1966.0011183X000600010011x">https://doi.org/10.2135/cropsci1966.0011183X000600010011x</a>.
 </div>
-<div id="ref-Fox1990">
-<p>Fox, P. N., B. Skovmand, B. K. Thompson, H. J. Braun, and R. Cormier. 1990. “Yield and adaptation of hexaploid spring triticale.” <em>Euphytica</em> 47 (1): 57–64. <a href="https://doi.org/10.1007/BF00040364">https://doi.org/10.1007/BF00040364</a>.</p>
+<div id="ref-Fox1990" class="csl-entry">
+Fox, P. N., B. Skovmand, B. K. Thompson, H. J. Braun, and R. Cormier. 1990. <span>“<span class="nocase">Yield and adaptation of hexaploid spring triticale</span>.”</span> <em>Euphytica</em> 47 (1): 57–64. <a href="https://doi.org/10.1007/BF00040364">https://doi.org/10.1007/BF00040364</a>.
 </div>
-<div id="ref-Huehn1979">
-<p>Huehn, M. 1979. “Beitrage zur erfassung der phanotypischen stabilitat.” <em>EDV in Medizin Und Biologie</em> 10: 112–17.</p>
+<div id="ref-Huehn1979" class="csl-entry">
+Huehn, M. 1979. <span>“<span class="nocase">Beitrage zur erfassung der phanotypischen stabilitat</span>.”</span> <em>EDV in Medizin Und Biologie</em> 10: 112–17.
 </div>
-<div id="ref-Lin1988">
-<p>Lin, C. S., and M. R. Binns. 1988. “A superiority measure of cultivar performance for cultivar x location data.” <em>Canadian Journal of Plant Science</em> 68 (1): 193–98. <a href="https://doi.org/10.4141/cjps88-018">https://doi.org/10.4141/cjps88-018</a>.</p>
+<div id="ref-Lin1988" class="csl-entry">
+Lin, C. S., and M. R. Binns. 1988. <span>“<span class="nocase">A superiority measure of cultivar performance for cultivar x location data</span>.”</span> <em>Canadian Journal of Plant Science</em> 68 (1): 193–98. <a href="https://doi.org/10.4141/cjps88-018">https://doi.org/10.4141/cjps88-018</a>.
 </div>
-<div id="ref-Mohammadi2008">
-<p>Mohammadi, Reza, and Ahmed Amri. 2008. “Comparison of parametric and non-parametric methods for selecting stable and adapted durum wheat genotypes in variable environments.” <em>Euphytica</em> 159 (3): 419–32. <a href="https://doi.org/10.1007/s10681-007-9600-6">https://doi.org/10.1007/s10681-007-9600-6</a>.</p>
+<div id="ref-Mohammadi2008" class="csl-entry">
+Mohammadi, Reza, and Ahmed Amri. 2008. <span>“<span class="nocase">Comparison of parametric and non-parametric methods for selecting stable and adapted durum wheat genotypes in variable environments</span>.”</span> <em>Euphytica</em> 159 (3): 419–32. <a href="https://doi.org/10.1007/s10681-007-9600-6">https://doi.org/10.1007/s10681-007-9600-6</a>.
 </div>
-<div id="ref-murakami2004">
-<p>Murakami, D. M., and C. D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
+<div id="ref-murakami2004" class="csl-entry">
+Murakami, D. M., and C. D. Cruz. 2004. <span>“<span class="nocase">Proposal of methodologies for environment stratification and analysis of genotype adaptability</span>.”</span> <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11.
 </div>
-<div id="ref-Olivoto2019">
-<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V. S. Marchioro, V. Q. de Souza, and E. Jost. 2019. “Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques.” <em>Agronomy Journal</em> 111 (6): 2949–60. <a href="https://doi.org/10.2134/agronj2019.03.0220">https://doi.org/10.2134/agronj2019.03.0220</a>.</p>
+<div id="ref-murakami2004" class="csl-entry">
+———. 2004. <span>“<span class="nocase">Proposal of methodologies for environment stratification and analysis of genotype adaptability</span>.”</span> <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11.
 </div>
-<div id="ref-Olivoto2019a">
-<p>Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. “Mean performance and stability in multi-environment trials II: Selection based on multiple traits.” <em>Agronomy Journal</em> 111 (6): 2961–9. <a href="https://doi.org/10.2134/agronj2019.03.0221">https://doi.org/10.2134/agronj2019.03.0221</a>.</p>
+<div id="ref-Olivoto2019" class="csl-entry">
+Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, V. S. Marchioro, V. Q. de Souza, and E. Jost. 2019. <span>“<span class="nocase">Mean performance and stability in multi-environment trials I: Combining features of AMMI and BLUP techniques</span>.”</span> <em>Agronomy Journal</em> 111 (6): 2949–60. <a href="https://doi.org/10.2134/agronj2019.03.0220">https://doi.org/10.2134/agronj2019.03.0220</a>.
 </div>
-<div id="ref-Schmildt2011">
-<p>Schmildt, Edilson Romais, Adriel Lima Nascimento, Cosme Damião Cruz, and Jaqueline Aparecida Raminelli Oliveira. 2011. “Avaliação de metodologias de adaptabilidade e estabilidade de cultivares milho.” <em>Acta Scientiarum - Agronomy</em> 33 (1): 51–58. <a href="https://doi.org/10.4025/actasciagron.v33i1.5817">https://doi.org/10.4025/actasciagron.v33i1.5817</a>.</p>
+<div id="ref-Olivoto2019a" class="csl-entry">
+Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. <span>“<span class="nocase">Mean performance and stability in multi-environment trials II: Selection based on multiple traits</span>.”</span> <em>Agronomy Journal</em> 111 (6): 2961–69. <a href="https://doi.org/10.2134/agronj2019.03.0221">https://doi.org/10.2134/agronj2019.03.0221</a>.
 </div>
-<div id="ref-Shukla1972">
-<p>Shukla, G. K. 1972. “Some statistical aspects of partitioning genotype-environmental components of variability.” <em>Heredity</em> 29 (2): 238–45. <a href="https://doi.org/10.1038/hdy.1972.87">https://doi.org/10.1038/hdy.1972.87</a>.</p>
+<div id="ref-Schmildt2011" class="csl-entry">
+Schmildt, Edilson Romais, Adriel Lima Nascimento, Cosme Damião Cruz, and Jaqueline Aparecida Raminelli Oliveira. 2011. <span>“<span class="nocase">Avalia<span class="nocase">ç</span><span class="nocase">ã</span>o de metodologias de adaptabilidade e estabilidade de cultivares milho</span>.”</span> <em>Acta Scientiarum - Agronomy</em> 33 (1): 51–58. <a href="https://doi.org/10.4025/actasciagron.v33i1.5817">https://doi.org/10.4025/actasciagron.v33i1.5817</a>.
 </div>
-<div id="ref-Thennarasu1995">
-<p>Thennarasu, K. 1995. “On certain non-parametric procedures for studying genotype-environment interactions.” Thesis, IARI.</p>
+<div id="ref-Shukla1972" class="csl-entry">
+Shukla, G. K. 1972. <span>“<span class="nocase">Some statistical aspects of partitioning genotype-environmental components of variability</span>.”</span> <em>Heredity</em> 29 (2): 238–45. <a href="https://doi.org/10.1038/hdy.1972.87">https://doi.org/10.1038/hdy.1972.87</a>.
 </div>
-<div id="ref-Wricke1965">
-<p>Wricke, G. 1965. “Zur berechnung der okovalenz bei sommerweizen und hafer.” <em>Z. Pflanzenzuchtg</em> 52: 127–38.</p>
+<div id="ref-Thennarasu1995" class="csl-entry">
+Thennarasu, K. 1995. <span>“<span class="nocase">On certain non-parametric procedures for studying genotype-environment interactions</span>.”</span> Thesis, IARI.
 </div>
-<div id="ref-Yan2003">
-<p>Yan, Weikai., and Manjit S. Kang. 2003. <em>GGE biplot analysis : a graphical tool for breeders, geneticists, and agronomists</em>. CRC Press.</p>
+<div id="ref-Wricke1965" class="csl-entry">
+Wricke, G. 1965. <span>“<span class="nocase">Zur berechnung der okovalenz bei sommerweizen und hafer</span>.”</span> <em>Z. Pflanzenzuchtg</em> 52: 127–38.
+</div>
+<div id="ref-Yan2003" class="csl-entry">
+Yan, Weikai., and Manjit S. Kang. 2003. <em><span class="nocase">GGE biplot analysis : a graphical tool for breeders, geneticists, and agronomists</span></em>. CRC Press.
 </div>
 </div>
 </div>

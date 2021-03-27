@@ -97,7 +97,7 @@ in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -242,7 +242,7 @@ in the R console. The results can also be exported to the directory.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object fitted with the function <code><a href='gamem.html'>gamem</a></code> .</p></td>
+      <td><p>An object fitted with the function <code><a href='gamem.html'>gamem()</a></code> .</p></td>
     </tr>
     <tr>
       <th>export</th>
@@ -277,7 +277,7 @@ the working directory</p></td>
   block <span class='op'>=</span> <span class='va'>BLOCK</span>,
   resp <span class='op'>=</span> <span class='va'>YIELD</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, BLOCK(REP)</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait YIELD |=========================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, BLOCK(REP)</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;      model    YIELD
@@ -291,59 +291,59 @@ the working directory</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Fixed-effect anova table
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 1 x 7</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span><span>
 #&gt;   SOURCE `Sum Sq` `Mean Sq` NumDF DenDF `F value` `Pr(&gt;F)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> REP       1.381    0.690</span><span style='text-decoration: underline;'>7</span><span>     2 11.76     8.463 0.005</span><span style='text-decoration: underline;'>287</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> REP       1.381    0.690</span><span style='text-decoration: underline;'>7</span><span>     2 11.76     8.463 0.005</span><span style='text-decoration: underline;'>287</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variance components for random effects
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 3 x 2</span><span>
 #&gt;   Group     Variance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN        0.142</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'>2</span><span> REP:BLOCK  0.070</span><span style='text-decoration: underline;'>22</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> Residual   0.081</span><span style='text-decoration: underline;'>62</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GEN        0.142</span><span style='text-decoration: underline;'>9</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> REP:BLOCK  0.070</span><span style='text-decoration: underline;'>22</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Residual   0.081</span><span style='text-decoration: underline;'>62</span><span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Likelihood ratio test for random effects
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 3 x 7</span><span>
 #&gt;   model      npar logLik   AIC    LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Complete      6 -</span><span style='color: #BB0000;'>46.60</span><span> 105.2 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #555555;'>2</span><span> Genotype      5 -</span><span style='color: #BB0000;'>58.41</span><span> 126.8 23.62      1  0.000</span><span style='text-decoration: underline;'>001</span><span>176
-#&gt; </span><span style='color: #555555;'>3</span><span> rep:block     5 -</span><span style='color: #BB0000;'>50.90</span><span> 111.8  8.606     1  0.003</span><span style='text-decoration: underline;'>351</span><span>   
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Complete      6 -</span><span style='color: #BB0000;'>46.60</span><span> 105.2 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Genotype      5 -</span><span style='color: #BB0000;'>58.41</span><span> 126.8 23.62      1  0.000</span><span style='text-decoration: underline;'>001</span><span>176
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> rep:block     5 -</span><span style='color: #BB0000;'>50.90</span><span> 111.8  8.606     1  0.003</span><span style='text-decoration: underline;'>351</span><span>   
 #&gt; ---------------------------------------------------------------------------
 #&gt; Details of the analysis
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 6 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 6 x 2</span><span>
 #&gt;   Parameters Values                  
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                   
-#&gt; </span><span style='color: #555555;'>1</span><span> Ngen       24                      
-#&gt; </span><span style='color: #555555;'>2</span><span> OVmean     4.4795                  
-#&gt; </span><span style='color: #555555;'>3</span><span> Min        2.8873 (G03 in B6 of R3)
-#&gt; </span><span style='color: #555555;'>4</span><span> Max        5.8757 (G05 in B1 of R1)
-#&gt; </span><span style='color: #555555;'>5</span><span> MinGEN     3.3431 (G03)            
-#&gt; </span><span style='color: #555555;'>6</span><span> MaxGEN     5.1625 (G01)            
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Ngen       24                      
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> OVmean     4.4795                  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Min        2.8873 (G03 in B6 of R3)
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Max        5.8757 (G05 in B1 of R1)
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> MinGEN     3.3431 (G03)            
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> MaxGEN     5.1625 (G01)            
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genetic parameters
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 13 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 13 x 2</span><span>
 #&gt;    Parameters      Values
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Gen_var        0.142</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #555555;'> 2</span><span> Gen (%)       48.48   
-#&gt; </span><span style='color: #555555;'> 3</span><span> rep:block_var  0.070</span><span style='text-decoration: underline;'>22</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> rep:block (%) 23.82   
-#&gt; </span><span style='color: #555555;'> 5</span><span> Res_var        0.081</span><span style='text-decoration: underline;'>62</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> Res (%)       27.69   
-#&gt; </span><span style='color: #555555;'> 7</span><span> Phen_var       0.294</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #555555;'> 8</span><span> H2             0.484</span><span style='text-decoration: underline;'>8</span><span> 
-#&gt; </span><span style='color: #555555;'> 9</span><span> h2mg           0.798</span><span style='text-decoration: underline;'>0</span><span> 
-#&gt; </span><span style='color: #555555;'>10</span><span> Accuracy       0.893</span><span style='text-decoration: underline;'>3</span><span> 
-#&gt; </span><span style='color: #555555;'>11</span><span> CVg            8.439  
-#&gt; </span><span style='color: #555555;'>12</span><span> CVr            6.378  
-#&gt; </span><span style='color: #555555;'>13</span><span> CV ratio       1.323  
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Gen_var        0.142</span><span style='text-decoration: underline;'>9</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Gen (%)       48.48   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> rep:block_var  0.070</span><span style='text-decoration: underline;'>22</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> rep:block (%) 23.82   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Res_var        0.081</span><span style='text-decoration: underline;'>62</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Res (%)       27.69   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Phen_var       0.294</span><span style='text-decoration: underline;'>7</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H2             0.484</span><span style='text-decoration: underline;'>8</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> h2mg           0.798</span><span style='text-decoration: underline;'>0</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Accuracy       0.893</span><span style='text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> CVg            8.439  
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> CVr            6.378  
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> CV ratio       1.323  
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># }</span>

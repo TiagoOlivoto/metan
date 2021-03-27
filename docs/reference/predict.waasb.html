@@ -53,7 +53,7 @@
 
 
 <meta property="og:title" content="Predict method for waasb fits — predict.waasb" />
-<meta property="og:description" content="Obtains predictions from an object fitted with waasb." />
+<meta property="og:description" content="Obtains predictions from an object fitted with waasb()." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +229,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Obtains predictions from an object fitted with <code><a href='waasb.html'>waasb</a></code>.</p>
+    <p>Obtains predictions from an object fitted with <code><a href='waasb.html'>waasb()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for waasb</span>
@@ -263,7 +263,7 @@
                gen <span class='op'>=</span> <span class='va'>GEN</span>,
                rep <span class='op'>=</span> <span class='va'>REP</span>,
                resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -272,20 +272,20 @@
 #&gt;   GEN:ENV 2.15e-11 2.27e-15
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 420 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 420 x 5</span><span>
 #&gt;    ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1    1      2.46  46.6
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G1    2      2.44  46.0
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G1    3      2.31  47.1
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G2    1      2.84  45.7
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G2    2      2.82  45.1
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G2    3      2.69  46.2
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G3    1      2.89  46.3
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G3    2      2.87  45.7
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G3    3      2.75  46.8
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G4    1      2.61  48.0
-#&gt; </span><span style='color: #555555;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># }</span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1    1      2.46  46.6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G1    2      2.44  46.0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G1    3      2.31  47.1
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G2    1      2.84  45.7
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G2    2      2.82  45.1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G2    3      2.69  46.2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G3    1      2.89  46.3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G3    2      2.87  45.7
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G3    3      2.75  46.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G4    1      2.61  48.0
+#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>

@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Plot WAASBY values for genotype ranking — plot_waasby" />
-<meta property="og:description" content="Plot heat maps with genotype ranking in two ways." />
+<meta property="og:description" content="
+Plot heat maps with genotype ranking in two ways." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Plot heat maps with genotype ranking in two ways.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Plot heat maps with genotype ranking in two ways.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_waasby</span><span class='op'>(</span>
@@ -282,7 +284,7 @@ Graphic can also be exported in <code>*.tiff</code> format by declaring
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -318,8 +320,7 @@ genotypes above and below of the mean, respectively. Default is
     <tr>
       <th>x.breaks</th>
       <td><p>The breaks to be plotted in the x-axis. Default is
-<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks =
-c(breaks)</code></p></td>
+<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks = c(breaks)</code></p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -337,7 +338,7 @@ c(breaks)</code></p></td>
     <p>An object of class <code>gg, ggplot</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores</a></code></p></div>
+    <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -351,7 +352,7 @@ c(breaks)</code></p></td>
                 gen <span class='op'>=</span> <span class='va'>GEN</span>,
                 env <span class='op'>=</span> <span class='va'>ENV</span>,
                 rep <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY
@@ -369,21 +370,21 @@ c(breaks)</code></p></td>
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .
+#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
+#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89
+#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
 #&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6
+#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
 #&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100
-#&gt;  Residuals 252  24.367  0.0967      NA       NA          .           .
-#&gt;      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
+#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
+#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction

@@ -102,7 +102,7 @@ type = 're'" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -336,7 +336,7 @@ confidence interval limits.</p></td>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -394,8 +394,7 @@ number between 0 (opaque) and 1 (full transparency).</p></td>
     </tr>
     <tr>
       <th>which</th>
-      <td><p>Which graphics should be plotted. Default is <code>which =
-c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
+      <td><p>Which graphics should be plotted. Default is <code>which = c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
     </tr>
     <tr>
       <th>ncol, nrow</th>
@@ -405,7 +404,7 @@ to <code>NULL</code></p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments passed on to the function
-<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>wrap_plots</a>()</code>.</p></td>
+<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -421,7 +420,7 @@ to <code>NULL</code></p></td>
                 gen <span class='op'>=</span> <span class='va'>GEN</span>,
                 env <span class='op'>=</span> <span class='va'>ENV</span>,
                 rep <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY

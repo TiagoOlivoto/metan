@@ -31,6 +31,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/bind_cv.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/blup_indexes.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/can_corr.html</loc>
   </url>
   <url>
@@ -229,6 +232,12 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/mgidi.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/mps.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/mtmps.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/mtsi.html</loc>
   </url>
   <url>
@@ -296,6 +305,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.mgidi.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/plot.mtmps.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/plot.mtsi.html</loc>
@@ -406,6 +418,9 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/print.mgidi.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/print.mtmps.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/print.mtsi.html</loc>
   </url>
   <url>
@@ -439,9 +454,6 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/print.waas_means.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/rbind_fill.html</loc>
-  </url>
-  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/reexports.html</loc>
   </url>
   <url>
@@ -449,9 +461,6 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/resca.html</loc>
-  </url>
-  <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Resende_indexes.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/residual_plots.html</loc>
@@ -505,10 +514,16 @@
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_as.html</loc>
   </url>
   <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_bind.html</loc>
+  </url>
+  <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_class.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_data.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_data_org.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_mat.html</loc>
@@ -518,6 +533,9 @@
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_num_str.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan//reference/utils_progress.html</loc>
   </url>
   <url>
     <loc>https://tiagoolivoto.github.io/metan//reference/utils_rows_cols.html</loc>

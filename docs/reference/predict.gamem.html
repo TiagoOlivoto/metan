@@ -53,7 +53,7 @@
 
 
 <meta property="og:title" content="Predict method for gamem fits — predict.gamem" />
-<meta property="og:description" content="Obtains predictions from an object fitted with gamem." />
+<meta property="og:description" content="Obtains predictions from an object fitted with gamem()." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +229,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Obtains predictions from an object fitted with <code><a href='gamem.html'>gamem</a></code>.</p>
+    <p>Obtains predictions from an object fitted with <code><a href='gamem.html'>gamem()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gamem</span>
@@ -262,7 +262,7 @@
               gen <span class='op'>=</span> <span class='va'>GEN</span>,
               rep <span class='op'>=</span> <span class='va'>REP</span>,
               resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait PH |===                                         | 7% 00:00:00 Evaluating trait EH |======                                      | 13% 00:00:00 Evaluating trait EP |=========                                   | 20% 00:00:00 Evaluating trait EL |============                                | 27% 00:00:00 Evaluating trait ED |===============                             | 33% 00:00:00 Evaluating trait CL |==================                          | 40% 00:00:00 Evaluating trait CD |=====================                       | 47% 00:00:00 Evaluating trait CW |=======================                     | 53% 00:00:01 Evaluating trait KW |==========================                  | 60% 00:00:01 Evaluating trait NR |=============================               | 67% 00:00:01 Evaluating trait NKR |================================           | 73% 00:00:01 Evaluating trait CDED |==================================        | 80% 00:00:01 Evaluating trait PERK |====================================      | 87% 00:00:01 Evaluating trait TKW |========================================   | 93% 00:00:01 Evaluating trait NKE |===========================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model    PH    EH    EP    EL       ED       CL    CD       CW     KW
@@ -275,21 +275,21 @@
 #&gt; Variables with nonsignificant Genotype effect
 #&gt; PH EH EP EL CD NKR 
 #&gt; ---------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 39 x 17</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 39 x 17</span><span>
 #&gt;    GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    1      2.12  1.06 0.502  14.9  50.5  31.5  16.0  26.9  156.  15.8  29.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> H1    2      2.20  1.08 0.491  14.5  49.5  29.9  15.4  24.4  146.  16.1  28.6
-#&gt; </span><span style='color: #555555;'> 3</span><span> H1    3      2.24  1.11 0.494  14.6  50.7  30.6  16.0  27.1  159.  15.7  30.0
-#&gt; </span><span style='color: #555555;'> 4</span><span> H10   1      2.02  1.03 0.503  14.8  44.6  26.0  15.6  14.0  132.  15.4  32.1
-#&gt; </span><span style='color: #555555;'> 5</span><span> H10   2      2.10  1.06 0.492  14.4  43.7  24.4  15.1  11.6  122.  15.7  30.9
-#&gt; </span><span style='color: #555555;'> 6</span><span> H10   3      2.14  1.08 0.495  14.5  44.9  25.1  15.6  14.2  135.  15.3  32.2
-#&gt; </span><span style='color: #555555;'> 7</span><span> H11   1      2.06  1.06 0.507  14.9  47.4  27.4  15.7  17.3  145.  16.1  31.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> H11   2      2.14  1.08 0.496  14.5  46.4  25.8  15.2  14.9  135.  16.4  30.5
-#&gt; </span><span style='color: #555555;'> 9</span><span> H11   3      2.18  1.11 0.499  14.5  47.6  26.5  15.8  17.5  148.  16.0  31.8
-#&gt; </span><span style='color: #555555;'>10</span><span> H12   1      2.26  1.12 0.506  14.8  48.0  26.9  15.3  18.9  150.  16.1  30.4
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows, and 4 more variables: CDED </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, PERK </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   TKW </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, NKE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    1      2.12  1.06 0.502  14.9  50.5  31.5  16.0  26.9  156.  15.8  29.9
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H1    2      2.20  1.08 0.491  14.5  49.5  29.9  15.4  24.4  146.  16.1  28.6
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H1    3      2.24  1.11 0.494  14.6  50.7  30.6  16.0  27.1  159.  15.7  30.0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H10   1      2.02  1.03 0.503  14.8  44.6  26.0  15.6  14.0  132.  15.4  32.1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H10   2      2.10  1.06 0.492  14.4  43.7  24.4  15.1  11.6  122.  15.7  30.9
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H10   3      2.14  1.08 0.495  14.5  44.9  25.1  15.6  14.2  135.  15.3  32.2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H11   1      2.06  1.06 0.507  14.9  47.4  27.4  15.7  17.3  145.  16.1  31.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H11   2      2.14  1.08 0.496  14.5  46.4  25.8  15.2  14.9  135.  16.4  30.5
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H11   3      2.18  1.11 0.499  14.5  47.6  26.5  15.8  17.5  148.  16.0  31.8
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H12   1      2.26  1.12 0.506  14.8  48.0  26.9  15.3  18.9  150.  16.1  30.4
+#&gt; </span><span style='color: #949494;'># ... with 29 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>

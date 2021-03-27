@@ -54,7 +54,6 @@
 
 <meta property="og:title" content="Simulate genotype and genotype-environment data — data_simula" />
 <meta property="og:description" content="
-
 g_simula() simulate replicated genotype data.
 ge_simula() simulate replicated genotype-environment data.
 
@@ -101,7 +100,7 @@ ge_simula() simulate replicated genotype-environment data.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -234,8 +233,7 @@ ge_simula() simulate replicated genotype-environment data.
     </div>
 
     <div class="ref-description">
-    
-<ul>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p><ul>
 <li><p><code>g_simula()</code> simulate replicated genotype data.</p></li>
 <li><p><code>ge_simula()</code> simulate replicated genotype-environment data.</p></li>
 </ul>
@@ -251,6 +249,7 @@ ge_simula() simulate replicated genotype-environment data.
   env_eff <span class='op'>=</span> <span class='fl'>15</span>,
   rep_eff <span class='op'>=</span> <span class='fl'>5</span>,
   ge_eff <span class='op'>=</span> <span class='fl'>10</span>,
+  res_eff <span class='op'>=</span> <span class='fl'>5</span>,
   intercept <span class='op'>=</span> <span class='fl'>100</span>,
   seed <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
@@ -261,6 +260,7 @@ ge_simula() simulate replicated genotype-environment data.
   nvars <span class='op'>=</span> <span class='fl'>1</span>,
   gen_eff <span class='op'>=</span> <span class='fl'>20</span>,
   rep_eff <span class='op'>=</span> <span class='fl'>5</span>,
+  res_eff <span class='op'>=</span> <span class='fl'>5</span>,
   intercept <span class='op'>=</span> <span class='fl'>100</span>,
   seed <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
@@ -301,6 +301,12 @@ ge_simula() simulate replicated genotype-environment data.
       <td><p>The genotype-environment interaction effect.</p></td>
     </tr>
     <tr>
+      <th>res_eff</th>
+      <td><p>The residual effect. The effect is sampled from a normal
+distribution with zero mean and standard deviation equal to <code>res_eff</code>.
+Be sure to change <code>res_eff</code> when changin the <code>intercept</code> scale.</p></td>
+    </tr>
+    <tr>
       <th>intercept</th>
       <td><p>The intercept.</p></td>
     </tr>
@@ -332,48 +338,64 @@ when more than one trait is used.</p>
 <span class='co'># Genotype data (5 genotypes and 3 replicates)</span>
 <span class='va'>gen_data</span> <span class='op'>&lt;-</span>
    <span class='fu'>g_simula</span><span class='op'>(</span>ngen <span class='op'>=</span> <span class='fl'>5</span>,
-            nrep <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+            nrep <span class='op'>=</span> <span class='fl'>3</span>,
+            seed <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='va'>gen_data</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 3</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 15 x 3</span><span>
 #&gt;    GEN   REP      V1
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    B1    108. 
-#&gt; </span><span style='color: #555555;'> 2</span><span> H1    B2    101. 
-#&gt; </span><span style='color: #555555;'> 3</span><span> H1    B3     99.1
-#&gt; </span><span style='color: #555555;'> 4</span><span> H2    B1    123. 
-#&gt; </span><span style='color: #555555;'> 5</span><span> H2    B2    116. 
-#&gt; </span><span style='color: #555555;'> 6</span><span> H2    B3    114. 
-#&gt; </span><span style='color: #555555;'> 7</span><span> H3    B1     86.0
-#&gt; </span><span style='color: #555555;'> 8</span><span> H3    B2     78.6
-#&gt; </span><span style='color: #555555;'> 9</span><span> H3    B3     77.0
-#&gt; </span><span style='color: #555555;'>10</span><span> H4    B1    109. 
-#&gt; </span><span style='color: #555555;'>11</span><span> H4    B2    102. 
-#&gt; </span><span style='color: #555555;'>12</span><span> H4    B3    100. 
-#&gt; </span><span style='color: #555555;'>13</span><span> H5    B1     88.9
-#&gt; </span><span style='color: #555555;'>14</span><span> H5    B2     81.5
-#&gt; </span><span style='color: #555555;'>15</span><span> H5    B3     79.9</div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>gen_data</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    B1     96.3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H1    B2     91.0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H1    B3     94.7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H2    B1    103. 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H2    B2    102. 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2    B3     95.0
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3    B1    114. 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H3    B2    109. 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H3    B3    101. 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H4    B1    109. 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H4    B2    126. 
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H4    B3    118. 
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H5    B1     92.0
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> H5    B2     97.2
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> H5    B3     93.8</div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>gen_data</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 9</span><span>
 #&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GEN      factor  No      5           15  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> REP      factor  No      3           15  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> V1       numeric No      -           15  77.0   100.  123.       0</div><div class='output co'>#&gt; <span class='warning'>Warning: Expected three or more factor variables. The data has only 2.</span></div><div class='img'><img src='data_simula-1.png' alt='' width='700' height='433' /></div><div class='input'>
- <span class='co'># Genotype-environment data</span>
- <span class='co'># 5 genotypes, 3 environments, 4 replicates and 2 traits</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GEN      factor  No      5           15  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> REP      factor  No      3           15  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> V1       numeric No      -           15  91.0   101.  126.       0</div><div class='output co'>#&gt; <span class='warning'>Warning: Expected three or more factor variables. The data has only 2.</span></div><div class='img'><img src='data_simula-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span><span class='op'>(</span><span class='va'>V1</span> <span class='op'>~</span> <span class='va'>GEN</span> <span class='op'>+</span> <span class='va'>REP</span>, data <span class='op'>=</span> <span class='va'>gen_data</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: V1
+#&gt;           Df  Sum Sq Mean Sq F value   Pr(&gt;F)   
+#&gt; GEN        4 1242.03 310.508 10.1917 0.003146 **
+#&gt; REP        2   55.60  27.798  0.9124 0.439611   
+#&gt; Residuals  8  243.74  30.467                    
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div><div class='input'>
+<span class='co'># Genotype-environment data</span>
+<span class='co'># 5 genotypes, 3 environments, 4 replicates and 2 traits</span>
 <span class='va'>df</span> <span class='op'>&lt;-</span>
 <span class='fu'>ge_simula</span><span class='op'>(</span>ngen <span class='op'>=</span> <span class='fl'>5</span>,
           nenv <span class='op'>=</span> <span class='fl'>3</span>,
           nrep <span class='op'>=</span> <span class='fl'>4</span>,
-          nvars <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'gen_eff = 20' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'env_eff = 15' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'rep_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'ge_eff = 10' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'intercept = 100' recycled for all the 2 traits.</span></div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>df</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
-#&gt;   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      3           60  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      5           60  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      4           60  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> V1       numeric No      -           60  71.8   100.  137.       1
-#&gt; </span><span style='color: #555555;'>5</span><span> V2       numeric No      -           60  58.0   109.  136.       0</div><div class='output co'>#&gt; <span class='warning'>Warning: Possible outliers in variable(s) V1. Use 'find_outliers()' for more details.</span></div><div class='img'><img src='data_simula-2.png' alt='' width='700' height='433' /></div><div class='input'>
+          nvars <span class='op'>=</span> <span class='fl'>2</span>,
+          seed <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'gen_eff = 20' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'env_eff = 15' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'rep_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'ge_eff = 10' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'res_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'intercept = 100' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'seed = 1' recycled for all the 2 traits.</span></div><div class='input'><span class='fu'><a href='ge_plot.html'>ge_plot</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>V1</span><span class='op'>)</span>
+</div><div class='img'><img src='data_simula-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span><span class='op'>(</span><span class='va'>V1</span> <span class='op'>~</span> <span class='va'>ENV</span><span class='op'>*</span><span class='va'>GEN</span> <span class='op'>+</span> <span class='va'>ENV</span><span class='op'>/</span><span class='va'>REP</span>, data <span class='op'>=</span> <span class='va'>df</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: V1
+#&gt;           Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+#&gt; ENV        2   363.7  181.83  13.0240 5.551e-05 ***
+#&gt; GEN        4 12319.5 3079.87 220.6002 &lt; 2.2e-16 ***
+#&gt; ENV:GEN    8   643.9   80.48   5.7647 9.551e-05 ***
+#&gt; ENV:REP    9   426.2   47.36   3.3920   0.00415 ** 
+#&gt; Residuals 36   502.6   13.96                       
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div><div class='input'>
 <span class='co'># Change genotype effect (trait 1 with fewer differences among genotypes)</span>
 <span class='co'># Define different intercepts for the two traits</span>
 <span class='va'>df2</span> <span class='op'>&lt;-</span>
@@ -382,16 +404,10 @@ when more than one trait is used.</p>
           nrep <span class='op'>=</span> <span class='fl'>4</span>,
           nvars <span class='op'>=</span> <span class='fl'>2</span>,
           gen_eff <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>50</span><span class='op'>)</span>,
-          intercept <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>80</span>, <span class='fl'>1500</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'env_eff = 15' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'rep_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'ge_eff = 10' recycled for all the 2 traits.</span></div><div class='input'><span class='fu'><a href='inspect.html'>inspect</a></span><span class='op'>(</span><span class='va'>df2</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
-#&gt;   Variable Class   Missing Levels Valid_n    Min Median    Max Outlier
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> ENV      factor  No      3          120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> GEN      factor  No      10         120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> REP      factor  No      4          120   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> V1       numeric No      -          120   52.8   73.8   91.2       0
-#&gt; </span><span style='color: #555555;'>5</span><span> V2       numeric No      -          120 </span><span style='text-decoration: underline;'>1</span><span>443.  </span><span style='text-decoration: underline;'>1</span><span>509.  </span><span style='text-decoration: underline;'>1</span><span>554.        0</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data.</span></div><div class='img'><img src='data_simula-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+          intercept <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>80</span>, <span class='fl'>1500</span><span class='op'>)</span>,
+          seed <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'env_eff = 15' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'rep_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'ge_eff = 10' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'res_eff = 5' recycled for all the 2 traits.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'seed = 1' recycled for all the 2 traits.</span></div><div class='input'><span class='fu'><a href='ge_plot.html'>ge_plot</a></span><span class='op'>(</span><span class='va'>df2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>V2</span><span class='op'>)</span>
+</div><div class='img'><img src='data_simula-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

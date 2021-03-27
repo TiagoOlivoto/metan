@@ -97,7 +97,7 @@ validation procedure." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -264,8 +264,8 @@ validation procedure.</p>
     <tr>
       <th>x</th>
       <td><p>An object of class <code>cvalidation</code> fitted with the functions
-<code><a href='cv_ammi.html'>cv_ammi</a></code>, <code><a href='cv_ammif.html'>cv_ammif</a></code>, <code><a href='cv_blup.html'>cv_blup</a></code>, or a
-bound object fitted with <code><a href='bind_cv.html'>bind_cv</a></code>.</p></td>
+<code><a href='cv_ammi.html'>cv_ammi()</a></code>, <code><a href='cv_ammif.html'>cv_ammif()</a></code>, <code><a href='cv_blup.html'>cv_blup()</a></code>, or a
+bound object fitted with <code><a href='bind_cv.html'>bind_cv()</a></code>.</p></td>
     </tr>
     <tr>
       <th>violin</th>
@@ -309,7 +309,7 @@ Graphic can also be exported in <code>*.tiff</code> format by declaring
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details,see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -345,14 +345,12 @@ Default is 'cyan'.</p></td>
     <tr>
       <th>x.lim</th>
       <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and minimum
-values of the data set). New arguments can be inserted as <code>x.lim =
-c(x.min, x.max)</code>.</p></td>
+values of the data set). New arguments can be inserted as <code>x.lim = c(x.min, x.max)</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks</th>
       <td><p>The breaks to be plotted in the x-axis. Default is
-<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks =
-c(breaks)</code></p></td>
+<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks = c(breaks)</code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -378,13 +376,13 @@ hinge. Data beyond the end of the whiskers are considered outlying points.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># \donttest{</span>
-<span class='va'>validation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-                       resp <span class='op'>=</span> <span class='va'>GY</span>,
+<span class='va'>validation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
+                       resp <span class='op'>=</span> <span class='va'>EH</span>,
                        gen <span class='op'>=</span> <span class='va'>GEN</span>,
                        env <span class='op'>=</span> <span class='va'>ENV</span>,
                        rep <span class='op'>=</span> <span class='va'>REP</span>,
                        nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>validation</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 1 of 5 sets using AMMIF |==                                      | 5% 00:00:00 2 of 5 sets using AMMIF |====                                    | 10% 00:00:00 3 of 5 sets using AMMIF |======                                  | 15% 00:00:00 4 of 5 sets using AMMIF |========                                | 20% 00:00:00 5 of 5 sets using AMMIF |==========                              | 25% 00:00:00 1 of 5 sets using AMMI2 |============                            | 30% 00:00:00 2 of 5 sets using AMMI2 |==============                          | 35% 00:00:00 3 of 5 sets using AMMI2 |================                        | 40% 00:00:00 4 of 5 sets using AMMI2 |==================                      | 45% 00:00:00 5 of 5 sets using AMMI2 |====================                    | 50% 00:00:00 1 of 5 sets using AMMI1 |======================                  | 55% 00:00:00 2 of 5 sets using AMMI1 |========================                | 60% 00:00:00 3 of 5 sets using AMMI1 |==========================              | 65% 00:00:00 4 of 5 sets using AMMI1 |============================            | 70% 00:00:00 5 of 5 sets using AMMI1 |==============================          | 75% 00:00:00 1 of 5 sets using AMMI0 |================================        | 80% 00:00:01 2 of 5 sets using AMMI0 |==================================      | 85% 00:00:01 3 of 5 sets using AMMI0 |====================================    | 90% 00:00:01 4 of 5 sets using AMMI0 |======================================  | 95% 00:00:01 5 of 5 sets using AMMI0 |========================================| 100% 00:00:01 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>validation</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.cvalidation-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 

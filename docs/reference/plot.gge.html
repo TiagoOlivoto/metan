@@ -97,7 +97,7 @@ functions gge(), gtb(), and gytb()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -231,7 +231,7 @@ functions gge(), gtb(), and gytb()." />
 
     <div class="ref-description">
     <p>Produces a ggplot2-based GGE-GT-GYT biplot based on a model fitted with the
-functions <code><a href='gge.html'>gge</a>()</code>, <code><a href='gtb.html'>gtb</a>()</code>, and <code><a href='gytb.html'>gytb</a>()</code>.</p>
+functions <code><a href='gge.html'>gge()</a></code>, <code><a href='gtb.html'>gtb()</a></code>, and <code><a href='gytb.html'>gytb()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gge</span>
@@ -284,8 +284,8 @@ functions <code><a href='gge.html'>gge</a>()</code>, <code><a href='gtb.html'>gt
       <th>type</th>
       <td><p>The type of biplot to produce.</p><ol>
 <li><p>Basic biplot.</p></li>
-<li><p>Mean performance vs. stability (gge biplots)
-or the The Average Tester Coordination view for genotype-trait and genotype-yield*trait biplots.</p></li>
+<li><p>Mean performance vs. stability (gge biplots) or the The Average Tester
+Coordination view for genotype-trait and genotype-yield*trait biplots.</p></li>
 <li><p>Which-won-where.</p></li>
 <li><p>Discriminativeness vs. representativeness.</p></li>
 <li><p>Examine an environment (or trait/yield*trait combination).</p></li>
@@ -318,7 +318,7 @@ in the biplot. Defaults to <code>shape.gen = 21</code> (circle) for genotypes an
     <tr>
       <th>line.type.gen</th>
       <td><p>The line type to highlith the genotype's vectors.
-Defaults to `line.type.gen == "dotted`.</p></td>
+Defaults to <code>line.type.gen == "dotted</code>.</p></td>
     </tr>
     <tr>
       <th>size.shape</th>
@@ -333,15 +333,12 @@ environments). Defaults to <code>2.2</code>.</p></td>
     <tr>
       <th>size.stroke, col.stroke</th>
       <td><p>The width and color of the border,
-respectively. Default to <code>size.stroke = 0.3</code> and <code>col.stroke =
-"black"</code>. The size of the shape will be <code>size.shape + size.stroke</code></p></td>
+respectively. Default to <code>size.stroke = 0.3</code> and <code>col.stroke = "black"</code>. The size of the shape will be <code>size.shape + size.stroke</code></p></td>
     </tr>
     <tr>
       <th>col.gen, col.env, col.line</th>
       <td><p>Color for genotype/environment labels and for
-the line that passes through the biplot origin. Defaults to <code>col.gen =
-'blue'</code>, <code>col.env = 'forestgreen'</code>, and <code>col.line =
-'forestgreen'</code>.</p></td>
+the line that passes through the biplot origin. Defaults to <code>col.gen = 'blue'</code>, <code>col.env = 'forestgreen'</code>, and <code>col.line = 'forestgreen'</code>.</p></td>
     </tr>
     <tr>
       <th>col.alpha</th>
@@ -387,7 +384,7 @@ partitioning, scaling and centering.</p></td>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -402,7 +399,7 @@ partitioning, scaling and centering.</p></td>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Yan, W., and M.S. Kang. 2003. GGE biplot analysis: a graphical
-  tool for breeders, geneticists, and agronomists. CRC Press.</p>
+tool for breeders, geneticists, and agronomists. CRC Press.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>

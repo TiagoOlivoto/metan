@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Genotype plus genotype-by-environment model — gge" />
-<meta property="og:description" content="Produces genotype plus genotype-by-environment model based on a multi-environment
+<meta property="og:description" content="
+Produces genotype plus genotype-by-environment model based on a multi-environment
 trial dataset containing at least the columns for genotypes, environments and one
 response variable or a two-way table." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -98,7 +99,7 @@ response variable or a two-way table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -231,7 +232,8 @@ response variable or a two-way table." />
     </div>
 
     <div class="ref-description">
-    <p>Produces genotype plus genotype-by-environment model based on a multi-environment
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Produces genotype plus genotype-by-environment model based on a multi-environment
 trial dataset containing at least the columns for genotypes, environments and one
 response variable or a two-way table.</p>
     </div>
@@ -267,8 +269,7 @@ and the response variable(s).</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp
-  = c(var1, var2, var3)</code>. Select helpers are also supported.</p></td>
+single procedure a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>. Select helpers are also supported.</p></td>
     </tr>
     <tr>
       <th>centering</th>
@@ -296,7 +297,7 @@ visualizing either the relationship among genotypes or that among the environmen
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.This is especially useful, for example,
 when the researcher want to produce GGE biplots for each level of a
 categorical variable. In this case, an object of class gge_grouped is
 returned.</p></td>
@@ -304,7 +305,7 @@ returned.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed to the function
-<code><a href='impute_missing_val.html'>impute_missing_val</a>()</code> for imputation of missing values in case
+<code><a href='impute_missing_val.html'>impute_missing_val()</a></code> for imputation of missing values in case
 of unbalanced data.</p></td>
     </tr>
     </table>

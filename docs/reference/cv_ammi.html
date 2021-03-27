@@ -53,7 +53,24 @@
 
 
 <meta property="og:title" content="Cross-validation procedure — cv_ammi" />
-<meta property="og:description" content="Cross-validation for estimation of AMMI models" />
+<meta property="og:description" content="
+Cross-validation for estimation of AMMI models
+THe original dataset is split into two datasets: training set and validation
+set. The 'training' set has all combinations (genotype x environment) with
+N-1 replications. The 'validation' set has the remaining replication. The
+splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and
+alpha-lattice design (declaring block arguments), complete replicates
+are selected within environments. The remained replicate serves as validation
+data. If design = 'RCD' is informed, completely randomly samples are
+made for each genotype-by-environment combination (Olivoto et al. 2019). The
+estimated values considering naxis-Interaction Principal Component
+Axis are compared with the 'validation' data. The Root Mean Square Prediction
+Difference (RMSPD) is computed. At the end of boots, a list is returned.
+IMPORTANT: If the data set is unbalanced (i.e., any genotype missing
+in any environment) the function will return an error. An error is also
+observed if any combination of genotype-environment has a different number of
+replications than observed in the trial." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +113,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +246,24 @@
     </div>
 
     <div class="ref-description">
-    <p>Cross-validation for estimation of AMMI models</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Cross-validation for estimation of AMMI models</p>
+<p>THe original dataset is split into two datasets: training set and validation
+set. The 'training' set has all combinations (genotype x environment) with
+N-1 replications. The 'validation' set has the remaining replication. The
+splitting of the dataset into modeling and validation sets depends on the
+design informed. For Completely Randomized Block Design (default), and
+alpha-lattice design (declaring <code>block</code> arguments), complete replicates
+are selected within environments. The remained replicate serves as validation
+data. If <code>design = 'RCD'</code> is informed, completely randomly samples are
+made for each genotype-by-environment combination (Olivoto et al. 2019). The
+estimated values considering <code>naxis</code>-Interaction Principal Component
+Axis are compared with the 'validation' data. The Root Mean Square Prediction
+Difference (RMSPD) is computed. At the end of boots, a list is returned.</p>
+<p><strong>IMPORTANT:</strong> If the data set is unbalanced (i.e., any genotype missing
+in any environment) the function will return an error. An error is also
+observed if any combination of genotype-environment has a different number of
+replications than observed in the trial.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cv_ammi</span><span class='op'>(</span>
@@ -314,24 +348,6 @@ observed, validation) of the last loop.</p></li>
 <li><p><strong>Testing</strong>: The dataset used as testing data in the last loop.</p></li>
 </ul>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>THe original dataset is split into two datasets: training set and validation
-set. The 'training' set has all combinations (genotype x environment) with
-N-1 replications. The 'validation' set has the remaining replication. The
-splitting of the dataset into modeling and validation sets depends on the
-design informed. For Completely Randomized Block Design (default), and
-alpha-lattice design (declaring <code>block</code> arguments), complete replicates
-are selected within environments. The remained replicate serves as validation
-data. If <code>design = 'RCD'</code> is informed, completely randomly samples are
-made for each genotype-by-environment combination (Olivoto et al. 2019). The
-estimated values considering <code>naxis</code>-Interaction Principal Component
-Axis are compared with the 'validation' data. The Root Mean Square Prediction
-Difference (RMSPD) is computed. At the end of boots, a list is returned.</p>
-<p><strong>IMPORTANT:</strong> If the data set is unbalanced (i.e., any genotype missing
-in any environment) the function will return an error. An error is also
-observed if any combination of genotype-environment has a different number of
-replications than observed in the trial.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
@@ -343,7 +359,7 @@ doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.
 resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='cv_ammif.html'>cv_ammif</a>, <a href='cv_blup.html'>cv_blup</a></code></p></div>
+    <div class='dont-index'><p><code><a href='cv_ammif.html'>cv_ammif()</a></code>, <code><a href='cv_blup.html'>cv_blup()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -359,7 +375,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
                 resp <span class='op'>=</span> <span class='va'>GY</span>,
                 nboot <span class='op'>=</span> <span class='fl'>5</span>,
                 naxis <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-<span class='co'># }</span>
+</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:00 Validating 4 of 5 sets |=================================        | 80% 00:00:00 Validating 5 of 5 sets |=========================================| 100% 00:00:00 </div><div class='input'><span class='co'># }</span>
 
 
 </div></pre>

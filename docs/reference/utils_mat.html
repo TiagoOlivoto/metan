@@ -53,8 +53,9 @@
 
 
 <meta property="og:title" content="Utilities for handling with matrices — utils_mat" />
-<meta property="og:description" content="These functions help users to make upper, lower, or symmetric
-matrices easily." />
+<meta property="og:description" content="
+These functions help users to make upper, lower, or symmetric matrices
+easily." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -97,7 +98,7 @@ matrices easily." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,8 +231,9 @@ matrices easily." />
     </div>
 
     <div class="ref-description">
-    <p>These functions help users to make upper, lower, or symmetric
-matrices easily.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>These functions help users to make upper, lower, or symmetric matrices
+easily.</p>
     </div>
 
     <pre class="usage"><span class='fu'>make_upper_tri</span><span class='op'>(</span><span class='va'>x</span>, diag <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
@@ -325,38 +327,38 @@ matrix.</p></li>
 #&gt; ED 0.6302561 0.4580196 0.3851451 0.0000000 0.6974629 0.3897128
 #&gt; CL 0.3971935 0.3908239 0.2554068 0.6974629 0.0000000 0.3003636
 #&gt; CD 0.2805118 0.1750448 0.9118653 0.3897128 0.3003636 0.0000000</div><div class='input'><span class='fu'>tidy_sym</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 36 x 3</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 36 x 3</span><span>
 #&gt;    group1 group2 value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> CD     EH     0.281
-#&gt; </span><span style='color: #555555;'> 2</span><span> CD     EP     0.175
-#&gt; </span><span style='color: #555555;'> 3</span><span> CD     EL     0.912
-#&gt; </span><span style='color: #555555;'> 4</span><span> CD     ED     0.390
-#&gt; </span><span style='color: #555555;'> 5</span><span> CD     CL     0.300
-#&gt; </span><span style='color: #555555;'> 6</span><span> CD     CD     1    
-#&gt; </span><span style='color: #555555;'> 7</span><span> CL     EH     0.397
-#&gt; </span><span style='color: #555555;'> 8</span><span> CL     EP     0.391
-#&gt; </span><span style='color: #555555;'> 9</span><span> CL     EL     0.255
-#&gt; </span><span style='color: #555555;'>10</span><span> CL     ED     0.697
-#&gt; </span><span style='color: #555555;'># ... with 26 more rows</span><span></div><div class='input'><span class='fu'>tidy_sym</span><span class='op'>(</span><span class='fu'>make_lower_tri</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 3</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> CD     EH     0.281
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> CD     EP     0.175
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> CD     EL     0.912
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CD     ED     0.390
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> CD     CL     0.300
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> CD     CD     1    
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> CL     EH     0.397
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> CL     EP     0.391
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> CL     EL     0.255
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> CL     ED     0.697
+#&gt; </span><span style='color: #949494;'># ... with 26 more rows</span><span></div><div class='input'><span class='fu'>tidy_sym</span><span class='op'>(</span><span class='fu'>make_lower_tri</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 3</span><span>
 #&gt;    group1 group2 value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> CD     EH     0.281
-#&gt; </span><span style='color: #555555;'> 2</span><span> CD     EP     0.175
-#&gt; </span><span style='color: #555555;'> 3</span><span> CD     EL     0.912
-#&gt; </span><span style='color: #555555;'> 4</span><span> CD     ED     0.390
-#&gt; </span><span style='color: #555555;'> 5</span><span> CD     CL     0.300
-#&gt; </span><span style='color: #555555;'> 6</span><span> CL     EH     0.397
-#&gt; </span><span style='color: #555555;'> 7</span><span> CL     EP     0.391
-#&gt; </span><span style='color: #555555;'> 8</span><span> CL     EL     0.255
-#&gt; </span><span style='color: #555555;'> 9</span><span> CL     ED     0.697
-#&gt; </span><span style='color: #555555;'>10</span><span> ED     EH     0.630
-#&gt; </span><span style='color: #555555;'>11</span><span> ED     EP     0.458
-#&gt; </span><span style='color: #555555;'>12</span><span> ED     EL     0.385
-#&gt; </span><span style='color: #555555;'>13</span><span> EL     EH     0.363
-#&gt; </span><span style='color: #555555;'>14</span><span> EL     EP     0.263
-#&gt; </span><span style='color: #555555;'>15</span><span> EP     EH     0.870</div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> CD     EH     0.281
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> CD     EP     0.175
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> CD     EL     0.912
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CD     ED     0.390
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> CD     CL     0.300
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> CL     EH     0.397
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> CL     EP     0.391
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> CL     EL     0.255
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> CL     ED     0.697
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ED     EH     0.630
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> ED     EP     0.458
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> ED     EL     0.385
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> EL     EH     0.363
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> EL     EP     0.263
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> EP     EH     0.870</div><div class='input'>
 <span class='co'># }</span>
 
 </div></span></pre>

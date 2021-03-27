@@ -53,9 +53,10 @@
 
 
 <meta property="og:title" content="Correlation between stability indexes — corr_stab_ind" />
-<meta property="og:description" content="Computes the Spearman's rank correlation between the parametric and
+<meta property="og:description" content="
+Computes the Spearman's rank correlation between the parametric and
 nonparametric stability indexes computed with the function
-ge_stats." />
+ge_stats()." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -98,7 +99,7 @@ ge_stats." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -231,9 +232,10 @@ ge_stats." />
     </div>
 
     <div class="ref-description">
-    <p>Computes the Spearman's rank correlation between the parametric and
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Computes the Spearman's rank correlation between the parametric and
 nonparametric stability indexes computed with the function
-<code><a href='ge_stats.html'>ge_stats</a></code>.</p>
+<code><a href='ge_stats.html'>ge_stats()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>x</span>, stats <span class='op'>=</span> <span class='st'>"all"</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -257,41 +259,39 @@ nonparametric stability indexes computed with the function
     <tr>
       <th>...</th>
       <td><p>Other arguments to be passed to the function
-<code><a href='plot.corr_coef.html'>plot.corr_coef</a></code>.</p></td>
+<code><a href='plot.corr_coef.html'>plot.corr_coef()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list with the data (ranks) correlation, p-values and a heat map showing the
-  correlation coefficients.</p>
+correlation coefficients.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The argument <code>stats</code> is used to chose the statistics to show
-  the ranks. Allowed values are <code>"all"</code> (All statistics, default),
-  <code>"par"</code> (Parametric statistics), <code>"nonpar"</code> (Non-parametric
-  statistics), <code>"ammi"</code> (AMMI-based stability statistics), or the
-  following values that can be combined into comma-separated character
-  vector. <code>"Y"</code> (Response variable), <code>"Var"</code> (Genotype's variance),
-  <code>"Shukla"</code> (Shukla's variance), <code>"Wi_g", "Wi_f", "Wi_u"</code>
-  (Annichiarrico's genotypic confidence index for all, favorable and
-  unfavorable environments, respectively), <code>"Ecoval"</code> (Wricke's
-  ecovalence), <code>"Sij"</code> (Deviations from the joint-regression analysis),
-  <code>"R2"</code> (R-squared from the joint-regression analysis), <code>"ASV"</code>
-  (AMMI-stability value), <code>"SIPC"</code> (sum of the absolute values of the
-  IPCA scores), <code>"EV"</code> (Average of the squared eigenvector values),
-  <code>"ZA"</code> (Absolute values of the relative contributions of the IPCAs to
-  the interaction), <code>"WAAS"</code> (Weighted Average of Absolute Scores),
-  <code>"HMGV"</code> (Harmonic mean of the genotypic value), <code>"RPGV"</code>
-  (Relative performance of the genotypic values), <code>"HMRPGV"</code> (Harmonic
-  mean of the relative performance of the genotypic values), <code>"Pi_a",
-  "Pi_f", "Pi_u"</code> (Superiority indexes for all, favorable and unfavorable
-  environments, respectively), <code>"Gai"</code> (Geometric adaptability index),
-  <code>"S1"</code> (mean of the absolute rank differences of a genotype over the n
-  environments), <code>"S2"</code> (variance among the ranks over the k
-  environments), <code>"S3"</code> (sum of the absolute deviations), <code>"S6"</code>
-  (relative sum of squares of rank for each genotype), <code>"N1", "N2",
-  "N3", "N4"</code> (Thennarasu"s statistics)).</p>
+the ranks. Allowed values are <code>"all"</code> (All statistics, default),
+<code>"par"</code> (Parametric statistics), <code>"nonpar"</code> (Non-parametric
+statistics), <code>"ammi"</code> (AMMI-based stability statistics), or the
+following values that can be combined into comma-separated character
+vector. <code>"Y"</code> (Response variable), <code>"Var"</code> (Genotype's variance),
+<code>"Shukla"</code> (Shukla's variance), <code>"Wi_g", "Wi_f", "Wi_u"</code>
+(Annichiarrico's genotypic confidence index for all, favorable and
+unfavorable environments, respectively), <code>"Ecoval"</code> (Wricke's
+ecovalence), <code>"Sij"</code> (Deviations from the joint-regression analysis),
+<code>"R2"</code> (R-squared from the joint-regression analysis), <code>"ASV"</code>
+(AMMI-stability value), <code>"SIPC"</code> (sum of the absolute values of the
+IPCA scores), <code>"EV"</code> (Average of the squared eigenvector values),
+<code>"ZA"</code> (Absolute values of the relative contributions of the IPCAs to
+the interaction), <code>"WAAS"</code> (Weighted Average of Absolute Scores),
+<code>"HMGV"</code> (Harmonic mean of the genotypic value), <code>"RPGV"</code>
+(Relative performance of the genotypic values), <code>"HMRPGV"</code> (Harmonic
+mean of the relative performance of the genotypic values), <code>"Pi_a", "Pi_f", "Pi_u"</code> (Superiority indexes for all, favorable and unfavorable
+environments, respectively), <code>"Gai"</code> (Geometric adaptability index),
+<code>"S1"</code> (mean of the absolute rank differences of a genotype over the n
+environments), <code>"S2"</code> (variance among the ranks over the k
+environments), <code>"S3"</code> (sum of the absolute deviations), <code>"S6"</code>
+(relative sum of squares of rank for each genotype), <code>"N1", "N2", "N3", "N4"</code> (Thennarasu"s statistics)).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -300,7 +300,7 @@ nonparametric stability indexes computed with the function
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
-<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:01 </div><div class='input'><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='corr_stab_ind-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span>, stats <span class='op'>=</span> <span class='st'>"ammi"</span><span class='op'>)</span>
 </div><div class='img'><img src='corr_stab_ind-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>c</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span>, stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ASV, Sij, R2, WAAS, N1"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='corr_stab_ind-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>

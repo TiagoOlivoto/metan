@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Environment stratification — env_stratification" />
-<meta property="og:description" content="Computes environment stratification based on factor analysis." />
+<meta property="og:description" content="
+Computes environment stratification based on factor analysis." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Computes environment stratification based on factor analysis.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Computes environment stratification based on factor analysis.</p>
     </div>
 
     <pre class="usage"><span class='fu'>env_stratification</span><span class='op'>(</span>
@@ -285,27 +287,28 @@ silently.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>env_stratification</code> which is a list with one
-  element per analyzed trait. For each trait, the following values are given.</p>
-<dt>data</dt><dd><p>The genotype-environment means.</p></dd>
-<dt>cormat</dt><dd><p>The correlation matrix among the environments.</p></dd>
-<dt>PCA</dt><dd><p>The eigenvalues and explained variance.</p></dd>
-<dt>FA</dt><dd><p>The factor analysis.</p></dd>
-<dt>env_strat</dt><dd><p>The environmental stratification.</p></dd>
-<dt>mega_env_code</dt><dd><p>The environments within each mega-environment.</p></dd>
-<dt>mega_env_stat</dt><dd><p>The statistics for each mega-environment.</p></dd>
-<dt>KMO</dt><dd><p>The result for the Kaiser-Meyer-Olkin test.</p></dd>
-<dt>MSA</dt><dd><p>The measure of sampling adequacy for individual variable.</p></dd>
-<dt>communalities_mean</dt><dd><p>The communalities' mean.</p></dd>
-<dt>initial_loadings</dt><dd><p>The initial loadings.</p></dd>
+element per analyzed trait. For each trait, the following values are given.</p><ul>
+<li><p><code>data</code> The genotype-environment means.</p></li>
+<li><p><code>cormat</code>: The correlation matrix among the environments.</p></li>
+<li><p><code>PCA</code>: The eigenvalues and explained variance.</p></li>
+<li><p><code>FA</code>: The factor analysis.</p></li>
+<li><p><code>env_strat</code>: The environmental stratification.</p></li>
+<li><p><code>mega_env_code</code>: The environments within each mega-environment.</p></li>
+<li><p><code>mega_env_stat</code>: The statistics for each mega-environment.</p></li>
+<li><p><code>KMO</code>: The result for the Kaiser-Meyer-Olkin test.</p></li>
+<li><p><code>MSA</code>: The measure of sampling adequacy for individual variable.</p></li>
+<li><p><code>communalities_mean</code>: The communalities' mean.</p></li>
+<li><p><code>initial_loadings</code>: The initial loadings.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of
-  methodologies for environment stratification and analysis of genotype
-  adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.</p>
+methodologies for environment stratification and analysis of genotype
+adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='env_dissimilarity.html'>env_dissimilarity</a>()</code></p></div>
+    <div class='dont-index'><p><code><a href='env_dissimilarity.html'>env_dissimilarity()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto, <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -319,20 +322,20 @@ silently.</p></td>
                    gen <span class='op'>=</span> <span class='va'>GEN</span>,
                    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='get_model_data.html'>gmd</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: env_stratification</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: env_strat</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 28 x 7</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: env_stratification</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: env_strat</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 28 x 7</span><span>
 #&gt;    TRAIT ENV   MEGA_ENV  MEAN   MIN   MAX    CV
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> GY    E1    ME1       2.52 1.97   2.90 13.3 
-#&gt; </span><span style='color: #555555;'> 2</span><span> GY    E10   ME1       2.18 1.54   2.57 14.4 
-#&gt; </span><span style='color: #555555;'> 3</span><span> GY    E11   ME1       1.37 0.899  1.68 16.4 
-#&gt; </span><span style='color: #555555;'> 4</span><span> GY    E12   ME1       1.61 1.02   2    20.3 
-#&gt; </span><span style='color: #555555;'> 5</span><span> GY    E13   ME1       2.91 1.83   3.52 16.8 
-#&gt; </span><span style='color: #555555;'> 6</span><span> GY    E5    ME1       3.91 3.37   4.81 10.7 
-#&gt; </span><span style='color: #555555;'> 7</span><span> GY    E3    ME2       4.06 3.43   4.57  8.22
-#&gt; </span><span style='color: #555555;'> 8</span><span> GY    E6    ME2       2.66 2.34   2.98  7.95
-#&gt; </span><span style='color: #555555;'> 9</span><span> GY    E14   ME3       1.78 1.43   2.06 11.7 
-#&gt; </span><span style='color: #555555;'>10</span><span> GY    E8    ME3       2.54 2.05   2.88 10.5 
-#&gt; </span><span style='color: #555555;'># ... with 18 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> GY    E1    ME1       2.52 1.97   2.90 13.3 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> GY    E10   ME1       2.18 1.54   2.57 14.4 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> GY    E11   ME1       1.37 0.899  1.68 16.4 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> GY    E12   ME1       1.61 1.02   2    20.3 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> GY    E13   ME1       2.91 1.83   3.52 16.8 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> GY    E5    ME1       3.91 3.37   4.81 10.7 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> GY    E3    ME2       4.06 3.43   4.57  8.22
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> GY    E6    ME2       2.66 2.34   2.98  7.95
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> GY    E14   ME3       1.78 1.43   2.06 11.7 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> GY    E8    ME3       2.54 2.05   2.88 10.5 
+#&gt; </span><span style='color: #949494;'># ... with 18 more rows</span><span></div><div class='input'>
 <span class='co'># }</span>
 </div></span></pre>
   </div>

@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Genotype by trait biplot — gtb" />
-<meta property="og:description" content="Produces a genotype-by-trait biplot model. From a genotype by environment by
+<meta property="og:description" content="
+Produces a genotype-by-trait biplot model. From a genotype by environment by
 trait three-way table, genotype-by-trait tables in any single environment,
 across all environments, or across a subset of the environments can be
 generated and visually studied using biplots. The model for biplot analysis
@@ -101,7 +102,7 @@ trait-standardized two-way table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -234,7 +235,8 @@ trait-standardized two-way table." />
     </div>
 
     <div class="ref-description">
-    <p>Produces a genotype-by-trait biplot model. From a genotype by environment by
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Produces a genotype-by-trait biplot model. From a genotype by environment by
 trait three-way table, genotype-by-trait tables in any single environment,
 across all environments, or across a subset of the environments can be
 generated and visually studied using biplots. The model for biplot analysis
@@ -265,8 +267,7 @@ Select helpers can also be used.</p></td>
       <th>centering</th>
       <td><p>The centering method. Must be one of the <code>'none | 0'</code>,
 for no centering; <code>'global | 1'</code>, for global centered (T+G+GT);
-<code>'trait | 2'</code> (default), for trait-centered (G+GT); or <code>'double |
-  3'</code>, for double centred (GT). A biplot cannot be produced with models
+<code>'trait | 2'</code> (default), for trait-centered (G+GT); or <code>'double | 3'</code>, for double centred (GT). A biplot cannot be produced with models
 produced without centering.</p></td>
     </tr>
     <tr>
@@ -280,10 +281,8 @@ all traits roughly he same rang of values.</p></td>
       <th>svp</th>
       <td><p>The method for singular value partitioning. Must be one of the
 <code>'genotype | 1'</code>, (The singular value is entirely partitioned into the
-genotype eigenvectors, also called row metric preserving); <code>'trait |
-  2'</code>, default, (The singular value is entirely partitioned into the trait
-eigenvectors, also called column metric preserving); or <code>'symmetrical
-  | 3'</code> (The singular value is symmetrically partitioned into the genotype
+genotype eigenvectors, also called row metric preserving); <code>'trait | 2'</code>, default, (The singular value is entirely partitioned into the trait
+eigenvectors, also called column metric preserving); or <code>'symmetrical | 3'</code> (The singular value is symmetrically partitioned into the genotype
 and the trait eigenvectors This SVP is most often used in AMMI analysis and
 other biplot analysis, but it is not ideal for visualizing either the
 relationship among genotypes or that among the traits).</p></td>
@@ -292,7 +291,7 @@ relationship among genotypes or that among the traits).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code> used in <code><a href='gge.html'>gge</a>()</code>.</p><ul>
+    <p>The function returns a list of class <code>gge</code> that is compatible with the function <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code> used in <code><a href='gge.html'>gge()</a></code>.</p><ul>
 <li><p><strong>coordgen</strong> The coordinates for genotypes for all components.</p></li>
 <li><p><strong>coordenv</strong> The coordinates for traits for all components.</p></li>
 <li><p><strong>eigenvalues</strong> The vector of eigenvalues.</p></li>

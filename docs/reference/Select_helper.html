@@ -114,7 +114,7 @@ character only (e.g., &quot;Env&quot;).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -308,7 +308,7 @@ respectively.</p></td>
     <tr>
       <th>vars</th>
       <td><p>A character vector of variable names. When called from inside
-selecting functions like <code><a href='utils_rows_cols.html'>select_cols</a></code> these are automatically
+selecting functions like <code><a href='utils_rows_cols.html'>select_cols()</a></code> these are automatically
 set to the names of the table.</p></td>
     </tr>
     </table>
@@ -322,127 +322,127 @@ set to the names of the table.</p></td>
 <span class='co'># Select variables that start with "C" and not end with "D".</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fu'>difference_var</span><span class='op'>(</span><span class='st'>"C"</span>, <span class='st'>"D"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 156 x 2</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 x 2</span><span>
 #&gt;       CL    CW
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  28.1  25.1
-#&gt; </span><span style='color: #555555;'> 2</span><span>  27.6  21.4
-#&gt; </span><span style='color: #555555;'> 3</span><span>  28.4  24.0
-#&gt; </span><span style='color: #555555;'> 4</span><span>  31.7  26.2
-#&gt; </span><span style='color: #555555;'> 5</span><span>  32.0  20.7
-#&gt; </span><span style='color: #555555;'> 6</span><span>  30.4  26.8
-#&gt; </span><span style='color: #555555;'> 7</span><span>  30.6  26.2
-#&gt; </span><span style='color: #555555;'> 8</span><span>  28.7  24.1
-#&gt; </span><span style='color: #555555;'> 9</span><span>  27.6  20.5
-#&gt; </span><span style='color: #555555;'>10</span><span>  28.2  20.1
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>  28.1  25.1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>  27.6  21.4
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>  28.4  24.0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>  31.7  26.2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>  32.0  20.7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>  30.4  26.8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>  30.6  26.2
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>  28.7  24.1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>  27.6  20.5
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>  28.2  20.1
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows</span><span></div><div class='input'>
 <span class='co'># Select variables that start with "C" and end with "D".</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fu'>intersect_var</span><span class='op'>(</span><span class='st'>"C"</span>, <span class='st'>"D"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 2</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 156 x 2</span><span>
 #&gt;       CD  CDED
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  16.3 0.538
-#&gt; </span><span style='color: #555555;'> 2</span><span>  14.5 0.551
-#&gt; </span><span style='color: #555555;'> 3</span><span>  16.4 0.561
-#&gt; </span><span style='color: #555555;'> 4</span><span>  17.4 0.586
-#&gt; </span><span style='color: #555555;'> 5</span><span>  15.5 0.607
-#&gt; </span><span style='color: #555555;'> 6</span><span>  17.5 0.577
-#&gt; </span><span style='color: #555555;'> 7</span><span>  18.0 0.594
-#&gt; </span><span style='color: #555555;'> 8</span><span>  17.2 0.608
-#&gt; </span><span style='color: #555555;'> 9</span><span>  16.4 0.576
-#&gt; </span><span style='color: #555555;'>10</span><span>  15.5 0.597
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>  16.3 0.538
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>  14.5 0.551
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>  16.4 0.561
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>  17.4 0.586
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>  15.5 0.607
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>  17.5 0.577
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>  18.0 0.594
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>  17.2 0.608
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>  16.4 0.576
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>  15.5 0.597
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows</span><span></div><div class='input'>
 <span class='co'># Select variables that start with "C" or end with "D".</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fu'>union_var</span><span class='op'>(</span><span class='st'>"C"</span>, <span class='st'>"D"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 156 x 5</span><span>
 #&gt;       CL    CD    CW  CDED    ED
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  28.1  16.3  25.1 0.538  52.2
-#&gt; </span><span style='color: #555555;'> 2</span><span>  27.6  14.5  21.4 0.551  50.3
-#&gt; </span><span style='color: #555555;'> 3</span><span>  28.4  16.4  24.0 0.561  50.7
-#&gt; </span><span style='color: #555555;'> 4</span><span>  31.7  17.4  26.2 0.586  54.1
-#&gt; </span><span style='color: #555555;'> 5</span><span>  32.0  15.5  20.7 0.607  52.7
-#&gt; </span><span style='color: #555555;'> 6</span><span>  30.4  17.5  26.8 0.577  52.7
-#&gt; </span><span style='color: #555555;'> 7</span><span>  30.6  18.0  26.2 0.594  51.7
-#&gt; </span><span style='color: #555555;'> 8</span><span>  28.7  17.2  24.1 0.608  47.2
-#&gt; </span><span style='color: #555555;'> 9</span><span>  27.6  16.4  20.5 0.576  47.9
-#&gt; </span><span style='color: #555555;'>10</span><span>  28.2  15.5  20.1 0.597  47.5
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>  28.1  16.3  25.1 0.538  52.2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>  27.6  14.5  21.4 0.551  50.3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>  28.4  16.4  24.0 0.561  50.7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>  31.7  17.4  26.2 0.586  54.1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>  32.0  15.5  20.7 0.607  52.7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>  30.4  17.5  26.8 0.577  52.7
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>  30.6  18.0  26.2 0.594  51.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>  28.7  17.2  24.1 0.608  47.2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>  27.6  16.4  20.5 0.576  47.9
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>  28.2  15.5  20.1 0.597  47.5
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows</span><span></div><div class='input'>
 <span class='co'># Select variables with width name of 4</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fu'>width_of</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 2</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 156 x 2</span><span>
 #&gt;     CDED  PERK
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 0.538  89.6
-#&gt; </span><span style='color: #555555;'> 2</span><span> 0.551  89.5
-#&gt; </span><span style='color: #555555;'> 3</span><span> 0.561  89.7
-#&gt; </span><span style='color: #555555;'> 4</span><span> 0.586  87.9
-#&gt; </span><span style='color: #555555;'> 5</span><span> 0.607  89.7
-#&gt; </span><span style='color: #555555;'> 6</span><span> 0.577  88.5
-#&gt; </span><span style='color: #555555;'> 7</span><span> 0.594  89.1
-#&gt; </span><span style='color: #555555;'> 8</span><span> 0.608  88.3
-#&gt; </span><span style='color: #555555;'> 9</span><span> 0.576  89.0
-#&gt; </span><span style='color: #555555;'>10</span><span> 0.597  88.7
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0.538  89.6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0.551  89.5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0.561  89.7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0.586  87.9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0.607  89.7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0.577  88.5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0.594  89.1
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0.608  88.3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0.576  89.0
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0.597  88.7
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows</span><span></div><div class='input'>
 <span class='co'># Select variables with width name greater than 2</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fu'>width_greater_than</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 8</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 156 x 8</span><span>
 #&gt;    ENV   GEN   REP     NKR  CDED  PERK   TKW   NKE
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A1    H1    1      36.6 0.538  89.6  418.  521.
-#&gt; </span><span style='color: #555555;'> 2</span><span> A1    H1    2      31.4 0.551  89.5  361.  494.
-#&gt; </span><span style='color: #555555;'> 3</span><span> A1    H1    3      31.8 0.561  89.7  367.  565.
-#&gt; </span><span style='color: #555555;'> 4</span><span> A1    H10   1      32.8 0.586  87.9  374.  519.
-#&gt; </span><span style='color: #555555;'> 5</span><span> A1    H10   2      28   0.607  89.7  347.  502.
-#&gt; </span><span style='color: #555555;'> 6</span><span> A1    H10   3      32.8 0.577  88.5  394.  525.
-#&gt; </span><span style='color: #555555;'> 7</span><span> A1    H11   1      34.6 0.594  89.1  377.  575 
-#&gt; </span><span style='color: #555555;'> 8</span><span> A1    H11   2      34.4 0.608  88.3  361.  501.
-#&gt; </span><span style='color: #555555;'> 9</span><span> A1    H11   3      34.8 0.576  89.0  322.  513.
-#&gt; </span><span style='color: #555555;'>10</span><span> A1    H12   1      31.6 0.597  88.7  345.  480.
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A1    H1    1      36.6 0.538  89.6  418.  521.
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A1    H1    2      31.4 0.551  89.5  361.  494.
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A1    H1    3      31.8 0.561  89.7  367.  565.
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A1    H10   1      32.8 0.586  87.9  374.  519.
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> A1    H10   2      28   0.607  89.7  347.  502.
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> A1    H10   3      32.8 0.577  88.5  394.  525.
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> A1    H11   1      34.6 0.594  89.1  377.  575 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A1    H11   2      34.4 0.608  88.3  361.  501.
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> A1    H11   3      34.8 0.576  89.0  322.  513.
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> A1    H12   1      31.6 0.597  88.7  345.  480.
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows</span><span></div><div class='input'>
 <span class='co'># Select variables with width name less than 3</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fu'>width_less_than</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 10</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 156 x 10</span><span>
 #&gt;       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
-#&gt; </span><span style='color: #555555;'> 2</span><span>  2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
-#&gt; </span><span style='color: #555555;'> 3</span><span>  2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
-#&gt; </span><span style='color: #555555;'> 4</span><span>  2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
-#&gt; </span><span style='color: #555555;'> 5</span><span>  2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6
-#&gt; </span><span style='color: #555555;'> 6</span><span>  2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
-#&gt; </span><span style='color: #555555;'> 7</span><span>  2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8
-#&gt; </span><span style='color: #555555;'> 8</span><span>  2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6
-#&gt; </span><span style='color: #555555;'> 9</span><span>  2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2
-#&gt; </span><span style='color: #555555;'>10</span><span>  2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8
-#&gt; </span><span style='color: #555555;'># ... with 146 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>  2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>  2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>  2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>  2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>  2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>  2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>  2.75  1.51 0.549  17.4  51.7  30.6  18.0  26.2  217.  16.8
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>  2.72  1.56 0.573  16.7  47.2  28.7  17.2  24.1  181.  13.6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>  2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>  2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8
+#&gt; </span><span style='color: #949494;'># ... with 146 more rows</span><span></div><div class='input'>
 <span class='co'># Creating data with messy column names</span>
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='fl'>3</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Env"</span>, <span class='st'>"gen"</span>, <span class='st'>"Rep"</span>, <span class='st'>"GY"</span>, <span class='st'>"hm"</span><span class='op'>)</span>
 <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'>lower_case_only</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 2</span><span>
 #&gt;   gen      hm
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> G1     44.9
-#&gt; </span><span style='color: #555555;'>2</span><span> G1     46.9
-#&gt; </span><span style='color: #555555;'>3</span><span> G1     47.8</div><div class='input'><span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'>upper_case_only</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 1</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> G1     44.9
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> G1     46.9
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> G1     47.8</div><div class='input'><span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'>upper_case_only</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 1</span><span>
 #&gt;      GY
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  2.17
-#&gt; </span><span style='color: #555555;'>2</span><span>  2.50
-#&gt; </span><span style='color: #555555;'>3</span><span>  2.43</div><div class='input'><span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'>title_case_only</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 2</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  2.17
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  2.50
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>  2.43</div><div class='input'><span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'>title_case_only</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 2</span><span>
 #&gt;   Env   Rep  
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> E1    1    
-#&gt; </span><span style='color: #555555;'>2</span><span> E1    2    
-#&gt; </span><span style='color: #555555;'>3</span><span> E1    3    </div><div class='input'><span class='co'># }</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> E1    1    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> E1    2    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> E1    3    </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>

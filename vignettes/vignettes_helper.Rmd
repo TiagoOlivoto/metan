@@ -248,7 +248,7 @@ print_table(c2)
 df1 <- data.frame(v1 = c(1, 2), v2 = c(2, 3))
 df2 <- data.frame(v3 = c(4, 5))
 rbind_fill_id(df1, df2) %>% print_table()
-rbind_fill_id(df1, df2, fill = "NA") %>% print_table()
+rbind_fill_id(df1, df2, .fill = ".") %>% print_table()
     ```
 
 # Rescale a continuous vector to have specified minimum and maximum values

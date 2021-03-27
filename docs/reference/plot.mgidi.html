@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -266,7 +266,7 @@
     </tr>
     <tr>
       <th>SI</th>
-      <td><p>An integer [0-100]. The selection intensity in percentage of the
+      <td><p>An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.</p></td>
     </tr>
     <tr>
@@ -276,8 +276,7 @@ after using <code><a href='https://ggplot2.tidyverse.org/reference/coord_polar.h
     </tr>
     <tr>
       <th>type</th>
-      <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type
-= "contribution"</code> to show the contribution of each factor to the MGIDI
+      <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type = "contribution"</code> to show the contribution of each factor to the MGIDI
 index of the selected genotypes/treatments.</p></td>
     </tr>
     <tr>
@@ -356,7 +355,7 @@ Defaults to 0.75.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments to be passed from  <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a>()</code>.</p></td>
+      <td><p>Other arguments to be passed from  <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -374,7 +373,7 @@ Defaults to 0.75.</p></td>
                gen <span class='op'>=</span> <span class='va'>GEN</span>,
                rep <span class='op'>=</span> <span class='va'>REP</span>,
                resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>KW</span>, <span class='va'>NR</span>, <span class='va'>NKE</span>, <span class='va'>NKR</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait KW |===========                                 | 25% 00:00:00 Evaluating trait NR |======================                      | 50% 00:00:00 Evaluating trait NKE |================================           | 75% 00:00:00 Evaluating trait NKR |===========================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model     KW     NR     NKE   NKR
@@ -388,35 +387,35 @@ Defaults to 0.75.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 4 x 4</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span><span>
 #&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1          2.42          60.6                 60.6
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2          1.19          29.8                 90.3
-#&gt; </span><span style='color: #555555;'>3</span><span> PC3          0.32           8                   98.3
-#&gt; </span><span style='color: #555555;'>4</span><span> PC4          0.07           1.66               100  
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1          2.42          60.6                 60.6
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2          1.19          29.8                 90.3
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> PC3          0.32           8                   98.3
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> PC4          0.07           1.66               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 4 x 5</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 5</span><span>
 #&gt;   VAR     FA1   FA2 Communality Uniquenesses
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> KW    -</span><span style='color: #BB0000;'>0.9</span><span>   0.04        0.82         0.18
-#&gt; </span><span style='color: #555555;'>2</span><span> NR    -</span><span style='color: #BB0000;'>0.92</span><span> -</span><span style='color: #BB0000;'>0.12</span><span>        0.87         0.13
-#&gt; </span><span style='color: #555555;'>3</span><span> NKE   -</span><span style='color: #BB0000;'>0.7</span><span>  -</span><span style='color: #BB0000;'>0.69</span><span>        0.96         0.04
-#&gt; </span><span style='color: #555555;'>4</span><span> NKR    0.05 -</span><span style='color: #BB0000;'>0.98</span><span>        0.97         0.03
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> KW    -</span><span style='color: #BB0000;'>0.9</span><span>   0.04        0.82         0.18
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> NR    -</span><span style='color: #BB0000;'>0.92</span><span> -</span><span style='color: #BB0000;'>0.12</span><span>        0.87         0.13
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> NKE   -</span><span style='color: #BB0000;'>0.7</span><span>  -</span><span style='color: #BB0000;'>0.69</span><span>        0.96         0.04
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> NKR    0.05 -</span><span style='color: #BB0000;'>0.98</span><span>        0.97         0.03
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.9033994 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential 
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 4 x 11</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 11</span><span>
 #&gt;   VAR   Factor    Xo    Xs     SD SDperc    h2     SG SGperc sense     goal
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> KW    FA1    147.  163.  16.2    11.0  0.659 10.7     7.27 increase   100
-#&gt; </span><span style='color: #555555;'>2</span><span> NR    FA1     15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase   100
-#&gt; </span><span style='color: #555555;'>3</span><span> NKE   FA1    468.  532.  64.0    13.7  0.713 45.6     9.74 increase   100
-#&gt; </span><span style='color: #555555;'>4</span><span> NKR   FA2     30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase   100
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> KW    FA1    147.  163.  16.2    11.0  0.659 10.7     7.27 increase   100
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> NR    FA1     15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase   100
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> NKE   FA1    468.  532.  64.0    13.7  0.713 45.6     9.74 increase   100
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> NKR   FA2     30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase   100
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------

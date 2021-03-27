@@ -53,8 +53,18 @@
 
 
 <meta property="og:title" content="Plot scores in different graphical interpretations — plot_scores" />
-<meta property="og:description" content="Plot scores of genotypes and environments in different graphical
-interpretations." />
+<meta property="og:description" content="
+Plot scores of genotypes and environments in different graphical
+interpretations.
+Biplots type 1 and 2 are well known in AMMI analysis. In the plot type 3, the
+scores of both genotypes and environments are plotted considering the
+response variable and the WAASB, an stability index that considers all
+significant principal component axis of traditional AMMI models or all
+principal component axis estimated with BLUP-interaction effects (Olivoto et
+al. 2019). Plot type 4 may be used to better understand the well known
+'which-won-where' pattern, facilitating the recommendation of appropriate
+genotypes targeted for specific environments, thus allowing the exploitation
+of narrow adaptations." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -97,7 +107,7 @@ interpretations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,8 +240,18 @@ interpretations." />
     </div>
 
     <div class="ref-description">
-    <p>Plot scores of genotypes and environments in different graphical
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Plot scores of genotypes and environments in different graphical
 interpretations.</p>
+<p>Biplots type 1 and 2 are well known in AMMI analysis. In the plot type 3, the
+scores of both genotypes and environments are plotted considering the
+response variable and the WAASB, an stability index that considers all
+significant principal component axis of traditional AMMI models or all
+principal component axis estimated with BLUP-interaction effects (Olivoto et
+al. 2019). Plot type 4 may be used to better understand the well known
+'which-won-where' pattern, facilitating the recommendation of appropriate
+genotypes targeted for specific environments, thus allowing the exploitation
+of narrow adaptations.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_scores</span><span class='op'>(</span>
@@ -241,6 +261,7 @@ interpretations.</p>
   first <span class='op'>=</span> <span class='st'>"PC1"</span>,
   second <span class='op'>=</span> <span class='st'>"PC2"</span>,
   repel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  repulsion <span class='op'>=</span> <span class='fl'>1</span>,
   polygon <span class='op'>=</span> <span class='cn'>FALSE</span>,
   title <span class='op'>=</span> <span class='cn'>TRUE</span>,
   plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -253,10 +274,14 @@ interpretations.</p>
   y.lab <span class='op'>=</span> <span class='cn'>NULL</span>,
   shape.gen <span class='op'>=</span> <span class='fl'>21</span>,
   shape.env <span class='op'>=</span> <span class='fl'>23</span>,
-  size.shape <span class='op'>=</span> <span class='fl'>2.2</span>,
+  size.shape.gen <span class='op'>=</span> <span class='fl'>2.2</span>,
+  size.shape.env <span class='op'>=</span> <span class='fl'>2.2</span>,
+  size.shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>,
   size.bor.tick <span class='op'>=</span> <span class='fl'>0.3</span>,
   size.tex.lab <span class='op'>=</span> <span class='fl'>12</span>,
-  size.tex.pa <span class='op'>=</span> <span class='fl'>3.5</span>,
+  size.tex.pa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>,
+  size.tex.gen <span class='op'>=</span> <span class='fl'>3.5</span>,
+  size.tex.env <span class='op'>=</span> <span class='fl'>3.5</span>,
   size.line <span class='op'>=</span> <span class='fl'>0.5</span>,
   size.segm.line <span class='op'>=</span> <span class='fl'>0.5</span>,
   col.bor.gen <span class='op'>=</span> <span class='st'>"black"</span>,
@@ -264,11 +289,12 @@ interpretations.</p>
   col.line <span class='op'>=</span> <span class='st'>"black"</span>,
   col.gen <span class='op'>=</span> <span class='st'>"blue"</span>,
   col.env <span class='op'>=</span> <span class='st'>"forestgreen"</span>,
-  col.alpha.gen <span class='op'>=</span> <span class='fl'>0.9</span>,
-  col.alpha.env <span class='op'>=</span> <span class='fl'>0.9</span>,
+  col.alpha.gen <span class='op'>=</span> <span class='cn'>NA</span>,
+  col.alpha.env <span class='op'>=</span> <span class='cn'>NA</span>,
   col.segm.gen <span class='op'>=</span> <span class='fu'><a href='themes.html'>transparent_color</a></span><span class='op'>(</span><span class='op'>)</span>,
   col.segm.env <span class='op'>=</span> <span class='st'>"forestgreen"</span>,
-  repulsion <span class='op'>=</span> <span class='fl'>1</span>,
+  highlight <span class='op'>=</span> <span class='cn'>NULL</span>,
+  col.highlight <span class='op'>=</span> <span class='st'>"red"</span>,
   leg.lab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Env"</span>, <span class='st'>"Gen"</span><span class='op'>)</span>,
   line.type <span class='op'>=</span> <span class='st'>"solid"</span>,
   line.alpha <span class='op'>=</span> <span class='fl'>0.9</span>,
@@ -287,8 +313,8 @@ interpretations.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object fitted with the functions <code><a href='performs_ammi.html'>performs_ammi</a></code>,
-<code><a href='waas.html'>waas</a></code>, <code><a href='waas_means.html'>waas_means</a></code>, or <code><a href='waasb.html'>waasb</a></code>.</p></td>
+      <td><p>An object fitted with the functions <code><a href='performs_ammi.html'>performs_ammi()</a></code>,
+<code><a href='waas.html'>waas()</a></code>, <code><a href='waas_means.html'>waas_means()</a></code>, or <code><a href='waasb.html'>waasb()</a></code>.</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -298,11 +324,11 @@ variable of <code>x</code>.</p></td>
     <tr>
       <th>type</th>
       <td><p>type of biplot to produce</p><ul>
-<li><p><code>type = 1</code> Produces an AMMI1 biplot (Y x PC1) to make inferences
-related to stability and productivity.</p></li>
-<li><p><code>type = 2</code> The default, produces an AMMI2 biplot (PC1 x PC2) to make
-inferences related to the interaction effects. Use the arguments <code>first</code>
-or <code>second</code> to change the default IPCA shown in the plot.</p></li>
+<li><p><code>type = 1</code> The default. Produces an AMMI1 biplot (Y x PC1) to make
+inferences related to stability and productivity.</p></li>
+<li><p><code>type = 2</code> Produces an AMMI2 biplot (PC1 x PC2) to make inferences
+related to the interaction effects. Use the arguments <code>first</code> or
+<code>second</code> to change the default IPCA shown in the plot.</p></li>
 <li><p><code>type = 3</code> Valid for objects of class <code>waas</code> or <code>waasb</code>,
 produces a biplot showing the GY x WAASB.</p></li>
 <li><p><code>type = 4</code> Produces a plot with the Nominal yield x Environment PC.</p></li>
@@ -321,6 +347,11 @@ the <code>y</code> axis.</p></td>
 other and away from the data points.</p></td>
     </tr>
     <tr>
+      <th>repulsion</th>
+      <td><p>Force of repulsion between overlapping text labels. Defaults
+to <code>1</code>.</p></td>
+    </tr>
+    <tr>
       <th>polygon</th>
       <td><p>Logical argument. If <code>TRUE</code>, a polygon is drawn when
 <code>type = 2</code>.</p></td>
@@ -334,7 +365,7 @@ automatically generated titles</p></td>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>axis.expand</th>
@@ -345,8 +376,7 @@ enable fitting of labels. Default is <code>1.1</code>.</p></td>
       <th>x.lim, y.lim</th>
       <td><p>The range of x and y axes, respectively. Default is
 <code>NULL</code> (maximum and minimum values of the data set). New values can be
-inserted as <code>x.lim = c(x.min, x.max)</code> or <code>y.lim = c(y.min,
-  y.max)</code>.</p></td>
+inserted as <code>x.lim = c(x.min, x.max)</code> or <code>y.lim = c(y.min, y.max)</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks, y.breaks</th>
@@ -370,19 +400,28 @@ indication in the biplot. Default is <code>21</code> (circle) for genotypes and
 triangle), and <code>25</code> (low triangle).</p></td>
     </tr>
     <tr>
+      <th>size.shape.gen, size.shape.env</th>
+      <td><p>The size of the shapes for genotypes and
+environments respectively. Defaults to <code>2.2</code>.</p></td>
+    </tr>
+    <tr>
       <th>size.shape</th>
-      <td><p>The size of the shape (both for genotypes and
-environments). Default is <code>2.2</code>.</p></td>
+      <td><p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a></p></td>
     </tr>
     <tr>
       <th>size.bor.tick</th>
       <td><p>The size of tick of shape. Default is <code>0.3</code>. The
-size of the shape will be <code>size.shape + size.bor.tick</code></p></td>
+size of the shape will be <code>max(size.shape.gen, size.shape.env) + size.bor.tick</code></p></td>
     </tr>
     <tr>
-      <th>size.tex.lab, size.tex.pa</th>
-      <td><p>The size of the text for labels (Defaults to
-12) and plot area (Defaults to 3.5), respectively.</p></td>
+      <th>size.tex.lab, size.tex.gen, size.tex.env</th>
+      <td><p>The size of the text for axis
+labels (Defaults to 12), genotypes labels, and environments labels
+(Defaults to 3.5).</p></td>
+    </tr>
+    <tr>
+      <th>size.tex.pa</th>
+      <td><p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a></p></td>
     </tr>
     <tr>
       <th>size.line</th>
@@ -414,20 +453,24 @@ genotypes/environments.</p></td>
     <tr>
       <th>col.alpha.gen, col.alpha.env</th>
       <td><p>The alpha value for the color for
-genotypes and environments, respectively. Default is <code>0.9</code>. Values
-must be between <code>0</code> (full transparency) to <code>1</code> (full color).</p></td>
+genotypes and environments, respectively. Defaults to <code>NA</code>. Values must be
+between <code>0</code> (full transparency) to <code>1</code> (full color).</p></td>
     </tr>
     <tr>
       <th>col.segm.gen, col.segm.env</th>
       <td><p>The color of segment for genotypes (Defaults
 to <code><a href='themes.html'>transparent_color()</a></code>) and environments (Defaults to 'forestgreen'),
-respectively. Valid arguments for plots with <code>type = 1</code> or <code>type
-  = 2</code> graphics.</p></td>
+respectively. Valid arguments for plots with <code>type = 1</code> or <code>type = 2</code> graphics.</p></td>
     </tr>
     <tr>
-      <th>repulsion</th>
-      <td><p>Force of repulsion between overlapping text labels. Defaults
-to 1.</p></td>
+      <th>highlight</th>
+      <td><p>Genotypes/environments to be highlight in the plot. Defaults
+to <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>col.highlight</th>
+      <td><p>The color for shape/labels when a value is provided in
+<code>highlight.</code></p></td>
     </tr>
     <tr>
       <th>leg.lab</th>
@@ -437,8 +480,7 @@ to 1.</p></td>
       <th>line.type</th>
       <td><p>The type of the line that indicate the means in the biplot.
 Default is <code>'solid'</code>. Other values that can be attributed are:
-<code>'blank'</code>, no lines in the biplot, <code>'dashed', 'dotted',
-  'dotdash', 'longdash', and 'twodash'</code>.</p></td>
+<code>'blank'</code>, no lines in the biplot, <code>'dashed', 'dotted', 'dotdash', 'longdash', and 'twodash'</code>.</p></td>
     </tr>
     <tr>
       <th>line.alpha</th>
@@ -488,17 +530,6 @@ exported in <code>*.tiff</code> format by declaring <code>file.type = 'tiff'</co
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>gg, ggplot</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Biplots type 1 and 2 are well known in AMMI analysis. In the plot type 3, the
-scores of both genotypes and environments are plotted considering the
-response variable and the WAASB, an stability index that considers all
-significant principal component axis of traditional AMMI models or all
-principal component axis estimated with BLUP-interaction effects (Olivoto et
-al. 2019). Plot type 4 may be used to better understand the well known
-'which-won-where' pattern, facilitating the recommendation of appropriate
-genotypes targeted for specific environments, thus allowing the exploitation
-of narrow adaptations.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro, V.Q. de
@@ -507,7 +538,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='plot_eigen.html'>plot_eigen</a></code></p></div>
+    <div class='dont-index'><p><code><a href='plot_eigen.html'>plot_eigen()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -526,21 +557,21 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .
+#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
+#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89
+#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
 #&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6
+#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
 #&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100
-#&gt;  Residuals 252  24.367  0.0967      NA       NA          .           .
-#&gt;      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
+#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
+#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
@@ -548,21 +579,21 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16          .           .
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05          .           .
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14          .           .
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15          .           .
+#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
+#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
+#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
+#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
 #&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00         29        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4          74
+#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
+#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
 #&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
 #&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4          93
+#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
 #&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
 #&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3         100
-#&gt;  Residuals 252  715.69   2.840      NA       NA          .           .
-#&gt;      Total 536 9112.21  17.000      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
+#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
+#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -571,13 +602,14 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 <span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scores-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC1 x PC2 (variable HM)</span>
+<span class='co'>#</span>
 <span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>model</span>,
-            polygon <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='co'># Draw a convex hull polygon</span>
-            var <span class='op'>=</span> <span class='st'>"HM"</span>,     <span class='co'># or var = 2 to select variable</span>
-            type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>       <span class='co'># type of biplot</span>
+            polygon <span class='op'>=</span> <span class='cn'>TRUE</span>,            <span class='co'># Draw a convex hull polygon</span>
+            var <span class='op'>=</span> <span class='st'>"HM"</span>,                <span class='co'># or var = 2 to select variable</span>
+            highlight <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"G1"</span>, <span class='st'>"G2"</span><span class='op'>)</span>, <span class='co'># Highlight genotypes 2 and 3</span>
+            type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>                  <span class='co'># type of biplot</span>
 </div><div class='img'><img src='plot_scores-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PC3 x PC4 (variable HM)</span>
-<span class='co'>#</span>
 <span class='co'># Change size of plot fonts and colors</span>
 <span class='co'># Minimal theme</span>
 <span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>model</span>,
@@ -588,13 +620,14 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
            col.gen <span class='op'>=</span> <span class='st'>"black"</span>,
            col.env <span class='op'>=</span> <span class='st'>"gray"</span>,
            col.segm.env <span class='op'>=</span> <span class='st'>"gray"</span>,
-           size.tex.pa <span class='op'>=</span> <span class='fl'>2</span>,
+           size.tex.gen <span class='op'>=</span> <span class='fl'>5</span>,
+           size.tex.env <span class='op'>=</span> <span class='fl'>2</span>,
            size.tex.lab <span class='op'>=</span> <span class='fl'>16</span>,
            plot_theme <span class='op'>=</span> <span class='fu'><a href='themes.html'>theme_metan_minimal</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scores-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># WAASB index</span>
 <span class='va'>waasb_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY
@@ -604,10 +637,10 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='co'># GY x WAASB</span>
+<span class='co'># Highlight genotypes 2 and 8</span>
 <span class='fu'>plot_scores</span><span class='op'>(</span><span class='va'>waasb_model</span>,
             type <span class='op'>=</span> <span class='fl'>3</span>,
-            size.tex.pa <span class='op'>=</span> <span class='fl'>2</span>,
-            size.tex.lab <span class='op'>=</span> <span class='fl'>16</span><span class='op'>)</span>
+            highlight <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"G2"</span>, <span class='st'>"G8"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scores-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

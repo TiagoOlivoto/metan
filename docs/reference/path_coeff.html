@@ -54,7 +54,6 @@
 
 <meta property="og:title" content="Path coefficients with minimal multicollinearity — path_coeff" />
 <meta property="og:description" content="
-
 path_coeff() computes a path analysis using a data frame as input data.
 path_coeff_mat() computes a path analysis using correlation matrices as
 input data.
@@ -102,7 +101,7 @@ input data.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -235,8 +234,7 @@ input data.
     </div>
 
     <div class="ref-description">
-    
-<ul>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p><ul>
 <li><p><code>path_coeff()</code> computes a path analysis using a data frame as input data.</p></li>
 <li><p><code>path_coeff_mat()</code> computes a path analysis using correlation matrices as
 input data.</p></li>
@@ -268,7 +266,7 @@ input data.</p></li>
     <tr>
       <th>.data</th>
       <td><p>The data. Must be a data frame or a grouped data passed from
-<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code></p></td>
+<code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code></p></td>
     </tr>
     <tr>
       <th>resp</th>
@@ -277,7 +275,7 @@ input data.</p></li>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
@@ -295,7 +293,7 @@ will use as predictor those that remained, except that in <code>resp</code>.</p>
     <tr>
       <th>correction</th>
       <td><p>Set to <code>NULL</code>. A correction value (k) that will be
-added into the diagonal elements of the <b>X'X</b> matrix aiming at
+added into the diagonal elements of the <strong>X'X</strong> matrix aiming at
 reducing the harmful problems of the multicollinearity in path analysis
 (Olivoto et al., 2017)</p></td>
     </tr>
@@ -309,18 +307,18 @@ direct effects in a set of different k values (0-1) is produced.
       <th>brutstep</th>
       <td><p>Logical argument, set to <code>FALSE</code>. If true, then an
 algorithm will select a subset of variables with minimal multicollinearity
-and fit a set of possible models. See the <b>Details</b> section for more
+and fit a set of possible models. See the <strong>Details</strong> section for more
 information.</p></td>
     </tr>
     <tr>
       <th>maxvif</th>
       <td><p>The maximum value for the Variance Inflation Factor (cut point)
-that will be accepted. See the <b>Details</b> section for more information.</p></td>
+that will be accepted. See the <strong>Details</strong> section for more information.</p></td>
     </tr>
     <tr>
       <th>missingval</th>
       <td><p>How to deal with missing values. For more information,
-please see <code><a href='https://rdrr.io/r/stats/cor.html'>cor</a>()</code>.</p></td>
+please see <code><a href='https://rdrr.io/r/stats/cor.html'>stats::cor()</a></code>.</p></td>
     </tr>
     <tr>
       <th>plot_res</th>
@@ -334,7 +332,7 @@ console.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments passed on to <code><a href='https://rdrr.io/r/stats/plot.lm.html'>plot.lm</a></code></p></td>
+      <td><p>Additional arguments passed on to <code><a href='https://rdrr.io/r/stats/plot.lm.html'>stats::plot.lm()</a></code></p></td>
     </tr>
     <tr>
       <th>cor_mat</th>
@@ -368,7 +366,7 @@ lowest eigenvalue.</p></li>
 weight (highest eigenvector) in the lowest eigenvalue.</p></li>
 </ul>
 
-<p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>
+<p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>
 then the results will be returned into a list-column of data frames,
 containing:</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -454,12 +452,12 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
 #&gt; Summary of the adjusted models 
 #&gt; --------------------------------------------------------------------------
 #&gt;    Model  AIC Numpred    CN Determinant    R2 Residual maxVIF
-#&gt;  MODEL_1 1127       7 13.67      0.0841 0.933   0.0669   2.59
-#&gt;  MODEL_2 1125       6 12.26      0.1383 0.933   0.0670   2.46
-#&gt;  MODEL_3 1126       5 12.05      0.1989 0.932   0.0683   2.31
-#&gt;  MODEL_4 1251       4  6.66      0.4016 0.846   0.1544   1.98
-#&gt;  MODEL_5 1308       3  3.05      0.7438 0.774   0.2258   1.34
-#&gt;  MODEL_6 1329       2  2.23      0.8555 0.738   0.2616   1.17
+#&gt;  MODEL_1 1127       7 13.67      0.0841 0.933    0.259   2.59
+#&gt;  MODEL_2 1125       6 12.26      0.1383 0.933    0.259   2.46
+#&gt;  MODEL_3 1126       5 12.05      0.1989 0.932    0.261   2.31
+#&gt;  MODEL_4 1251       4  6.66      0.4016 0.846    0.393   1.98
+#&gt;  MODEL_5 1308       3  3.05      0.7438 0.774    0.475   1.34
+#&gt;  MODEL_6 1329       2  2.23      0.8555 0.738    0.512   1.17
 #&gt; --------------------------------------------------------------------------
 #&gt; </div><div class='input'>
 

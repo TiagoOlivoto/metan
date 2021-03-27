@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Encode variables to a specific format — utils_as" />
-<meta property="og:description" content="Function to quick encode vector or columns to a specific format.
+<meta property="og:description" content="
+Function to quick encode vector or columns to a specific format.
 as_numeric(): Encode columns to numeric using
 as.numeric().
 as_integer(): Encode columns to integer using
@@ -108,7 +109,7 @@ as.factor().
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -241,17 +242,18 @@ as.factor().
     </div>
 
     <div class="ref-description">
-    <p>Function to quick encode vector or columns to a specific format.</p><ul>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Function to quick encode vector or columns to a specific format.</p><ul>
 <li><p><code>as_numeric()</code>: Encode columns to numeric using
-<code><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a>()</code>.</p></li>
+<code><a href='https://rdrr.io/r/base/numeric.html'>as.numeric()</a></code>.</p></li>
 <li><p><code>as_integer()</code>: Encode columns to integer using
-<code><a href='https://rdrr.io/r/base/integer.html'>as.integer</a>()</code>.</p></li>
+<code><a href='https://rdrr.io/r/base/integer.html'>as.integer()</a></code>.</p></li>
 <li><p><code>as_logical()</code>: Encode columns to logical using
-<code><a href='https://rdrr.io/r/base/logical.html'>as.logical</a>()</code>.</p></li>
+<code><a href='https://rdrr.io/r/base/logical.html'>as.logical()</a></code>.</p></li>
 <li><p><code>as_character()</code>: Encode columns to character using
-<code><a href='https://rdrr.io/r/base/character.html'>as.character</a>()</code>.</p></li>
+<code><a href='https://rdrr.io/r/base/character.html'>as.character()</a></code>.</p></li>
 <li><p><code>as_factor()</code>: Encode columns to factor using
-<code><a href='https://rdrr.io/r/base/factor.html'>as.factor</a>()</code>.</p></li>
+<code><a href='https://rdrr.io/r/base/factor.html'>as.factor()</a></code>.</p></li>
 </ul>
 
     </div>
@@ -306,7 +308,7 @@ will be created with the used column.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: package 'tibble' was built under R version 4.0.3</span></div><div class='output co'>#&gt; <span class='message'></span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: package 'tibble' was built under R version 4.0.4</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: 'tibble'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:metan':</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    column_to_rownames, remove_rownames, rownames_to_column</span></div><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span>
@@ -316,45 +318,45 @@ will be created with the used column.</p></td>
          x3 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>,
          x4 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>x3</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>df</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 5</span><span>
-#&gt;        y    x1 x2    x3    x4   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  1.26      1 TRUE  a     a    
-#&gt; </span><span style='color: #555555;'>2</span><span>  0.501     2 TRUE  b     b    
-#&gt; </span><span style='color: #555555;'>3</span><span> -</span><span style='color: #BB0000;'>0.333</span><span>     3 FALSE c     c    
-#&gt; </span><span style='color: #555555;'>4</span><span> -</span><span style='color: #BB0000;'>0.615</span><span>     4 FALSE d     d    
-#&gt; </span><span style='color: #555555;'>5</span><span> -</span><span style='color: #BB0000;'>1.95</span><span>      5 FALSE e     e    </div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span><span>
+#&gt;         y    x1 x2    x3    x4   
+#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  1.25       1 TRUE  a     a    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  0.433      2 TRUE  b     b    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> -</span><span style='color: #BB0000;'>0.076</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>     3 FALSE c     c    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> -</span><span style='color: #BB0000;'>0.139</span><span>      4 FALSE d     d    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> -</span><span style='color: #BB0000;'>0.241</span><span>      5 FALSE e     e    </div><div class='input'>
 <span class='co'># Convert y to integer</span>
 <span class='fu'>as_integer</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 5</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
 #&gt;       y    x1 x2    x3    x4   
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     1     1 TRUE  a     a    
-#&gt; </span><span style='color: #555555;'>2</span><span>     0     2 TRUE  b     b    
-#&gt; </span><span style='color: #555555;'>3</span><span>     0     3 FALSE c     c    
-#&gt; </span><span style='color: #555555;'>4</span><span>     0     4 FALSE d     d    
-#&gt; </span><span style='color: #555555;'>5</span><span>    -</span><span style='color: #BB0000;'>1</span><span>     5 FALSE e     e    </div><div class='input'><span class='fu'>as_integer</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1]  1  0  0  0 -1</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1     1 TRUE  a     a    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     0     2 TRUE  b     b    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>     0     3 FALSE c     c    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     0     4 FALSE d     d    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     0     5 FALSE e     e    </div><div class='input'><span class='fu'>as_integer</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1 0 0 0 0</div><div class='input'>
 <span class='co'># convert x3 to factor</span>
 <span class='fu'>as_factor</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 5</span><span>
-#&gt;        y    x1 x2    x3    x4   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  1.26      1 TRUE  a     a    
-#&gt; </span><span style='color: #555555;'>2</span><span>  0.501     2 TRUE  b     b    
-#&gt; </span><span style='color: #555555;'>3</span><span> -</span><span style='color: #BB0000;'>0.333</span><span>     3 FALSE c     c    
-#&gt; </span><span style='color: #555555;'>4</span><span> -</span><span style='color: #BB0000;'>0.615</span><span>     4 FALSE d     d    
-#&gt; </span><span style='color: #555555;'>5</span><span> -</span><span style='color: #BB0000;'>1.95</span><span>      5 FALSE e     e    </div><div class='input'>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
+#&gt;         y    x1 x2    x3    x4   
+#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  1.25       1 TRUE  a     a    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  0.433      2 TRUE  b     b    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> -</span><span style='color: #BB0000;'>0.076</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>     3 FALSE c     c    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> -</span><span style='color: #BB0000;'>0.139</span><span>      4 FALSE d     d    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> -</span><span style='color: #BB0000;'>0.241</span><span>      5 FALSE e     e    </div><div class='input'>
 <span class='co'># Convert all columns to character</span>
 <span class='fu'>as_character</span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 5</span><span>
-#&gt;   y                  x1    x2    x3    x4   
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 1.26453500096354   1     TRUE  a     a    
-#&gt; </span><span style='color: #555555;'>2</span><span> 0.500523295444885  2     TRUE  b     b    
-#&gt; </span><span style='color: #555555;'>3</span><span> -0.333285590426713 3     FALSE c     c    
-#&gt; </span><span style='color: #555555;'>4</span><span> -0.614730752752204 4     FALSE d     d    
-#&gt; </span><span style='color: #555555;'>5</span><span> -1.95222738437698  5     FALSE e     e    </div><div class='input'>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
+#&gt;   y                   x1    x2    x3    x4   
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1.24779392896803    1     TRUE  a     a    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.432763432791496   2     TRUE  b     b    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> -0.0764867483287394 3     FALSE c     c    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> -0.139495740422391  4     FALSE d     d    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> -0.241223117185153  5     FALSE e     e    </div><div class='input'>
 <span class='co'># Convert x2 to numeric and coerce to a vector</span>
 <span class='fu'>as_numeric</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x2</span>, .keep <span class='op'>=</span> <span class='st'>"used"</span>, .pull <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1 1 0 0 0</div><div class='input'><span class='co'># }</span>

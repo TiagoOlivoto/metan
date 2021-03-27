@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Variance-covariance matrices for designed experiments — covcor_design" />
-<meta property="og:description" content="Compute variance-covariance and correlation matrices using data from a
+<meta property="og:description" content="
+Compute variance-covariance and correlation matrices using data from a
 designed (RCBD or CRD) experiment." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ designed (RCBD or CRD) experiment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ designed (RCBD or CRD) experiment." />
     </div>
 
     <div class="ref-description">
-    <p>Compute variance-covariance and correlation matrices using data from a
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Compute variance-covariance and correlation matrices using data from a
 designed (RCBD or CRD) experiment.</p>
     </div>
 
@@ -242,7 +244,7 @@ designed (RCBD or CRD) experiment.</p>
     <tr>
       <th>.data</th>
       <td><p>The data to be analyzed. It can be a data frame, possible with
-grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
+grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -255,8 +257,7 @@ replications/blocks.</p></td>
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variables. For example <code>resp = c(var1, var2,
-var3)</code>.</p></td>
+      <td><p>The response variables. For example <code>resp = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
       <th>design</th>
@@ -265,7 +266,7 @@ var3)</code>.</p></td>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
@@ -273,8 +274,7 @@ one grouping variable use that function.</p></td>
       <td><p>What the matrices should return? Set to <code>NULL</code>, i.e., a list
 of matrices is returned. The argument type allow the following values
 <code>'pcor', 'gcor', 'rcor'</code>, (which will return the phenotypic, genotypic
-and residual correlation matrices, respectively) or <code>'pcov', 'gcov',
-  'rcov'</code> (which will return the phenotypic, genotypic and residual
+and residual correlation matrices, respectively) or <code>'pcov', 'gcov', 'rcov'</code> (which will return the phenotypic, genotypic and residual
 variance-covariance matrices, respectively). Alternatively, it is possible
 to get a matrix with the means of each genotype in each trait, by using
 <code>type = 'means'</code>.</p></td>
@@ -293,7 +293,7 @@ items:</p><ul>
 <li><p><strong>resi_cor</strong> The residual correlation.</p></li>
 </ul>
 
-<p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>
+<p>If <code>.data</code> is a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>
 then the results will be returned into a list-column of data frames.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -323,17 +323,9 @@ then the results will be returned into a list-column of data frames.</p>
                       resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>CD</span>, <span class='va'>CL</span><span class='op'>)</span>,
                       by <span class='op'>=</span> <span class='va'>ENV</span>,
                       type <span class='op'>=</span> <span class='st'>"rcov"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
-#&gt; <span class='warning'><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `data`.</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> NaNs produzidos</span>
-#&gt; <span class='warning'></span><span style='color: #0000BB;'>i</span><span> Input `data` is `purrr::map(.data$data, .fun, ...)`.</span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produzidos</span></div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

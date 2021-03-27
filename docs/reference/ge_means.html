@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Genotype-environment means — ge_means" />
-<meta property="og:description" content="Computes genotype-environment interaction means" />
+<meta property="og:description" content="
+Computes genotype-environment interaction means" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Computes genotype-environment interaction means</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Computes genotype-environment interaction means</p>
     </div>
 
     <pre class="usage"><span class='fu'>ge_means</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>resp</span><span class='op'>)</span></pre>
@@ -254,8 +256,7 @@ environments.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables at once,
-a vector of variables may be used. For example <code>resp = c(var1, var2,
-  var3)</code>. Select helpers are also allowed.</p></td>
+a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     </table>
 
@@ -279,54 +280,54 @@ environments (columns).</p></li>
 
 <span class='co'># Genotype-environment interaction means</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ge_means</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 140 x 4</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ge_means</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 140 x 4</span><span>
 #&gt;    ENV   GEN      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1    G1     2.37  46.5
-#&gt; </span><span style='color: #555555;'> 2</span><span> E1    G10    1.97  46.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> E1    G2     2.90  45.3
-#&gt; </span><span style='color: #555555;'> 4</span><span> E1    G3     2.89  45.9
-#&gt; </span><span style='color: #555555;'> 5</span><span> E1    G4     2.59  48.3
-#&gt; </span><span style='color: #555555;'> 6</span><span> E1    G5     2.19  49.9
-#&gt; </span><span style='color: #555555;'> 7</span><span> E1    G6     2.30  48.2
-#&gt; </span><span style='color: #555555;'> 8</span><span> E1    G7     2.77  47.4
-#&gt; </span><span style='color: #555555;'> 9</span><span> E1    G8     2.90  48.0
-#&gt; </span><span style='color: #555555;'>10</span><span> E1    G9     2.33  47.7
-#&gt; </span><span style='color: #555555;'># ... with 130 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1     2.37  46.5
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G10    1.97  46.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G2     2.90  45.3
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G3     2.89  45.9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G4     2.59  48.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G5     2.19  49.9
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G6     2.30  48.2
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G7     2.77  47.4
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G8     2.90  48.0
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G9     2.33  47.7
+#&gt; </span><span style='color: #949494;'># ... with 130 more rows</span><span></div><div class='input'>
 <span class='co'># Environment means</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span>, what <span class='op'>=</span> <span class='st'>"env_means"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: env_means</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: env_means</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 14 x 3</span><span>
 #&gt;    ENV      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> E1     2.52  47.4
-#&gt; </span><span style='color: #555555;'> 2</span><span> E10    2.18  44.3
-#&gt; </span><span style='color: #555555;'> 3</span><span> E11    1.37  54.2
-#&gt; </span><span style='color: #555555;'> 4</span><span> E12    1.61  49.6
-#&gt; </span><span style='color: #555555;'> 5</span><span> E13    2.91  46.6
-#&gt; </span><span style='color: #555555;'> 6</span><span> E14    1.78  41.0
-#&gt; </span><span style='color: #555555;'> 7</span><span> E2     3.18  44.1
-#&gt; </span><span style='color: #555555;'> 8</span><span> E3     4.06  52.9
-#&gt; </span><span style='color: #555555;'> 9</span><span> E4     3.68  50  
-#&gt; </span><span style='color: #555555;'>10</span><span> E5     3.91  52.2
-#&gt; </span><span style='color: #555555;'>11</span><span> E6     2.66  45.9
-#&gt; </span><span style='color: #555555;'>12</span><span> E7     1.99  48.5
-#&gt; </span><span style='color: #555555;'>13</span><span> E8     2.54  45.2
-#&gt; </span><span style='color: #555555;'>14</span><span> E9     3.06  51.3</div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1     2.52  47.4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E10    2.18  44.3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E11    1.37  54.2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E12    1.61  49.6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E13    2.91  46.6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E14    1.78  41.0
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E2     3.18  44.1
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E3     4.06  52.9
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E4     3.68  50  
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E5     3.91  52.2
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> E6     2.66  45.9
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> E7     1.99  48.5
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> E8     2.54  45.2
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> E9     3.06  51.3</div><div class='input'>
 <span class='co'># Genotype means</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span>, what <span class='op'>=</span> <span class='st'>"gen_means"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: gen_means</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: gen_means</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G1     2.60  47.1
-#&gt; </span><span style='color: #555555;'> 2</span><span> G10    2.47  48.5
-#&gt; </span><span style='color: #555555;'> 3</span><span> G2     2.74  46.7
-#&gt; </span><span style='color: #555555;'> 4</span><span> G3     2.96  47.6
-#&gt; </span><span style='color: #555555;'> 5</span><span> G4     2.64  48.0
-#&gt; </span><span style='color: #555555;'> 6</span><span> G5     2.54  49.3
-#&gt; </span><span style='color: #555555;'> 7</span><span> G6     2.53  48.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> G7     2.74  48.0
-#&gt; </span><span style='color: #555555;'> 9</span><span> G8     3.00  49.1
-#&gt; </span><span style='color: #555555;'>10</span><span> G9     2.51  47.9</div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1     2.60  47.1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10    2.47  48.5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2     2.74  46.7
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3     2.96  47.6
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4     2.64  48.0
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5     2.54  49.3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6     2.53  48.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7     2.74  48.0
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8     3.00  49.1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9     2.51  47.9</div><div class='input'>
 <span class='co'># }</span>
 
 </div></span></pre>

@@ -53,12 +53,19 @@
 
 
 <meta property="og:title" content="Weighted Average of Absolute Scores — waas_means" />
-<meta property="og:description" content="Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
+<meta property="og:description" content="
+Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
 on means for genotype-environment data as follows:
 
 
 \[WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
-1}^{p}EP_k\]" />
+1}^{p}EP_k\]
+where \(WAAS_i\) is the weighted average of absolute scores of the
+ith genotype; \(PCA_{ik}\) is the score of the ith genotype
+in the kth IPCA; and \(EP_k\) is the explained variance of the kth
+IPCA for k = 1,2,..,p, where p is the number of IPCAs that
+explain at least an amount of the genotype-interaction variance declared in
+the argument min_expl_var." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -101,7 +108,7 @@ on means for genotype-environment data as follows:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -234,12 +241,19 @@ on means for genotype-environment data as follows:
     </div>
 
     <div class="ref-description">
-    <p>Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Compute the Weighted Average of Absolute Scores (Olivoto et al., 2019) based
 on means for genotype-environment data as follows:
 <script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
 
 \[WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
 1}^{p}EP_k\]</p>
+<p>where \(WAAS_i\) is the weighted average of absolute scores of the
+<em>i</em>th genotype; \(PCA_{ik}\) is the score of the <em>i</em>th genotype
+in the <em>k</em>th IPCA; and \(EP_k\) is the explained variance of the <em>k</em>th
+IPCA for <em>k = 1,2,..,p</em>, where <em>p</em> is the number of IPCAs that
+explain at least an amount of the genotype-interaction variance declared in
+the argument <code>min_expl_var</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>waas_means</span><span class='op'>(</span>
@@ -274,8 +288,7 @@ environments.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp
-  = c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
+single procedure a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     <tr>
       <th>mresp</th>
@@ -313,7 +326,7 @@ silently.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed to the function
-<code><a href='impute_missing_val.html'>impute_missing_val</a>()</code> for imputation of missing values in case
+<code><a href='impute_missing_val.html'>impute_missing_val()</a></code> for imputation of missing values in case
 of unbalanced data.</p></td>
     </tr>
     </table>
@@ -334,14 +347,6 @@ of the matrix withe the genotype-environment interaction effects.</p></li>
 <li><p><strong>cum_proportion</strong> The cumulative proportion of the variance explained.</p></li>
 </ul>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>where \(WAAS_i\) is the weighted average of absolute scores of the
-<em>i</em>th genotype; \(PCA_{ik}\) is the score of the <em>i</em>th genotype
-in the <em>k</em>th IPCA; and \(EP_k\) is the explained variance of the <em>k</em>th
-IPCA for <em>k = 1,2,..,p</em>, where <em>p</em> is the number of IPCAs that
-explain at least an amount of the genotype-interaction variance declared in
-the argument <code>min_expl_var</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro, V.Q. de
@@ -350,7 +355,7 @@ multi-environment trials I: Combining features of AMMI and BLUP techniques.
 Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='waas.html'>waas</a> <a href='waasb.html'>waasb</a></code></p></div>
+    <div class='dont-index'><p><code><a href='waas.html'>waas()</a></code> <code><a href='waasb.html'>waasb()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -369,21 +374,21 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .
+#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
+#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89
+#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
 #&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6
+#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
 #&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100
-#&gt;  Residuals 252  24.367  0.0967      NA       NA          .           .
-#&gt;      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
+#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
+#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
@@ -391,21 +396,21 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16          .           .
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05          .           .
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14          .           .
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15          .           .
+#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
+#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
+#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
+#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
 #&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00         29        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4          74
+#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
+#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
 #&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
 #&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4          93
+#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
 #&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
 #&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3         100
-#&gt;  Residuals 252  715.69   2.840      NA       NA          .           .
-#&gt;      Total 536 9112.21  17.000      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
+#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
+#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -416,34 +421,34 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
                      env <span class='op'>=</span> <span class='va'>ENV</span>,
                      gen <span class='op'>=</span> <span class='va'>GEN</span>,
                      resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'># The index WAAS</span>
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='input'><span class='co'># The index WAAS</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 10 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G1        2     2
-#&gt; </span><span style='color: #555555;'> 2</span><span> G10      10    10
-#&gt; </span><span style='color: #555555;'> 3</span><span> G2        5     8
-#&gt; </span><span style='color: #555555;'> 4</span><span> G3        1     1
-#&gt; </span><span style='color: #555555;'> 5</span><span> G4        6     6
-#&gt; </span><span style='color: #555555;'> 6</span><span> G5        4     9
-#&gt; </span><span style='color: #555555;'> 7</span><span> G6        3     3
-#&gt; </span><span style='color: #555555;'> 8</span><span> G7        8     7
-#&gt; </span><span style='color: #555555;'> 9</span><span> G8        7     4
-#&gt; </span><span style='color: #555555;'>10</span><span> G9        9     5</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 3</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1        2     2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10      10    10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2        5     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3        1     1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4        6     6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5        4     9
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6        3     3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7        8     7
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8        7     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9        9     5</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 3</span><span>
 #&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G1        2     3
-#&gt; </span><span style='color: #555555;'> 2</span><span> G10      10    10
-#&gt; </span><span style='color: #555555;'> 3</span><span> G2        5     8
-#&gt; </span><span style='color: #555555;'> 4</span><span> G3        1     1
-#&gt; </span><span style='color: #555555;'> 5</span><span> G4        6     6
-#&gt; </span><span style='color: #555555;'> 6</span><span> G5        4     9
-#&gt; </span><span style='color: #555555;'> 7</span><span> G6        3     2
-#&gt; </span><span style='color: #555555;'> 8</span><span> G7        8     7
-#&gt; </span><span style='color: #555555;'> 9</span><span> G8        7     4
-#&gt; </span><span style='color: #555555;'>10</span><span> G9        9     5</div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1        2     3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10      10    10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2        5     8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3        1     1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4        6     6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5        4     9
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6        3     2
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7        8     7
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8        7     4
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9        9     5</div><div class='input'>
 <span class='co'># }</span>
 
 </div></span></pre>

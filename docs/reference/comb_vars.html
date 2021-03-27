@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Pairwise combinations of variables — comb_vars" />
-<meta property="og:description" content="Pairwise combinations of variables that will be the result of a function
+<meta property="og:description" content="
+Pairwise combinations of variables that will be the result of a function
 applied to each combination." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ applied to each combination." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ applied to each combination." />
     </div>
 
     <div class="ref-description">
-    <p>Pairwise combinations of variables that will be the result of a function
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Pairwise combinations of variables that will be the result of a function
 applied to each combination.</p>
     </div>
 
@@ -248,9 +250,7 @@ applied to each combination.</p>
       <td><p>The order on how the results will appear in the output. Default
 is <code>order = 'first'</code>. In this case, assuming that .data has four
 columns, namely, <code>V1, V2, V3, V4</code>, the order of columns in the output
-will be <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4</code>. If <code>order =
-'second'</code>, the result will be then <code>V1.V2, V1.V3, V2.V3, V1.V4, V2.V4,
-V3.V4</code>.</p></td>
+will be <code>V1.V2, V1.V3, V1.V4, V2.V3, V2.V4, V3.V4</code>. If <code>order = 'second'</code>, the result will be then <code>V1.V2, V1.V3, V2.V3, V1.V4, V2.V4, V3.V4</code>.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
@@ -267,8 +267,8 @@ silently.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame containing all possible combination of variables. Each
-  combination is the result of the function in <code>FUN</code> applied to the two
-  variables.</p>
+combination is the result of the function in <code>FUN</code> applied to the two
+variables.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>

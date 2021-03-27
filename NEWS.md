@@ -3,6 +3,7 @@
 * `progress()` and `run_progress()` for text progress bar in the terminal.
 * `rbind_fill_id()` To implement the common pattern of `do.call(rbind, dfs)` with data frame identifier and filling of missing values.
 * `hmgv()`, `rpgv()`, `hmrpgv()`, `blup_indexes()` to compute stability indexes based on a mixed-effect model.
+* `mps()` and `mtmps()` for uni- and multivariate-based mean performance and stability in multi-environment trials.
 
 ## Minor improvements
 * `ge_reg()` now returns hypotesis testing for slope and deviations from the regression. Thanks to [@LeonardoBehring](https://www.researchgate.net/profile/Leonardo_Bhering) and [@MichelSouza](https://www.escavador.com/sobre/6363700/michel-henriques-de-souza) for the suggestion.
@@ -11,6 +12,8 @@
 * [Licecycle badges](https://lifecycle.r-lib.org/articles/stages.html) added to the functions' documentation.
 * Fix bug in `clustering()` when using  with `by` argument and defacult `nclust` argument.
 * `get_model_data()` now extract BLUEs from objects computed with `gamem()` and `gamem_met()`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for suggesting me this improvement.
+* `g_simula()` and `ge_simula()` now have a `res_eff` to control the residual effect.
+* `mgidi()` now have an optional `weights` argument to assign different weights for each trait in the selection process. Thanks to [@MichelSouza](https://www.escavador.com/sobre/6363700/michel-henriques-de-souza) for his suggestion.
 
 
 # metan 1.12.0

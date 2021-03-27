@@ -97,7 +97,7 @@ proposed by Rocha et al. (2018)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -262,7 +262,7 @@ proposed by Rocha et al. (2018).</p>
     </tr>
     <tr>
       <th>SI</th>
-      <td><p>An integer [0-100]. The selection intensity in percentage of the
+      <td><p>An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.</p></td>
     </tr>
     <tr>
@@ -324,7 +324,7 @@ doi: <a href='https://doi.org/10.1111/gcbb.12443'>10.1111/gcbb.12443</a></p>
              gen <span class='op'>=</span> <span class='va'>GEN</span>,
              rep <span class='op'>=</span> <span class='va'>REP</span>,
              resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -355,9 +355,9 @@ doi: <a href='https://doi.org/10.1111/gcbb.12443'>10.1111/gcbb.12443</a></p>
 #&gt; Comunalit Mean: 0.5523038 
 #&gt; Selection differential
 #&gt; -----------------------------------------------------------------------------------
-#&gt;   VAR Factor        Xo        Xs          SD     SDperc sense goal
-#&gt; 1  GY      1  2.674242  2.594199 -0.08004274 -2.9931005  none    0
-#&gt; 2  HM      1 48.088286 48.005568 -0.08271774 -0.1720122  none    0
+#&gt;   VAR Factor        Xo        Xs          SD     SDperc    sense goal
+#&gt; 1  GY      1  2.674242  2.594199 -0.08004274 -2.9931005 increase    0
+#&gt; 2  HM      1 48.088286 48.005568 -0.08271774 -0.1720122 increase    0
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------
 #&gt; Selected genotypes

@@ -53,8 +53,44 @@
 
 
 <meta property="og:title" content="Genotype-environment analysis by mixed-effect models — gamem_met" />
-<meta property="og:description" content="Genotype analysis in multi-environment trials using mixed-effect or
-random-effect models." />
+<meta property="og:description" content="
+Genotype analysis in multi-environment trials using mixed-effect or
+random-effect models.
+The nature of the effects in the model is chosen with the argument
+random. By default, the experimental design considered in each
+environment is a randomized complete block design. If block is
+informed, a resolvable alpha-lattice design (Patterson and Williams, 1976) is
+implemented. The following six models can be fitted depending on the values
+of random and block arguments.
+Model 1: block = NULL and random = &quot;gen&quot; (The
+default option). This model considers a Randomized Complete Block Design in
+each environment assuming genotype and genotype-environment interaction as
+random effects. Environments and blocks nested within environments are
+assumed to fixed factors.
+Model 2: block = NULL and random = &quot;env&quot;. This
+model considers a Randomized Complete Block Design in each environment
+treating environment, genotype-environment interaction, and blocks nested
+within environments as random factors. Genotypes are assumed to be fixed
+factors.
+Model 3: block = NULL and random = &quot;all&quot;. This
+model considers a Randomized Complete Block Design in each environment
+assuming a random-effect model, i.e., all effects (genotypes, environments,
+genotype-vs-environment interaction and blocks nested within environments)
+are assumed to be random factors.
+Model 4: block is not NULL and random =   &quot;gen&quot;. This model considers an alpha-lattice design in each environment
+assuming genotype, genotype-environment interaction, and incomplete blocks
+nested within complete replicates as random to make use of inter-block
+information (Mohring et al., 2015). Complete replicates nested within
+environments and environments are assumed to be fixed factors.
+Model 5: block is not NULL and random =   &quot;env&quot;. This model considers an alpha-lattice design in each environment
+assuming genotype as fixed. All other sources of variation (environment,
+genotype-environment interaction, complete replicates nested within
+environments, and incomplete blocks nested within replicates) are assumed
+to be random factors.
+Model 6: block is not NULL and random =   &quot;all&quot;. This model considers an alpha-lattice design in each environment
+assuming all effects, except the intercept, as random factors.
+
+" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -97,7 +133,7 @@ random-effect models." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,8 +266,44 @@ random-effect models." />
     </div>
 
     <div class="ref-description">
-    <p>Genotype analysis in multi-environment trials using mixed-effect or
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Genotype analysis in multi-environment trials using mixed-effect or
 random-effect models.</p>
+<p>The nature of the effects in the model is chosen with the argument
+<code>random</code>. By default, the experimental design considered in each
+environment is a randomized complete block design. If <code>block</code> is
+informed, a resolvable alpha-lattice design (Patterson and Williams, 1976) is
+implemented. The following six models can be fitted depending on the values
+of <code>random</code> and <code>block</code> arguments.</p><ul>
+<li><p><strong>Model 1:</strong> <code>block = NULL</code> and <code>random = "gen"</code> (The
+default option). This model considers a Randomized Complete Block Design in
+each environment assuming genotype and genotype-environment interaction as
+random effects. Environments and blocks nested within environments are
+assumed to fixed factors.</p></li>
+<li><p><strong>Model 2:</strong> <code>block = NULL</code> and <code>random = "env"</code>. This
+model considers a Randomized Complete Block Design in each environment
+treating environment, genotype-environment interaction, and blocks nested
+within environments as random factors. Genotypes are assumed to be fixed
+factors.</p></li>
+<li><p><strong>Model 3:</strong> <code>block = NULL</code> and <code>random = "all"</code>. This
+model considers a Randomized Complete Block Design in each environment
+assuming a random-effect model, i.e., all effects (genotypes, environments,
+genotype-vs-environment interaction and blocks nested within environments)
+are assumed to be random factors.</p></li>
+<li><p><strong>Model 4:</strong> <code>block</code> is not <code>NULL</code> and <code>random =   "gen"</code>. This model considers an alpha-lattice design in each environment
+assuming genotype, genotype-environment interaction, and incomplete blocks
+nested within complete replicates as random to make use of inter-block
+information (Mohring et al., 2015). Complete replicates nested within
+environments and environments are assumed to be fixed factors.</p></li>
+<li><p><strong>Model 5:</strong> <code>block</code> is not <code>NULL</code> and <code>random =   "env"</code>. This model considers an alpha-lattice design in each environment
+assuming genotype as fixed. All other sources of variation (environment,
+genotype-environment interaction, complete replicates nested within
+environments, and incomplete blocks nested within replicates) are assumed
+to be random factors.</p></li>
+<li><p><strong>Model 6:</strong> <code>block</code> is not <code>NULL</code> and <code>random =   "all"</code>. This model considers an alpha-lattice design in each environment
+assuming all effects, except the intercept, as random factors.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>gamem_met</span><span class='op'>(</span>
@@ -272,8 +344,7 @@ replications/blocks.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp
-  = c(var1, var2, var3)</code>.</p></td>
+single procedure a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
       <th>block</th>
@@ -287,7 +358,7 @@ al., 2015).</p></td>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.This is especially useful, for example,
 when the researcher want to analyze environments within mega-environments.
 In this case, an object of class waasb_grouped is returned.</p></td>
     </tr>
@@ -323,6 +394,10 @@ variable:</p><ul>
 <li><p><strong>BLUPint</strong> The random effects and estimated BLUPS of all genotypes in
 all environments.</p></li>
 <li><p><strong>MeansGxE</strong> The phenotypic means of genotypes in the environments.</p></li>
+<li><p><strong>modellme</strong> The mixed-effect model of class <code>lmerMod</code>.</p></li>
+<li><p><strong>residuals</strong> The residuals of the mixed-effect model.</p></li>
+<li><p><strong>model_lm</strong> The fixed-effect model of class <code>lm</code>.</p></li>
+<li><p><strong>residuals_lm</strong> The residuals of the fixed-effect model.</p></li>
 <li><p><strong>Details</strong> A list summarizing the results. The following information
 are shown: <code>Nenv</code>, the number of environments in the analysis;
 <code>Ngen</code> the number of genotypes in the analysis; <code>Mean</code> the grand
@@ -334,57 +409,14 @@ the genotype and environment); <code>MinENV</code> the environment with the lowe
 mean, <code>MaxENV</code> the environment with the larger mean observed,
 <code>MinGEN</code> the genotype with the lower mean, <code>MaxGEN</code> the genotype
 with the larger.</p></li>
-<li><p><strong>ESTIMATES</strong> A tibble with the genetic parameters (if <code>random =
-"gen"</code> or <code>random = "all"</code>) with the following columns: <code>Phenotypic
-variance</code> the phenotypic variance; <code>Heritability</code> the broad-sense
+<li><p><strong>ESTIMATES</strong> A tibble with the genetic parameters (if <code>random = "gen"</code> or <code>random = "all"</code>) with the following columns: <code>Phenotypic variance</code> the phenotypic variance; <code>Heritability</code> the broad-sense
 heritability; <code>GEr2</code> the coefficient of determination of the interaction
 effects; <code>h2mg</code> the heritability on the mean basis;
 <code>Accuracy</code> the selective accuracy; <code>rge</code> the genotype-environment
 correlation; <code>CVg</code> the genotypic coefficient of variation; <code>CVr</code>
 the residual coefficient of variation; <code>CV ratio</code> the ratio between
 genotypic and residual coefficient of variation.</p></li>
-<li><p><strong>residuals</strong> The residuals of the model.</p></li>
-<li><p><strong>formula</strong> The formula used to fit the model.</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The nature of the effects in the model is chosen with the argument
-<code>random</code>. By default, the experimental design considered in each
-environment is a randomized complete block design. If <code>block</code> is
-informed, a resolvable alpha-lattice design (Patterson and Williams, 1976) is
-implemented. The following six models can be fitted depending on the values
-of <code>random</code> and <code>block</code> arguments.</p><ul>
-<li><p><strong>Model 1:</strong> <code>block = NULL</code> and <code>random = "gen"</code> (The
-default option). This model considers a Randomized Complete Block Design in
-each environment assuming genotype and genotype-environment interaction as
-random effects. Environments and blocks nested within environments are
-assumed to fixed factors.</p></li>
-<li><p><strong>Model 2:</strong> <code>block = NULL</code> and <code>random = "env"</code>. This
-model considers a Randomized Complete Block Design in each environment
-treating environment, genotype-environment interaction, and blocks nested
-within environments as random factors. Genotypes are assumed to be fixed
-factors.</p></li>
-<li><p><strong>Model 3:</strong> <code>block = NULL</code> and <code>random = "all"</code>. This
-model considers a Randomized Complete Block Design in each environment
-assuming a random-effect model, i.e., all effects (genotypes, environments,
-genotype-vs-environment interaction and blocks nested within environments)
-are assumed to be random factors.</p></li>
-<li><p><strong>Model 4:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
-  "gen"</code>. This model considers an alpha-lattice design in each environment
-assuming genotype, genotype-environment interaction, and incomplete blocks
-nested within complete replicates as random to make use of inter-block
-information (Mohring et al., 2015). Complete replicates nested within
-environments and environments are assumed to be fixed factors.</p></li>
-<li><p><strong>Model 5:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
-  "env"</code>. This model considers an alpha-lattice design in each environment
-assuming genotype as fixed. All other sources of variation (environment,
-genotype-environment interaction, complete replicates nested within
-environments, and incomplete blocks nested within replicates) are assumed
-to be random factors.</p></li>
-<li><p><strong>Model 6:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
-  "all"</code>. This model considers an alpha-lattice design in each environment
-assuming all effects, except the intercept, as random factors.</p></li>
+<li><p><strong>formula</strong> The formula used to fit the mixed-model.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -401,8 +433,8 @@ doi: <a href='https://doi.org/10.1007/s00122-015-2530-0'>10.1007/s00122-015-2530
 incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='mtsi.html'>mtsi</a></code> <code><a href='waas.html'>waas</a></code>
-<code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='plot_scores.html'>plot_scores</a></code></p></div>
+    <div class='dont-index'><p><code><a href='mtsi.html'>mtsi()</a></code> <code><a href='waas.html'>waas()</a></code>
+<code><a href='get_model_data.html'>get_model_data()</a></code> <code><a href='plot_scores.html'>plot_scores()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -419,7 +451,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
                   gen <span class='op'>=</span> <span class='va'>GEN</span>,
                   rep <span class='op'>=</span> <span class='va'>REP</span>,
                   resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -432,18 +464,18 @@ incomplete block designs. Biometrika 63:83-92.</p>
 </div><div class='img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Genetic parameters</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"genpar"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span><span>
 #&gt;   Parameters              GY     HM
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance  0.181 5.52  
-#&gt; </span><span style='color: #555555;'>2</span><span> Heritability         0.154 0.088</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                0.313 0.397 
-#&gt; </span><span style='color: #555555;'>4</span><span> h2mg                 0.815 0.686 
-#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy             0.903 0.828 
-#&gt; </span><span style='color: #555555;'>6</span><span> rge                  0.370 0.435 
-#&gt; </span><span style='color: #555555;'>7</span><span> CVg                  6.26  1.46  
-#&gt; </span><span style='color: #555555;'>8</span><span> CVr                 11.6   3.50  
-#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio             0.538 0.415 </div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Phenotypic variance  0.181 5.52  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Heritability         0.154 0.088</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> GEIr2                0.313 0.397 
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> h2mg                 0.815 0.686 
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Accuracy             0.903 0.828 
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> rge                  0.370 0.435 
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> CVg                  6.26  1.46  
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> CVr                 11.6   3.50  
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span> CV ratio             0.538 0.415 </div><div class='input'>
 
 
 <span class='co'>#===============================================================#</span>
@@ -460,7 +492,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
                    rep <span class='op'>=</span> <span class='va'>REP</span>,
                    random <span class='op'>=</span> <span class='st'>"all"</span>,
                    resp <span class='op'>=</span> <span class='va'>GY</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: -</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: -</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY
@@ -471,18 +503,18 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt;   GEN:ENV 2.11e-11
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 9 x 2</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 2</span><span>
 #&gt;   Parameters               GY
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Phenotypic variance  0.907 
-#&gt; </span><span style='color: #555555;'>2</span><span> Heritability         0.030</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> GEIr2                0.314 
-#&gt; </span><span style='color: #555555;'>4</span><span> h2mg                 0.813 
-#&gt; </span><span style='color: #555555;'>5</span><span> Accuracy             0.902 
-#&gt; </span><span style='color: #555555;'>6</span><span> rge                  0.371 
-#&gt; </span><span style='color: #555555;'>7</span><span> CVg                  6.24  
-#&gt; </span><span style='color: #555555;'>8</span><span> CVr                 11.6   
-#&gt; </span><span style='color: #555555;'>9</span><span> CV ratio             0.536 </div><div class='input'><span class='co'># }</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Phenotypic variance  0.907 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Heritability         0.030</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> GEIr2                0.314 
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> h2mg                 0.813 
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Accuracy             0.902 
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> rge                  0.371 
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> CVg                  6.24  
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> CVr                 11.6   
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span> CV ratio             0.536 </div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>

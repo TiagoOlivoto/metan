@@ -53,7 +53,17 @@
 
 
 <meta property="og:title" content="Cross-validation procedure — cv_blup" />
-<meta property="og:description" content="Cross-validation for blup prediction." />
+<meta property="og:description" content="
+Cross-validation for blup prediction.
+This function provides a cross-validation procedure for mixed models using
+replicate-based data. By default, complete blocks are randomly selected
+within each environment. In each iteration, the original dataset is split up
+into two datasets: training and validation data. The 'training' set has all
+combinations (genotype x environment) with R - 1 replications. The
+'validation' set has the remaining replication. The estimated values are
+compared with the 'validation' data and the Root Means Square Prediction
+Difference (Olivoto et al. 2019) is computed. At the end of boots, a list is
+returned." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +106,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +239,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Cross-validation for blup prediction.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Cross-validation for blup prediction.</p>
+<p>This function provides a cross-validation procedure for mixed models using
+replicate-based data. By default, complete blocks are randomly selected
+within each environment. In each iteration, the original dataset is split up
+into two datasets: training and validation data. The 'training' set has all
+combinations (genotype x environment) with R - 1 replications. The
+'validation' set has the remaining replication. The estimated values are
+compared with the 'validation' data and the Root Means Square Prediction
+Difference (Olivoto et al. 2019) is computed. At the end of boots, a list is
+returned.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cv_blup</span><span class='op'>(</span>
@@ -303,16 +323,7 @@ prediction difference between predicted and validating data. *
 <strong>RMSPDmean</strong> The mean of RMSPDmean estimates.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function provides a cross-validation procedure for mixed models using
-replicate-based data. By default, complete blocks are randomly selected
-within each environment. In each iteration, the original dataset is split up
-into two datasets: training and validation data. The 'training' set has all
-combinations (genotype x environment) with R - 1 replications. The
-'validation' set has the remaining replication. The estimated values are
-compared with the 'validation' data and the Root Means Square Prediction
-Difference (Olivoto et al. 2019) is computed. At the end of boots, a list is
-returned.</p>
-<p>Six models may be fitted depending upon the values in <code>block</code>
+    <p>Six models may be fitted depending upon the values in <code>block</code>
 and <code>random</code> arguments.</p><ul>
 <li><p><strong>Model 1:</strong> <code>block = NULL</code> and <code>random = "gen"</code> (The
 default option). This model considers a Randomized Complete Block Design in
@@ -329,20 +340,17 @@ model considers a Randomized Complete Block Design in each environment
 assuming a random-effect model, i.e., all effects (genotypes, environments,
 genotype-vs-environment interaction and blocks nested within environments)
 are assumed to be random factors.</p></li>
-<li><p><strong>Model 4:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
-  "gen"</code>. This model considers an alpha-lattice design in each environment
+<li><p><strong>Model 4:</strong> <code>block</code> is not <code>NULL</code> and <code>random =   "gen"</code>. This model considers an alpha-lattice design in each environment
 assuming genotype, genotype-environment interaction, and incomplete blocks
 nested within complete replicates as random to make use of inter-block
 information (Mohring et al., 2015). Complete replicates nested within
 environments and environments are assumed to be fixed factors.</p></li>
-<li><p><strong>Model 5:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
-  "env"</code>. This model considers an alpha-lattice design in each environment
+<li><p><strong>Model 5:</strong> <code>block</code> is not <code>NULL</code> and <code>random =   "env"</code>. This model considers an alpha-lattice design in each environment
 assuming genotype as fixed. All other sources of variation (environment,
 genotype-environment interaction, complete replicates nested within
 environments, and incomplete blocks nested within replicates) are assumed
 to be random factors.</p></li>
-<li><p><strong>Model 6:</strong> <code>block</code> is not <code>NULL</code> and <code>random =
-  "all"</code>. This model considers an alpha-lattice design in each environment
+<li><p><strong>Model 6:</strong> <code>block</code> is not <code>NULL</code> and <code>random =   "all"</code>. This model considers an alpha-lattice design in each environment
 assuming all effects, except the intercept, as random factors.</p></li>
 </ul>
 
@@ -364,7 +372,7 @@ information: to recover or not to recover it? TAG. Theor. Appl. Genet.
 doi: <a href='https://doi.org/10.1007/s00122-015-2530-0'>10.1007/s00122-015-2530-0</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='cv_ammi.html'>cv_ammi</a></code>, <code><a href='cv_ammif.html'>cv_ammif</a></code></p></div>
+    <div class='dont-index'><p><code><a href='cv_ammi.html'>cv_ammi()</a></code>, <code><a href='cv_ammif.html'>cv_ammif()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -379,7 +387,7 @@ doi: <a href='https://doi.org/10.1007/s00122-015-2530-0'>10.1007/s00122-015-2530
                  rep <span class='op'>=</span> <span class='va'>REP</span>,
                  resp <span class='op'>=</span> <span class='va'>GY</span>,
                  nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:00 Validating 4 of 5 sets |=================================        | 80% 00:00:00 Validating 5 of 5 sets |=========================================| 100% 00:00:00 </div><div class='input'>
 <span class='co'># }</span>
 
 </div></pre>

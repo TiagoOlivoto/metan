@@ -53,7 +53,11 @@
 
 
 <meta property="og:title" content="Split a data frame by factors — split_factors" />
-<meta property="og:description" content="Split a data frame into subsets grouping by one or more factors." />
+<meta property="og:description" content="
+Split a data frame into subsets grouping by one or more factors.
+This function is used to split a data frame into a named list where each
+element is a level of the grouping variable (or combination of grouping
+variables)." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +100,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +233,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Split a data frame into subsets grouping by one or more factors.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Split a data frame into subsets grouping by one or more factors.</p>
+<p>This function is used to split a data frame into a named list where each
+element is a level of the grouping variable (or combination of grouping
+variables).</p>
     </div>
 
     <pre class="usage"><span class='fu'>split_factors</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, keep_factors <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
@@ -268,9 +276,8 @@ If more than one grouping variable is used, then each element is the
 combination of the grouping variables.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function is used to split a data frame into a named list where each
-element is a level of the grouping variable (or combination of grouping
-variables).</p><ul>
+    
+<ul>
 <li><p><code>split_factors()</code> Split a data frame by factors.</p></li>
 <li><p><code>as.splict_factors()</code> coerce to an object of class <code>split_factors</code></p></li>
 <li><p><code>is.splict_factors()</code> check if an object is of class <code>split_factors</code></p></li>

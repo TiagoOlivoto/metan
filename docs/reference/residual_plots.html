@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Several types of residual plots — residual_plots" />
-<meta property="og:description" content="Residual plots for a output model of class performs_ammi,
+<meta property="og:description" content="
+Residual plots for a output model of class performs_ammi,
 waas,  anova_ind, and  anova_joint. Seven types of plots
 are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals,
 (3) scale-location plot (standardized residuals vs Fitted Values), (4)
@@ -101,7 +102,7 @@ standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -234,7 +235,8 @@ standardized residuals vs Factor-levels, (5) Histogram of raw residuals and
     </div>
 
     <div class="ref-description">
-    <p>Residual plots for a output model of class <code>performs_ammi</code>,
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Residual plots for a output model of class <code>performs_ammi</code>,
 <code>waas</code>,  <code>anova_ind</code>, and  <code>anova_joint</code>. Seven types of plots
 are produced: (1) Residuals vs fitted, (2) normal Q-Q plot for the residuals,
 (3) scale-location plot (standardized residuals vs Fitted Values), (4)
@@ -292,7 +294,7 @@ confidence interval limits.</p></td>
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>band.alpha, point.alpha</th>
@@ -339,8 +341,7 @@ plot and the points, respectively. Must be a number between 0 (opaque) and
     </tr>
     <tr>
       <th>which</th>
-      <td><p>Which graphics should be plotted. Default is <code>which =
-c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
+      <td><p>Which graphics should be plotted. Default is <code>which = c(1:4)</code> that means that the first four graphics will be plotted.</p></td>
     </tr>
     <tr>
       <th>ncol, nrow</th>
@@ -350,7 +351,7 @@ to <code>NULL</code></p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments passed on to the function
-<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>wrap_plots</a>()</code>.</p></td>
+<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -367,21 +368,21 @@ to <code>NULL</code></p></td>
 #&gt; AMMI analysis table
 #&gt; ---------------------------------------------------------------------------
 #&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00          .           .
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08          .           .
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19          .           .
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11          .           .
+#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
+#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
+#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
+#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
 #&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
 #&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
 #&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8          89
+#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
 #&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01          3        96.6
+#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
 #&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
 #&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4         100
-#&gt;  Residuals 252  24.367  0.0967      NA       NA          .           .
-#&gt;      Total 536 389.036  0.7258      NA       NA       &lt;NA&gt;        &lt;NA&gt;
+#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
+#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
+#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction

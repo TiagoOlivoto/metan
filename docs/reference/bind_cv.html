@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Bind cross-validation objects — bind_cv" />
-<meta property="og:description" content="Helper function that combines objects of class cv_ammi,
+<meta property="og:description" content="
+Helper function that combines objects of class cv_ammi,
 cv_ammif or cv_blup. It is useful when looking for a boxplot
 containing the RMSPD values of those cross-validation procedures." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -98,7 +99,7 @@ containing the RMSPD values of those cross-validation procedures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -231,7 +232,8 @@ containing the RMSPD values of those cross-validation procedures." />
     </div>
 
     <div class="ref-description">
-    <p>Helper function that combines objects of class <code>cv_ammi</code>,
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Helper function that combines objects of class <code>cv_ammi</code>,
 <code>cv_ammif</code> or <code>cv_blup</code>. It is useful when looking for a boxplot
 containing the RMSPD values of those cross-validation procedures.</p>
     </div>
@@ -261,10 +263,10 @@ model.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>cv_ammif</code>. The results will depend on the
-  argument <code>bind</code>. If <code>bind = 'boot'</code> then the RMSPD of all models
-  in <code>...</code> will be bind to a unique data frame. If <code>bind = 'means'</code>
-  then the RMSPD mean of all models in <code>...</code> will be bind to an unique
-  data frame.</p>
+argument <code>bind</code>. If <code>bind = 'boot'</code> then the RMSPD of all models
+in <code>...</code> will be bind to a unique data frame. If <code>bind = 'means'</code>
+then the RMSPD mean of all models in <code>...</code> will be bind to an unique
+data frame.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -273,42 +275,31 @@ model.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='co'># Two examples with only 5 resampling procedures</span>
-<span class='va'>AMMI</span> <span class='op'>=</span> <span class='fu'><a href='cv_ammif.html'>cv_ammif</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+<span class='va'>AMMI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_ammi.html'>cv_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
                 resp <span class='op'>=</span> <span class='va'>GY</span>,
                 gen <span class='op'>=</span> <span class='va'>GEN</span>,
                 env <span class='op'>=</span> <span class='va'>ENV</span>,
                 rep <span class='op'>=</span> <span class='va'>REP</span>,
                 nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-<span class='va'>BLUP</span> <span class='op'>=</span> <span class='fu'><a href='cv_blup.html'>cv_blup</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-               resp <span class='op'>=</span> <span class='va'>GY</span>,
-               gen <span class='op'>=</span> <span class='va'>GEN</span>,
-               env <span class='op'>=</span> <span class='va'>ENV</span>,
-               rep <span class='op'>=</span> <span class='va'>REP</span>,
-               nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-<span class='va'>bind_data</span> <span class='op'>=</span> <span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:00 Validating 4 of 5 sets |=================================        | 80% 00:00:00 Validating 5 of 5 sets |=========================================| 100% 00:00:00 </div><div class='input'><span class='va'>BLUP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_blup.html'>cv_blup</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
+                resp <span class='op'>=</span> <span class='va'>GY</span>,
+                gen <span class='op'>=</span> <span class='va'>GEN</span>,
+                env <span class='op'>=</span> <span class='va'>ENV</span>,
+                rep <span class='op'>=</span> <span class='va'>REP</span>,
+                nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:00 Validating 4 of 5 sets |=================================        | 80% 00:00:00 Validating 5 of 5 sets |=========================================| 100% 00:00:01 </div><div class='input'><span class='va'>bind_data</span> <span class='op'>&lt;-</span> <span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>bind_data</span><span class='op'>)</span>
 </div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span>, bind <span class='op'>=</span> <span class='st'>'means'</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $RMSPD
-#&gt; <span style='color: #555555;'># A tibble: 11 x 6</span><span>
-#&gt;    MODEL        mean     sd      se  Q2.5 Q97.5
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> AMMI2       0.391 0.028</span><span style='text-decoration: underline;'>8</span><span> 0.012</span><span style='text-decoration: underline;'>9</span><span>  0.366 0.432
-#&gt; </span><span style='color: #555555;'> 2</span><span> AMMI3       0.409 0.030</span><span style='text-decoration: underline;'>3</span><span> 0.013</span><span style='text-decoration: underline;'>5</span><span>  0.374 0.446
-#&gt; </span><span style='color: #555555;'> 3</span><span> AMMI5       0.413 0.030</span><span style='text-decoration: underline;'>1</span><span> 0.013</span><span style='text-decoration: underline;'>5</span><span>  0.389 0.454
-#&gt; </span><span style='color: #555555;'> 4</span><span> BLUP_g_RCBD 0.418 0.020</span><span style='text-decoration: underline;'>4</span><span> 0.009</span><span style='text-decoration: underline;'>11</span><span> 0.398 0.442
-#&gt; </span><span style='color: #555555;'> 5</span><span> AMMI4       0.423 0.022</span><span style='text-decoration: underline;'>9</span><span> 0.010</span><span style='text-decoration: underline;'>3</span><span>  0.400 0.450
-#&gt; </span><span style='color: #555555;'> 6</span><span> AMMI1       0.427 0.016</span><span style='text-decoration: underline;'>8</span><span> 0.007</span><span style='text-decoration: underline;'>51</span><span> 0.413 0.452
-#&gt; </span><span style='color: #555555;'> 7</span><span> AMMIF       0.434 0.025</span><span style='text-decoration: underline;'>0</span><span> 0.011</span><span style='text-decoration: underline;'>2</span><span>  0.397 0.456
-#&gt; </span><span style='color: #555555;'> 8</span><span> AMMI6       0.435 0.019</span><span style='text-decoration: underline;'>4</span><span> 0.008</span><span style='text-decoration: underline;'>69</span><span> 0.423 0.465
-#&gt; </span><span style='color: #555555;'> 9</span><span> AMMI8       0.436 0.020</span><span style='text-decoration: underline;'>4</span><span> 0.009</span><span style='text-decoration: underline;'>10</span><span> 0.407 0.457
-#&gt; </span><span style='color: #555555;'>10</span><span> AMMI0       0.440 0.017</span><span style='text-decoration: underline;'>6</span><span> 0.007</span><span style='text-decoration: underline;'>88</span><span> 0.418 0.459
-#&gt; </span><span style='color: #555555;'>11</span><span> AMMI7       0.447 0.025</span><span style='text-decoration: underline;'>1</span><span> 0.011</span><span style='text-decoration: underline;'>2</span><span>  0.417 0.478
+#&gt;         MODEL      mean         sd         se      Q2.5     Q97.5
+#&gt; 1 BLUP_g_RCBD 0.4131957 0.02437101 0.01089905 0.3756587 0.4327774
+#&gt; 2       AMMI2 0.4238458 0.02355689 0.01053496 0.3895902 0.4465040
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "cvalidation"</div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

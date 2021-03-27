@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Plot the BLUPs for genotypes — plot_blup" />
-<meta property="og:description" content="Plot the predicted BLUP of the genotypes." />
+<meta property="og:description" content="
+Plot the predicted BLUP of the genotypes." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -96,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -229,7 +230,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Plot the predicted BLUP of the genotypes.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Plot the predicted BLUP of the genotypes.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_blup</span><span class='op'>(</span>
@@ -301,7 +303,7 @@ exported. Default is <code>pdf</code>, Graphic can also be exported in
       <th>plot_theme</th>
       <td><p>The graphical theme of the plot. Default is
 <code>plot_theme = theme_metan()</code>. For more details, see
-<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></code>.</p></td>
+<code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -337,14 +339,12 @@ environments). Default is <code>3.5</code>.</p></td>
     <tr>
       <th>x.lim</th>
       <td><p>The range of x-axis. Default is <code>NULL</code> (maximum and minimum
-values of the data set). New arguments can be inserted as <code>x.lim =
-c(x.min, x.max)</code>.</p></td>
+values of the data set). New arguments can be inserted as <code>x.lim = c(x.min, x.max)</code>.</p></td>
     </tr>
     <tr>
       <th>x.breaks</th>
       <td><p>The breaks to be plotted in the x-axis. Default is
-<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks =
-c(breaks)</code></p></td>
+<code>authomatic breaks</code>. New arguments can be inserted as <code>x.breaks = c(breaks)</code></p></td>
     </tr>
     <tr>
       <th>col.shape</th>
@@ -374,8 +374,7 @@ prioritizing the first, last, and middle labels.</p></td>
     </tr>
     <tr>
       <th>panel.spacing</th>
-      <td><p>Defines the spacing between panels when <code>which =
-"ge"</code>.</p></td>
+      <td><p>Defines the spacing between panels when <code>which = "ge"</code>.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -393,7 +392,7 @@ prioritizing the first, last, and middle labels.</p></td>
     <p>An object of class <code>gg, ggplot</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores</a></code>, <code><a href='plot_waasby.html'>plot_waasby</a></code></p></div>
+    <div class='dont-index'><p><code><a href='plot_scores.html'>plot_scores()</a></code>, <code><a href='plot_waasby.html'>plot_waasby()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -406,7 +405,7 @@ prioritizing the first, last, and middle labels.</p></td>
               gen <span class='op'>=</span> <span class='va'>GEN</span>,
               env <span class='op'>=</span> <span class='va'>ENV</span>,
               rep <span class='op'>=</span> <span class='va'>REP</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       PH

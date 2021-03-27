@@ -97,7 +97,7 @@ et al. (2019)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -241,6 +241,7 @@ et al. (2019)</p>
   type <span class='op'>=</span> <span class='st'>"index"</span>,
   position <span class='op'>=</span> <span class='st'>"fill"</span>,
   genotypes <span class='op'>=</span> <span class='st'>"selected"</span>,
+  title <span class='op'>=</span> <span class='cn'>TRUE</span>,
   radar <span class='op'>=</span> <span class='cn'>TRUE</span>,
   arrange.label <span class='op'>=</span> <span class='cn'>FALSE</span>,
   x.lab <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -267,13 +268,12 @@ et al. (2019)</p>
     </tr>
     <tr>
       <th>SI</th>
-      <td><p>An integer [0-100]. The selection intensity in percentage of the
+      <td><p>An integer (0-100). The selection intensity in percentage of the
 total number of genotypes.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type
-= "contribution"</code> to show the contribution of each factor to the MGIDI
+      <td><p>The type of the plot. Defaults to <code>"index"</code>. Use <code>type = "contribution"</code> to show the contribution of each factor to the MGIDI
 index of the selected genotypes.</p></td>
     </tr>
     <tr>
@@ -290,6 +290,11 @@ genotype.</p></td>
 be shown in the plot. By default (<code>genotypes = "selected"</code> only
 selected genotypes are shown. Use <code>genotypes = "all"</code> to plot the
 contribution for all genotypes.)</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Logical values (Defaults to <code>TRUE</code>) to include
+automatically generated titles.</p></td>
     </tr>
     <tr>
       <th>radar</th>
@@ -352,7 +357,7 @@ prioritizing the first, last, and middle labels.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments to be passed from  <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a>()</code>.</p></td>
+      <td><p>Other arguments to be passed from  <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -370,7 +375,7 @@ prioritizing the first, last, and middle labels.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='va'>mtsi_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -383,37 +388,37 @@ prioritizing the first, last, and middle labels.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; Principal Component Analysis
 #&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #555555;'># A tibble: 2 x 4</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span><span>
 #&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> PC1         1.37            68.5                68.5
-#&gt; </span><span style='color: #555555;'>2</span><span> PC2         0.631           31.5               100  
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> PC1         1.37            68.5                68.5
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> PC2         0.631           31.5               100  
 #&gt; -------------------------------------------------------------------------------
 #&gt; Factor Analysis - factorial loadings after rotation-
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 2 x 4</span><span>
 #&gt;   VAR     FA1 Communality Uniquenesses
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    0.827       0.685        0.315
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    0.827       0.685        0.315
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GY    0.827       0.685        0.315
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> HM    0.827       0.685        0.315
 #&gt; -------------------------------------------------------------------------------
 #&gt; Comunalit Mean: 0.6846623 
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the  waasby index
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 6</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 2 x 6</span><span>
 #&gt;   VAR   Factor    Xo    Xs    SD SDperc
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    48.3  86.4  38.0   78.7
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1    58.3  79.2  21.0   36.0
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GY    FA 1    48.3  86.4  38.0   78.7
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> HM    FA 1    58.3  79.2  21.0   36.0
 #&gt; -------------------------------------------------------------------------------
 #&gt; Selection differential for the mean of the variables
 #&gt; -------------------------------------------------------------------------------
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 11</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 2 x 11</span><span>
 #&gt;   VAR   Factor    Xo    Xs    SD SDperc    h2    SG SGperc sense     goal
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4   0.815 0.249  9.31  increase   100
-#&gt; </span><span style='color: #555555;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551 0.686 0.182  0.378 increase   100
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GY    FA 1    2.67  2.98 0.305 11.4   0.815 0.249  9.31  increase   100
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> HM    FA 1   48.1  48.4  0.265  0.551 0.686 0.182  0.378 increase   100
 #&gt; ------------------------------------------------------------------------------
 #&gt; Selected genotypes
 #&gt; -------------------------------------------------------------------------------

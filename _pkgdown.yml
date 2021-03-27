@@ -162,15 +162,19 @@ reference:
     contents:
       - coincidence_index
       - fai_blup
+      - mps
+      - mtmps
       - mtsi
       - mgidi
       - plot.fai_blup
       - plot.mgidi
       - print.mgidi
       - plot.mtsi
+      - plot.mtmps
       - plot.sh
       - print.coincidence
       - print.mtsi
+      - print.mtmps
       - print.sh
       - Smith_Hazel
 
@@ -308,6 +312,9 @@ reference:
   - subtitle: "Copy-Paste"
     contents:
       - utils_data
+  - subtitle: "Data organization"
+    contents:
+      - utils_data_org
   - subtitle: "Coerce variables to a specific type"
     contents:
       - utils_as
@@ -361,7 +368,6 @@ reference:
       - themes
       - transpose_df
       - tukey_hsd
-      - utils
 
 
   - title: "Datasets"

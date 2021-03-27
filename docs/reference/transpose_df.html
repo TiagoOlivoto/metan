@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Transpose a data frame — transpose_df" />
-<meta property="og:description" content="Is an alternative to t() to transpose a data frame. The first
+<meta property="og:description" content="
+Is an alternative to t() to transpose a data frame. The first
 column of df will become column names in the transposed data." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ column of df will become column names in the transposed data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ column of df will become column names in the transposed data." />
     </div>
 
     <div class="ref-description">
-    <p>Is an alternative to <code><a href='https://rdrr.io/r/base/t.html'>t</a>()</code> to transpose a data frame. The first
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>Is an alternative to <code><a href='https://rdrr.io/r/base/t.html'>t()</a></code> to transpose a data frame. The first
 column of <code>df</code> will become column names in the transposed data.</p>
     </div>
 
@@ -262,23 +264,23 @@ column of <code>df</code> will become column names in the transposed data.</p>
 <span class='op'>)</span>
 <span class='va'>df</span>
 </div><div class='output co'>#&gt;   GEN        E1        E2       E3        E4
-#&gt; 1  G1  97.38007  9.978145 56.06067 1127.4784
-#&gt; 2  G2 120.71187  9.690515 43.87469  892.9530
-#&gt; 3  G3 115.35003 12.685037 52.95949  873.1246
-#&gt; 4  G4  84.78878  7.914673 58.64957 1103.2700</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+#&gt; 1  G1 104.89280 10.332382 59.79362  919.8328
+#&gt; 2  G2  75.89245 12.794000 50.08101  987.3939
+#&gt; 3  G3  70.81251  7.959122 37.88328 1025.3137
+#&gt; 4  G4 107.48292 10.577962 42.55318  970.1600</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     [,1]        [,2]        [,3]        [,4]       
 #&gt; GEN "G1"        "G2"        "G3"        "G4"       
-#&gt; E1  " 97.38007" "120.71187" "115.35003" " 84.78878"
-#&gt; E2  " 9.978145" " 9.690515" "12.685037" " 7.914673"
-#&gt; E3  "56.06067"  "43.87469"  "52.95949"  "58.64957" 
-#&gt; E4  "1127.4784" " 892.9530" " 873.1246" "1103.2700"</div><div class='input'><span class='fu'>transpose_df</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 5</span><span>
-#&gt;   name       G1     G2    G3      G4
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> E1      97.4  121.   115.    84.8 
-#&gt; </span><span style='color: #555555;'>2</span><span> E2       9.98   9.69  12.7    7.91
-#&gt; </span><span style='color: #555555;'>3</span><span> E3      56.1   43.9   53.0   58.6 
-#&gt; </span><span style='color: #555555;'>4</span><span> E4    </span><span style='text-decoration: underline;'>1</span><span>127.   893.   873.  </span><span style='text-decoration: underline;'>1</span><span>103.  </div><div class='input'><span class='co'># }</span>
+#&gt; E1  "104.89280" " 75.89245" " 70.81251" "107.48292"
+#&gt; E2  "10.332382" "12.794000" " 7.959122" "10.577962"
+#&gt; E3  "59.79362"  "50.08101"  "37.88328"  "42.55318" 
+#&gt; E4  " 919.8328" " 987.3939" "1025.3137" " 970.1600"</div><div class='input'><span class='fu'>transpose_df</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span><span>
+#&gt;   name     G1    G2      G3    G4
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> E1    105.   75.9   70.8  107. 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> E2     10.3  12.8    7.96  10.6
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> E3     59.8  50.1   37.9   42.6
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> E4    920.  987.  </span><span style='text-decoration: underline;'>1</span><span>025.   970. </div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

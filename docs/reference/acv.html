@@ -55,7 +55,8 @@
 
 <meta property="og:title" content="Adjusted Coefficient of Variation
  — acv" />
-<meta property="og:description" content="Computes the scale-adjusted coefficient of variation,
+<meta property="og:description" content="
+Computes the scale-adjusted coefficient of variation,
 acv, (Doring and Reckling, 2018) to account for the systematic
 dependence of \(\sigma^2\) from \(\mu\). The acv is
 computed as follows:
@@ -110,7 +111,7 @@ regression." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -244,15 +245,16 @@ regression." />
     </div>
 
     <div class="ref-description">
-    <p>Computes the scale-adjusted coefficient of variation,
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Computes the scale-adjusted coefficient of variation,
 <em>acv</em>, (Doring and Reckling, 2018) to account for the systematic
 dependence of \(\sigma^2\) from \(\mu\). The <em>acv</em> is
-computed as follows:</p>
-<p>\[acv = \frac{\sqrt{10^{\tilde v_i}}}{\mu_i}\times 100\]</p>
-<p>where \(\tilde v_i\) is the adjusted logarithm of the variance
-computed as:</p>
-<p>\[\tilde v_i = a + (b - 2)\frac{1}{n}\sum m_i + 2m_i + e_i\]</p>
-<p>being \(a\) and \(b\) the coefficients of the linear regression for
+computed as follows:
+\[acv = \frac{\sqrt{10^{\tilde v_i}}}{\mu_i}\times 100\]
+where \(\tilde v_i\) is the adjusted logarithm of the variance
+computed as:
+\[\tilde v_i = a + (b - 2)\frac{1}{n}\sum m_i + 2m_i + e_i\]
+being \(a\) and \(b\) the coefficients of the linear regression for
 \(log_{10}\) of the variance over the \(log_{10}\) of the mean;
 \( m_i\) is the \(log_{10}\) of the mean, and \( e_i\) is the
 Power Law Residuals (POLAR), i.e., the residuals for the previously described
@@ -314,24 +316,24 @@ Agron. 99: 30-36. doi: <a href='https://doi.org/10.1016/j.eja.2018.06.007'>10.10
 
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='fu'>acv</span><span class='op'>(</span><span class='va'>u</span>, <span class='va'>v</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 7</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 15 x 7</span><span>
 #&gt;     mean    var log10_mean log10_var    POLAR    cv   acv
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 0.589 0.006</span><span style='text-decoration: underline;'>4</span><span>    -</span><span style='color: #BB0000;'>0.230</span><span>     -</span><span style='color: #BB0000;'>2.19</span><span>  -</span><span style='color: #BB0000;'>0.326</span><span>   13.6   7.34
-#&gt; </span><span style='color: #555555;'> 2</span><span> 0.617 0.014</span><span style='text-decoration: underline;'>1</span><span>    -</span><span style='color: #BB0000;'>0.210</span><span>     -</span><span style='color: #BB0000;'>1.85</span><span>  -</span><span style='color: #BB0000;'>0.003</span><span style='color: #BB0000;text-decoration: underline;'>56</span><span> 19.2  10.6 
-#&gt; </span><span style='color: #555555;'> 3</span><span> 0.794 0.021</span><span style='text-decoration: underline;'>8</span><span>    -</span><span style='color: #BB0000;'>0.100</span><span>     -</span><span style='color: #BB0000;'>1.66</span><span>   0.070</span><span style='text-decoration: underline;'>3</span><span>  18.6  11.6 
-#&gt; </span><span style='color: #555555;'> 4</span><span> 1.03  0.031</span><span style='text-decoration: underline;'>8</span><span>     0.013</span><span style='text-decoration: underline;'>3</span><span>    -</span><span style='color: #BB0000;'>1.50</span><span>   0.115   17.3  12.2 
-#&gt; </span><span style='color: #555555;'> 5</span><span> 1.50  0.031</span><span style='text-decoration: underline;'>4</span><span>     0.177     -</span><span style='color: #BB0000;'>1.50</span><span>  -</span><span style='color: #BB0000;'>0.062</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  11.8   9.94
-#&gt; </span><span style='color: #555555;'> 6</span><span> 3.86  0.076</span><span style='text-decoration: underline;'>6</span><span>     0.587     -</span><span style='color: #BB0000;'>1.12</span><span>  -</span><span style='color: #BB0000;'>0.106</span><span>    7.17  9.46
-#&gt; </span><span style='color: #555555;'> 7</span><span> 4.70  0.062      0.672     -</span><span style='color: #BB0000;'>1.21</span><span>  -</span><span style='color: #BB0000;'>0.287</span><span>    5.30  7.68
-#&gt; </span><span style='color: #555555;'> 8</span><span> 6.11  0.082</span><span style='text-decoration: underline;'>2</span><span>     0.786     -</span><span style='color: #BB0000;'>1.09</span><span>  -</span><span style='color: #BB0000;'>0.285</span><span>    4.69  7.70
-#&gt; </span><span style='color: #555555;'> 9</span><span> 7.15  0.160      0.854     -</span><span style='color: #BB0000;'>0.795</span><span> -</span><span style='color: #BB0000;'>0.065</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>   5.60  9.91
-#&gt; </span><span style='color: #555555;'>10</span><span> 7.53  0.199      0.877     -</span><span style='color: #BB0000;'>0.702</span><span>  0.002</span><span style='text-decoration: underline;'>98</span><span>  5.91 10.7 
-#&gt; </span><span style='color: #555555;'>11</span><span> 1.22  0.015</span><span style='text-decoration: underline;'>7</span><span>     0.087</span><span style='text-decoration: underline;'>4</span><span>    -</span><span style='color: #BB0000;'>1.80</span><span>  -</span><span style='color: #BB0000;'>0.269</span><span>   10.2   7.84
-#&gt; </span><span style='color: #555555;'>12</span><span> 1.63  0.059</span><span style='text-decoration: underline;'>3</span><span>     0.213     -</span><span style='color: #BB0000;'>1.23</span><span>   0.176   14.9  13.1 
-#&gt; </span><span style='color: #555555;'>13</span><span> 2.43  0.056</span><span style='text-decoration: underline;'>5</span><span>     0.385     -</span><span style='color: #BB0000;'>1.25</span><span>  -</span><span style='color: #BB0000;'>0.026</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>   9.78 10.4 
-#&gt; </span><span style='color: #555555;'>14</span><span> 2.50  0.200      0.398     -</span><span style='color: #BB0000;'>0.700</span><span>  0.509   17.9  19.2 
-#&gt; </span><span style='color: #555555;'>15</span><span> 3.02  0.272      0.479     -</span><span style='color: #BB0000;'>0.566</span><span>  0.557   17.3  20.3 </div><div class='input'><span class='co'># }</span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0.589 0.006</span><span style='text-decoration: underline;'>4</span><span>    -</span><span style='color: #BB0000;'>0.230</span><span>     -</span><span style='color: #BB0000;'>2.19</span><span>  -</span><span style='color: #BB0000;'>0.326</span><span>   13.6   7.34
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0.617 0.014</span><span style='text-decoration: underline;'>1</span><span>    -</span><span style='color: #BB0000;'>0.210</span><span>     -</span><span style='color: #BB0000;'>1.85</span><span>  -</span><span style='color: #BB0000;'>0.003</span><span style='color: #BB0000;text-decoration: underline;'>56</span><span> 19.2  10.6 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0.794 0.021</span><span style='text-decoration: underline;'>8</span><span>    -</span><span style='color: #BB0000;'>0.100</span><span>     -</span><span style='color: #BB0000;'>1.66</span><span>   0.070</span><span style='text-decoration: underline;'>3</span><span>  18.6  11.6 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 1.03  0.031</span><span style='text-decoration: underline;'>8</span><span>     0.013</span><span style='text-decoration: underline;'>3</span><span>    -</span><span style='color: #BB0000;'>1.50</span><span>   0.115   17.3  12.2 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 1.50  0.031</span><span style='text-decoration: underline;'>4</span><span>     0.177     -</span><span style='color: #BB0000;'>1.50</span><span>  -</span><span style='color: #BB0000;'>0.062</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  11.8   9.94
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 3.86  0.076</span><span style='text-decoration: underline;'>6</span><span>     0.587     -</span><span style='color: #BB0000;'>1.12</span><span>  -</span><span style='color: #BB0000;'>0.106</span><span>    7.17  9.46
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 4.70  0.062      0.672     -</span><span style='color: #BB0000;'>1.21</span><span>  -</span><span style='color: #BB0000;'>0.287</span><span>    5.30  7.68
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 6.11  0.082</span><span style='text-decoration: underline;'>2</span><span>     0.786     -</span><span style='color: #BB0000;'>1.09</span><span>  -</span><span style='color: #BB0000;'>0.285</span><span>    4.69  7.70
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 7.15  0.160      0.854     -</span><span style='color: #BB0000;'>0.795</span><span> -</span><span style='color: #BB0000;'>0.065</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>   5.60  9.91
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 7.53  0.199      0.877     -</span><span style='color: #BB0000;'>0.702</span><span>  0.002</span><span style='text-decoration: underline;'>98</span><span>  5.91 10.7 
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 1.22  0.015</span><span style='text-decoration: underline;'>7</span><span>     0.087</span><span style='text-decoration: underline;'>4</span><span>    -</span><span style='color: #BB0000;'>1.80</span><span>  -</span><span style='color: #BB0000;'>0.269</span><span>   10.2   7.84
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 1.63  0.059</span><span style='text-decoration: underline;'>3</span><span>     0.213     -</span><span style='color: #BB0000;'>1.23</span><span>   0.176   14.9  13.1 
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> 2.43  0.056</span><span style='text-decoration: underline;'>5</span><span>     0.385     -</span><span style='color: #BB0000;'>1.25</span><span>  -</span><span style='color: #BB0000;'>0.026</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>   9.78 10.4 
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> 2.50  0.200      0.398     -</span><span style='color: #BB0000;'>0.700</span><span>  0.509   17.9  19.2 
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> 3.02  0.272      0.479     -</span><span style='color: #BB0000;'>0.566</span><span>  0.557   17.3  20.3 </div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

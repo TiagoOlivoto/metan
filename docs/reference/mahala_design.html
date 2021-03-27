@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Mahalanobis distance from designed experiments — mahala_design" />
-<meta property="og:description" content="Compute the Mahalanobis distance using data from an experiment conducted in a
+<meta property="og:description" content="
+Compute the Mahalanobis distance using data from an experiment conducted in a
 randomized complete block design or completely randomized design." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ randomized complete block design or completely randomized design." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ randomized complete block design or completely randomized design." />
     </div>
 
     <div class="ref-description">
-    <p>Compute the Mahalanobis distance using data from an experiment conducted in a
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>Compute the Mahalanobis distance using data from an experiment conducted in a
 randomized complete block design or completely randomized design.</p>
     </div>
 
@@ -251,7 +253,7 @@ randomized complete block design or completely randomized design.</p>
       <th>.data</th>
       <td><p>The dataset containing the columns related to Genotypes,
 replication/block and response variables, possible with grouped data passed
-from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.</p></td>
+from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p></td>
     </tr>
     <tr>
       <th>gen</th>
@@ -264,8 +266,7 @@ replications/blocks.</p></td>
     </tr>
     <tr>
       <th>resp</th>
-      <td><p>The response variables. For example <code>resp = c(var1, var2,
-var3)</code>.</p></td>
+      <td><p>The response variables. For example <code>resp = c(var1, var2, var3)</code>.</p></td>
     </tr>
     <tr>
       <th>design</th>
@@ -274,7 +275,7 @@ var3)</code>.</p></td>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>. To compute the statistics by more than
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></td>
     </tr>
     <tr>
@@ -289,8 +290,8 @@ residuals <code>return = 'covmat'</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A symmetric matrix with the Mahalanobis' distance. If <code>.data</code> is
-  a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code> then the results
-  will be returned into a list-column of data frames.</p>
+a grouped data passed from <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> then the results
+will be returned into a list-column of data frames.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>

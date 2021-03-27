@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="Genotype analysis by fixed-effect models — gafem" />
-<meta property="og:description" content="One-way analysis of variance of genotypes conducted in both randomized
+<meta property="og:description" content="
+One-way analysis of variance of genotypes conducted in both randomized
 complete block and alpha-lattice designs." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
@@ -97,7 +98,7 @@ complete block and alpha-lattice designs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.12.0.9000</span>
       </span>
     </div>
 
@@ -230,7 +231,8 @@ complete block and alpha-lattice designs." />
     </div>
 
     <div class="ref-description">
-    <p>One-way analysis of variance of genotypes conducted in both randomized
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
+<p>One-way analysis of variance of genotypes conducted in both randomized
 complete block and alpha-lattice designs.</p>
     </div>
 
@@ -266,8 +268,7 @@ be treated as random effect.</p></td>
     <tr>
       <th>resp</th>
       <td><p>The response variable(s). To analyze multiple variables in a
-single procedure a vector of variables may be used. For example <code>resp =
-c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
+single procedure a vector of variables may be used. For example <code>resp = c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
     </tr>
     <tr>
       <th>block</th>
@@ -275,16 +276,16 @@ c(var1, var2, var3)</code>. Select helpers are also allowed.</p></td>
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 <strong>All effects, except the error, are assumed to be fixed.</strong> Use the
-function <code><a href='gamem.html'>gamem</a></code> to analyze a one-way trial with mixed-effect
+function <code><a href='gamem.html'>gamem()</a></code> to analyze a one-way trial with mixed-effect
 models.</p></td>
     </tr>
     <tr>
       <th>by</th>
       <td><p>One variable (factor) to compute the function by. It is a shortcut
-to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a>()</code>.This is especially useful, for example,
+to <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.This is especially useful, for example,
 when the researcher want to fit a fixed-effect model for each environment.
 In this case, an object of class gafem_grouped is returned.
-<code><a href='mgidi.html'>mgidi</a></code> can then be used to compute the mgidi index within each
+<code><a href='mgidi.html'>mgidi()</a></code> can then be used to compute the mgidi index within each
 environment.</p></td>
     </tr>
     <tr>
@@ -347,7 +348,7 @@ assumed to be fixed.</p>
 resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='get_model_data.html'>get_model_data</a></code> <code><a href='gamem.html'>gamem</a></code></p></div>
+    <div class='dont-index'><p><code><a href='get_model_data.html'>get_model_data()</a></code> <code><a href='gamem.html'>gamem()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
@@ -360,7 +361,8 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
              gen <span class='op'>=</span> <span class='va'>GEN</span>,
              rep <span class='op'>=</span> <span class='va'>REP</span>,
              resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>EL</span>, <span class='va'>CL</span>, <span class='va'>CW</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait PH |=========                                   | 20% 00:00:00 Evaluating trait ED |==================                          | 40% 00:00:00 Evaluating trait EL |==========================                  | 60% 00:00:00 Evaluating trait CL |===================================         | 80% 00:00:00 Evaluating trait CW |============================================| 100% 00:00:00 
+#&gt; ---------------------------------------------------------------------------
 #&gt; One-way ANOVA table (Randomized complete block design)
 #&gt; ---------------------------------------------------------------------------
 #&gt;      model     PH       ED    EL       CL       CW
@@ -374,27 +376,28 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; </div><div class='input'>
 <span class='co'># Fitted values</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>rcbd</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 39 x 8</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 39 x 8</span><span>
 #&gt;    GEN   REP   factors    PH    ED    EL    CL    CW
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> H1    1     H1_1     2.13  50.8  15.1  31.7  27.6
-#&gt; </span><span style='color: #555555;'> 2</span><span> H1    2     H1_2     2.21  49.9  14.7  30.1  25.2
-#&gt; </span><span style='color: #555555;'> 3</span><span> H1    3     H1_3     2.25  51.1  14.7  30.9  27.8
-#&gt; </span><span style='color: #555555;'> 4</span><span> H10   1     H10_1    1.97  44.1  14.2  25.6  13.0
-#&gt; </span><span style='color: #555555;'> 5</span><span> H10   2     H10_2    2.05  43.2  13.8  24.0  10.6
-#&gt; </span><span style='color: #555555;'> 6</span><span> H10   3     H10_3    2.09  44.4  13.9  24.7  13.2
-#&gt; </span><span style='color: #555555;'> 7</span><span> H11   1     H11_1    2.03  47.3  14.5  27.2  16.7
-#&gt; </span><span style='color: #555555;'> 8</span><span> H11   2     H11_2    2.11  46.3  14.1  25.6  14.3
-#&gt; </span><span style='color: #555555;'> 9</span><span> H11   3     H11_3    2.16  47.5  14.2  26.3  16.9
-#&gt; </span><span style='color: #555555;'>10</span><span> H12   1     H12_1    2.36  48.0  14.2  26.6  18.5
-#&gt; </span><span style='color: #555555;'># ... with 29 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    1     H1_1     2.13  50.8  15.1  31.7  27.6
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H1    2     H1_2     2.21  49.9  14.7  30.1  25.2
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H1    3     H1_3     2.25  51.1  14.7  30.9  27.8
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H10   1     H10_1    1.97  44.1  14.2  25.6  13.0
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H10   2     H10_2    2.05  43.2  13.8  24.0  10.6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H10   3     H10_3    2.09  44.4  13.9  24.7  13.2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H11   1     H11_1    2.03  47.3  14.5  27.2  16.7
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H11   2     H11_2    2.11  46.3  14.1  25.6  14.3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H11   3     H11_3    2.16  47.5  14.2  26.3  16.9
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H12   1     H12_1    2.36  48.0  14.2  26.6  18.5
+#&gt; </span><span style='color: #949494;'># ... with 29 more rows</span><span></div><div class='input'>
 <span class='co'># ALPHA-LATTICE DESIGN</span>
 <span class='va'>alpha</span> <span class='op'>&lt;-</span> <span class='fu'>gafem</span><span class='op'>(</span><span class='va'>data_alpha</span>,
               gen <span class='op'>=</span> <span class='va'>GEN</span>,
               rep <span class='op'>=</span> <span class='va'>REP</span>,
               block <span class='op'>=</span> <span class='va'>BLOCK</span>,
               resp <span class='op'>=</span> <span class='va'>YIELD</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait YIELD |=========================================| 100% 00:00:00 
+#&gt; ---------------------------------------------------------------------------
 #&gt; One-way ANOVA table (Alpha-lattice design)
 #&gt; ---------------------------------------------------------------------------
 #&gt;       model    YIELD
@@ -404,20 +407,20 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt;   Residuals       NA</div><div class='input'>
 <span class='co'># Fitted values</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>alpha</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 72 x 5</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 72 x 5</span><span>
 #&gt;    GEN   REP   BLOCK factors   YIELD
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> G11   R1    B1    G11_R1_B1  4.41
-#&gt; </span><span style='color: #555555;'> 2</span><span> G04   R1    B1    G04_R1_B1  4.73
-#&gt; </span><span style='color: #555555;'> 3</span><span> G05   R1    B1    G05_R1_B1  5.23
-#&gt; </span><span style='color: #555555;'> 4</span><span> G22   R1    B1    G22_R1_B1  4.65
-#&gt; </span><span style='color: #555555;'> 5</span><span> G21   R1    B2    G21_R1_B2  4.61
-#&gt; </span><span style='color: #555555;'> 6</span><span> G10   R1    B2    G10_R1_B2  4.21
-#&gt; </span><span style='color: #555555;'> 7</span><span> G20   R1    B2    G20_R1_B2  4.04
-#&gt; </span><span style='color: #555555;'> 8</span><span> G02   R1    B2    G02_R1_B2  4.32
-#&gt; </span><span style='color: #555555;'> 9</span><span> G23   R1    B3    G23_R1_B3  4.11
-#&gt; </span><span style='color: #555555;'>10</span><span> G14   R1    B3    G14_R1_B3  4.70
-#&gt; </span><span style='color: #555555;'># ... with 62 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G11   R1    B1    G11_R1_B1  4.41
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G04   R1    B1    G04_R1_B1  4.73
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G05   R1    B1    G05_R1_B1  5.23
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G22   R1    B1    G22_R1_B1  4.65
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G21   R1    B2    G21_R1_B2  4.61
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G10   R1    B2    G10_R1_B2  4.21
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G20   R1    B2    G20_R1_B2  4.04
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G02   R1    B2    G02_R1_B2  4.32
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G23   R1    B3    G23_R1_B3  4.11
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G14   R1    B3    G14_R1_B3  4.70
+#&gt; </span><span style='color: #949494;'># ... with 62 more rows</span><span></div><div class='input'>
 <span class='co'># }</span>
 
 </div></span></pre>
