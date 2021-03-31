@@ -547,6 +547,7 @@ mps <- function(.data,
   }
 
   listres <- list()
+  stab_res <- stab_res[,colnames(mperf_res)]
   for (i in 1:nvar) {
     weghting <-
       tibble(gen = rownames(mperf_res),
