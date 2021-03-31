@@ -118,12 +118,12 @@ gytb <- function(.data,
     set_names("GEN")
   yld <-
     .data %>%
-    select({{yield}}, -names(factors)) %>%
+    select({{yield}}, -{{gen}}) %>%
     select_numeric_cols() %>%
     pull()
   others <-
     .data %>%
-    select({{traits}}, -names(factors), -{{yield}}) %>%
+    select({{traits}}, -{{gen}}, -{{yield}}) %>%
     select_numeric_cols()
   if(is.null(weight)){
     weights <- rep(1, length(others))
@@ -169,7 +169,6 @@ gytb <- function(.data,
   }
   colnames(vardec) <- paste(prefix, "/", colnames(vardec), sep = "")
   data <- cbind(factors, varinc, vardec)
-
   if(has_na(data)){
     data <- remove_rows_na(data)
     has_text_in_num(data)
