@@ -496,6 +496,7 @@ mps <- function(.data,
              gmd("R2", verbose = FALSE) %>%
              column_to_rownames("GEN")
     )
+  stab <- stab[,colnames(mperf_res)]
 
   if(is.null(ideotype_stab)){
     rescaled <- replicate(ncol(stab), 0)

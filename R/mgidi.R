@@ -519,8 +519,6 @@ plot.mgidi <- function(x,
     }
   }
   } else{
-    x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
-    y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
     if(genotypes == "selected"){
     data <-
       x$contri_fac %>%
@@ -533,7 +531,8 @@ plot.mgidi <- function(x,
     data %<>%
       pivot_longer(-GEN) %>%
       arrange(GEN)
-    title <- ifelse(is.null(title), "The strengths and weaknesses view of genotypes", title)
+    title <- ifelse(is.null(title), "Strengths and weaknesses view", title)
+    y.lab <- ifelse(!missing(y.lab), y.lab, "Contribution to the MGIDI")
     if(radar == TRUE){
       p <-
         ggplot(data, aes(x = GEN, y = value)) +
@@ -556,7 +555,7 @@ plot.mgidi <- function(x,
               ...) +
         labs(title = title,
              x = NULL,
-             y = "Contribution of each factor to the MGIDI index") +
+             y = y.lab) +
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()
@@ -570,6 +569,8 @@ plot.mgidi <- function(x,
           theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
       }
     } else{
+      x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
+      y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
     p <-
       ggplot(data, aes(GEN, value, fill = name))+
       geom_bar(stat = "identity",
