@@ -23,7 +23,7 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
    * AMMI-based stability statistics with [`AMMI_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
    * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
-   * BLUP-based stability indexes with [`blup_indexes()`](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html).
+   * BLUP-based stability indexes with [`blup_indexes()`](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html).
    * Ecovalence [@Wricke1965] using [`ecovalence()`](https://tiagoolivoto.github.io/metan/reference/ecovalence.html).
    * GGE biplot analysis with [`gge()`](https://tiagoolivoto.github.io/metan/reference/gge.html).
    * Genotypic confidence index [@Annicchiarico1992] using [`Annicchiarico()`](https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html).
