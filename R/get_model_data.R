@@ -377,7 +377,7 @@ get_model_data <- function(x,
                       "env_stratification", "fai_blup", "sh", "mps", "mtmps"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.", call. = FALSE)
   }
-  if (!is.null(what) && substr(what, 1, 2) == "PC") {
+  if (!is.null(what) && what != "PCA" && substr(what, 1, 2) == "PC") {
     npc <- ncol(x[[1]][["model"]] %>%
                   select(starts_with("PC")) %>%
                   select(matches("PC\\d+")))
@@ -442,6 +442,7 @@ get_model_data <- function(x,
   if (!type %in% c("GEN", "ENV")) {
     stop("Argument 'type' invalid. It must be either 'GEN' or 'ENV'.")
   }
+
   if(has_class(x, "mps")){
     if (is.null(what)){
       what <- "mps_ind"
@@ -516,6 +517,7 @@ get_model_data <- function(x,
         mutate(data = map(data, ~.x %>% .[[what]])) %>%
         unnest(data)
     } else{
+
       bind <- x[[what]]
     }
   }

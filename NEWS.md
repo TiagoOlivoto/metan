@@ -1,4 +1,7 @@
 # metan (development version)
+## Minor improvements
+* Fix bug in `get_model_data()` calling objects of class `mgidi` with `what = "PCA"`.
+
 
 # metan 1.13.0
 ## New functions
