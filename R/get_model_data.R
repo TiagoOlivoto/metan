@@ -561,7 +561,7 @@ get_model_data <- function(x,
     if(what == "scores"){
       npc <- length(x[[1]]$varexpl)
       bind <- lapply(x, function(x) {
-        rbind(x$ coordgen %>%
+        rbind(x$coordgen %>%
                 as.data.frame() %>%
                 set_names(paste("PC", 1:npc, sep = "")) %>%
                 add_cols(TYPE = "GEN",
@@ -573,7 +573,8 @@ get_model_data <- function(x,
                 add_cols(TYPE = "ENV",
                          CODE = x$labelenv,
                          .before = 1))
-      })
+      }) %>%
+        rbind_fill_id(.id = "TRAIT")
     }
     if(what == "exp_var"){
       bind <- lapply(x, function(x) {
@@ -581,7 +582,8 @@ get_model_data <- function(x,
                Eigenvalue = x$eigenvalues,
                Variance = x$varexpl,
                Accumulated = cumsum(Variance))
-      })
+      }) %>%
+        rbind_fill_id(.id = "TRAIT")
     }
   }
 
