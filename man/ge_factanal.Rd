@@ -63,9 +63,9 @@ model <- ge_factanal(data_ge2,
 
 }
 \references{
-Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of methodologies for
-environment stratification and analysis of genotype adaptability.
-Crop Breed. Appl. Biotechnol. 4:7-11.
+Murakami, D.M.D., and C.D.C. Cruz. 2004. Proposal of
+methodologies for environment stratification and analysis of genotype
+adaptability. Crop Breed. Appl. Biotechnol. 4:7-11.
 }
 \seealso{
 \code{\link[=superiority]{superiority()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=ge_stats]{ge_stats()}}, \code{\link[=ge_reg]{ge_reg()}}

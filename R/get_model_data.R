@@ -121,6 +121,8 @@
 #' * `"scores"` The scores for genotypes and environments for all the
 #' analyzed traits (default).
 #' * `"exp_var"` The eigenvalues and explained variance.
+#' * `"projection"` The projection of each genotype in the AEC coordinates in
+#' the stability GGE plot
 #'
 #'  **Objects of class `gytb`:**
 #' * `"gyt"` Genotype by yield*trait table (Default).
@@ -413,7 +415,7 @@ get_model_data <- function(x,
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Y", "h2", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
   check21 <- c("MEAN", "DFG", "MSG", "FCG", "PFG", "DFB", "MSB", "FCB", "PFB", "DFCR", "MSCR", "FCR", "PFCR", "DFIB_R", "MSIB_R", "FCIB_R", "PFIB_R", "DFE", "MSE", "CV", "h2", "AS")
-  check22 <- c("scores", "exp_var")
+  check22 <- c("scores", "exp_var", "projection")
   check23 <- c("coefs", "loads", "crossloads", "canonical")
   check24 <- c("gyt", "stand_gyt", "si")
   check25 <- c("ACV", "ACV_R")
@@ -585,8 +587,30 @@ get_model_data <- function(x,
       }) %>%
         rbind_fill_id(.id = "TRAIT")
     }
+    if(what == "projection"){
+      bind <- lapply(x, function(x) {
+        coord_gen <-  x$coordgen[, c(1, 2)]
+        coord_env <-  x$coordenv[, c(1, 2)]
+        med1 <- mean(coord_env[, 1])
+        med2 <- mean(coord_env[, 2])
+        x1 <- NULL
+        for (i in 1:nrow(x$ge_mat)) {
+          x <- solve(matrix(c(-med2, med1, med1, med2), nrow = 2),
+                     matrix(c(0, med2 * coord_gen[i, 2] + med1 * coord_gen[i, 1]), ncol = 1))
+          x1 <- rbind(x1, t(x))
+        }
+        plotdata <- data.frame(coord_gen,
+                               type = "genotype",
+                               GEN = mod[[1]]$labelgen) %>%
+          mutate(x1_x = x1[, 1],
+                 x1_y = x1[, 2],
+                 PROJECTION = sqrt((x1_x - X1)^2 + (x1_y - X2)^2))
+      }) %>%
+        rbind_fill_id(.id = "TRAIT") %>%
+        select(TRAIT, GEN, PROJECTION) %>%
+        arrange(PROJECTION)
+    }
   }
-
   if(has_class(x, "gytb")){
     if (is.null(what)){
       what <- "gyt"

@@ -163,6 +163,8 @@ respectively.
 \item \code{"scores"} The scores for genotypes and environments for all the
 analyzed traits (default).
 \item \code{"exp_var"} The eigenvalues and explained variance.
+\item \code{"projection"} The projection of each genotype in the AEC coordinates in
+the stability GGE plot
 }
 
 \strong{Objects of class \code{gytb}:}
