@@ -593,6 +593,7 @@ get_model_data <- function(x,
         coord_env <-  x$coordenv[, c(1, 2)]
         med1 <- mean(coord_env[, 1])
         med2 <- mean(coord_env[, 2])
+        labgen <- x$labelgen
         x1 <- NULL
         for (i in 1:nrow(x$ge_mat)) {
           x <- solve(matrix(c(-med2, med1, med1, med2), nrow = 2),
@@ -601,7 +602,7 @@ get_model_data <- function(x,
         }
         plotdata <- data.frame(coord_gen,
                                type = "genotype",
-                               GEN = mod[[1]]$labelgen) %>%
+                               GEN = labgen) %>%
           mutate(x1_x = x1[, 1],
                  x1_y = x1[, 2],
                  PROJECTION = sqrt((x1_x - X1)^2 + (x1_y - X2)^2))

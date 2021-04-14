@@ -2,6 +2,7 @@
 ## Minor improvements
 * Fix bug in `get_model_data()` calling objects of class `mgidi` with `what = "PCA"`.
 * Improve output of `gmd()` for `gge` objects.
+* New option `projection` in `gmd()` for `gge` objects to get the projection of each genotype in the AEC coordinates.
 
 # metan 1.13.0
 ## New functions
