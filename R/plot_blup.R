@@ -10,7 +10,9 @@
 #'   variable of `x`.
 #' @param which Which plot to shown. If `which = "gen"` (default) plots the
 #'   BLUPs for genotypes. To create a plot showing the BLUPs for
-#'   genotype-environment combinations, used `which = "ge"`.
+#'   genotype-environment combinations, use `which = "ge"`.
+#' @param ncol,nrow The number of columns and rows, respectively, to be shown in
+#'   the plot when `which = "ge"`.
 #' @param prob The probability error for constructing confidence interval.
 #' @param export Export (or not) the plot. Default is `TRUE`.
 #' @param file.type If `export = TRUE`, define the type of file to be
@@ -74,6 +76,8 @@
 plot_blup <- function(x,
                       var = 1,
                       which = "gen",
+                      cols = NULL,
+                      rows = NULL,
                       prob = 0.05,
                       export = FALSE,
                       file.type = "pdf",
@@ -153,7 +157,7 @@ plot_blup <- function(x,
     }
     if(which == "ge"){
     p1 <- p1 +
-        facet_wrap(~ENV) +
+        facet_wrap(~ENV, ncol = ncol, nrow = nrow) +
         theme(panel.spacing = unit(panel.spacing, "cm"),
               legend.position = "bottom")
     }
