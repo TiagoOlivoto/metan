@@ -65,13 +65,15 @@ ge_plot <- function(.data,
       stat_summary(aes(colour = {{gen}},
                        group = {{gen}}),
                    fun = mean,
-                   geom = "line")
+                   geom = "line",
+                   na.rm = TRUE)
   } else {
     p <- p +
       stat_summary(aes(group = {{gen}}),
                    fun = mean,
                    geom = "line",
-                   colour = "black")
+                   colour = "black",
+                   na.rm = TRUE)
   }
   p <- p + geom_point(stat = "summary",
                       fun = mean,
