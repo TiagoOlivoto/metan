@@ -52,7 +52,9 @@
 #' * `"MSE"` The mean square of error.
 #' * `"CV"` The coefficient of variation.
 #' * `"h2"` The broad-sence heritability
-#' * `"MSE"` The accucary of selection (square root of h2).
+#' * `"AS"` The accucary of selection (square root of h2).
+#' * `"FMAX"` The Hartley's test (the ratio of the largest MSE to the smallest
+#' MSE).
 #'
 #'
 #'  **Objects of class `anova_joint` or `gafem`:**
@@ -414,7 +416,7 @@ get_model_data <- function(x,
   check18 <- c("Mean_rp", "Sem_rp", "Wi", "rank")
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Y", "h2", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
-  check21 <- c("MEAN", "DFG", "MSG", "FCG", "PFG", "DFB", "MSB", "FCB", "PFB", "DFCR", "MSCR", "FCR", "PFCR", "DFIB_R", "MSIB_R", "FCIB_R", "PFIB_R", "DFE", "MSE", "CV", "h2", "AS")
+  check21 <- c("MEAN", "DFG", "MSG", "FCG", "PFG", "DFB", "MSB", "FCB", "PFB", "DFCR", "MSCR", "FCR", "PFCR", "DFIB_R", "MSIB_R", "FCIB_R", "PFIB_R", "DFE", "MSE", "CV", "h2", "AS", "FMAX")
   check22 <- c("scores", "exp_var", "projection")
   check23 <- c("coefs", "loads", "crossloads", "canonical")
   check24 <- c("gyt", "stand_gyt", "si")
@@ -1001,12 +1003,22 @@ get_model_data <- function(x,
     if (!what %in% c(check21)) {
       stop("Invalid value in 'what' for object of class, ", class(x), ". Allowed are ", paste(check21, collapse = ", "), call. = FALSE)
     }
+    if(what == "FMAX"){
+      bind <-
+      sapply(x, function(x) {
+        x[["MSRratio"]]
+      }) %>%
+        as.data.frame() %>%
+        rownames_to_column("TRAIT") %>%
+        setNames(c("TRAIT", "F_RATIO"))
+    } else{
     bind <- sapply(x, function(x) {
       x[["individual"]][[what]]
     }) %>%
       as_tibble() %>%
       mutate(ENV = x[[1]][["individual"]][["ENV"]]) %>%
       column_to_first(ENV)
+    }
   }
   if (has_class(x, c("anova_joint", "gafem", "gafem_group"))) {
     if(has_class(x, c("gafem_group"))){

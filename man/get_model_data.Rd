@@ -76,7 +76,9 @@ alpha lattice design only).
 \item \code{"MSE"} The mean square of error.
 \item \code{"CV"} The coefficient of variation.
 \item \code{"h2"} The broad-sence heritability
-\item \code{"MSE"} The accucary of selection (square root of h2).
+\item \code{"AS"} The accucary of selection (square root of h2).
+\item \code{"FMAX"} The Hartley's test (the ratio of the largest MSE to the smallest
+MSE).
 }
 
 \strong{Objects of class \code{anova_joint} or \code{gafem}:}
