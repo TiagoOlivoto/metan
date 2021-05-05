@@ -112,8 +112,6 @@ anova_joint <- function(.data,
         select_rows(2, 4, 1, 3, 5) %>%
         as.data.frame()
       anova[2, 1] <- "REP(ENV)"
-      anova[1, 5] <- anova[1, 4] / anova[2, 4]
-      anova[1, 6] <- 1 - pf(anova[1, 5], anova[1, 2], anova[2, 2])
       CV <- tibble(Source = "CV(%)", Df = as.numeric(sqrt(anova[5, 4]) / mean(data$mean) * 100))
       msr <- tibble(Source = "MSR+/MSR-", Df = max(msr) / min(msr))
       ovmean <- tibble(Source = "OVmean", Df = mean(data$mean))
