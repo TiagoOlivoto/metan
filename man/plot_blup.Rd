@@ -8,8 +8,8 @@ plot_blup(
   x,
   var = 1,
   which = "gen",
-  cols = NULL,
-  rows = NULL,
+  ncol = NULL,
+  nrow = NULL,
   prob = 0.05,
   export = FALSE,
   file.type = "pdf",
@@ -43,6 +43,9 @@ variable of \code{x}.}
 \item{which}{Which plot to shown. If \code{which = "gen"} (default) plots the
 BLUPs for genotypes. To create a plot showing the BLUPs for
 genotype-environment combinations, use \code{which = "ge"}.}
+
+\item{ncol, nrow}{The number of columns and rows, respectively, to be shown in
+the plot when \code{which = "ge"}.}
 
 \item{prob}{The probability error for constructing confidence interval.}
 
@@ -104,9 +107,6 @@ prioritizing the first, last, and middle labels.}
 \code{file.type = "tiff"} is used. Default is \code{300} (300 dpi)}
 
 \item{...}{Currently not used.}
-
-\item{ncol, nrow}{The number of columns and rows, respectively, to be shown in
-the plot when \code{which = "ge"}.}
 }
 \value{
 An object of class \verb{gg, ggplot}.
