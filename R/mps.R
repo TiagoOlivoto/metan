@@ -301,11 +301,11 @@ mps <- function(.data,
              column_to_rownames("GEN"),
            # AMMI-based indexes
            waas = performs_ammi(.data,
-                              env = {{env}},
-                              gen = {{gen}},
-                              rep = {{rep}},
-                              resp = {{resp}},
-                              verbose = FALSE) %>%
+                                env = {{env}},
+                                gen = {{gen}},
+                                rep = {{rep}},
+                                resp = {{resp}},
+                                verbose = FALSE) %>%
              AMMI_indexes() %>%
              gmd("WAAS", verbose = FALSE) %>%
              column_to_rownames("GEN"),
@@ -319,20 +319,20 @@ mps <- function(.data,
              gmd("ZA", verbose = FALSE) %>%
              column_to_rownames("GEN"),
            ev = performs_ammi(.data,
+                              env = {{env}},
+                              gen = {{gen}},
+                              rep = {{rep}},
+                              resp = {{resp}},
+                              verbose = FALSE) %>%
+             AMMI_indexes() %>%
+             gmd("EV", verbose = FALSE) %>%
+             column_to_rownames("GEN"),
+           sipc = performs_ammi(.data,
                                 env = {{env}},
                                 gen = {{gen}},
                                 rep = {{rep}},
                                 resp = {{resp}},
                                 verbose = FALSE) %>%
-             AMMI_indexes() %>%
-             gmd("EV", verbose = FALSE) %>%
-             column_to_rownames("GEN"),
-           sipc = performs_ammi(.data,
-                               env = {{env}},
-                               gen = {{gen}},
-                               rep = {{rep}},
-                               resp = {{resp}},
-                               verbose = FALSE) %>%
              AMMI_indexes() %>%
              gmd("SIPC", verbose = FALSE) %>%
              column_to_rownames("GEN"),
@@ -413,27 +413,27 @@ mps <- function(.data,
              column_to_rownames("GEN"),
            # Lin e Binns' superiority index
            pi = superiority(.data,
-                              env = {{env}},
-                              gen = {{gen}},
-                              resp = {{resp}},
-                              verbose = FALSE) %>%
-             gmd(verbose = FALSE) %>%
-             column_to_rownames("GEN"),
-           # Annicchiarico's genotypic confidence index
-           wi = Annicchiarico(.data,
                             env = {{env}},
                             gen = {{gen}},
-                            rep = {{rep}},
                             resp = {{resp}},
                             verbose = FALSE) %>%
              gmd(verbose = FALSE) %>%
              column_to_rownames("GEN"),
+           # Annicchiarico's genotypic confidence index
+           wi = Annicchiarico(.data,
+                              env = {{env}},
+                              gen = {{gen}},
+                              rep = {{rep}},
+                              resp = {{resp}},
+                              verbose = FALSE) %>%
+             gmd(verbose = FALSE) %>%
+             column_to_rownames("GEN"),
            # Power Law Residuals
            polar = ge_polar(.data,
-                        env = {{env}},
-                        gen = {{gen}},
-                        resp = {{resp}},
-                        verbose = FALSE) %>%
+                            env = {{env}},
+                            gen = {{gen}},
+                            resp = {{resp}},
+                            verbose = FALSE) %>%
              gmd(verbose = FALSE) %>%
              column_to_rownames("GEN"),
            # adjusted coefficient of variation
@@ -496,8 +496,9 @@ mps <- function(.data,
              gmd("R2", verbose = FALSE) %>%
              column_to_rownames("GEN")
     )
-  stab <- stab[,colnames(mperf_res)]
-
+  ifelse(nvar == 1,
+         stab <- stab,
+         stab <- stab[,colnames(mperf_res)])
   if(is.null(ideotype_stab)){
     rescaled <- replicate(ncol(stab), 0)
     ideotype.D <- replicate(ncol(stab), 0)
@@ -546,9 +547,10 @@ mps <- function(.data,
       stop("The range of the numeric vector `wmper` must be between 0 and 100.")
     }
   }
-
+  ifelse(nvar == 1,
+         stab_res <- stab_res,
+         stab <- stab_res[,colnames(mperf_res)])
   listres <- list()
-  stab_res <- stab_res[,colnames(mperf_res)]
   for (i in 1:nvar) {
     weghting <-
       tibble(gen = rownames(mperf_res),

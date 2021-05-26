@@ -189,7 +189,15 @@ resp_surf <- function(.data, factor1, factor2, rep = NULL, resp,
   }
   invisible(structure(list(results = results,
                            anova = ANOVA,
-                           model = SurfMod),
+                           model = SurfMod,
+                           coefs = list(B0 = B0, B1 = B1, B2 = B2,
+                                        B3 = B3, B4 = B4, B5 = B5),
+                           points = list(A = round(dA, 4),
+                                         D = round(dD, 4),
+                                         pred = round(pred_val, 4),
+                                         type = case_when(AV1 > 0 && AV2 > 0 ~ "Minimum",
+                                                          AV1 < 0 && AV2 < 0 ~ "Maximum",
+                                                          TRUE ~ "Outside"))),
                       class = "resp_surf"))
 }
 
