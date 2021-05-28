@@ -307,7 +307,7 @@ mtsi <- function(.data,
                 by = sense,
                 any_of(c("SDperc", "SGperc")),
                 stats = c("min, mean, ci, sd.amo, max, sum"))
-    what <- ifelse(has_class(.data, "WAASB"), "WAAS", "WAASB")
+    what <- ifelse(has_class(.data, "waasb"), "WAASB", "WAAS")
     waasb_index <- gmd(.data, what, verbose = FALSE)
     waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
     sel_dif_stab <-

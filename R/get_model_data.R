@@ -440,7 +440,7 @@ get_model_data <- function(x,
   check32 <- c("observed", "performance", "performance_res", "stability",
                "stability_res", "mps_ind", "h2", "perf_method", "wmper",
                "sense_mper", "stab_method", "wstab", "sense_stab")
-  if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "waasb_group", "gamem", "gamem_group", "gafem", "anova_joint"))) {
+  if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "waas", "waasb_group", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
   if (!type %in% c("GEN", "ENV")) {
@@ -1070,6 +1070,7 @@ get_model_data <- function(x,
     }
   }
 
+
   if(has_class(x,  "ge_means")){
     if (is.null(what)){
       what <- "ge_means"
@@ -1359,8 +1360,16 @@ get_model_data <- function(x,
     if (is.null(what)){
       what <- "WAAS"
     }
-    if (!what %in% c(check1, check2)) {
+    if (!what %in% c("details", check1, check2)) {
       stop("Invalid value in 'what' for object of class '", class(x), "'. Allowed are ", paste(check1, collapse = ", "), call. = FALSE)
+    }
+    if (what == "details") {
+      bind <- sapply(x, function(x) {
+        val <- x[["Details"]][["Values"]] %>% as.character()
+      }) %>%
+        as_tibble() %>%
+        mutate(Parameters = x[[1]][["Details"]][["Parameters"]]) %>%
+        column_to_first(Parameters)
     }
     if (what %in% check1 | what  %in% check2) {
       bind <- sapply(x, function(x) {
@@ -1372,14 +1381,6 @@ get_model_data <- function(x,
         dplyr::filter(TYPE == {{type}}) %>%
         remove_cols(TYPE) %>%
         column_to_first(GEN)
-    }
-    if (what == "details") {
-      bind <- sapply(x, function(x) {
-        val <- x[["Details"]][["Values"]] %>% as.character()
-      }) %>%
-        as_tibble() %>%
-        mutate(Parameters = x[[1]][["Details"]][["Parameters"]]) %>%
-        column_to_first(Parameters)
     }
   }
 
