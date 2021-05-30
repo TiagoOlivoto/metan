@@ -55,6 +55,7 @@
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
+#' library(metan)
 #' mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 #' print(mod)
 #' }
@@ -63,14 +64,13 @@ env_dissimilarity <- function(.data,
                               gen,
                               rep,
                               resp){
-  factors  <- .data %>%
-    select(ENV = {{env}},
-           GEN = {{gen}},
-           REP = {{rep}}) %>%
+  factors  <-
+    .data %>%
+    select({{env}}, {{gen}}, {{rep}}) %>%
     mutate(across(everything(), as.factor))
-  vars <- .data %>%
-    select({{resp}}, -!!colnames(factors)) %>%
-    select_numeric_cols()
+  vars <- .data %>% select({{resp}}, -names(factors))
+  vars %<>% select_numeric_cols()
+  factors %<>% set_names("ENV", "GEN", "REP")
   listres <- list()
   nvar <- ncol(vars)
   for (var in 1:nvar) {
