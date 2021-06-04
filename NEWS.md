@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.14.0
 ## Minor improvements
 * Fix bug in `get_model_data()` calling objects of class `mgidi` with `what = "PCA"`.
 * Fix bug in `path_coeff()` when generating sequences of direct effects depending on the constant added to the diagonal of correlation matrix.
