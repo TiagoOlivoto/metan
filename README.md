@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version-ago/metan)](https://CRAN.R-project.org/package=metan)
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
 ![Downloads](http://cranlogs.r-pkg.org/badges/metan) ![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan)
 [<img src="https://zenodo.org/badge/130062661.svg" alt="DOI" width="186"/>](https://zenodo.org/badge/latestdoi/130062661)
@@ -187,17 +187,17 @@ get_model_data(model, "ipca_pval")
 # Class of the model: performs_ammi
 # Variable extracted: Pr(>F)
 # # A tibble: 9 x 4
-#   PC       DF      GY     HM
-#   <chr> <dbl>   <dbl>  <dbl>
-# 1 PC1      21 0       0     
-# 2 PC2      19 0       0     
-# 3 PC3      17 0.0014  0.0021
-# 4 PC4      15 0.00960 0.0218
-# 5 PC5      13 0.318   0.0377
-# 6 PC6      11 0.561   0.041 
-# 7 PC7       9 0.754   0.0633
-# 8 PC8       7 0.804   0.232 
-# 9 PC9       5 0.934   0.944
+#   PC       DF     GY     HM
+#   <chr> <dbl>  <dbl>  <dbl>
+# 1 PC1      21 0      0     
+# 2 PC2      19 0      0     
+# 3 PC3      17 0.0014 0.0021
+# 4 PC4      15 0.0096 0.0218
+# 5 PC5      13 0.318  0.0377
+# 6 PC6      11 0.561  0.041 
+# 7 PC7       9 0.754  0.0633
+# 8 PC8       7 0.804  0.232 
+# 9 PC9       5 0.934  0.944
 ```
 
 ## Biplots
@@ -267,6 +267,7 @@ model2 <-
             gen = GEN,
             rep = REP,
             resp = everything())
+# Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 
 # Method: REML/BLUP
 # Random effects: GEN, GEN:ENV
 # Fixed effects: ENV, REP(ENV)
@@ -321,10 +322,11 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
+# Evaluating trait GY |============================================| 100% 00:00:05 
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
-# # A tibble: 10 x 35
+# # A tibble: 10 x 36
 #    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval
 #    <chr> <chr> <dbl> <dbl> <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl>
 #  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 
@@ -337,10 +339,11 @@ get_model_data(stats)
 #  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 
 #  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 
 # 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 
-# # ... with 23 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASV <dbl>,
-# #   SIPC <dbl>, EV <dbl>, ZA <dbl>, WAAS <dbl>, HMGV <dbl>, RPGV <dbl>,
-# #   HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>, S1 <dbl>,
-# #   S2 <dbl>, S3 <dbl>, S6 <dbl>, N1 <dbl>, N2 <dbl>, N3 <dbl>, N4 <dbl>
+# # ... with 24 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASV <dbl>,
+# #   SIPC <dbl>, EV <dbl>, ZA <dbl>, WAAS <dbl>, WAASB <dbl>, HMGV <dbl>,
+# #   RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>,
+# #   S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>, N1 <dbl>, N2 <dbl>, N3 <dbl>,
+# #   N4 <dbl>
 ```
 
 # Citation
@@ -365,8 +368,6 @@ A BibTeX entry for LaTeX users is
     pages = {783-789},
     year = {2020},
     doi = {10.1111/2041-210X.13384},
-    url = {https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13384},
-    eprint = {https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.13384},
   }
 ```
 

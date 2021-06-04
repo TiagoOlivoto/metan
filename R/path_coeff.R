@@ -200,7 +200,7 @@ path_coeff <- function(.data,
         cor.x2 <- cor.x
         diag(cor.x2) <- diag(cor.x2) + cc
         betas[i, 1] <- cc
-        betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+        betas[i, 2:nvar] <- t(solve_svd(cor.x2) %*% cor.y)
         cc <- cc + kincrement
       }
       names(betas) <- paste0(c("K", names(pr)))
@@ -364,7 +364,7 @@ path_coeff <- function(.data,
           cor.x2 <- cor.x
           diag(cor.x2) <- diag(cor.x2) + cc
           betas[i, 1] <- cc
-          betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+          betas[i, 2:nvar] <- t(solve_svd(cor.x2) %*% cor.y)
           cc <- cc + kincrement
         }
         names(betas) <- paste0(c("K", predstw))
@@ -527,7 +527,7 @@ path_coeff_mat <- function(cor_mat,
       cor.x2 <- cor.x
       diag(cor.x2) <- diag(cor.x2) + cc
       betas[i, 1] <- cc
-      betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
+      betas[i, 2:nvar] <- t(solve_svd(cor.x2) %*% cor.y)
       cc <- cc + kincrement
     }
     names(betas) <- paste0(c("K", colnames(cor.x)))
