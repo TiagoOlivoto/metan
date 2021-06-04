@@ -62,6 +62,7 @@ is given by \eqn{C = \sqrt{(1-r)^3\times Q1\times Q2}}.
 }
 \examples{
 \donttest{
+library(metan)
 mod <- env_dissimilarity(data_ge, ENV, GEN, REP, GY)
 print(mod)
 }

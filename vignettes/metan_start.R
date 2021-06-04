@@ -46,7 +46,7 @@ arrange_ggplot(a, b, c, tag_levels = "a", ncol = 1)
 
 ## -----------------------------------------------------------------------------
 predicted <- predict(ammi_model, naxis = c(4, 6))
-make_mat(predicted$GY, GEN, ENV, YpredAMMI) %>%
+make_mat(predicted$GY, GEN, ENV, YpredAMMI) %>% 
   round_cols()
 
 ## ----warning=FALSE------------------------------------------------------------
@@ -72,16 +72,16 @@ e <- plot_blup(model2,
 arrange_ggplot(d, e, tag_levels = list(c("d", "e")), ncol = 1)
 
 ## -----------------------------------------------------------------------------
-get_model_data(model2, what = "blupge") %>%
+get_model_data(model2, what = "blupge") %>% 
   round_cols()
 
 ## -----------------------------------------------------------------------------
 model3 <- waasb(data_ge, ENV, GEN, REP, everything(), verbose = FALSE)
-get_model_data(model3, what = "WAASB") %>%
+get_model_data(model3, what = "WAASB") %>% 
   round_cols()
 
 ## -----------------------------------------------------------------------------
-index <- Resende_indexes(model3)
+index <- blup_indexes(model3)
 get_model_data(index) %>% round_cols()
 
 ## ----echo = TRUE--------------------------------------------------------------
@@ -95,6 +95,6 @@ arrange_ggplot(e, f, tag_levels = list(c("e", "f")), ncol = 1)
 
 ## -----------------------------------------------------------------------------
 stat_ge <- ge_stats(data_ge, ENV, GEN, REP, GY)
-get_model_data(stat_ge) %>%
+get_model_data(stat_ge) %>% 
   round_cols()
 

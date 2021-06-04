@@ -1,8 +1,10 @@
 # metan (development version)
 ## Minor improvements
 * Fix bug in `get_model_data()` calling objects of class `mgidi` with `what = "PCA"`.
+* Fix bug in `path_coeff()` when generating sequences of direct effects depending on the constant added to the diagonal of correlation matrix.
 * Improve output of `gmd()` for `gge` objects.
 * New option `projection` in `gmd()` for `gge` objects to get the projection of each genotype in the AEC coordinates.
+* Fix bug when using `mtsi()` with an object of class `waas`.
 
 # metan 1.13.0
 ## New functions

@@ -23,7 +23,7 @@ library(metan)
 library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, digits = 3, ...){
-  df <- datatable(table, rownames = rownames, extensions = 'Buttons',
+  df <- datatable(data.frame(table), rownames = rownames, extensions = 'Buttons',
                   options = list(scrollX = TRUE, 
                                  dom = '<<t>Bp>',
                                  buttons = c('copy', 'excel', 'pdf', 'print')), ...)
@@ -182,7 +182,7 @@ print_table(matrix, rownames = TRUE)
 
 # Make upper and lower triangular matrices
 ```{r, message=FALSE }
-cor_mat <- corr_coef(data_ge2, EP, EL, ED, EL, CD, CL)$cor
+cor_mat <- corr_coef(data_ge2, EP, EL, ED, EL, CD, CL)$cor %>% as.data.frame()
 
 # Upper triangular
 upp_mat <- make_upper_tri(cor_mat)
@@ -208,8 +208,10 @@ print_table(sym, rownames = TRUE)
 Reorder the correlation matrix according to the correlation coefficient by using  hclust for hierarchical clustering order. This is useful to identify the hidden pattern in the matrix.
 
 ```{r}
-print_table(cor_mat, rownames = TRUE)
-reorder_cormat(cor_mat) %>% print_table(rownames = TRUE)
+print_table(cor_mat)
+reorder_cormat(as.matrix(cor_mat)) %>%
+  as.data.frame() %>% 
+  print_table(rownames = TRUE)
 ```
 
 
@@ -291,7 +293,7 @@ This vignette was built with [pkgdown](https://pkgdown.r-lib.org/). All tables w
 library(DT) # Used to make the tables
 # Function to make HTML tables
 print_table <- function(table, rownames = FALSE, digits = 3, ...){
-  df <- datatable(table, rownames = rownames, extensions = 'Buttons',
+  df <- datatable(data.frame(table), rownames = rownames, extensions = 'Buttons',
                   options = list(scrollX = TRUE, 
                                  dom = '<<t>Bp>',
                                  buttons = c('copy', 'excel', 'pdf', 'print')), ...)

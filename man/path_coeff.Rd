@@ -8,8 +8,8 @@
 path_coeff(
   .data,
   resp,
-  by = NULL,
   pred = everything(),
+  by = NULL,
   exclude = FALSE,
   correction = NULL,
   knumber = 50,
@@ -29,13 +29,13 @@ path_coeff_mat(cor_mat, resp, correction = NULL, knumber = 50, verbose = TRUE)
 
 \item{resp}{The dependent variable.}
 
-\item{by}{One variable (factor) to compute the function by. It is a shortcut
-to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
-one grouping variable use that function.}
-
 \item{pred}{The predictor variables, set to \code{everything()}, i.e., the
 predictor variables are all the numeric variables in the data except that
 in \code{resp}.}
+
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}. To compute the statistics by more than
+one grouping variable use that function.}
 
 \item{exclude}{Logical argument, set to false. If \code{exclude = TRUE}, then
 the variables in \code{pred} are deleted from the data, and the analysis
@@ -127,7 +127,6 @@ models; and \code{Selectedpred}, a vector with the name of the selected
 variables in the iterative process.
 }
 \examples{
-\donttest{
 library(metan)
 
 # Using KW as the response variable and all other ones as predictors
@@ -163,7 +162,6 @@ pcoeff4 <- path_coeff(data_ge2,
 # When one analysis should be carried out for each environment
 # Using the forward-pipe operator \%>\%
 pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
-}
 
 
 }

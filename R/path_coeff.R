@@ -28,12 +28,12 @@
 #' @param resp The dependent variable.
 #' @param cor_mat Matrix of correlations containing both dependent and
 #'   independent traits.
-#' @param by One variable (factor) to compute the function by. It is a shortcut
-#'   to [dplyr::group_by()]. To compute the statistics by more than
-#'   one grouping variable use that function.
 #' @param pred The predictor variables, set to `everything()`, i.e., the
 #'   predictor variables are all the numeric variables in the data except that
 #'   in `resp`.
+#' @param by One variable (factor) to compute the function by. It is a shortcut
+#'   to [dplyr::group_by()]. To compute the statistics by more than
+#'   one grouping variable use that function.
 #' @param exclude Logical argument, set to false. If `exclude = TRUE`, then
 #'   the variables in `pred` are deleted from the data, and the analysis
 #'   will use as predictor those that remained, except that in `resp`.
@@ -92,7 +92,6 @@
 #'
 #' @export
 #' @examples
-#' \donttest{
 #' library(metan)
 #'
 #' # Using KW as the response variable and all other ones as predictors
@@ -128,13 +127,12 @@
 #' # When one analysis should be carried out for each environment
 #' # Using the forward-pipe operator %>%
 #'pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
-#'}
 #'
 #'
 path_coeff <- function(.data,
                        resp,
-                       by = NULL,
                        pred = everything(),
+                       by = NULL,
                        exclude = FALSE,
                        correction = NULL,
                        knumber = 50,
@@ -169,7 +167,7 @@ path_coeff <- function(.data,
     return(set_class(results, c("group_path", "tbl_df", "tbl",  "data.frame")))
   }
   data <- select_numeric_cols(.data)
-  nam <- names(.data)
+  # nam <- names(.data)
   if (brutstep == FALSE) {
     if (exclude == TRUE) {
       pr <- data %>% select(-{{pred}}, -{{resp}})
@@ -179,12 +177,12 @@ path_coeff <- function(.data,
     names <- colnames(pr)
     y <- data %>% select({{resp}})
     if(plot_res == TRUE){
-    dfs <- cbind(y, pr)
-    form <- as.formula(paste(names(y), "~ ."))
-    mod <- lm(form, data = dfs)
-    opar <- par(mfrow = c(1, 2))
-    on.exit(par(opar))
-    plot(mod, which = c(1, 2), ...)
+      dfs <- cbind(y, pr)
+      form <- as.formula(paste(names(y), "~ ."))
+      mod <- lm(form, data = dfs)
+      opar <- par(mfrow = c(1, 2))
+      on.exit(par(opar))
+      plot(mod, which = c(1, 2), ...)
     }
     nam_resp <- names(y)
     cor.y <- cor(pr, y, use = missingval)
@@ -202,7 +200,7 @@ path_coeff <- function(.data,
         cor.x2 <- cor.x
         diag(cor.x2) <- diag(cor.x2) + cc
         betas[i, 1] <- cc
-        betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
+        betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
         cc <- cc + kincrement
       }
       names(betas) <- paste0(c("K", names(pr)))
@@ -225,21 +223,23 @@ path_coeff <- function(.data,
       }
       x <- as.numeric(x)
       betas <- data.frame(K = x, VAR = y, direct = z)
-      p1 <- ggplot2::ggplot(betas, ggplot2::aes(K,
-                                                direct, col = VAR)) + ggplot2::geom_line(size = 1) +
-        ggplot2::theme_bw() + ggplot2::theme(axis.ticks.length = unit(0.2,
-                                                                      "cm"), axis.text = element_text(size = 12,
-                                                                                                      colour = "black"), axis.title = element_text(size = 12,
-                                                                                                                                                   colour = "black"), axis.ticks = element_line(colour = "black"),
-                                             legend.position = "bottom", plot.margin = margin(0.1,
-                                                                                              0.1, 0.1, 0.1, "cm"), legend.title = element_blank(),
-                                             panel.border = element_rect(colour = "black",
-                                                                         fill = NA, size = 1), panel.grid.major.x = element_blank(),
-                                             panel.grid.major.y = element_blank(), panel.grid.minor.x = element_blank(),
-                                             panel.grid.minor.y = element_blank()) + ggplot2::labs(x = "k values",
-                                                                                                   y = "Beta values") + ggplot2::geom_abline(intercept = 0,
-                                                                                                                                             slope = 0) + ggplot2::scale_x_continuous(breaks = seq(0,
-                                                                                                                                                                                                   1, by = 0.1))
+      p1 <-
+        ggplot(betas, aes(K, direct, col = VAR)) +
+        geom_line(size = 1) +
+        theme_bw() +
+        theme(axis.ticks.length = unit(0.2, "cm"),
+              axis.text = element_text(size = 12, colour = "black"),
+              axis.title = element_text(size = 12, colour = "black"),
+              axis.ticks = element_line(colour = "black"),
+              legend.position = "bottom", plot.margin = margin(0.1,  0.1, 0.1, 0.1, "cm"),
+              legend.title = element_blank(),
+              panel.border = element_rect(colour = "black", fill = NA, size = 1),
+              panel.grid.major.x = element_blank(),
+              panel.grid.major.y = element_blank(),
+              panel.grid.minor.x = element_blank(),
+              panel.grid.minor.y = element_blank()) +
+        labs(x = "k values", y = "Beta values") + geom_abline(intercept = 0,  slope = 0) +
+        scale_x_continuous(breaks = seq(0, 1, by = 0.1))
     } else {
       p1 <- "No graphic generated due to correction value"
     }
@@ -281,7 +281,7 @@ path_coeff <- function(.data,
       }
     }
     last <- data.frame(weight = t(AvAvet[c(nrow(AvAvet)),
-                                         ])[-c(1), ])
+    ])[-c(1), ])
     abs <- data.frame(weight = abs(last[, "weight"]))
     rownames(abs) <- rownames(last)
     last <- abs[order(abs[, "weight"], decreasing = T),
@@ -364,7 +364,7 @@ path_coeff <- function(.data,
           cor.x2 <- cor.x
           diag(cor.x2) <- diag(cor.x2) + cc
           betas[i, 1] <- cc
-          betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
+          betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
           cc <- cc + kincrement
         }
         names(betas) <- paste0(c("K", predstw))
@@ -387,22 +387,23 @@ path_coeff <- function(.data,
         }
         x <- as.numeric(x)
         betas <- data.frame(K = x, VAR = y, direct = z)
-        p1 <- ggplot2::ggplot(betas, ggplot2::aes(K,
-                                                  direct, col = VAR)) + ggplot2::geom_line(size = 1) +
-          ggplot2::theme_bw() + ggplot2::theme(axis.ticks.length = unit(0.2,
-                                                                        "cm"), axis.text = element_text(size = 12,
-                                                                                                        colour = "black"), axis.title = element_text(size = 12,
-                                                                                                                                                     colour = "black"), axis.ticks = element_line(colour = "black"),
-                                               legend.position = "bottom", plot.margin = margin(0.1,
-                                                                                                0.1, 0.1, 0.1, "cm"), legend.title = element_blank(),
-                                               panel.border = element_rect(colour = "black",
-                                                                           fill = NA, size = 1), panel.grid.major.x = element_blank(),
-                                               panel.grid.major.y = element_blank(), panel.grid.minor.x = element_blank(),
-                                               panel.grid.minor.y = element_blank()) + ggplot2::labs(x = "k values",
-                                                                                                     y = expression(paste(beta, " values"))) +
-          ggplot2::geom_abline(intercept = 0, slope = 0) +
-          ggplot2::scale_x_continuous(breaks = seq(0,
-                                                   1, by = 0.1))
+        p1 <-
+          ggplot(betas, aes(K, direct, col = VAR)) +
+          geom_line(size = 1) +
+          theme_bw() +
+          theme(axis.ticks.length = unit(0.2, "cm"),
+                axis.text = element_text(size = 12, colour = "black"),
+                axis.title = element_text(size = 12, colour = "black"),
+                axis.ticks = element_line(colour = "black"),
+                legend.position = "bottom", plot.margin = margin(0.1,  0.1, 0.1, 0.1, "cm"),
+                legend.title = element_blank(),
+                panel.border = element_rect(colour = "black", fill = NA, size = 1),
+                panel.grid.major.x = element_blank(),
+                panel.grid.major.y = element_blank(),
+                panel.grid.minor.x = element_blank(),
+                panel.grid.minor.y = element_blank()) +
+          labs(x = "k values", y = "Beta values") + geom_abline(intercept = 0,  slope = 0) +
+          scale_x_continuous(breaks = seq(0, 1, by = 0.1))
       } else {
         p1 <- "No graphic generated due to correction value"
       }
@@ -427,7 +428,7 @@ path_coeff <- function(.data,
       VIF <- data.frame(diag(solve_svd(cor.x)))
       names(VIF) <- "VIF"
       last <- data.frame(weight = t(AvAvet[c(nrow(AvAvet)),
-                                           ])[-c(1), ])
+      ])[-c(1), ])
       abs <- data.frame(weight = abs(last[, "weight"]))
       rownames(abs) <- rownames(last)
       last <- abs[order(abs[, "weight"], decreasing = T),
@@ -526,7 +527,7 @@ path_coeff_mat <- function(cor_mat,
       cor.x2 <- cor.x
       diag(cor.x2) <- diag(cor.x2) + cc
       betas[i, 1] <- cc
-      betas[i, 2:nvar] <- t(solve_svd(cor.x2, cor.y))
+      betas[i, 2:nvar] <- t(solve(cor.x2, cor.y))
       cc <- cc + kincrement
     }
     names(betas) <- paste0(c("K", colnames(cor.x)))
@@ -549,21 +550,23 @@ path_coeff_mat <- function(cor_mat,
     }
     x <- as.numeric(x)
     betas <- data.frame(K = x, VAR = y, direct = z)
-    p1 <- ggplot2::ggplot(betas, ggplot2::aes(K,
-                                              direct, col = VAR)) + ggplot2::geom_line(size = 1) +
-      ggplot2::theme_bw() + ggplot2::theme(axis.ticks.length = unit(0.2,
-                                                                    "cm"), axis.text = element_text(size = 12,
-                                                                                                    colour = "black"), axis.title = element_text(size = 12,
-                                                                                                                                                 colour = "black"), axis.ticks = element_line(colour = "black"),
-                                           legend.position = "bottom", plot.margin = margin(0.1,
-                                                                                            0.1, 0.1, 0.1, "cm"), legend.title = element_blank(),
-                                           panel.border = element_rect(colour = "black",
-                                                                       fill = NA, size = 1), panel.grid.major.x = element_blank(),
-                                           panel.grid.major.y = element_blank(), panel.grid.minor.x = element_blank(),
-                                           panel.grid.minor.y = element_blank()) + ggplot2::labs(x = "k values",
-                                                                                                 y = "Beta values") + ggplot2::geom_abline(intercept = 0,
-                                                                                                                                           slope = 0) + ggplot2::scale_x_continuous(breaks = seq(0,
-                                                                                                                                                                                                 1, by = 0.1))
+    p1 <-
+      ggplot(betas, aes(K, direct, col = VAR)) +
+      geom_line(size = 1) +
+      theme_bw() +
+      theme(axis.ticks.length = unit(0.2, "cm"),
+            axis.text = element_text(size = 12, colour = "black"),
+            axis.title = element_text(size = 12, colour = "black"),
+            axis.ticks = element_line(colour = "black"),
+            legend.position = "bottom", plot.margin = margin(0.1,  0.1, 0.1, 0.1, "cm"),
+            legend.title = element_blank(),
+            panel.border = element_rect(colour = "black", fill = NA, size = 1),
+            panel.grid.major.x = element_blank(),
+            panel.grid.major.y = element_blank(),
+            panel.grid.minor.x = element_blank(),
+            panel.grid.minor.y = element_blank()) +
+      labs(x = "k values", y = "Beta values") + geom_abline(intercept = 0,  slope = 0) +
+      scale_x_continuous(breaks = seq(0, 1, by = 0.1))
   } else {
     p1 <- "No graphic generated due to correction value"
   }
