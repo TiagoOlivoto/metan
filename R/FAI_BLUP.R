@@ -231,7 +231,7 @@ fai_blup <- function(.data,
   GID <- DEM[1:nrow(scores), (nrow(scores) + 1):nrow(sd.scores)]
   spatial.prob <- (1/GID)/(replicate(IN, c(as.numeric(apply((1/GID), 1, sum)))))
   ideotype.rank <- lapply(1:IN, function(i) {
-    sort(spatial.prob[, i], decreasing = TRUE)
+    sort(spatial.prob[, i] %>% replace_na(replace = 0), decreasing = TRUE)
   })
   names(ideotype.rank) <- paste("ID", 1:IN, sep = "")
   means.factor <- means[, names.pos.var.factor]
