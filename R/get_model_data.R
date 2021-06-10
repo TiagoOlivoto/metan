@@ -753,7 +753,7 @@ get_model_data <- function(x,
       }
       if (what == "data") {
         bind <-
-          map(x, ~.x[["residuals"]] %>% select_cols(GEN, Y) %>% means_by(GEN)) %>%
+          map(x, ~.x[["residuals"]] %>% select_cols(1:Y)) %>%
           rbind_fill_id(.id = "VAR") %>%
           pivot_wider(names_from = VAR, values_from = Y)
       }

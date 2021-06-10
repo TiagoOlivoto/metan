@@ -82,7 +82,9 @@ Smith_Hazel <- function(.data,
     stop("Argument 'use_data = ", match.call()["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
   }
   if(has_class(.data, "gamem")){
-    ifelse(missing(weights), weights <- rep(1, length(.data)), weights <- weights)
+    ifelse(is.null(weights),
+           weights <- rep(1, length(.data)),
+           weights <- weights)
     mat <-
       gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
       means_by(GEN) %>%
