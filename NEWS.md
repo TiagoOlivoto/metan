@@ -1,4 +1,6 @@
 # metan (development version)
+* Fix bug when calling `gmd(., "data")`
+* Fix bug with `fai_blup()` when genotypes has distance as 0.
 
 # metan 1.14.0
 ## Minor improvements
