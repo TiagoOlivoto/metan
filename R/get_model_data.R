@@ -755,7 +755,9 @@ get_model_data <- function(x,
         bind <-
           map(x, ~.x[["residuals"]] %>% select_cols(1:Y)) %>%
           rbind_fill_id(.id = "VAR") %>%
-          pivot_wider(names_from = VAR, values_from = Y)
+          pivot_wider(names_from = VAR,
+                      values_from = Y,
+                      values_fn = {mean})
       }
       if (what == "gcov") {
         data <- gmd(x, "data", verbose = FALSE)
