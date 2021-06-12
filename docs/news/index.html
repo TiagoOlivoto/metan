@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -226,6 +226,32 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="metan-development-version" class="section level1">
+<h1 class="page-header" data-toc-text="development version">
+<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fix bug when calling <code><a href="../reference/get_model_data.html">gmd(., "data")</a></code>
+</li>
+<li>Fix bug with <code><a href="../reference/fai_blup.html">fai_blup()</a></code> when genotypes has distance as 0.</li>
+</ul>
+</div>
+    <div id="metan-1140" class="section level1">
+<h1 class="page-header" data-toc-text="1.14.0">
+<a href="#metan-1140" class="anchor"></a>metan 1.14.0<small> 2021-06-07 </small>
+</h1>
+<div id="minor-improvements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-improvements" class="anchor"></a>Minor improvements</h2>
+<ul>
+<li>Fix bug in <code><a href="../reference/get_model_data.html">get_model_data()</a></code> calling objects of class <code>mgidi</code> with <code>what = "PCA"</code>.</li>
+<li>Fix bug in <code><a href="../reference/path_coeff.html">path_coeff()</a></code> when generating sequences of direct effects depending on the constant added to the diagonal of correlation matrix.</li>
+<li>Improve output of <code><a href="../reference/get_model_data.html">gmd()</a></code> for <code>gge</code> objects.</li>
+<li>New option <code>projection</code> in <code><a href="../reference/get_model_data.html">gmd()</a></code> for <code>gge</code> objects to get the projection of each genotype in the AEC coordinates.</li>
+<li>Fix bug when using <code><a href="../reference/mtsi.html">mtsi()</a></code> with an object of class <code>waas</code>.</li>
+</ul>
+</div>
+</div>
     <div id="metan-1130" class="section level1">
 <h1 class="page-header" data-toc-text="1.13.0">
 <a href="#metan-1130" class="anchor"></a>metan 1.13.0<small> 2021-03-27 </small>
@@ -244,9 +270,9 @@
 <code><a href="../reference/mps.html">mps()</a></code> and <code><a href="../reference/mtmps.html">mtmps()</a></code> for uni- and multivariate-based mean performance and stability in multi-environment trials.</li>
 </ul>
 </div>
-<div id="minor-improvements" class="section level2">
+<div id="minor-improvements-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-1" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/ge_reg.html">ge_reg()</a></code> now returns hypotesis testing for slope and deviations from the regression. Thanks to <a href="https://www.researchgate.net/profile/Leonardo_Bhering">@LeonardoBehring</a> and <a href="https://www.escavador.com/sobre/6363700/michel-henriques-de-souza">@MichelSouza</a> for the suggestion.</li>
@@ -283,9 +309,9 @@
 <code><a href="../reference/utils_rows_cols.html">remove_rownames()</a></code>, <code><a href="../reference/utils_rows_cols.html">column_to_rownames()</a></code> and <code><a href="../reference/utils_rows_cols.html">rownames_to_column()</a></code> to deal with rownames.</li>
 </ul>
 </div>
-<div id="minor-improvements-1" class="section level2">
+<div id="minor-improvements-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-1" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-2" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>New argument <code>sel.var()</code> in <code><a href="../reference/corr_ci.html">corr_ci()</a></code> to filter correlations with a selected variable</li>
 <li>New arguments <code>fill</code> and <code>position.fill</code> in <code><a href="../reference/plot_ci.html">plot_ci()</a></code> to fill correlations by levels of a factor variable.</li>
@@ -312,9 +338,9 @@
 <code><a href="../reference/venn_plot.html">venn_plot()</a></code> to produce Venn diagrams.</li>
 </ul>
 </div>
-<div id="minor-improvements-2" class="section level2">
+<div id="minor-improvements-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-2" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-3" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/gge.html">gge()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</li>
@@ -351,9 +377,9 @@
 <code><a href="../reference/env_stratification.html">env_stratification()</a></code> to perform environment stratification using factor analysis.</li>
 </ul>
 </div>
-<div id="minor-improvements-3" class="section level2">
+<div id="minor-improvements-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-3" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-4" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li><p><code>as_*()</code> now handles vectors.</p></li>
 <li><p><code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> now shows both stars or p-values for reporting the significance of correlations.</p></li>
@@ -448,9 +474,9 @@
 <code><a href="../reference/coincidence_index.html">coincidence_index()</a></code> for computing the coincidence index.</li>
 </ul>
 </div>
-<div id="minor-improvements-4" class="section level2">
+<div id="minor-improvements-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-4" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-5" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now extracts the genotypic and phenotypic variance-covariance matrix from objects of class <code>gamem</code> and <code>waasb</code>.</li>
@@ -1062,7 +1088,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

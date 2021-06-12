@@ -97,7 +97,7 @@ Performs a stability analysis based on Thennarasu (1995) statistics." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -288,24 +288,24 @@ thesis. P.J. School, IARI, New Delhi, India.</p>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Thennarasu's stability indexes
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 10 x 11</span><span>
-#&gt;    GEN       Y   Y_R    N1  N1_R    N2  N2_R    N3  N3_R      N4  N4_R
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1     2.60     6  2.57   8   0.367     5 0.429     4 0         1.5
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10    2.47    10  3.71  10   0.531     7 0.577     7 0.003</span><span style='text-decoration: underline;'>2</span><span>    4.5
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2     2.74     3  2.43   5.5 0.540     8 0.634     8 0.014     8  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3     2.96     2  2      2.5 0.667     9 0.862     9 0.008</span><span style='text-decoration: underline;'>5</span><span>    6  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4     2.64     5  1.93   1   0.321     1 0.402     2 0.014</span><span style='text-decoration: underline;'>7</span><span>    9  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5     2.54     7  2.71   9   0.339     2 0.384     1 0         1.5
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6     2.53     8  2.43   5.5 0.347     3 0.411     3 0.003</span><span style='text-decoration: underline;'>2</span><span>    4.5
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7     2.74     4  2.29   4   0.508     6 0.564     6 0.002</span><span style='text-decoration: underline;'>2</span><span>    3  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8     3.00     1  2      2.5 1        10 1.12     10 0.014</span><span style='text-decoration: underline;'>9</span><span>   10  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9     2.51     9  2.5    7   0.357     4 0.436     5 0.009</span><span style='text-decoration: underline;'>60</span><span>   7  
+#&gt; <span style='color: #949494;'># A tibble: 10 x 11</span>
+#&gt;    GEN       Y   Y_R    N1  N1_R    N2  N2_R    N3  N3_R     N4  N4_R
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> G1     2.60     6  2.57   8   0.367     5 0.429     4 0        1.5
+#&gt; <span style='color: #BCBCBC;'> 2</span> G10    2.47    10  3.71  10   0.531     7 0.577     7 0.003<span style='text-decoration: underline;'>2</span>   4.5
+#&gt; <span style='color: #BCBCBC;'> 3</span> G2     2.74     3  2.43   5.5 0.540     8 0.634     8 0.014    8  
+#&gt; <span style='color: #BCBCBC;'> 4</span> G3     2.96     2  2      2.5 0.667     9 0.862     9 0.008<span style='text-decoration: underline;'>5</span>   6  
+#&gt; <span style='color: #BCBCBC;'> 5</span> G4     2.64     5  1.93   1   0.321     1 0.402     2 0.014<span style='text-decoration: underline;'>7</span>   9  
+#&gt; <span style='color: #BCBCBC;'> 6</span> G5     2.54     7  2.71   9   0.339     2 0.384     1 0        1.5
+#&gt; <span style='color: #BCBCBC;'> 7</span> G6     2.53     8  2.43   5.5 0.347     3 0.411     3 0.003<span style='text-decoration: underline;'>2</span>   4.5
+#&gt; <span style='color: #BCBCBC;'> 8</span> G7     2.74     4  2.29   4   0.508     6 0.564     6 0.002<span style='text-decoration: underline;'>2</span>   3  
+#&gt; <span style='color: #BCBCBC;'> 9</span> G8     3.00     1  2      2.5 1        10 1.12     10 0.014<span style='text-decoration: underline;'>9</span>  10  
+#&gt; <span style='color: #BCBCBC;'>10</span> G9     2.51     9  2.5    7   0.357     4 0.436     5 0.009<span style='text-decoration: underline;'>6</span>   7  
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -317,7 +317,7 @@ thesis. P.J. School, IARI, New Delhi, India.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

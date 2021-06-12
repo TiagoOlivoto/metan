@@ -145,7 +145,7 @@ assuming all effects, except the intercept, as random factors.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -524,7 +524,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
               gen <span class='op'>=</span> <span class='va'>GEN</span>,
               rep <span class='op'>=</span> <span class='va'>REP</span>,
               resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -537,18 +537,18 @@ incomplete block designs. Biometrika 63:83-92.</p>
 </div><div class='img'><img src='waasb-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Genetic parameters</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"genpar"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span>
 #&gt;   Parameters              GY     HM
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Phenotypic variance  0.181 5.52  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Heritability         0.154 0.088</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> GEIr2                0.313 0.397 
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> h2mg                 0.815 0.686 
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Accuracy             0.903 0.828 
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> rge                  0.370 0.435 
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> CVg                  6.26  1.46  
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> CVr                 11.6   3.50  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> CV ratio             0.538 0.415 </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.181 5.52  
+#&gt; <span style='color: #BCBCBC;'>2</span> Heritability         0.154 0.088<span style='text-decoration: underline;'>7</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2                0.313 0.397 
+#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                 0.815 0.686 
+#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy             0.903 0.828 
+#&gt; <span style='color: #BCBCBC;'>6</span> rge                  0.370 0.435 
+#&gt; <span style='color: #BCBCBC;'>7</span> CVg                  6.26  1.46  
+#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 11.6   3.50  
+#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio             0.538 0.415 </div><div class='input'>
 
 
 <span class='co'>#===============================================================#</span>
@@ -564,7 +564,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
                random <span class='op'>=</span> <span class='st'>"env"</span>,
                resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with</a></span><span class='op'>(</span><span class='st'>"N"</span><span class='op'>)</span>,
                wresp <span class='op'>=</span> <span class='fl'>65</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'wresp'. Setting wresp = 65 to all the 3 variables.</span></div><div class='output co'>#&gt; Evaluating trait NR |===============                             | 33% 00:00:00 Evaluating trait NKR |=============================              | 67% 00:00:00 Evaluating trait NKE |===========================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'wresp'. Setting wresp = 65 to all the 3 variables.</span></div><div class='output co'>#&gt; Evaluating trait NR |===============                             | 33% 00:00:00 Evaluating trait NKR |=============================              | 67% 00:00:01 Evaluating trait NKE |===========================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       NR     NKR      NKE
@@ -577,22 +577,22 @@ incomplete block designs. Biometrika 63:83-92.</p>
 
 <span class='co'># Get the index WAASBY</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, what <span class='op'>=</span> <span class='st'>"WAASBY"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAASBY</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 13 x 4</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAASBY</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 13 x 4</span>
 #&gt;    GEN      NR   NKR   NKE
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> H1    69.2   42.7  33.5
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> H10   35.7   53.7  49.3
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> H11    9.63  58.2  47.1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> H12   63.6   35    36.8
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> H13   84.6   27.0  60.0
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> H2    39.7   50.8  62.8
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> H3    18.4   48.4  16.0
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H4    28.4   97.6  88.1
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> H5    28.5   74.0  94.0
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> H6    55.8   34.5  32.2
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> H7    52.0   42.0  40.9
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> H8    42.1   27.3  21.9
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> H9    26.4   48.2  14.9</div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> H1    69.2   42.7  33.5
+#&gt; <span style='color: #BCBCBC;'> 2</span> H10   35.7   53.7  49.3
+#&gt; <span style='color: #BCBCBC;'> 3</span> H11    9.63  58.2  47.1
+#&gt; <span style='color: #BCBCBC;'> 4</span> H12   63.6   35    36.8
+#&gt; <span style='color: #BCBCBC;'> 5</span> H13   84.6   27.0  60.0
+#&gt; <span style='color: #BCBCBC;'> 6</span> H2    39.7   50.8  62.8
+#&gt; <span style='color: #BCBCBC;'> 7</span> H3    18.4   48.4  16.0
+#&gt; <span style='color: #BCBCBC;'> 8</span> H4    28.4   97.6  88.1
+#&gt; <span style='color: #BCBCBC;'> 9</span> H5    28.5   74.0  94.0
+#&gt; <span style='color: #BCBCBC;'>10</span> H6    55.8   34.5  32.2
+#&gt; <span style='color: #BCBCBC;'>11</span> H7    52.0   42.0  40.9
+#&gt; <span style='color: #BCBCBC;'>12</span> H8    42.1   27.3  21.9
+#&gt; <span style='color: #BCBCBC;'>13</span> H9    26.4   48.2  14.9</div><div class='input'>
 <span class='co'># Plot the scores (response x WAASB)</span>
 <span class='fu'><a href='plot_scores.html'>plot_scores</a></span><span class='op'>(</span><span class='va'>model2</span>, type <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </div><div class='img'><img src='waasb-2.png' alt='' width='700' height='433' /></div><div class='input'>
@@ -624,17 +624,17 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'>
 <span class='co'># Get Likelihood-ratio test</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='st'>"lrt"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 8 x 8</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: lrt</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 8 x 8</span>
 #&gt;   VAR   model     npar logLik   AIC   LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GY    GEN          5  -</span><span style='color: #BB0000;'>242.</span><span>  495. 19.3      1     1.11</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> GY    REP(ENV)     5  -</span><span style='color: #BB0000;'>247.</span><span>  504. 28.4      1     9.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> GY    ENV          5  -</span><span style='color: #BB0000;'>267.</span><span>  545. 69.3      1     8.26</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-17</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> GY    GEN:ENV      5  -</span><span style='color: #BB0000;'>255.</span><span>  520. 44.8      1     2.15</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> HM    GEN          5  -</span><span style='color: #BB0000;'>948.</span><span> </span><span style='text-decoration: underline;'>1</span><span>905.  7.86     1     5.07</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> HM    REP(ENV)     5  -</span><span style='color: #BB0000;'>952.</span><span> </span><span style='text-decoration: underline;'>1</span><span>913. 16.2      1     5.73</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> HM    ENV          5  -</span><span style='color: #BB0000;'>977.</span><span> </span><span style='text-decoration: underline;'>1</span><span>964. 66.5      1     3.55</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> HM    GEN:ENV      5  -</span><span style='color: #BB0000;'>975.</span><span> </span><span style='text-decoration: underline;'>1</span><span>960. 62.8      1     2.27</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span></div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> GY    GEN          5  -<span style='color: #BB0000;'>242.</span>  495. 19.3      1     1.11<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span>
+#&gt; <span style='color: #BCBCBC;'>2</span> GY    REP(ENV)     5  -<span style='color: #BB0000;'>247.</span>  504. 28.4      1     9.91<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> GY    ENV          5  -<span style='color: #BB0000;'>267.</span>  545. 69.3      1     8.26<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-17</span>
+#&gt; <span style='color: #BCBCBC;'>4</span> GY    GEN:ENV      5  -<span style='color: #BB0000;'>255.</span>  520. 44.8      1     2.15<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span>
+#&gt; <span style='color: #BCBCBC;'>5</span> HM    GEN          5  -<span style='color: #BB0000;'>948.</span> <span style='text-decoration: underline;'>1</span>905.  7.86     1     5.07<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 3</span>
+#&gt; <span style='color: #BCBCBC;'>6</span> HM    REP(ENV)     5  -<span style='color: #BB0000;'>952.</span> <span style='text-decoration: underline;'>1</span>913. 16.2      1     5.73<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span>
+#&gt; <span style='color: #BCBCBC;'>7</span> HM    ENV          5  -<span style='color: #BB0000;'>977.</span> <span style='text-decoration: underline;'>1</span>964. 66.5      1     3.55<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span>
+#&gt; <span style='color: #BCBCBC;'>8</span> HM    GEN:ENV      5  -<span style='color: #BB0000;'>975.</span> <span style='text-decoration: underline;'>1</span>960. 62.8      1     2.27<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span></div><div class='input'>
 <span class='co'># Get the random effects</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model3</span>, what <span class='op'>=</span> <span class='st'>"ranef"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ranef</span></div><div class='output co'>#&gt; $ENV
@@ -1279,7 +1279,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; 420  E9  G9   3 -0.5723710495  4.60476947
 #&gt; </div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -1291,7 +1291,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

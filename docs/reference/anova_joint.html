@@ -99,7 +99,7 @@ alpha-lattice designs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -324,66 +324,66 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Joint ANOVA table
 #&gt; ---------------------------------------------------------------------------
-#&gt;     Source     Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        ENV  13.00 279.57 21.5057   62.33 0.00e+00
-#&gt;   REP(ENV)  28.00   9.66  0.3451    3.57 3.59e-08
-#&gt;        GEN   9.00  13.00  1.4439   14.93 2.19e-19
-#&gt;    GEN:ENV 117.00  31.22  0.2668    2.76 1.01e-11
-#&gt;  Residuals 252.00  24.37  0.0967      NA       NA
-#&gt;      CV(%)  11.63     NA      NA      NA       NA
-#&gt;  MSR+/MSR-   6.71     NA      NA      NA       NA
-#&gt;     OVmean   2.67     NA      NA      NA       NA
+#&gt;     Source     Df Sum Sq Mean Sq F value    Pr(&gt;F)
+#&gt;        ENV  13.00 279.57 21.5057  222.41 7.25e-130
+#&gt;   REP(ENV)  28.00   9.66  0.3451    3.57  3.59e-08
+#&gt;        GEN   9.00  13.00  1.4439   14.93  2.19e-19
+#&gt;    GEN:ENV 117.00  31.22  0.2668    2.76  1.01e-11
+#&gt;  Residuals 252.00  24.37  0.0967      NA        NA
+#&gt;      CV(%)  11.63     NA      NA      NA        NA
+#&gt;  MSR+/MSR-   6.71     NA      NA      NA        NA
+#&gt;     OVmean   2.67     NA      NA      NA        NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Joint ANOVA table
 #&gt; ---------------------------------------------------------------------------
-#&gt;     Source     Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        ENV  13.00   5710  439.26   57.22 1.11e-16
-#&gt;   REP(ENV)  28.00    215    7.68    2.70 2.20e-05
-#&gt;        GEN   9.00    270   29.98   10.56 7.41e-14
-#&gt;    GEN:ENV 117.00   1101    9.41    3.31 1.06e-15
-#&gt;  Residuals 252.00    716    2.84      NA       NA
-#&gt;      CV(%)   3.50     NA      NA      NA       NA
-#&gt;  MSR+/MSR-   5.24     NA      NA      NA       NA
-#&gt;     OVmean  48.09     NA      NA      NA       NA
+#&gt;     Source     Df Sum Sq Mean Sq F value    Pr(&gt;F)
+#&gt;        ENV  13.00   5710  439.26  154.67 5.86e-112
+#&gt;   REP(ENV)  28.00    215    7.68    2.70  2.20e-05
+#&gt;        GEN   9.00    270   29.98   10.56  7.41e-14
+#&gt;    GEN:ENV 117.00   1101    9.41    3.31  1.06e-15
+#&gt;  Residuals 252.00    716    2.84      NA        NA
+#&gt;      CV(%)   3.50     NA      NA      NA        NA
+#&gt;  MSR+/MSR-   5.24     NA      NA      NA        NA
+#&gt;     OVmean  48.09     NA      NA      NA        NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
 #&gt; Done!</div><div class='input'><span class='co'># Predicted values</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>j_an</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 420 x 6</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 420 x 6</span>
 #&gt;    ENV   GEN   REP   factors    GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1    1     G1_1     2.42  46.5
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G1    2     G1_2     2.40  46.0
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G1    3     G1_3     2.27  47.1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G2    1     G2_1     2.96  45.4
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G2    2     G2_2     2.94  44.8
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G2    3     G2_3     2.81  45.9
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G3    1     G3_1     2.95  45.9
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G3    2     G3_2     2.92  45.3
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G3    3     G3_3     2.80  46.4
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G4    1     G4_1     2.65  48.3
-#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span></div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> E1    G1    1     G1_1     2.42  46.5
+#&gt; <span style='color: #BCBCBC;'> 2</span> E1    G1    2     G1_2     2.40  46.0
+#&gt; <span style='color: #BCBCBC;'> 3</span> E1    G1    3     G1_3     2.27  47.1
+#&gt; <span style='color: #BCBCBC;'> 4</span> E1    G2    1     G2_1     2.96  45.4
+#&gt; <span style='color: #BCBCBC;'> 5</span> E1    G2    2     G2_2     2.94  44.8
+#&gt; <span style='color: #BCBCBC;'> 6</span> E1    G2    3     G2_3     2.81  45.9
+#&gt; <span style='color: #BCBCBC;'> 7</span> E1    G3    1     G3_1     2.95  45.9
+#&gt; <span style='color: #BCBCBC;'> 8</span> E1    G3    2     G3_2     2.92  45.3
+#&gt; <span style='color: #BCBCBC;'> 9</span> E1    G3    3     G3_3     2.80  46.4
+#&gt; <span style='color: #BCBCBC;'>10</span> E1    G4    1     G4_1     2.65  48.3
+#&gt; <span style='color: #949494;'># ... with 410 more rows</span></div><div class='input'>
 <span class='co'># Details</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>j_an</span>, <span class='st'>"details"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: details</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: anova_joint</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: details</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
 #&gt;    Parameters GY                  HM              
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mean       </span><span style='color: #949494;'>"</span><span>2.67</span><span style='color: #949494;'>"</span><span>              </span><span style='color: #949494;'>"</span><span>48.09</span><span style='color: #949494;'>"</span><span>         
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> SE         </span><span style='color: #949494;'>"</span><span>0.05</span><span style='color: #949494;'>"</span><span>              </span><span style='color: #949494;'>"</span><span>0.21</span><span style='color: #949494;'>"</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> SD         </span><span style='color: #949494;'>"</span><span>0.92</span><span style='color: #949494;'>"</span><span>              </span><span style='color: #949494;'>"</span><span>4.37</span><span style='color: #949494;'>"</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CV         </span><span style='color: #949494;'>"</span><span>34.56</span><span style='color: #949494;'>"</span><span>             </span><span style='color: #949494;'>"</span><span>9.09</span><span style='color: #949494;'>"</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Min        </span><span style='color: #949494;'>"</span><span>0.67 (G10 in E11)</span><span style='color: #949494;'>"</span><span> </span><span style='color: #949494;'>"</span><span>38 (G2 in E14)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Max        </span><span style='color: #949494;'>"</span><span>5.09 (G8 in E5)</span><span style='color: #949494;'>"</span><span>   </span><span style='color: #949494;'>"</span><span>58 (G8 in E11)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> MinENV     </span><span style='color: #949494;'>"</span><span>E11 (1.37)</span><span style='color: #949494;'>"</span><span>        </span><span style='color: #949494;'>"</span><span>E14 (41.03)</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> MaxENV     </span><span style='color: #949494;'>"</span><span>E3 (4.06)</span><span style='color: #949494;'>"</span><span>         </span><span style='color: #949494;'>"</span><span>E11 (54.2)</span><span style='color: #949494;'>"</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> MinGEN     </span><span style='color: #949494;'>"</span><span>G10 (2.47) </span><span style='color: #949494;'>"</span><span>       </span><span style='color: #949494;'>"</span><span>G2 (46.66) </span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> MaxGEN     </span><span style='color: #949494;'>"</span><span>G8 (3) </span><span style='color: #949494;'>"</span><span>           </span><span style='color: #949494;'>"</span><span>G5 (49.3) </span><span style='color: #949494;'>"</span><span>    </div><div class='input'><span class='co'># }</span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
+#&gt; <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>2.67<span style='color: #949494;'>"</span>              <span style='color: #949494;'>"</span>48.09<span style='color: #949494;'>"</span>         
+#&gt; <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.05<span style='color: #949494;'>"</span>              <span style='color: #949494;'>"</span>0.21<span style='color: #949494;'>"</span>          
+#&gt; <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>0.92<span style='color: #949494;'>"</span>              <span style='color: #949494;'>"</span>4.37<span style='color: #949494;'>"</span>          
+#&gt; <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>34.56<span style='color: #949494;'>"</span>             <span style='color: #949494;'>"</span>9.09<span style='color: #949494;'>"</span>          
+#&gt; <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>0.67 (G10 in E11)<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>38 (G2 in E14)<span style='color: #949494;'>"</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>5.09 (G8 in E5)<span style='color: #949494;'>"</span>   <span style='color: #949494;'>"</span>58 (G8 in E11)<span style='color: #949494;'>"</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E11 (1.37)<span style='color: #949494;'>"</span>        <span style='color: #949494;'>"</span>E14 (41.03)<span style='color: #949494;'>"</span>   
+#&gt; <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E3 (4.06)<span style='color: #949494;'>"</span>         <span style='color: #949494;'>"</span>E11 (54.2)<span style='color: #949494;'>"</span>    
+#&gt; <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G10 (2.47) <span style='color: #949494;'>"</span>       <span style='color: #949494;'>"</span>G2 (46.66) <span style='color: #949494;'>"</span>   
+#&gt; <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G8 (3) <span style='color: #949494;'>"</span>           <span style='color: #949494;'>"</span>G5 (49.3) <span style='color: #949494;'>"</span>    </div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -395,7 +395,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

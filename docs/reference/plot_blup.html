@@ -97,7 +97,7 @@ Plot the predicted BLUP of the genotypes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -238,6 +238,8 @@ Plot the predicted BLUP of the genotypes." />
   <span class='va'>x</span>,
   var <span class='op'>=</span> <span class='fl'>1</span>,
   which <span class='op'>=</span> <span class='st'>"gen"</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
   prob <span class='op'>=</span> <span class='fl'>0.05</span>,
   export <span class='op'>=</span> <span class='cn'>FALSE</span>,
   file.type <span class='op'>=</span> <span class='st'>"pdf"</span>,
@@ -278,7 +280,12 @@ variable of <code>x</code>.</p></td>
       <th>which</th>
       <td><p>Which plot to shown. If <code>which = "gen"</code> (default) plots the
 BLUPs for genotypes. To create a plot showing the BLUPs for
-genotype-environment combinations, used <code>which = "ge"</code>.</p></td>
+genotype-environment combinations, use <code>which = "ge"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>ncol, nrow</th>
+      <td><p>The number of columns and rows, respectively, to be shown in
+the plot when <code>which = "ge"</code>.</p></td>
     </tr>
     <tr>
       <th>prob</th>
@@ -431,7 +438,7 @@ prioritizing the first, last, and middle labels.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

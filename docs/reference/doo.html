@@ -97,7 +97,7 @@ mutate() and map() to apply a function to a grouped data frame." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -279,32 +279,32 @@ the results for group combinations.</p>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>ENV</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
  <span class='fu'>doo</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>.</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 8 x 18</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 8 x 18</span>
 #&gt;   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A2    H1    1      3.00  1.88 0.626  15.1  50.8  31.1  15.6  30.8  191.  16.4
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A2    H1    2      2.97  1.83 0.617  15.2  52.1  31.2  15.7  30.9  197.  17.2
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> A3    H1    1      2.11  1.05 0.497  15.7  49.9  30.5  16.6  28.6  164.  15.6
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> A3    H1    2      2.20  1.09 0.492  13.7  49.2  30.5  14.7  22.3  130.  16.4
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> A4    H1    1      2.38  1.28 0.537  14.1  49.8  29.1  14.5  23.8  165.  17.2
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> A4    H1    2      2.72  1.52 0.558  16.9  53.3  31.7  17.9  32.2  226.  18  
-#&gt; </span><span style='color: #949494;'># ... with 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   NKE &lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
+#&gt; <span style='color: #BCBCBC;'>2</span> A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
+#&gt; <span style='color: #BCBCBC;'>3</span> A2    H1    1      3.00  1.88 0.626  15.1  50.8  31.1  15.6  30.8  191.  16.4
+#&gt; <span style='color: #BCBCBC;'>4</span> A2    H1    2      2.97  1.83 0.617  15.2  52.1  31.2  15.7  30.9  197.  17.2
+#&gt; <span style='color: #BCBCBC;'>5</span> A3    H1    1      2.11  1.05 0.497  15.7  49.9  30.5  16.6  28.6  164.  15.6
+#&gt; <span style='color: #BCBCBC;'>6</span> A3    H1    2      2.20  1.09 0.492  13.7  49.2  30.5  14.7  22.3  130.  16.4
+#&gt; <span style='color: #BCBCBC;'>7</span> A4    H1    1      2.38  1.28 0.537  14.1  49.8  29.1  14.5  23.8  165.  17.2
+#&gt; <span style='color: #BCBCBC;'>8</span> A4    H1    2      2.72  1.52 0.558  16.9  53.3  31.7  17.9  32.2  226.  18  
+#&gt; <span style='color: #949494;'># ... with 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   NKE &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># Genotype analysis for each environment using 'gafem()'</span>
 <span class='co'># variable PH</span>
 <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>ENV</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>doo</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='gafem.html'>gafem</a></span><span class='op'>(</span><span class='va'>.</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>PH</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 2</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span>
 #&gt;   ENV   data   
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A1    </span><span style='color: #949494;'>&lt;gafem&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A2    </span><span style='color: #949494;'>&lt;gafem&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A3    </span><span style='color: #949494;'>&lt;gafem&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A4    </span><span style='color: #949494;'>&lt;gafem&gt;</span><span></div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>1</span> A1    <span style='color: #949494;'>&lt;gafem&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>2</span> A2    <span style='color: #949494;'>&lt;gafem&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> A3    <span style='color: #949494;'>&lt;gafem&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>4</span> A4    <span style='color: #949494;'>&lt;gafem&gt;</span></div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -316,7 +316,7 @@ the results for group combinations.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

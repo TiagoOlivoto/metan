@@ -99,7 +99,7 @@ non-parametric stability indexes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -442,7 +442,7 @@ Pflanzenzuchtg 52:127-138.</p>
     gen <span class='op'>=</span> <span class='va'>GEN</span>,
     rep <span class='op'>=</span> <span class='va'>REP</span>,
     resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -453,20 +453,20 @@ Pflanzenzuchtg 52:127-138.</p>
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='output co'>#&gt; <span class='message'>Mean performance: blupg</span></div><div class='output co'>#&gt; <span class='message'>Stability: waasb</span></div><div class='input'>
 <span class='co'># The mean performance and stability after rescaling</span>
 <span class='va'>model</span><span class='op'>$</span><span class='va'>mps_ind</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
 #&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1     57.6  56.2
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10     0    35.0
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2     59.9  17.8
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3     95.5  67.9
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4     45.7  58.6
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5     40.0  61.1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6     45.9  85.5
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7     45.2  51.3
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8     77.3  90.6
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9     16.3  58.7</div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> G1     57.6  56.2
+#&gt; <span style='color: #BCBCBC;'> 2</span> G10     0    35.0
+#&gt; <span style='color: #BCBCBC;'> 3</span> G2     59.9  17.8
+#&gt; <span style='color: #BCBCBC;'> 4</span> G3     95.5  67.9
+#&gt; <span style='color: #BCBCBC;'> 5</span> G4     45.7  58.6
+#&gt; <span style='color: #BCBCBC;'> 6</span> G5     40.0  61.1
+#&gt; <span style='color: #BCBCBC;'> 7</span> G6     45.9  85.5
+#&gt; <span style='color: #BCBCBC;'> 8</span> G7     45.2  51.3
+#&gt; <span style='color: #BCBCBC;'> 9</span> G8     77.3  90.6
+#&gt; <span style='color: #BCBCBC;'>10</span> G9     16.3  58.7</div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -478,7 +478,7 @@ Pflanzenzuchtg 52:127-138.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

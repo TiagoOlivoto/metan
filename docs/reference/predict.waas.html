@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -336,39 +336,39 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 <span class='va'>predict</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model</span>, naxis <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>predict</span>
 </div><div class='output co'>#&gt; $GY
-#&gt; <span style='color: #949494;'># A tibble: 140 x 7</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 140 x 7</span>
 #&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1     2.37 -</span><span style='color: #BB0000;'>0.084</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>     2.45       0.077</span><span style='text-decoration: underline;'>7</span><span>          2.53
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G10    1.97 -</span><span style='color: #BB0000;'>0.344</span><span>      2.32      -</span><span style='color: #BB0000;'>0.321</span><span>           2.00
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G2     2.90  0.311      2.59       0.244           2.83
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G3     2.89  0.086</span><span style='text-decoration: underline;'>8</span><span>     2.80      -</span><span style='color: #BB0000;'>0.062</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.74
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G4     2.59  0.100      2.49       0.035</span><span style='text-decoration: underline;'>4</span><span>          2.52
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G5     2.19 -</span><span style='color: #BB0000;'>0.196</span><span>      2.38      -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          2.30
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G6     2.30 -</span><span style='color: #BB0000;'>0.079</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.38      -</span><span style='color: #BB0000;'>0.106</span><span>           2.27
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G7     2.77  0.186      2.59       0.234           2.82
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G8     2.90  0.049</span><span style='text-decoration: underline;'>3</span><span>     2.85       0.011</span><span style='text-decoration: underline;'>2</span><span>          2.86
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G9     2.33 -</span><span style='color: #BB0000;'>0.030</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     2.36      -</span><span style='color: #BB0000;'>0.023</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>          2.33
-#&gt; </span><span style='color: #949494;'># ... with 130 more rows</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> E1    G1     2.37 -<span style='color: #BB0000;'>0.084</span><span style='color: #BB0000; text-decoration: underline;'>3</span>     2.45       0.077<span style='text-decoration: underline;'>7</span>          2.53
+#&gt; <span style='color: #BCBCBC;'> 2</span> E1    G10    1.97 -<span style='color: #BB0000;'>0.344</span>      2.32      -<span style='color: #BB0000;'>0.321</span>           2.00
+#&gt; <span style='color: #BCBCBC;'> 3</span> E1    G2     2.90  0.311      2.59       0.244           2.83
+#&gt; <span style='color: #BCBCBC;'> 4</span> E1    G3     2.89  0.086<span style='text-decoration: underline;'>8</span>     2.80      -<span style='color: #BB0000;'>0.062</span><span style='color: #BB0000; text-decoration: underline;'>6</span>          2.74
+#&gt; <span style='color: #BCBCBC;'> 5</span> E1    G4     2.59  0.100      2.49       0.035<span style='text-decoration: underline;'>4</span>          2.52
+#&gt; <span style='color: #BCBCBC;'> 6</span> E1    G5     2.19 -<span style='color: #BB0000;'>0.196</span>      2.38      -<span style='color: #BB0000;'>0.088</span><span style='color: #BB0000; text-decoration: underline;'>6</span>          2.30
+#&gt; <span style='color: #BCBCBC;'> 7</span> E1    G6     2.30 -<span style='color: #BB0000;'>0.079</span><span style='color: #BB0000; text-decoration: underline;'>7</span>     2.38      -<span style='color: #BB0000;'>0.106</span>           2.27
+#&gt; <span style='color: #BCBCBC;'> 8</span> E1    G7     2.77  0.186      2.59       0.234           2.82
+#&gt; <span style='color: #BCBCBC;'> 9</span> E1    G8     2.90  0.049<span style='text-decoration: underline;'>3</span>     2.85       0.011<span style='text-decoration: underline;'>2</span>          2.86
+#&gt; <span style='color: #BCBCBC;'>10</span> E1    G9     2.33 -<span style='color: #BB0000;'>0.030</span><span style='color: #BB0000; text-decoration: underline;'>7</span>     2.36      -<span style='color: #BB0000;'>0.023</span><span style='color: #BB0000; text-decoration: underline;'>3</span>          2.33
+#&gt; <span style='color: #949494;'># ... with 130 more rows</span>
 #&gt; 
 #&gt; $HM
-#&gt; </span><span style='color: #949494;'># A tibble: 140 x 7</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 140 x 7</span>
 #&gt;    ENV   GEN       Y res_ols pred_ols res_ammi[,1] pred_ammi[,1]
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1     46.5   0.117     46.4      0.038</span><span style='text-decoration: underline;'>1</span><span>           46.4
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G10    46.9  -</span><span style='color: #BB0000;'>0.923</span><span>     47.8     -</span><span style='color: #BB0000;'>0.242</span><span>            47.6
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G2     45.3  -</span><span style='color: #BB0000;'>0.660</span><span>     46.0      0.213            46.2
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G3     45.9  -</span><span style='color: #BB0000;'>1.05</span><span>      46.9      0.046</span><span style='text-decoration: underline;'>5</span><span>           47.0
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G4     48.3   0.931     47.4     -</span><span style='color: #BB0000;'>0.027</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>           47.3
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G5     49.9   1.26      48.6      0.215            48.8
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G6     48.2   0.189     48.1      0.074</span><span style='text-decoration: underline;'>5</span><span>           48.1
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G7     47.4   0.154     47.3     -</span><span style='color: #BB0000;'>0.166</span><span>            47.1
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G8     48.0  -</span><span style='color: #BB0000;'>0.466</span><span>     48.4     -</span><span style='color: #BB0000;'>0.005</span><span style='color: #BB0000;text-decoration: underline;'>68</span><span>          48.4
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G9     47.7   0.450     47.2     -</span><span style='color: #BB0000;'>0.146</span><span>            47.1
-#&gt; </span><span style='color: #949494;'># ... with 130 more rows</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> E1    G1     46.5   0.117     46.4      0.038<span style='text-decoration: underline;'>1</span>           46.4
+#&gt; <span style='color: #BCBCBC;'> 2</span> E1    G10    46.9  -<span style='color: #BB0000;'>0.923</span>     47.8     -<span style='color: #BB0000;'>0.242</span>            47.6
+#&gt; <span style='color: #BCBCBC;'> 3</span> E1    G2     45.3  -<span style='color: #BB0000;'>0.660</span>     46.0      0.213            46.2
+#&gt; <span style='color: #BCBCBC;'> 4</span> E1    G3     45.9  -<span style='color: #BB0000;'>1.05</span>      46.9      0.046<span style='text-decoration: underline;'>5</span>           47.0
+#&gt; <span style='color: #BCBCBC;'> 5</span> E1    G4     48.3   0.931     47.4     -<span style='color: #BB0000;'>0.027</span><span style='color: #BB0000; text-decoration: underline;'>5</span>           47.3
+#&gt; <span style='color: #BCBCBC;'> 6</span> E1    G5     49.9   1.26      48.6      0.215            48.8
+#&gt; <span style='color: #BCBCBC;'> 7</span> E1    G6     48.2   0.189     48.1      0.074<span style='text-decoration: underline;'>5</span>           48.1
+#&gt; <span style='color: #BCBCBC;'> 8</span> E1    G7     47.4   0.154     47.3     -<span style='color: #BB0000;'>0.166</span>            47.1
+#&gt; <span style='color: #BCBCBC;'> 9</span> E1    G8     48.0  -<span style='color: #BB0000;'>0.466</span>     48.4     -<span style='color: #BB0000;'>0.005</span><span style='color: #BB0000; text-decoration: underline;'>68</span>          48.4
+#&gt; <span style='color: #BCBCBC;'>10</span> E1    G9     47.7   0.450     47.2     -<span style='color: #BB0000;'>0.146</span>            47.1
+#&gt; <span style='color: #949494;'># ... with 130 more rows</span>
 #&gt; </div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -380,7 +380,7 @@ RMSPD of all AMMI-family models, based on resampling procedures.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -109,7 +109,7 @@ as.factor().
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -308,7 +308,7 @@ will be created with the used column.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: package 'tibble' was built under R version 4.0.4</span></div><div class='output co'>#&gt; <span class='message'></span>
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: 'tibble'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:metan':</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    column_to_rownames, remove_rownames, rownames_to_column</span></div><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span>
@@ -318,50 +318,50 @@ will be created with the used column.</p></td>
          x3 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>,
          x4 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>x3</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>df</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span>
 #&gt;         y    x1 x2    x3    x4   
-#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  1.25       1 TRUE  a     a    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  0.433      2 TRUE  b     b    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> -</span><span style='color: #BB0000;'>0.076</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>     3 FALSE c     c    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> -</span><span style='color: #BB0000;'>0.139</span><span>      4 FALSE d     d    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> -</span><span style='color: #BB0000;'>0.241</span><span>      5 FALSE e     e    </div><div class='input'>
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>  1.25       1 TRUE  a     a    
+#&gt; <span style='color: #BCBCBC;'>2</span>  0.433      2 TRUE  b     b    
+#&gt; <span style='color: #BCBCBC;'>3</span> -<span style='color: #BB0000;'>0.076</span><span style='color: #BB0000; text-decoration: underline;'>5</span>     3 FALSE c     c    
+#&gt; <span style='color: #BCBCBC;'>4</span> -<span style='color: #BB0000;'>0.139</span>      4 FALSE d     d    
+#&gt; <span style='color: #BCBCBC;'>5</span> -<span style='color: #BB0000;'>0.241</span>      5 FALSE e     e    </div><div class='input'>
 <span class='co'># Convert y to integer</span>
 <span class='fu'>as_integer</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span>
 #&gt;       y    x1 x2    x3    x4   
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1     1 TRUE  a     a    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     0     2 TRUE  b     b    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>     0     3 FALSE c     c    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     0     4 FALSE d     d    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     0     5 FALSE e     e    </div><div class='input'><span class='fu'>as_integer</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>     1     1 TRUE  a     a    
+#&gt; <span style='color: #BCBCBC;'>2</span>     0     2 TRUE  b     b    
+#&gt; <span style='color: #BCBCBC;'>3</span>     0     3 FALSE c     c    
+#&gt; <span style='color: #BCBCBC;'>4</span>     0     4 FALSE d     d    
+#&gt; <span style='color: #BCBCBC;'>5</span>     0     5 FALSE e     e    </div><div class='input'><span class='fu'>as_integer</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1 0 0 0 0</div><div class='input'>
 <span class='co'># convert x3 to factor</span>
 <span class='fu'>as_factor</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span>
 #&gt;         y    x1 x2    x3    x4   
-#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  1.25       1 TRUE  a     a    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  0.433      2 TRUE  b     b    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> -</span><span style='color: #BB0000;'>0.076</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span>     3 FALSE c     c    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> -</span><span style='color: #BB0000;'>0.139</span><span>      4 FALSE d     d    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> -</span><span style='color: #BB0000;'>0.241</span><span>      5 FALSE e     e    </div><div class='input'>
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>  1.25       1 TRUE  a     a    
+#&gt; <span style='color: #BCBCBC;'>2</span>  0.433      2 TRUE  b     b    
+#&gt; <span style='color: #BCBCBC;'>3</span> -<span style='color: #BB0000;'>0.076</span><span style='color: #BB0000; text-decoration: underline;'>5</span>     3 FALSE c     c    
+#&gt; <span style='color: #BCBCBC;'>4</span> -<span style='color: #BB0000;'>0.139</span>      4 FALSE d     d    
+#&gt; <span style='color: #BCBCBC;'>5</span> -<span style='color: #BB0000;'>0.241</span>      5 FALSE e     e    </div><div class='input'>
 <span class='co'># Convert all columns to character</span>
 <span class='fu'>as_character</span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span>
 #&gt;   y                   x1    x2    x3    x4   
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1.24779392896803    1     TRUE  a     a    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.432763432791496   2     TRUE  b     b    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> -0.0764867483287394 3     FALSE c     c    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> -0.139495740422391  4     FALSE d     d    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> -0.241223117185153  5     FALSE e     e    </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> 1.24779392896803    1     TRUE  a     a    
+#&gt; <span style='color: #BCBCBC;'>2</span> 0.432763432791496   2     TRUE  b     b    
+#&gt; <span style='color: #BCBCBC;'>3</span> -0.0764867483287394 3     FALSE c     c    
+#&gt; <span style='color: #BCBCBC;'>4</span> -0.139495740422391  4     FALSE d     d    
+#&gt; <span style='color: #BCBCBC;'>5</span> -0.241223117185153  5     FALSE e     e    </div><div class='input'>
 <span class='co'># Convert x2 to numeric and coerce to a vector</span>
 <span class='fu'>as_numeric</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x2</span>, .keep <span class='op'>=</span> <span class='st'>"used"</span>, .pull <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1 1 0 0 0</div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -373,7 +373,7 @@ will be created with the used column.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

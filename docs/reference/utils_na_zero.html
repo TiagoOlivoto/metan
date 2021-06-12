@@ -117,7 +117,7 @@ respectively, with a replacement value.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -355,146 +355,146 @@ the rows or columns deleted.</p></td>
               <span class='fu'><a href='doo.html'>doo</a></span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>.</span>, n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
               <span class='fu'><a href='utils_as.html'>as_character</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span>
 <span class='va'>data_naz</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span>
 #&gt;   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1         3.5          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> setosa              4.9         3            1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> setosa              4.7         3.2          1.3         0.2
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor          7           3.2          4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> versicolor          6.4         3.2          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> versicolor          6.9         3.1          4.9         1.5
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> virginica           6.3         3.3          6           2.5
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> virginica           5.8         2.7          5.1         1.9
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> virginica           7.1         3            5.9         2.1</div><div class='input'><span class='va'>data_naz</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1         3.5          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> setosa              4.9         3            1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>3</span> setosa              4.7         3.2          1.3         0.2
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor          7           3.2          4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>5</span> versicolor          6.4         3.2          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>6</span> versicolor          6.9         3.1          4.9         1.5
+#&gt; <span style='color: #BCBCBC;'>7</span> virginica           6.3         3.3          6           2.5
+#&gt; <span style='color: #BCBCBC;'>8</span> virginica           5.8         2.7          5.1         1.9
+#&gt; <span style='color: #BCBCBC;'>9</span> virginica           7.1         3            5.9         2.1</div><div class='input'><span class='va'>data_naz</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, <span class='fl'>6</span>, <span class='fl'>8</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
 <span class='va'>data_naz</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>7</span>, <span class='fl'>9</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
 <span class='fu'>has_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>has_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Fill NA values of column GEN</span>
 <span class='fu'>fill_na</span><span class='op'>(</span><span class='va'>data_naz</span>, <span class='va'>Species</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span>
 #&gt;   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1         3.5          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> setosa              0           0            0          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> setosa             </span><span style='color: #BB0000;'>NA</span><span>           3.2         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor          7           3.2          4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> versicolor          6.4         3.2          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> versicolor         </span><span style='color: #BB0000;'>NA</span><span>           3.1         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> virginica           0           0            0           2.5
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> virginica          </span><span style='color: #BB0000;'>NA</span><span>           2.7         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> virginica           0           0            0           2.1</div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1         3.5          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> setosa              0           0            0          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>3</span> setosa             <span style='color: #BB0000;'>NA</span>           3.2         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor          7           3.2          4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>5</span> versicolor          6.4         3.2          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>6</span> versicolor         <span style='color: #BB0000;'>NA</span>           3.1         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>7</span> virginica           0           0            0           2.5
+#&gt; <span style='color: #BCBCBC;'>8</span> virginica          <span style='color: #BB0000;'>NA</span>           2.7         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>9</span> virginica           0           0            0           2.1</div><div class='input'>
 <span class='co'># Remove columns</span>
 <span class='fu'>remove_cols_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) Species, Sepal.Length, Petal.Length, Petal.Width with NA values deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 1</span><span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) Species, Sepal.Length, Petal.Length, Petal.Width with NA values deleted.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 1</span>
 #&gt;   Sepal.Width
-#&gt;         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         3.5
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>         0  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>         3.2
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>         3.2
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>         3.2
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>         3.1
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span>         0  
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span>         2.7
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span>         0  </div><div class='input'><span class='fu'>remove_cols_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) Sepal.Length, Sepal.Width, Petal.Length with 0s deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 2</span><span>
+#&gt;         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>         3.5
+#&gt; <span style='color: #BCBCBC;'>2</span>         0  
+#&gt; <span style='color: #BCBCBC;'>3</span>         3.2
+#&gt; <span style='color: #BCBCBC;'>4</span>         3.2
+#&gt; <span style='color: #BCBCBC;'>5</span>         3.2
+#&gt; <span style='color: #BCBCBC;'>6</span>         3.1
+#&gt; <span style='color: #BCBCBC;'>7</span>         0  
+#&gt; <span style='color: #BCBCBC;'>8</span>         2.7
+#&gt; <span style='color: #BCBCBC;'>9</span>         0  </div><div class='input'><span class='fu'>remove_cols_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) Sepal.Length, Sepal.Width, Petal.Length with 0s deleted.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 2</span>
 #&gt;   Species    Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa             0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor         1.4
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> versicolor         1.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> virginica          2.5
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> virginica          2.1</div><div class='input'><span class='fu'>remove_rows_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2, 3, 6, 8 with NA values deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 5</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa             0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>3</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor         1.4
+#&gt; <span style='color: #BCBCBC;'>5</span> versicolor         1.5
+#&gt; <span style='color: #BCBCBC;'>6</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>7</span> virginica          2.5
+#&gt; <span style='color: #BCBCBC;'>8</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>9</span> virginica          2.1</div><div class='input'><span class='fu'>remove_rows_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2, 3, 6, 8 with NA values deleted.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 5</span>
 #&gt;   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1         3.5          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> versicolor          7           3.2          4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> versicolor          6.4         3.2          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> virginica           0           0            0           2.5
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> virginica           0           0            0           2.1</div><div class='input'><span class='fu'>remove_rows_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2, 7, 9 with 0s deleted.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 5</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1         3.5          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> versicolor          7           3.2          4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>3</span> versicolor          6.4         3.2          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>4</span> virginica           0           0            0           2.5
+#&gt; <span style='color: #BCBCBC;'>5</span> virginica           0           0            0           2.1</div><div class='input'><span class='fu'>remove_rows_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 2, 7, 9 with 0s deleted.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span>
 #&gt;   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1         3.5          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           3.2         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> versicolor          7           3.2          4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor          6.4         3.2          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           3.1         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           2.7         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1         3.5          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           3.2         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>3</span> versicolor          7           3.2          4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor          6.4         3.2          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>5</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           3.1         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>6</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           2.7         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  </div><div class='input'>
 <span class='co'># Select columns</span>
 <span class='fu'>select_cols_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with NAs: Species, Sepal.Length, Petal.Length, Petal.Width</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 4</span><span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with NAs: Species, Sepal.Length, Petal.Length, Petal.Width</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 4</span>
 #&gt;   Species    Sepal.Length Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>                  0            0          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor          7            4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> versicolor          6.4          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> virginica           0            0           2.5
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> virginica           0            0           2.1</div><div class='input'><span class='fu'>select_cols_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with 0s: Sepal.Length, Sepal.Width, Petal.Length</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 3</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>                  0            0          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>3</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor          7            4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>5</span> versicolor          6.4          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>6</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>7</span> virginica           0            0           2.5
+#&gt; <span style='color: #BCBCBC;'>8</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>9</span> virginica           0            0           2.1</div><div class='input'><span class='fu'>select_cols_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Column(s) with 0s: Sepal.Length, Sepal.Width, Petal.Length</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span>
 #&gt;   Sepal.Length Sepal.Width Petal.Length
-#&gt;          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>          5.1         3.5          1.4
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>          0           0            0  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>         </span><span style='color: #BB0000;'>NA</span><span>           3.2         </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>          7           3.2          4.7
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>          6.4         3.2          4.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>         </span><span style='color: #BB0000;'>NA</span><span>           3.1         </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span>          0           0            0  
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span>         </span><span style='color: #BB0000;'>NA</span><span>           2.7         </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span>          0           0            0  </div><div class='input'><span class='fu'>select_rows_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with NAs: 2, 3, 6, 8</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 5</span><span>
+#&gt;          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>          5.1         3.5          1.4
+#&gt; <span style='color: #BCBCBC;'>2</span>          0           0            0  
+#&gt; <span style='color: #BCBCBC;'>3</span>         <span style='color: #BB0000;'>NA</span>           3.2         <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>4</span>          7           3.2          4.7
+#&gt; <span style='color: #BCBCBC;'>5</span>          6.4         3.2          4.5
+#&gt; <span style='color: #BCBCBC;'>6</span>         <span style='color: #BB0000;'>NA</span>           3.1         <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>7</span>          0           0            0  
+#&gt; <span style='color: #BCBCBC;'>8</span>         <span style='color: #BB0000;'>NA</span>           2.7         <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>9</span>          0           0            0  </div><div class='input'><span class='fu'>select_rows_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with NAs: 2, 3, 6, 8</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span>
 #&gt;   Species Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 0         0              0          </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>         3.2           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>         3.1           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #BB0000;'>NA</span><span>                </span><span style='color: #BB0000;'>NA</span><span>         2.7           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span></div><div class='input'><span class='fu'>select_rows_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with 0s: 1, 2, 3</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 5</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> <span style='color: #BB0000;'>NA</span>                 0         0              0          <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>         3.2           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>         3.1           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>4</span> <span style='color: #BB0000;'>NA</span>                <span style='color: #BB0000;'>NA</span>         2.7           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span></div><div class='input'><span class='fu'>select_rows_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Rows(s) with 0s: 1, 2, 3</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 5</span>
 #&gt;   Species   Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #BB0000;'>NA</span><span>                   0           0            0        </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> virginica            0           0            0         2.5
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> virginica            0           0            0         2.1</div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> <span style='color: #BB0000;'>NA</span>                   0           0            0        <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>2</span> virginica            0           0            0         2.5
+#&gt; <span style='color: #BCBCBC;'>3</span> virginica            0           0            0         2.1</div><div class='input'>
 <span class='co'># Replace values</span>
 <span class='fu'>replace_na</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span>
 #&gt;   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1         3.5          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0                   0           0            0           0  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0                   0           3.2          0           0  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor          7           3.2          4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> versicolor          6.4         3.2          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 0                   0           3.1          0           0  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> virginica           0           0            0           2.5
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> 0                   0           2.7          0           0  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> virginica           0           0            0           2.1</div><div class='input'><span class='fu'>replace_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 5</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1         3.5          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> 0                   0           0            0           0  
+#&gt; <span style='color: #BCBCBC;'>3</span> 0                   0           3.2          0           0  
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor          7           3.2          4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>5</span> versicolor          6.4         3.2          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>6</span> 0                   0           3.1          0           0  
+#&gt; <span style='color: #BCBCBC;'>7</span> virginica           0           0            0           2.5
+#&gt; <span style='color: #BCBCBC;'>8</span> 0                   0           2.7          0           0  
+#&gt; <span style='color: #BCBCBC;'>9</span> virginica           0           0            0           2.1</div><div class='input'><span class='fu'>replace_zero</span><span class='op'>(</span><span class='va'>data_naz</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span>
 #&gt;   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> setosa              5.1         3.5          1.4         0.2
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           3.2         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> versicolor          7           3.2          4.7         1.4
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> versicolor          6.4         3.2          4.5         1.5
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           3.1         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> virginica          </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='color: #BB0000;'>NA</span><span>           2.5
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>           2.7         </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> virginica          </span><span style='color: #BB0000;'>NA</span><span>          </span><span style='color: #BB0000;'>NA</span><span>           </span><span style='color: #BB0000;'>NA</span><span>           2.1</div><div class='input'><span class='co'># }</span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> setosa              5.1         3.5          1.4         0.2
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>3</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           3.2         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>4</span> versicolor          7           3.2          4.7         1.4
+#&gt; <span style='color: #BCBCBC;'>5</span> versicolor          6.4         3.2          4.5         1.5
+#&gt; <span style='color: #BCBCBC;'>6</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           3.1         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>7</span> virginica          <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>           2.5
+#&gt; <span style='color: #BCBCBC;'>8</span> <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>           2.7         <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>  
+#&gt; <span style='color: #BCBCBC;'>9</span> virginica          <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>           2.1</div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -506,7 +506,7 @@ the rows or columns deleted.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

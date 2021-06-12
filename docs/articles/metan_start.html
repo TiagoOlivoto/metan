@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -170,13 +170,13 @@
 
       
 
-      </header><script src="metan_start_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="metan_start_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Multi-environment Trial Analysis</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2021-04-04</h4>
+            <h4 class="date">2021-06-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/metan_start.Rmd"><code>vignettes/metan_start.Rmd</code></a></small>
       <div class="hidden name"><code>metan_start.Rmd</code></div>
@@ -192,7 +192,7 @@
 <li>AMMI analysis with <a href="https://tiagoolivoto.github.io/metan/reference/performs_ammi.html"><code>performs_ammi()</code></a>.</li>
 <li>AMMI-based stability statistics with <a href="https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html"><code>AMMI_indexes()</code></a>.</li>
 <li>BLUP prediction for multi-environment trials with <a href="https://tiagoolivoto.github.io/metan/reference/waasb.html"><code>waasb()</code></a>.</li>
-<li>BLUP-based stability indexes with <a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html"><code>blup_indexes()</code></a>.</li>
+<li>BLUP-based stability indexes with <a href="https://tiagoolivoto.github.io/metan/reference/blup_indexes.html"><code>blup_indexes()</code></a>.</li>
 <li>Ecovalence <span class="citation">(<a href="#ref-Wricke1965" role="doc-biblioref">Wricke 1965</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/ecovalence.html"><code>ecovalence()</code></a>.</li>
 <li>GGE biplot analysis with <a href="https://tiagoolivoto.github.io/metan/reference/gge.html"><code>gge()</code></a>.</li>
 <li>Genotypic confidence index <span class="citation">(<a href="#ref-Annicchiarico1992" role="doc-biblioref">Annicchiarico 1992</a>)</span> using <a href="https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html"><code>Annicchiarico()</code></a>.</li>
@@ -431,7 +431,7 @@
 <p>The implementation of linear-mixed effect models to predict the response variable in MET is made with the function <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html"><code>gamem_met()</code></a>. By default, genotype and genotype-vs-environment interaction are assumed to have random effects. Use the argument <code>random</code> to change this default. In the following example the model is fitted to all numeric variables in <a href="https://tiagoolivoto.github.io/metan/reference/data_ge.html"><code>data_ge</code></a>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">gamem_met</span>(data_ge, ENV, GEN, REP, <span class="fu">everything</span>())</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluating trait GY |======================                      | 50% 00:00:00 </span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Evaluating trait HM <span class="sc">|</span><span class="er">============================================|</span> <span class="dv">100</span>% <span class="dv">00</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Evaluating trait HM <span class="sc">|</span><span class="er">============================================|</span> <span class="dv">100</span>% <span class="dv">00</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">01</span> </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Method: REML/BLUP</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Random effects: GEN, GEN:ENV</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed effects: ENV, REP(ENV)</span></span>
@@ -611,7 +611,7 @@
 <p>To compute all the stability statistics at once, we can use the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. Again we get the results with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stat_ge</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="co"># Evaluating trait GY |============================================| 100% 00:00:01 </span>
+<span class="co"># Evaluating trait GY |============================================| 100% 00:00:04 </span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stat_ge</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
@@ -721,7 +721,7 @@ Yan, Weikai., and Manjit S. Kang. 2003. <em><span class="nocase">GGE biplot anal
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
+  <p>Developed by <a href="https://olivoto.netlify.app/">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

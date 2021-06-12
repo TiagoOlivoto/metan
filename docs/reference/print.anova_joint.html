@@ -98,7 +98,7 @@ in the R console. The results can also be exported to the directory into a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -278,30 +278,30 @@ the working directory.</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Joint ANOVA table
 #&gt; ---------------------------------------------------------------------------
-#&gt;     Source     Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        ENV  13.00 279.57 21.5057   62.33 0.00e+00
-#&gt;   REP(ENV)  28.00   9.66  0.3451    3.57 3.59e-08
-#&gt;        GEN   9.00  13.00  1.4439   14.93 2.19e-19
-#&gt;    GEN:ENV 117.00  31.22  0.2668    2.76 1.01e-11
-#&gt;  Residuals 252.00  24.37  0.0967      NA       NA
-#&gt;      CV(%)  11.63     NA      NA      NA       NA
-#&gt;  MSR+/MSR-   6.71     NA      NA      NA       NA
-#&gt;     OVmean   2.67     NA      NA      NA       NA
+#&gt;     Source     Df Sum Sq Mean Sq F value    Pr(&gt;F)
+#&gt;        ENV  13.00 279.57 21.5057  222.41 7.25e-130
+#&gt;   REP(ENV)  28.00   9.66  0.3451    3.57  3.59e-08
+#&gt;        GEN   9.00  13.00  1.4439   14.93  2.19e-19
+#&gt;    GEN:ENV 117.00  31.22  0.2668    2.76  1.01e-11
+#&gt;  Residuals 252.00  24.37  0.0967      NA        NA
+#&gt;      CV(%)  11.63     NA      NA      NA        NA
+#&gt;  MSR+/MSR-   6.71     NA      NA      NA        NA
+#&gt;     OVmean   2.67     NA      NA      NA        NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; variable HM 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Joint ANOVA table
 #&gt; ---------------------------------------------------------------------------
-#&gt;     Source     Df Sum Sq Mean Sq F value   Pr(&gt;F)
-#&gt;        ENV  13.00   5710  439.26   57.22 1.11e-16
-#&gt;   REP(ENV)  28.00    215    7.68    2.70 2.20e-05
-#&gt;        GEN   9.00    270   29.98   10.56 7.41e-14
-#&gt;    GEN:ENV 117.00   1101    9.41    3.31 1.06e-15
-#&gt;  Residuals 252.00    716    2.84      NA       NA
-#&gt;      CV(%)   3.50     NA      NA      NA       NA
-#&gt;  MSR+/MSR-   5.24     NA      NA      NA       NA
-#&gt;     OVmean  48.09     NA      NA      NA       NA
+#&gt;     Source     Df Sum Sq Mean Sq F value    Pr(&gt;F)
+#&gt;        ENV  13.00   5710  439.26  154.67 5.86e-112
+#&gt;   REP(ENV)  28.00    215    7.68    2.70  2.20e-05
+#&gt;        GEN   9.00    270   29.98   10.56  7.41e-14
+#&gt;    GEN:ENV 117.00   1101    9.41    3.31  1.06e-15
+#&gt;  Residuals 252.00    716    2.84      NA        NA
+#&gt;      CV(%)   3.50     NA      NA      NA        NA
+#&gt;  MSR+/MSR-   5.24     NA      NA      NA        NA
+#&gt;     OVmean  48.09     NA      NA      NA        NA
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
@@ -309,15 +309,15 @@ the working directory.</p></td>
 </div><div class='output co'>#&gt; Variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; $anova
-#&gt;      Source         Df     Sum Sq     Mean Sq   F value       Pr(&gt;F)
-#&gt; 1       ENV  13.000000 279.573552 21.50565785 62.325457 0.000000e+00
-#&gt; 2  REP(ENV)  28.000000   9.661516  0.34505416  3.568548 3.593191e-08
-#&gt; 3       GEN   9.000000  12.995044  1.44389374 14.932741 2.190118e-19
-#&gt; 4   GEN:ENV 117.000000  31.219565  0.26683389  2.759595 1.005191e-11
-#&gt; 5 Residuals 252.000000  24.366674  0.09669315        NA           NA
-#&gt; 6     CV(%)  11.627790         NA          NA        NA           NA
-#&gt; 7 MSR+/MSR-   6.708789         NA          NA        NA           NA
-#&gt; 8    OVmean   2.674242         NA          NA        NA           NA
+#&gt;      Source         Df     Sum Sq     Mean Sq    F value        Pr(&gt;F)
+#&gt; 1       ENV  13.000000 279.573552 21.50565785 222.411390 7.253126e-130
+#&gt; 2  REP(ENV)  28.000000   9.661516  0.34505416   3.568548  3.593191e-08
+#&gt; 3       GEN   9.000000  12.995044  1.44389374  14.932741  2.190118e-19
+#&gt; 4   GEN:ENV 117.000000  31.219565  0.26683389   2.759595  1.005191e-11
+#&gt; 5 Residuals 252.000000  24.366674  0.09669315         NA            NA
+#&gt; 6     CV(%)  11.627790         NA          NA         NA            NA
+#&gt; 7 MSR+/MSR-   6.708789         NA          NA         NA            NA
+#&gt; 8    OVmean   2.674242         NA          NA         NA            NA
 #&gt; 
 #&gt; $model
 #&gt; Call:
@@ -332,35 +332,35 @@ the working directory.</p></td>
 #&gt; Estimated effects may be unbalanced
 #&gt; 
 #&gt; $augment
-#&gt; <span style='color: #949494;'># A tibble: 420 x 11</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 420 x 11</span>
 #&gt;    ENV   GEN   REP    mean   hat sigma fitted    resid  stdres se.fit factors
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1    1      2.17 0.4   0.311   2.42 -</span><span style='color: #BB0000;'>0.255</span><span>   -</span><span style='color: #BB0000;'>1.06</span><span>    0.197 G1_1   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G1    2      2.50 0.400 0.311   2.40  0.101    0.420   0.197 G1_2   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G1    3      2.43 0.4   0.311   2.27  0.154    0.640   0.197 G1_3   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G2    1      3.21 0.400 0.311   2.96  0.249    1.04    0.197 G2_1   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G2    2      2.93 0.400 0.312   2.94 -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>92</span><span> -</span><span style='color: #BB0000;'>0.020</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>  0.197 G2_2   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G2    3      2.56 0.400 0.311   2.81 -</span><span style='color: #BB0000;'>0.244</span><span>   -</span><span style='color: #BB0000;'>1.01</span><span>    0.197 G2_3   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G3    1      2.77 0.4   0.311   2.95 -</span><span style='color: #BB0000;'>0.176</span><span>   -</span><span style='color: #BB0000;'>0.729</span><span>   0.197 G3_1   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G3    2      3.62 0.400 0.306   2.92  0.696    2.89    0.197 G3_2   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G3    3      2.28 0.4   0.309   2.80 -</span><span style='color: #BB0000;'>0.521</span><span>   -</span><span style='color: #BB0000;'>2.16</span><span>    0.197 G3_3   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G4    1      2.36 0.4   0.311   2.65 -</span><span style='color: #BB0000;'>0.286</span><span>   -</span><span style='color: #BB0000;'>1.19</span><span>    0.197 G4_1   
-#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 1</span> E1    G1    1      2.17 0.400 0.311   2.42 -<span style='color: #BB0000;'>0.255</span>   -<span style='color: #BB0000;'>1.06</span>    0.197 G1_1   
+#&gt; <span style='color: #BCBCBC;'> 2</span> E1    G1    2      2.50 0.400 0.311   2.40  0.101    0.420   0.197 G1_2   
+#&gt; <span style='color: #BCBCBC;'> 3</span> E1    G1    3      2.43 0.400 0.311   2.27  0.154    0.640   0.197 G1_3   
+#&gt; <span style='color: #BCBCBC;'> 4</span> E1    G2    1      3.21 0.400 0.311   2.96  0.249    1.04    0.197 G2_1   
+#&gt; <span style='color: #BCBCBC;'> 5</span> E1    G2    2      2.93 0.400 0.312   2.94 -<span style='color: #BB0000;'>0.004</span><span style='color: #BB0000; text-decoration: underline;'>92</span> -<span style='color: #BB0000;'>0.020</span><span style='color: #BB0000; text-decoration: underline;'>4</span>  0.197 G2_2   
+#&gt; <span style='color: #BCBCBC;'> 6</span> E1    G2    3      2.56 0.400 0.311   2.81 -<span style='color: #BB0000;'>0.244</span>   -<span style='color: #BB0000;'>1.01</span>    0.197 G2_3   
+#&gt; <span style='color: #BCBCBC;'> 7</span> E1    G3    1      2.77 0.4   0.311   2.95 -<span style='color: #BB0000;'>0.176</span>   -<span style='color: #BB0000;'>0.729</span>   0.197 G3_1   
+#&gt; <span style='color: #BCBCBC;'> 8</span> E1    G3    2      3.62 0.400 0.306   2.92  0.696    2.89    0.197 G3_2   
+#&gt; <span style='color: #BCBCBC;'> 9</span> E1    G3    3      2.28 0.400 0.309   2.80 -<span style='color: #BB0000;'>0.521</span>   -<span style='color: #BB0000;'>2.16</span>    0.197 G3_3   
+#&gt; <span style='color: #BCBCBC;'>10</span> E1    G4    1      2.36 0.400 0.311   2.65 -<span style='color: #BB0000;'>0.286</span>   -<span style='color: #BB0000;'>1.19</span>    0.197 G4_1   
+#&gt; <span style='color: #949494;'># ... with 410 more rows</span>
 #&gt; 
 #&gt; $details
-#&gt; </span><span style='color: #949494;'># A tibble: 10 x 2</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 10 x 2</span>
 #&gt;    Parameters mean               
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mean       </span><span style='color: #949494;'>"</span><span>2.67</span><span style='color: #949494;'>"</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> SE         </span><span style='color: #949494;'>"</span><span>0.05</span><span style='color: #949494;'>"</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> SD         </span><span style='color: #949494;'>"</span><span>0.92</span><span style='color: #949494;'>"</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CV         </span><span style='color: #949494;'>"</span><span>34.56</span><span style='color: #949494;'>"</span><span>            
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Min        </span><span style='color: #949494;'>"</span><span>0.67 (G10 in E11)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Max        </span><span style='color: #949494;'>"</span><span>5.09 (G8 in E5)</span><span style='color: #949494;'>"</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> MinENV     </span><span style='color: #949494;'>"</span><span>E11 (1.37)</span><span style='color: #949494;'>"</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> MaxENV     </span><span style='color: #949494;'>"</span><span>E3 (4.06)</span><span style='color: #949494;'>"</span><span>        
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> MinGEN     </span><span style='color: #949494;'>"</span><span>G10 (2.47) </span><span style='color: #949494;'>"</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> MaxGEN     </span><span style='color: #949494;'>"</span><span>G8 (3) </span><span style='color: #949494;'>"</span><span>          
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              
+#&gt; <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>2.67<span style='color: #949494;'>"</span>             
+#&gt; <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.05<span style='color: #949494;'>"</span>             
+#&gt; <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>0.92<span style='color: #949494;'>"</span>             
+#&gt; <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>34.56<span style='color: #949494;'>"</span>            
+#&gt; <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>0.67 (G10 in E11)<span style='color: #949494;'>"</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>5.09 (G8 in E5)<span style='color: #949494;'>"</span>  
+#&gt; <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E11 (1.37)<span style='color: #949494;'>"</span>       
+#&gt; <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E3 (4.06)<span style='color: #949494;'>"</span>        
+#&gt; <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G10 (2.47) <span style='color: #949494;'>"</span>      
+#&gt; <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G8 (3) <span style='color: #949494;'>"</span>          
 #&gt; 
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
@@ -369,15 +369,15 @@ the working directory.</p></td>
 #&gt; Variable HM 
 #&gt; ---------------------------------------------------------------------------
 #&gt; $anova
-#&gt;      Source         Df    Sum Sq    Mean Sq   F value       Pr(&gt;F)
-#&gt; 1       ENV  13.000000 5710.3167 439.255133 57.223777 1.110223e-16
-#&gt; 2  REP(ENV)  28.000000  214.9307   7.676095  2.702830 2.196589e-05
-#&gt; 3       GEN   9.000000  269.8112  29.979019 10.555915 7.414690e-14
-#&gt; 4   GEN:ENV 117.000000 1100.7341   9.407984  3.312646 1.063605e-15
-#&gt; 5 Residuals 252.000000  715.6853   2.840021        NA           NA
-#&gt; 6     CV(%)   3.504463        NA         NA        NA           NA
-#&gt; 7 MSR+/MSR-   5.235567        NA         NA        NA           NA
-#&gt; 8    OVmean  48.088286        NA         NA        NA           NA
+#&gt;      Source         Df    Sum Sq    Mean Sq    F value        Pr(&gt;F)
+#&gt; 1       ENV  13.000000 5710.3167 439.255133 154.666159 5.864441e-112
+#&gt; 2  REP(ENV)  28.000000  214.9307   7.676095   2.702830  2.196589e-05
+#&gt; 3       GEN   9.000000  269.8112  29.979019  10.555915  7.414690e-14
+#&gt; 4   GEN:ENV 117.000000 1100.7341   9.407984   3.312646  1.063605e-15
+#&gt; 5 Residuals 252.000000  715.6853   2.840021         NA            NA
+#&gt; 6     CV(%)   3.504463        NA         NA         NA            NA
+#&gt; 7 MSR+/MSR-   5.235567        NA         NA         NA            NA
+#&gt; 8    OVmean  48.088286        NA         NA         NA            NA
 #&gt; 
 #&gt; $model
 #&gt; Call:
@@ -392,41 +392,41 @@ the working directory.</p></td>
 #&gt; Estimated effects may be unbalanced
 #&gt; 
 #&gt; $augment
-#&gt; </span><span style='color: #949494;'># A tibble: 420 x 11</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 420 x 11</span>
 #&gt;    ENV   GEN   REP    mean   hat sigma fitted  resid stdres se.fit factors
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> E1    G1    1      44.9 0.4    1.68   46.5 -</span><span style='color: #BB0000;'>1.62</span><span>  -</span><span style='color: #BB0000;'>1.24</span><span>    1.07 G1_1   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> E1    G1    2      46.9 0.400  1.69   46.0  0.942  0.721   1.07 G1_2   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> E1    G1    3      47.8 0.4    1.69   47.1  0.678  0.519   1.07 G1_3   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> E1    G2    1      45.2 0.400  1.69   45.4 -</span><span style='color: #BB0000;'>0.153</span><span> -</span><span style='color: #BB0000;'>0.117</span><span>   1.07 G2_1   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> E1    G2    2      45.3 0.400  1.69   44.8  0.538  0.412   1.07 G2_2   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> E1    G2    3      45.5 0.400  1.69   45.9 -</span><span style='color: #BB0000;'>0.386</span><span> -</span><span style='color: #BB0000;'>0.295</span><span>   1.07 G2_3   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> E1    G3    1      46.7 0.4    1.69   45.9  0.791  0.606   1.07 G3_1   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> E1    G3    2      43.2 0.400  1.68   45.3 -</span><span style='color: #BB0000;'>2.11</span><span>  -</span><span style='color: #BB0000;'>1.62</span><span>    1.07 G3_2   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> E1    G3    3      47.8 0.4    1.69   46.4  1.32   1.01    1.07 G3_3   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> E1    G4    1      47.9 0.4    1.69   48.3 -</span><span style='color: #BB0000;'>0.386</span><span> -</span><span style='color: #BB0000;'>0.296</span><span>   1.07 G4_1   
-#&gt; </span><span style='color: #949494;'># ... with 410 more rows</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 1</span> E1    G1    1      44.9 0.400  1.68   46.5 -<span style='color: #BB0000;'>1.62</span>  -<span style='color: #BB0000;'>1.24</span>    1.07 G1_1   
+#&gt; <span style='color: #BCBCBC;'> 2</span> E1    G1    2      46.9 0.400  1.69   46.0  0.942  0.721   1.07 G1_2   
+#&gt; <span style='color: #BCBCBC;'> 3</span> E1    G1    3      47.8 0.400  1.69   47.1  0.678  0.519   1.07 G1_3   
+#&gt; <span style='color: #BCBCBC;'> 4</span> E1    G2    1      45.2 0.400  1.69   45.4 -<span style='color: #BB0000;'>0.153</span> -<span style='color: #BB0000;'>0.117</span>   1.07 G2_1   
+#&gt; <span style='color: #BCBCBC;'> 5</span> E1    G2    2      45.3 0.400  1.69   44.8  0.538  0.412   1.07 G2_2   
+#&gt; <span style='color: #BCBCBC;'> 6</span> E1    G2    3      45.5 0.400  1.69   45.9 -<span style='color: #BB0000;'>0.386</span> -<span style='color: #BB0000;'>0.295</span>   1.07 G2_3   
+#&gt; <span style='color: #BCBCBC;'> 7</span> E1    G3    1      46.7 0.4    1.69   45.9  0.791  0.606   1.07 G3_1   
+#&gt; <span style='color: #BCBCBC;'> 8</span> E1    G3    2      43.2 0.400  1.68   45.3 -<span style='color: #BB0000;'>2.11</span>  -<span style='color: #BB0000;'>1.62</span>    1.07 G3_2   
+#&gt; <span style='color: #BCBCBC;'> 9</span> E1    G3    3      47.8 0.400  1.69   46.4  1.32   1.01    1.07 G3_3   
+#&gt; <span style='color: #BCBCBC;'>10</span> E1    G4    1      47.9 0.400  1.69   48.3 -<span style='color: #BB0000;'>0.386</span> -<span style='color: #BB0000;'>0.296</span>   1.07 G4_1   
+#&gt; <span style='color: #949494;'># ... with 410 more rows</span>
 #&gt; 
 #&gt; $details
-#&gt; </span><span style='color: #949494;'># A tibble: 10 x 2</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 10 x 2</span>
 #&gt;    Parameters mean            
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mean       </span><span style='color: #949494;'>"</span><span>48.09</span><span style='color: #949494;'>"</span><span>         
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> SE         </span><span style='color: #949494;'>"</span><span>0.21</span><span style='color: #949494;'>"</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> SD         </span><span style='color: #949494;'>"</span><span>4.37</span><span style='color: #949494;'>"</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CV         </span><span style='color: #949494;'>"</span><span>9.09</span><span style='color: #949494;'>"</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Min        </span><span style='color: #949494;'>"</span><span>38 (G2 in E14)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Max        </span><span style='color: #949494;'>"</span><span>58 (G8 in E11)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> MinENV     </span><span style='color: #949494;'>"</span><span>E14 (41.03)</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> MaxENV     </span><span style='color: #949494;'>"</span><span>E11 (54.2)</span><span style='color: #949494;'>"</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> MinGEN     </span><span style='color: #949494;'>"</span><span>G2 (46.66) </span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> MaxGEN     </span><span style='color: #949494;'>"</span><span>G5 (49.3) </span><span style='color: #949494;'>"</span><span>    
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
+#&gt; <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>48.09<span style='color: #949494;'>"</span>         
+#&gt; <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.21<span style='color: #949494;'>"</span>          
+#&gt; <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>4.37<span style='color: #949494;'>"</span>          
+#&gt; <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>9.09<span style='color: #949494;'>"</span>          
+#&gt; <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>38 (G2 in E14)<span style='color: #949494;'>"</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>58 (G8 in E11)<span style='color: #949494;'>"</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E14 (41.03)<span style='color: #949494;'>"</span>   
+#&gt; <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E11 (54.2)<span style='color: #949494;'>"</span>    
+#&gt; <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G2 (46.66) <span style='color: #949494;'>"</span>   
+#&gt; <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G5 (49.3) <span style='color: #949494;'>"</span>    
 #&gt; 
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -438,7 +438,7 @@ the working directory.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

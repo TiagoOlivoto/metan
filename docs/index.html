@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -283,17 +283,17 @@
 <span class="co"># Class of the model: performs_ammi</span>
 <span class="co"># Variable extracted: Pr(&gt;F)</span>
 <span class="co"># # A tibble: 9 x 4</span>
-<span class="co">#   PC       DF      GY     HM</span>
-<span class="co">#   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co"># 1 PC1      21 0       0     </span>
-<span class="co"># 2 PC2      19 0       0     </span>
-<span class="co"># 3 PC3      17 0.0014  0.0021</span>
-<span class="co"># 4 PC4      15 0.00960 0.0218</span>
-<span class="co"># 5 PC5      13 0.318   0.0377</span>
-<span class="co"># 6 PC6      11 0.561   0.041 </span>
-<span class="co"># 7 PC7       9 0.754   0.0633</span>
-<span class="co"># 8 PC8       7 0.804   0.232 </span>
-<span class="co"># 9 PC9       5 0.934   0.944</span></code></pre></div>
+<span class="co">#   PC       DF     GY     HM</span>
+<span class="co">#   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co"># 1 PC1      21 0      0     </span>
+<span class="co"># 2 PC2      19 0      0     </span>
+<span class="co"># 3 PC3      17 0.0014 0.0021</span>
+<span class="co"># 4 PC4      15 0.0096 0.0218</span>
+<span class="co"># 5 PC5      13 0.318  0.0377</span>
+<span class="co"># 6 PC6      11 0.561  0.041 </span>
+<span class="co"># 7 PC7       9 0.754  0.0633</span>
+<span class="co"># 8 PC8       7 0.804  0.232 </span>
+<span class="co"># 9 PC9       5 0.934  0.944</span></code></pre></div>
 </div>
 <div id="biplots" class="section level2">
 <h2 class="hasAnchor">
@@ -343,6 +343,7 @@
             gen <span class="op">=</span> <span class="va">GEN</span>,
             rep <span class="op">=</span> <span class="va">REP</span>,
             resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co"># Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </span>
 <span class="co"># Method: REML/BLUP</span>
 <span class="co"># Random effects: GEN, GEN:ENV</span>
 <span class="co"># Fixed effects: ENV, REP(ENV)</span>
@@ -386,10 +387,11 @@
 <p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>gmd()</code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
+<span class="co"># Evaluating trait GY |============================================| 100% 00:00:05 </span>
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
-<span class="co"># # A tibble: 10 x 35</span>
+<span class="co"># # A tibble: 10 x 36</span>
 <span class="co">#    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span class="co">#  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 </span>
@@ -402,10 +404,11 @@
 <span class="co">#  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 </span>
 <span class="co">#  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 </span>
 <span class="co"># 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 </span>
-<span class="co"># # ... with 23 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
-<span class="co"># #   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;,</span>
-<span class="co"># #   HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;, S1 &lt;dbl&gt;,</span>
-<span class="co"># #   S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span></code></pre></div>
+<span class="co"># # ... with 24 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
+<span class="co"># #   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;, HMGV &lt;dbl&gt;,</span>
+<span class="co"># #   RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;,</span>
+<span class="co"># #   S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;,</span>
+<span class="co"># #   N4 &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="citation" class="section level1">
 <h1 class="hasAnchor">
@@ -429,9 +432,7 @@
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    pages <span class="ot">=</span> {<span class="dv">783-789</span>},</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2020</span>},</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.1111</span><span class="sc">/</span><span class="dv">2041</span><span class="sc">-</span>210X<span class="fl">.13384</span>},</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>besjournals.onlinelibrary.wiley.com<span class="sc">/</span>doi<span class="sc">/</span>abs<span class="sc">/</span><span class="fl">10.1111</span><span class="sc">/</span><span class="dv">2041</span><span class="sc">-</span>210X<span class="fl">.13384</span>},</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    eprint <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>besjournals.onlinelibrary.wiley.com<span class="sc">/</span>doi<span class="sc">/</span>pdf<span class="sc">/</span><span class="fl">10.1111</span><span class="sc">/</span><span class="dv">2041</span><span class="sc">-</span>210X<span class="fl">.13384</span>},</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="er">}</span></span></code></pre></div>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="er">}</span></span></code></pre></div>
 </div>
 <div id="getting-help" class="section level1">
 <h1 class="hasAnchor">
@@ -480,7 +481,7 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-0241-9636" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://olivoto.netlify.app/">Tiago Olivoto</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-0241-9636" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -488,7 +489,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://CRAN.R-project.org/package=metan"><img src="https://www.r-pkg.org/badges/version-ago/metan" alt="CRAN status"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable-1"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/130062661"><img src="https://zenodo.org/badge/130062661.svg" alt="DOI" width="186"></a></li>
 </ul>
 </div>
@@ -497,7 +498,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">Tiago Olivoto</a>.</p>
+  <p>Developed by <a href="https://olivoto.netlify.app/">Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

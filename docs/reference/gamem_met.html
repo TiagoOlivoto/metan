@@ -133,7 +133,7 @@ assuming all effects, except the intercept, as random factors.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -451,7 +451,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
                   gen <span class='op'>=</span> <span class='va'>GEN</span>,
                   rep <span class='op'>=</span> <span class='va'>REP</span>,
                   resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
+</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
 #&gt; P-values for Likelihood Ratio Test of the analyzed traits
 #&gt; ---------------------------------------------------------------------------
 #&gt;     model       GY       HM
@@ -464,18 +464,18 @@ incomplete block designs. Biometrika 63:83-92.</p>
 </div><div class='img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Genetic parameters</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"genpar"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span>
 #&gt;   Parameters              GY     HM
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Phenotypic variance  0.181 5.52  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Heritability         0.154 0.088</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> GEIr2                0.313 0.397 
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> h2mg                 0.815 0.686 
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Accuracy             0.903 0.828 
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> rge                  0.370 0.435 
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> CVg                  6.26  1.46  
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> CVr                 11.6   3.50  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> CV ratio             0.538 0.415 </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.181 5.52  
+#&gt; <span style='color: #BCBCBC;'>2</span> Heritability         0.154 0.088<span style='text-decoration: underline;'>7</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2                0.313 0.397 
+#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                 0.815 0.686 
+#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy             0.903 0.828 
+#&gt; <span style='color: #BCBCBC;'>6</span> rge                  0.370 0.435 
+#&gt; <span style='color: #BCBCBC;'>7</span> CVg                  6.26  1.46  
+#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 11.6   3.50  
+#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio             0.538 0.415 </div><div class='input'>
 
 
 <span class='co'>#===============================================================#</span>
@@ -503,20 +503,20 @@ incomplete block designs. Biometrika 63:83-92.</p>
 #&gt;   GEN:ENV 2.11e-11
 #&gt; ---------------------------------------------------------------------------
 #&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 9 x 2</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 2</span>
 #&gt;   Parameters               GY
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Phenotypic variance  0.907 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Heritability         0.030</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> GEIr2                0.314 
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> h2mg                 0.813 
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Accuracy             0.902 
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> rge                  0.371 
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> CVg                  6.24  
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> CVr                 11.6   
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> CV ratio             0.536 </div><div class='input'><span class='co'># }</span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.907 
+#&gt; <span style='color: #BCBCBC;'>2</span> Heritability         0.030<span style='text-decoration: underline;'>8</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2                0.314 
+#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                 0.813 
+#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy             0.902 
+#&gt; <span style='color: #BCBCBC;'>6</span> rge                  0.371 
+#&gt; <span style='color: #BCBCBC;'>7</span> CVg                  6.24  
+#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 11.6   
+#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio             0.536 </div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -528,7 +528,7 @@ incomplete block designs. Biometrika 63:83-92.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

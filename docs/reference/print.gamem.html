@@ -97,7 +97,7 @@ in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -291,63 +291,63 @@ the working directory</p></td>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Fixed-effect anova table
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span>
 #&gt;   SOURCE `Sum Sq` `Mean Sq` NumDF DenDF `F value` `Pr(&gt;F)`
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> REP       1.381    0.690</span><span style='text-decoration: underline;'>7</span><span>     2 11.76     8.463 0.005</span><span style='text-decoration: underline;'>287</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> REP       1.381    0.690<span style='text-decoration: underline;'>7</span>     2 11.76     8.463 0.005<span style='text-decoration: underline;'>287</span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Variance components for random effects
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 2</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 3 x 2</span>
 #&gt;   Group     Variance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> GEN        0.142</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> REP:BLOCK  0.070</span><span style='text-decoration: underline;'>22</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Residual   0.081</span><span style='text-decoration: underline;'>62</span><span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> GEN        0.142<span style='text-decoration: underline;'>9</span> 
+#&gt; <span style='color: #BCBCBC;'>2</span> REP:BLOCK  0.070<span style='text-decoration: underline;'>22</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> Residual   0.081<span style='text-decoration: underline;'>62</span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; Likelihood ratio test for random effects
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 7</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 3 x 7</span>
 #&gt;   model      npar logLik   AIC    LRT    Df `Pr(&gt;Chisq)`
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Complete      6 -</span><span style='color: #BB0000;'>46.60</span><span> 105.2 </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Genotype      5 -</span><span style='color: #BB0000;'>58.41</span><span> 126.8 23.62      1  0.000</span><span style='text-decoration: underline;'>001</span><span>176
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> rep:block     5 -</span><span style='color: #BB0000;'>50.90</span><span> 111.8  8.606     1  0.003</span><span style='text-decoration: underline;'>351</span><span>   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Complete      6 -<span style='color: #BB0000;'>46.60</span> 105.2 <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>          
+#&gt; <span style='color: #BCBCBC;'>2</span> Genotype      5 -<span style='color: #BB0000;'>58.41</span> 126.8 23.62      1  0.000<span style='text-decoration: underline;'>001</span>176
+#&gt; <span style='color: #BCBCBC;'>3</span> rep:block     5 -<span style='color: #BB0000;'>50.90</span> 111.8  8.606     1  0.003<span style='text-decoration: underline;'>351</span>   
 #&gt; ---------------------------------------------------------------------------
 #&gt; Details of the analysis
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #949494;'># A tibble: 6 x 2</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 6 x 2</span>
 #&gt;   Parameters Values                  
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Ngen       24                      
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> OVmean     4.4795                  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Min        2.8873 (G03 in B6 of R3)
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Max        5.8757 (G05 in B1 of R1)
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> MinGEN     3.3431 (G03)            
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> MaxGEN     5.1625 (G01)            
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                   
+#&gt; <span style='color: #BCBCBC;'>1</span> Ngen       24                      
+#&gt; <span style='color: #BCBCBC;'>2</span> OVmean     4.4795                  
+#&gt; <span style='color: #BCBCBC;'>3</span> Min        2.8873 (G03 in B6 of R3)
+#&gt; <span style='color: #BCBCBC;'>4</span> Max        5.8757 (G05 in B1 of R1)
+#&gt; <span style='color: #BCBCBC;'>5</span> MinGEN     3.3431 (G03)            
+#&gt; <span style='color: #BCBCBC;'>6</span> MaxGEN     5.1625 (G01)            
 #&gt; ---------------------------------------------------------------------------
 #&gt; Genetic parameters
 #&gt; ---------------------------------------------------------------------------
-#&gt; </span><span style='color: #949494;'># A tibble: 13 x 2</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 13 x 2</span>
 #&gt;    Parameters      Values
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Gen_var        0.142</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Gen (%)       48.48   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> rep:block_var  0.070</span><span style='text-decoration: underline;'>22</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> rep:block (%) 23.82   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Res_var        0.081</span><span style='text-decoration: underline;'>62</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Res (%)       27.69   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Phen_var       0.294</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> H2             0.484</span><span style='text-decoration: underline;'>8</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> h2mg           0.798</span><span style='text-decoration: underline;'>0</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Accuracy       0.893</span><span style='text-decoration: underline;'>3</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> CVg            8.439  
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> CVr            6.378  
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> CV ratio       1.323  
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> Gen_var        0.142<span style='text-decoration: underline;'>9</span> 
+#&gt; <span style='color: #BCBCBC;'> 2</span> Gen (%)       48.48   
+#&gt; <span style='color: #BCBCBC;'> 3</span> rep:block_var  0.070<span style='text-decoration: underline;'>22</span>
+#&gt; <span style='color: #BCBCBC;'> 4</span> rep:block (%) 23.82   
+#&gt; <span style='color: #BCBCBC;'> 5</span> Res_var        0.081<span style='text-decoration: underline;'>62</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> Res (%)       27.69   
+#&gt; <span style='color: #BCBCBC;'> 7</span> Phen_var       0.294<span style='text-decoration: underline;'>7</span> 
+#&gt; <span style='color: #BCBCBC;'> 8</span> H2             0.484<span style='text-decoration: underline;'>8</span> 
+#&gt; <span style='color: #BCBCBC;'> 9</span> h2mg           0.798<span style='text-decoration: underline;'>0</span> 
+#&gt; <span style='color: #BCBCBC;'>10</span> Accuracy       0.893<span style='text-decoration: underline;'>3</span> 
+#&gt; <span style='color: #BCBCBC;'>11</span> CVg            8.439  
+#&gt; <span style='color: #BCBCBC;'>12</span> CVr            6.378  
+#&gt; <span style='color: #BCBCBC;'>13</span> CV ratio       1.323  
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -359,7 +359,7 @@ the working directory</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

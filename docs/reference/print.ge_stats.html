@@ -98,7 +98,7 @@ into a *.txt file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -280,41 +280,41 @@ the working directory.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
 <span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:01 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:04 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Variable GY 
 #&gt; ---------------------------------------------------------------------------
 #&gt; Stability statistics and ranks
 #&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 10 x 68</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 10 x 68</span>
 #&gt;    GEN       Y   Y_R    CV  CV_R   ACV ACV_R   POLAR POLAR_R   Var Var_R Shukla
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1     2.60     6  35.2     8  34.1     6  0.029</span><span style='text-decoration: underline;'>8</span><span>       6 10.9      7 0.028</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10    2.47    10  42.3     9  38.6     9  0.136        9 14.2      9 0.244 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2     2.74     3  34.0     7  35.2     8  0.057</span><span style='text-decoration: underline;'>0</span><span>       8 11.3      8 0.086</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3     2.96     2  29.9     3  33.8     5  0.021</span><span style='text-decoration: underline;'>6</span><span>       5 10.1      5 0.012</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4     2.64     5  31.4     6  31.0     4 -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>       4  8.93     4 0.064</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5     2.54     7  30.6     5  28.8     3 -</span><span style='color: #BB0000;'>0.119</span><span>        3  7.82     3 0.048</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6     2.53     8  29.7     2  27.8     1 -</span><span style='color: #BB0000;'>0.147</span><span>        1  7.34     2 0.046</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7     2.74     4  27.4     1  28.3     2 -</span><span style='color: #BB0000;'>0.133</span><span>        2  7.33     1 0.122 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8     3.00     1  30.4     4  35.1     7  0.053</span><span style='text-decoration: underline;'>1</span><span>       7 10.8      6 0.071</span><span style='text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9     2.51     9  42.4    10  39.4    10  0.154       10 14.7     10 0.167 
-#&gt; </span><span style='color: #949494;'># ... with 56 more variables: Shukla_R &lt;dbl&gt;, Wi_g &lt;dbl&gt;, Wi_g_R &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   Wi_f &lt;dbl&gt;, Wi_f_R &lt;dbl&gt;, Wi_u &lt;dbl&gt;, Wi_u_R &lt;dbl&gt;, Ecoval &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   Ecoval_R &lt;dbl&gt;, bij &lt;dbl&gt;, Sij &lt;dbl&gt;, Sij_R &lt;dbl&gt;, R2 &lt;dbl&gt;, R2_R &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   ASV &lt;dbl&gt;, ASV_R &lt;dbl&gt;, SIPC &lt;dbl&gt;, SIPC_R &lt;dbl&gt;, EV &lt;dbl&gt;, EV_R &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   ZA &lt;dbl&gt;, ZA_R &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAAS_R &lt;dbl&gt;, WAASB &lt;dbl&gt;, WAASB_R &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   HMGV &lt;dbl&gt;, HMGV_R &lt;dbl&gt;, RPGV &lt;dbl&gt;, RPGV_R &lt;dbl&gt;, HMRPGV &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   HMRPGV_R &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_a_R &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_f_R &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   Pi_u &lt;dbl&gt;, Pi_u_R &lt;dbl&gt;, Gai &lt;dbl&gt;, Gai_R &lt;dbl&gt;, S1 &lt;dbl&gt;, S1_R &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   S2 &lt;dbl&gt;, S2_R &lt;dbl&gt;, S3 &lt;dbl&gt;, S3_R &lt;dbl&gt;, S6 &lt;dbl&gt;, S6_R &lt;dbl&gt;, N1 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   N1_R &lt;dbl&gt;, N2 &lt;dbl&gt;, N2_R &lt;dbl&gt;, N3 &lt;dbl&gt;, N3_R &lt;dbl&gt;, N4 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   N4_R &lt;dbl&gt;</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> G1     2.60     6  35.2     8  34.1     6  0.029<span style='text-decoration: underline;'>8</span>       6 10.9      7 0.028<span style='text-decoration: underline;'>0</span>
+#&gt; <span style='color: #BCBCBC;'> 2</span> G10    2.47    10  42.3     9  38.6     9  0.136        9 14.2      9 0.244 
+#&gt; <span style='color: #BCBCBC;'> 3</span> G2     2.74     3  34.0     7  35.2     8  0.057<span style='text-decoration: underline;'>0</span>       8 11.3      8 0.086<span style='text-decoration: underline;'>1</span>
+#&gt; <span style='color: #BCBCBC;'> 4</span> G3     2.96     2  29.9     3  33.8     5  0.021<span style='text-decoration: underline;'>6</span>       5 10.1      5 0.012<span style='text-decoration: underline;'>1</span>
+#&gt; <span style='color: #BCBCBC;'> 5</span> G4     2.64     5  31.4     6  31.0     4 -<span style='color: #BB0000;'>0.053</span><span style='color: #BB0000; text-decoration: underline;'>7</span>       4  8.93     4 0.064<span style='text-decoration: underline;'>0</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> G5     2.54     7  30.6     5  28.8     3 -<span style='color: #BB0000;'>0.119</span>        3  7.82     3 0.048<span style='text-decoration: underline;'>0</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span> G6     2.53     8  29.7     2  27.8     1 -<span style='color: #BB0000;'>0.147</span>        1  7.34     2 0.046<span style='text-decoration: underline;'>8</span>
+#&gt; <span style='color: #BCBCBC;'> 8</span> G7     2.74     4  27.4     1  28.3     2 -<span style='color: #BB0000;'>0.133</span>        2  7.33     1 0.122 
+#&gt; <span style='color: #BCBCBC;'> 9</span> G8     3.00     1  30.4     4  35.1     7  0.053<span style='text-decoration: underline;'>1</span>       7 10.8      6 0.071<span style='text-decoration: underline;'>2</span>
+#&gt; <span style='color: #BCBCBC;'>10</span> G9     2.51     9  42.4    10  39.4    10  0.154       10 14.7     10 0.167 
+#&gt; <span style='color: #949494;'># ... with 56 more variables: Shukla_R &lt;dbl&gt;, Wi_g &lt;dbl&gt;, Wi_g_R &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   Wi_f &lt;dbl&gt;, Wi_f_R &lt;dbl&gt;, Wi_u &lt;dbl&gt;, Wi_u_R &lt;dbl&gt;, Ecoval &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   Ecoval_R &lt;dbl&gt;, bij &lt;dbl&gt;, Sij &lt;dbl&gt;, Sij_R &lt;dbl&gt;, R2 &lt;dbl&gt;, R2_R &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   ASV &lt;dbl&gt;, ASV_R &lt;dbl&gt;, SIPC &lt;dbl&gt;, SIPC_R &lt;dbl&gt;, EV &lt;dbl&gt;, EV_R &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   ZA &lt;dbl&gt;, ZA_R &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAAS_R &lt;dbl&gt;, WAASB &lt;dbl&gt;, WAASB_R &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   HMGV &lt;dbl&gt;, HMGV_R &lt;dbl&gt;, RPGV &lt;dbl&gt;, RPGV_R &lt;dbl&gt;, HMRPGV &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   HMRPGV_R &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_a_R &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_f_R &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   Pi_u &lt;dbl&gt;, Pi_u_R &lt;dbl&gt;, Gai &lt;dbl&gt;, Gai_R &lt;dbl&gt;, S1 &lt;dbl&gt;, S1_R &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   S2 &lt;dbl&gt;, S2_R &lt;dbl&gt;, S3 &lt;dbl&gt;, S3_R &lt;dbl&gt;, S6 &lt;dbl&gt;, S6_R &lt;dbl&gt;, N1 &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   N1_R &lt;dbl&gt;, N2 &lt;dbl&gt;, N2_R &lt;dbl&gt;, N3 &lt;dbl&gt;, N3_R &lt;dbl&gt;, N4 &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   N4_R &lt;dbl&gt;</span>
 #&gt; ---------------------------------------------------------------------------
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -326,7 +326,7 @@ the working directory.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

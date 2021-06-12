@@ -108,7 +108,7 @@ the argument min_expl_var." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -423,35 +423,35 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
                      resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='input'><span class='co'># The index WAAS</span>
 <span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
 #&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1        2     2
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10      10    10
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2        5     8
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3        1     1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4        6     6
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5        4     9
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6        3     3
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7        8     7
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8        7     4
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9        9     5</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 3</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> G1        2     2
+#&gt; <span style='color: #BCBCBC;'> 2</span> G10      10    10
+#&gt; <span style='color: #BCBCBC;'> 3</span> G2        5     8
+#&gt; <span style='color: #BCBCBC;'> 4</span> G3        1     1
+#&gt; <span style='color: #BCBCBC;'> 5</span> G4        6     6
+#&gt; <span style='color: #BCBCBC;'> 6</span> G5        4     9
+#&gt; <span style='color: #BCBCBC;'> 7</span> G6        3     3
+#&gt; <span style='color: #BCBCBC;'> 8</span> G7        8     7
+#&gt; <span style='color: #BCBCBC;'> 9</span> G8        7     4
+#&gt; <span style='color: #BCBCBC;'>10</span> G9        9     5</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, what <span class='op'>=</span> <span class='st'>"OrWAAS"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAAS</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
 #&gt;    GEN      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> G1        2     3
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> G10      10    10
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> G2        5     8
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> G3        1     1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> G4        6     6
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> G5        4     9
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> G6        3     2
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> G7        8     7
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> G8        7     4
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> G9        9     5</div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> G1        2     3
+#&gt; <span style='color: #BCBCBC;'> 2</span> G10      10    10
+#&gt; <span style='color: #BCBCBC;'> 3</span> G2        5     8
+#&gt; <span style='color: #BCBCBC;'> 4</span> G3        1     1
+#&gt; <span style='color: #BCBCBC;'> 5</span> G4        6     6
+#&gt; <span style='color: #BCBCBC;'> 6</span> G5        4     9
+#&gt; <span style='color: #BCBCBC;'> 7</span> G6        3     2
+#&gt; <span style='color: #BCBCBC;'> 8</span> G7        8     7
+#&gt; <span style='color: #BCBCBC;'> 9</span> G8        7     4
+#&gt; <span style='color: #BCBCBC;'>10</span> G9        9     5</div><div class='input'>
 <span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -463,7 +463,7 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">

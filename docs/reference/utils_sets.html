@@ -103,7 +103,7 @@ set_difference(): Returns the difference of the sets in ....
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
       </span>
     </div>
 
@@ -297,28 +297,28 @@ column names exist.</p></td>
 <span class='va'>set_3</span> <span class='op'>&lt;-</span> <span class='va'>sets</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>7</span>,<span class='op'>]</span>
 
 <span class='fu'>set_intersect</span><span class='op'>(</span><span class='va'>set_1</span>, <span class='va'>set_2</span>, <span class='va'>set_3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 6</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 6</span>
 #&gt;   row_id ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      3 E1    G1    3      2.43  47.8
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      4 E1    G2    1      3.21  45.2
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>      5 E1    G2    2      2.93  45.3</div><div class='input'><span class='fu'>set_difference</span><span class='op'>(</span><span class='va'>set_2</span>, <span class='va'>set_3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>      3 E1    G1    3      2.43  47.8
+#&gt; <span style='color: #BCBCBC;'>2</span>      4 E1    G2    1      3.21  45.2
+#&gt; <span style='color: #BCBCBC;'>3</span>      5 E1    G2    2      2.93  45.3</div><div class='input'><span class='fu'>set_difference</span><span class='op'>(</span><span class='va'>set_2</span>, <span class='va'>set_3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 6</span>
 #&gt;   row_id ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      2 E1    G1    2      2.50  46.9</div><div class='input'><span class='fu'>set_union</span><span class='op'>(</span><span class='va'>set_1</span>, <span class='va'>set_2</span>, <span class='va'>set_3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 7 x 6</span><span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>      2 E1    G1    2      2.50  46.9</div><div class='input'><span class='fu'>set_union</span><span class='op'>(</span><span class='va'>set_1</span>, <span class='va'>set_2</span>, <span class='va'>set_3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 7 x 6</span>
 #&gt;   row_id ENV   GEN   REP      GY    HM
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      1 E1    G1    1      2.17  44.9
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      2 E1    G1    2      2.50  46.9
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>      3 E1    G1    3      2.43  47.8
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>      4 E1    G2    1      3.21  45.2
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>      5 E1    G2    2      2.93  45.3
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>      6 E1    G2    3      2.56  45.5
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span>      7 E1    G3    1      2.77  46.7</div><div class='input'><span class='co'># }</span>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>      1 E1    G1    1      2.17  44.9
+#&gt; <span style='color: #BCBCBC;'>2</span>      2 E1    G1    2      2.50  46.9
+#&gt; <span style='color: #BCBCBC;'>3</span>      3 E1    G1    3      2.43  47.8
+#&gt; <span style='color: #BCBCBC;'>4</span>      4 E1    G2    1      3.21  45.2
+#&gt; <span style='color: #BCBCBC;'>5</span>      5 E1    G2    2      2.93  45.3
+#&gt; <span style='color: #BCBCBC;'>6</span>      6 E1    G2    3      2.56  45.5
+#&gt; <span style='color: #BCBCBC;'>7</span>      7 E1    G3    1      2.77  46.7</div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -330,7 +330,7 @@ column names exist.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.researchgate.net/profile/Tiago_Olivoto2'>Tiago Olivoto</a>.</p>
+  <p>Developed by <a href='https://olivoto.netlify.app/'>Tiago Olivoto</a>.</p>
 </div>
 
 <div class="pkgdown">
