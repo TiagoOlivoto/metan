@@ -64,7 +64,8 @@ inspect <- function (.data,
     ) %>%
     rownames_to_column("Variable") %>%
     as_tibble()
-  esp_nrows <- prod(as.numeric(as.character(df[which(df[4] != "-"),][4]$Levels)))
+  lvls <- as.numeric(as.character(df[which(df[4] != "-"),][4]$Levels))
+  esp_nrows <- prod(lvls[lvls!=0])
   if(verbose == TRUE){
     print(df)
     nfactors <- sum(lapply(.data, is.factor) == TRUE)
@@ -124,7 +125,7 @@ inspect <- function (.data,
       ggpairs(lower = NULL,
               cardinality_threshold = threshold,
               diag = list(continuous = wrap("densityDiag",
-                                           size = 0.2),
+                                            size = 0.2),
                           discrete = wrap("barDiag",
                                           color = "black",
                                           size = 0.2)),
@@ -148,4 +149,3 @@ inspect <- function (.data,
   }
   invisible(df)
 }
-
