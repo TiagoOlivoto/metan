@@ -917,6 +917,7 @@ av_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sum(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm) / length(which(!is.na(df)))
@@ -942,6 +943,7 @@ ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     qt((0.5 + level/2), (length(which(!is.na(df))) - 1)) * sd(df, na.rm = na.rm)/sqrt(length(which(!is.na(df))))
@@ -967,6 +969,7 @@ cv <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sd(df, na.rm = na.rm)/mean(df, na.rm = na.rm) * 100
@@ -1003,6 +1006,7 @@ hmean <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     1 / mean(1 / df, na.rm = na.rm)
@@ -1028,6 +1032,7 @@ gmean <- function(.data, ..., na.rm = FALSE){
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     exp(sum(log(df[df > 0]), na.rm = na.rm) / length(df))
@@ -1053,6 +1058,7 @@ kurt <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     n <- length(which(!is.na(df)))
@@ -1099,6 +1105,7 @@ n_unique <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     length(unique(df))
@@ -1122,6 +1129,7 @@ n_valid <- function(.data, ..., na.rm = FALSE){
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     length(which(!is.na(df)))
@@ -1147,6 +1155,7 @@ pseudo_sigma <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     IQR(df, na.rm = na.rm) / 1.35
@@ -1172,6 +1181,7 @@ range_data <- function(.data, ..., na.rm = FALSE){
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     max(df, na.rm = na.rm) - min(df, na.rm = na.rm)
@@ -1196,6 +1206,7 @@ range_data <- function(.data, ..., na.rm = FALSE){
 row_col_mean <- function(.data, na.rm = FALSE) {
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   if(!any(sapply(.data, is.numeric))){
@@ -1214,6 +1225,7 @@ row_col_mean <- function(.data, na.rm = FALSE) {
 row_col_sum <- function(.data, na.rm = FALSE) {
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   if(!any(sapply(.data, is.numeric))){
@@ -1233,12 +1245,10 @@ sd_amo <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / (length(which(!is.na(df))) - 1))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1261,12 +1271,10 @@ sd_pop <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sqrt(sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm) / length(which(!is.na(df))))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1289,12 +1297,10 @@ sem <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sd(df, na.rm = na.rm) / sqrt(length(which(!is.na(df))))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1317,13 +1323,11 @@ skew <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     n <- length(which(!is.na(df)))
     sum((df - mean(df, na.rm = na.rm))^3, na.rm = na.rm)/sd(df, na.rm = na.rm)^3 * n / ((n - 1) * (n - 2))
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1346,12 +1350,10 @@ sum_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sum(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm)
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1374,12 +1376,10 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1402,12 +1402,10 @@ sum_sq <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sum(df ^ 2, na.rm = na.rm)
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1430,12 +1428,10 @@ var_pop <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sd_pop(df, na.rm = na.rm)^2
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1458,12 +1454,10 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
     sd_amo(df, na.rm = na.rm)^2
-  }
-  if(has_na(.data) && na.rm == FALSE){
-    stop("NA values in data. Use 'na.rm = TRUE' to remove NAs from analysis.\nTo remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.", call. = FALSE)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1487,6 +1481,7 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
 cv_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1497,6 +1492,7 @@ cv_by <- function(.data, ..., na.rm = FALSE){
 max_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1507,6 +1503,7 @@ max_by <- function(.data, ..., na.rm = FALSE){
 means_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1517,6 +1514,7 @@ means_by <- function(.data, ..., na.rm = FALSE){
 min_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1527,6 +1525,7 @@ min_by <- function(.data, ..., na.rm = FALSE){
 n_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1537,6 +1536,7 @@ n_by <- function(.data, ..., na.rm = FALSE){
 sd_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1547,6 +1547,7 @@ sd_by <- function(.data, ..., na.rm = FALSE){
 sem_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
@@ -1557,6 +1558,7 @@ sem_by <- function(.data, ..., na.rm = FALSE){
 sum_by <- function(.data, ..., na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
   group_by(.data, ...) %>%
