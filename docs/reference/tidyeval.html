@@ -55,7 +55,7 @@
 <meta property="og:title" content="Tidy eval helpers — tidyeval" />
 <meta property="og:description" content="
 
-rlang::sym() creates a symbol from a string and
+sym() creates a symbol from a string and
 syms() creates a list of symbols from a
 character vector.
 enquo() and
@@ -67,10 +67,10 @@ expr() quotes a new expression locally. It
 is mostly useful to build new expressions around arguments
 captured with enquo() or enquos():
 expr(mean(!!enquo(arg), na.rm = TRUE)).
-rlang::as_name() transforms a quoted variable name
+as_name() transforms a quoted variable name
 into a string. Supplying something else than a quoted variable
 name is an error.
-That's unlike rlang::as_label() which also returns
+That's unlike as_label() which also returns
 a single string but supports any kind of R object as input,
 including quoted function calls and vectors. Its purpose is to
 summarise that object into a single label. That label is often
@@ -83,8 +83,9 @@ name, or would like to enforce this, use as_name().
 
 
 To learn more about tidy eval and how to use these tools, visit
-https://tidyeval.tidyverse.org/ and the
-Metaprogramming section of Advanced R." />
+https://tidyeval.tidyverse.org and the
+Metaprogramming
+section of Advanced R." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -135,7 +136,7 @@ Metaprogramming section of Advanced R." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
     Home
   </a>
@@ -219,7 +220,7 @@ Metaprogramming section of Advanced R." />
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -262,22 +263,22 @@ Metaprogramming section of Advanced R." />
     <div class="ref-description">
     
 <ul>
-<li><p><code><a href='https://rlang.r-lib.org/reference/sym.html'>rlang::sym()</a></code> creates a symbol from a string and
-<code><a href='https://rlang.r-lib.org/reference/sym.html'>syms()</a></code> creates a list of symbols from a
+<li><p><code><a href='https://rlang.r-lib.org/reference/sym.html'>sym</a>()</code> creates a symbol from a string and
+<code><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a>()</code> creates a list of symbols from a
 character vector.</p></li>
-<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquo()</a></code> and
-<code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquos()</a></code> delay the execution of one or
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquo</a>()</code> and
+<code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquos</a>()</code> delay the execution of one or
 several function arguments. <code>enquo()</code> returns a single quoted
 expression, which is like a blueprint for the delayed computation.
 <code>enquos()</code> returns a list of such quoted expressions.</p></li>
-<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>expr()</a></code> quotes a new expression <em>locally</em>. It
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>expr</a>()</code> quotes a new expression <em>locally</em>. It
 is mostly useful to build new expressions around arguments
 captured with <code>enquo()</code> or <code>enquos()</code>:
 <code>expr(mean(!!enquo(arg), na.rm = TRUE))</code>.</p></li>
-<li><p><code><a href='https://rlang.r-lib.org/reference/as_name.html'>rlang::as_name()</a></code> transforms a quoted variable name
+<li><p><code><a href='https://rlang.r-lib.org/reference/as_name.html'>as_name</a>()</code> transforms a quoted variable name
 into a string. Supplying something else than a quoted variable
 name is an error.</p>
-<p>That's unlike <code><a href='https://rlang.r-lib.org/reference/as_label.html'>rlang::as_label()</a></code> which also returns
+<p>That's unlike <code><a href='https://rlang.r-lib.org/reference/as_label.html'>as_label</a>()</code> which also returns
 a single string but supports any kind of R object as input,
 including quoted function calls and vectors. Its purpose is to
 summarise that object into a single label. That label is often
@@ -290,8 +291,9 @@ name, or would like to enforce this, use <code>as_name()</code>.</p></li>
 </ul>
 
 <p>To learn more about tidy eval and how to use these tools, visit
-<a href='https://tidyeval.tidyverse.org/'>https://tidyeval.tidyverse.org/</a> and the
-<a href='https://adv-r.hadley.nz/metaprogramming.html/'>Metaprogramming section</a> of <a href='https://adv-r.hadley.nz/'>Advanced R</a>.</p>
+<a href='https://tidyeval.tidyverse.org'>https://tidyeval.tidyverse.org</a> and the
+<a href='https://adv-r.hadley.nz/metaprogramming.html'>Metaprogramming
+section</a> of <a href='https://adv-r.hadley.nz'>Advanced R</a>.</p>
     </div>
 
 

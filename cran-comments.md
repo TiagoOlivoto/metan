@@ -1,5 +1,5 @@
 # Release summary
-This is a minor release (v1.14.0) that add minor improvements and fix bugs. See `News.md` for more information.
+This is a minor release (v1.15.0) that add minor improvements and fix bugs. See `News.md` for more information.
 
 # Test environments
 * GitHub Actions (ubuntu-16.04): devel, release, oldrel, 3.5, 3.4, 3.3

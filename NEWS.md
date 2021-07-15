@@ -1,6 +1,8 @@
 # metan (development version)
 * Fix bug when calling `gmd(., "data")`
 * Fix bug with `fai_blup()` when genotypes has distance as 0.
+* Fix bug in `inspect()` when some trait has character values.
+* Fix bug in `gmd(model, "blupge")`
 
 # metan 1.14.0
 ## Minor improvements
