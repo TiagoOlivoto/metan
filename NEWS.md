@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.15.0
 * Fix bug when calling `gmd(., "data")`
 * Fix bug with `fai_blup()` when genotypes has distance as 0.
 * Fix bug in `inspect()` when some trait has character values.
