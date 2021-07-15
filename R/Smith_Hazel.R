@@ -48,8 +48,7 @@
 #' \doi{10.1111/j.1469-1809.1936.tb02143.x}
 #'
 #' Hazel, L.N. 1943. The genetic basis for constructing selection indexes.
-#' Genetics 28:476-90.
-#' [PMID:17247099](https://pubmed.ncbi.nlm.nih.gov/17247099/)
+#' Genetics 28:476-90. https://www.genetics.org/content/28/6/476.short
 #'
 #' @return An object of class `hz` containing:
 #'  * **b**: the vector of index coefficient.

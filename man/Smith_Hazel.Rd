@@ -87,8 +87,7 @@ Smith, H.F. 1936. A discriminant function for plant selection. Ann. Eugen.
 \doi{10.1111/j.1469-1809.1936.tb02143.x}
 
 Hazel, L.N. 1943. The genetic basis for constructing selection indexes.
-Genetics 28:476-90.
-\href{https://pubmed.ncbi.nlm.nih.gov/17247099/}{PMID:17247099}
+Genetics 28:476-90. https://www.genetics.org/content/28/6/476.short
 }
 \seealso{
 \code{\link[=mtsi]{mtsi()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=fai_blup]{fai_blup()}}
