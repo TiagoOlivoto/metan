@@ -1217,7 +1217,7 @@ row_col_mean <- function(.data, na.rm = FALSE) {
   col_means <- colMeans(mat, na.rm = na.rm)
   cmeans <- suppressWarnings(cbind(mat,  row_means) %>% rbind(col_means))
   rownames(cmeans) <- c(rownames(mat), "col_means")
-  cmeans[nrow(cmeans), ncol(cmeans)] <- mean(mat)
+  cmeans[nrow(cmeans), ncol(cmeans)] <- mean(mat, na.rm = na.rm)
   return(cmeans)
 }
 #' @name utils_stats
@@ -1236,7 +1236,7 @@ row_col_sum <- function(.data, na.rm = FALSE) {
   col_sums <- colSums(mat, na.rm = na.rm)
   cmeans <- suppressWarnings(cbind(mat,  row_sums) %>% rbind(col_sums))
   rownames(cmeans) <- c(rownames(mat), "col_sums")
-  cmeans[nrow(cmeans), ncol(cmeans)] <- sum(mat)
+  cmeans[nrow(cmeans), ncol(cmeans)] <- sum(mat, na.rm = na.rm)
   return(cmeans)
 }
 #' @name utils_stats
