@@ -125,7 +125,7 @@ tidy_strings(str): the result will be then c(&quot;ENV_1&quot;, &quot;ENV_1&quot
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -596,21 +596,21 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span>
 #&gt;   Env     gen   Env_GEN           y
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> ENV 1   GEN1  ENV 1.GEN1     312.
-#&gt; <span style='color: #BCBCBC;'>2</span> Env   1 gen 2 Env   1.gen 2  312.
-#&gt; <span style='color: #BCBCBC;'>3</span> Env1    Gen.3 Env1.Gen.3     306.
-#&gt; <span style='color: #BCBCBC;'>4</span> env1    gen-4 env1.gen-4     279.
-#&gt; <span style='color: #BCBCBC;'>5</span> Env.1   Gen_5 Env.1.Gen_5    307.
-#&gt; <span style='color: #BCBCBC;'>6</span> Env_1   GEN_6 Env_1.GEN_6    301.</div><div class='input'><span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> ENV 1   GEN1  ENV 1.GEN1     279.
+#&gt; <span style='color: #BCBCBC;'>2</span> Env   1 gen 2 Env   1.gen 2  292.
+#&gt; <span style='color: #BCBCBC;'>3</span> Env1    Gen.3 Env1.Gen.3     317.
+#&gt; <span style='color: #BCBCBC;'>4</span> env1    gen-4 env1.gen-4     310.
+#&gt; <span style='color: #BCBCBC;'>5</span> Env.1   Gen_5 Env.1.Gen_5    297.
+#&gt; <span style='color: #BCBCBC;'>6</span> Env_1   GEN_6 Env_1.GEN_6    302.</div><div class='input'><span class='fu'>tidy_strings</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span>
 #&gt;   Env   gen   Env_GEN         y
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> ENV_1 GEN_1 ENV_1_GEN_1  312.
-#&gt; <span style='color: #BCBCBC;'>2</span> ENV_1 GEN_2 ENV_1_GEN_2  312.
-#&gt; <span style='color: #BCBCBC;'>3</span> ENV_1 GEN_3 ENV_1_GEN_3  306.
-#&gt; <span style='color: #BCBCBC;'>4</span> ENV_1 GEN_4 ENV_1_GEN_4  279.
-#&gt; <span style='color: #BCBCBC;'>5</span> ENV_1 GEN_5 ENV_1_GEN_5  307.
-#&gt; <span style='color: #BCBCBC;'>6</span> ENV_1 GEN_6 ENV_1_GEN_6  301.</div><div class='input'><span class='co'># }</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> ENV_1 GEN_1 ENV_1_GEN_1  279.
+#&gt; <span style='color: #BCBCBC;'>2</span> ENV_1 GEN_2 ENV_1_GEN_2  292.
+#&gt; <span style='color: #BCBCBC;'>3</span> ENV_1 GEN_3 ENV_1_GEN_3  317.
+#&gt; <span style='color: #BCBCBC;'>4</span> ENV_1 GEN_4 ENV_1_GEN_4  310.
+#&gt; <span style='color: #BCBCBC;'>5</span> ENV_1 GEN_5 ENV_1_GEN_5  297.
+#&gt; <span style='color: #BCBCBC;'>6</span> ENV_1 GEN_6 ENV_1_GEN_6  302.</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
