@@ -248,7 +248,8 @@ venn_plot <- function(...,
     ggplot() +
     geom_polygon(aes(x = x, y = y, group = group, fill = group),
                  alpha = alpha) +
-    geom_polygon(aes(x = x, y = y, group = group, fill = NA),
+    geom_polygon(aes(x = x, y = y, group = group),
+                 fill = NA,
                  color = stroke_color,
                  size = stroke_size,
                  alpha = stroke_alpha,
@@ -264,7 +265,7 @@ venn_plot <- function(...,
     scale_x_continuous(expand = expansion(0.1)) +
     scale_y_continuous(expand = expansion(0.1)) +
     scale_fill_manual(values = fill_color) +
-    guides(fill = FALSE) +
+    guides(fill = "none") +
     coord_fixed() +
     theme_void()
 }
