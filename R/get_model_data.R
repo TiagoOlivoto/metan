@@ -416,7 +416,7 @@ get_model_data <- function(x,
   check18 <- c("Mean_rp", "Sem_rp", "Wi", "rank")
   check19 <- c("ge_means", "env_means", "gen_means")
   check20 <- c("Y", "h2", "Sum Sq", "Mean Sq", "F value", "Pr(>F)", "fitted", "resid", "stdres", "se.fit", "details")
-  check21 <- c("MEAN", "DFG", "MSG", "FCG", "PFG", "DFB", "MSB", "FCB", "PFB", "DFCR", "MSCR", "FCR", "PFCR", "DFIB_R", "MSIB_R", "FCIB_R", "PFIB_R", "DFE", "MSE", "CV", "h2", "AS", "FMAX")
+  check21 <- c("ALL", "MEAN", "DFG", "MSG", "FCG", "PFG", "DFB", "MSB", "FCB", "PFB", "DFCR", "MSCR", "FCR", "PFCR", "DFIB_R", "MSIB_R", "FCIB_R", "PFIB_R", "DFE", "MSE", "CV", "h2", "AS", "FMAX")
   check22 <- c("scores", "exp_var", "projection")
   check23 <- c("coefs", "loads", "crossloads", "canonical")
   check24 <- c("gyt", "stand_gyt", "si")
@@ -1000,7 +1000,7 @@ get_model_data <- function(x,
   }
   if (has_class(x, "anova_ind")) {
     if (is.null(what)){
-      what <- "MEAN"
+      what <- "ALL"
     }
     if (!what %in% c(check21)) {
       stop("Invalid value in 'what' for object of class, ", class(x), ". Allowed are ", paste(check21, collapse = ", "), call. = FALSE)
@@ -1013,6 +1013,13 @@ get_model_data <- function(x,
         as.data.frame() %>%
         rownames_to_column("TRAIT") %>%
         setNames(c("TRAIT", "F_RATIO"))
+    }
+    if(what == "ALL"){
+      bind <-
+        lapply(x, function(x){
+        x[[1]]
+      }) %>%
+        rbind_fill_id(.id = "trait")
     } else{
     bind <- sapply(x, function(x) {
       x[["individual"]][[what]]
