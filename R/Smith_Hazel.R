@@ -121,10 +121,15 @@ Smith_Hazel <- function(.data,
     rownames_to_column("GEN") %>%
     arrange(-V1)
   sel_gen <- head(index, ngs)[[1]]
+  if(length(sel_gen)==1){
+    xsel <- t(as.matrix(mat[sel_gen, ]))
+  } else{
+    xsel <- mat[sel_gen, ]
+  }
   sel_dif_trait <-
     tibble(VAR = colnames(mat),
            Xo = colMeans(mat),
-           Xs = colMeans(mat[sel_gen, ]),
+           Xs = colMeans(xsel),
            SD = Xs - Xo,
            SDperc = (Xs - Xo) / Xo * 100)
   vars <- tibble(VAR = colnames(mat),

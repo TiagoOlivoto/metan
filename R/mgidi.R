@@ -144,7 +144,7 @@ mgidi <- function(.data,
                   weights = NULL,
                   use = "complete.obs",
                   verbose = TRUE) {
-  if(has_class(.data, c("gamem_group", "gafem_group"))){
+  if(has_class(.data, c("gamem_group", "gafem_group", "waasb_group"))){
     bind <-
       .data %>%
       mutate(data = map(data, ~.x %>%
