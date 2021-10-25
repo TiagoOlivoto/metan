@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
       </span>
     </div>
 
@@ -170,13 +170,13 @@
 
       
 
-      </header><script src="vignettes_gge_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="vignettes_gge_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Analyzing multienvironment trials using GGE</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2021-07-16</h4>
+            <h4 class="date">2021-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_gge.Rmd"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_gge.Rmd</code></div>
@@ -374,8 +374,7 @@
 <a href="#biplot-type-6-ranking-environments" class="anchor"></a>Biplot type 6: Ranking environments</h2>
 <p>In this biplot the “ideal” environment is used as the center of a set of concentric lines that serve as a ruler to measure the distance between an environment and the ideal environment. since the main focus in this biplot is environments, then, the singular value partition used is “environment” (default). It can be seen that E13 is the closest to the ideal environment, and, therefore, is most desirable of all 14 environments. E4 and E9 were the least desirable test environments.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
           type <span class="op">=</span> <span class="fl">6</span>,

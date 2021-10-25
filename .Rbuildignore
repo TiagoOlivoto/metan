@@ -15,6 +15,7 @@
 ^vignettes/vignettes_stability\.Rmd$
 ^vignettes/vignettes_gge\.Rmd$
 ^vignettes/vignettes_utilities\.Rmd$
+^imgs$
 ^README_file$
 ^Meta$
 ^metan.Rcheck$
