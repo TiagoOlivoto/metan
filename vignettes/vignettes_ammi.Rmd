@@ -88,7 +88,7 @@ AMMI_model <- performs_ammi(data_ge,
                             resp = GY,
                             verbose = FALSE)
 
-    ```
+```
 
 Note that using the arguments in the correct order, the model above may be fitted cleanly with:
 
@@ -188,7 +188,7 @@ b <- plot_scores(AMMI_model,
 arrange_ggplot(a, b, tag_levels = "a")
 ```
 
-### biplot type 2:
+### biplot type 2: PC1 x PC2
 
 * PC1 x PC2
 By default, IPCA1 is shown in the x axis and IPCA2 in the y axis.

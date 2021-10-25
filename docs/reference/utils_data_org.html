@@ -106,7 +106,7 @@ genotype, and replication, format the data to be used in the Selegen software
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
       </span>
     </div>
 
@@ -322,35 +322,35 @@ doi: <a href='https://doi.org/10.1590/1984-70332016v16n4a49'>10.1590/1984-703320
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 4</span>
 #&gt;    ENV         GEN   REP      V1
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1     79.3
-#&gt; <span style='color: #BCBCBC;'> 2</span> CACIQUE     H1    B2     89.5
-#&gt; <span style='color: #BCBCBC;'> 3</span> CACIQUE     H2    B1     98.1
-#&gt; <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2    118. 
-#&gt; <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1     87.7
-#&gt; <span style='color: #BCBCBC;'> 6</span> FREDERICO   H1    B2    110. 
-#&gt; <span style='color: #BCBCBC;'> 7</span> FREDERICO   H2    B1    112. 
-#&gt; <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2    125. 
-#&gt; <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1     89.4
-#&gt; <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H1    B2     90.8
-#&gt; <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H2    B1    104. 
-#&gt; <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2    113. </div><div class='input'>
+#&gt; <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1     120.
+#&gt; <span style='color: #BCBCBC;'> 2</span> CACIQUE     H1    B2     118.
+#&gt; <span style='color: #BCBCBC;'> 3</span> CACIQUE     H2    B1     127.
+#&gt; <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2     124.
+#&gt; <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1     114.
+#&gt; <span style='color: #BCBCBC;'> 6</span> FREDERICO   H1    B2     117.
+#&gt; <span style='color: #BCBCBC;'> 7</span> FREDERICO   H2    B1     131.
+#&gt; <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2     131.
+#&gt; <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1     114.
+#&gt; <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H1    B2     108.
+#&gt; <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H2    B1     122.
+#&gt; <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2     108.</div><div class='input'>
 <span class='co'># Add sequential block numbering over environments</span>
 <span class='fu'>add_seq_block</span><span class='op'>(</span><span class='va'>df_ge</span>, <span class='va'>ENV</span>, <span class='va'>REP</span>, prefix <span class='op'>=</span> <span class='st'>"B"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>The data `df_ge` has been arranged according to the `ENV` and `REP` columns.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 5</span>
 #&gt;    ENV         GEN   REP   BLOCK    V1
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1    B1     79.3
-#&gt; <span style='color: #BCBCBC;'> 2</span> CACIQUE     H2    B1    B1     98.1
-#&gt; <span style='color: #BCBCBC;'> 3</span> CACIQUE     H1    B2    B2     89.5
-#&gt; <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2    B2    118. 
-#&gt; <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1    B3     87.7
-#&gt; <span style='color: #BCBCBC;'> 6</span> FREDERICO   H2    B1    B3    112. 
-#&gt; <span style='color: #BCBCBC;'> 7</span> FREDERICO   H1    B2    B4    110. 
-#&gt; <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2    B4    125. 
-#&gt; <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1    B5     89.4
-#&gt; <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H2    B1    B5    104. 
-#&gt; <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H1    B2    B6     90.8
-#&gt; <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2    B6    113. </div><div class='input'>
+#&gt; <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1    B1     120.
+#&gt; <span style='color: #BCBCBC;'> 2</span> CACIQUE     H2    B1    B1     127.
+#&gt; <span style='color: #BCBCBC;'> 3</span> CACIQUE     H1    B2    B2     118.
+#&gt; <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2    B2     124.
+#&gt; <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1    B3     114.
+#&gt; <span style='color: #BCBCBC;'> 6</span> FREDERICO   H2    B1    B3     131.
+#&gt; <span style='color: #BCBCBC;'> 7</span> FREDERICO   H1    B2    B4     117.
+#&gt; <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2    B4     131.
+#&gt; <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1    B5     114.
+#&gt; <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H2    B1    B5     122.
+#&gt; <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H1    B2    B6     108.
+#&gt; <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2    B6     108.</div><div class='input'>
 <span class='co'># Recode the 'ENV' column to "ENV1", "ENV2", and so on.</span>
 <span class='fu'>recode_factor</span><span class='op'>(</span><span class='va'>df_ge</span>,
               factor <span class='op'>=</span> <span class='va'>ENV</span>,

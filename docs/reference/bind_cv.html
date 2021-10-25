@@ -99,7 +99,7 @@ containing the RMSPD values of those cross-validation procedures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
       </span>
     </div>
 
@@ -287,7 +287,7 @@ data frame.</p>
                 env <span class='op'>=</span> <span class='va'>ENV</span>,
                 rep <span class='op'>=</span> <span class='va'>REP</span>,
                 nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:01 Validating 5 of 5 sets |=========================================| 100% 00:00:01 </div><div class='input'><span class='va'>bind_data</span> <span class='op'>&lt;-</span> <span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:01 Validating 5 of 5 sets |=========================================| 100% 00:00:02 </div><div class='input'><span class='va'>bind_data</span> <span class='op'>&lt;-</span> <span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>bind_data</span><span class='op'>)</span>
 </div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span>, bind <span class='op'>=</span> <span class='st'>'means'</span><span class='op'>)</span><span class='op'>)</span>

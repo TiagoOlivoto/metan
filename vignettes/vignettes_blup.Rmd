@@ -372,7 +372,7 @@ In this output, *Y* is the phenotypic mean for each genotype and environment com
 
 Provided that an object of class `waasb` is available in the global environment, the graphics may be obtained using the function `plot_scores()`. To do that, we will revisit the previusly fitted model `WAASB` . Please, refer to `?plot_scores` for more details. Four types of graphics can be generated: 1 = $PC1 \times PC2$;  2 = $GY \times PC1$; 3 = $GY \times WAASB$; and 4 = a graphic with nominal yield as a function of the environment PCA1 scores.
 
-### biplot type 1: PC1 x PC2
+### biplot type 1: GY x PC1
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 c <- plot_scores(waasb_model, type = 1)
@@ -386,7 +386,7 @@ arrange_ggplot(c, d, tag_levels = list(c("c", "d")))
 ```
 
 
-### biplot type 2: GY x PC1
+### biplot type 2: PC1 x PC2
 
 ```{r  echo = TRUE, fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
 
