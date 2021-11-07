@@ -55,7 +55,7 @@
 #' * `"n1", "n2", "n3", and "n4"` Thennarasu's stability statistics (Thennarasu,
 #' 1995).
 #' * `"asv", "ev", "za", and "waas"` AMMI-based stability indexes (see
-#' [AMMI_indexes()]).
+#' [ammi_indexes()]).
 #'
 #' @param ideotype_mper,ideotype_stab The new maximum value after rescaling the
 #'   response variable/stability index. By default, all variables in `resp` are
@@ -308,7 +308,7 @@ mps <- function(.data,
                                 rep = {{rep}},
                                 resp = {{resp}},
                                 verbose = FALSE) %>%
-             AMMI_indexes() %>%
+             ammi_indexes() %>%
              gmd("WAAS", verbose = FALSE) %>%
              column_to_rownames("GEN"),
            za = performs_ammi(.data,
@@ -317,7 +317,7 @@ mps <- function(.data,
                               rep = {{rep}},
                               resp = {{resp}},
                               verbose = FALSE) %>%
-             AMMI_indexes() %>%
+             ammi_indexes() %>%
              gmd("ZA", verbose = FALSE) %>%
              column_to_rownames("GEN"),
            ev = performs_ammi(.data,
@@ -326,7 +326,7 @@ mps <- function(.data,
                               rep = {{rep}},
                               resp = {{resp}},
                               verbose = FALSE) %>%
-             AMMI_indexes() %>%
+             ammi_indexes() %>%
              gmd("EV", verbose = FALSE) %>%
              column_to_rownames("GEN"),
            sipc = performs_ammi(.data,
@@ -335,7 +335,7 @@ mps <- function(.data,
                                 rep = {{rep}},
                                 resp = {{resp}},
                                 verbose = FALSE) %>%
-             AMMI_indexes() %>%
+             ammi_indexes() %>%
              gmd("SIPC", verbose = FALSE) %>%
              column_to_rownames("GEN"),
            asv = performs_ammi(.data,
@@ -344,7 +344,7 @@ mps <- function(.data,
                                rep = {{rep}},
                                resp = {{resp}},
                                verbose = FALSE) %>%
-             AMMI_indexes() %>%
+             ammi_indexes() %>%
              gmd("ASV", verbose = FALSE) %>%
              column_to_rownames("GEN"),
            # Thennarasu's stability statistics

@@ -40,7 +40,7 @@
 #'   (Average of the squared eigenvector values), `"ZA"` (Absolute values
 #'   of the relative contributions of the IPCAs to the interaction), and
 #'   `"WAAS"` (Weighted Average of Absolute Scores), by calling
-#'   [AMMI_indexes()] internally; `"HMGV"` (Harmonic mean of the
+#'   [ammi_indexes()] internally; `"HMGV"` (Harmonic mean of the
 #'   genotypic value), `"RPGV"` (Relative performance of the genotypic
 #'   values), `"HMRPGV"` (Harmonic mean of the relative performance of the
 #'   genotypic values), by calling [blup_indexes()] internally;
@@ -170,7 +170,7 @@ hue_mod <- Huehn(data, ENV, GEN, Y, verbose = FALSE)[[1]]
 lb_mod <- superiority(data, ENV, GEN, Y, verbose = FALSE)[[1]]
 then_mod <- Thennarasu(data, ENV, GEN, Y, verbose = FALSE)[[1]]
 ammm_mod <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)
-ammm_mod <- AMMI_indexes(ammm_mod)[[1]]
+ammm_mod <- ammi_indexes(ammm_mod)[[1]]
 blup_mod <- waasb(data, ENV, GEN, REP, Y, verbose = FALSE)
 blup_mod <- blup_indexes(blup_mod)[[1]]
 temp <- tibble(GEN = an_mod[[1]]$general$GEN,

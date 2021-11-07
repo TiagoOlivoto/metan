@@ -13,7 +13,7 @@ gmd(x, what = NULL, type = "GEN", verbose = TRUE)
 sel_gen(x)
 }
 \arguments{
-\item{x}{An object created with the functions \code{\link[=AMMI_indexes]{AMMI_indexes()}},
+\item{x}{An object created with the functions \code{\link[=ammi_indexes]{ammi_indexes()}},
 \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=can_corr]{can_corr()}} \code{\link[=ecovalence]{ecovalence()}},  \code{\link[=Fox]{Fox()}},
 \code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}},\code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}},
 \code{\link[=gytb]{gytb()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=performs_ammi]{performs_ammi()}}, \code{\link[=blup_indexes]{blup_indexes()}}, \code{\link[=Shukla]{Shukla()}},
@@ -47,7 +47,7 @@ AMMI-based stability statistics.
 Bellow are listed the options allowed in the argument \code{what} depending
 on the class of the object
 
-\strong{Objects of class \code{AMMI_indexes}:}
+\strong{Objects of class \code{ammi_indexes}:}
 \itemize{
 \item \code{"ASV"} AMMI stability value.
 \item \code{"EV"} Averages of the squared eigenvector values.
@@ -419,7 +419,7 @@ Evaluation of genotype vs environment interaction in chickpea using measures
 of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 }
 \seealso{
-\code{\link[=AMMI_indexes]{AMMI_indexes()}}, \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=ecovalence]{ecovalence()}},
+\code{\link[=ammi_indexes]{ammi_indexes()}}, \code{\link[=anova_ind]{anova_ind()}}, \code{\link[=anova_joint]{anova_joint()}}, \code{\link[=ecovalence]{ecovalence()}},
 \code{\link[=Fox]{Fox()}}, \code{\link[=gai]{gai()}}, \code{\link[=gamem]{gamem()}}, \code{\link[=gafem]{gafem()}}, \code{\link[=ge_acv]{ge_acv()}}, \code{\link[=ge_polar]{ge_polar()}}
 \code{\link[=ge_means]{ge_means()}}, \code{\link[=ge_reg]{ge_reg()}}, \code{\link[=mgidi]{mgidi()}}, \code{\link[=mtsi]{mtsi()}}, \code{\link[=mps]{mps()}}, \code{\link[=mtmps]{mtmps()}},
 \code{\link[=performs_ammi]{performs_ammi()}}, \code{\link[=blup_indexes]{blup_indexes()}}, \code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=waas]{waas()}},

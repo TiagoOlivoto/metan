@@ -7,7 +7,6 @@
 #' rank differences of a genotype over the n environments), S2 (variance among
 #' the ranks over the k environments), S3 (sum of the absolute deviations), and
 #' S6 (relative sum of squares of rank for each genotype).
-#'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
 #' @param env The name of the column that contains the levels of the

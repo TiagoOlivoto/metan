@@ -8,7 +8,7 @@
 #' AMMI-based stability statistics.
 #' * `gmd()` Is a shortcut to `get_model_data`.
 #' * `sel_gen()` Extracts the selected genotypes by a given index.
-#' @param x An object created with the functions [AMMI_indexes()],
+#' @param x An object created with the functions [ammi_indexes()],
 #'   [anova_ind()], [anova_joint()], [can_corr()] [ecovalence()],  [Fox()],
 #'   [gai()], [gamem()],[gafem()], [ge_acv()], [ge_means()], [ge_reg()],
 #'   [gytb()], [mgidi()], [performs_ammi()], [blup_indexes()], [Shukla()],
@@ -26,7 +26,7 @@
 #' Bellow are listed the options allowed in the argument `what` depending
 #' on the class of the object
 #'
-#'  **Objects of class `AMMI_indexes`:**
+#'  **Objects of class `ammi_indexes`:**
 #' * `"ASV"` AMMI stability value.
 #' * `"EV"` Averages of the squared eigenvector values.
 #' * `"SIPC"` Sums of the absolute value of the IPCA scores.
@@ -304,7 +304,7 @@
 #' Evaluation of genotype vs environment interaction in chickpea using measures
 #' of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.
 #'
-#' @seealso [AMMI_indexes()], [anova_ind()], [anova_joint()], [ecovalence()],
+#' @seealso [ammi_indexes()], [anova_ind()], [anova_joint()], [ecovalence()],
 #'   [Fox()], [gai()], [gamem()], [gafem()], [ge_acv()], [ge_polar()]
 #'   [ge_means()], [ge_reg()], [mgidi()], [mtsi()], [mps()], [mtmps()],
 #'   [performs_ammi()], [blup_indexes()], [Shukla()], [superiority()], [waas()],
@@ -373,7 +373,7 @@ get_model_data <- function(x,
                            verbose = TRUE) {
   call_f <- match.call()
   if (!has_class(x, c("waasb", "waasb_group", "waas","waas_means", "gamem", "performs_ammi",
-                      "blup_ind", "AMMI_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
+                      "blup_ind", "ammi_indexes", "ecovalence", "ge_reg", "Fox", "Shukla",
                       "superiority", "ge_effects", "gai", "Huehn", "Thennarasu",
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gafem_group", "gamem_group", "anova_ind", "gge", "can_cor",
@@ -402,7 +402,10 @@ get_model_data <- function(x,
               "OrResp", "OrWAASB", "OrPC1", "WAASBY", "OrWAASBY")
   check5 <- c("ipca_ss", "ipca_ms", "ipca_fval", "ipca_pval", "ipca_expl", "ipca_accum")
   check6 <- c("HMGV", "HMGV_R", "RPGV", "RPGV_Y", "RPGV_R", "HMRPGV", "HMRPGV_Y", "HMRPGV_R", "WAASB", "WAASB_R")
-  check7 <- c("ASV", "SIPC", "EV", "ZA", "WAAS", "ASV_R", "SIPC_R", "EV_R", "ZA_R", "WAAS_R", "ASV_SSI", "SIPC_SSI", "EV_SSI", "ZA_SSI", "WAAS_SSI")
+  check7 <- c("ASTAB", "ASTAB_R", "ssiASTAB", "ASI", "ASI_R", "ASI_SSI", "ASV", "ASV_R", "ASV_SSI","AVAMGE",
+              "AVAMGE_R","AVAMGE_SSI","DA","DA_R","DA_SSI","DZ","DZ_R","DZ_SSI","EV","EV_R","EV_SSI","FA",
+              "FA_R","FA_SSI","MASI","MASI_R","MASI_SSI","MASV","MASV_R","MASV_SSI","SIPC","SIPC_R","SIPC_SSI",
+              "ZA","ZA_R","ZA_SSI","WAAS","WAAS_R","WAAS_SSI")
   check8 <- c("Ecoval", "Ecov_perc", "rank")
   check9 <- c("GEN", "b0", "b1", "t(b1=1)", "pval_t", "s2di", "F(s2di=0)", "pval_f", "RMSE", "R2")
   check10 <- c("TOP")
@@ -1298,12 +1301,12 @@ get_model_data <- function(x,
       column_to_first(GEN)
   }
 
-  if (has_class(x,  "AMMI_indexes")) {
+  if (has_class(x,  "ammi_indexes")) {
     if (is.null(what)){
       what <- "WAAS"
     }
     if (!what %in% c(check7)) {
-      stop("Invalid value in 'what' for object of class 'AMMI_indexes'. Allowed are ", paste(check7, collapse = ", "), call. = FALSE)
+      stop("Invalid value in 'what' for object of class 'ammi_indexes'. Allowed are ", paste(check7, collapse = ", "), call. = FALSE)
     }
     bind <- sapply(x, function(x) {
       x[[what]]

@@ -60,7 +60,7 @@ respectively, calling \code{\link[=Annicchiarico]{Annicchiarico()}} internally )
 (Average of the squared eigenvector values), \code{"ZA"} (Absolute values
 of the relative contributions of the IPCAs to the interaction), and
 \code{"WAAS"} (Weighted Average of Absolute Scores), by calling
-\code{\link[=AMMI_indexes]{AMMI_indexes()}} internally; \code{"HMGV"} (Harmonic mean of the
+\code{\link[=ammi_indexes]{ammi_indexes()}} internally; \code{"HMGV"} (Harmonic mean of the
 genotypic value), \code{"RPGV"} (Relative performance of the genotypic
 values), \code{"HMRPGV"} (Harmonic mean of the relative performance of the
 genotypic values), by calling \code{\link[=blup_indexes]{blup_indexes()}} internally;

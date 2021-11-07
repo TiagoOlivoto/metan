@@ -78,7 +78,7 @@ and Russell, 1966).
 \item \verb{"n1", "n2", "n3", and "n4"} Thennarasu's stability statistics (Thennarasu,
 1995).
 \item \verb{"asv", "ev", "za", and "waas"} AMMI-based stability indexes (see
-\code{\link[=AMMI_indexes]{AMMI_indexes()}}).
+\code{\link[=ammi_indexes]{ammi_indexes()}}).
 }}
 
 \item{ideotype_mper, ideotype_stab}{The new maximum value after rescaling the
