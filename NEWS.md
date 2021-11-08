@@ -1,4 +1,13 @@
-# metan (development version)
+# metan 1.16.0
+## New features
+* Include new AMMI-based stability methods.
+* Update `ge_stats()` to include the new stability methods.
+* `wsmp()` now accepts objects computed with `mps()`, `waas()`, and `waasb()`.
+
+## Minor improvements
+
+* `AMMI_indexes()` has been deprecated in favour of `ammi_indexes()`.
+* Correct the number of environments in the documentation of `data_ge()`
 
 # metan 1.15.0
 * Fix bug when calling `gmd(., "data")`
