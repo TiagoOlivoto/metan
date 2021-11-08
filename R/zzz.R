@@ -42,8 +42,8 @@ NULL
 
 #' @title Multi-environment trial of oat
 #' @description This dataset contain data on two variables assessed in 10 genotypes growing
-#' in in 11 environments. The experimental design was a RCBD with 3
-#' replicates(blocks). This data provide examples for several functions of
+#' in 14 environments. The experimental design was a RCBD with 3
+#' replicates (blocks). This data provide examples for several functions of
 #' \pkg{metan} package.
 #' @format A tibble with 420 observations on the following 5 variables.
 #' * **ENV** A factor with 14 levels; each level represents one cultivation
@@ -152,7 +152,7 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  vers <-  "v1.15.0"
+  vers <-  "v1.16.0"
   packageStartupMessage("|=========================================================|")
   packageStartupMessage("| Multi-Environment Trial Analysis (metan) ", vers, "        |")
   packageStartupMessage("| Author: Tiago Olivoto                                   |")

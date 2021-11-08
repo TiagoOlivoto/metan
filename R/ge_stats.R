@@ -1,15 +1,9 @@
-#' Statistics for genotype-vs-environment interaction
+#' Parametric and non-parametric stability statistics
 #' @description
 #' `r badge('stable')`
 #'
-#' Computes **(i)** within-environment analysis of variance, GEI effect,
-#' GEI means, and genotype plus GEI effects; **(ii)** parametric statistics
-#' including AMMI-based indexes, Annicchiarico's genotypic confidence index
-#' (1992), Ecovalence (Wricke, 1965), regression-based stability (Eberhart and
-#' Russell., 1966), Shukla's stability variance parameter (1972); and
-#' **(iii)** nonparametric statistics including Fox's stability function
-#' (Fox et al. 1990), superiority index (Lin and Binns, 1988), Huehn's stability
-#' statistics (Huehn, 1979), and Thennarasu (1995) statistics.
+#' `ge_stats()` computes parametric and non-parametric stability statistics
+#' given a data set with environment, genotype, and block factors.
 #'
 #' @param .data The dataset containing the columns related to Environments,
 #'   Genotypes, replication/block and response variable(s).
@@ -23,36 +17,43 @@
 #' @param verbose Logical argument. If `verbose = FALSE` the code will run
 #'   silently.
 #' @param prob The probability error assumed.
-#' @details The function computes the statistics and ranks for the following
-#'   stability indexes. `"Y"` (Response variable), `"CV"` (coefficient
-#'   of variation), `"ACV"` (adjusted coefficient of variation calling
-#'   [ge_acv()] internally); `POLAR` (Power Law Residuals,
-#'   calling [ge_polar()] internally) `"Var"` (Genotype's
-#'   variance), `"Shukla"` (Shukla's variance, calling [Shukla()]
-#'   internally), `"Wi_g", "Wi_f", "Wi_u"` (Annichiarrico's genotypic
+#' @details
+#'  The function computes the statistics and ranks for the following
+#'   stability indexes.
+#'   * `"Y"` (Response variable),
+#'   * `"CV"` (coefficient of variation)
+#'   * `"ACV"` (adjusted coefficient of variation calling [ge_acv()] internally)
+#'   * `POLAR` (Power Law Residuals, calling [ge_polar()] internally)
+#'   * `"Var"` (Genotype's variance)
+#'   * `"Shukla"` (Shukla's variance, calling [Shukla()] internally)
+#'   * `"Wi_g", "Wi_f", "Wi_u"` (Annichiarrico's genotypic
 #'   confidence index for all, favorable and unfavorable environments,
-#'   respectively, calling [Annicchiarico()] internally ),
-#'   `"Ecoval"` (Wricke's ecovalence, [ecovalence()] internally),
-#'   `"Sij"` (Deviations from the joint-regression analysis) and
-#'   `"R2"` (R-squared from the joint-regression analysis, calling
-#'   [ge_reg()] internally), `"ASV"` (AMMI-stability value),
-#'   `"SIPC"` (sum of the absolute values of the IPCA scores), `"EV"`
-#'   (Average of the squared eigenvector values), `"ZA"` (Absolute values
-#'   of the relative contributions of the IPCAs to the interaction), and
-#'   `"WAAS"` (Weighted Average of Absolute Scores), by calling
-#'   [ammi_indexes()] internally; `"HMGV"` (Harmonic mean of the
-#'   genotypic value), `"RPGV"` (Relative performance of the genotypic
-#'   values), `"HMRPGV"` (Harmonic mean of the relative performance of the
-#'   genotypic values), by calling [blup_indexes()] internally;
-#'   `"Pi_a", "Pi_f", "Pi_u"` (Superiority indexes for all, favorable and
-#'   unfavorable environments, respectively, calling [superiority()]
-#'   internally), `"Gai"` (Geometric adaptability index, calling
-#'   [gai()] internally), `"S1"` (mean of the absolute rank
-#'   differences of a genotype over the n environments), `"S2"` (variance
-#'   among the ranks over the k environments), `"S3"` (sum of the absolute
-#'   deviations), `"S6"` (relative sum of squares of rank for each
-#'   genotype), by calling [Huehn()] internally; and  `"N1",
-#'   "N2", "N3", "N4"` (Thennarasu"s statistics, calling
+#'   respectively, calling [Annicchiarico()] internally )
+#'   * `"Ecoval"` (Wricke's ecovalence, [ecovalence()] internally)
+#'   * `"Sij"` (Deviations from the joint-regression analysis) and `"R2"`
+#'   (R-squared from the joint-regression analysis, calling [ge_reg()]
+#'   internally)
+#'   * `"ASTAB"` (AMMI Based Stability Parameter), `"ASI"` (AMMI Stability
+#'   Index), `"ASV"` (AMMI-stability value), `"AVAMGE"` (Sum Across Environments
+#'   of Absolute Value of GEI Modelled by AMMI ), `"Da"` (Annicchiarico's D
+#'   Parameter values), `"Dz"` (Zhang's D Parameter), `"EV"` (Sums of the
+#'   Averages of the Squared Eigenvector Values), `"FA"` (Stability Measure
+#'   Based on Fitted AMMI Model), `"MASV"` (Modified AMMI Stability Value),
+#'   `"SIPC"` (Sums of the Absolute Value of the IPC Scores), `"Za"` (Absolute
+#'   Value of the Relative Contribution of IPCs to the Interaction), `"WAAS"`
+#'   (Weighted average of absolute scores), calling [ammi_indexes()] internally
+#'   *  `"HMGV"` (Harmonic mean of the genotypic value), `"RPGV"` (Relative
+#'   performance of the genotypic values), `"HMRPGV"` (Harmonic mean of the
+#'   relative performance of the genotypic values), by calling [blup_indexes()]
+#'   internally
+#'   * `"Pi_a", "Pi_f", "Pi_u"` (Superiority indexes for all, favorable and
+#'   unfavorable environments, respectively, calling [superiority()] internally)
+#'   * `"Gai"` (Geometric adaptability index, calling [gai()] internally)
+#'   * `"S1"` (mean of the absolute rank differences of a genotype over the n
+#'   environments), `"S2"` (variance among the ranks over the k environments),
+#'   `"S3"` (sum of the absolute deviations), `"S6"` (relative sum of squares of
+#'   rank for each genotype), by calling [Huehn()] internally
+#'   * `"N1"`, `"N2"`, `"N3"`, `"N4"` (Thennarasu"s statistics, calling
 #'   [Thennarasu()] internally ).
 #' @return An object of class `ge_stats` which is a list with one data
 #'   frame for each variable containing the computed indexes.
@@ -60,6 +61,19 @@
 #' @references
 #'   Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
 #'   trials in Northern Italy. Journal of Genetic \& Breeding, 46:269-278
+#'
+#' Ajay BC, Aravind J, Abdul Fiyaz R, Bera SK, Kumar N, Gangadhar K, Kona P
+#' (2018). “Modified AMMI Stability Index (MASI) for stability analysis.”
+#' ICAR-DGR Newsletter, 18, 4–5.
+#'
+#' Ajay BC, Aravind J, Fiyaz RA, Kumar N, Lal C, Gangadhar K, Kona P, Dagla MC,
+#' Bera SK (2019). “Rectification of modified AMMI stability value (MASV).”
+#' Indian Journal of Genetics and Plant Breeding (The), 79, 726–731.
+#' https://www.isgpb.org/article/rectification-of-modified-ammi-stability-value-masv.
+#'
+#' Annicchiarico P (1997). “Joint regression vs AMMI analysis of
+#' genotype-environment interactions for cereals in Italy.” Euphytica, 94(1),
+#' 53–62. \doi{10.1023/A:1002954824178}
 #'
 #'   Doring, T.F., and M. Reckling. 2018. Detecting global trends of
 #'   cereal yield stability by adjusting the coefficient of variation. Eur. J.
@@ -73,6 +87,10 @@
 #'   comparing Varieties. Crop Sci. 6:36-40.
 #'   \doi{10.2135/cropsci1966.0011183X000600010011x}
 #'
+#' Farshadfar E (2008) Incorporation of AMMI stability value and grain yield in
+#' a single non-parametric index (GSI) in bread wheat. Pakistan J Biol Sci
+#' 11:1791–1796. \doi{10.3923/pjbs.2008.1791.1796}
+#'
 #'   Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
 #'   Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
 #'   Euphytica 47:57-64.
@@ -80,6 +98,11 @@
 #'
 #'   Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
 #'   stabilitat. EDV Med. Biol. 10:112.
+#'
+#' Jambhulkar NN, Rath NC, Bose LK, Subudhi HN, Biswajit M, Lipi D, Meher J
+#' (2017). “Stability analysis for grain yield in rice in demonstrations
+#' conducted during rabi season in India.” Oryza, 54(2), 236–240.
+#' \doi{10.5958/2249-5266.2017.00030.3}
 #'
 #'   Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
 #'   Yielding and Stable Crop Genotypes. Agron. J. 83:161.
@@ -102,6 +125,17 @@
 #'   genotype-environmental components of variability. Heredity. 29:238-245.
 #'   \doi{10.1038/hdy.1972.87}
 #'
+#' Raju BMK (2002). “A study on AMMI model and its biplots.” Journal of the
+#' Indian Society of Agricultural Statistics, 55(3), 297–322.
+#'
+#' Rao AR, Prabhakaran VT (2005). “Use of AMMI in simultaneous selection of
+#' genotypes for yield and stability.” Journal of the Indian Society of
+#' Agricultural Statistics, 59, 76–82.
+#'
+#' Sneller CH, Kilgore-Norquest L, Dombek D (1997). “Repeatability of yield
+#' stability statistics in soybean.” Crop Science, 37(2), 383–390.
+#' \doi{10.2135/cropsci1997.0011183X003700020013x}
+#'
 #'   Thennarasu, K. 1995. On certain nonparametric procedures for
 #'   studying genotype x environment interactions and yield stability. Ph.D.
 #'   thesis. P.J. School, IARI, New Delhi, India.
@@ -109,12 +143,14 @@
 #'   Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
 #'   Z. Pflanzenzuchtg 52:127-138.
 #'
-#'
 #' @export
+#' @seealso [acv()], [ammi_indexes()], [ecovalence()], [Fox()], [gai()],
+#'   [ge_reg()], [hmgv()], [hmrpgv()], [rpgv()], [Huehn()], [polar()],
+#'   [Shukla()], [superiority()], [Thennarasu()], [waas()], [waasb()]
+#'
 #' @examples
 #' \donttest{
 #' library(metan)
-#'
 #' model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 #' get_model_data(model, "stats")
 #' }
@@ -147,106 +183,122 @@ ge_stats = function(.data,
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-ge_mean <- make_mat(data, GEN, ENV, Y)
-ge_effect <- ge_effects(data, ENV, GEN, Y)[[1]]
-gge_effect <- ge_effects(data, ENV, GEN, Y, type = "gge")[[1]]
-Mean <- apply(ge_mean, 1, mean)
-Variance <- rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
-CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
-ACV <- ge_acv(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-POLAR <- ge_polar(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-GENSS <- (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
-mod <- anova(lm(Y ~ REP/ENV + ENV * GEN, data = data))
-GENMS <- GENSS / mod[2, 1]
-Fcal <- GENMS / mod[6, 3]
-pval <- pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
-er_mod <- ge_reg(data, ENV, GEN, REP, Y, verbose = FALSE)
-ec_mod <- ecovalence(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
-an_mod <- Annicchiarico(data, ENV, GEN, REP, Y, verbose = FALSE, prob = prob)
-shu_mod <- Shukla(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
-fox_mod <- Fox(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-gai_mod <- gai(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
-hue_mod <- Huehn(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-lb_mod <- superiority(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-then_mod <- Thennarasu(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-ammm_mod <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)
-ammm_mod <- ammi_indexes(ammm_mod)[[1]]
-blup_mod <- waasb(data, ENV, GEN, REP, Y, verbose = FALSE)
-blup_mod <- blup_indexes(blup_mod)[[1]]
-temp <- tibble(GEN = an_mod[[1]]$general$GEN,
-               Y = Mean,
-               Y_R = rank(-Mean),
-               CV = CV,
-               CV_R = rank(CV),
-               ACV = ACV[["ACV"]],
-               ACV_R = rank(ACV),
-               POLAR = POLAR[["POLAR"]],
-               POLAR_R = rank(POLAR),
-               Var = Variance,
-               Var_R = rank(Variance),
-               Shukla = shu_mod$ShuklaVar,
-               Shukla_R = shu_mod$rShukaVar,
-               Wi_g = an_mod[[1]]$general$Wi,
-               Wi_g_R = an_mod[[1]]$general$rank,
-               Wi_f = an_mod[[1]]$favorable$Wi,
-               Wi_f_R = an_mod[[1]]$favorable$rank,
-               Wi_u = an_mod[[1]]$unfavorable$Wi,
-               Wi_u_R = an_mod[[1]]$unfavorable$rank,
-               Ecoval = ec_mod$Ecoval,
-               Ecoval_R = ec_mod$rank,
-               bij = er_mod[[1]]$regression$b1,
-               Sij = er_mod[[1]]$regression$s2di,
-               Sij_R = rank(abs(er_mod[[1]]$regression$s2di)),
-               R2 = er_mod[[1]]$regression$R2,
-               R2_R = rank(-er_mod[[1]]$regression$R2),
-               ASV = ammm_mod$ASV,
-               ASV_R = ammm_mod$ASV_R,
-               SIPC = ammm_mod$SIPC,
-               SIPC_R = ammm_mod$SIPC_R,
-               EV = ammm_mod$EV,
-               EV_R = ammm_mod$EV_R,
-               ZA = ammm_mod$ZA,
-               ZA_R = ammm_mod$ZA_R,
-               WAAS = ammm_mod$WAAS,
-               WAAS_R = ammm_mod$WAAS_R,
-               WAASB = blup_mod$WAASB,
-               WAASB_R = blup_mod$WAASB_R,
-               HMGV = blup_mod$HMGV,
-               HMGV_R = blup_mod$HMGV_R,
-               RPGV = blup_mod$RPGV,
-               RPGV_R = blup_mod$RPGV_R,
-               HMRPGV = blup_mod$HMRPGV,
-               HMRPGV_R = blup_mod$HMRPGV_R,
-               Pi_a = lb_mod$index$Pi_a,
-               Pi_a_R = lb_mod$index$R_a,
-               Pi_f = lb_mod$index$Pi_f,
-               Pi_f_R = lb_mod$index$R_f,
-               Pi_u = lb_mod$index$Pi_u,
-               Pi_u_R = lb_mod$index$R_u,
-               Gai = gai_mod$GAI,
-               Gai_R = gai_mod$GAI_R,
-               S1 = hue_mod$S1,
-               S1_R = hue_mod$S1_R,
-               S2 = hue_mod$S2,
-               S2_R = hue_mod$S2_R,
-               S3 = hue_mod$S3,
-               S3_R = hue_mod$S3_R,
-               S6 = hue_mod$S6,
-               S6_R = hue_mod$S6_R,
-               N1 = then_mod$N1,
-               N1_R = then_mod$N1_R,
-               N2 = then_mod$N2,
-               N2_R = then_mod$N2_R,
-               N3 = then_mod$N3,
-               N3_R = then_mod$N3_R,
-               N4 = then_mod$N4,
-               N4_R = then_mod$N4_R)
-if (verbose == TRUE) {
-  run_progress(pb,
-               actual = var,
-               text = paste("Evaluating trait", names(vars[var])))
-}
-listres[[paste(names(vars[var]))]] <- temp
+    ge_mean <- make_mat(data, GEN, ENV, Y)
+    ge_effect <- ge_effects(data, ENV, GEN, Y)[[1]]
+    gge_effect <- ge_effects(data, ENV, GEN, Y, type = "gge")[[1]]
+    Mean <- apply(ge_mean, 1, mean)
+    Variance <- rowSums(apply(ge_mean, 2, function(x) (x - Mean)^2))
+    CV <- apply(ge_mean, 1, function(x) (sd(x) / mean(x) * 100))
+    ACV <- ge_acv(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+    POLAR <- ge_polar(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+    GENSS <- (rowSums(ge_mean^2) - (rowSums(ge_mean)^2)/nlevels(data$ENV))*nlevels(data$REP)
+    mod <- anova(lm(Y ~ REP/ENV + ENV * GEN, data = data))
+    GENMS <- GENSS / mod[2, 1]
+    Fcal <- GENMS / mod[6, 3]
+    pval <- pf(Fcal, mod[2, 1], mod[6, 1], lower.tail = FALSE)
+    er_mod <- ge_reg(data, ENV, GEN, REP, Y, verbose = FALSE)
+    ec_mod <- ecovalence(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+    an_mod <- Annicchiarico(data, ENV, GEN, REP, Y, verbose = FALSE, prob = prob)
+    shu_mod <- Shukla(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+    fox_mod <- Fox(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+    gai_mod <- gai(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+    hue_mod <- Huehn(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+    lb_mod <- superiority(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+    then_mod <- Thennarasu(data, ENV, GEN, Y, verbose = FALSE)[[1]]
+    ammm_mod <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)
+    ammm_mod <- ammi_indexes(ammm_mod)[[1]]
+    blup_mod <- waasb(data, ENV, GEN, REP, Y, verbose = FALSE)
+    blup_mod <- blup_indexes(blup_mod)[[1]]
+    temp <- tibble(GEN = an_mod[[1]]$general$GEN,
+                   Y = Mean,
+                   Y_R = rank(-Mean),
+                   CV = CV,
+                   CV_R = rank(CV),
+                   ACV = ACV[["ACV"]],
+                   ACV_R = rank(ACV),
+                   POLAR = POLAR[["POLAR"]],
+                   POLAR_R = rank(POLAR),
+                   Var = Variance,
+                   Var_R = rank(Variance),
+                   Shukla = shu_mod$ShuklaVar,
+                   Shukla_R = shu_mod$rShukaVar,
+                   Wi_g = an_mod[[1]]$general$Wi,
+                   Wi_g_R = an_mod[[1]]$general$rank,
+                   Wi_f = an_mod[[1]]$favorable$Wi,
+                   Wi_f_R = an_mod[[1]]$favorable$rank,
+                   Wi_u = an_mod[[1]]$unfavorable$Wi,
+                   Wi_u_R = an_mod[[1]]$unfavorable$rank,
+                   Ecoval = ec_mod$Ecoval,
+                   Ecoval_R = ec_mod$rank,
+                   bij = er_mod[[1]]$regression$b1,
+                   Sij = er_mod[[1]]$regression$s2di,
+                   Sij_R = rank(abs(er_mod[[1]]$regression$s2di)),
+                   R2 = er_mod[[1]]$regression$R2,
+                   R2_R = rank(-er_mod[[1]]$regression$R2),
+                   ASTAB = ammm_mod$ASTAB,
+                   ASTAB_R = ammm_mod$ASTAB_R,
+                   ASI = ammm_mod$ASI,
+                   ASI_R = ammm_mod$ASI_R,
+                   ASV = ammm_mod$ASV,
+                   ASV_R = ammm_mod$ASV_R,
+                   AVAMGE = ammm_mod$AVAMGE,
+                   AVAMGE_R = ammm_mod$AVAMGE_R,
+                   DA = ammm_mod$DA,
+                   DA_R = ammm_mod$DA_R,
+                   DZ = ammm_mod$DZ,
+                   DZ_R = ammm_mod$DZ_R,
+                   EV = ammm_mod$EV,
+                   EV_R = ammm_mod$EV_R,
+                   FA = ammm_mod$FA,
+                   FA_R = ammm_mod$FA_R,
+                   MASI = ammm_mod$MASI,
+                   MASI_R = ammm_mod$MASI_R,
+                   MASV = ammm_mod$MASV,
+                   MASV_R = ammm_mod$MASV_R,
+                   SIPC = ammm_mod$SIPC,
+                   SIPC_R = ammm_mod$SIPC_R,
+                   ZA = ammm_mod$ZA,
+                   ZA_R = ammm_mod$ZA_R,
+                   WAAS = ammm_mod$WAAS,
+                   WAAS_R = ammm_mod$WAAS_R,
+                   WAASB = blup_mod$WAASB,
+                   WAASB_R = blup_mod$WAASB_R,
+                   HMGV = blup_mod$HMGV,
+                   HMGV_R = blup_mod$HMGV_R,
+                   RPGV = blup_mod$RPGV,
+                   RPGV_R = blup_mod$RPGV_R,
+                   HMRPGV = blup_mod$HMRPGV,
+                   HMRPGV_R = blup_mod$HMRPGV_R,
+                   Pi_a = lb_mod$index$Pi_a,
+                   Pi_a_R = lb_mod$index$R_a,
+                   Pi_f = lb_mod$index$Pi_f,
+                   Pi_f_R = lb_mod$index$R_f,
+                   Pi_u = lb_mod$index$Pi_u,
+                   Pi_u_R = lb_mod$index$R_u,
+                   Gai = gai_mod$GAI,
+                   Gai_R = gai_mod$GAI_R,
+                   S1 = hue_mod$S1,
+                   S1_R = hue_mod$S1_R,
+                   S2 = hue_mod$S2,
+                   S2_R = hue_mod$S2_R,
+                   S3 = hue_mod$S3,
+                   S3_R = hue_mod$S3_R,
+                   S6 = hue_mod$S6,
+                   S6_R = hue_mod$S6_R,
+                   N1 = then_mod$N1,
+                   N1_R = then_mod$N1_R,
+                   N2 = then_mod$N2,
+                   N2_R = then_mod$N2_R,
+                   N3 = then_mod$N3,
+                   N3_R = then_mod$N3_R,
+                   N4 = then_mod$N4,
+                   N4_R = then_mod$N4_R)
+    if (verbose == TRUE) {
+      run_progress(pb,
+                   actual = var,
+                   text = paste("Evaluating trait", names(vars[var])))
+    }
+    listres[[paste(names(vars[var]))]] <- temp
   }
   return(structure(listres, class = "ge_stats"))
 }

@@ -81,7 +81,7 @@
 #'
 #' * **PCA** Principal Component Analysis.
 #'
-#' * **anova** Joint analysis of variance for the main effects and
+#' * **ANOVA** Joint analysis of variance for the main effects and
 #' Principal Component analysis of the interaction effect.
 #'
 #' * **Details** A list summarizing the results. The following information
@@ -352,7 +352,7 @@ waas <- function(.data,
                                model = WAASAbs,
                                MeansGxE = MeansGxE,
                                PCA = as_tibble(PC, rownames = NA),
-                               anova = model$ANOVA,
+                               ANOVA = model$ANOVA,
                                Details = Details,
                                augment = as_tibble(model$augment, rownames = NA),
                                probint = model$probint),
@@ -467,7 +467,7 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
         cat("---------------------------------------------------------------------------\n")
         cat("AMMI analysis table\n")
         cat("---------------------------------------------------------------------------\n")
-        print(var$anova, ...)
+        print(var$ANOVA, ...)
         cat("---------------------------------------------------------------------------\n")
         cat("Weighted average of the absolute scores\n")
         cat("---------------------------------------------------------------------------\n")

@@ -21,8 +21,8 @@ Personal data
 }
 \description{
 This dataset contain data on two variables assessed in 10 genotypes growing
-in in 11 environments. The experimental design was a RCBD with 3
-replicates(blocks). This data provide examples for several functions of
+in 14 environments. The experimental design was a RCBD with 3
+replicates (blocks). This data provide examples for several functions of
 \pkg{metan} package.
 }
 \author{

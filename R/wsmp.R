@@ -19,7 +19,7 @@
 #' 0/100. In the last iteration, the genotype ranking for WAASY or WAASBY
 #' matches perfectly with the ranks of the response variable.
 #'
-#' @param model Should be an object of class `waas` or `waasb`.
+#' @param model An object computed with [waas()], [waasb()], or [mps()].
 #' @param mresp A numeric value that will be the new maximum value after
 #'   rescaling. By default, the variable in `resp` is rescaled so that the
 #'   original maximum and minimum values are 100 and 0, respectively. Let us
@@ -30,8 +30,7 @@
 #' @param increment The increment in the weight ratio for stability and mean
 #'   performance. Se the **Details** section for more information.
 #' @param saveWAASY Automatically save the WAASY values when the weight for
-#'   stability is `saveWAASY`. Default is 50. Please, note that
-#'   `saveWAASY`
+#'   stability is `saveWAASY`.
 #' @param prob The p-value for considering an interaction principal component
 #'   axis significant. must be multiple of `increment`. If this assumption
 #'   is not valid, an error will be occur.
@@ -44,21 +43,28 @@
 #' \doi{10.2134/agronj2019.03.0220}
 #'
 #' @return An object of class `wsmp` with the following items for each
-#'   variable:
-#' * **scenarios** A list with the model for all computed scenarios.
-#' * **WAASY** The values of the WAASY estimated when the weight for the
+#'   variable
+#' * When computed with [waas()] or [waasb()].
+#'    * **scenarios** A list with the model for all computed scenarios.
+#'    * **WAASY** The values of the WAASY estimated when the weight for the
 #' stability in the loop match with argument `saveWAASY`.
-#' * **hetdata, hetcomb** The data used to produce the heatmaps.
-#' * **Ranks** All the values of WAASY estimated in the different
+#'    * **hetdata, hetcomb** The data used to produce the heatmaps.
+#'    * **Ranks** All the values of WAASY estimated in the different
 #' scenarios of WAAS/GY weighting ratio.
+#' * When computed with [mps()]
+#' * **hetcomb** showing the rank for mean performance and stability in the different weights.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @seealso [resca()]
+#' @seealso [resca()], [mps()], [mtmps()]
 #' @export
+#' @importFrom dplyr bind_cols
 #' @examples
 #' \donttest{
 #' library(metan)
-#' model <- waasb(data_ge2,
+#' # using the WAASB as statistic and BLUP as mean performance
+#' # the same as using waasb()
+#'
+#' model <- mps(data_ge2,
 #'              env = ENV,
 #'              gen = GEN,
 #'              rep = REP,
@@ -71,112 +77,89 @@ wsmp <- function(model,
                  saveWAASY = 50,
                  prob = 0.05,
                  progbar = TRUE) {
-  if(!class(model) %in% c("waas", "waasb")){
+  if(!class(model) %in% c("waas", "waasb", "mps")){
     stop("The model must be an object of class 'waas' or 'waasb'")
   }
-  test <- 100%%increment == 0
-  test2 <- saveWAASY%%increment == 0
-  if (!mresp %in% c(100, 0)) {
-    stop("The value 'mresp' must be 0 or 100.")
-  }
-  if (test == FALSE) {
-    stop("The argument 'increment = ", increment, "' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
-  }
-  if (test2 == FALSE) {
-    stop("The argument 'saveWAASY = ", saveWAASY, "' must be divisible by 'increment' (",
-         increment, "). Please, consider changing the values.")
-  }
-  datain <- model
-  if (class(model) == "waasb") {
-    dfs <- list()
-    for (k in 1:length(model)) {
-      PesoWAAS <- 100
-      PesoResp <- 0
-      minresp <- 100 - mresp
-      data <- datain[[k]][["residuals"]] %>%
-        select(ENV, GEN, REP, Y)
-      nam <- names(datain[k])
-      Nenv <- length(unique(data$ENV))
-      Ngen <- length(unique(data$GEN))
-      minimo <- min(Nenv, Ngen) - 1
-      ncomb <- (100/increment) + 1
-      totalcomb <- ncomb * minimo
-      CombWAASY <- data.frame(type = matrix(".", (Ngen + Nenv), 1))
-      ovmean <- mean(data$Y)
-      WAASY.Values <- list()
-      initial <- 0
-      model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV),
-                                                            data = data)))
-      summ <- summary(model)
-      bups <- lme4::ranef(model)
-      blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
-      blups <- blups %>% data.frame(do.call("rbind", strsplit(as.character(blups$Names),
-                                                              ":", fixed = TRUE))) %>% dplyr::select(-Names) %>%
-        dplyr::select(-X1, everything()) %>% dplyr::mutate(BLUPge = bups[[1]]$`(Intercept)`) %>%
-        dplyr::rename(Code = X2, GEN = X1) %>% dplyr::arrange(Code)
-      intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
-      s <- svd(intmatrix)
-      U <- s$u[, 1:minimo]
-      LL <- diag(s$d[1:minimo])
-      V <- s$v[, 1:minimo]
-      Eigenvalue <-
-        data.frame(Eigenvalue = s$d[1:minimo]^2) %>%
-        add_cols(Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100,
-                 Accumulated = cumsum(Proportion),
-                 PC = paste("PC", 1:minimo, sep = "")) %>%
-        column_to_first(PC)
-      SCOREG <- U %*% LL^0.5
-      SCOREE <- V %*% LL^0.5
-      colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
-      MEDIAS <- means_by(data, ENV, GEN)
-      MGEN <-
-        means_by(data, GEN) %>%
-        add_cols(type = "GEN")
-      MGEN <- cbind(MGEN, SCOREG) %>%
-        rename(Code = GEN)
-      MENV <- means_by(data, ENV) %>%
-        add_cols(type = "ENV")
-      MENV <- cbind(MENV, SCOREE) %>%
-        rename(Code = ENV)
-      Escores <- rbind(MGEN, MENV) %>%
-        column_to_first(type)
-      Pesos <- data.frame(Percent = Eigenvalue$Proportion)
-      if (progbar == TRUE) {
-        pb <- progress(max = totalcomb, style = 4)
-        # pb <- progress_bar$new(
-        #   format = ":what [:bar]:percent (:eta left)",
-        #   clear = F, total = totalcomb, width = 90)
-      }
-      for (k in 1:ncomb) {
-        WAASB <-
-          Escores %>%
-          select_cols(contains("PC")) %>%
-          abs() %>%
-          t() %>%
-          as.data.frame() %>%
-          add_cols(Percent = Pesos$Percent)
-        WAASAbsInicial <- Escores %>%
-          mutate(WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent)) %>%
-          group_by(type) %>%
-          mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
-                 PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
-                 wRes = PesoResp, wWAASB = PesoWAAS, OrResp = rank(-Y),
-                 OrWAASB = rank(WAASB), OrPC1 = rank(abs(PC1)),
-                 WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
-                 OrWAASBY = rank(-WAASBY)) %>%
-          dplyr::ungroup()
-        inicial <- as.data.frame(WAASAbsInicial$OrWAASB)
-        colnames(inicial) <- paste0(minimo, "PC")
-        SigPC2 <- 1
-        for (j in 1:minimo) {
-          WAASB <- Escores %>%
-            select(contains("PC")) %>%
+  if(class(model) %in% c("waas", "waasb")){
+    test <- 100%%increment == 0
+    test2 <- saveWAASY%%increment == 0
+    if (!mresp %in% c(100, 0)) {
+      stop("The value 'mresp' must be 0 or 100.")
+    }
+    if (test == FALSE) {
+      stop("The argument 'increment = ", increment, "' is invalid. Please, note that this value must result in an integer in the expression '100 / increment'. Please, consider changing the values.")
+    }
+    if (test2 == FALSE) {
+      stop("The argument 'saveWAASY = ", saveWAASY, "' must be divisible by 'increment' (",
+           increment, "). Please, consider changing the values.")
+    }
+    datain <- model
+    if (class(model) == "waasb") {
+      dfs <- list()
+      for (k in 1:length(model)) {
+        PesoWAAS <- 100
+        PesoResp <- 0
+        minresp <- 100 - mresp
+        data <- datain[[k]][["residuals"]] %>%
+          select(ENV, GEN, REP, Y)
+        nam <- names(datain[k])
+        Nenv <- length(unique(data$ENV))
+        Ngen <- length(unique(data$GEN))
+        minimo <- min(Nenv, Ngen) - 1
+        ncomb <- (100/increment) + 1
+        totalcomb <- ncomb * minimo
+        CombWAASY <- data.frame(type = matrix(".", (Ngen + Nenv), 1))
+        ovmean <- mean(data$Y)
+        WAASY.Values <- list()
+        initial <- 0
+        model <- suppressWarnings(suppressMessages(lme4::lmer(Y ~ REP %in% ENV + ENV + (1 | GEN) + (1 | GEN:ENV),
+                                                              data = data)))
+        summ <- summary(model)
+        bups <- lme4::ranef(model)
+        blups <- data.frame(Names = rownames(bups$`GEN:ENV`))
+        blups <- blups %>% data.frame(do.call("rbind", strsplit(as.character(blups$Names),
+                                                                ":", fixed = TRUE))) %>% dplyr::select(-Names) %>%
+          dplyr::select(-X1, everything()) %>% dplyr::mutate(BLUPge = bups[[1]]$`(Intercept)`) %>%
+          dplyr::rename(Code = X2, GEN = X1) %>% dplyr::arrange(Code)
+        intmatrix <- by(blups[, 3], blups[, c(2, 1)], function(x) sum(x, na.rm = TRUE))
+        s <- svd(intmatrix)
+        U <- s$u[, 1:minimo]
+        LL <- diag(s$d[1:minimo])
+        V <- s$v[, 1:minimo]
+        Eigenvalue <-
+          data.frame(Eigenvalue = s$d[1:minimo]^2) %>%
+          add_cols(Proportion = s$d[1:minimo]^2/sum(s$d[1:minimo]^2) * 100,
+                   Accumulated = cumsum(Proportion),
+                   PC = paste("PC", 1:minimo, sep = "")) %>%
+          column_to_first(PC)
+        SCOREG <- U %*% LL^0.5
+        SCOREE <- V %*% LL^0.5
+        colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
+        MEDIAS <- means_by(data, ENV, GEN)
+        MGEN <-
+          means_by(data, GEN) %>%
+          add_cols(type = "GEN")
+        MGEN <- cbind(MGEN, SCOREG) %>%
+          rename(Code = GEN)
+        MENV <- means_by(data, ENV) %>%
+          add_cols(type = "ENV")
+        MENV <- cbind(MENV, SCOREE) %>%
+          rename(Code = ENV)
+        Escores <- rbind(MGEN, MENV) %>%
+          column_to_first(type)
+        Pesos <- data.frame(Percent = Eigenvalue$Proportion)
+        if (progbar == TRUE) {
+          pb <- progress(max = totalcomb, style = 4)
+        }
+        for (k in 1:ncomb) {
+          WAASB <-
+            Escores %>%
+            select_cols(contains("PC")) %>%
             abs() %>%
             t() %>%
             as.data.frame() %>%
-            slice(1:SigPC2) %>%
-            mutate(Percent = Pesos$Percent[1:SigPC2])
-          WAASAbs <- Escores %>%
+            add_cols(Percent = Pesos$Percent)
+          WAASAbsInicial <- Escores %>%
             mutate(WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent)) %>%
             group_by(type) %>%
             mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
@@ -186,124 +169,124 @@ wsmp <- function(model,
                    WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
                    OrWAASBY = rank(-WAASBY)) %>%
             dplyr::ungroup()
-          results <- as.data.frame(WAASAbs$OrWAASB)
-          names(results) <- paste0(SigPC2, "PCA")
-          final <- cbind(results, inicial)
-          inicial <- final
-          SigPC2 <- SigPC2 + 1
-          ProcdAtua <- j
-          initial <- initial + 1
-          if (progbar == TRUE) {
-            run_progress(pb,
-                         actual = initial,
-                         text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
+          inicial <- as.data.frame(WAASAbsInicial$OrWAASB)
+          colnames(inicial) <- paste0(minimo, "PC")
+          SigPC2 <- 1
+          for (j in 1:minimo) {
+            WAASB <- Escores %>%
+              select(contains("PC")) %>%
+              abs() %>%
+              t() %>%
+              as.data.frame() %>%
+              slice(1:SigPC2) %>%
+              mutate(Percent = Pesos$Percent[1:SigPC2])
+            WAASAbs <- Escores %>%
+              mutate(WAASB = sapply(WAASB[, -ncol(WAASB)], weighted.mean, w = WAASB$Percent)) %>%
+              group_by(type) %>%
+              mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
+                     PctWAASB = (minresp - mresp)/(max(WAASB) - min(WAASB)) * (WAASB - max(WAASB)) + minresp,
+                     wRes = PesoResp, wWAASB = PesoWAAS, OrResp = rank(-Y),
+                     OrWAASB = rank(WAASB), OrPC1 = rank(abs(PC1)),
+                     WAASBY = ((PctResp * wRes) + (PctWAASB * wWAASB))/(wRes + wWAASB),
+                     OrWAASBY = rank(-WAASBY)) %>%
+              dplyr::ungroup()
+            results <- as.data.frame(WAASAbs$OrWAASB)
+            names(results) <- paste0(SigPC2, "PCA")
+            final <- cbind(results, inicial)
+            inicial <- final
+            SigPC2 <- SigPC2 + 1
+            ProcdAtua <- j
+            initial <- initial + 1
+            if (progbar == TRUE) {
+              run_progress(pb,
+                           actual = initial,
+                           text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
 
+            }
+          }
+          initial <- initial
+          WAAS <- WAASAbsInicial
+          WAAS$type <- ifelse(WAAS$type == "GEN", "Genotype", "Environment")
+          CombWAASY[[sprintf("%.0f/%.0f", PesoWAAS, PesoResp)]] <- WAASAbsInicial$OrWAASBY
+          WAASY.Values[[paste("WAAS/GY", PesoWAAS, "/", PesoResp)]] <- data.frame(WAAS)
+          PesoResp <- PesoResp + increment
+          PesoWAAS <- PesoWAAS - increment
+          if (PesoWAAS + increment == saveWAASY) {
+            genotypes <- WAAS %>%
+              dplyr::filter(type == "Genotype") %>%
+              dplyr::select(Code, wRes, wWAASB, WAASBY) %>%
+              dplyr::arrange(WAASBY) %>%
+              mutate(Mean = ifelse(WAASBY < mean(WAASBY), "below", "above"))
           }
         }
-        initial <- initial
-        WAAS <- WAASAbsInicial
-        WAAS$type <- ifelse(WAAS$type == "GEN", "Genotype", "Environment")
-        CombWAASY[[sprintf("%.0f/%.0f", PesoWAAS, PesoResp)]] <- WAASAbsInicial$OrWAASBY
-        WAASY.Values[[paste("WAAS/GY", PesoWAAS, "/", PesoResp)]] <- data.frame(WAAS)
-        PesoResp <- PesoResp + increment
-        PesoWAAS <- PesoWAAS - increment
-        if (PesoWAAS + increment == saveWAASY) {
-          genotypes <- WAAS %>%
-            dplyr::filter(type == "Genotype") %>%
-            dplyr::select(Code, wRes, wWAASB, WAASBY) %>%
-            dplyr::arrange(WAASBY) %>%
-            mutate(Mean = ifelse(WAASBY < mean(WAASBY), "below", "above"))
-        }
+        Rank <- final[, -(SigPC2)]
+        Names <- WAASAbsInicial %>% select(type, Code, OrResp, OrPC1, OrWAASB)
+        Rank <- cbind(Names, Rank) %>% as_tibble()
+        hetdata <-
+          Rank %>%
+          dplyr::filter(type == "GEN") %>%
+          column_to_rownames("Code") %>%
+          select(contains("PCA")) %>%
+          as_tibble(rownames = NA)
+        CombWAASY %<>%
+          select(-type) %>%
+          mutate(type = Names$type, Code = Names$Code) %>%
+          select(type, Code, everything()) %>%
+          dplyr::filter(type == "GEN") %>%
+          column_to_rownames("Code") %>%
+          select(contains("/")) %>%
+          as_tibble(rownames = NA)
+        PC1 <- Pesos[1, 1]
+        PC2 <- Pesos[2, 1]
+        mean <- mean(WAAS$Y)
+        dfs[[paste(nam)]] <- structure(list(scenarios = WAASY.Values,
+                                            WAASY = genotypes,
+                                            hetcomb = CombWAASY,
+                                            hetdata = hetdata,
+                                            Ranks = Rank),
+                                       class = "wsmp")
       }
-      Rank <- final[, -(SigPC2)]
-      Names <- WAASAbsInicial %>% select(type, Code, OrResp, OrPC1, OrWAASB)
-      Rank <- cbind(Names, Rank) %>% as_tibble()
-      hetdata <-
-        Rank %>%
-        dplyr::filter(type == "GEN") %>%
-        column_to_rownames("Code") %>%
-        select(contains("PCA")) %>%
-        as_tibble(rownames = NA)
-      CombWAASY %<>%
-        select(-type) %>%
-        mutate(type = Names$type, Code = Names$Code) %>%
-        select(type, Code, everything()) %>%
-        dplyr::filter(type == "GEN") %>%
-        column_to_rownames("Code") %>%
-        select(contains("/")) %>%
-        as_tibble(rownames = NA)
-      PC1 <- Pesos[1, 1]
-      PC2 <- Pesos[2, 1]
-      mean <- mean(WAAS$Y)
-      dfs[[paste(nam)]] <- structure(list(scenarios = WAASY.Values,
-                                          WAASY = genotypes,
-                                          hetcomb = CombWAASY,
-                                          hetdata = hetdata,
-                                          Ranks = Rank),
-                                     class = "wsmp")
     }
-  }
-  if (class(model) == "waas") {
-    dfs <- list()
-    for (k in 1:length(model)) {
-      PesoWAAS <- 100
-      PesoResp <- 0
-      minresp <- 100 - mresp
-      data <- datain[[k]][["augment"]] %>%
-        select(ENV, GEN, REP, Y)
-      nam <- names(datain[k])
-      Nenv <- length(unique(data$ENV))
-      Ngen <- length(unique(data$GEN))
-      minimo <- min(Nenv, Ngen) - 1
-      ncomb <- (100/increment) + 1
-      CombWAASY <- data.frame(type = matrix(".", (Ngen + Nenv), 1))
-      WAASY.Values <- list()
-      model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
-      anova <- model$anova
-      PC <- model$PCA
-      MeansGxE <- model$MeansGxE
-      totalcomb <- ncomb * nrow(PC)
-      initial <- 0
-      if (progbar == TRUE) {
-        pb <- progress(max = totalcomb, style = 4)
-      }
-      for (k in 1:ncomb) {
-        Escores <- model$model
-        SigPC1 <- nrow(PC[which(PC[, 6] < prob), ])
-        Pesos <- as.data.frame(model$PCA[7][c(1:SigPC1), ])
-        colnames(Pesos) <- "Percent"
-        WAAS <-
-          Escores %>%
-          select(contains("PC")) %>%
-          abs() %>%
-          t() %>%
-          as.data.frame() %>%
-          slice(1:SigPC1) %>%
-          mutate(Percent = Pesos$Percent)
-        WAASAbsInicial <-
-          Escores %>%
-          mutate(WAAS = sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent)) %>%
-          group_by(type) %>%
-          mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
-                 PctWAAS = (minresp - mresp)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp,
-                 wRes = PesoResp, wWAAS = PesoWAAS, OrResp = rank(-Y),
-                 OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)),
-                 WAASY = ((PctResp * wRes) + (PctWAAS * wWAAS))/(wRes + wWAAS),
-                 OrWAASY = rank(-WAASY)) %>%
-          dplyr::ungroup()
-        inicial <- as.data.frame(WAASAbsInicial$OrWAAS)
-        colnames(inicial) <- paste0(SigPC1, "PCA")
-        SigPC2 <- 1
-        for (j in 1:nrow(PC)) {
+    if (class(model) == "waas") {
+      dfs <- list()
+      for (k in 1:length(model)) {
+        PesoWAAS <- 100
+        PesoResp <- 0
+        minresp <- 100 - mresp
+        data <- datain[[k]][["augment"]] %>%
+          select(ENV, GEN, REP, Y)
+        nam <- names(datain[k])
+        Nenv <- length(unique(data$ENV))
+        Ngen <- length(unique(data$GEN))
+        minimo <- min(Nenv, Ngen) - 1
+        ncomb <- (100/increment) + 1
+        CombWAASY <- data.frame(type = matrix(".", (Ngen + Nenv), 1))
+        WAASY.Values <- list()
+        model <- performs_ammi(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+        anova <- model$anova
+        PC <- model$PCA
+        MeansGxE <- model$MeansGxE
+        totalcomb <- ncomb * nrow(PC)
+        initial <- 0
+        if (progbar == TRUE) {
+          pb <- progress(max = totalcomb, style = 4)
+        }
+        for (k in 1:ncomb) {
+          Escores <- model$model
+          SigPC1 <- nrow(PC[which(PC[, 6] < prob), ])
+          Pesos <- as.data.frame(model$PCA[7][c(1:SigPC1), ])
+          colnames(Pesos) <- "Percent"
           WAAS <-
             Escores %>%
             select(contains("PC")) %>%
             abs() %>%
             t() %>%
             as.data.frame() %>%
-            slice(1:SigPC2) %>%
-            mutate(Percent = Pesos$Percent[1:SigPC2])
-          WAASAbs <- Escores %>% mutate(WAAS = sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent)) %>%
+            slice(1:SigPC1) %>%
+            mutate(Percent = Pesos$Percent)
+          WAASAbsInicial <-
+            Escores %>%
+            mutate(WAAS = sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent)) %>%
             group_by(type) %>%
             mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
                    PctWAAS = (minresp - mresp)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp,
@@ -312,66 +295,110 @@ wsmp <- function(model,
                    WAASY = ((PctResp * wRes) + (PctWAAS * wWAAS))/(wRes + wWAAS),
                    OrWAASY = rank(-WAASY)) %>%
             dplyr::ungroup()
-          results <- as.data.frame(WAASAbs$OrWAAS)
-          names(results) <- paste0(SigPC2, "PCA")
-          final <- cbind(results, inicial)
-          inicial <- final
-          SigPC2 %<>% +1
-          ProcdAtua <- j
-          initial <- initial + 1
-          if (progbar == TRUE) {
-            run_progress(pb,
-                         actual = initial,
-                         text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
+          inicial <- as.data.frame(WAASAbsInicial$OrWAAS)
+          colnames(inicial) <- paste0(SigPC1, "PCA")
+          SigPC2 <- 1
+          for (j in 1:nrow(PC)) {
+            WAAS <-
+              Escores %>%
+              select(contains("PC")) %>%
+              abs() %>%
+              t() %>%
+              as.data.frame() %>%
+              slice(1:SigPC2) %>%
+              mutate(Percent = Pesos$Percent[1:SigPC2])
+            WAASAbs <- Escores %>% mutate(WAAS = sapply(WAAS[, -ncol(WAAS)], weighted.mean, w = WAAS$Percent)) %>%
+              group_by(type) %>%
+              mutate(PctResp = (mresp - minresp)/(max(Y) - min(Y)) * (Y - max(Y)) + mresp,
+                     PctWAAS = (minresp - mresp)/(max(WAAS) - min(WAAS)) * (WAAS - max(WAAS)) + minresp,
+                     wRes = PesoResp, wWAAS = PesoWAAS, OrResp = rank(-Y),
+                     OrWAAS = rank(WAAS), OrPC1 = rank(abs(PC1)),
+                     WAASY = ((PctResp * wRes) + (PctWAAS * wWAAS))/(wRes + wWAAS),
+                     OrWAASY = rank(-WAASY)) %>%
+              dplyr::ungroup()
+            results <- as.data.frame(WAASAbs$OrWAAS)
+            names(results) <- paste0(SigPC2, "PCA")
+            final <- cbind(results, inicial)
+            inicial <- final
+            SigPC2 %<>% +1
+            ProcdAtua <- j
+            initial <- initial + 1
+            if (progbar == TRUE) {
+              run_progress(pb,
+                           actual = initial,
+                           text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
 
-            # pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAAS", sep = "")))
+              # pb$tick(tokens = list(what = paste("Ranks considering ", PesoResp, "% for GY and ", PesoWAAS, "% for WAAS", sep = "")))
+            }
+          }
+          initial <- initial
+          WAAS <- WAASAbsInicial
+          WAAS$type <- ifelse(WAAS$type == "GEN", "Genotype", "Environment")
+          CombWAASY[[sprintf("%.0f/%.0f", PesoWAAS, PesoResp)]] <- WAASAbsInicial$OrWAASY
+          WAASY.Values[[paste("WAAS/GY", PesoWAAS, "/", PesoResp)]] <- as_tibble(WAAS)
+          PesoResp <- PesoResp + increment
+          PesoWAAS <- PesoWAAS - increment
+          if (PesoWAAS + increment == saveWAASY) {
+            genotypes <- WAAS %>%
+              dplyr::filter(type == "Genotype") %>%
+              dplyr::select(Code, wRes, wWAAS, WAASY) %>%
+              dplyr::arrange(WAASY) %>%
+              mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
           }
         }
-        initial <- initial
-        WAAS <- WAASAbsInicial
-        WAAS$type <- ifelse(WAAS$type == "GEN", "Genotype", "Environment")
-        CombWAASY[[sprintf("%.0f/%.0f", PesoWAAS, PesoResp)]] <- WAASAbsInicial$OrWAASY
-        WAASY.Values[[paste("WAAS/GY", PesoWAAS, "/", PesoResp)]] <- as_tibble(WAAS)
-        PesoResp <- PesoResp + increment
-        PesoWAAS <- PesoWAAS - increment
-        if (PesoWAAS + increment == saveWAASY) {
-          genotypes <- WAAS %>%
-            dplyr::filter(type == "Genotype") %>%
-            dplyr::select(Code, wRes, wWAAS, WAASY) %>%
-            dplyr::arrange(WAASY) %>%
-            mutate(Mean = ifelse(WAASY < mean(WAASY), "below", "above"))
-        }
+        Rank <- final[, -(SigPC2)]
+        Names <- WAASAbsInicial %>%
+          select(type, Code, OrResp, OrPC1, OrWAAS)
+        Rank <- cbind(Names, Rank) %>% as_tibble()
+        hetdata <-
+          Rank %>%
+          dplyr::filter(type == "GEN") %>%
+          column_to_rownames("Code") %>%
+          select(contains("PCA")) %>%
+          as_tibble(rownames = NA)
+        CombWAASY %<>%
+          select(-type) %>%
+          mutate(type = Names$type, Code = Names$Code) %>%
+          select(type, Code, everything()) %>%
+          dplyr::filter(type == "GEN") %>%
+          column_to_rownames("Code") %>%
+          select(contains("/")) %>%
+          as_tibble(rownames = NA)
+        PC1 <- Pesos[1, 1]
+        PC2 <- Pesos[2, 1]
+        mean <- mean(WAAS$Y)
+        dfs[[paste(nam)]] <- structure(list(scenarios = WAASY.Values,
+                                            WAASY = genotypes,
+                                            hetcomb = CombWAASY,
+                                            hetdata = hetdata,
+                                            Ranks = Rank),
+                                       class = "wsmp")
       }
-      Rank <- final[, -(SigPC2)]
-      Names <- WAASAbsInicial %>%
-        select(type, Code, OrResp, OrPC1, OrWAAS)
-      Rank <- cbind(Names, Rank) %>% as_tibble()
-      hetdata <-
-        Rank %>%
-        dplyr::filter(type == "GEN") %>%
-        column_to_rownames("Code") %>%
-        select(contains("PCA")) %>%
-        as_tibble(rownames = NA)
-      CombWAASY %<>%
-        select(-type) %>%
-        mutate(type = Names$type, Code = Names$Code) %>%
-        select(type, Code, everything()) %>%
-        dplyr::filter(type == "GEN") %>%
-        column_to_rownames("Code") %>%
-        select(contains("/")) %>%
-        as_tibble(rownames = NA)
-      PC1 <- Pesos[1, 1]
-      PC2 <- Pesos[2, 1]
-      mean <- mean(WAAS$Y)
-      dfs[[paste(nam)]] <- structure(list(scenarios = WAASY.Values,
-                                          WAASY = genotypes,
-                                          hetcomb = CombWAASY,
-                                          hetdata = hetdata,
-                                          Ranks = Rank),
-                                     class = "wsmp")
     }
+    return(structure(dfs, class = "wsmp"))
+  } else{
+    nvar <- ncol(model$performance_res)
+    ncomb <- (100/increment) + 1
+    wstab <- 100
+    wmp <- 0
+    vars <- list()
+    for (i in 1:nvar){
+      stab <- model$stability_res[[i]]
+      mper <- model$performance_res[[i]]
+      tmp <- list()
+      for(j in 1:ncomb){
+        tmp[[paste0(wstab, "/", wmp)]] <- as.numeric(((stab * wstab) + (mper * wmp)) / (wstab + wmp))
+        wmp <- wmp + increment
+        wstab <- wstab - increment
+      }
+      bind <- as.data.frame(bind_cols(tmp))
+      rownames(bind) <- rownames(model$performance_res)
+      vars[[paste(colnames(model$stability_res[[i]]))]][["hetcomb"]] <- bind
+      wstab <- 100
+      wmp <- 0
+    }
+    return(structure(vars, class = "wsmp"))
   }
-  return(structure(dfs, class = "wsmp"))
 }
 
 
@@ -390,7 +417,7 @@ wsmp <- function(model,
 #' unstable genotypes; (blue) productive, but unstable genotypes; (black) stable, but
 #' unproductive genotypes; and (green), productive and stable genotypes.
 #'
-#' @param x The object returned by the function `wsmp`.
+#' @param x An object returned by the function `wsmp`.
 #' @param var The variable to plot. Defaults to `var = 1` the first
 #'   variable of `x`.
 #' @param type `1 = Heat map Ranks`: this graphic shows the genotype
@@ -400,7 +427,7 @@ wsmp <- function(model,
 #'   WAASB/GY ratio.
 #' @param y.lab The label of y axis. Default is 'Genotypes'.
 #' @param x.lab The label of x axis. Default is 'Number of axes'.
-#' @param size.lab The size of the
+#' @param size.lab The size of the labels.
 #' @param ... Currently not used.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @method plot wsmp
@@ -428,65 +455,70 @@ plot.wsmp <- function(x,
                       x.lab = NULL,
                       size.lab = 12,
                       ...) {
-
+  if(class(x) != "wsmp"){
+    stop("x must be of class `wsmp`.")
+  }
   nam_dat <- ifelse(type == 1, "hetdata", "hetcomb")
-    dat <- x[[var]][[nam_dat]]
-    grps <-
-      dist(dat) %>%
-      hclust() %>%
-      cutree(4) %>%
-      as.data.frame() %>%
-      rownames_to_column("GEN") %>%
-      set_names("GEN", "GROUP") %>%
-      arrange(GROUP) %>%
-      add_cols(color =
-                 case_when(GROUP == 1 ~ "green",
-                           GROUP == 2 ~ "red",
-                           GROUP == 3 ~ "blue",
-                           GROUP == 4 ~ "black"))
-    data <-
-      dat %>%
-      rownames_to_column("GEN") %>%
-      as_factor(1) %>%
-      pivot_longer(-GEN) %>%
-      add_row_id()
-    if(type == 1){
-      x.lab = ifelse(is.null(x.lab), paste0("Number of IPCAs"), x.lab)
-      y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
-    }
-    if(type == 2){
-      x.lab = ifelse(is.null(x.lab), paste0("WAASB/GY ratio"), x.lab)
-      y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
-    }
-
-    if(type == 1){
+  dat <- x[[var]][[nam_dat]]
+  if(is.null(dat)){
+    warning("object `x` seems to be computed with `mps()`. Switching to `type = 2`.", call. = FALSE)
+    dat <- x[[var]][["hetcomb"]]
+  }
+  grps <-
+    dist(dat) %>%
+    hclust() %>%
+    cutree(4) %>%
+    as.data.frame() %>%
+    rownames_to_column("GEN") %>%
+    set_names("GEN", "GROUP") %>%
+    arrange(GROUP) %>%
+    add_cols(color =
+               case_when(GROUP == 1 ~ "green",
+                         GROUP == 2 ~ "red",
+                         GROUP == 3 ~ "blue",
+                         GROUP == 4 ~ "black"))
+  data <-
+    dat %>%
+    rownames_to_column("GEN") %>%
+    metan::as_factor(1) %>%
+    pivot_longer(-GEN) %>%
+    add_row_id()
+  if(type == 1){
+    x.lab = ifelse(is.null(x.lab), paste0("Number of IPCAs"), x.lab)
+    y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
+  }
+  if(type == 2){
+    x.lab = ifelse(is.null(x.lab), paste0("WAASB/GY ratio"), x.lab)
+    y.lab = ifelse(is.null(y.lab), paste0("Genotypes"), y.lab)
+  }
+  if(type == 1){
     p <-
       ggplot(data, aes(reorder(name, desc(row_id)), factor(GEN, levels = grps$GEN), fill= value))
-    }
-    if(type == 2){
-      p <-
-        ggplot(data, aes(reorder(name, row_id), factor(GEN, levels = grps$GEN), fill= value))
-    }
-    p <-  p +
-      geom_tile()+
-      theme_metan()+
-      theme(legend.position = "right")+
-      scale_y_discrete(expand = expansion(mult = c(0,0)))+
-      scale_x_discrete(expand = expansion(mult = c(0,0)))+
-      scale_fill_viridis_c()+
-      guides(fill = guide_colourbar(label = TRUE,
-                                    draw.ulim = TRUE,
-                                    draw.llim = TRUE,
-                                    frame.colour = "black",
-                                    ticks = TRUE,
-                                    nbin = 10,
-                                    label.position = "right",
-                                    barwidth = 1.3,
-                                    barheight = 10,
-                                    direction = 'vertical'))+
-      theme(axis.text.x = element_text(size = size.lab, angle = 90, hjust = 1, vjust = 0.5))+
-      theme(axis.text.y = element_text(size = size.lab, colour = grps$color),
-            axis.title = element_text(size = size.lab))+
-      labs(x = x.lab, y = y.lab)
+  }
+  if(type == 2){
+    p <-
+      ggplot(data, aes(reorder(name, row_id), factor(GEN, levels = grps$GEN), fill= value))
+  }
+  p <-  p +
+    geom_raster() +
+    theme_metan() +
+    theme(legend.position = "right")+
+    scale_y_discrete(expand = expansion(mult = c(0,0)))+
+    scale_x_discrete(expand = expansion(mult = c(0,0)))+
+    scale_fill_viridis_c() +
+    guides(fill = guide_colourbar(label = TRUE,
+                                  draw.ulim = TRUE,
+                                  draw.llim = TRUE,
+                                  frame.colour = "black",
+                                  ticks = TRUE,
+                                  nbin = 10,
+                                  label.position = "right",
+                                  barwidth = 1.3,
+                                  barheight = 10,
+                                  direction = 'vertical'))+
+    theme(axis.text.x = element_text(size = size.lab, angle = 90, hjust = 1, vjust = 0.5))+
+    theme(axis.text.y = element_text(size = size.lab, colour = grps$color),
+          axis.title = element_text(size = size.lab)) +
+    labs(x = x.lab, y = y.lab)
   return(p)
 }

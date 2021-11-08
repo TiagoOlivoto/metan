@@ -7,7 +7,7 @@
 \method{plot}{wsmp}(x, var = 1, type = 1, y.lab = NULL, x.lab = NULL, size.lab = 12, ...)
 }
 \arguments{
-\item{x}{The object returned by the function \code{wsmp}.}
+\item{x}{An object returned by the function \code{wsmp}.}
 
 \item{var}{The variable to plot. Defaults to \code{var = 1} the first
 variable of \code{x}.}
@@ -22,7 +22,7 @@ WAASB/GY ratio.}
 
 \item{x.lab}{The label of x axis. Default is 'Number of axes'.}
 
-\item{size.lab}{The size of the}
+\item{size.lab}{The size of the labels.}
 
 \item{...}{Currently not used.}
 }

@@ -14,7 +14,7 @@ wsmp(
 )
 }
 \arguments{
-\item{model}{Should be an object of class \code{waas} or \code{waasb}.}
+\item{model}{An object computed with \code{\link[=waas]{waas()}}, \code{\link[=waasb]{waasb()}}, or \code{\link[=mps]{mps()}}.}
 
 \item{mresp}{A numeric value that will be the new maximum value after
 rescaling. By default, the variable in \code{resp} is rescaled so that the
@@ -28,8 +28,7 @@ values 0.}
 performance. Se the \strong{Details} section for more information.}
 
 \item{saveWAASY}{Automatically save the WAASY values when the weight for
-stability is \code{saveWAASY}. Default is 50. Please, note that
-\code{saveWAASY}}
+stability is \code{saveWAASY}.}
 
 \item{prob}{The p-value for considering an interaction principal component
 axis significant. must be multiple of \code{increment}. If this assumption
@@ -40,7 +39,9 @@ Default is \code{TRUE}.}
 }
 \value{
 An object of class \code{wsmp} with the following items for each
-variable:
+variable
+\itemize{
+\item When computed with \code{\link[=waas]{waas()}} or \code{\link[=waasb]{waasb()}}.
 \itemize{
 \item \strong{scenarios} A list with the model for all computed scenarios.
 \item \strong{WAASY} The values of the WAASY estimated when the weight for the
@@ -48,6 +49,9 @@ stability in the loop match with argument \code{saveWAASY}.
 \item \strong{hetdata, hetcomb} The data used to produce the heatmaps.
 \item \strong{Ranks} All the values of WAASY estimated in the different
 scenarios of WAAS/GY weighting ratio.
+}
+\item When computed with \code{\link[=mps]{mps()}}
+\item \strong{hetcomb} showing the rank for mean performance and stability in the different weights.
 }
 }
 \description{
@@ -73,7 +77,10 @@ matches perfectly with the ranks of the response variable.
 \examples{
 \donttest{
 library(metan)
-model <- waasb(data_ge2,
+# using the WAASB as statistic and BLUP as mean performance
+# the same as using waasb()
+
+model <- mps(data_ge2,
              env = ENV,
              gen = GEN,
              rep = REP,
@@ -88,7 +95,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 \doi{10.2134/agronj2019.03.0220}
 }
 \seealso{
-\code{\link[=resca]{resca()}}
+\code{\link[=resca]{resca()}}, \code{\link[=mps]{mps()}}, \code{\link[=mtmps]{mtmps()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

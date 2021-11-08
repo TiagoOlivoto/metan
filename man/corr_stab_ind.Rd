@@ -29,29 +29,32 @@ nonparametric stability indexes computed with the function
 \code{\link[=ge_stats]{ge_stats()}}.
 }
 \details{
-The argument \code{stats} is used to chose the statistics to show
-the ranks. Allowed values are \code{"all"} (All statistics, default),
-\code{"par"} (Parametric statistics), \code{"nonpar"} (Non-parametric
-statistics), \code{"ammi"} (AMMI-based stability statistics), or the
-following values that can be combined into comma-separated character
-vector. \code{"Y"} (Response variable), \code{"Var"} (Genotype's variance),
-\code{"Shukla"} (Shukla's variance), \verb{"Wi_g", "Wi_f", "Wi_u"}
-(Annichiarrico's genotypic confidence index for all, favorable and
-unfavorable environments, respectively), \code{"Ecoval"} (Wricke's
+The argument \code{stats} is used to chose the statistics to show the
+ranks. Allowed values are \code{"all"} (All statistics, default), \code{"par"}
+(Parametric statistics), \code{"nonpar"} (Non-parametric statistics), \code{"ammi"}
+(AMMI-based stability statistics), or the following values that can be
+combined into comma-separated character vector. \code{"Y"} (Response variable),
+\code{"Var"} (Genotype's variance), \code{"Shukla"} (Shukla's variance), \verb{"Wi_g", "Wi_f", "Wi_u"} (Annichiarrico's genotypic confidence index for all,
+favorable and unfavorable environments, respectively), \code{"Ecoval"} (Wricke's
 ecovalence), \code{"Sij"} (Deviations from the joint-regression analysis),
-\code{"R2"} (R-squared from the joint-regression analysis), \code{"ASV"}
-(AMMI-stability value), \code{"SIPC"} (sum of the absolute values of the
-IPCA scores), \code{"EV"} (Average of the squared eigenvector values),
-\code{"ZA"} (Absolute values of the relative contributions of the IPCAs to
-the interaction), \code{"WAAS"} (Weighted Average of Absolute Scores),
-\code{"HMGV"} (Harmonic mean of the genotypic value), \code{"RPGV"}
-(Relative performance of the genotypic values), \code{"HMRPGV"} (Harmonic
-mean of the relative performance of the genotypic values), \verb{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and unfavorable
-environments, respectively), \code{"Gai"} (Geometric adaptability index),
-\code{"S1"} (mean of the absolute rank differences of a genotype over the n
-environments), \code{"S2"} (variance among the ranks over the k
-environments), \code{"S3"} (sum of the absolute deviations), \code{"S6"}
-(relative sum of squares of rank for each genotype), \verb{"N1", "N2", "N3", "N4"} (Thennarasu"s statistics)).
+\code{"R2"} (R-squared from the joint-regression analysis), \code{"ASTAB"} (AMMI
+Based Stability Parameter), \code{"ASI"} (AMMI Stability Index), \code{"ASV"}
+(AMMI-stability value), \code{"AVAMGE"} (Sum Across Environments of Absolute
+Value of GEI Modelled by AMMI ), \code{"Da"} (Annicchiarico's D Parameter
+values), \code{"Dz"} (Zhang's D Parameter), \code{"EV"} (Sums of the Averages of the
+Squared Eigenvector Values), \code{"FA"} (Stability Measure Based on Fitted AMMI
+Model), \code{"MASV"} (Modified AMMI Stability Value), \code{"SIPC"} (Sums of the
+Absolute Value of the IPC Scores), \code{"Za"} (Absolute Value of the Relative
+Contribution of IPCs to the Interaction), \code{"WAAS"} (Weighted average of
+absolute scores), \code{"HMGV"} (Harmonic mean of the genotypic value), \code{"RPGV"}
+(Relative performance of the genotypic values), \code{"HMRPGV"} (Harmonic mean
+of the relative performance of the genotypic values), \verb{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and unfavorable
+environments, respectively), \code{"Gai"} (Geometric adaptability index), \code{"S1"}
+(mean of the absolute rank differences of a genotype over the n
+environments), \code{"S2"} (variance among the ranks over the k environments),
+\code{"S3"} (sum of the absolute deviations), \code{"S6"} (relative sum of squares of
+rank for each genotype), \verb{"N1", "N2", "N3", "N4"} (Thennarasu"s
+statistics)).
 }
 \examples{
 \donttest{

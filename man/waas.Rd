@@ -84,7 +84,7 @@ and WAASY (the index that consider the weights for stability and productivity
 in the genotype ranking.
 \item \strong{MeansGxE} The means of genotypes in the environments
 \item \strong{PCA} Principal Component Analysis.
-\item \strong{anova} Joint analysis of variance for the main effects and
+\item \strong{ANOVA} Joint analysis of variance for the main effects and
 Principal Component analysis of the interaction effect.
 \item \strong{Details} A list summarizing the results. The following information
 are showed. \code{WgtResponse}, the weight for the response variable in

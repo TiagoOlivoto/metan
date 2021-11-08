@@ -2,7 +2,7 @@
 % Please edit documentation in R/ge_stats.R
 \name{ge_stats}
 \alias{ge_stats}
-\title{Statistics for genotype-vs-environment interaction}
+\title{Parametric and non-parametric stability statistics}
 \usage{
 ge_stats(.data, env, gen, rep, resp, verbose = TRUE, prob = 0.05)
 }
@@ -33,51 +33,53 @@ frame for each variable containing the computed indexes.
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 
-Computes \strong{(i)} within-environment analysis of variance, GEI effect,
-GEI means, and genotype plus GEI effects; \strong{(ii)} parametric statistics
-including AMMI-based indexes, Annicchiarico's genotypic confidence index
-(1992), Ecovalence (Wricke, 1965), regression-based stability (Eberhart and
-Russell., 1966), Shukla's stability variance parameter (1972); and
-\strong{(iii)} nonparametric statistics including Fox's stability function
-(Fox et al. 1990), superiority index (Lin and Binns, 1988), Huehn's stability
-statistics (Huehn, 1979), and Thennarasu (1995) statistics.
+\code{ge_stats()} computes parametric and non-parametric stability statistics
+given a data set with environment, genotype, and block factors.
 }
 \details{
 The function computes the statistics and ranks for the following
-stability indexes. \code{"Y"} (Response variable), \code{"CV"} (coefficient
-of variation), \code{"ACV"} (adjusted coefficient of variation calling
-\code{\link[=ge_acv]{ge_acv()}} internally); \code{POLAR} (Power Law Residuals,
-calling \code{\link[=ge_polar]{ge_polar()}} internally) \code{"Var"} (Genotype's
-variance), \code{"Shukla"} (Shukla's variance, calling \code{\link[=Shukla]{Shukla()}}
-internally), \verb{"Wi_g", "Wi_f", "Wi_u"} (Annichiarrico's genotypic
+stability indexes.
+\itemize{
+\item \code{"Y"} (Response variable),
+\item \code{"CV"} (coefficient of variation)
+\item \code{"ACV"} (adjusted coefficient of variation calling \code{\link[=ge_acv]{ge_acv()}} internally)
+\item \code{POLAR} (Power Law Residuals, calling \code{\link[=ge_polar]{ge_polar()}} internally)
+\item \code{"Var"} (Genotype's variance)
+\item \code{"Shukla"} (Shukla's variance, calling \code{\link[=Shukla]{Shukla()}} internally)
+\item \verb{"Wi_g", "Wi_f", "Wi_u"} (Annichiarrico's genotypic
 confidence index for all, favorable and unfavorable environments,
-respectively, calling \code{\link[=Annicchiarico]{Annicchiarico()}} internally ),
-\code{"Ecoval"} (Wricke's ecovalence, \code{\link[=ecovalence]{ecovalence()}} internally),
-\code{"Sij"} (Deviations from the joint-regression analysis) and
-\code{"R2"} (R-squared from the joint-regression analysis, calling
-\code{\link[=ge_reg]{ge_reg()}} internally), \code{"ASV"} (AMMI-stability value),
-\code{"SIPC"} (sum of the absolute values of the IPCA scores), \code{"EV"}
-(Average of the squared eigenvector values), \code{"ZA"} (Absolute values
-of the relative contributions of the IPCAs to the interaction), and
-\code{"WAAS"} (Weighted Average of Absolute Scores), by calling
-\code{\link[=ammi_indexes]{ammi_indexes()}} internally; \code{"HMGV"} (Harmonic mean of the
-genotypic value), \code{"RPGV"} (Relative performance of the genotypic
-values), \code{"HMRPGV"} (Harmonic mean of the relative performance of the
-genotypic values), by calling \code{\link[=blup_indexes]{blup_indexes()}} internally;
-\verb{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and
-unfavorable environments, respectively, calling \code{\link[=superiority]{superiority()}}
-internally), \code{"Gai"} (Geometric adaptability index, calling
-\code{\link[=gai]{gai()}} internally), \code{"S1"} (mean of the absolute rank
-differences of a genotype over the n environments), \code{"S2"} (variance
-among the ranks over the k environments), \code{"S3"} (sum of the absolute
-deviations), \code{"S6"} (relative sum of squares of rank for each
-genotype), by calling \code{\link[=Huehn]{Huehn()}} internally; and  \verb{"N1", "N2", "N3", "N4"} (Thennarasu"s statistics, calling
+respectively, calling \code{\link[=Annicchiarico]{Annicchiarico()}} internally )
+\item \code{"Ecoval"} (Wricke's ecovalence, \code{\link[=ecovalence]{ecovalence()}} internally)
+\item \code{"Sij"} (Deviations from the joint-regression analysis) and \code{"R2"}
+(R-squared from the joint-regression analysis, calling \code{\link[=ge_reg]{ge_reg()}}
+internally)
+\item \code{"ASTAB"} (AMMI Based Stability Parameter), \code{"ASI"} (AMMI Stability
+Index), \code{"ASV"} (AMMI-stability value), \code{"AVAMGE"} (Sum Across Environments
+of Absolute Value of GEI Modelled by AMMI ), \code{"Da"} (Annicchiarico's D
+Parameter values), \code{"Dz"} (Zhang's D Parameter), \code{"EV"} (Sums of the
+Averages of the Squared Eigenvector Values), \code{"FA"} (Stability Measure
+Based on Fitted AMMI Model), \code{"MASV"} (Modified AMMI Stability Value),
+\code{"SIPC"} (Sums of the Absolute Value of the IPC Scores), \code{"Za"} (Absolute
+Value of the Relative Contribution of IPCs to the Interaction), \code{"WAAS"}
+(Weighted average of absolute scores), calling \code{\link[=ammi_indexes]{ammi_indexes()}} internally
+\item \code{"HMGV"} (Harmonic mean of the genotypic value), \code{"RPGV"} (Relative
+performance of the genotypic values), \code{"HMRPGV"} (Harmonic mean of the
+relative performance of the genotypic values), by calling \code{\link[=blup_indexes]{blup_indexes()}}
+internally
+\item \verb{"Pi_a", "Pi_f", "Pi_u"} (Superiority indexes for all, favorable and
+unfavorable environments, respectively, calling \code{\link[=superiority]{superiority()}} internally)
+\item \code{"Gai"} (Geometric adaptability index, calling \code{\link[=gai]{gai()}} internally)
+\item \code{"S1"} (mean of the absolute rank differences of a genotype over the n
+environments), \code{"S2"} (variance among the ranks over the k environments),
+\code{"S3"} (sum of the absolute deviations), \code{"S6"} (relative sum of squares of
+rank for each genotype), by calling \code{\link[=Huehn]{Huehn()}} internally
+\item \code{"N1"}, \code{"N2"}, \code{"N3"}, \code{"N4"} (Thennarasu"s statistics, calling
 \code{\link[=Thennarasu]{Thennarasu()}} internally ).
+}
 }
 \examples{
 \donttest{
 library(metan)
-
 model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 get_model_data(model, "stats")
 }
@@ -87,6 +89,19 @@ get_model_data(model, "stats")
 \references{
 Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
 trials in Northern Italy. Journal of Genetic \& Breeding, 46:269-278
+
+Ajay BC, Aravind J, Abdul Fiyaz R, Bera SK, Kumar N, Gangadhar K, Kona P
+(2018). “Modified AMMI Stability Index (MASI) for stability analysis.”
+ICAR-DGR Newsletter, 18, 4–5.
+
+Ajay BC, Aravind J, Fiyaz RA, Kumar N, Lal C, Gangadhar K, Kona P, Dagla MC,
+Bera SK (2019). “Rectification of modified AMMI stability value (MASV).”
+Indian Journal of Genetics and Plant Breeding (The), 79, 726–731.
+https://www.isgpb.org/article/rectification-of-modified-ammi-stability-value-masv.
+
+Annicchiarico P (1997). “Joint regression vs AMMI analysis of
+genotype-environment interactions for cereals in Italy.” Euphytica, 94(1),
+53–62. \doi{10.1023/A:1002954824178}
 
 Doring, T.F., and M. Reckling. 2018. Detecting global trends of
 cereal yield stability by adjusting the coefficient of variation. Eur. J.
@@ -100,6 +115,10 @@ Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
 comparing Varieties. Crop Sci. 6:36-40.
 \doi{10.2135/cropsci1966.0011183X000600010011x}
 
+Farshadfar E (2008) Incorporation of AMMI stability value and grain yield in
+a single non-parametric index (GSI) in bread wheat. Pakistan J Biol Sci
+11:1791–1796. \doi{10.3923/pjbs.2008.1791.1796}
+
 Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
 Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
 Euphytica 47:57-64.
@@ -107,6 +126,11 @@ Euphytica 47:57-64.
 
 Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
 stabilitat. EDV Med. Biol. 10:112.
+
+Jambhulkar NN, Rath NC, Bose LK, Subudhi HN, Biswajit M, Lipi D, Meher J
+(2017). “Stability analysis for grain yield in rice in demonstrations
+conducted during rabi season in India.” Oryza, 54(2), 236–240.
+\doi{10.5958/2249-5266.2017.00030.3}
 
 Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
 Yielding and Stable Crop Genotypes. Agron. J. 83:161.
@@ -129,12 +153,28 @@ Shukla, G.K. 1972. Some statistical aspects of partitioning
 genotype-environmental components of variability. Heredity. 29:238-245.
 \doi{10.1038/hdy.1972.87}
 
+Raju BMK (2002). “A study on AMMI model and its biplots.” Journal of the
+Indian Society of Agricultural Statistics, 55(3), 297–322.
+
+Rao AR, Prabhakaran VT (2005). “Use of AMMI in simultaneous selection of
+genotypes for yield and stability.” Journal of the Indian Society of
+Agricultural Statistics, 59, 76–82.
+
+Sneller CH, Kilgore-Norquest L, Dombek D (1997). “Repeatability of yield
+stability statistics in soybean.” Crop Science, 37(2), 383–390.
+\doi{10.2135/cropsci1997.0011183X003700020013x}
+
 Thennarasu, K. 1995. On certain nonparametric procedures for
 studying genotype x environment interactions and yield stability. Ph.D.
 thesis. P.J. School, IARI, New Delhi, India.
 
 Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
 Z. Pflanzenzuchtg 52:127-138.
+}
+\seealso{
+\code{\link[=acv]{acv()}}, \code{\link[=ammi_indexes]{ammi_indexes()}}, \code{\link[=ecovalence]{ecovalence()}}, \code{\link[=Fox]{Fox()}}, \code{\link[=gai]{gai()}},
+\code{\link[=ge_reg]{ge_reg()}}, \code{\link[=hmgv]{hmgv()}}, \code{\link[=hmrpgv]{hmrpgv()}}, \code{\link[=rpgv]{rpgv()}}, \code{\link[=Huehn]{Huehn()}}, \code{\link[=polar]{polar()}},
+\code{\link[=Shukla]{Shukla()}}, \code{\link[=superiority]{superiority()}}, \code{\link[=Thennarasu]{Thennarasu()}}, \code{\link[=waas]{waas()}}, \code{\link[=waasb]{waasb()}}
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}
