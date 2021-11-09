@@ -21,7 +21,7 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 
 * Parametric methods
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
-   * AMMI-based stability statistics with [`AMMI_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
+   * AMMI-based stability statistics with [`ammi_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
    * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
    * BLUP-based stability indexes with [`blup_indexes()`](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html).
    * Ecovalence [@Wricke1965] using [`ecovalence()`](https://tiagoolivoto.github.io/metan/reference/ecovalence.html).
@@ -127,7 +127,9 @@ The S3 method [`predict()`](https://tiagoolivoto.github.io/metan/reference/predi
 
 ```{r }
 predicted <- predict(ammi_model, naxis = c(4, 6))
-make_mat(predicted$GY, GEN, ENV, YpredAMMI) %>% 
+predicted %>% 
+   subset(TRAIT == "GY") %>% 
+   make_mat(GEN, ENV, YpredAMMI) %>% 
   round_cols()
 ```
 

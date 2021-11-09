@@ -99,7 +99,7 @@ non-parametric stability indexes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -157,8 +157,20 @@ non-parametric stability indexes." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -187,23 +199,26 @@ non-parametric stability indexes." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -333,7 +348,7 @@ and Russell, 1966).</p></li>
 <li><p><code>"n1", "n2", "n3", and "n4"</code> Thennarasu's stability statistics (Thennarasu,
 1995).</p></li>
 <li><p><code>"asv", "ev", "za", and "waas"</code> AMMI-based stability indexes (see
-<code><a href='AMMI_indexes.html'>AMMI_indexes()</a></code>).</p></li>
+<code><a href='ammi_indexes.html'>ammi_indexes()</a></code>).</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -428,45 +443,54 @@ Pflanzenzuchtg 52:127-138.</p>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'># The same approach as mtsi()</span>
-<span class='co'># mean performance and stability for GY and HM</span>
-<span class='co'># mean performance: The genotype's BLUP</span>
-<span class='co'># stability: the WAASB index (lower is better)</span>
-<span class='co'># weights: equal for mean performance and stability</span>
-
-<span class='va'>model</span> <span class='op'>&lt;-</span>
-<span class='fu'>mps</span><span class='op'>(</span><span class='va'>data_ge</span>,
-    env <span class='op'>=</span> <span class='va'>ENV</span>,
-    gen <span class='op'>=</span> <span class='va'>GEN</span>,
-    rep <span class='op'>=</span> <span class='va'>REP</span>,
-    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model       GY       HM
-#&gt;  COMPLETE       NA       NA
-#&gt;       GEN 1.11e-05 5.07e-03
-#&gt;   GEN:ENV 2.15e-11 2.27e-15
-#&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='output co'>#&gt; <span class='message'>Mean performance: blupg</span></div><div class='output co'>#&gt; <span class='message'>Stability: waasb</span></div><div class='input'>
-<span class='co'># The mean performance and stability after rescaling</span>
-<span class='va'>model</span><span class='op'>$</span><span class='va'>mps_ind</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
-#&gt;    GEN      GY    HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1     57.6  56.2
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10     0    35.0
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2     59.9  17.8
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3     95.5  67.9
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4     45.7  58.6
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5     40.0  61.1
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6     45.9  85.5
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7     45.2  51.3
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8     77.3  90.6
-#&gt; <span style='color: #BCBCBC;'>10</span> G9     16.3  58.7</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># The same approach as mtsi()</span></span>
+<span class='r-in'><span class='co'># mean performance and stability for GY and HM</span></span>
+<span class='r-in'><span class='co'># mean performance: The genotype's BLUP</span></span>
+<span class='r-in'><span class='co'># stability: the WAASB index (lower is better)</span></span>
+<span class='r-in'><span class='co'># weights: equal for mean performance and stability</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span></span>
+<span class='r-in'><span class='fu'>mps</span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>    env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>    gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>    rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, GEN:ENV</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model       GY       HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  COMPLETE       NA       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       GEN 1.11e-05 5.07e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN:ENV 2.15e-11 2.27e-15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Mean performance: blupg</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Stability: waasb</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># The mean performance and stability after rescaling</span></span>
+<span class='r-in'><span class='va'>model</span><span class='op'>$</span><span class='va'>mps_ind</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN      GY    HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1     57.6  56.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10     0    35.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2     59.9  17.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3     95.5  67.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4     45.7  58.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5     40.0  61.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6     45.9  85.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7     45.2  51.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8     77.3  90.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9     16.3  58.7</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

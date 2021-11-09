@@ -97,7 +97,7 @@ Provide details for genotype-environment trials" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ Provide details for genotype-environment trials" />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ Provide details for genotype-environment trials" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -277,25 +292,26 @@ single procedure a vector of variables may be used. For example <code>resp = c(v
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>details</span> <span class='op'>&lt;-</span> <span class='fu'>ge_details</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>details</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 16</span>
-#&gt;    Parameters PH     EH    EP    EL    ED    CL    CD    CW    KW    NR    NKR  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>2.48<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>1.3~ <span style='color: #949494;'>"</span>0.5~ <span style='color: #949494;'>"</span>15.~ <span style='color: #949494;'>"</span>49.~ <span style='color: #949494;'>"</span>29.~ <span style='color: #949494;'>"</span>15.~ <span style='color: #949494;'>"</span>24.~ <span style='color: #949494;'>"</span>172~ <span style='color: #949494;'>"</span>16.~ <span style='color: #949494;'>"</span>32.~
-#&gt; <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.03<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>0.0~ <span style='color: #949494;'>"</span>0<span style='color: #949494;'>"</span>   <span style='color: #949494;'>"</span>0.1<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>0.2~ <span style='color: #949494;'>"</span>0.1~ <span style='color: #949494;'>"</span>0.0~ <span style='color: #949494;'>"</span>0.5<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>2.6~ <span style='color: #949494;'>"</span>0.1~ <span style='color: #949494;'>"</span>0.2~
-#&gt; <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>0.33<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>0.2~ <span style='color: #949494;'>"</span>0.0~ <span style='color: #949494;'>"</span>1.2~ <span style='color: #949494;'>"</span>2.7~ <span style='color: #949494;'>"</span>2.3<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>1.1~ <span style='color: #949494;'>"</span>6.2~ <span style='color: #949494;'>"</span>32.~ <span style='color: #949494;'>"</span>1.6~ <span style='color: #949494;'>"</span>3.4~
-#&gt; <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>13.4~ <span style='color: #949494;'>"</span>21.~ <span style='color: #949494;'>"</span>10.~ <span style='color: #949494;'>"</span>8.2~ <span style='color: #949494;'>"</span>5.5~ <span style='color: #949494;'>"</span>7.9~ <span style='color: #949494;'>"</span>7.3~ <span style='color: #949494;'>"</span>25.~ <span style='color: #949494;'>"</span>18.~ <span style='color: #949494;'>"</span>10.~ <span style='color: #949494;'>"</span>10.~
-#&gt; <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>1.71~ <span style='color: #949494;'>"</span>0.7~ <span style='color: #949494;'>"</span>0.3~ <span style='color: #949494;'>"</span>11.~ <span style='color: #949494;'>"</span>43.~ <span style='color: #949494;'>"</span>23.~ <span style='color: #949494;'>"</span>12.~ <span style='color: #949494;'>"</span>11.~ <span style='color: #949494;'>"</span>105~ <span style='color: #949494;'>"</span>12.~ <span style='color: #949494;'>"</span>23.~
-#&gt; <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>3.04~ <span style='color: #949494;'>"</span>1.8~ <span style='color: #949494;'>"</span>0.6~ <span style='color: #949494;'>"</span>17.~ <span style='color: #949494;'>"</span>54.~ <span style='color: #949494;'>"</span>34.~ <span style='color: #949494;'>"</span>18.~ <span style='color: #949494;'>"</span>38.~ <span style='color: #949494;'>"</span>250~ <span style='color: #949494;'>"</span>21.~ <span style='color: #949494;'>"</span>42 ~
-#&gt; <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>A3 (~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~
-#&gt; <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>A1 (~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~
-#&gt; <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>H10 ~ <span style='color: #949494;'>"</span>H8 ~ <span style='color: #949494;'>"</span>H8 ~ <span style='color: #949494;'>"</span>H12~ <span style='color: #949494;'>"</span>H9 ~ <span style='color: #949494;'>"</span>H12~ <span style='color: #949494;'>"</span>H12~ <span style='color: #949494;'>"</span>H11~ <span style='color: #949494;'>"</span>H9 ~ <span style='color: #949494;'>"</span>H9 ~ <span style='color: #949494;'>"</span>H12~
-#&gt; <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>H1 (~ <span style='color: #949494;'>"</span>H1 ~ <span style='color: #949494;'>"</span>H1 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H5 ~ <span style='color: #949494;'>"</span>H5 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H13~ <span style='color: #949494;'>"</span>H4 ~
-#&gt; <span style='color: #949494;'># ... with 4 more variables: CDED &lt;chr&gt;, PERK &lt;chr&gt;, TKW &lt;chr&gt;, NKE &lt;chr&gt;</span></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>details</span> <span class='op'>&lt;-</span> <span class='fu'>ge_details</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>details</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 16</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Parameters PH     EH    EP    EL    ED    CL    CD    CW    KW    NR    NKR  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>2.48<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>1.3~ <span style='color: #949494;'>"</span>0.5~ <span style='color: #949494;'>"</span>15.~ <span style='color: #949494;'>"</span>49.~ <span style='color: #949494;'>"</span>29.~ <span style='color: #949494;'>"</span>15.~ <span style='color: #949494;'>"</span>24.~ <span style='color: #949494;'>"</span>172~ <span style='color: #949494;'>"</span>16.~ <span style='color: #949494;'>"</span>32.~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.03<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>0.0~ <span style='color: #949494;'>"</span>0<span style='color: #949494;'>"</span>   <span style='color: #949494;'>"</span>0.1<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>0.2~ <span style='color: #949494;'>"</span>0.1~ <span style='color: #949494;'>"</span>0.0~ <span style='color: #949494;'>"</span>0.5<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>2.6~ <span style='color: #949494;'>"</span>0.1~ <span style='color: #949494;'>"</span>0.2~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>0.33<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>0.2~ <span style='color: #949494;'>"</span>0.0~ <span style='color: #949494;'>"</span>1.2~ <span style='color: #949494;'>"</span>2.7~ <span style='color: #949494;'>"</span>2.3<span style='color: #949494;'>"</span> <span style='color: #949494;'>"</span>1.1~ <span style='color: #949494;'>"</span>6.2~ <span style='color: #949494;'>"</span>32.~ <span style='color: #949494;'>"</span>1.6~ <span style='color: #949494;'>"</span>3.4~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>13.4~ <span style='color: #949494;'>"</span>21.~ <span style='color: #949494;'>"</span>10.~ <span style='color: #949494;'>"</span>8.2~ <span style='color: #949494;'>"</span>5.5~ <span style='color: #949494;'>"</span>7.9~ <span style='color: #949494;'>"</span>7.3~ <span style='color: #949494;'>"</span>25.~ <span style='color: #949494;'>"</span>18.~ <span style='color: #949494;'>"</span>10.~ <span style='color: #949494;'>"</span>10.~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>1.71~ <span style='color: #949494;'>"</span>0.7~ <span style='color: #949494;'>"</span>0.3~ <span style='color: #949494;'>"</span>11.~ <span style='color: #949494;'>"</span>43.~ <span style='color: #949494;'>"</span>23.~ <span style='color: #949494;'>"</span>12.~ <span style='color: #949494;'>"</span>11.~ <span style='color: #949494;'>"</span>105~ <span style='color: #949494;'>"</span>12.~ <span style='color: #949494;'>"</span>23.~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>3.04~ <span style='color: #949494;'>"</span>1.8~ <span style='color: #949494;'>"</span>0.6~ <span style='color: #949494;'>"</span>17.~ <span style='color: #949494;'>"</span>54.~ <span style='color: #949494;'>"</span>34.~ <span style='color: #949494;'>"</span>18.~ <span style='color: #949494;'>"</span>38.~ <span style='color: #949494;'>"</span>250~ <span style='color: #949494;'>"</span>21.~ <span style='color: #949494;'>"</span>42 ~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>A3 (~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~ <span style='color: #949494;'>"</span>A3 ~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>A1 (~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~ <span style='color: #949494;'>"</span>A1 ~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>H10 ~ <span style='color: #949494;'>"</span>H8 ~ <span style='color: #949494;'>"</span>H8 ~ <span style='color: #949494;'>"</span>H12~ <span style='color: #949494;'>"</span>H9 ~ <span style='color: #949494;'>"</span>H12~ <span style='color: #949494;'>"</span>H12~ <span style='color: #949494;'>"</span>H11~ <span style='color: #949494;'>"</span>H9 ~ <span style='color: #949494;'>"</span>H9 ~ <span style='color: #949494;'>"</span>H12~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>H1 (~ <span style='color: #949494;'>"</span>H1 ~ <span style='color: #949494;'>"</span>H1 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H5 ~ <span style='color: #949494;'>"</span>H5 ~ <span style='color: #949494;'>"</span>H6 ~ <span style='color: #949494;'>"</span>H13~ <span style='color: #949494;'>"</span>H4 ~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 4 more variables: CDED &lt;chr&gt;, PERK &lt;chr&gt;, TKW &lt;chr&gt;, NKE &lt;chr&gt;</span></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

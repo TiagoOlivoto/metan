@@ -102,7 +102,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -160,8 +160,20 @@ the R console. The results can also be exported to the directory." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -190,23 +202,26 @@ the R console. The results can also be exported to the directory." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -277,152 +292,160 @@ to the working directory</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span><span class='op'>(</span><span class='va'>data_g</span>,
-               gen <span class='op'>=</span> <span class='va'>GEN</span>,
-               rep <span class='op'>=</span> <span class='va'>REP</span>,
-               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>KW</span>, <span class='va'>NR</span>, <span class='va'>NKE</span>, <span class='va'>NKR</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait KW |===========                                 | 25% 00:00:00 Evaluating trait NR |======================                      | 50% 00:00:00 Evaluating trait NKE |================================           | 75% 00:00:00 Evaluating trait NKR |===========================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: REP</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model     KW     NR     NKE   NKR
-#&gt;  Complete     NA     NA      NA    NA
-#&gt;  Genotype 0.0253 0.0056 0.00952 0.216
-#&gt; ---------------------------------------------------------------------------
-#&gt; Variables with nonsignificant Genotype effect
-#&gt; NKR 
-#&gt; ---------------------------------------------------------------------------</div><div class='input'><span class='va'>mgidi_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mgidi.html'>mgidi</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span>
-#&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> PC1          2.42          60.6                 60.6
-#&gt; <span style='color: #BCBCBC;'>2</span> PC2          1.19          29.8                 90.3
-#&gt; <span style='color: #BCBCBC;'>3</span> PC3          0.32           8                   98.3
-#&gt; <span style='color: #BCBCBC;'>4</span> PC4          0.07           1.66               100  
-#&gt; -------------------------------------------------------------------------------
-#&gt; Factor Analysis - factorial loadings after rotation-
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span>
-#&gt;   VAR     FA1   FA2 Communality Uniquenesses
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> KW    -<span style='color: #BB0000;'>0.9</span>   0.04        0.82         0.18
-#&gt; <span style='color: #BCBCBC;'>2</span> NR    -<span style='color: #BB0000;'>0.92</span> -<span style='color: #BB0000;'>0.12</span>        0.87         0.13
-#&gt; <span style='color: #BCBCBC;'>3</span> NKE   -<span style='color: #BB0000;'>0.7</span>  -<span style='color: #BB0000;'>0.69</span>        0.96         0.04
-#&gt; <span style='color: #BCBCBC;'>4</span> NKR    0.05 -<span style='color: #BB0000;'>0.98</span>        0.97         0.03
-#&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.9033994 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span>
-#&gt;   VAR   Factor    Xo    Xs     SD SDperc    h2     SG SGperc sense     goal
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> KW    FA1    147.  163.  16.2    11.0  0.659 10.7     7.27 increase   100
-#&gt; <span style='color: #BCBCBC;'>2</span> NR    FA1     15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase   100
-#&gt; <span style='color: #BCBCBC;'>3</span> NKE   FA1    468.  532.  64.0    13.7  0.713 45.6     9.74 increase   100
-#&gt; <span style='color: #BCBCBC;'>4</span> NKR   FA2     30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase   100
-#&gt; ------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; -------------------------------------------------------------------------------
-#&gt; H13 H5
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mgidi_index</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; -------------------------------------------------------------------------------
-#&gt; Correlation matrix used used in factor analysis 
-#&gt; -------------------------------------------------------------------------------
-#&gt;         KW    NR  NKE    NKR
-#&gt; KW   1.000 0.688 0.56 -0.027
-#&gt; NR   0.688 1.000 0.73  0.047
-#&gt; NKE  0.560 0.731 1.00  0.610
-#&gt; NKR -0.027 0.047 0.61  1.000
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal component analysis 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span>
-#&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> PC1       2.422           60.55                60.55
-#&gt; <span style='color: #BCBCBC;'>2</span> PC2       1.192           29.79                90.34
-#&gt; <span style='color: #BCBCBC;'>3</span> PC3       0.320<span style='text-decoration: underline;'>1</span>           8.002               98.34
-#&gt; <span style='color: #BCBCBC;'>4</span> PC4       0.066<span style='text-decoration: underline;'>31</span>          1.658              100   
-#&gt; -------------------------------------------------------------------------------
-#&gt; Initial loadings 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 3</span>
-#&gt;   VAR       PC1     PC2
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> KW    -<span style='color: #BB0000;'>0.782</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  0.454<span style='text-decoration: underline;'>5</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> NR    -<span style='color: #BB0000;'>0.873</span><span style='color: #BB0000; text-decoration: underline;'>1</span>  0.323<span style='text-decoration: underline;'>2</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> NKE   -<span style='color: #BB0000;'>0.935</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.285</span><span style='color: #BB0000; text-decoration: underline;'>2</span>
-#&gt; <span style='color: #BCBCBC;'>4</span> NKR   -<span style='color: #BB0000;'>0.415</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.893</span><span style='color: #BB0000; text-decoration: underline;'>9</span>
-#&gt; -------------------------------------------------------------------------------
-#&gt; Loadings after varimax rotation 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 3</span>
-#&gt;   VAR        FA1      FA2
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> KW    -<span style='color: #BB0000;'>0.904</span><span style='color: #BB0000; text-decoration: underline;'>2</span>   0.040<span style='text-decoration: underline;'>04</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> NR    -<span style='color: #BB0000;'>0.923</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.118</span><span style='color: #BB0000; text-decoration: underline;'>2</span> 
-#&gt; <span style='color: #BCBCBC;'>3</span> NKE   -<span style='color: #BB0000;'>0.696</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.686</span><span style='color: #BB0000; text-decoration: underline;'>2</span> 
-#&gt; <span style='color: #BCBCBC;'>4</span> NKR    0.046<span style='text-decoration: underline;'>31</span> -<span style='color: #BB0000;'>0.984</span><span style='color: #BB0000; text-decoration: underline;'>6</span> 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Scores for genotypes-ideotype 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 14 x 3</span>
-#&gt;    GEN        FA1     FA2
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1    -<span style='color: #BB0000;'>1.615</span>   -<span style='color: #BB0000;'>0.287</span><span style='color: #BB0000; text-decoration: underline;'>4</span>
-#&gt; <span style='color: #BCBCBC;'> 2</span> H10   -<span style='color: #BB0000;'>0.249</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>2.888</span> 
-#&gt; <span style='color: #BCBCBC;'> 3</span> H11   -<span style='color: #BB0000;'>1.220</span>   -<span style='color: #BB0000;'>2.278</span> 
-#&gt; <span style='color: #BCBCBC;'> 4</span> H12   -<span style='color: #BB0000;'>1.813</span>   -<span style='color: #BB0000;'>1.450</span> 
-#&gt; <span style='color: #BCBCBC;'> 5</span> H13   -<span style='color: #BB0000;'>3.589</span>   -<span style='color: #BB0000;'>2.244</span> 
-#&gt; <span style='color: #BCBCBC;'> 6</span> H2    -<span style='color: #BB0000;'>1.816</span>   -<span style='color: #BB0000;'>0.674</span><span style='color: #BB0000; text-decoration: underline;'>8</span>
-#&gt; <span style='color: #BCBCBC;'> 7</span> H3    -<span style='color: #BB0000;'>0.585</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>1.045</span> 
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4    -<span style='color: #BB0000;'>0.292</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  -<span style='color: #BB0000;'>2.673</span> 
-#&gt; <span style='color: #BCBCBC;'> 9</span> H5    -<span style='color: #BB0000;'>2.432</span>   -<span style='color: #BB0000;'>2.315</span> 
-#&gt; <span style='color: #BCBCBC;'>10</span> H6    -<span style='color: #BB0000;'>1.405</span>    0.243<span style='text-decoration: underline;'>8</span>
-#&gt; <span style='color: #BCBCBC;'>11</span> H7    -<span style='color: #BB0000;'>1.449</span>   -<span style='color: #BB0000;'>0.841</span><span style='color: #BB0000; text-decoration: underline;'>2</span>
-#&gt; <span style='color: #BCBCBC;'>12</span> H8    -<span style='color: #BB0000;'>0.632</span><span style='color: #BB0000; text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.430</span><span style='color: #BB0000; text-decoration: underline;'>3</span>
-#&gt; <span style='color: #BCBCBC;'>13</span> H9     0.017<span style='text-decoration: underline;'>42</span> -<span style='color: #BB0000;'>1.398</span> 
-#&gt; <span style='color: #BCBCBC;'>14</span> ID1   -<span style='color: #BB0000;'>3.458</span>   -<span style='color: #BB0000;'>2.745</span> 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Multi-trait genotype-ideotype distance index 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 13 x 2</span>
-#&gt;    Genotype  MGIDI
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H13      0.518<span style='text-decoration: underline;'>1</span>
-#&gt; <span style='color: #BCBCBC;'> 2</span> H5       1.112 
-#&gt; <span style='color: #BCBCBC;'> 3</span> H12      2.093 
-#&gt; <span style='color: #BCBCBC;'> 4</span> H11      2.286 
-#&gt; <span style='color: #BCBCBC;'> 5</span> H2       2.642 
-#&gt; <span style='color: #BCBCBC;'> 6</span> H7       2.767 
-#&gt; <span style='color: #BCBCBC;'> 7</span> H1       3.072 
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4       3.166 
-#&gt; <span style='color: #BCBCBC;'> 9</span> H10      3.211 
-#&gt; <span style='color: #BCBCBC;'>10</span> H3       3.337 
-#&gt; <span style='color: #BCBCBC;'>11</span> H6       3.626 
-#&gt; <span style='color: #BCBCBC;'>12</span> H8       3.653 
-#&gt; <span style='color: #BCBCBC;'>13</span> H9       3.727 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential 
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span>
-#&gt;   VAR   Factor     Xo     Xs      SD SDperc     h2      SG SGperc sense     goal
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> KW    FA1    146.8  163.0  16.19   11.03  0.659<span style='text-decoration: underline;'>4</span> 10.67    7.271 increase   100
-#&gt; <span style='color: #BCBCBC;'>2</span> NR    FA1     15.78  17.42  1.630  10.33  0.735<span style='text-decoration: underline;'>9</span>  1.200   7.601 increase   100
-#&gt; <span style='color: #BCBCBC;'>3</span> NKE   FA1    467.9  531.9  63.97   13.67  0.712<span style='text-decoration: underline;'>6</span> 45.58    9.742 increase   100
-#&gt; <span style='color: #BCBCBC;'>4</span> NKR   FA2     30.4   31.21  0.814<span style='text-decoration: underline;'>2</span>  2.678 0.452<span style='text-decoration: underline;'>3</span>  0.368<span style='text-decoration: underline;'>3</span>  1.211 increase   100
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selected genotypes 
-#&gt; -------------------------------------------------------------------------------
-#&gt; H13 H5</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gamem.html'>gamem</a></span><span class='op'>(</span><span class='va'>data_g</span>,</span>
+<span class='r-in'>               gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>               rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>KW</span>, <span class='va'>NR</span>, <span class='va'>NKE</span>, <span class='va'>NKR</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait KW |===========                                 | 25% 00:00:00 Evaluating trait NR |======================                      | 50% 00:00:00 Evaluating trait NKE |================================           | 75% 00:00:00 Evaluating trait NKR |===========================================| 100% 00:00:00 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: REP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model     KW     NR     NKE   NKR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Complete     NA     NA      NA    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Genotype 0.0253 0.0056 0.00952 0.216</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variables with nonsignificant Genotype effect</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKR </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-in'><span class='va'>mgidi_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mgidi.html'>mgidi</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Principal Component Analysis</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> PC1          2.42          60.6                 60.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> PC2          1.19          29.8                 90.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> PC3          0.32           8                   98.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> PC4          0.07           1.66               100  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Factor Analysis - factorial loadings after rotation-</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR     FA1   FA2 Communality Uniquenesses</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> KW    -<span style='color: #BB0000;'>0.9</span>   0.04        0.82         0.18</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> NR    -<span style='color: #BB0000;'>0.92</span> -<span style='color: #BB0000;'>0.12</span>        0.87         0.13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> NKE   -<span style='color: #BB0000;'>0.7</span>  -<span style='color: #BB0000;'>0.69</span>        0.96         0.04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> NKR    0.05 -<span style='color: #BB0000;'>0.98</span>        0.97         0.03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Comunalit Mean: 0.9033994 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selection differential </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR   Factor    Xo    Xs     SD SDperc    h2     SG SGperc sense     goal</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> KW    FA1    147.  163.  16.2    11.0  0.659 10.7     7.27 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> NR    FA1     15.8  17.4  1.63   10.3  0.736  1.20    7.60 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> NKE   FA1    468.  532.  64.0    13.7  0.713 45.6     9.74 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> NKR   FA2     30.4  31.2  0.814   2.68 0.452  0.368   1.21 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selected genotypes</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H13 H5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mgidi_index</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Correlation matrix used used in factor analysis </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         KW    NR  NKE    NKR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW   1.000 0.688 0.56 -0.027</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR   0.688 1.000 0.73  0.047</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKE  0.560 0.731 1.00  0.610</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKR -0.027 0.047 0.61  1.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Principal component analysis </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> PC1       2.422           60.55                60.55</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> PC2       1.192           29.79                90.34</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> PC3       0.320<span style='text-decoration: underline;'>1</span>           8.002               98.34</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> PC4       0.066<span style='text-decoration: underline;'>31</span>          1.658              100   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Initial loadings </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR       PC1     PC2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> KW    -<span style='color: #BB0000;'>0.782</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  0.454<span style='text-decoration: underline;'>5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> NR    -<span style='color: #BB0000;'>0.873</span><span style='color: #BB0000; text-decoration: underline;'>1</span>  0.323<span style='text-decoration: underline;'>2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> NKE   -<span style='color: #BB0000;'>0.935</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.285</span><span style='color: #BB0000; text-decoration: underline;'>2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> NKR   -<span style='color: #BB0000;'>0.415</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.893</span><span style='color: #BB0000; text-decoration: underline;'>9</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Loadings after varimax rotation </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR        FA1      FA2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> KW    -<span style='color: #BB0000;'>0.904</span><span style='color: #BB0000; text-decoration: underline;'>2</span>   0.040<span style='text-decoration: underline;'>04</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> NR    -<span style='color: #BB0000;'>0.923</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.118</span><span style='color: #BB0000; text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> NKE   -<span style='color: #BB0000;'>0.696</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.686</span><span style='color: #BB0000; text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> NKR    0.046<span style='text-decoration: underline;'>31</span> -<span style='color: #BB0000;'>0.984</span><span style='color: #BB0000; text-decoration: underline;'>6</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Scores for genotypes-ideotype </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 14 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN        FA1     FA2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1    -<span style='color: #BB0000;'>1.615</span>   -<span style='color: #BB0000;'>0.287</span><span style='color: #BB0000; text-decoration: underline;'>4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H10   -<span style='color: #BB0000;'>0.249</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>2.888</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H11   -<span style='color: #BB0000;'>1.220</span>   -<span style='color: #BB0000;'>2.278</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H12   -<span style='color: #BB0000;'>1.813</span>   -<span style='color: #BB0000;'>1.450</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H13   -<span style='color: #BB0000;'>3.589</span>   -<span style='color: #BB0000;'>2.244</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H2    -<span style='color: #BB0000;'>1.816</span>   -<span style='color: #BB0000;'>0.674</span><span style='color: #BB0000; text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H3    -<span style='color: #BB0000;'>0.585</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>1.045</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4    -<span style='color: #BB0000;'>0.292</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  -<span style='color: #BB0000;'>2.673</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H5    -<span style='color: #BB0000;'>2.432</span>   -<span style='color: #BB0000;'>2.315</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H6    -<span style='color: #BB0000;'>1.405</span>    0.243<span style='text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H7    -<span style='color: #BB0000;'>1.449</span>   -<span style='color: #BB0000;'>0.841</span><span style='color: #BB0000; text-decoration: underline;'>2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8    -<span style='color: #BB0000;'>0.632</span><span style='color: #BB0000; text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.430</span><span style='color: #BB0000; text-decoration: underline;'>3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9     0.017<span style='text-decoration: underline;'>42</span> -<span style='color: #BB0000;'>1.398</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> ID1   -<span style='color: #BB0000;'>3.458</span>   -<span style='color: #BB0000;'>2.745</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Multi-trait genotype-ideotype distance index </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 13 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Genotype  MGIDI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H13      0.518<span style='text-decoration: underline;'>1</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H5       1.112 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H12      2.093 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H11      2.286 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H2       2.642 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H7       2.767 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H1       3.072 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4       3.166 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H10      3.211 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H3       3.337 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H6       3.626 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8       3.653 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9       3.727 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selection differential </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR   Factor     Xo     Xs      SD SDperc     h2      SG SGperc sense     goal</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> KW    FA1    146.8  163.0  16.19   11.03  0.659<span style='text-decoration: underline;'>4</span> 10.67    7.271 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> NR    FA1     15.78  17.42  1.630  10.33  0.735<span style='text-decoration: underline;'>9</span>  1.200   7.601 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> NKE   FA1    467.9  531.9  63.97   13.67  0.712<span style='text-decoration: underline;'>6</span> 45.58    9.742 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> NKR   FA2     30.4   31.21  0.814<span style='text-decoration: underline;'>2</span>  2.678 0.452<span style='text-decoration: underline;'>3</span>  0.368<span style='text-decoration: underline;'>3</span>  1.211 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selected genotypes </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H13 H5</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

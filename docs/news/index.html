@@ -95,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -153,8 +153,20 @@
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -183,23 +195,26 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -226,21 +241,42 @@
       <small>Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="metan-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#metan-development-version" class="anchor"></a>metan (development version)<small> Unreleased </small>
+    <div id="metan-1160" class="section level1">
+<h1 class="page-header" data-toc-text="1.16.0">
+<a href="#metan-1160" class="anchor"></a>metan 1.16.0<small> Unreleased </small>
 </h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>Include new AMMI-based stability methods.</li>
+<li>Update <code><a href="../reference/ge_stats.html">ge_stats()</a></code> to include the new stability methods.</li>
+<li>
+<code><a href="../reference/wsmp.html">wsmp()</a></code> now accepts objects computed with <code><a href="../reference/mps.html">mps()</a></code>, <code><a href="../reference/waas.html">waas()</a></code>, and <code><a href="../reference/waasb.html">waasb()</a></code>.</li>
+</ul>
+</div>
+<div id="minor-improvements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-improvements" class="anchor"></a>Minor improvements</h2>
+<ul>
+<li>
+<code><a href="../reference/ammi_indexes.html">AMMI_indexes()</a></code> has been deprecated in favour of <code><a href="../reference/ammi_indexes.html">ammi_indexes()</a></code>.</li>
+<li>Include formulas for the AMMI-indexes in <code><a href="../reference/ammi_indexes.html">ammi_indexes()</a></code>
+</li>
+<li>Correct the number of environments in the documentation of <code><a href="../reference/data_ge.html">data_ge()</a></code>.</li>
+</ul>
+</div>
 </div>
     <div id="metan-1150" class="section level1">
 <h1 class="page-header" data-toc-text="1.15.0">
 <a href="#metan-1150" class="anchor"></a>metan 1.15.0<small> 2021-07-15 </small>
 </h1>
 <ul>
-<li>Fix bug when calling <code><a href="../reference/get_model_data.html">gmd(., "data")</a></code>
+<li>Fix bug when calling <code>gmd(., "data")</code>
 </li>
 <li>Fix bug with <code><a href="../reference/fai_blup.html">fai_blup()</a></code> when genotypes has distance as 0.</li>
 <li>Fix bug in <code><a href="../reference/inspect.html">inspect()</a></code> when some trait has character values.</li>
-<li>Fix bug in <code><a href="../reference/get_model_data.html">gmd(model, "blupge")</a></code>
+<li>Fix bug in <code>gmd(model, "blupge")</code>
 </li>
 </ul>
 </div>
@@ -248,9 +284,9 @@
 <h1 class="page-header" data-toc-text="1.14.0">
 <a href="#metan-1140" class="anchor"></a>metan 1.14.0<small> 2021-06-07 </small>
 </h1>
-<div id="minor-improvements" class="section level2">
+<div id="minor-improvements-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-1" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>Fix bug in <code><a href="../reference/get_model_data.html">get_model_data()</a></code> calling objects of class <code>mgidi</code> with <code>what = "PCA"</code>.</li>
 <li>Fix bug in <code><a href="../reference/path_coeff.html">path_coeff()</a></code> when generating sequences of direct effects depending on the constant added to the diagonal of correlation matrix.</li>
@@ -271,16 +307,16 @@
 <li>
 <code><a href="../reference/utils_progress.html">progress()</a></code> and <code><a href="../reference/utils_progress.html">run_progress()</a></code> for text progress bar in the terminal.</li>
 <li>
-<code><a href="../reference/utils_bind.html">rbind_fill_id()</a></code> To implement the common pattern of <code><a href="https://rdrr.io/r/base/do.call.html">do.call(rbind, dfs)</a></code> with data frame identifier and filling of missing values.</li>
+<code><a href="../reference/utils_bind.html">rbind_fill_id()</a></code> To implement the common pattern of <code>do.call(rbind, dfs)</code> with data frame identifier and filling of missing values.</li>
 <li>
 <code><a href="../reference/blup_indexes.html">hmgv()</a></code>, <code><a href="../reference/blup_indexes.html">rpgv()</a></code>, <code><a href="../reference/blup_indexes.html">hmrpgv()</a></code>, <code><a href="../reference/blup_indexes.html">blup_indexes()</a></code> to compute stability indexes based on a mixed-effect model.</li>
 <li>
 <code><a href="../reference/mps.html">mps()</a></code> and <code><a href="../reference/mtmps.html">mtmps()</a></code> for uni- and multivariate-based mean performance and stability in multi-environment trials.</li>
 </ul>
 </div>
-<div id="minor-improvements-1" class="section level2">
+<div id="minor-improvements-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-1" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-2" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/ge_reg.html">ge_reg()</a></code> now returns hypotesis testing for slope and deviations from the regression. Thanks to <a href="https://www.researchgate.net/profile/Leonardo_Bhering">@LeonardoBehring</a> and <a href="https://www.escavador.com/sobre/6363700/michel-henriques-de-souza">@MichelSouza</a> for the suggestion.</li>
@@ -317,9 +353,9 @@
 <code><a href="../reference/utils_rows_cols.html">remove_rownames()</a></code>, <code><a href="../reference/utils_rows_cols.html">column_to_rownames()</a></code> and <code><a href="../reference/utils_rows_cols.html">rownames_to_column()</a></code> to deal with rownames.</li>
 </ul>
 </div>
-<div id="minor-improvements-2" class="section level2">
+<div id="minor-improvements-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-2" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-3" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>New argument <code>sel.var()</code> in <code><a href="../reference/corr_ci.html">corr_ci()</a></code> to filter correlations with a selected variable</li>
 <li>New arguments <code>fill</code> and <code>position.fill</code> in <code><a href="../reference/plot_ci.html">plot_ci()</a></code> to fill correlations by levels of a factor variable.</li>
@@ -346,9 +382,9 @@
 <code><a href="../reference/venn_plot.html">venn_plot()</a></code> to produce Venn diagrams.</li>
 </ul>
 </div>
-<div id="minor-improvements-3" class="section level2">
+<div id="minor-improvements-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-3" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-4" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/gge.html">gge()</a></code> now have a <code>by</code> argument and understand data passed from <code>group_by</code>.</li>
@@ -385,9 +421,9 @@
 <code><a href="../reference/env_stratification.html">env_stratification()</a></code> to perform environment stratification using factor analysis.</li>
 </ul>
 </div>
-<div id="minor-improvements-4" class="section level2">
+<div id="minor-improvements-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-4" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-5" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li><p><code>as_*()</code> now handles vectors.</p></li>
 <li><p><code><a href="../reference/plot.corr_coef.html">plot.corr_coef()</a></code> now shows both stars or p-values for reporting the significance of correlations.</p></li>
@@ -482,9 +518,9 @@
 <code><a href="../reference/coincidence_index.html">coincidence_index()</a></code> for computing the coincidence index.</li>
 </ul>
 </div>
-<div id="minor-improvements-5" class="section level2">
+<div id="minor-improvements-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-5" class="anchor"></a>Minor improvements</h2>
+<a href="#minor-improvements-6" class="anchor"></a>Minor improvements</h2>
 <ul>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now extracts the genotypic and phenotypic variance-covariance matrix from objects of class <code>gamem</code> and <code>waasb</code>.</li>
@@ -738,8 +774,8 @@
 </li>
 <li>
 <code><a href="../reference/plot_scores.html">plot_scores()</a></code> now support objects of class <code>waas_mean</code>.</li>
-<li>Include inst/CITATION to return a reference paper with <code><a href="https://rdrr.io/r/utils/citation.html">citation("metan")</a></code>.</li>
-<li>Change ‘PC2’ with ‘PC1’ in y-axis of <code><a href="../reference/plot_scores.html">plot_scores(type = 2)</a></code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
+<li>Include inst/CITATION to return a reference paper with <code>citation("metan")</code>.</li>
+<li>Change ‘PC2’ with ‘PC1’ in y-axis of <code>plot_scores(type = 2)</code> (<a href="https://github.com/TiagoOlivoto/metan/issues/1"><a href='https://github.com/TiagoOlivoto/metan/issues/1'>#1</a></a>)</li>
 <li>
 <code><a href="../reference/get_model_data.html">get_model_data()</a></code> now support models of class <code>anova_joint</code> and <code>gafem</code> and extract random effects of models fitted with <code><a href="../reference/waasb.html">waasb()</a></code> and <code><a href="../reference/gamem.html">gamem()</a></code>.</li>
 <li>Update <code><a href="../reference/plot.waasb.html">plot.waasb()</a></code> and <code><a href="../reference/plot.gamem.html">plot.gamem()</a></code> to show distribution of random effects.</li>
@@ -894,7 +930,7 @@
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <p>The documentation of the following functions was updated by including/updating the \value section of .Rd files.</p>
 <ul>
-<li><code><a href="../reference/AMMI_indexes.html">AMMI_indexes()</a></code></li>
+<li><code><a href="../reference/ammi_indexes.html">AMMI_indexes()</a></code></li>
 <li><code>Annichiarico()</code></li>
 <li><code><a href="../reference/anova_ind.html">anova_ind()</a></code></li>
 <li><code><a href="../reference/as.lpcor.html">as.lpcor()</a></code></li>
@@ -991,7 +1027,7 @@
 </li>
 <li>Minor improvements
 <ul>
-<li>New evaluation for text vectors are now used in the functions <code><a href="../reference/AMMI_indexes.html">AMMI_indexes()</a></code> and <code><a href="../reference/fai_blup.html">fai_blup()</a></code> and <code><a href="../reference/desc_stat.html">desc_stat()</a></code>. For example, to indicate the statistics to be computed in <code><a href="../reference/desc_stat.html">desc_stat()</a></code> you must use now <code>stats = c("mean, SE.mean, CV, max, min"))</code> instead <code>stats = c("mean", "SE.mean", "CV", "max", "min"))</code>
+<li>New evaluation for text vectors are now used in the functions <code><a href="../reference/ammi_indexes.html">AMMI_indexes()</a></code> and <code><a href="../reference/fai_blup.html">fai_blup()</a></code> and <code><a href="../reference/desc_stat.html">desc_stat()</a></code>. For example, to indicate the statistics to be computed in <code><a href="../reference/desc_stat.html">desc_stat()</a></code> you must use now <code>stats = c("mean, SE.mean, CV, max, min"))</code> instead <code>stats = c("mean", "SE.mean", "CV", "max", "min"))</code>
 </li>
 </ul>
 </li>

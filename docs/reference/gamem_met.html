@@ -133,7 +133,7 @@ assuming all effects, except the intercept, as random factors.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -191,8 +191,20 @@ assuming all effects, except the intercept, as random factors.
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -221,23 +233,26 @@ assuming all effects, except the intercept, as random factors.
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -440,83 +455,102 @@ incomplete block designs. Biometrika 63:83-92.</p>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'>#===============================================================#</span>
-<span class='co'># Example 1: Analyzing all numeric variables assuming genotypes #</span>
-<span class='co'># as random effects                                             #</span>
-<span class='co'>#===============================================================#</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>gamem_met</span><span class='op'>(</span><span class='va'>data_ge</span>,
-                  env <span class='op'>=</span> <span class='va'>ENV</span>,
-                  gen <span class='op'>=</span> <span class='va'>GEN</span>,
-                  rep <span class='op'>=</span> <span class='va'>REP</span>,
-                  resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model       GY       HM
-#&gt;  COMPLETE       NA       NA
-#&gt;       GEN 1.11e-05 5.07e-03
-#&gt;   GEN:ENV 2.15e-11 2.27e-15
-#&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='co'># Distribution of random effects (first variable)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span>, type <span class='op'>=</span> <span class='st'>"re"</span><span class='op'>)</span>
-</div><div class='img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Genetic parameters</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"genpar"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span>
-#&gt;   Parameters              GY     HM
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.181 5.52  
-#&gt; <span style='color: #BCBCBC;'>2</span> Heritability         0.154 0.088<span style='text-decoration: underline;'>7</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2                0.313 0.397 
-#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                 0.815 0.686 
-#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy             0.903 0.828 
-#&gt; <span style='color: #BCBCBC;'>6</span> rge                  0.370 0.435 
-#&gt; <span style='color: #BCBCBC;'>7</span> CVg                  6.26  1.46  
-#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 11.6   3.50  
-#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio             0.538 0.415 </div><div class='input'>
-
-
-<span class='co'>#===============================================================#</span>
-<span class='co'># Example 2: Unbalanced trials                                  #</span>
-<span class='co'># assuming all factors as random effects                        #</span>
-<span class='co'>#===============================================================#</span>
-<span class='va'>un_data</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
-             <span class='fu'><a href='utils_rows_cols.html'>remove_rows</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-             <span class='fu'><a href='https://rdrr.io/r/base/droplevels.html'>droplevels</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>gamem_met</span><span class='op'>(</span><span class='va'>un_data</span>,
-                   env <span class='op'>=</span> <span class='va'>ENV</span>,
-                   gen <span class='op'>=</span> <span class='va'>GEN</span>,
-                   rep <span class='op'>=</span> <span class='va'>REP</span>,
-                   random <span class='op'>=</span> <span class='st'>"all"</span>,
-                   resp <span class='op'>=</span> <span class='va'>GY</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, REP(ENV), ENV, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: -</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model       GY
-#&gt;  COMPLETE       NA
-#&gt;       GEN 1.31e-05
-#&gt;  REP(ENV) 9.23e-08
-#&gt;       ENV 9.33e-17
-#&gt;   GEN:ENV 2.11e-11
-#&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waasb</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: genpar</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 2</span>
-#&gt;   Parameters               GY
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.907 
-#&gt; <span style='color: #BCBCBC;'>2</span> Heritability         0.030<span style='text-decoration: underline;'>8</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2                0.314 
-#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                 0.813 
-#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy             0.902 
-#&gt; <span style='color: #BCBCBC;'>6</span> rge                  0.371 
-#&gt; <span style='color: #BCBCBC;'>7</span> CVg                  6.24  
-#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 11.6   
-#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio             0.536 </div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='co'># Example 1: Analyzing all numeric variables assuming genotypes #</span></span>
+<span class='r-in'><span class='co'># as random effects                                             #</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>gamem_met</span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>                  env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                  gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                  rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>                  resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, GEN:ENV</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model       GY       HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  COMPLETE       NA       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       GEN 1.11e-05 5.07e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN:ENV 2.15e-11 2.27e-15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-in'><span class='co'># Distribution of random effects (first variable)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span>, type <span class='op'>=</span> <span class='st'>"re"</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='gamem_met-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Genetic parameters</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"genpar"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: waasb</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: genpar</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 9 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Parameters              GY     HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.181 5.52  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Heritability         0.154 0.088<span style='text-decoration: underline;'>7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> GEIr2                0.313 0.397 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> h2mg                 0.815 0.686 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Accuracy             0.903 0.828 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> rge                  0.370 0.435 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> CVg                  6.26  1.46  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> CVr                 11.6   3.50  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>9</span> CV ratio             0.538 0.415 </span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='co'># Example 2: Unbalanced trials                                  #</span></span>
+<span class='r-in'><span class='co'># assuming all factors as random effects                        #</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='va'>un_data</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>             <span class='fu'><a href='utils_rows_cols.html'>remove_rows</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>             <span class='fu'><a href='https://rdrr.io/r/base/droplevels.html'>droplevels</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>gamem_met</span><span class='op'>(</span><span class='va'>un_data</span>,</span>
+<span class='r-in'>                   env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                   gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                   rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>                   random <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span class='r-in'>                   resp <span class='op'>=</span> <span class='va'>GY</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:00 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, REP(ENV), ENV, GEN:ENV</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: -</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model       GY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  COMPLETE       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       GEN 1.31e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  REP(ENV) 9.23e-08</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       ENV 9.33e-17</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN:ENV 2.11e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: waasb</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: genpar</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 9 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Parameters               GY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.907 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Heritability         0.030<span style='text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> GEIr2                0.314 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> h2mg                 0.813 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Accuracy             0.902 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> rge                  0.371 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> CVg                  6.24  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> CVr                 11.6   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>9</span> CV ratio             0.536 </span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

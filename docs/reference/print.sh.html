@@ -97,7 +97,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ the R console. The results can also be exported to the directory." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ the R console. The results can also be exported to the directory." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -269,149 +284,150 @@ to the working directory</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='va'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>vcov</span><span class='op'>$</span><span class='va'>means</span><span class='op'>)</span>
-<span class='va'>pcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>phen_cov</span>
-<span class='va'>gcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>geno_cov</span>
-
-<span class='va'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span><span class='op'>(</span><span class='va'>means</span>, pcov <span class='op'>=</span> <span class='va'>pcov</span>, gcov <span class='op'>=</span> <span class='va'>gcov</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>15</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>index</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Index coefficients
-#&gt; -----------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 15 x 3</span>
-#&gt;    VAR          b gen_weights
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> PH    -<span style='color: #BB0000; text-decoration: underline;'>1</span><span style='color: #BB0000;'>953.</span>             1
-#&gt; <span style='color: #BCBCBC;'> 2</span> EH     -<span style='color: #BB0000;'>465.3</span>            1
-#&gt; <span style='color: #BCBCBC;'> 3</span> EP      345.2            1
-#&gt; <span style='color: #BCBCBC;'> 4</span> EL      251.0            1
-#&gt; <span style='color: #BCBCBC;'> 5</span> ED      133.3            1
-#&gt; <span style='color: #BCBCBC;'> 6</span> CL     -<span style='color: #BB0000;'>229.5</span>            1
-#&gt; <span style='color: #BCBCBC;'> 7</span> CD     -<span style='color: #BB0000;'>233.7</span>            1
-#&gt; <span style='color: #BCBCBC;'> 8</span> CW     -<span style='color: #BB0000;'>176.0</span>            1
-#&gt; <span style='color: #BCBCBC;'> 9</span> KW      -<span style='color: #BB0000;'>94.02</span>           1
-#&gt; <span style='color: #BCBCBC;'>10</span> NR      -<span style='color: #BB0000;'>82.86</span>           1
-#&gt; <span style='color: #BCBCBC;'>11</span> NKR    -<span style='color: #BB0000;'>181.0</span>            1
-#&gt; <span style='color: #BCBCBC;'>12</span> CDED    -<span style='color: #BB0000;'>34.27</span>           1
-#&gt; <span style='color: #BCBCBC;'>13</span> PERK   -<span style='color: #BB0000;'>415.9</span>            1
-#&gt; <span style='color: #BCBCBC;'>14</span> TKW      53.78           1
-#&gt; <span style='color: #BCBCBC;'>15</span> NKE      43.13           1
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Genetic worth
-#&gt; -----------------------------------------------------------------------------------
-#&gt;    GEN        V1
-#&gt; 1   H7 -28058.73
-#&gt; 2  H12 -28060.55
-#&gt; 3   H2 -28069.01
-#&gt; 4   H5 -28085.19
-#&gt; 5   H3 -28115.99
-#&gt; 6  H13 -28132.23
-#&gt; 7   H9 -28204.45
-#&gt; 8   H6 -28242.55
-#&gt; 9   H1 -28243.94
-#&gt; 10 H10 -28247.07
-#&gt; 11 H11 -28266.74
-#&gt; 12  H8 -28296.72
-#&gt; 13  H4 -28339.60
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Selection gain
-#&gt; -----------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 15 x 7</span>
-#&gt;    VAR         Xo       Xs       SD  SDperc sense     goal
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> PH      2.167    2.304   0.137<span style='text-decoration: underline;'>1</span>   6.328  increase   100
-#&gt; <span style='color: #BCBCBC;'> 2</span> EH      1.078    1.22    0.142<span style='text-decoration: underline;'>0</span>  13.18   increase   100
-#&gt; <span style='color: #BCBCBC;'> 3</span> EP      0.495<span style='text-decoration: underline;'>8</span>   0.522<span style='text-decoration: underline;'>7</span>  0.026<span style='text-decoration: underline;'>89</span>  5.423  increase   100
-#&gt; <span style='color: #BCBCBC;'> 4</span> EL     14.67    14.25   -<span style='color: #BB0000;'>0.419</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  -<span style='color: #BB0000;'>2.859</span>  increase     0
-#&gt; <span style='color: #BCBCBC;'> 5</span> ED     47.87    48.27    0.399<span style='text-decoration: underline;'>0</span>   0.833<span style='text-decoration: underline;'>5</span> increase   100
-#&gt; <span style='color: #BCBCBC;'> 6</span> CL     28.45    28.02   -<span style='color: #BB0000;'>0.424</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>1.490</span>  increase     0
-#&gt; <span style='color: #BCBCBC;'> 7</span> CD     15.77    14.99   -<span style='color: #BB0000;'>0.776</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>4.927</span>  increase     0
-#&gt; <span style='color: #BCBCBC;'> 8</span> CW     20.78    22.55    1.765    8.494  increase   100
-#&gt; <span style='color: #BCBCBC;'> 9</span> KW    146.8    152.0     5.198    3.540  increase   100
-#&gt; <span style='color: #BCBCBC;'>10</span> NR     15.78    15.93    0.148<span style='text-decoration: underline;'>7</span>   0.942<span style='text-decoration: underline;'>2</span> increase   100
-#&gt; <span style='color: #BCBCBC;'>11</span> NKR    30.4     29.6    -<span style='color: #BB0000;'>0.800</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>2.632</span>  increase     0
-#&gt; <span style='color: #BCBCBC;'>12</span> CDED    0.594<span style='text-decoration: underline;'>6</span>   0.580<span style='text-decoration: underline;'>0</span> -<span style='color: #BB0000;'>0.014</span><span style='color: #BB0000; text-decoration: underline;'>54</span> -<span style='color: #BB0000;'>2.445</span>  increase     0
-#&gt; <span style='color: #BCBCBC;'>13</span> PERK   87.65    87.05   -<span style='color: #BB0000;'>0.599</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.684</span><span style='color: #BB0000; text-decoration: underline;'>2</span> increase     0
-#&gt; <span style='color: #BCBCBC;'>14</span> TKW   317.7    320.8     3.122    0.982<span style='text-decoration: underline;'>5</span> increase   100
-#&gt; <span style='color: #BCBCBC;'>15</span> NKE   467.9    478.8    10.87     2.323  increase   100
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Phenotypic variance-covariance matrix
-#&gt; -----------------------------------------------------------------------------------
-#&gt;           PH      EH       EP       EL      ED       CL      CD      CW      KW
-#&gt; PH    0.0280  0.0190  0.00190  0.00580  0.2189  -0.0362 -0.0287   0.139   1.970
-#&gt; EH    0.0190  0.0163  0.00285 -0.02238  0.1524  -0.0109 -0.0486   0.096   1.130
-#&gt; EP    0.0019  0.0028  0.00088 -0.01172  0.0193   0.0056 -0.0149   0.014   0.056
-#&gt; EL    0.0058 -0.0224 -0.01172  0.37517  0.1178   0.0488  0.3479   0.499   4.269
-#&gt; ED    0.2189  0.1524  0.01931  0.11785  6.1789   3.7315  0.2053   8.643  34.340
-#&gt; CL   -0.0362 -0.0109  0.00562  0.04882  3.7315   4.7407  0.3090   8.619  13.099
-#&gt; CD   -0.0287 -0.0486 -0.01492  0.34792  0.2053   0.3090  0.4508   0.673   3.513
-#&gt; CW    0.1388  0.0962  0.01410  0.49897  8.6429   8.6186  0.6726  20.972  49.106
-#&gt; KW    1.9698  1.1300  0.05606  4.26873 34.3402  13.0992  3.5130  49.106 274.442
-#&gt; NR    0.1514  0.1005  0.01161 -0.10612  2.1678   0.3145 -0.1293   1.771  14.432
-#&gt; NKR  -0.0262 -0.0732 -0.02513  0.38921 -2.1832  -3.1529  0.4191  -4.440  -0.989
-#&gt; CDED -0.0034 -0.0021 -0.00014  0.00024  0.0013   0.0526  0.0044   0.074  -0.144
-#&gt; PERK  0.0556  0.0242 -0.00297  0.01109 -2.1099  -3.5815 -0.1025  -7.471  -6.722
-#&gt; TKW   0.4550  0.4704  0.11429  6.64529 51.1086  60.8129  7.0140 125.436 276.147
-#&gt; NKE   5.5613  2.8220 -0.00892  4.32251 36.2582 -45.2534  1.9641 -20.768 489.456
-#&gt;          NR     NKR     CDED    PERK     TKW      NKE
-#&gt; PH    0.151  -0.026 -0.00341   0.056    0.45  5.6e+00
-#&gt; EH    0.101  -0.073 -0.00213   0.024    0.47  2.8e+00
-#&gt; EP    0.012  -0.025 -0.00014  -0.003    0.11 -8.9e-03
-#&gt; EL   -0.106   0.389  0.00024   0.011    6.65  4.3e+00
-#&gt; ED    2.168  -2.183  0.00133  -2.110   51.11  3.6e+01
-#&gt; CL    0.315  -3.153  0.05261  -3.582   60.81 -4.5e+01
-#&gt; CD   -0.129   0.419  0.00444  -0.102    7.01  2.0e+00
-#&gt; CW    1.771  -4.440  0.07352  -7.471  125.44 -2.1e+01
-#&gt; KW   14.432  -0.989 -0.14378  -6.722  276.15  4.9e+02
-#&gt; NR    1.605   0.130 -0.02024   0.068   -1.47  4.9e+01
-#&gt; NKR   0.130   4.746 -0.03809   2.322  -48.48  7.0e+01
-#&gt; CDED -0.020  -0.038  0.00108  -0.049    0.65 -1.4e+00
-#&gt; PERK  0.068   2.322 -0.04859   3.426  -47.06  4.6e+01
-#&gt; TKW  -1.472 -48.480  0.64659 -47.057 1180.42 -8.2e+02
-#&gt; NKE  48.839  70.119 -1.38172  45.583 -816.10  2.8e+03
-#&gt; 
-#&gt; -----------------------------------------------------------------------------------
-#&gt; Genotypic variance-covariance matrix
-#&gt; -----------------------------------------------------------------------------------
-#&gt;            PH       EH       EP       EL       ED       CL      CD      CW
-#&gt; PH    0.01708  0.00888 -0.00012  3.0e-03  0.18583  -0.0556 -0.0287   0.106
-#&gt; EH    0.00888  0.00501  0.00017 -2.5e-02  0.12777  -0.0298 -0.0463   0.082
-#&gt; EP   -0.00012  0.00017  0.00015 -1.2e-02  0.01583   0.0019 -0.0143   0.015
-#&gt; EL    0.00303 -0.02515 -0.01226  4.7e-02  0.00053  -0.0337  0.1487   0.090
-#&gt; ED    0.18583  0.12777  0.01583  5.3e-04  5.36879   3.3347  0.1667   7.676
-#&gt; CL   -0.05561 -0.02982  0.00185 -3.4e-02  3.33474   4.2690  0.3234   8.248
-#&gt; CD   -0.02873 -0.04627 -0.01425  1.5e-01  0.16666   0.3234  0.2396   0.378
-#&gt; CW    0.10646  0.08249  0.01542  9.0e-02  7.67557   8.2480  0.3784  18.458
-#&gt; KW    1.53382  0.82217  0.01174  6.2e-01 28.50002  10.8906  0.8898  37.657
-#&gt; NR    0.13286  0.08405  0.00867 -1.2e-01  1.86537   0.1827 -0.1515   1.632
-#&gt; NKR  -0.08098 -0.13532 -0.04097 -2.6e-01 -2.59771  -3.2041 -0.1574  -5.468
-#&gt; CDED -0.00342 -0.00223 -0.00018  4.3e-05  0.00318   0.0477  0.0052   0.078
-#&gt; PERK  0.04600  0.01193 -0.00674 -4.3e-02 -2.05591  -3.5398 -0.1430  -7.102
-#&gt; TKW  -0.21096  0.01407  0.04693  3.9e+00 44.49990  57.0469  5.8305 110.666
-#&gt; NKE   5.10010  2.44637 -0.06371 -3.5e+00 26.63104 -47.0664 -4.8728 -35.643
-#&gt;           KW      NR     NKR     CDED     PERK      TKW      NKE
-#&gt; PH     1.534  0.1329  -0.081 -3.4e-03   0.0460   -0.211    5.100
-#&gt; EH     0.822  0.0841  -0.135 -2.2e-03   0.0119    0.014    2.446
-#&gt; EP     0.012  0.0087  -0.041 -1.8e-04  -0.0067    0.047   -0.064
-#&gt; EL     0.620 -0.1159  -0.261  4.3e-05  -0.0430    3.905   -3.468
-#&gt; ED    28.500  1.8654  -2.598  3.2e-03  -2.0559   44.500   26.631
-#&gt; CL    10.891  0.1827  -3.204  4.8e-02  -3.5398   57.047  -47.066
-#&gt; CD     0.890 -0.1515  -0.157  5.2e-03  -0.1430    5.831   -4.873
-#&gt; CW    37.657  1.6321  -5.468  7.8e-02  -7.1018  110.666  -35.643
-#&gt; KW   180.972 13.0598 -12.058 -1.2e-01  -7.9108  175.110  344.314
-#&gt; NR    13.060  1.1809  -0.184 -1.9e-02   0.0477    2.739   36.598
-#&gt; NKR  -12.058 -0.1839   2.147 -3.4e-02   2.0327  -48.942   34.725
-#&gt; CDED  -0.117 -0.0191  -0.034  9.6e-04  -0.0483    0.646   -1.294
-#&gt; PERK  -7.911  0.0477   2.033 -4.8e-02   3.1367  -46.969   42.024
-#&gt; TKW  175.110  2.7390 -48.942  6.5e-01 -46.9689  840.939 -627.503
-#&gt; NKE  344.314 36.5977  34.725 -1.3e+00  42.0240 -627.503 1982.321</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='va'>vcov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='covcor_design.html'>covcor_design</a></span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>vcov</span><span class='op'>$</span><span class='va'>means</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>pcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>phen_cov</span></span>
+<span class='r-in'><span class='va'>gcov</span> <span class='op'>&lt;-</span> <span class='va'>vcov</span><span class='op'>$</span><span class='va'>geno_cov</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smith_Hazel.html'>Smith_Hazel</a></span><span class='op'>(</span><span class='va'>means</span>, pcov <span class='op'>=</span> <span class='va'>pcov</span>, gcov <span class='op'>=</span> <span class='va'>gcov</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>15</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>index</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Index coefficients</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 15 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    VAR          b gen_weights</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> PH    -<span style='color: #BB0000; text-decoration: underline;'>1</span><span style='color: #BB0000;'>953.</span>             1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> EH     -<span style='color: #BB0000;'>465.3</span>            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> EP      345.2            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> EL      251.0            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> ED      133.3            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> CL     -<span style='color: #BB0000;'>229.5</span>            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> CD     -<span style='color: #BB0000;'>233.7</span>            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> CW     -<span style='color: #BB0000;'>176.0</span>            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> KW      -<span style='color: #BB0000;'>94.02</span>           1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> NR      -<span style='color: #BB0000;'>82.86</span>           1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> NKR    -<span style='color: #BB0000;'>181.0</span>            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> CDED    -<span style='color: #BB0000;'>34.27</span>           1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> PERK   -<span style='color: #BB0000;'>415.9</span>            1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> TKW      53.78           1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> NKE      43.13           1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Genetic worth</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN        V1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1   H7 -28058.73</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  H12 -28060.55</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3   H2 -28069.01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4   H5 -28085.19</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5   H3 -28115.99</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  H13 -28132.23</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7   H9 -28204.45</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8   H6 -28242.55</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9   H1 -28243.94</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 H10 -28247.07</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 H11 -28266.74</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12  H8 -28296.72</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13  H4 -28339.60</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selection gain</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 15 x 7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    VAR         Xo       Xs       SD  SDperc sense     goal</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> PH      2.167    2.304   0.137<span style='text-decoration: underline;'>1</span>   6.328  increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> EH      1.078    1.22    0.142<span style='text-decoration: underline;'>0</span>  13.18   increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> EP      0.495<span style='text-decoration: underline;'>8</span>   0.522<span style='text-decoration: underline;'>7</span>  0.026<span style='text-decoration: underline;'>89</span>  5.423  increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> EL     14.67    14.25   -<span style='color: #BB0000;'>0.419</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  -<span style='color: #BB0000;'>2.859</span>  increase     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> ED     47.87    48.27    0.399<span style='text-decoration: underline;'>0</span>   0.833<span style='text-decoration: underline;'>5</span> increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> CL     28.45    28.02   -<span style='color: #BB0000;'>0.424</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>1.490</span>  increase     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> CD     15.77    14.99   -<span style='color: #BB0000;'>0.776</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>4.927</span>  increase     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> CW     20.78    22.55    1.765    8.494  increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> KW    146.8    152.0     5.198    3.540  increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> NR     15.78    15.93    0.148<span style='text-decoration: underline;'>7</span>   0.942<span style='text-decoration: underline;'>2</span> increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> NKR    30.4     29.6    -<span style='color: #BB0000;'>0.800</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>2.632</span>  increase     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> CDED    0.594<span style='text-decoration: underline;'>6</span>   0.580<span style='text-decoration: underline;'>0</span> -<span style='color: #BB0000;'>0.014</span><span style='color: #BB0000; text-decoration: underline;'>54</span> -<span style='color: #BB0000;'>2.445</span>  increase     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> PERK   87.65    87.05   -<span style='color: #BB0000;'>0.599</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.684</span><span style='color: #BB0000; text-decoration: underline;'>2</span> increase     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> TKW   317.7    320.8     3.122    0.982<span style='text-decoration: underline;'>5</span> increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> NKE   467.9    478.8    10.87     2.323  increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Phenotypic variance-covariance matrix</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           PH      EH       EP       EL      ED       CL      CD      CW      KW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH    0.0280  0.0190  0.00190  0.00580  0.2189  -0.0362 -0.0287   0.139   1.970</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH    0.0190  0.0163  0.00285 -0.02238  0.1524  -0.0109 -0.0486   0.096   1.130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP    0.0019  0.0028  0.00088 -0.01172  0.0193   0.0056 -0.0149   0.014   0.056</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL    0.0058 -0.0224 -0.01172  0.37517  0.1178   0.0488  0.3479   0.499   4.269</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ED    0.2189  0.1524  0.01931  0.11785  6.1789   3.7315  0.2053   8.643  34.340</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL   -0.0362 -0.0109  0.00562  0.04882  3.7315   4.7407  0.3090   8.619  13.099</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD   -0.0287 -0.0486 -0.01492  0.34792  0.2053   0.3090  0.4508   0.673   3.513</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CW    0.1388  0.0962  0.01410  0.49897  8.6429   8.6186  0.6726  20.972  49.106</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW    1.9698  1.1300  0.05606  4.26873 34.3402  13.0992  3.5130  49.106 274.442</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR    0.1514  0.1005  0.01161 -0.10612  2.1678   0.3145 -0.1293   1.771  14.432</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKR  -0.0262 -0.0732 -0.02513  0.38921 -2.1832  -3.1529  0.4191  -4.440  -0.989</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CDED -0.0034 -0.0021 -0.00014  0.00024  0.0013   0.0526  0.0044   0.074  -0.144</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PERK  0.0556  0.0242 -0.00297  0.01109 -2.1099  -3.5815 -0.1025  -7.471  -6.722</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TKW   0.4550  0.4704  0.11429  6.64529 51.1086  60.8129  7.0140 125.436 276.147</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKE   5.5613  2.8220 -0.00892  4.32251 36.2582 -45.2534  1.9641 -20.768 489.456</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          NR     NKR     CDED    PERK     TKW      NKE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH    0.151  -0.026 -0.00341   0.056    0.45  5.6e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH    0.101  -0.073 -0.00213   0.024    0.47  2.8e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP    0.012  -0.025 -0.00014  -0.003    0.11 -8.9e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL   -0.106   0.389  0.00024   0.011    6.65  4.3e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ED    2.168  -2.183  0.00133  -2.110   51.11  3.6e+01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL    0.315  -3.153  0.05261  -3.582   60.81 -4.5e+01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD   -0.129   0.419  0.00444  -0.102    7.01  2.0e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CW    1.771  -4.440  0.07352  -7.471  125.44 -2.1e+01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW   14.432  -0.989 -0.14378  -6.722  276.15  4.9e+02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR    1.605   0.130 -0.02024   0.068   -1.47  4.9e+01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKR   0.130   4.746 -0.03809   2.322  -48.48  7.0e+01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CDED -0.020  -0.038  0.00108  -0.049    0.65 -1.4e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PERK  0.068   2.322 -0.04859   3.426  -47.06  4.6e+01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TKW  -1.472 -48.480  0.64659 -47.057 1180.42 -8.2e+02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKE  48.839  70.119 -1.38172  45.583 -816.10  2.8e+03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Genotypic variance-covariance matrix</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            PH       EH       EP       EL       ED       CL      CD      CW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH    0.01708  0.00888 -0.00012  3.0e-03  0.18583  -0.0556 -0.0287   0.106</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH    0.00888  0.00501  0.00017 -2.5e-02  0.12777  -0.0298 -0.0463   0.082</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP   -0.00012  0.00017  0.00015 -1.2e-02  0.01583   0.0019 -0.0143   0.015</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL    0.00303 -0.02515 -0.01226  4.7e-02  0.00053  -0.0337  0.1487   0.090</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ED    0.18583  0.12777  0.01583  5.3e-04  5.36879   3.3347  0.1667   7.676</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL   -0.05561 -0.02982  0.00185 -3.4e-02  3.33474   4.2690  0.3234   8.248</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD   -0.02873 -0.04627 -0.01425  1.5e-01  0.16666   0.3234  0.2396   0.378</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CW    0.10646  0.08249  0.01542  9.0e-02  7.67557   8.2480  0.3784  18.458</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW    1.53382  0.82217  0.01174  6.2e-01 28.50002  10.8906  0.8898  37.657</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR    0.13286  0.08405  0.00867 -1.2e-01  1.86537   0.1827 -0.1515   1.632</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKR  -0.08098 -0.13532 -0.04097 -2.6e-01 -2.59771  -3.2041 -0.1574  -5.468</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CDED -0.00342 -0.00223 -0.00018  4.3e-05  0.00318   0.0477  0.0052   0.078</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PERK  0.04600  0.01193 -0.00674 -4.3e-02 -2.05591  -3.5398 -0.1430  -7.102</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TKW  -0.21096  0.01407  0.04693  3.9e+00 44.49990  57.0469  5.8305 110.666</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKE   5.10010  2.44637 -0.06371 -3.5e+00 26.63104 -47.0664 -4.8728 -35.643</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           KW      NR     NKR     CDED     PERK      TKW      NKE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH     1.534  0.1329  -0.081 -3.4e-03   0.0460   -0.211    5.100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH     0.822  0.0841  -0.135 -2.2e-03   0.0119    0.014    2.446</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP     0.012  0.0087  -0.041 -1.8e-04  -0.0067    0.047   -0.064</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL     0.620 -0.1159  -0.261  4.3e-05  -0.0430    3.905   -3.468</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ED    28.500  1.8654  -2.598  3.2e-03  -2.0559   44.500   26.631</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL    10.891  0.1827  -3.204  4.8e-02  -3.5398   57.047  -47.066</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD     0.890 -0.1515  -0.157  5.2e-03  -0.1430    5.831   -4.873</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CW    37.657  1.6321  -5.468  7.8e-02  -7.1018  110.666  -35.643</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW   180.972 13.0598 -12.058 -1.2e-01  -7.9108  175.110  344.314</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR    13.060  1.1809  -0.184 -1.9e-02   0.0477    2.739   36.598</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKR  -12.058 -0.1839   2.147 -3.4e-02   2.0327  -48.942   34.725</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CDED  -0.117 -0.0191  -0.034  9.6e-04  -0.0483    0.646   -1.294</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PERK  -7.911  0.0477   2.033 -4.8e-02   3.1367  -46.969   42.024</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TKW  175.110  2.7390 -48.942  6.5e-01 -46.9689  840.939 -627.503</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NKE  344.314 36.5977  34.725 -1.3e+00  42.0240 -627.503 1982.321</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

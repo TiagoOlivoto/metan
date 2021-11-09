@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -104,8 +104,20 @@
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="../news/index.html">News</a>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -134,23 +146,26 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -176,7 +191,7 @@
       <h1 data-toc-skip>Analyzing multienvironment trials using GGE</h1>
                         <h4 class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2021-10-25</h4>
+            <h4 class="date">2021-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_gge.Rmd"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="hidden name"><code>vignettes_gge.Rmd</code></div>
@@ -296,7 +311,7 @@
 <div id="biplot-type-1-a-basic-biplot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biplot-type-1-a-basic-biplot" class="anchor"></a>Biplot type 1: A basic biplot</h2>
-<p>This is the default setting in the function plot, thus, this biplot is produced by just calling <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot(model)</a></code>, as shown below.</p>
+<p>This is the default setting in the function plot, thus, this biplot is produced by just calling <code>plot(model)</code>, as shown below.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -374,7 +389,8 @@
 <a href="#biplot-type-6-ranking-environments" class="anchor"></a>Biplot type 6: Ranking environments</h2>
 <p>In this biplot the “ideal” environment is used as the center of a set of concentric lines that serve as a ruler to measure the distance between an environment and the ideal environment. since the main focus in this biplot is environments, then, the singular value partition used is “environment” (default). It can be seen that E13 is the closest to the ideal environment, and, therefore, is most desirable of all 14 environments. E4 and E9 were the least desirable test environments.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
           type <span class="op">=</span> <span class="fl">6</span>,

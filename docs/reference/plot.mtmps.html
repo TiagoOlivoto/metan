@@ -97,7 +97,7 @@ et al. (2019)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ et al. (2019)" />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ et al. (2019)" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -372,67 +387,77 @@ prioritizing the first, last, and middle labels.</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span>
-<span class='fu'><a href='mps.html'>mps</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-    env <span class='op'>=</span> <span class='va'>ENV</span>,
-    gen <span class='op'>=</span> <span class='va'>GEN</span>,
-    rep <span class='op'>=</span> <span class='va'>REP</span>,
-    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model       GY       HM
-#&gt;  COMPLETE       NA       NA
-#&gt;       GEN 1.11e-05 5.07e-03
-#&gt;   GEN:ENV 2.15e-11 2.27e-15
-#&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='output co'>#&gt; <span class='message'>Mean performance: blupg</span></div><div class='output co'>#&gt; <span class='message'>Stability: waasb</span></div><div class='input'><span class='va'>selection</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mtmps.html'>mtmps</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Principal Component Analysis
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span>
-#&gt;   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> PC1         1.37            68.5                68.5
-#&gt; <span style='color: #BCBCBC;'>2</span> PC2         0.631           31.5               100  
-#&gt; -------------------------------------------------------------------------------
-#&gt; Factor Analysis - factorial loadings after rotation-
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span>
-#&gt;   VAR     FA1 Communality Uniquenesses
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> GY    0.827       0.685        0.315
-#&gt; <span style='color: #BCBCBC;'>2</span> HM    0.827       0.685        0.315
-#&gt; -------------------------------------------------------------------------------
-#&gt; Comunalit Mean: 0.6846623 
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the mean performance and stability index
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 2 x 6</span>
-#&gt;   VAR   Factor    Xo    Xs    SD SDperc
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> GY    FA 1    48.3  86.4  38.0   78.7
-#&gt; <span style='color: #BCBCBC;'>2</span> HM    FA 1    58.3  79.2  21.0   36.0
-#&gt; -------------------------------------------------------------------------------
-#&gt; Selection differential for the mean of the variables
-#&gt; -------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 2 x 11</span>
-#&gt;   VAR   Factor    Xo    Xs    SD SDperc    h2    SG SGperc sense     goal
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> GY    FA 1    2.67  2.98 0.305 11.4   0.815 0.249  9.31  increase   100
-#&gt; <span style='color: #BCBCBC;'>2</span> HM    FA 1   48.1  48.4  0.265  0.551 0.686 0.182  0.378 increase   100
-#&gt; ------------------------------------------------------------------------------
-#&gt; Selected genotypes
-#&gt; -------------------------------------------------------------------------------
-#&gt; G8 G3
-#&gt; -------------------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>selection</span><span class='op'>)</span>
-</div><div class='img'><img src='plot.mtmps-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span></span>
+<span class='r-in'><span class='fu'><a href='mps.html'>mps</a></span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>    env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>    gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>    rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, GEN:ENV</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model       GY       HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  COMPLETE       NA       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       GEN 1.11e-05 5.07e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN:ENV 2.15e-11 2.27e-15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Mean performance: blupg</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Stability: waasb</span>
+<span class='r-in'><span class='va'>selection</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mtmps.html'>mtmps</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Principal Component Analysis</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   PC    Eigenvalues `Variance (%)` `Cum. variance (%)`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> PC1         1.37            68.5                68.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> PC2         0.631           31.5               100  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Factor Analysis - factorial loadings after rotation-</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR     FA1 Communality Uniquenesses</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> GY    0.827       0.685        0.315</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> HM    0.827       0.685        0.315</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Comunalit Mean: 0.6846623 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selection differential for the mean performance and stability index</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR   Factor    Xo    Xs    SD SDperc</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> GY    FA 1    48.3  86.4  38.0   78.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> HM    FA 1    58.3  79.2  21.0   36.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selection differential for the mean of the variables</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   VAR   Factor    Xo    Xs    SD SDperc    h2    SG SGperc sense     goal</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> GY    FA 1    2.67  2.98 0.305 11.4   0.815 0.249  9.31  increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> HM    FA 1   48.1  48.4  0.265  0.551 0.686 0.182  0.378 increase   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selected genotypes</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8 G3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -------------------------------------------------------------------------------</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>selection</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='plot.mtmps-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

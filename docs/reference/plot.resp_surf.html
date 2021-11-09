@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -154,8 +154,20 @@
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -184,23 +196,26 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -284,87 +299,89 @@ values produce high-resolution plots but may increase the computation time.</p><
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'># A small toy example</span>
-
-<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
- <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>4</span>, by <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
-             y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>4</span>, by <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>,
- z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>,
-       <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
-       <span class='fl'>16</span>, <span class='fl'>17</span>, <span class='fl'>18</span>, <span class='fl'>17</span>, <span class='fl'>16</span>,
-       <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,
-       <span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span><span class='op'>)</span>
-<span class='op'>)</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='resp_surf.html'>resp_surf</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x</span>, <span class='va'>y</span>, resp <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; -----------------------------------------------------------------
-#&gt; Anova table for the response surface model 
-#&gt; -----------------------------------------------------------------
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: z
-#&gt;           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; x          1   0.000   0.000    0.00         1    
-#&gt; y          1   0.000   0.000    0.00         1    
-#&gt; I(x^2)     1  12.857  12.857  106.88 3.073e-09 ***
-#&gt; I(y^2)     1 142.857 142.857 1187.50 &lt; 2.2e-16 ***
-#&gt; x:y        1   0.000   0.000    0.00         1    
-#&gt; Residuals 19   2.286   0.120                      
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; -----------------------------------------------------------------
-#&gt; Model equation for response surface model 
-#&gt; Y = B0 + B1*A + B2*D + B3*A^2 + B4*D^2 + B5*A*D 
-#&gt; -----------------------------------------------------------------
-#&gt; Estimated parameters 
-#&gt; B0: 9.8857143
-#&gt; B1: 1.7142857
-#&gt; B2: 5.7142857
-#&gt; B3: -0.4285714
-#&gt; B4: -1.4285714
-#&gt; B5: 0.0000000
-#&gt; -----------------------------------------------------------------
-#&gt; Matrix of parameters (A) 
-#&gt; -----------------------------------------------------------------
-#&gt; -0.4285714    0.0000000 
-#&gt; 0.0000000    -1.4285714 
-#&gt; -----------------------------------------------------------------
-#&gt; Inverse of the matrix A (invA) 
-#&gt; -2.3333333    0.0000000 
-#&gt; 0.0000000    -0.7000000 
-#&gt; -----------------------------------------------------------------
-#&gt; Vetor of parameters B1 e B2 (X) 
-#&gt; -----------------------------------------------------------------
-#&gt; B1: 1.7142857
-#&gt; B2: 5.7142857
-#&gt; -----------------------------------------------------------------
-#&gt; Equation for the optimal points (A and D) 
-#&gt; -----------------------------------------------------------------
-#&gt; -0.5*(invA*X)
-#&gt; Eigenvalue 1: -0.428571
-#&gt; Eigenvalue 2: -1.428571
-#&gt; Stacionary point is maximum!
-#&gt; -----------------------------------------------------------------
-#&gt; Stacionary point obtained with the following original units: 
-#&gt; -----------------------------------------------------------------
-#&gt; Optimal dose (x): 2
-#&gt; Optimal dose (y): 2
-#&gt; Predicted: 17.3143
-#&gt; -----------------------------------------------------------------
-#&gt; Fitted model 
-#&gt; -----------------------------------------------------------------
-#&gt; A = x
-#&gt; D = y
-#&gt; y = 9.88571+1.71429A+5.71429D+-0.42857A^2+-1.42857D^2+0A*D
-#&gt; -----------------------------------------------------------------
-#&gt; Shapiro-Wilk normality test
-#&gt; p-value:  0.04213785 
-#&gt; WARNING: at 5% of significance, residuals can not be considered normal! 
-#&gt; ------------------------------------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
-</div><div class='img'><img src='plot.resp_surf-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># A small toy example</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>4</span>, by <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,</span>
+<span class='r-in'>             y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>4</span>, by <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'> z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span>,</span>
+<span class='r-in'>       <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,</span>
+<span class='r-in'>       <span class='fl'>16</span>, <span class='fl'>17</span>, <span class='fl'>18</span>, <span class='fl'>17</span>, <span class='fl'>16</span>,</span>
+<span class='r-in'>       <span class='fl'>14</span>, <span class='fl'>15</span>, <span class='fl'>16</span>, <span class='fl'>15</span>, <span class='fl'>14</span>,</span>
+<span class='r-in'>       <span class='fl'>10</span>, <span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>11</span>, <span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='resp_surf.html'>resp_surf</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x</span>, <span class='va'>y</span>, resp <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Anova table for the response surface model </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Analysis of Variance Table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Response: z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> x          1   0.000   0.000    0.00         1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> y          1   0.000   0.000    0.00         1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> I(x^2)     1  12.857  12.857  106.88 3.073e-09 ***</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> I(y^2)     1 142.857 142.857 1187.50 &lt; 2.2e-16 ***</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> x:y        1   0.000   0.000    0.00         1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals 19   2.286   0.120                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Model equation for response surface model </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Y = B0 + B1*A + B2*D + B3*A^2 + B4*D^2 + B5*A*D </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Estimated parameters </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B0: 9.8857143</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B1: 1.7142857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B2: 5.7142857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B3: -0.4285714</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B4: -1.4285714</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B5: 0.0000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix of parameters (A) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -0.4285714    0.0000000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 0.0000000    -1.4285714 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Inverse of the matrix A (invA) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -2.3333333    0.0000000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 0.0000000    -0.7000000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Vetor of parameters B1 e B2 (X) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B1: 1.7142857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B2: 5.7142857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Equation for the optimal points (A and D) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -0.5*(invA*X)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eigenvalue 1: -0.428571</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eigenvalue 2: -1.428571</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Stacionary point is maximum!</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Stacionary point obtained with the following original units: </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Optimal dose (x): 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Optimal dose (y): 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Predicted: 17.3143</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fitted model </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> A = x</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> D = y</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> y = 9.88571+1.71429A+5.71429D+-0.42857A^2+-1.42857D^2+0A*D</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -----------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Shapiro-Wilk normality test</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> p-value:  0.04213785 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> WARNING: at 5% of significance, residuals can not be considered normal! </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='plot.resp_surf-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

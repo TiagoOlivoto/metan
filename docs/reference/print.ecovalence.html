@@ -98,7 +98,7 @@ into a *.txt file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ into a *.txt file." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ into a *.txt file." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -271,38 +286,40 @@ the working directory.</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>eco</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ecovalence.html'>ecovalence</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
-                  env <span class='op'>=</span> <span class='va'>ENV</span>,
-                  gen <span class='op'>=</span> <span class='va'>GEN</span>,
-                  rep <span class='op'>=</span> <span class='va'>REP</span>,
-                  resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>eco</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable PH 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Genotypic confidence index
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 13 x 8</span>
-#&gt;    GEN        A1     A2      A3      A4 Ecoval Ecov_perc  rank
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1    -<span style='color: #BB0000;'>0.207</span>   0.332 -<span style='color: #BB0000;'>0.106</span>  -<span style='color: #BB0000;'>0.018</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  0.493      9.13     8
-#&gt; <span style='color: #BCBCBC;'> 2</span> H10    0.160  -<span style='color: #BB0000;'>0.243</span>  0.041<span style='text-decoration: underline;'>4</span>  0.040<span style='text-decoration: underline;'>9</span>  0.264      4.89     4
-#&gt; <span style='color: #BCBCBC;'> 3</span> H11    0.050<span style='text-decoration: underline;'>4</span> -<span style='color: #BB0000;'>0.220</span>  0.029<span style='text-decoration: underline;'>6</span>  0.140   0.215      3.99     2
-#&gt; <span style='color: #BCBCBC;'> 4</span> H12   -<span style='color: #BB0000;'>0.053</span><span style='color: #BB0000; text-decoration: underline;'>1</span> -<span style='color: #BB0000;'>0.321</span>  0.311   0.063<span style='text-decoration: underline;'>6</span>  0.620     11.5     11
-#&gt; <span style='color: #BCBCBC;'> 5</span> H13   -<span style='color: #BB0000;'>0.074</span><span style='color: #BB0000; text-decoration: underline;'>9</span> -<span style='color: #BB0000;'>0.288</span>  0.378  -<span style='color: #BB0000;'>0.014</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  0.696     12.9     13
-#&gt; <span style='color: #BCBCBC;'> 6</span> H2    -<span style='color: #BB0000;'>0.120</span>   0.365 -<span style='color: #BB0000;'>0.132</span>  -<span style='color: #BB0000;'>0.113</span>   0.535      9.91    10
-#&gt; <span style='color: #BCBCBC;'> 7</span> H3     0.032<span style='text-decoration: underline;'>2</span>  0.369 -<span style='color: #BB0000;'>0.233</span>  -<span style='color: #BB0000;'>0.168</span>   0.659     12.2     12
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4    -<span style='color: #BB0000;'>0.019</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.289 -<span style='color: #BB0000;'>0.212</span>  -<span style='color: #BB0000;'>0.056</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  0.397      7.35     7
-#&gt; <span style='color: #BCBCBC;'> 9</span> H5    -<span style='color: #BB0000;'>0.041</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.160 -<span style='color: #BB0000;'>0.155</span>   0.037<span style='text-decoration: underline;'>1</span>  0.158      2.92     1
-#&gt; <span style='color: #BCBCBC;'>10</span> H6    -<span style='color: #BB0000;'>0.097</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.290 -<span style='color: #BB0000;'>0.086</span><span style='color: #BB0000; text-decoration: underline;'>4</span> -<span style='color: #BB0000;'>0.106</span>   0.336      6.23     6
-#&gt; <span style='color: #BCBCBC;'>11</span> H7     0.061<span style='text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.245</span>  0.091<span style='text-decoration: underline;'>3</span>  0.092<span style='text-decoration: underline;'>1</span>  0.241      4.47     3
-#&gt; <span style='color: #BCBCBC;'>12</span> H8     0.057<span style='text-decoration: underline;'>2</span> -<span style='color: #BB0000;'>0.344</span>  0.091<span style='text-decoration: underline;'>7</span>  0.195   0.505      9.36     9
-#&gt; <span style='color: #BCBCBC;'>13</span> H9     0.253  -<span style='color: #BB0000;'>0.142</span> -<span style='color: #BB0000;'>0.018</span><span style='color: #BB0000; text-decoration: underline;'>1</span> -<span style='color: #BB0000;'>0.092</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.279      5.17     5
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>eco</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ecovalence.html'>ecovalence</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,</span>
+<span class='r-in'>                  env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                  gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                  rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>                  resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait PH |============================================| 100% 00:00:00 </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>eco</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable PH </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Genotypic confidence index</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 13 x 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN        A1     A2      A3      A4 Ecoval Ecov_perc  rank</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1    -<span style='color: #BB0000;'>0.207</span>   0.332 -<span style='color: #BB0000;'>0.106</span>  -<span style='color: #BB0000;'>0.018</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  0.493      9.13     8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H10    0.160  -<span style='color: #BB0000;'>0.243</span>  0.041<span style='text-decoration: underline;'>4</span>  0.040<span style='text-decoration: underline;'>9</span>  0.264      4.89     4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H11    0.050<span style='text-decoration: underline;'>4</span> -<span style='color: #BB0000;'>0.220</span>  0.029<span style='text-decoration: underline;'>6</span>  0.140   0.215      3.99     2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H12   -<span style='color: #BB0000;'>0.053</span><span style='color: #BB0000; text-decoration: underline;'>1</span> -<span style='color: #BB0000;'>0.321</span>  0.311   0.063<span style='text-decoration: underline;'>6</span>  0.620     11.5     11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H13   -<span style='color: #BB0000;'>0.074</span><span style='color: #BB0000; text-decoration: underline;'>9</span> -<span style='color: #BB0000;'>0.288</span>  0.378  -<span style='color: #BB0000;'>0.014</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  0.696     12.9     13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H2    -<span style='color: #BB0000;'>0.120</span>   0.365 -<span style='color: #BB0000;'>0.132</span>  -<span style='color: #BB0000;'>0.113</span>   0.535      9.91    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H3     0.032<span style='text-decoration: underline;'>2</span>  0.369 -<span style='color: #BB0000;'>0.233</span>  -<span style='color: #BB0000;'>0.168</span>   0.659     12.2     12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4    -<span style='color: #BB0000;'>0.019</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.289 -<span style='color: #BB0000;'>0.212</span>  -<span style='color: #BB0000;'>0.056</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  0.397      7.35     7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H5    -<span style='color: #BB0000;'>0.041</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.160 -<span style='color: #BB0000;'>0.155</span>   0.037<span style='text-decoration: underline;'>1</span>  0.158      2.92     1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H6    -<span style='color: #BB0000;'>0.097</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.290 -<span style='color: #BB0000;'>0.086</span><span style='color: #BB0000; text-decoration: underline;'>4</span> -<span style='color: #BB0000;'>0.106</span>   0.336      6.23     6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H7     0.061<span style='text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.245</span>  0.091<span style='text-decoration: underline;'>3</span>  0.092<span style='text-decoration: underline;'>1</span>  0.241      4.47     3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8     0.057<span style='text-decoration: underline;'>2</span> -<span style='color: #BB0000;'>0.344</span>  0.091<span style='text-decoration: underline;'>7</span>  0.195   0.505      9.36     9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9     0.253  -<span style='color: #BB0000;'>0.142</span> -<span style='color: #BB0000;'>0.018</span><span style='color: #BB0000; text-decoration: underline;'>1</span> -<span style='color: #BB0000;'>0.092</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  0.279      5.17     5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

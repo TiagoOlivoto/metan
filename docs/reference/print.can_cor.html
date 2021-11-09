@@ -98,7 +98,7 @@ directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ directory." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ directory." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -271,96 +286,97 @@ to the working directory</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>cc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='can_corr.html'>can_corr</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
-               FG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EP</span><span class='op'>)</span>,
-               SG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>EL</span>, <span class='va'>CL</span>, <span class='va'>CD</span>, <span class='va'>CW</span>, <span class='va'>KW</span>, <span class='va'>NR</span>, <span class='va'>TKW</span><span class='op'>)</span>,
-               verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cc</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; Matrix (correlation/covariance) between variables of first group (FG)
-#&gt; ---------------------------------------------------------------------------
-#&gt;       PH    EH    EP
-#&gt; PH 1.000 0.932 0.638
-#&gt; EH 0.932 1.000 0.870
-#&gt; EP 0.638 0.870 1.000
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Collinearity diagnostic between first group
-#&gt; ---------------------------------------------------------------------------
-#&gt; The multicollinearity in the matrix should be investigated.
-#&gt; CN = 977.586
-#&gt; Largest VIF = 229.164618380199
-#&gt; Matrix determinant: 0.0025852 
-#&gt; Largest correlation: PH x EH = 0.932 
-#&gt; Smallest correlation: PH x EP = 0.638 
-#&gt; Number of VIFs &gt; 10: 3 
-#&gt; Number of correlations with r &gt;= |0.8|: 2 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; EH &gt; PH &gt; EP 
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Matrix (correlation/covariance) between variables of second group (SG)
-#&gt; ---------------------------------------------------------------------------
-#&gt;          EL    CL      CD    CW    KW      NR    TKW
-#&gt; EL   1.0000 0.255  0.9119 0.458 0.669 -0.0139  0.442
-#&gt; CL   0.2554 1.000  0.3004 0.738 0.471  0.2619  0.619
-#&gt; CD   0.9119 0.300  1.0000 0.484 0.626 -0.0358  0.443
-#&gt; CW   0.4582 0.738  0.4840 1.000 0.735  0.1657  0.673
-#&gt; KW   0.6686 0.471  0.6260 0.735 1.000  0.3621  0.673
-#&gt; NR  -0.0139 0.262 -0.0358 0.166 0.362  1.0000 -0.109
-#&gt; TKW  0.4421 0.619  0.4433 0.673 0.673 -0.1088  1.000
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Collinearity diagnostic between second group
-#&gt; ---------------------------------------------------------------------------
-#&gt; Weak multicollinearity in the matrix
-#&gt; CN = 66.912
-#&gt; Matrix determinant: 0.0026584 
-#&gt; Largest correlation: EL x CD = 0.912 
-#&gt; Smallest correlation: EL x NR = -0.014 
-#&gt; Number of VIFs &gt; 10: 0 
-#&gt; Number of correlations with r &gt;= |0.8|: 1 
-#&gt; Variables with largest weight in the last eigenvalues: 
-#&gt; KW &gt; TKW &gt; EL &gt; CW &gt; CL &gt; NR &gt; CD 
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Matrix (correlation/covariance) between FG and SG)
-#&gt; ---------------------------------------------------------------------------
-#&gt;       EL    CL    CD    CW    KW    NR   TKW
-#&gt; PH 0.380 0.325 0.315 0.505 0.753 0.329 0.569
-#&gt; EH 0.363 0.397 0.281 0.519 0.703 0.265 0.562
-#&gt; EP 0.263 0.391 0.175 0.425 0.497 0.140 0.426
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Correlation of the canonical pairs and hypothesis testing 
-#&gt; ---------------------------------------------------------------------------
-#&gt;         Var Percent   Sum  Corr Lambda  Chisq DF p_val
-#&gt; U1V1 0.6500   74.35  74.4 0.806  0.273 194.28 21 0e+00
-#&gt; U2V2 0.2087   23.87  98.2 0.457  0.779  37.33 12 2e-04
-#&gt; U3V3 0.0156    1.78 100.0 0.125  0.984   2.35  5 8e-01
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Canonical coefficients of the first group 
-#&gt; ---------------------------------------------------------------------------
-#&gt;       U1    U2     U3
-#&gt; PH  2.66  5.26   7.72
-#&gt; EH -2.58 -7.33 -12.99
-#&gt; EP  1.15  2.27   6.67
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Canonical coefficients of the second group 
-#&gt; ---------------------------------------------------------------------------
-#&gt;           V1     V2      V3
-#&gt; EL  -0.00776 -0.832  0.4561
-#&gt; CL  -0.25837 -1.430  0.1989
-#&gt; CD  -0.23630  1.177 -1.1116
-#&gt; CW  -0.06101  0.338  0.0822
-#&gt; KW   0.91468 -0.691  1.4550
-#&gt; NR   0.21616  0.914 -0.5313
-#&gt; TKW  0.39749  0.717 -1.5248</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>cc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='can_corr.html'>can_corr</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,</span>
+<span class='r-in'>               FG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EP</span><span class='op'>)</span>,</span>
+<span class='r-in'>               SG <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>EL</span>, <span class='va'>CL</span>, <span class='va'>CD</span>, <span class='va'>CW</span>, <span class='va'>KW</span>, <span class='va'>NR</span>, <span class='va'>TKW</span><span class='op'>)</span>,</span>
+<span class='r-in'>               verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cc</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix (correlation/covariance) between variables of first group (FG)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       PH    EH    EP</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH 1.000 0.932 0.638</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH 0.932 1.000 0.870</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP 0.638 0.870 1.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Collinearity diagnostic between first group</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> The multicollinearity in the matrix should be investigated.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CN = 977.586</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Largest VIF = 229.164618380199</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix determinant: 0.0025852 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Largest correlation: PH x EH = 0.932 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Smallest correlation: PH x EP = 0.638 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of VIFs &gt; 10: 3 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of correlations with r &gt;= |0.8|: 2 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variables with largest weight in the last eigenvalues: </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH &gt; PH &gt; EP </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix (correlation/covariance) between variables of second group (SG)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          EL    CL      CD    CW    KW      NR    TKW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL   1.0000 0.255  0.9119 0.458 0.669 -0.0139  0.442</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL   0.2554 1.000  0.3004 0.738 0.471  0.2619  0.619</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD   0.9119 0.300  1.0000 0.484 0.626 -0.0358  0.443</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CW   0.4582 0.738  0.4840 1.000 0.735  0.1657  0.673</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW   0.6686 0.471  0.6260 0.735 1.000  0.3621  0.673</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR  -0.0139 0.262 -0.0358 0.166 0.362  1.0000 -0.109</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TKW  0.4421 0.619  0.4433 0.673 0.673 -0.1088  1.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Collinearity diagnostic between second group</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Weak multicollinearity in the matrix</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CN = 66.912</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix determinant: 0.0026584 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Largest correlation: EL x CD = 0.912 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Smallest correlation: EL x NR = -0.014 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of VIFs &gt; 10: 0 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of correlations with r &gt;= |0.8|: 1 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variables with largest weight in the last eigenvalues: </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW &gt; TKW &gt; EL &gt; CW &gt; CL &gt; NR &gt; CD </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix (correlation/covariance) between FG and SG)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       EL    CL    CD    CW    KW    NR   TKW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH 0.380 0.325 0.315 0.505 0.753 0.329 0.569</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH 0.363 0.397 0.281 0.519 0.703 0.265 0.562</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP 0.263 0.391 0.175 0.425 0.497 0.140 0.426</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Correlation of the canonical pairs and hypothesis testing </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         Var Percent   Sum  Corr Lambda  Chisq DF p_val</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> U1V1 0.6500   74.35  74.4 0.806  0.273 194.28 21 0e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> U2V2 0.2087   23.87  98.2 0.457  0.779  37.33 12 2e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> U3V3 0.0156    1.78 100.0 0.125  0.984   2.35  5 8e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Canonical coefficients of the first group </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       U1    U2     U3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PH  2.66  5.26   7.72</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH -2.58 -7.33 -12.99</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP  1.15  2.27   6.67</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Canonical coefficients of the second group </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           V1     V2      V3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL  -0.00776 -0.832  0.4561</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL  -0.25837 -1.430  0.1989</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD  -0.23630  1.177 -1.1116</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CW  -0.06101  0.338  0.0822</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> KW   0.91468 -0.691  1.4550</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NR   0.21616  0.914 -0.5313</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TKW  0.39749  0.717 -1.5248</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

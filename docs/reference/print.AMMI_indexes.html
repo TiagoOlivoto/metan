@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print an object of class AMMI_indexes — print.AMMI_indexes • metan</title>
+<title>Print an object of class ammi_indexes — print.ammi_indexes • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,8 +52,8 @@
 
 
 
-<meta property="og:title" content="Print an object of class AMMI_indexes — print.AMMI_indexes" />
-<meta property="og:description" content="Print the AMMI_indexes object in two ways. By default, the results are shown
+<meta property="og:title" content="Print an object of class ammi_indexes — print.ammi_indexes" />
+<meta property="og:description" content="Print the ammi_indexes object in two ways. By default, the results are shown
 in the R console. The results can also be exported to the directory into a
 *.txt file." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
@@ -98,7 +98,7 @@ in the R console. The results can also be exported to the directory into a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ in the R console. The results can also be exported to the directory into a
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ in the R console. The results can also be exported to the directory into a
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -225,18 +240,18 @@ in the R console. The results can also be exported to the directory into a
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print an object of class AMMI_indexes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/AMMI_indexes.R'><code>R/AMMI_indexes.R</code></a></small>
-    <div class="hidden name"><code>print.AMMI_indexes.Rd</code></div>
+    <h1>Print an object of class ammi_indexes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ammi_indexes.R'><code>R/ammi_indexes.R</code></a></small>
+    <div class="hidden name"><code>print.ammi_indexes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Print the <code>AMMI_indexes</code> object in two ways. By default, the results are shown
+    <p>Print the <code>ammi_indexes</code> object in two ways. By default, the results are shown
 in the R console. The results can also be exported to the directory into a
 *.txt file.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for AMMI_indexes</span>
+    <pre class="usage"><span class='co'># S3 method for ammi_indexes</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, which <span class='op'>=</span> <span class='st'>"stats"</span>, export <span class='op'>=</span> <span class='cn'>FALSE</span>, file.name <span class='op'>=</span> <span class='cn'>NULL</span>, digits <span class='op'>=</span> <span class='fl'>3</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -244,7 +259,7 @@ in the R console. The results can also be exported to the directory into a
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>AMMI_indexes</code>.</p></td>
+      <td><p>An object of class <code>ammi_indexes</code>.</p></td>
     </tr>
     <tr>
       <th>which</th>
@@ -277,52 +292,56 @@ the working directory.</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-         <span class='fu'><a href='AMMI_indexes.html'>AMMI_indexes</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
-#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
-#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
-#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
-#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
-#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
-#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
-#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
-#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI-based stability indexes
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 10 x 7</span>
-#&gt;    GEN       Y   ASV  SIPC     EV     ZA  WAAS
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1     2.60 0.346 0.463 0.014<span style='text-decoration: underline;'>9</span> 0.100  0.151
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10    2.47 1.23  2.07  0.210  0.437  0.652
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2     2.74 0.249 1.54  0.179  0.216  0.283
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3     2.96 0.113 0.552 0.020<span style='text-decoration: underline;'>7</span> 0.079<span style='text-decoration: underline;'>7</span> 0.106
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4     2.64 0.594 1.04  0.052<span style='text-decoration: underline;'>1</span> 0.219  0.326
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5     2.54 0.430 0.997 0.043<span style='text-decoration: underline;'>3</span> 0.186  0.270
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6     2.53 0.265 1.14  0.091<span style='text-decoration: underline;'>1</span> 0.172  0.233
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7     2.74 0.663 1.79  0.191  0.303  0.428
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8     3.00 0.574 1.18  0.066<span style='text-decoration: underline;'>9</span> 0.225  0.327
-#&gt; <span style='color: #BCBCBC;'>10</span> G9     2.51 0.983 1.50  0.131  0.336  0.507</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>         <span class='fu'><a href='ammi_indexes.html'>ammi_indexes</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  24.367  0.0967      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 389.036  0.7258      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Done!</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI-based stability indexes</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 16</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN       Y  ASTAB ssiASTAB    ASI   ASV AVAMGE    DA    DZ     EV    FA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1     2.60 0.108         8 0.110  0.346   1.32 0.446 0.244 0.014<span style='text-decoration: underline;'>9</span> 0.199</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10    2.47 1.47         20 0.389  1.23    5.40 1.62  0.917 0.210  2.63 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2     2.74 0.820        10 0.079<span style='text-decoration: underline;'>2</span> 0.249   2.80 0.979 0.846 0.179  0.959</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3     2.96 0.095<span style='text-decoration: underline;'>9</span>        3 0.035<span style='text-decoration: underline;'>9</span> 0.113   1.00 0.339 0.288 0.020<span style='text-decoration: underline;'>7</span> 0.115</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4     2.64 0.363         9 0.189  0.594   2.16 0.804 0.457 0.052<span style='text-decoration: underline;'>1</span> 0.646</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5     2.54 0.259        10 0.137  0.430   1.88 0.643 0.416 0.043<span style='text-decoration: underline;'>3</span> 0.414</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6     2.53 0.440        14 0.084<span style='text-decoration: underline;'>3</span> 0.265   2.28 0.740 0.604 0.091<span style='text-decoration: underline;'>1</span> 0.548</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7     2.74 0.971        13 0.211  0.663   3.17 1.16  0.875 0.191  1.34 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8     3.00 0.416         6 0.182  0.574   1.99 0.828 0.517 0.066<span style='text-decoration: underline;'>9</span> 0.686</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9     2.51 0.947        17 0.312  0.983   3.68 1.31  0.723 0.131  1.73 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 5 more variables: MASI &lt;dbl&gt;, MASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, ZA &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   WAAS &lt;dbl&gt;</span></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -111,7 +111,7 @@ matches perfectly with the ranks of the response variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -169,8 +169,20 @@ matches perfectly with the ranks of the response variable." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -199,23 +211,26 @@ matches perfectly with the ranks of the response variable." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -276,7 +291,7 @@ matches perfectly with the ranks of the response variable.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>model</th>
-      <td><p>Should be an object of class <code>waas</code> or <code>waasb</code>.</p></td>
+      <td><p>An object computed with <code><a href='waas.html'>waas()</a></code>, <code><a href='waasb.html'>waasb()</a></code>, or <code><a href='mps.html'>mps()</a></code>.</p></td>
     </tr>
     <tr>
       <th>mresp</th>
@@ -296,8 +311,7 @@ performance. Se the <strong>Details</strong> section for more information.</p></
     <tr>
       <th>saveWAASY</th>
       <td><p>Automatically save the WAASY values when the weight for
-stability is <code>saveWAASY</code>. Default is 50. Please, note that
-<code>saveWAASY</code></p></td>
+stability is <code>saveWAASY</code>.</p></td>
     </tr>
     <tr>
       <th>prob</th>
@@ -315,13 +329,17 @@ Default is <code>TRUE</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>wsmp</code> with the following items for each
-variable:</p><ul>
+variable</p><ul>
+<li><p>When computed with <code><a href='waas.html'>waas()</a></code> or <code><a href='waasb.html'>waasb()</a></code>.</p><ul>
 <li><p><strong>scenarios</strong> A list with the model for all computed scenarios.</p></li>
 <li><p><strong>WAASY</strong> The values of the WAASY estimated when the weight for the
 stability in the loop match with argument <code>saveWAASY</code>.</p></li>
 <li><p><strong>hetdata, hetcomb</strong> The data used to produce the heatmaps.</p></li>
 <li><p><strong>Ranks</strong> All the values of WAASY estimated in the different
 scenarios of WAAS/GY weighting ratio.</p></li>
+</ul></li>
+<li><p>When computed with <code><a href='mps.html'>mps()</a></code></p></li>
+<li><p><strong>hetcomb</strong> showing the rank for mean performance and stability in the different weights.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -332,30 +350,41 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='resca.html'>resca()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='resca.html'>resca()</a></code>, <code><a href='mps.html'>mps()</a></code>, <code><a href='mtmps.html'>mtmps()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
-             env <span class='op'>=</span> <span class='va'>ENV</span>,
-             gen <span class='op'>=</span> <span class='va'>GEN</span>,
-             rep <span class='op'>=</span> <span class='va'>REP</span>,
-             resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model       PH
-#&gt;  COMPLETE       NA
-#&gt;       GEN 9.39e-01
-#&gt;   GEN:ENV 1.09e-13
-#&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='va'>scenarios</span> <span class='op'>&lt;-</span> <span class='fu'>wsmp</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Ranks considering 0 for GY and 100 for WAASB |                   | 2% 00:00:00 Ranks considering 0 for GY and 100 for WAASB |=                  | 3% 00:00:00 Ranks considering 0 for GY and 100 for WAASB |=                  | 5% 00:00:00 Ranks considering 5 for GY and 95 for WAASB |=                   | 6% 00:00:00 Ranks considering 5 for GY and 95 for WAASB |==                  | 8% 00:00:00 Ranks considering 5 for GY and 95 for WAASB |==                  | 10% 00:00:00 Ranks considering 10 for GY and 90 for WAASB |==                 | 11% 00:00:00 Ranks considering 10 for GY and 90 for WAASB |==                 | 13% 00:00:00 Ranks considering 10 for GY and 90 for WAASB |===                | 14% 00:00:00 Ranks considering 15 for GY and 85 for WAASB |===                | 16% 00:00:00 Ranks considering 15 for GY and 85 for WAASB |===                | 17% 00:00:00 Ranks considering 15 for GY and 85 for WAASB |====               | 19% 00:00:00 Ranks considering 20 for GY and 80 for WAASB |====               | 21% 00:00:00 Ranks considering 20 for GY and 80 for WAASB |====               | 22% 00:00:00 Ranks considering 20 for GY and 80 for WAASB |=====              | 24% 00:00:00 Ranks considering 25 for GY and 75 for WAASB |=====              | 25% 00:00:00 Ranks considering 25 for GY and 75 for WAASB |=====              | 27% 00:00:00 Ranks considering 25 for GY and 75 for WAASB |=====              | 29% 00:00:00 Ranks considering 30 for GY and 70 for WAASB |======             | 30% 00:00:00 Ranks considering 30 for GY and 70 for WAASB |======             | 32% 00:00:00 Ranks considering 30 for GY and 70 for WAASB |======             | 33% 00:00:00 Ranks considering 35 for GY and 65 for WAASB |=======            | 35% 00:00:00 Ranks considering 35 for GY and 65 for WAASB |=======            | 37% 00:00:00 Ranks considering 35 for GY and 65 for WAASB |=======            | 38% 00:00:00 Ranks considering 40 for GY and 60 for WAASB |========           | 40% 00:00:00 Ranks considering 40 for GY and 60 for WAASB |========           | 41% 00:00:00 Ranks considering 40 for GY and 60 for WAASB |========           | 43% 00:00:00 Ranks considering 45 for GY and 55 for WAASB |========           | 44% 00:00:00 Ranks considering 45 for GY and 55 for WAASB |=========          | 46% 00:00:00 Ranks considering 45 for GY and 55 for WAASB |=========          | 48% 00:00:00 Ranks considering 50 for GY and 50 for WAASB |=========          | 49% 00:00:00 Ranks considering 50 for GY and 50 for WAASB |==========         | 51% 00:00:00 Ranks considering 50 for GY and 50 for WAASB |==========         | 52% 00:00:00 Ranks considering 55 for GY and 45 for WAASB |==========         | 54% 00:00:00 Ranks considering 55 for GY and 45 for WAASB |===========        | 56% 00:00:00 Ranks considering 55 for GY and 45 for WAASB |===========        | 57% 00:00:00 Ranks considering 60 for GY and 40 for WAASB |===========        | 59% 00:00:00 Ranks considering 60 for GY and 40 for WAASB |===========        | 60% 00:00:00 Ranks considering 60 for GY and 40 for WAASB |============       | 62% 00:00:00 Ranks considering 65 for GY and 35 for WAASB |============       | 63% 00:00:00 Ranks considering 65 for GY and 35 for WAASB |============       | 65% 00:00:00 Ranks considering 65 for GY and 35 for WAASB |=============      | 67% 00:00:00 Ranks considering 70 for GY and 30 for WAASB |=============      | 68% 00:00:00 Ranks considering 70 for GY and 30 for WAASB |=============      | 70% 00:00:00 Ranks considering 70 for GY and 30 for WAASB |==============     | 71% 00:00:00 Ranks considering 75 for GY and 25 for WAASB |==============     | 73% 00:00:00 Ranks considering 75 for GY and 25 for WAASB |==============     | 75% 00:00:00 Ranks considering 75 for GY and 25 for WAASB |==============     | 76% 00:00:00 Ranks considering 80 for GY and 20 for WAASB |===============    | 78% 00:00:00 Ranks considering 80 for GY and 20 for WAASB |===============    | 79% 00:00:00 Ranks considering 80 for GY and 20 for WAASB |===============    | 81% 00:00:00 Ranks considering 85 for GY and 15 for WAASB |================   | 83% 00:00:00 Ranks considering 85 for GY and 15 for WAASB |================   | 84% 00:00:00 Ranks considering 85 for GY and 15 for WAASB |================   | 86% 00:00:00 Ranks considering 90 for GY and 10 for WAASB |=================  | 87% 00:00:00 Ranks considering 90 for GY and 10 for WAASB |=================  | 89% 00:00:00 Ranks considering 90 for GY and 10 for WAASB |=================  | 90% 00:00:00 Ranks considering 95 for GY and 5 for WAASB |==================  | 92% 00:00:00 Ranks considering 95 for GY and 5 for WAASB |=================== | 94% 00:00:00 Ranks considering 95 for GY and 5 for WAASB |=================== | 95% 00:00:00 Ranks considering 100 for GY and 0 for WAASB |================== | 97% 00:00:00 Ranks considering 100 for GY and 0 for WAASB |===================| 98% 00:00:00 Ranks considering 100 for GY and 0 for WAASB |===================| 100% 00:00:00 </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># using the WAASB as statistic and BLUP as mean performance</span></span>
+<span class='r-in'><span class='co'># the same as using waasb()</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mps.html'>mps</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,</span>
+<span class='r-in'>             env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>             gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>             rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>             resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait PH |============================================| 100% 00:00:00 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, GEN:ENV</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model       PH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  COMPLETE       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       GEN 9.39e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN:ENV 1.09e-13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Mean performance: blupg</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Stability: waasb</span>
+<span class='r-in'><span class='va'>scenarios</span> <span class='op'>&lt;-</span> <span class='fu'>wsmp</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

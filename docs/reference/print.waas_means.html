@@ -97,7 +97,7 @@ in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ in the R console. The results can also be exported to the directory." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ in the R console. The results can also be exported to the directory." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -269,129 +284,131 @@ the working directory</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>data_means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas_means.html'>waas_means</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-                    env <span class='op'>=</span> <span class='va'>ENV</span>,
-                    gen <span class='op'>=</span> <span class='va'>GEN</span>,
-                    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Weighted average of the absolute scores
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 24 x 22</span>
-#&gt;    type  Code      Y      PC1      PC2      PC3      PC4      PC5      PC6
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> GEN   G1    2.604  0.316<span style='text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.044</span><span style='color: #BB0000; text-decoration: underline;'>17</span>  0.036<span style='text-decoration: underline;'>00</span>  0.065<span style='text-decoration: underline;'>95</span> -<span style='color: #BB0000;'>0.312</span><span style='color: #BB0000; text-decoration: underline;'>5</span>   0.427<span style='text-decoration: underline;'>2</span> 
-#&gt; <span style='color: #BCBCBC;'> 2</span> GEN   G10   2.471 -<span style='color: #BB0000;'>1.001</span>   -<span style='color: #BB0000;'>0.571</span><span style='color: #BB0000; text-decoration: underline;'>8</span>   0.165<span style='text-decoration: underline;'>2</span>   0.330<span style='text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>0.124</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  -<span style='color: #BB0000;'>0.106</span><span style='color: #BB0000; text-decoration: underline;'>4</span> 
-#&gt; <span style='color: #BCBCBC;'> 3</span> GEN   G2    2.744  0.139<span style='text-decoration: underline;'>0</span>   0.198<span style='text-decoration: underline;'>8</span>   0.733<span style='text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.473</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.048</span><span style='color: #BB0000; text-decoration: underline;'>16</span> -<span style='color: #BB0000;'>0.284</span><span style='color: #BB0000; text-decoration: underline;'>1</span> 
-#&gt; <span style='color: #BCBCBC;'> 4</span> GEN   G3    2.955  0.043<span style='text-decoration: underline;'>40</span> -<span style='color: #BB0000;'>0.102</span><span style='color: #BB0000; text-decoration: underline;'>8</span>  -<span style='color: #BB0000;'>0.228</span><span style='color: #BB0000; text-decoration: underline;'>4</span>  -<span style='color: #BB0000;'>0.176</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>0.127</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>0.140</span><span style='color: #BB0000; text-decoration: underline;'>0</span> 
-#&gt; <span style='color: #BCBCBC;'> 5</span> GEN   G4    2.642 -<span style='color: #BB0000;'>0.325</span><span style='color: #BB0000; text-decoration: underline;'>1</span>   0.478<span style='text-decoration: underline;'>2</span>   0.090<span style='text-decoration: underline;'>73</span> -<span style='color: #BB0000;'>0.141</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.192</span><span style='color: #BB0000; text-decoration: underline;'>4</span>   0.355<span style='text-decoration: underline;'>0</span> 
-#&gt; <span style='color: #BCBCBC;'> 6</span> GEN   G5    2.537 -<span style='color: #BB0000;'>0.326</span><span style='color: #BB0000; text-decoration: underline;'>0</span>   0.246<span style='text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.245</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  -<span style='color: #BB0000;'>0.179</span><span style='color: #BB0000; text-decoration: underline;'>4</span>   0.466<span style='text-decoration: underline;'>2</span>   0.033<span style='text-decoration: underline;'>15</span>
-#&gt; <span style='color: #BCBCBC;'> 7</span> GEN   G6    2.534 -<span style='color: #BB0000;'>0.098</span><span style='color: #BB0000; text-decoration: underline;'>36</span>  0.242<span style='text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>0.560</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.237</span><span style='color: #BB0000; text-decoration: underline;'>7</span>   0.050<span style='text-decoration: underline;'>94</span> -<span style='color: #BB0000;'>0.101</span><span style='color: #BB0000; text-decoration: underline;'>1</span> 
-#&gt; <span style='color: #BCBCBC;'> 8</span> GEN   G7    2.741  0.284<span style='text-decoration: underline;'>9</span>   0.587<span style='text-decoration: underline;'>1</span>   0.206<span style='text-decoration: underline;'>8</span>   0.708<span style='text-decoration: underline;'>5</span>   0.231<span style='text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.084</span><span style='color: #BB0000; text-decoration: underline;'>06</span>
-#&gt; <span style='color: #BCBCBC;'> 9</span> GEN   G8    3.004  0.499<span style='text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.191</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.319</span><span style='color: #BB0000; text-decoration: underline;'>1</span>   0.167<span style='text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.326</span><span style='color: #BB0000; text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.288</span><span style='color: #BB0000; text-decoration: underline;'>6</span> 
-#&gt; <span style='color: #BCBCBC;'>10</span> GEN   G9    2.510  0.466<span style='text-decoration: underline;'>8</span>  -<span style='color: #BB0000;'>0.842</span><span style='color: #BB0000; text-decoration: underline;'>7</span>   0.121<span style='text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.063</span><span style='color: #BB0000; text-decoration: underline;'>85</span>  0.381<span style='text-decoration: underline;'>9</span>   0.188<span style='text-decoration: underline;'>9</span> 
-#&gt; <span style='color: #949494;'># ... with 14 more rows, and 13 more variables: PC7 &lt;dbl&gt;, PC8 &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   PC9 &lt;dbl&gt;, WAAS &lt;dbl&gt;, PctResp &lt;dbl&gt;, PctWAAS &lt;dbl&gt;, wRes &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   wWAAS &lt;dbl&gt;, OrResp &lt;dbl&gt;, OrWAAS &lt;dbl&gt;, OrPC1 &lt;dbl&gt;, WAASY &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   OrWAASY &lt;dbl&gt;</span>
-#&gt; ---------------------------------------------------------------------------
-#&gt; Genotype-environment interaction effects
-#&gt; ---------------------------------------------------------------------------
-#&gt;           E1      E10      E11      E12      E13       E14       E2       E3
-#&gt; G1  -0.08433  0.20299  0.05797 -0.19561  0.15919 -0.178034 -0.06870  0.08657
-#&gt; G10 -0.34359 -0.43594 -0.26614 -0.38336 -0.87594  0.280297  0.16890  0.25302
-#&gt; G2   0.31116  0.05194  0.05255  0.31492  0.04877 -0.425258 -0.01881  0.43443
-#&gt; G3   0.08680 -0.11959 -0.08164 -0.12526  0.27841 -0.003381  0.14722 -0.21310
-#&gt; G4   0.10021  0.02447  0.03406 -0.04885 -0.24159  0.111726  0.04245 -0.17767
-#&gt; G5  -0.19553  0.10152  0.09430  0.21738 -0.20463  0.139260  0.09707 -0.18610
-#&gt; G6  -0.07967  0.17315  0.27261 -0.08263  0.14225  0.157130  0.25143 -0.48946
-#&gt; G7   0.18638  0.20002 -0.07060  0.27645  0.20754  0.087732 -0.63395 -0.02967
-#&gt; G8   0.04928  0.07026 -0.01423  0.06209  0.28095 -0.119465 -0.06456 -0.28373
-#&gt; G9  -0.03071 -0.26883 -0.07888 -0.03513  0.20505 -0.050007  0.07895  0.60572
-#&gt;          E4       E5       E6       E7       E8       E9
-#&gt; G1  -0.1104  0.33060  0.21644 -0.02045 -0.19388 -0.20237
-#&gt; G10  0.7987 -0.34181  0.02468  0.45775  0.36696  0.29642
-#&gt; G2  -0.0296 -0.15297 -0.19179 -0.07117 -0.56098  0.23683
-#&gt; G3   0.1776 -0.06495  0.04040 -0.11145  0.03294 -0.04404
-#&gt; G4  -0.3408 -0.09557  0.07030  0.02432 -0.20346  0.70039
-#&gt; G5  -0.1593 -0.30460 -0.09300 -0.19523  0.30885  0.37996
-#&gt; G6  -0.1316 -0.20136 -0.18745 -0.09090  0.14322  0.12328
-#&gt; G7  -0.7230  0.07075 -0.06398  0.49525 -0.01966  0.01673
-#&gt; G8   0.1331  0.57220 -0.08449 -0.05651  0.01308 -0.55800
-#&gt; G9   0.3851  0.18772  0.26887 -0.43160  0.11293 -0.94922
-#&gt; ---------------------------------------------------------------------------
-#&gt; Proportion of the variance explained
-#&gt; ---------------------------------------------------------------------------
-#&gt; [1] 34.4308 31.7875 12.9380  9.8457  4.6331  2.9861  1.8152  1.1605  0.4031
-#&gt; ---------------------------------------------------------------------------
-#&gt; Cumulative proportion of the variance explained
-#&gt; ---------------------------------------------------------------------------
-#&gt; [1]  34.43  66.22  79.16  89.00  93.64  96.62  98.44  99.60 100.00
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; Variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Weighted average of the absolute scores
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 24 x 22</span>
-#&gt;    type  Code      Y      PC1      PC2       PC3       PC4      PC5       PC6
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> GEN   G1    47.08  0.280<span style='text-decoration: underline;'>0</span>   0.463<span style='text-decoration: underline;'>5</span>   0.174<span style='text-decoration: underline;'>0</span>   -<span style='color: #BB0000;'>1.369</span>    -<span style='color: #BB0000;'>1.135</span>    0.036<span style='text-decoration: underline;'>58</span> 
-#&gt; <span style='color: #BCBCBC;'> 2</span> GEN   G10   48.51 -<span style='color: #BB0000;'>1.779</span>    1.866   -<span style='color: #BB0000;'>0.006</span><span style='color: #BB0000; text-decoration: underline;'>219</span>  0.921<span style='text-decoration: underline;'>9</span>    0.109<span style='text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.009</span><span style='color: #BB0000; text-decoration: underline;'>745</span>
-#&gt; <span style='color: #BCBCBC;'> 3</span> GEN   G2    46.66  1.563    0.551<span style='text-decoration: underline;'>8</span>  -<span style='color: #BB0000;'>0.935</span><span style='color: #BB0000; text-decoration: underline;'>7</span>    0.491<span style='text-decoration: underline;'>3</span>    0.284<span style='text-decoration: underline;'>3</span>   1.184   
-#&gt; <span style='color: #BCBCBC;'> 4</span> GEN   G3    47.60  0.341<span style='text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.201</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  -<span style='color: #BB0000;'>0.800</span><span style='color: #BB0000; text-decoration: underline;'>1</span>    0.375<span style='text-decoration: underline;'>3</span>   -<span style='color: #BB0000;'>0.497</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>1.294</span>   
-#&gt; <span style='color: #BCBCBC;'> 5</span> GEN   G4    48.03 -<span style='color: #BB0000;'>0.202</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>1.841</span>    0.280<span style='text-decoration: underline;'>1</span>    0.005<span style='text-decoration: underline;'>954</span>  0.820<span style='text-decoration: underline;'>1</span>   0.273<span style='text-decoration: underline;'>4</span>  
-#&gt; <span style='color: #BCBCBC;'> 6</span> GEN   G5    49.30  1.580    1.030    1.078    -<span style='color: #BB0000;'>0.278</span><span style='color: #BB0000; text-decoration: underline;'>9</span>    1.005   -<span style='color: #BB0000;'>0.736</span><span style='color: #BB0000; text-decoration: underline;'>8</span>  
-#&gt; <span style='color: #BCBCBC;'> 7</span> GEN   G6    48.73  0.547<span style='text-decoration: underline;'>4</span>  -<span style='color: #BB0000;'>0.245</span><span style='color: #BB0000; text-decoration: underline;'>3</span>   0.532<span style='text-decoration: underline;'>4</span>    0.460<span style='text-decoration: underline;'>3</span>   -<span style='color: #BB0000;'>1.008</span>    0.586<span style='text-decoration: underline;'>1</span>  
-#&gt; <span style='color: #BCBCBC;'> 8</span> GEN   G7    47.97 -<span style='color: #BB0000;'>1.218</span>   -<span style='color: #BB0000;'>0.468</span><span style='color: #BB0000; text-decoration: underline;'>0</span>   1.254    -<span style='color: #BB0000;'>0.054</span><span style='color: #BB0000; text-decoration: underline;'>82</span>  -<span style='color: #BB0000;'>0.034</span><span style='color: #BB0000; text-decoration: underline;'>29</span>  0.336<span style='text-decoration: underline;'>6</span>  
-#&gt; <span style='color: #BCBCBC;'> 9</span> GEN   G8    49.10 -<span style='color: #BB0000;'>0.041</span><span style='color: #BB0000; text-decoration: underline;'>76</span> -<span style='color: #BB0000;'>1.241</span>   -<span style='color: #BB0000;'>0.410</span><span style='color: #BB0000; text-decoration: underline;'>5</span>    0.639<span style='text-decoration: underline;'>4</span>   -<span style='color: #BB0000;'>0.178</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.514</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  
-#&gt; <span style='color: #BCBCBC;'>10</span> GEN   G9    47.90 -<span style='color: #BB0000;'>1.072</span>    0.085<span style='text-decoration: underline;'>63</span> -<span style='color: #BB0000;'>1.166</span>    -<span style='color: #BB0000;'>1.191</span>     0.635<span style='text-decoration: underline;'>1</span>   0.139<span style='text-decoration: underline;'>3</span>  
-#&gt; <span style='color: #949494;'># ... with 14 more rows, and 13 more variables: PC7 &lt;dbl&gt;, PC8 &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   PC9 &lt;dbl&gt;, WAAS &lt;dbl&gt;, PctResp &lt;dbl&gt;, PctWAAS &lt;dbl&gt;, wRes &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   wWAAS &lt;dbl&gt;, OrResp &lt;dbl&gt;, OrWAAS &lt;dbl&gt;, OrPC1 &lt;dbl&gt;, WAASY &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   OrWAASY &lt;dbl&gt;</span>
-#&gt; ---------------------------------------------------------------------------
-#&gt; Genotype-environment interaction effects
-#&gt; ---------------------------------------------------------------------------
-#&gt;          E1     E10     E11     E12      E13      E14      E2      E3       E4
-#&gt; G1   0.1169  2.0419  0.8102  1.3285 -1.15148  0.71019 -0.5385 -1.2248 -1.32481
-#&gt; G10 -0.9231 -3.0515 -0.6165  0.4685  2.17186  0.78352  0.6049  2.3485  1.58186
-#&gt; G2  -0.6598  3.4619 -0.1031 -3.5015 -2.79814 -0.25314  0.7649 -0.1381 -1.57148
-#&gt; G3  -1.0472  0.5178 -0.3805  1.5545  0.07448 -0.33052 -1.3192 -1.4155  0.15114
-#&gt; G4   0.9314 -2.5770 -0.1420  0.1264  0.01305  0.04138 -0.2940  0.4897  0.05638
-#&gt; G5   1.2557  5.4907 -3.5077 -1.6727 -0.10267 -1.00767  1.5537 -0.1093  0.45733
-#&gt; G6   0.1885  1.3902  1.4919  0.9769 -2.03648 -1.82481  1.5099  0.1235  0.69019
-#&gt; G7   0.1538 -3.1779  0.7738  0.9421  1.46210  3.15710  1.2284  0.8888 -0.21124
-#&gt; G8  -0.4658 -1.6474  1.1209  0.0559  1.62590 -1.41243  0.3989 -2.2474 -0.34743
-#&gt; G9   0.4497 -2.4486  0.5530 -0.2786  0.74138  0.13638 -3.9090  1.2847  0.51805
-#&gt;            E5       E6      E7       E8      E9
-#&gt; G1  -0.838810 -0.71481 -0.4865 -1.06981  2.3419
-#&gt; G10  2.551190 -5.09148  1.0869 -3.82981  1.9152
-#&gt; G2   2.981190  0.75519  0.6002  0.70019 -0.2381
-#&gt; G3   2.453810  1.29448 -1.0105  0.63948 -1.1822
-#&gt; G4  -2.924286  3.43305  0.4780  2.64471 -2.2770
-#&gt; G5  -0.006667 -0.39933 -1.7043 -0.70433  0.4573
-#&gt; G6  -1.073810 -0.03314  0.3952 -0.15481 -1.6431
-#&gt; G7  -2.375238 -0.55124 -1.2562 -0.48957 -0.5446
-#&gt; G8  -0.644762  1.84590  0.8242  2.24090 -1.3474
-#&gt; G9  -0.122619 -0.53862  1.0730  0.02305  2.5180
-#&gt; ---------------------------------------------------------------------------
-#&gt; Proportion of the variance explained
-#&gt; ---------------------------------------------------------------------------
-#&gt; [1] 34.6249 29.0200 10.3807  7.4461  6.1881  5.3668  4.2421  2.4215  0.3097
-#&gt; ---------------------------------------------------------------------------
-#&gt; Cumulative proportion of the variance explained
-#&gt; ---------------------------------------------------------------------------
-#&gt; [1]  34.62  63.64  74.03  81.47  87.66  93.03  97.27  99.69 100.00
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>data_means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas_means.html'>waas_means</a></span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>                    env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                    gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                    resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:00 </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Weighted average of the absolute scores</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 24 x 22</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    type  Code      Y      PC1      PC2      PC3      PC4      PC5      PC6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> GEN   G1    2.604  0.316<span style='text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.044</span><span style='color: #BB0000; text-decoration: underline;'>17</span>  0.036<span style='text-decoration: underline;'>00</span>  0.065<span style='text-decoration: underline;'>95</span> -<span style='color: #BB0000;'>0.312</span><span style='color: #BB0000; text-decoration: underline;'>5</span>   0.427<span style='text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> GEN   G10   2.471 -<span style='color: #BB0000;'>1.001</span>   -<span style='color: #BB0000;'>0.571</span><span style='color: #BB0000; text-decoration: underline;'>8</span>   0.165<span style='text-decoration: underline;'>2</span>   0.330<span style='text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>0.124</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  -<span style='color: #BB0000;'>0.106</span><span style='color: #BB0000; text-decoration: underline;'>4</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> GEN   G2    2.744  0.139<span style='text-decoration: underline;'>0</span>   0.198<span style='text-decoration: underline;'>8</span>   0.733<span style='text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.473</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.048</span><span style='color: #BB0000; text-decoration: underline;'>16</span> -<span style='color: #BB0000;'>0.284</span><span style='color: #BB0000; text-decoration: underline;'>1</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> GEN   G3    2.955  0.043<span style='text-decoration: underline;'>40</span> -<span style='color: #BB0000;'>0.102</span><span style='color: #BB0000; text-decoration: underline;'>8</span>  -<span style='color: #BB0000;'>0.228</span><span style='color: #BB0000; text-decoration: underline;'>4</span>  -<span style='color: #BB0000;'>0.176</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>0.127</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>0.140</span><span style='color: #BB0000; text-decoration: underline;'>0</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> GEN   G4    2.642 -<span style='color: #BB0000;'>0.325</span><span style='color: #BB0000; text-decoration: underline;'>1</span>   0.478<span style='text-decoration: underline;'>2</span>   0.090<span style='text-decoration: underline;'>73</span> -<span style='color: #BB0000;'>0.141</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.192</span><span style='color: #BB0000; text-decoration: underline;'>4</span>   0.355<span style='text-decoration: underline;'>0</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> GEN   G5    2.537 -<span style='color: #BB0000;'>0.326</span><span style='color: #BB0000; text-decoration: underline;'>0</span>   0.246<span style='text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.245</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  -<span style='color: #BB0000;'>0.179</span><span style='color: #BB0000; text-decoration: underline;'>4</span>   0.466<span style='text-decoration: underline;'>2</span>   0.033<span style='text-decoration: underline;'>15</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> GEN   G6    2.534 -<span style='color: #BB0000;'>0.098</span><span style='color: #BB0000; text-decoration: underline;'>36</span>  0.242<span style='text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>0.560</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.237</span><span style='color: #BB0000; text-decoration: underline;'>7</span>   0.050<span style='text-decoration: underline;'>94</span> -<span style='color: #BB0000;'>0.101</span><span style='color: #BB0000; text-decoration: underline;'>1</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> GEN   G7    2.741  0.284<span style='text-decoration: underline;'>9</span>   0.587<span style='text-decoration: underline;'>1</span>   0.206<span style='text-decoration: underline;'>8</span>   0.708<span style='text-decoration: underline;'>5</span>   0.231<span style='text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.084</span><span style='color: #BB0000; text-decoration: underline;'>06</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> GEN   G8    3.004  0.499<span style='text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.191</span><span style='color: #BB0000; text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.319</span><span style='color: #BB0000; text-decoration: underline;'>1</span>   0.167<span style='text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.326</span><span style='color: #BB0000; text-decoration: underline;'>1</span>  -<span style='color: #BB0000;'>0.288</span><span style='color: #BB0000; text-decoration: underline;'>6</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> GEN   G9    2.510  0.466<span style='text-decoration: underline;'>8</span>  -<span style='color: #BB0000;'>0.842</span><span style='color: #BB0000; text-decoration: underline;'>7</span>   0.121<span style='text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.063</span><span style='color: #BB0000; text-decoration: underline;'>85</span>  0.381<span style='text-decoration: underline;'>9</span>   0.188<span style='text-decoration: underline;'>9</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 14 more rows, and 13 more variables: PC7 &lt;dbl&gt;, PC8 &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   PC9 &lt;dbl&gt;, WAAS &lt;dbl&gt;, PctResp &lt;dbl&gt;, PctWAAS &lt;dbl&gt;, wRes &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   wWAAS &lt;dbl&gt;, OrResp &lt;dbl&gt;, OrWAAS &lt;dbl&gt;, OrPC1 &lt;dbl&gt;, WAASY &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   OrWAASY &lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Genotype-environment interaction effects</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           E1      E10      E11      E12      E13       E14       E2       E3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  -0.08433  0.20299  0.05797 -0.19561  0.15919 -0.178034 -0.06870  0.08657</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 -0.34359 -0.43594 -0.26614 -0.38336 -0.87594  0.280297  0.16890  0.25302</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2   0.31116  0.05194  0.05255  0.31492  0.04877 -0.425258 -0.01881  0.43443</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3   0.08680 -0.11959 -0.08164 -0.12526  0.27841 -0.003381  0.14722 -0.21310</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4   0.10021  0.02447  0.03406 -0.04885 -0.24159  0.111726  0.04245 -0.17767</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  -0.19553  0.10152  0.09430  0.21738 -0.20463  0.139260  0.09707 -0.18610</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  -0.07967  0.17315  0.27261 -0.08263  0.14225  0.157130  0.25143 -0.48946</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7   0.18638  0.20002 -0.07060  0.27645  0.20754  0.087732 -0.63395 -0.02967</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8   0.04928  0.07026 -0.01423  0.06209  0.28095 -0.119465 -0.06456 -0.28373</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  -0.03071 -0.26883 -0.07888 -0.03513  0.20505 -0.050007  0.07895  0.60572</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          E4       E5       E6       E7       E8       E9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  -0.1104  0.33060  0.21644 -0.02045 -0.19388 -0.20237</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10  0.7987 -0.34181  0.02468  0.45775  0.36696  0.29642</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  -0.0296 -0.15297 -0.19179 -0.07117 -0.56098  0.23683</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3   0.1776 -0.06495  0.04040 -0.11145  0.03294 -0.04404</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  -0.3408 -0.09557  0.07030  0.02432 -0.20346  0.70039</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  -0.1593 -0.30460 -0.09300 -0.19523  0.30885  0.37996</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  -0.1316 -0.20136 -0.18745 -0.09090  0.14322  0.12328</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  -0.7230  0.07075 -0.06398  0.49525 -0.01966  0.01673</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8   0.1331  0.57220 -0.08449 -0.05651  0.01308 -0.55800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9   0.3851  0.18772  0.26887 -0.43160  0.11293 -0.94922</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Proportion of the variance explained</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 34.4308 31.7875 12.9380  9.8457  4.6331  2.9861  1.8152  1.1605  0.4031</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cumulative proportion of the variance explained</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1]  34.43  66.22  79.16  89.00  93.64  96.62  98.44  99.60 100.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable HM </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Weighted average of the absolute scores</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 24 x 22</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    type  Code      Y      PC1      PC2       PC3       PC4      PC5       PC6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> GEN   G1    47.08  0.280<span style='text-decoration: underline;'>0</span>   0.463<span style='text-decoration: underline;'>5</span>   0.174<span style='text-decoration: underline;'>0</span>   -<span style='color: #BB0000;'>1.369</span>    -<span style='color: #BB0000;'>1.135</span>    0.036<span style='text-decoration: underline;'>58</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> GEN   G10   48.51 -<span style='color: #BB0000;'>1.779</span>    1.866   -<span style='color: #BB0000;'>0.006</span><span style='color: #BB0000; text-decoration: underline;'>219</span>  0.921<span style='text-decoration: underline;'>9</span>    0.109<span style='text-decoration: underline;'>6</span>  -<span style='color: #BB0000;'>0.009</span><span style='color: #BB0000; text-decoration: underline;'>745</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> GEN   G2    46.66  1.563    0.551<span style='text-decoration: underline;'>8</span>  -<span style='color: #BB0000;'>0.935</span><span style='color: #BB0000; text-decoration: underline;'>7</span>    0.491<span style='text-decoration: underline;'>3</span>    0.284<span style='text-decoration: underline;'>3</span>   1.184   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> GEN   G3    47.60  0.341<span style='text-decoration: underline;'>7</span>  -<span style='color: #BB0000;'>0.201</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  -<span style='color: #BB0000;'>0.800</span><span style='color: #BB0000; text-decoration: underline;'>1</span>    0.375<span style='text-decoration: underline;'>3</span>   -<span style='color: #BB0000;'>0.497</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  -<span style='color: #BB0000;'>1.294</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> GEN   G4    48.03 -<span style='color: #BB0000;'>0.202</span><span style='color: #BB0000; text-decoration: underline;'>0</span>  -<span style='color: #BB0000;'>1.841</span>    0.280<span style='text-decoration: underline;'>1</span>    0.005<span style='text-decoration: underline;'>954</span>  0.820<span style='text-decoration: underline;'>1</span>   0.273<span style='text-decoration: underline;'>4</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> GEN   G5    49.30  1.580    1.030    1.078    -<span style='color: #BB0000;'>0.278</span><span style='color: #BB0000; text-decoration: underline;'>9</span>    1.005   -<span style='color: #BB0000;'>0.736</span><span style='color: #BB0000; text-decoration: underline;'>8</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> GEN   G6    48.73  0.547<span style='text-decoration: underline;'>4</span>  -<span style='color: #BB0000;'>0.245</span><span style='color: #BB0000; text-decoration: underline;'>3</span>   0.532<span style='text-decoration: underline;'>4</span>    0.460<span style='text-decoration: underline;'>3</span>   -<span style='color: #BB0000;'>1.008</span>    0.586<span style='text-decoration: underline;'>1</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> GEN   G7    47.97 -<span style='color: #BB0000;'>1.218</span>   -<span style='color: #BB0000;'>0.468</span><span style='color: #BB0000; text-decoration: underline;'>0</span>   1.254    -<span style='color: #BB0000;'>0.054</span><span style='color: #BB0000; text-decoration: underline;'>82</span>  -<span style='color: #BB0000;'>0.034</span><span style='color: #BB0000; text-decoration: underline;'>29</span>  0.336<span style='text-decoration: underline;'>6</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> GEN   G8    49.10 -<span style='color: #BB0000;'>0.041</span><span style='color: #BB0000; text-decoration: underline;'>76</span> -<span style='color: #BB0000;'>1.241</span>   -<span style='color: #BB0000;'>0.410</span><span style='color: #BB0000; text-decoration: underline;'>5</span>    0.639<span style='text-decoration: underline;'>4</span>   -<span style='color: #BB0000;'>0.178</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  -<span style='color: #BB0000;'>0.514</span><span style='color: #BB0000; text-decoration: underline;'>9</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> GEN   G9    47.90 -<span style='color: #BB0000;'>1.072</span>    0.085<span style='text-decoration: underline;'>63</span> -<span style='color: #BB0000;'>1.166</span>    -<span style='color: #BB0000;'>1.191</span>     0.635<span style='text-decoration: underline;'>1</span>   0.139<span style='text-decoration: underline;'>3</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 14 more rows, and 13 more variables: PC7 &lt;dbl&gt;, PC8 &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   PC9 &lt;dbl&gt;, WAAS &lt;dbl&gt;, PctResp &lt;dbl&gt;, PctWAAS &lt;dbl&gt;, wRes &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   wWAAS &lt;dbl&gt;, OrResp &lt;dbl&gt;, OrWAAS &lt;dbl&gt;, OrPC1 &lt;dbl&gt;, WAASY &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   OrWAASY &lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Genotype-environment interaction effects</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          E1     E10     E11     E12      E13      E14      E2      E3       E4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1   0.1169  2.0419  0.8102  1.3285 -1.15148  0.71019 -0.5385 -1.2248 -1.32481</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 -0.9231 -3.0515 -0.6165  0.4685  2.17186  0.78352  0.6049  2.3485  1.58186</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  -0.6598  3.4619 -0.1031 -3.5015 -2.79814 -0.25314  0.7649 -0.1381 -1.57148</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3  -1.0472  0.5178 -0.3805  1.5545  0.07448 -0.33052 -1.3192 -1.4155  0.15114</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4   0.9314 -2.5770 -0.1420  0.1264  0.01305  0.04138 -0.2940  0.4897  0.05638</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5   1.2557  5.4907 -3.5077 -1.6727 -0.10267 -1.00767  1.5537 -0.1093  0.45733</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6   0.1885  1.3902  1.4919  0.9769 -2.03648 -1.82481  1.5099  0.1235  0.69019</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7   0.1538 -3.1779  0.7738  0.9421  1.46210  3.15710  1.2284  0.8888 -0.21124</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  -0.4658 -1.6474  1.1209  0.0559  1.62590 -1.41243  0.3989 -2.2474 -0.34743</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9   0.4497 -2.4486  0.5530 -0.2786  0.74138  0.13638 -3.9090  1.2847  0.51805</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            E5       E6      E7       E8      E9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  -0.838810 -0.71481 -0.4865 -1.06981  2.3419</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10  2.551190 -5.09148  1.0869 -3.82981  1.9152</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2   2.981190  0.75519  0.6002  0.70019 -0.2381</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3   2.453810  1.29448 -1.0105  0.63948 -1.1822</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  -2.924286  3.43305  0.4780  2.64471 -2.2770</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  -0.006667 -0.39933 -1.7043 -0.70433  0.4573</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  -1.073810 -0.03314  0.3952 -0.15481 -1.6431</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  -2.375238 -0.55124 -1.2562 -0.48957 -0.5446</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  -0.644762  1.84590  0.8242  2.24090 -1.3474</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  -0.122619 -0.53862  1.0730  0.02305  2.5180</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Proportion of the variance explained</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 34.6249 29.0200 10.3807  7.4461  6.1881  5.3668  4.2421  2.4215  0.3097</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cumulative proportion of the variance explained</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1]  34.62  63.64  74.03  81.47  87.66  93.03  97.27  99.69 100.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

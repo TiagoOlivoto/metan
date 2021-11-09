@@ -98,7 +98,7 @@ complete block and alpha-lattice designs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ complete block and alpha-lattice designs." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ complete block and alpha-lattice designs." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -354,76 +369,84 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'># RCBD</span>
-<span class='va'>rcbd</span> <span class='op'>&lt;-</span> <span class='fu'>gafem</span><span class='op'>(</span><span class='va'>data_g</span>,
-             gen <span class='op'>=</span> <span class='va'>GEN</span>,
-             rep <span class='op'>=</span> <span class='va'>REP</span>,
-             resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>EL</span>, <span class='va'>CL</span>, <span class='va'>CW</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait PH |=========                                   | 20% 00:00:00 Evaluating trait ED |==================                          | 40% 00:00:00 Evaluating trait EL |==========================                  | 60% 00:00:00 Evaluating trait CL |===================================         | 80% 00:00:00 Evaluating trait CW |============================================| 100% 00:00:00 
-#&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (Randomized complete block design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;      model     PH       ED    EL       CL       CW
-#&gt;        REP 0.2328 1.40e-01 0.532 9.45e-03 4.10e-02
-#&gt;        GEN 0.0239 1.38e-05 0.373 1.18e-06 6.34e-06
-#&gt;  Residuals     NA       NA    NA       NA       NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; Variables with nonsignificant genotype effect
-#&gt; EL 
-#&gt; ---------------------------------------------------------------------------
-#&gt; </div><div class='input'>
-<span class='co'># Fitted values</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>rcbd</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 39 x 8</span>
-#&gt;    GEN   REP   factors    PH    ED    EL    CL    CW
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1    1     H1_1     2.13  50.8  15.1  31.7  27.6
-#&gt; <span style='color: #BCBCBC;'> 2</span> H1    2     H1_2     2.21  49.9  14.7  30.1  25.2
-#&gt; <span style='color: #BCBCBC;'> 3</span> H1    3     H1_3     2.25  51.1  14.7  30.9  27.8
-#&gt; <span style='color: #BCBCBC;'> 4</span> H10   1     H10_1    1.97  44.1  14.2  25.6  13.0
-#&gt; <span style='color: #BCBCBC;'> 5</span> H10   2     H10_2    2.05  43.2  13.8  24.0  10.6
-#&gt; <span style='color: #BCBCBC;'> 6</span> H10   3     H10_3    2.09  44.4  13.9  24.7  13.2
-#&gt; <span style='color: #BCBCBC;'> 7</span> H11   1     H11_1    2.03  47.3  14.5  27.2  16.7
-#&gt; <span style='color: #BCBCBC;'> 8</span> H11   2     H11_2    2.11  46.3  14.1  25.6  14.3
-#&gt; <span style='color: #BCBCBC;'> 9</span> H11   3     H11_3    2.16  47.5  14.2  26.3  16.9
-#&gt; <span style='color: #BCBCBC;'>10</span> H12   1     H12_1    2.36  48.0  14.2  26.6  18.5
-#&gt; <span style='color: #949494;'># ... with 29 more rows</span></div><div class='input'>
-<span class='co'># ALPHA-LATTICE DESIGN</span>
-<span class='va'>alpha</span> <span class='op'>&lt;-</span> <span class='fu'>gafem</span><span class='op'>(</span><span class='va'>data_alpha</span>,
-              gen <span class='op'>=</span> <span class='va'>GEN</span>,
-              rep <span class='op'>=</span> <span class='va'>REP</span>,
-              block <span class='op'>=</span> <span class='va'>BLOCK</span>,
-              resp <span class='op'>=</span> <span class='va'>YIELD</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait YIELD |=========================================| 100% 00:00:00 
-#&gt; ---------------------------------------------------------------------------
-#&gt; One-way ANOVA table (Alpha-lattice design)
-#&gt; ---------------------------------------------------------------------------
-#&gt;       model    YIELD
-#&gt;         REP 6.59e-09
-#&gt;         GEN 3.63e-07
-#&gt;  BLOCK(REP) 6.25e-03
-#&gt;   Residuals       NA</div><div class='input'>
-<span class='co'># Fitted values</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>alpha</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: gafem</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: fitted</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 72 x 5</span>
-#&gt;    GEN   REP   BLOCK factors   YIELD
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G11   R1    B1    G11_R1_B1  4.41
-#&gt; <span style='color: #BCBCBC;'> 2</span> G04   R1    B1    G04_R1_B1  4.73
-#&gt; <span style='color: #BCBCBC;'> 3</span> G05   R1    B1    G05_R1_B1  5.23
-#&gt; <span style='color: #BCBCBC;'> 4</span> G22   R1    B1    G22_R1_B1  4.65
-#&gt; <span style='color: #BCBCBC;'> 5</span> G21   R1    B2    G21_R1_B2  4.61
-#&gt; <span style='color: #BCBCBC;'> 6</span> G10   R1    B2    G10_R1_B2  4.21
-#&gt; <span style='color: #BCBCBC;'> 7</span> G20   R1    B2    G20_R1_B2  4.04
-#&gt; <span style='color: #BCBCBC;'> 8</span> G02   R1    B2    G02_R1_B2  4.32
-#&gt; <span style='color: #BCBCBC;'> 9</span> G23   R1    B3    G23_R1_B3  4.11
-#&gt; <span style='color: #BCBCBC;'>10</span> G14   R1    B3    G14_R1_B3  4.70
-#&gt; <span style='color: #949494;'># ... with 62 more rows</span></div><div class='input'>
-<span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># RCBD</span></span>
+<span class='r-in'><span class='va'>rcbd</span> <span class='op'>&lt;-</span> <span class='fu'>gafem</span><span class='op'>(</span><span class='va'>data_g</span>,</span>
+<span class='r-in'>             gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>             rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>             resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>PH</span>, <span class='va'>ED</span>, <span class='va'>EL</span>, <span class='va'>CL</span>, <span class='va'>CW</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait PH |=========                                   | 20% 00:00:00 Evaluating trait ED |==================                          | 40% 00:00:00 Evaluating trait EL |==========================                  | 60% 00:00:00 Evaluating trait CL |===================================         | 80% 00:00:00 Evaluating trait CW |============================================| 100% 00:00:00 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> One-way ANOVA table (Randomized complete block design)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      model     PH       ED    EL       CL       CW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        REP 0.2328 1.40e-01 0.532 9.45e-03 4.10e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN 0.0239 1.38e-05 0.373 1.18e-06 6.34e-06</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals     NA       NA    NA       NA       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variables with nonsignificant genotype effect</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Fitted values</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>rcbd</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: gafem</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: fitted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 39 x 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN   REP   factors    PH    ED    EL    CL    CW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1    1     H1_1     2.13  50.8  15.1  31.7  27.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H1    2     H1_2     2.21  49.9  14.7  30.1  25.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H1    3     H1_3     2.25  51.1  14.7  30.9  27.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H10   1     H10_1    1.97  44.1  14.2  25.6  13.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H10   2     H10_2    2.05  43.2  13.8  24.0  10.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H10   3     H10_3    2.09  44.4  13.9  24.7  13.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H11   1     H11_1    2.03  47.3  14.5  27.2  16.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H11   2     H11_2    2.11  46.3  14.1  25.6  14.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H11   3     H11_3    2.16  47.5  14.2  26.3  16.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H12   1     H12_1    2.36  48.0  14.2  26.6  18.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 29 more rows</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># ALPHA-LATTICE DESIGN</span></span>
+<span class='r-in'><span class='va'>alpha</span> <span class='op'>&lt;-</span> <span class='fu'>gafem</span><span class='op'>(</span><span class='va'>data_alpha</span>,</span>
+<span class='r-in'>              gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>              rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>              block <span class='op'>=</span> <span class='va'>BLOCK</span>,</span>
+<span class='r-in'>              resp <span class='op'>=</span> <span class='va'>YIELD</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait YIELD |=========================================| 100% 00:00:00 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> One-way ANOVA table (Alpha-lattice design)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       model    YIELD</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         REP 6.59e-09</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         GEN 3.63e-07</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  BLOCK(REP) 6.25e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Residuals       NA</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Fitted values</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>alpha</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: gafem</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: fitted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 72 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN   REP   BLOCK factors   YIELD</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G11   R1    B1    G11_R1_B1  4.41</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G04   R1    B1    G04_R1_B1  4.73</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G05   R1    B1    G05_R1_B1  5.23</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G22   R1    B1    G22_R1_B1  4.65</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G21   R1    B2    G21_R1_B2  4.61</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G10   R1    B2    G10_R1_B2  4.21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G20   R1    B2    G20_R1_B2  4.04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G02   R1    B2    G02_R1_B2  4.32</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G23   R1    B3    G23_R1_B3  4.11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G14   R1    B3    G14_R1_B3  4.70</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 62 more rows</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

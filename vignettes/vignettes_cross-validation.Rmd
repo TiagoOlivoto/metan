@@ -124,7 +124,7 @@ BLUP_ge <- cv_blup(data_ge, ENV, GEN, REP, GY, random = "all")
 bind_mod <- bind_cv(AMMIF, BLUP_g, bind = "means")
 print_table(bind_mod$RMSPD)
 
-    ```
+```
 
 The table above showns the descriptive statistics (mean, standard deviation, standar error of the mean, and quantiles 2.5% and 97.5%) of the 100 RMSPD estimates for each model, and are presented from the most accurate model (smallest RMSPD mean) to the least accurate model (highest RMSPD mean). 
 

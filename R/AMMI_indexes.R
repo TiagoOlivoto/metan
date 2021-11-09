@@ -2,8 +2,9 @@
 #' @description
 #' `r badge('stable')`
 #'
-#' `ammi_indexes()` computes several AMMI-based stability statistics. See
+#' * `ammi_indexes()` computes several AMMI-based stability statistics. See
 #' **Details** for a detailed overview.
+#' * `AMMI_indexes()` `r badge('deprecated')` use `ammi_indexes()` instead.
 #'
 #' @details
 #'First, let's define some symbols: \mjseqn{N'} is the number of significant

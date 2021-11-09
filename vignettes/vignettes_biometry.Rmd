@@ -89,7 +89,7 @@ print_table(lpc1$results)
 lpc2 <- lpcor(data_ge2, by = ENV)
 print(lpc2)
 
-    ```
+```
 
 
 Using the `pairs_mantel()` function, it is possible to compute a Mantel's test [@Mantel1967] for all pairwise correlation matrices of the above example. 
@@ -98,7 +98,7 @@ Using the `pairs_mantel()` function, it is possible to compute a Mantel's test [
 lpc2 %>% pairs_mantel(names = paste("H", 1:4, sep = ""))
 
 
-    ```
+```
 
 This same plot may be obtained by passing correlation matrices with the same dimension to an object of class `lpcor` and then applying the function `pairs_mantel()`.
 
@@ -117,7 +117,7 @@ as.lpcor(cor(data_ge2[1:30, 5:ncol(data_ge2)]),
                alpha.point = 0.6,
                main = "My own plot",
                alpha = 0.2)
-    ```
+```
 
 
 
@@ -244,7 +244,7 @@ pcor <- covcor_design(data, gen = GEN, rep = REP,
                       type = "pcor") %>% 
   as.data.frame()
 print_table(pcor, rownames = TRUE)
-    ```
+```
 
 ## Residual correlations
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center" }
@@ -281,7 +281,7 @@ means <- covcor_design(data, GEN, REP,
 D2 <- mahala(.means = means, covar = res, inverted = FALSE) %>% 
   as.data.frame()
 print_table(D2, rownames = TRUE)
-    ```
+```
 
 
 
@@ -558,7 +558,7 @@ covmat2 <- cov(means)
 # Check if the two matrices are equal
 all.equal(cov_mat, covmat2)
 
-    ```
+```
 
 After computing the means and covariance matrices we are able to compute the Mahalanobis distance using the function `mahala()`.
 
@@ -569,7 +569,7 @@ D2 <- mahala(means, covar = cov_mat)
 D2 %>% as.dist() %>% hclust() %>% as.dendrogram() %>% plot()
 
 
-    ```
+```
 
 
 _______________________________________________________________________________________________

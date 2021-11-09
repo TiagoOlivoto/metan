@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AMMI-based stability indexes — AMMI_indexes • metan</title>
+<title>AMMI-based stability indexes — ammi_indexes • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,39 +52,10 @@
 
 
 
-<meta property="og:title" content="AMMI-based stability indexes — AMMI_indexes" />
+<meta property="og:title" content="AMMI-based stability indexes — ammi_indexes" />
 <meta property="og:description" content="
-This function computes the following AMMI-based stability indexes: ASV, AMMI
-stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
-the IPCA scores (Sneller et al. 1997); EV, averages of the squared
-eigenvector values (Sneller et al. 1997); and Za, absolute value of the
-relative contribution of IPCAs to the interaction (Zali et al. 2012), and
-WAAS, weighted average of absolute scores (Olivoto et al. 2019).
-The ASV index is computed as follows: $$AS{V_i} = {\left[ {{{\left[
-{\frac{{r\mathop \lambda \nolimits_1^2 }}{{r\mathop \lambda \nolimits_2^2 }}
-\times (\mathop \lambda \nolimits_1^{0.5} {a_{i1}}{t_{j1}})} \right]}^2} +
-{{(\mathop \lambda \nolimits_2^{0.5} {a_{i2}}{t_{j2}})}^2}} \right]^{0.5}}$$
-where \(r\) is the number of replications included in the analysis,
-The SIPC index is computed as follows: $$SIP{C_i} = \sum\nolimits_{k =
-1}^P {\left| {\mathop {|\lambda }\nolimits_k^{0.5} {a_{ik}}} \right|}$$
-where \(P\) is the number of IPCA retained via F-tests.
-The EV index is computed as follows: $$E{V_i} = \sum\nolimits_{k = 1}^P
-{\mathop a\nolimits_{ik}^2 } /P$$
-The ZA index is computed as follows: $$Z{a_i} = \sum\nolimits_{k = 1}^P
-{{\theta _k}{a_{ik}}} $$
-where \(\theta _k\) is the percentage sum of squares explained by the kth
-IPCA.
-$$ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
-1}^{p}EP_k$$
-where \(WAAS_i\) is the weighted average of absolute scores of the
-ith genotype; \(PCA_{ik}\) is the score of the ith genotype
-in the kth IPCA; and \(EP_k\) is the explained variance of the kth
-IPCA for k = 1,2,..,p, considering p the number of significant
-PCAs.
-Five simultaneous selection indexes (ssi) are also computed by summation of
-the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean
-yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, ssiZa,
-and ssiWAAS, respectively." />
+ammi_indexes() computes several AMMI-based stability statistics. See
+Details for a detailed overview." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -127,7 +98,7 @@ and ssiWAAS, respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -185,8 +156,20 @@ and ssiWAAS, respectively." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -215,23 +198,26 @@ and ssiWAAS, respectively." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -255,46 +241,19 @@ and ssiWAAS, respectively." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>AMMI-based stability indexes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/AMMI_indexes.R'><code>R/AMMI_indexes.R</code></a></small>
-    <div class="hidden name"><code>AMMI_indexes.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ammi_indexes.R'><code>R/ammi_indexes.R</code></a></small>
+    <div class="hidden name"><code>ammi_indexes.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
-<p>This function computes the following AMMI-based stability indexes: ASV, AMMI
-stability value (Purchase et al., 2000); SIPC, sums of the absolute value of
-the IPCA scores (Sneller et al. 1997); EV, averages of the squared
-eigenvector values (Sneller et al. 1997); and Za, absolute value of the
-relative contribution of IPCAs to the interaction (Zali et al. 2012), and
-WAAS, weighted average of absolute scores (Olivoto et al. 2019).</p>
-<p>The ASV index is computed as follows: $$AS{V_i} = {\left[ {{{\left[
-{\frac{{r\mathop \lambda \nolimits_1^2 }}{{r\mathop \lambda \nolimits_2^2 }}
-\times (\mathop \lambda \nolimits_1^{0.5} {a_{i1}}{t_{j1}})} \right]}^2} +
-{{(\mathop \lambda \nolimits_2^{0.5} {a_{i2}}{t_{j2}})}^2}} \right]^{0.5}}$$</p>
-<p>where \(r\) is the number of replications included in the analysis,</p>
-<p>The SIPC index is computed as follows: $$SIP{C_i} = \sum\nolimits_{k =
-1}^P {\left| {\mathop {|\lambda }\nolimits_k^{0.5} {a_{ik}}} \right|}$$</p>
-<p>where \(P\) is the number of IPCA retained via F-tests.</p>
-<p>The EV index is computed as follows: $$E{V_i} = \sum\nolimits_{k = 1}^P
-{\mathop a\nolimits_{ik}^2 } /P$$</p>
-<p>The ZA index is computed as follows: $$Z{a_i} = \sum\nolimits_{k = 1}^P
-{{\theta _k}{a_{ik}}} $$</p>
-<p>where \(\theta _k\) is the percentage sum of squares explained by the kth
-IPCA.</p>
-<p>$$ WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k =
-1}^{p}EP_k$$</p>
-<p>where \(WAAS_i\) is the weighted average of absolute scores of the
-<em>i</em>th genotype; \(PCA_{ik}\) is the score of the <em>i</em>th genotype
-in the <em>k</em>th IPCA; and \(EP_k\) is the explained variance of the <em>k</em>th
-IPCA for <em>k = 1,2,..,p</em>, considering <em>p</em> the number of significant
-PCAs.</p>
-<p>Five simultaneous selection indexes (ssi) are also computed by summation of
-the ranks of the ASV, SIPC, EV and Za indexes and the ranks of the mean
-yields (Farshadfar, 2008), which results in ssiASV, ssiSIPC, ssiEV, ssiZa,
-and ssiWAAS, respectively.</p>
+<p><code>ammi_indexes()</code> computes several AMMI-based stability statistics. See
+<strong>Details</strong> for a detailed overview.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>AMMI_indexes</span><span class='op'>(</span><span class='va'>.data</span>, order.y <span class='op'>=</span> <span class='cn'>NULL</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ammi_indexes</span><span class='op'>(</span><span class='va'>.data</span>, order.y <span class='op'>=</span> <span class='cn'>NULL</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+
+<span class='fu'>AMMI_indexes</span><span class='op'>(</span><span class='va'>.data</span>, order.y <span class='op'>=</span> <span class='cn'>NULL</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -322,92 +281,192 @@ names. For example, <code>order.y = c("h, h, l, h, l")</code>.</p></td>
 
     <p>A list where each element contains the result AMMI-based stability indexes
 for one variable.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>First, let's define some symbols: \(N'\) is the number of significant
+interation principal component axis (IPCs) that were retained in the AMMI
+model via F tests); \(\lambda_{n}\) is the singular value for th IPC and
+correspondingly \(\lambda_{n}^{2}\) its eigen value; \(\gamma_{in}\)
+is the eigenvector value for ith genotype; \(\delta_{jn}\) is the
+eigenvector value for the th environment. \(PC_{1}\), \(PC_{2}\),
+and \(PC_{n}\) are the scores of 1st, 2nd, and nth IPC; respectively;
+\(\theta_{1}\), \(\theta_{2}\), and \(\theta_{n}\)  are
+percentage sum of squares explained by the 1st, 2nd, and nth IPC,
+respectively.</p>
+<p><script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script></p><ul>
+<li><p>AMMI Based Stability Parameter (ASTAB) (Rao and Prabhakaran 2005).
+\[ASTAB = \sum_{n=1}^{N'}\lambda_{n}\gamma_{in}^{2}\]</p></li>
+<li><p>AMMI Stability Index (ASI) (Jambhulkar et al. 2017)
+\[ASI = \sqrt{\left [ PC_{1}^{2} \times \theta_{1}^{2} \right ]+\left[ PC_{2}^{2} \times \theta_{2}^{2} \right ]}\]</p></li>
+<li><p>AMMI-stability value (ASV) (Purchase et al., 2000).
+\[ASV_{i}=\sqrt{\frac{SS_{IPCA1}}{SS_{IPCA2}}(\mathrm{IPC} \mathrm{A} 1)^{2}+(\mathrm{IPCA} 2)^{2}}\]</p></li>
+<li><p>Sum Across Environments of Absolute Value of GEI Modelled by AMMI (AVAMGE) (Zali et al. 2012)
+\[AV_{(AMGE)} = \sum_{j=1}^{E} \sum_{n=1}^{N'} \left |\lambda_{n}\gamma_{in} \delta_{jn} \right |\]</p></li>
+<li><p>Annicchiarico's D Parameter values (Da) (Annicchiarico 1997)
+\[D_{a} = \sqrt{\sum_{n=1}^{N'}(\lambda_{n}\gamma_{in})^2}\]</p></li>
+<li><p>Zhang's D Parameter (Dz) (Zhang et al. 1998)
+\[D_{z} = \sqrt{\sum_{n=1}^{N'}\gamma_{in}^{2}}\]</p></li>
+<li><p>Sums of the Averages of the Squared Eigenvector Values (EV) (Zobel 1994)
+\[EV = \sum_{n=1}^{N'}\frac{\gamma_{in}^2}{N'}\]</p></li>
+<li><p>Stability Measure Based on Fitted AMMI Model (FA) (Raju 2002)
+\[FA = \sum_{n=1}^{N'}\lambda_{n}^{2}\gamma_{in}^{2}\]</p></li>
+<li><p>Modified AMMI Stability Index (MASI) (Ajay et al. 2018)
+\[MASI = \sqrt{ \sum_{n=1}^{N'} PC_{n}^{2} \times \theta_{n}^{2}}\]</p></li>
+<li><p>Modified AMMI Stability Value (MASV) (Ajay et al. 2019)
+\[MASV = \sqrt{\sum_{n=1}^{N'-1}\left (\frac{SSIPC_{n}}{SSIPC_{n+1}} \right ) \times (PC_{n})^2   + \left (PC_{N'}\right )^2}\]</p></li>
+<li><p>Sums of the Absolute Value of the IPC Scores (SIPC) (Sneller et al. 1997)
+\[SIPC = \sum_{n=1}^{N'} | \lambda_{n}^{0.5}\gamma_{in}|\]</p></li>
+<li><p>Absolute Value of the Relative Contribution of IPCs to the Interaction (Za) (Zali et al. 2012)
+\[Za = \sum_{i=1}^{N'} | \theta_{n}\gamma_{in} |\]</p></li>
+<li><p>Weighted average of absolute scores (WAAS) (Olivoto et al. 2019)
+\[WAAS_i = \sum_{k = 1}^{p} |IPCA_{ik} \times \theta_{k}/ \sum_{k = 1}^{p}\theta_{k}\]</p></li>
+</ul>
+
+<p>For all the statistics, simultaneous selection indexes (SSI) are also
+computed by summation of the ranks of the stability and mean performance,
+Y_R, (Farshadfar, 2008).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Purchase, J.L., H. Hatting, and C.S. van Deventer. 2000.
-Genotype vs environment interaction of winter wheat (Triticum aestivum L.)
-in South Africa: II. Stability analysis of yield performance. South African
-J. Plant Soil 17:101-107.
-doi: <a href='https://doi.org/10.1080/02571862.2000.10634878'>10.1080/02571862.2000.10634878</a></p>
-<p>Sneller, C.H., L. Kilgore-Norquest, and D. Dombek. 1997. Repeatability of
-Yield Stability Statistics in Soybean. Crop Sci. 37:383-390.
+    <p>Ajay BC, Aravind J, Abdul Fiyaz R, Bera SK, Kumar N, Gangadhar K, Kona P
+(2018). “Modified AMMI Stability Index (MASI) for stability analysis.”
+ICAR-DGR Newsletter, 18, 4–5.</p>
+<p>Ajay BC, Aravind J, Fiyaz RA, Kumar N, Lal C, Gangadhar K, Kona P, Dagla MC,
+Bera SK (2019). “Rectification of modified AMMI stability value (MASV).”
+Indian Journal of Genetics and Plant Breeding (The), 79, 726–731.
+https://www.isgpb.org/article/rectification-of-modified-ammi-stability-value-masv.</p>
+<p>Annicchiarico P (1997). “Joint regression vs AMMI analysis of
+genotype-environment interactions for cereals in Italy.” Euphytica, 94(1),
+53–62. doi: <a href='https://doi.org/10.1023/A:1002954824178'>10.1023/A:1002954824178</a></p>
+<p>Farshadfar E (2008) Incorporation of AMMI stability value and grain yield in
+a single non-parametric index (GSI) in bread wheat. Pakistan J Biol Sci
+11:1791–1796. doi: <a href='https://doi.org/10.3923/pjbs.2008.1791.1796'>10.3923/pjbs.2008.1791.1796</a></p>
+<p>Jambhulkar NN, Rath NC, Bose LK, Subudhi HN, Biswajit M, Lipi D, Meher J
+(2017). “Stability analysis for grain yield in rice in demonstrations
+conducted during rabi season in India.” Oryza, 54(2), 236–240.
+doi: <a href='https://doi.org/10.5958/2249-5266.2017.00030.3'>10.5958/2249-5266.2017.00030.3</a></p>
+<p>Olivoto T, LUcio ADC, Silva JAG, et al (2019) Mean Performance and Stability
+in Multi-Environment Trials I: Combining Features of AMMI and BLUP
+Techniques. Agron J 111:2949–2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
+<p>Raju BMK (2002). “A study on AMMI model and its biplots.” Journal of the
+Indian Society of Agricultural Statistics, 55(3), 297–322.</p>
+<p>Rao AR, Prabhakaran VT (2005). “Use of AMMI in simultaneous selection of
+genotypes for yield and stability.” Journal of the Indian Society of
+Agricultural Statistics, 59, 76–82.</p>
+<p>Sneller CH, Kilgore-Norquest L, Dombek D (1997). “Repeatability of yield
+stability statistics in soybean.” Crop Science, 37(2), 383–390.
 doi: <a href='https://doi.org/10.2135/cropsci1997.0011183X003700020013x'>10.2135/cropsci1997.0011183X003700020013x</a></p>
-<p>Zali, H., E. Farshadfar, S.H. Sabaghpour, and R. Karimizadeh. 2012.
-Evaluation of genotype vs environment interaction in chickpea using measures
-of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
-<p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro,
-V.Q. de Souza, and E. Jost. 2019a. Mean performance and stability in
-multi-environment trials I: Combining features of AMMI and BLUP techniques.
-Agron. J. 111:2949-2960.
-doi: <a href='https://doi.org/10.2134/agronj2019.03.0220'>10.2134/agronj2019.03.0220</a></p>
+<p>Zali H, Farshadfar E, Sabaghpour SH, Karimizadeh R (2012). “Evaluation of
+genotype × environment interaction in chickpea using measures of stability
+from AMMI model.” Annals of Biological Research, 3(7), 3126–3136.</p>
+<p>Zhang Z, Lu C, Xiang Z (1998). “Analysis of variety stability based on AMMI
+model.” Acta Agronomica Sinica, 24(3), 304–309.
+http://zwxb.chinacrops.org/EN/Y1998/V24/I03/304.</p>
+<p>Zobel RW (1994). “Stress resistance and root systems.” In Proceedings of the
+Workshop on Adaptation of Plants to Soil Stress. 1-4 August, 1993. INTSORMIL
+Publication 94-2, 80–99. Institute of Agriculture and Natural Resources,
+University of Nebraska-Lincoln.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waas.html'>waas</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-              env <span class='op'>=</span> <span class='va'>ENV</span>,
-              gen <span class='op'>=</span> <span class='va'>GEN</span>,
-              rep <span class='op'>=</span> <span class='va'>REP</span>,
-              resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
-              verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>model_indexes</span> <span class='op'>&lt;-</span> <span class='fu'>AMMI_indexes</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-
-
-<span class='co'># Alternatively (and more intuitively) using %&gt;%</span>
-<span class='va'>res_ind</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'>%&gt;%</span>
-           <span class='fu'><a href='waas.html'>waas</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-           <span class='fu'>AMMI_indexes</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
-#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
-#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
-#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
-#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
-#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
-#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
-#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
-#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
-#&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
-#&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
-#&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
-#&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
-#&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
-#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
-#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span></span>
+<span class='r-in'>  <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>                env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>                resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  24.367  0.0967      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 389.036  0.7258      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable HM </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  715.69   2.840      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 9112.21  17.000      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Done!</span>
+<span class='r-in'><span class='va'>model_indexes</span> <span class='op'>&lt;-</span> <span class='fu'>ammi_indexes</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Alternatively (and more intuitively) using %&gt;%</span></span>
+<span class='r-in'><span class='co'># If resp is not declared, all traits are analyzed</span></span>
+<span class='r-in'><span class='va'>res_ind</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>           <span class='fu'><a href='performs_ammi.html'>performs_ammi</a></span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>           <span class='fu'>ammi_indexes</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='utils_bind.html'>rbind_fill_id</a></span><span class='op'>(</span><span class='va'>res_ind</span>, .id <span class='op'>=</span> <span class='st'>"TRAIT"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 20 x 43</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    TRAIT GEN       Y   Y_R  ASTAB ASTAB_R ssiASTAB    ASI ASI_R ASI_SSI   ASV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> GY    G1     2.60     6 0.108        2        8 0.110      4      10 0.346</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> GY    G10    2.47    10 1.47        10       20 0.389     10      20 1.23 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> GY    G2     2.74     3 0.820        7       10 0.079<span style='text-decoration: underline;'>2</span>     2       5 0.249</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> GY    G3     2.96     2 0.095<span style='text-decoration: underline;'>9</span>       1        3 0.035<span style='text-decoration: underline;'>9</span>     1       3 0.113</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> GY    G4     2.64     5 0.363        4        9 0.189      7      12 0.594</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> GY    G5     2.54     7 0.259        3       10 0.137      5      12 0.430</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> GY    G6     2.53     8 0.440        6       14 0.084<span style='text-decoration: underline;'>3</span>     3      11 0.265</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> GY    G7     2.74     4 0.971        9       13 0.211      8      12 0.663</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> GY    G8     3.00     1 0.416        5        6 0.182      6       7 0.574</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> GY    G9     2.51     9 0.947        8       17 0.312      9      18 0.983</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> HM    G1    47.1      9 3.49         5       14 0.166      2      11 0.571</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> HM    G10   48.5      4 7.51        10       14 0.819     10      14 2.83 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> HM    G2    46.7     10 5.35         8       18 0.564      8      18 1.95 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> HM    G3    47.6      8 2.86         3       11 0.132      1       9 0.455</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> HM    G4    48.0      5 4.26         6       11 0.538      7      12 1.86 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> HM    G5    49.3      1 6.35         9       10 0.623      9      10 2.15 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> HM    G6    48.7      3 2.22         1        4 0.202      3       6 0.698</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> HM    G7    48.0      6 3.39         4       10 0.443      6      12 1.53 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> HM    G8    49.1      2 2.42         2        4 0.360      4       6 1.24 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>20</span> HM    G9    47.9      7 4.36         7       14 0.372      5      12 1.28 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 32 more variables: ASV_R &lt;dbl&gt;, ASV_SSI &lt;dbl&gt;, AVAMGE &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   AVAMGE_R &lt;dbl&gt;, AVAMGE_SSI &lt;dbl&gt;, DA &lt;dbl&gt;, DA_R &lt;dbl&gt;, DA_SSI &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   DZ &lt;dbl&gt;, DZ_R &lt;dbl&gt;, DZ_SSI &lt;dbl&gt;, EV &lt;dbl&gt;, EV_R &lt;dbl&gt;, EV_SSI &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   FA &lt;dbl&gt;, FA_R &lt;dbl&gt;, FA_SSI &lt;dbl&gt;, MASI &lt;dbl&gt;, MASI_R &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   MASI_SSI &lt;dbl&gt;, MASV &lt;dbl&gt;, MASV_R &lt;dbl&gt;, MASV_SSI &lt;dbl&gt;, SIPC &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   SIPC_R &lt;dbl&gt;, SIPC_SSI &lt;dbl&gt;, ZA &lt;dbl&gt;, ZA_R &lt;dbl&gt;, ZA_SSI &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   WAAS &lt;dbl&gt;, WAAS_R &lt;dbl&gt;, WAAS_SSI &lt;dbl&gt;</span></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

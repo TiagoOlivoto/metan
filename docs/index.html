@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -104,8 +104,20 @@
 <li>
   <a href="reference/index.html">Functions</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="news/index.html">News</a>
+      <a href="news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -134,23 +146,26 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -387,11 +402,11 @@
 <p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>gmd()</code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="co"># Evaluating trait GY |============================================| 100% 00:00:05 </span>
+<span class="co"># Evaluating trait GY |============================================| 100% 00:00:04 </span>
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
-<span class="co"># # A tibble: 10 x 36</span>
+<span class="co"># # A tibble: 10 x 44</span>
 <span class="co">#    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span class="co">#  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 </span>
@@ -404,11 +419,12 @@
 <span class="co">#  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 </span>
 <span class="co">#  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 </span>
 <span class="co"># 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 </span>
-<span class="co"># # ... with 24 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
-<span class="co"># #   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;, HMGV &lt;dbl&gt;,</span>
-<span class="co"># #   RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;,</span>
-<span class="co"># #   S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;,</span>
-<span class="co"># #   N4 &lt;dbl&gt;</span></code></pre></div>
+<span class="co"># # ... with 32 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASTAB &lt;dbl&gt;,</span>
+<span class="co"># #   ASI &lt;dbl&gt;, ASV &lt;dbl&gt;, AVAMGE &lt;dbl&gt;, DA &lt;dbl&gt;, DZ &lt;dbl&gt;, EV &lt;dbl&gt;, FA &lt;dbl&gt;,</span>
+<span class="co"># #   MASI &lt;dbl&gt;, MASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;,</span>
+<span class="co"># #   HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;,</span>
+<span class="co"># #   Gai &lt;dbl&gt;, S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;,</span>
+<span class="co"># #   N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="citation" class="section level1">
 <h1 class="hasAnchor">

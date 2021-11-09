@@ -99,7 +99,7 @@ containing the RMSPD values of those cross-validation procedures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -157,8 +157,20 @@ containing the RMSPD values of those cross-validation procedures." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -187,23 +199,26 @@ containing the RMSPD values of those cross-validation procedures." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -272,34 +287,38 @@ data frame.</p>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'># Two examples with only 5 resampling procedures</span>
-<span class='va'>AMMI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_ammi.html'>cv_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-                resp <span class='op'>=</span> <span class='va'>GY</span>,
-                gen <span class='op'>=</span> <span class='va'>GEN</span>,
-                env <span class='op'>=</span> <span class='va'>ENV</span>,
-                rep <span class='op'>=</span> <span class='va'>REP</span>,
-                nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:01 Validating 5 of 5 sets |=========================================| 100% 00:00:01 </div><div class='input'><span class='va'>BLUP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_blup.html'>cv_blup</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-                resp <span class='op'>=</span> <span class='va'>GY</span>,
-                gen <span class='op'>=</span> <span class='va'>GEN</span>,
-                env <span class='op'>=</span> <span class='va'>ENV</span>,
-                rep <span class='op'>=</span> <span class='va'>REP</span>,
-                nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:01 Validating 5 of 5 sets |=========================================| 100% 00:00:02 </div><div class='input'><span class='va'>bind_data</span> <span class='op'>&lt;-</span> <span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>bind_data</span><span class='op'>)</span>
-</div><div class='img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span>, bind <span class='op'>=</span> <span class='st'>'means'</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $RMSPD
-#&gt;         MODEL      mean         sd         se      Q2.5     Q97.5
-#&gt; 1 BLUP_g_RCBD 0.4131957 0.02437101 0.01089905 0.3756587 0.4327774
-#&gt; 2       AMMI2 0.4238458 0.02355689 0.01053496 0.3895902 0.4465040
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "cvalidation"</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># Two examples with only 5 resampling procedures</span></span>
+<span class='r-in'><span class='va'>AMMI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_ammi.html'>cv_ammi</a></span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>                resp <span class='op'>=</span> <span class='va'>GY</span>,</span>
+<span class='r-in'>                gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>                nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:01 Validating 5 of 5 sets |=========================================| 100% 00:00:01 </span>
+<span class='r-in'><span class='va'>BLUP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cv_blup.html'>cv_blup</a></span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>                resp <span class='op'>=</span> <span class='va'>GY</span>,</span>
+<span class='r-in'>                gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>                env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>                nboot <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:00 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:01 Validating 5 of 5 sets |=========================================| 100% 00:00:02 </span>
+<span class='r-in'><span class='va'>bind_data</span> <span class='op'>&lt;-</span> <span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>bind_data</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='bind_cv-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>bind_cv</span><span class='op'>(</span><span class='va'>AMMI</span>, <span class='va'>BLUP</span>, bind <span class='op'>=</span> <span class='st'>'means'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $RMSPD</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         MODEL      mean         sd         se      Q2.5     Q97.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 BLUP_g_RCBD 0.4131957 0.02437101 0.01089905 0.3756587 0.4327774</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2       AMMI2 0.4238458 0.02355689 0.01053496 0.3895902 0.4465040</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "cvalidation"</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

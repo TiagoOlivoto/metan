@@ -97,7 +97,7 @@ Computes genotype-environment interaction means" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ Computes genotype-environment interaction means" />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ Computes genotype-environment interaction means" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -274,63 +289,72 @@ environments (columns).</p></li>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>means_ge</span> <span class='op'>&lt;-</span> <span class='fu'>ge_means</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># Genotype-environment interaction means</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: ge_means</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 140 x 4</span>
-#&gt;    ENV   GEN      GY    HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> E1    G1     2.37  46.5
-#&gt; <span style='color: #BCBCBC;'> 2</span> E1    G10    1.97  46.9
-#&gt; <span style='color: #BCBCBC;'> 3</span> E1    G2     2.90  45.3
-#&gt; <span style='color: #BCBCBC;'> 4</span> E1    G3     2.89  45.9
-#&gt; <span style='color: #BCBCBC;'> 5</span> E1    G4     2.59  48.3
-#&gt; <span style='color: #BCBCBC;'> 6</span> E1    G5     2.19  49.9
-#&gt; <span style='color: #BCBCBC;'> 7</span> E1    G6     2.30  48.2
-#&gt; <span style='color: #BCBCBC;'> 8</span> E1    G7     2.77  47.4
-#&gt; <span style='color: #BCBCBC;'> 9</span> E1    G8     2.90  48.0
-#&gt; <span style='color: #BCBCBC;'>10</span> E1    G9     2.33  47.7
-#&gt; <span style='color: #949494;'># ... with 130 more rows</span></div><div class='input'>
-<span class='co'># Environment means</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span>, what <span class='op'>=</span> <span class='st'>"env_means"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: env_means</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 14 x 3</span>
-#&gt;    ENV      GY    HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> E1     2.52  47.4
-#&gt; <span style='color: #BCBCBC;'> 2</span> E10    2.18  44.3
-#&gt; <span style='color: #BCBCBC;'> 3</span> E11    1.37  54.2
-#&gt; <span style='color: #BCBCBC;'> 4</span> E12    1.61  49.6
-#&gt; <span style='color: #BCBCBC;'> 5</span> E13    2.91  46.6
-#&gt; <span style='color: #BCBCBC;'> 6</span> E14    1.78  41.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> E2     3.18  44.1
-#&gt; <span style='color: #BCBCBC;'> 8</span> E3     4.06  52.9
-#&gt; <span style='color: #BCBCBC;'> 9</span> E4     3.68  50  
-#&gt; <span style='color: #BCBCBC;'>10</span> E5     3.91  52.2
-#&gt; <span style='color: #BCBCBC;'>11</span> E6     2.66  45.9
-#&gt; <span style='color: #BCBCBC;'>12</span> E7     1.99  48.5
-#&gt; <span style='color: #BCBCBC;'>13</span> E8     2.54  45.2
-#&gt; <span style='color: #BCBCBC;'>14</span> E9     3.06  51.3</div><div class='input'>
-<span class='co'># Genotype means</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span>, what <span class='op'>=</span> <span class='st'>"gen_means"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_means</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: gen_means</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
-#&gt;    GEN      GY    HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1     2.60  47.1
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10    2.47  48.5
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2     2.74  46.7
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3     2.96  47.6
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4     2.64  48.0
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5     2.54  49.3
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6     2.53  48.7
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7     2.74  48.0
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8     3.00  49.1
-#&gt; <span style='color: #BCBCBC;'>10</span> G9     2.51  47.9</div><div class='input'>
-<span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>means_ge</span> <span class='op'>&lt;-</span> <span class='fu'>ge_means</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Genotype-environment interaction means</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: ge_means</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: ge_means</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 140 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    ENV   GEN      GY    HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> E1    G1     2.37  46.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> E1    G10    1.97  46.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> E1    G2     2.90  45.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> E1    G3     2.89  45.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> E1    G4     2.59  48.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> E1    G5     2.19  49.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> E1    G6     2.30  48.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> E1    G7     2.77  47.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> E1    G8     2.90  48.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> E1    G9     2.33  47.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 130 more rows</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Environment means</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span>, what <span class='op'>=</span> <span class='st'>"env_means"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: ge_means</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: env_means</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 14 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    ENV      GY    HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> E1     2.52  47.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> E10    2.18  44.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> E11    1.37  54.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> E12    1.61  49.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> E13    2.91  46.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> E14    1.78  41.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> E2     3.18  44.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> E3     4.06  52.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> E4     3.68  50  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> E5     3.91  52.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> E6     2.66  45.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> E7     1.99  48.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> E8     2.54  45.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> E9     3.06  51.3</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Genotype means</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>means_ge</span>, what <span class='op'>=</span> <span class='st'>"gen_means"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: ge_means</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: gen_means</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN      GY    HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1     2.60  47.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10    2.47  48.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2     2.74  46.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3     2.96  47.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4     2.64  48.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5     2.54  49.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6     2.53  48.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7     2.74  48.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8     3.00  49.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9     2.51  47.9</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

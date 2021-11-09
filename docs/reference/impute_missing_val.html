@@ -98,7 +98,7 @@ algorithms. See Details section for more details" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ algorithms. See Details section for more details" />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ algorithms. See Details section for more details" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -347,84 +362,88 @@ R., . Altman, R. B. (2001). Missing value estimation methods for DNA
 microarrays. Bioinformatics, 17(6), 520-525.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>mat</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
-<span class='va'>mat</span>
-</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-#&gt;  [1,]    1    2    3    4    5    6    7    8    9    10
-#&gt;  [2,]    2    4    6    8   10   12   14   16   18    20
-#&gt;  [3,]    3    6    9   12   15   18   21   24   27    30
-#&gt;  [4,]    4    8   12   16   20   24   28   32   36    40
-#&gt;  [5,]    5   10   15   20   25   30   35   40   45    50
-#&gt;  [6,]    6   12   18   24   30   36   42   48   54    60
-#&gt;  [7,]    7   14   21   28   35   42   49   56   63    70
-#&gt;  [8,]    8   16   24   32   40   48   56   64   72    80
-#&gt;  [9,]    9   18   27   36   45   54   63   72   81    90
-#&gt; [10,]   10   20   30   40   50   60   70   80   90   100
-#&gt; [11,]   11   22   33   44   55   66   77   88   99   110
-#&gt; [12,]   12   24   36   48   60   72   84   96  108   120
-#&gt; [13,]   13   26   39   52   65   78   91  104  117   130
-#&gt; [14,]   14   28   42   56   70   84   98  112  126   140
-#&gt; [15,]   15   30   45   60   75   90  105  120  135   150
-#&gt; [16,]   16   32   48   64   80   96  112  128  144   160
-#&gt; [17,]   17   34   51   68   85  102  119  136  153   170
-#&gt; [18,]   18   36   54   72   90  108  126  144  162   180
-#&gt; [19,]   19   38   57   76   95  114  133  152  171   190
-#&gt; [20,]   20   40   60   80  100  120  140  160  180   200</div><div class='input'><span class='co'># 10% of missing values at random</span>
-<span class='va'>miss_mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_na_zero.html'>random_na</a></span><span class='op'>(</span><span class='va'>mat</span>, prop <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-<span class='va'>miss_mat</span>
-</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-#&gt;  [1,]    1    2    3   NA    5    6    7    8    9    10
-#&gt;  [2,]    2    4    6    8   10   12   14   16   18    20
-#&gt;  [3,]    3    6   NA   12   15   18   21   24   27    30
-#&gt;  [4,]    4   NA   12   16   20   24   28   32   36    40
-#&gt;  [5,]   NA   10   15   NA   25   30   35   40   45    50
-#&gt;  [6,]    6   12   18   24   30   36   42   48   54    NA
-#&gt;  [7,]    7   14   21   NA   35   42   49   56   63    70
-#&gt;  [8,]    8   16   24   NA   40   48   56   64   72    80
-#&gt;  [9,]    9   18   27   36   45   54   63   72   81    90
-#&gt; [10,]   10   20   NA   40   50   60   70   80   90    NA
-#&gt; [11,]   11   NA   33   44   55   66   77   88   99   110
-#&gt; [12,]   12   24   36   NA   60   NA   84   96  108   120
-#&gt; [13,]   13   NA   39   52   65   78   91  104  117    NA
-#&gt; [14,]   14   NA   42   56   70   84   NA  112  126   140
-#&gt; [15,]   15   30   45   60   75   90   NA  120  135   150
-#&gt; [16,]   16   32   48   NA   80   96  112  128  144   160
-#&gt; [17,]   17   34   51   68   85  102  119  136  153   170
-#&gt; [18,]   18   36   54   72   90  108  126  144  162   180
-#&gt; [19,]   19   38   57   76   95  114  133  152  171   190
-#&gt; [20,]   20   40   60   80  100  120   NA  160  180   200</div><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>impute_missing_val</span><span class='op'>(</span><span class='va'>miss_mat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ----------------------------------------------
-#&gt; Convergence information
-#&gt; ----------------------------------------------
-#&gt; Number of iterations: 30
-#&gt; Final RMSE: 5.96534e-11
-#&gt; Number of axis: 1
-#&gt; Convergence: TRUE
-#&gt; ----------------------------------------------</div><div class='input'><span class='va'>mod</span><span class='op'>$</span><span class='va'>.data</span>
-</div><div class='output co'>#&gt;       X1 X2 X3 X4  X5  X6  X7  X8  X9 X10
-#&gt;  [1,]  1  2  3  4   5   6   7   8   9  10
-#&gt;  [2,]  2  4  6  8  10  12  14  16  18  20
-#&gt;  [3,]  3  6  9 12  15  18  21  24  27  30
-#&gt;  [4,]  4  8 12 16  20  24  28  32  36  40
-#&gt;  [5,]  5 10 15 20  25  30  35  40  45  50
-#&gt;  [6,]  6 12 18 24  30  36  42  48  54  60
-#&gt;  [7,]  7 14 21 28  35  42  49  56  63  70
-#&gt;  [8,]  8 16 24 32  40  48  56  64  72  80
-#&gt;  [9,]  9 18 27 36  45  54  63  72  81  90
-#&gt; [10,] 10 20 30 40  50  60  70  80  90 100
-#&gt; [11,] 11 22 33 44  55  66  77  88  99 110
-#&gt; [12,] 12 24 36 48  60  72  84  96 108 120
-#&gt; [13,] 13 26 39 52  65  78  91 104 117 130
-#&gt; [14,] 14 28 42 56  70  84  98 112 126 140
-#&gt; [15,] 15 30 45 60  75  90 105 120 135 150
-#&gt; [16,] 16 32 48 64  80  96 112 128 144 160
-#&gt; [17,] 17 34 51 68  85 102 119 136 153 170
-#&gt; [18,] 18 36 54 72  90 108 126 144 162 180
-#&gt; [19,] 19 38 57 76  95 114 133 152 171 190
-#&gt; [20,] 20 40 60 80 100 120 140 160 180 200</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mat</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/r/base/matmult.html'>%*%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mat</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1,]    1    2    3    4    5    6    7    8    9    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2,]    2    4    6    8   10   12   14   16   18    20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3,]    3    6    9   12   15   18   21   24   27    30</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4,]    4    8   12   16   20   24   28   32   36    40</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5,]    5   10   15   20   25   30   35   40   45    50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [6,]    6   12   18   24   30   36   42   48   54    60</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7,]    7   14   21   28   35   42   49   56   63    70</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [8,]    8   16   24   32   40   48   56   64   72    80</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9,]    9   18   27   36   45   54   63   72   81    90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10,]   10   20   30   40   50   60   70   80   90   100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [11,]   11   22   33   44   55   66   77   88   99   110</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [12,]   12   24   36   48   60   72   84   96  108   120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13,]   13   26   39   52   65   78   91  104  117   130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [14,]   14   28   42   56   70   84   98  112  126   140</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15,]   15   30   45   60   75   90  105  120  135   150</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [16,]   16   32   48   64   80   96  112  128  144   160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17,]   17   34   51   68   85  102  119  136  153   170</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18,]   18   36   54   72   90  108  126  144  162   180</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [19,]   19   38   57   76   95  114  133  152  171   190</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [20,]   20   40   60   80  100  120  140  160  180   200</span>
+<span class='r-in'><span class='co'># 10% of missing values at random</span></span>
+<span class='r-in'><span class='va'>miss_mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='utils_na_zero.html'>random_na</a></span><span class='op'>(</span><span class='va'>mat</span>, prop <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>miss_mat</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1,]    1    2    3   NA    5    6    7    8    9    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2,]    2    4    6    8   10   12   14   16   18    20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3,]    3    6   NA   12   15   18   21   24   27    30</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4,]    4   NA   12   16   20   24   28   32   36    40</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5,]   NA   10   15   NA   25   30   35   40   45    50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [6,]    6   12   18   24   30   36   42   48   54    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7,]    7   14   21   NA   35   42   49   56   63    70</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [8,]    8   16   24   NA   40   48   56   64   72    80</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9,]    9   18   27   36   45   54   63   72   81    90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10,]   10   20   NA   40   50   60   70   80   90    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [11,]   11   NA   33   44   55   66   77   88   99   110</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [12,]   12   24   36   NA   60   NA   84   96  108   120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13,]   13   NA   39   52   65   78   91  104  117    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [14,]   14   NA   42   56   70   84   NA  112  126   140</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15,]   15   30   45   60   75   90   NA  120  135   150</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [16,]   16   32   48   NA   80   96  112  128  144   160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17,]   17   34   51   68   85  102  119  136  153   170</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18,]   18   36   54   72   90  108  126  144  162   180</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [19,]   19   38   57   76   95  114  133  152  171   190</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [20,]   20   40   60   80  100  120   NA  160  180   200</span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>impute_missing_val</span><span class='op'>(</span><span class='va'>miss_mat</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ----------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Convergence information</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ----------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of iterations: 30</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Final RMSE: 5.96534e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of axis: 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Convergence: TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ----------------------------------------------</span>
+<span class='r-in'><span class='va'>mod</span><span class='op'>$</span><span class='va'>.data</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       X1 X2 X3 X4  X5  X6  X7  X8  X9 X10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1,]  1  2  3  4   5   6   7   8   9  10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2,]  2  4  6  8  10  12  14  16  18  20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3,]  3  6  9 12  15  18  21  24  27  30</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4,]  4  8 12 16  20  24  28  32  36  40</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5,]  5 10 15 20  25  30  35  40  45  50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [6,]  6 12 18 24  30  36  42  48  54  60</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7,]  7 14 21 28  35  42  49  56  63  70</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [8,]  8 16 24 32  40  48  56  64  72  80</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9,]  9 18 27 36  45  54  63  72  81  90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10,] 10 20 30 40  50  60  70  80  90 100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [11,] 11 22 33 44  55  66  77  88  99 110</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [12,] 12 24 36 48  60  72  84  96 108 120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13,] 13 26 39 52  65  78  91 104 117 130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [14,] 14 28 42 56  70  84  98 112 126 140</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15,] 15 30 45 60  75  90 105 120 135 150</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [16,] 16 32 48 64  80  96 112 128 144 160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17,] 17 34 51 68  85 102 119 136 153 170</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18,] 18 36 54 72  90 108 126 144 162 180</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [19,] 19 38 57 76  95 114 133 152 171 190</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [20,] 20 40 60 80 100 120 140 160 180 200</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

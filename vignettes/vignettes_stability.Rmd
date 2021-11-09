@@ -243,7 +243,7 @@ print_table(fact$GY$env_strat)
 The easiest way to compute the above-mentioned stability indexes is by using the function `ge_stats()`. It is a wrapper function that computes all the stability indexes at once. To get the results into a *"ready-to-read"* file, use `get_model_data()`.
 
 ```{r }
-stat_ge <- data_ge2 %>% ge_stats(ENV, GEN, REP, resp = c(EH, EP))
+stat_ge <- data_ge2 %>% ge_stats(ENV, GEN, REP, resp = c(EH, PH))
 get_model_data(stat_ge, "stats") %>% print_table()
 get_model_data(stat_ge, "ranks") %>% print_table(digits = 1)
 

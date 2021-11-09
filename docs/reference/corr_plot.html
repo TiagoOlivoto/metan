@@ -97,7 +97,7 @@ Graphical and numerical visualization of a correlation matrix" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ Graphical and numerical visualization of a correlation matrix" />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ Graphical and numerical visualization of a correlation matrix" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -486,49 +501,56 @@ used. Set to <code>300</code> (300 dpi).</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>dataset</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span><span class='op'>)</span>
-
-<span class='co'># Default plot setting</span>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Chosing variables to be correlated</span>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
-
-<span class='co'># Axis labels, similar to the function pairs()</span>
-<span class='co'># Gray scale</span>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span>,
-          shape.point <span class='op'>=</span> <span class='fl'>19</span>,
-          size.point <span class='op'>=</span> <span class='fl'>2</span>,
-          alpha.point <span class='op'>=</span> <span class='fl'>0.5</span>,
-          alpha.diag <span class='op'>=</span> <span class='fl'>0</span>,
-          pan.spacing <span class='op'>=</span> <span class='fl'>0</span>,
-          col.sign <span class='op'>=</span> <span class='st'>'gray'</span>,
-          alpha.sign <span class='op'>=</span> <span class='fl'>0.3</span>,
-          axis.labels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span>,
-          prob <span class='op'>=</span> <span class='fl'>0.01</span>,
-          shape.point <span class='op'>=</span> <span class='fl'>21</span>,
-          col.point <span class='op'>=</span> <span class='st'>'black'</span>,
-          fill.point <span class='op'>=</span> <span class='st'>'orange'</span>,
-          size.point <span class='op'>=</span> <span class='fl'>2</span>,
-          alpha.point <span class='op'>=</span> <span class='fl'>0.6</span>,
-          maxsize <span class='op'>=</span> <span class='fl'>4</span>,
-          minsize <span class='op'>=</span> <span class='fl'>2</span>,
-          smooth <span class='op'>=</span> <span class='cn'>TRUE</span>,
-          size.line <span class='op'>=</span> <span class='fl'>1</span>,
-          col.smooth <span class='op'>=</span> <span class='st'>'black'</span>,
-          col.sign <span class='op'>=</span> <span class='st'>'cyan'</span>,
-          col.up.panel <span class='op'>=</span> <span class='st'>'black'</span>,
-          col.lw.panel <span class='op'>=</span> <span class='st'>'black'</span>,
-          col.dia.panel <span class='op'>=</span> <span class='st'>'black'</span>,
-          pan.spacing <span class='op'>=</span> <span class='fl'>0</span>,
-          lab.position <span class='op'>=</span> <span class='st'>'tl'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>dataset</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> <span class='fu'><a href='utils_rows_cols.html'>select_cols</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Default plot setting</span></span>
+<span class='r-in'><span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='corr_plot-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Chosing variables to be correlated</span></span>
+<span class='r-in'><span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='corr_plot-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Axis labels, similar to the function pairs()</span></span>
+<span class='r-in'><span class='co'># Gray scale</span></span>
+<span class='r-in'><span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span>,</span>
+<span class='r-in'>          shape.point <span class='op'>=</span> <span class='fl'>19</span>,</span>
+<span class='r-in'>          size.point <span class='op'>=</span> <span class='fl'>2</span>,</span>
+<span class='r-in'>          alpha.point <span class='op'>=</span> <span class='fl'>0.5</span>,</span>
+<span class='r-in'>          alpha.diag <span class='op'>=</span> <span class='fl'>0</span>,</span>
+<span class='r-in'>          pan.spacing <span class='op'>=</span> <span class='fl'>0</span>,</span>
+<span class='r-in'>          col.sign <span class='op'>=</span> <span class='st'>'gray'</span>,</span>
+<span class='r-in'>          alpha.sign <span class='op'>=</span> <span class='fl'>0.3</span>,</span>
+<span class='r-in'>          axis.labels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='corr_plot-3.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>corr_plot</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>PH</span>, <span class='va'>EH</span>, <span class='va'>EL</span>,</span>
+<span class='r-in'>          prob <span class='op'>=</span> <span class='fl'>0.01</span>,</span>
+<span class='r-in'>          shape.point <span class='op'>=</span> <span class='fl'>21</span>,</span>
+<span class='r-in'>          col.point <span class='op'>=</span> <span class='st'>'black'</span>,</span>
+<span class='r-in'>          fill.point <span class='op'>=</span> <span class='st'>'orange'</span>,</span>
+<span class='r-in'>          size.point <span class='op'>=</span> <span class='fl'>2</span>,</span>
+<span class='r-in'>          alpha.point <span class='op'>=</span> <span class='fl'>0.6</span>,</span>
+<span class='r-in'>          maxsize <span class='op'>=</span> <span class='fl'>4</span>,</span>
+<span class='r-in'>          minsize <span class='op'>=</span> <span class='fl'>2</span>,</span>
+<span class='r-in'>          smooth <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>          size.line <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span class='r-in'>          col.smooth <span class='op'>=</span> <span class='st'>'black'</span>,</span>
+<span class='r-in'>          col.sign <span class='op'>=</span> <span class='st'>'cyan'</span>,</span>
+<span class='r-in'>          col.up.panel <span class='op'>=</span> <span class='st'>'black'</span>,</span>
+<span class='r-in'>          col.lw.panel <span class='op'>=</span> <span class='st'>'black'</span>,</span>
+<span class='r-in'>          col.dia.panel <span class='op'>=</span> <span class='st'>'black'</span>,</span>
+<span class='r-in'>          pan.spacing <span class='op'>=</span> <span class='fl'>0</span>,</span>
+<span class='r-in'>          lab.position <span class='op'>=</span> <span class='st'>'tl'</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
+<span class='r-plt img'><img src='corr_plot-4.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

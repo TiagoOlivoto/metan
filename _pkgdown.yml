@@ -11,7 +11,6 @@ template:
     docsearch:
       api_key: ef40e3bab94bb0e1d687fd3844052701
       index_name: metan
-
 toc:
   depth: 3
 
@@ -55,7 +54,11 @@ navbar:
     - text: "Functions"
       href: reference/index.html
     - text: News
-      href: news/index.html
+      menu:
+      - text: Package news
+        href: news/index.html
+      - text: Blog posts
+        href: https://olivoto.netlify.app/
     - text: More
       menu:
       - text: Code of Conduct
@@ -69,13 +72,13 @@ navbar:
       - text: Licence
         href: LICENSE.html
   right:
-    - text: "RG"
+    - icon: "fab fa-researchgate fa-2x"
       href: https://www.researchgate.net/profile/Tiago_Olivoto2
-    - icon: "fa-github"
+    - icon: "fa-github fa-2x"
       href: https://github.com/TiagoOlivoto
-    - icon: "fab fa-twitter"
+    - icon: "fab fa-twitter fa-2x"
       href: https://twitter.com/tolivoto
-    - icon: "fab fa-mendeley"
+    - icon: "fab fa-mendeley fa-2x"
       href: https://www.mendeley.com/profiles/tiago-olivoto/
 
 reference:
@@ -115,7 +118,7 @@ reference:
       - predict.performs_ammi
   - subtitle: "Print models"
     contents:
-      - print.AMMI_indexes
+      - print.ammi_indexes
       - print.performs_ammi
       - print.waas
       - print.waas_means

@@ -395,7 +395,7 @@ plot.performs_ammi <- function(x, ...) {
 #'
 predict.performs_ammi <- function(object, naxis = 2, ...) {
     cal <- match.call()
-    if (class(object) != "performs_ammi") {
+    if (!class(object)   %in% c("performs_ammi", "waas")) {
         stop("The objectin must be an objectin of the class 'performs_ammi'")
     }
     if (length(object) != length(naxis)) {
@@ -448,7 +448,8 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
             }
         }
     }
-    invisible(structure(listres, class = "performs_ammi"))
+    listres <- rbind_fill_id(listres, .id = "TRAIT")
+    invisible(listres)
 }
 
 

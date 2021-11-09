@@ -9,7 +9,6 @@
 #' * [blup_indexes()] Is a wrapper around the above functions that also computes
 #' the WAASB index (Olivoto et al. 2019) if an object computed with [waasb()] is
 #' used as input data.
-#' * [Resende_indexes()] `r badge('deprecated')` Use `blup_indexes()` instead.
 #' @name blup_indexes
 #' @details
 #' The indexes computed with this function have been used to select genotypes
@@ -156,14 +155,6 @@ hmrpgv <- function(model){
     map(model, hmrpgv) %>%
         set_class("blup_ind") %>%
         return()
-}
-#' @name blup_indexes
-#' @export
-Resende_indexes <- function(model) {
-    if (!is(model, "waasb")) {
-        stop("The object 'model' must be an object of class \"waasb\"")
-    }
-    deprecated_error("1.13.0", "metan::Resende_indexes()", "metan::blup_indexes()")
 }
 #' @name blup_indexes
 #' @export

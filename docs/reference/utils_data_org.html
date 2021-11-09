@@ -106,7 +106,7 @@ genotype, and replication, format the data to be used in the Selegen software
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -164,8 +164,20 @@ genotype, and replication, format the data to be used in the Selegen software
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -194,23 +206,26 @@ genotype, and replication, format the data to be used in the Selegen software
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -310,59 +325,64 @@ doi: <a href='https://doi.org/10.1590/1984-70332016v16n4a49'>10.1590/1984-703320
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>df_ge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='data_simula.html'>ge_simula</a></span><span class='op'>(</span>ngen <span class='op'>=</span> <span class='fl'>2</span>,
-                   nenv <span class='op'>=</span> <span class='fl'>3</span>,
-                   nrep <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-         <span class='fu'><a href='utils_rows_cols.html'>add_cols</a></span><span class='op'>(</span>ENV <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"CACIQUE"</span>, <span class='fl'>4</span><span class='op'>)</span>,
-                          <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"FREDERICO"</span>, <span class='fl'>4</span><span class='op'>)</span>,
-                          <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"SANTA_MARIA"</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>df_ge</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 4</span>
-#&gt;    ENV         GEN   REP      V1
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1     120.
-#&gt; <span style='color: #BCBCBC;'> 2</span> CACIQUE     H1    B2     118.
-#&gt; <span style='color: #BCBCBC;'> 3</span> CACIQUE     H2    B1     127.
-#&gt; <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2     124.
-#&gt; <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1     114.
-#&gt; <span style='color: #BCBCBC;'> 6</span> FREDERICO   H1    B2     117.
-#&gt; <span style='color: #BCBCBC;'> 7</span> FREDERICO   H2    B1     131.
-#&gt; <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2     131.
-#&gt; <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1     114.
-#&gt; <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H1    B2     108.
-#&gt; <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H2    B1     122.
-#&gt; <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2     108.</div><div class='input'>
-<span class='co'># Add sequential block numbering over environments</span>
-<span class='fu'>add_seq_block</span><span class='op'>(</span><span class='va'>df_ge</span>, <span class='va'>ENV</span>, <span class='va'>REP</span>, prefix <span class='op'>=</span> <span class='st'>"B"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The data `df_ge` has been arranged according to the `ENV` and `REP` columns.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 5</span>
-#&gt;    ENV         GEN   REP   BLOCK    V1
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1    B1     120.
-#&gt; <span style='color: #BCBCBC;'> 2</span> CACIQUE     H2    B1    B1     127.
-#&gt; <span style='color: #BCBCBC;'> 3</span> CACIQUE     H1    B2    B2     118.
-#&gt; <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2    B2     124.
-#&gt; <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1    B3     114.
-#&gt; <span style='color: #BCBCBC;'> 6</span> FREDERICO   H2    B1    B3     131.
-#&gt; <span style='color: #BCBCBC;'> 7</span> FREDERICO   H1    B2    B4     117.
-#&gt; <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2    B4     131.
-#&gt; <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1    B5     114.
-#&gt; <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H2    B1    B5     122.
-#&gt; <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H1    B2    B6     108.
-#&gt; <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2    B6     108.</div><div class='input'>
-<span class='co'># Recode the 'ENV' column to "ENV1", "ENV2", and so on.</span>
-<span class='fu'>recode_factor</span><span class='op'>(</span><span class='va'>df_ge</span>,
-              factor <span class='op'>=</span> <span class='va'>ENV</span>,
-              prefix <span class='op'>=</span> <span class='st'>"ENV"</span>,
-              new_factor <span class='op'>=</span> <span class='va'>ENV_CODE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in list2(...): objeto 'ENV' não encontrado</span></div><div class='input'>
-<span class='co'># Format the data to be used in the Selegen software (model 54)</span>
-<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>df_to_selegen_54</span><span class='op'>(</span><span class='va'>df_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>recode_factor</span><span class='op'>(</span><span class='va'>ENV</span>, prefix <span class='op'>=</span> <span class='st'>"E"</span>, new_factor <span class='op'>=</span> <span class='va'>ENV</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in list2(...): objeto 'ENV' não encontrado</span></div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df_ge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='data_simula.html'>ge_simula</a></span><span class='op'>(</span>ngen <span class='op'>=</span> <span class='fl'>2</span>,</span>
+<span class='r-in'>                   nenv <span class='op'>=</span> <span class='fl'>3</span>,</span>
+<span class='r-in'>                   nrep <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>         <span class='fu'><a href='utils_rows_cols.html'>add_cols</a></span><span class='op'>(</span>ENV <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"CACIQUE"</span>, <span class='fl'>4</span><span class='op'>)</span>,</span>
+<span class='r-in'>                          <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"FREDERICO"</span>, <span class='fl'>4</span><span class='op'>)</span>,</span>
+<span class='r-in'>                          <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"SANTA_MARIA"</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df_ge</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 12 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    ENV         GEN   REP      V1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1     77.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> CACIQUE     H1    B2     86.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> CACIQUE     H2    B1    116. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2    119. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1     91.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> FREDERICO   H1    B2     86.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> FREDERICO   H2    B1    110. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2    100. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1     94.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H1    B2     93.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H2    B1    124. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2    123. </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Add sequential block numbering over environments</span></span>
+<span class='r-in'><span class='fu'>add_seq_block</span><span class='op'>(</span><span class='va'>df_ge</span>, <span class='va'>ENV</span>, <span class='va'>REP</span>, prefix <span class='op'>=</span> <span class='st'>"B"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The data `df_ge` has been arranged according to the `ENV` and `REP` columns.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 12 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    ENV         GEN   REP   BLOCK    V1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> CACIQUE     H1    B1    B1     77.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> CACIQUE     H2    B1    B1    116. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> CACIQUE     H1    B2    B2     86.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> CACIQUE     H2    B2    B2    119. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> FREDERICO   H1    B1    B3     91.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> FREDERICO   H2    B1    B3    110. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> FREDERICO   H1    B2    B4     86.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> FREDERICO   H2    B2    B4    100. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> SANTA_MARIA H1    B1    B5     94.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> SANTA_MARIA H2    B1    B5    124. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> SANTA_MARIA H1    B2    B6     93.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> SANTA_MARIA H2    B2    B6    123. </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Recode the 'ENV' column to "ENV1", "ENV2", and so on.</span></span>
+<span class='r-in'><span class='fu'>recode_factor</span><span class='op'>(</span><span class='va'>df_ge</span>,</span>
+<span class='r-in'>              factor <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>              prefix <span class='op'>=</span> <span class='st'>"ENV"</span>,</span>
+<span class='r-in'>              new_factor <span class='op'>=</span> <span class='va'>ENV_CODE</span><span class='op'>)</span></span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in list2(...):</span> objeto 'ENV' não encontrado</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Format the data to be used in the Selegen software (model 54)</span></span>
+<span class='r-in'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>df_to_selegen_54</span><span class='op'>(</span><span class='va'>df_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'><span class='fu'>recode_factor</span><span class='op'>(</span><span class='va'>ENV</span>, prefix <span class='op'>=</span> <span class='st'>"E"</span>, new_factor <span class='op'>=</span> <span class='va'>ENV</span><span class='op'>)</span></span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in list2(...):</span> objeto 'ENV' não encontrado</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

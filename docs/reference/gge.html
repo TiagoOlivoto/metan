@@ -99,7 +99,7 @@ response variable or a two-way table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -157,8 +157,20 @@ response variable or a two-way table." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -187,23 +199,26 @@ response variable or a two-way table." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -341,35 +356,39 @@ geneticists, and agronomists. CRC Press.</p>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>GY</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
-</div><div class='img'><img src='gge-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># GGE model for all numeric variables</span>
-<span class='va'>mod2</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod2</span>, var <span class='op'>=</span> <span class='st'>"ED"</span><span class='op'>)</span>
-</div><div class='img'><img src='gge-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># If we have a two-way table with the mean values for</span>
-<span class='co'># genotypes and environments</span>
-
-<span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='make_mat.html'>make_mat</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span>, <span class='va'>ENV</span>, <span class='va'>GY</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
-<span class='va'>table</span>
-</div><div class='output co'>#&gt;       E1  E10  E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
-#&gt; G1  2.37 2.31 1.36 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78
-#&gt; G10 1.97 1.54 0.90 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15
-#&gt; G2  2.90 2.30 1.49 1.99 3.03 1.43 3.23 4.57 3.72 3.83 2.54 1.99 2.05 3.36
-#&gt; G3  2.89 2.34 1.57 1.76 3.47 2.06 3.61 4.13 4.13 4.13 2.98 2.16 2.85 3.29
-#&gt; G4  2.59 2.17 1.37 1.53 2.64 1.86 3.19 3.85 3.30 3.78 2.70 1.98 2.30 3.72
-#&gt; G5  2.19 2.14 1.33 1.69 2.57 1.78 3.14 3.74 3.38 3.47 2.43 1.66 2.71 3.30
-#&gt; G6  2.30 2.21 1.50 1.39 2.91 1.80 3.29 3.43 3.40 3.57 2.34 1.76 2.54 3.04
-#&gt; G7  2.77 2.44 1.36 1.95 3.18 1.94 2.61 4.10 3.02 4.05 2.67 2.55 2.58 3.14
-#&gt; G8  2.90 2.57 1.68 2.00 3.52 1.99 3.44 4.11 4.14 4.81 2.91 2.26 2.88 2.83
-#&gt; G9  2.33 1.74 1.13 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</div><div class='input'><span class='fu'><a href='make_long.html'>make_long</a></span><span class='op'>(</span><span class='va'>table</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>gge</span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>Y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='gge-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>GY</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='gge-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># GGE model for all numeric variables</span></span>
+<span class='r-in'><span class='va'>mod2</span> <span class='op'>&lt;-</span> <span class='fu'>gge</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod2</span>, var <span class='op'>=</span> <span class='st'>"ED"</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='gge-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># If we have a two-way table with the mean values for</span></span>
+<span class='r-in'><span class='co'># genotypes and environments</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='make_mat.html'>make_mat</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>GEN</span>, <span class='va'>ENV</span>, <span class='va'>GY</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>table</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       E1  E10  E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  2.37 2.31 1.36 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 1.97 1.54 0.90 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  2.90 2.30 1.49 1.99 3.03 1.43 3.23 4.57 3.72 3.83 2.54 1.99 2.05 3.36</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3  2.89 2.34 1.57 1.76 3.47 2.06 3.61 4.13 4.13 4.13 2.98 2.16 2.85 3.29</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  2.59 2.17 1.37 1.53 2.64 1.86 3.19 3.85 3.30 3.78 2.70 1.98 2.30 3.72</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  2.19 2.14 1.33 1.69 2.57 1.78 3.14 3.74 3.38 3.47 2.43 1.66 2.71 3.30</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  2.30 2.21 1.50 1.39 2.91 1.80 3.29 3.43 3.40 3.57 2.34 1.76 2.54 3.04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  2.77 2.44 1.36 1.95 3.18 1.94 2.61 4.10 3.02 4.05 2.67 2.55 2.58 3.14</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  2.90 2.57 1.68 2.00 3.52 1.99 3.44 4.11 4.14 4.81 2.91 2.26 2.88 2.83</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  2.33 1.74 1.13 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</span>
+<span class='r-in'><span class='fu'><a href='make_long.html'>make_long</a></span><span class='op'>(</span><span class='va'>table</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'><span class='fu'>gge</span><span class='op'>(</span><span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>Y</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='gge-3.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

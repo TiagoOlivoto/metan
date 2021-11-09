@@ -104,7 +104,7 @@ correlation coefficient." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -162,8 +162,20 @@ correlation coefficient." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -192,23 +204,26 @@ correlation coefficient." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -281,20 +296,21 @@ doi: <a href='https://doi.org/10.2134/agronj2016.04.0196'>10.2134/agronj2016.04.
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># \donttest{</span>
-<span class='fu'>corr_ss</span><span class='op'>(</span>r <span class='op'>=</span> <span class='fl'>0.60</span>, CI <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ------------------------------------------------- 
-#&gt; Sample size planning for correlation coefficient 
-#&gt; ------------------------------------------------- 
-#&gt; Level of significance: 5%
-#&gt; Correlation coefficient: 0.6
-#&gt; 95% half-width CI: 0.1
-#&gt; Required sample size: 194
-#&gt; ------------------------------------------------- </div><div class='input'><span class='co'># }</span>
-
-
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='fu'>corr_ss</span><span class='op'>(</span>r <span class='op'>=</span> <span class='fl'>0.60</span>, CI <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------- </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sample size planning for correlation coefficient </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------- </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Level of significance: 5%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Correlation coefficient: 0.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 95% half-width CI: 0.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Required sample size: 194</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------- </span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

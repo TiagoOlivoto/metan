@@ -99,7 +99,7 @@ Performs clustering analysis with selection of variables." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -157,8 +157,20 @@ Performs clustering analysis with selection of variables." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -187,23 +199,26 @@ Performs clustering analysis with selection of variables." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -365,60 +380,61 @@ rules: an evaluation. Comput. J. 20:359-363. doi: <a href='https://doi.org/10.10
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-
-<span class='co'># All rows and all numeric variables from data</span>
-<span class='va'>d1</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span>
-
-<span class='co'># Based on the mean for each genotype</span>
-<span class='va'>mean_gen</span> <span class='op'>&lt;-</span>
- <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='utils_rows_cols.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span>
-
-<span class='va'>d2</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span><span class='op'>)</span>
-
-
-<span class='co'># Select variables for compute the distances</span>
-<span class='va'>d3</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span>, selvar <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; EH excluded in this step |===                                             | 7% EP excluded in this step |=======                                         | 14% CDED excluded in this step |==========                                    | 21% PH excluded in this step |==============                                  | 29% CL excluded in this step |=================                               | 36% NR excluded in this step |=====================                           | 43% PERK excluded in this step |=======================                       | 50% EL excluded in this step |===========================                     | 57% CD excluded in this step |===============================                 | 64% ED excluded in this step |==================================              | 71% KW excluded in this step |======================================          | 79% CW excluded in this step |=========================================       | 86% NKR excluded in this step |============================================   | 93% TKW excluded in this step |===============================================| 100% 
-#&gt; --------------------------------------------------------------------------
-#&gt; 
-#&gt; Summary of the adjusted models 
-#&gt; --------------------------------------------------------------------------
-#&gt;     Model excluded cophenetic remaining cormantel    pvmantel
-#&gt;   Model 1        -  0.8656190        15 1.0000000 0.000999001
-#&gt;   Model 2       EH  0.8656191        14 1.0000000 0.000999001
-#&gt;   Model 3       EP  0.8656191        13 1.0000000 0.000999001
-#&gt;   Model 4     CDED  0.8656191        12 1.0000000 0.000999001
-#&gt;   Model 5       PH  0.8656189        11 1.0000000 0.000999001
-#&gt;   Model 6       CL  0.8655939        10 0.9999996 0.000999001
-#&gt;   Model 7       NR  0.8656719         9 0.9999982 0.000999001
-#&gt;   Model 8     PERK  0.8657259         8 0.9999977 0.000999001
-#&gt;   Model 9       EL  0.8657904         7 0.9999972 0.000999001
-#&gt;  Model 10       CD  0.8658997         6 0.9999964 0.000999001
-#&gt;  Model 11       ED  0.8658274         5 0.9999931 0.000999001
-#&gt;  Model 12       KW  0.8643556         4 0.9929266 0.000999001
-#&gt;  Model 13       CW  0.8640355         3 0.9927593 0.000999001
-#&gt;  Model 14      NKR  0.8648384         2 0.9925396 0.000999001
-#&gt; --------------------------------------------------------------------------
-#&gt; Suggested variables to be used in the analysis
-#&gt; --------------------------------------------------------------------------
-#&gt; The clustering was calculated with the  Model 10 
-#&gt; The variables included in this model were...
-#&gt;  ED CW KW NKR TKW NKE 
-#&gt; --------------------------------------------------------------------------
-#&gt; </div><div class='input'>
-<span class='co'># Compute the distances with standardized data</span>
-<span class='co'># Define 4 clusters</span>
-<span class='va'>d4</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge</span>,
-                 by <span class='op'>=</span> <span class='va'>ENV</span>,
-                 scale <span class='op'>=</span> <span class='cn'>TRUE</span>,
-                 nclust <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
-
-<span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># All rows and all numeric variables from data</span></span>
+<span class='r-in'><span class='va'>d1</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Based on the mean for each genotype</span></span>
+<span class='r-in'><span class='va'>mean_gen</span> <span class='op'>&lt;-</span></span>
+<span class='r-in'> <span class='va'>data_ge2</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'> <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'> <span class='fu'><a href='utils_rows_cols.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>d2</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Select variables for compute the distances</span></span>
+<span class='r-in'><span class='va'>d3</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>mean_gen</span>, selvar <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EH excluded in this step |===                                             | 7% EP excluded in this step |=======                                         | 14% CDED excluded in this step |==========                                    | 21% PH excluded in this step |==============                                  | 29% CL excluded in this step |=================                               | 36% NR excluded in this step |=====================                           | 43% PERK excluded in this step |=======================                       | 50% EL excluded in this step |===========================                     | 57% CD excluded in this step |===============================                 | 64% ED excluded in this step |==================================              | 71% KW excluded in this step |======================================          | 79% CW excluded in this step |=========================================       | 86% NKR excluded in this step |============================================   | 93% TKW excluded in this step |===============================================| 100% </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> --------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Summary of the adjusted models </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> --------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Model excluded cophenetic remaining cormantel    pvmantel</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 1        -  0.8656190        15 1.0000000 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 2       EH  0.8656191        14 1.0000000 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 3       EP  0.8656191        13 1.0000000 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 4     CDED  0.8656191        12 1.0000000 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 5       PH  0.8656189        11 1.0000000 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 6       CL  0.8655939        10 0.9999996 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 7       NR  0.8656719         9 0.9999982 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 8     PERK  0.8657259         8 0.9999977 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Model 9       EL  0.8657904         7 0.9999972 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Model 10       CD  0.8658997         6 0.9999964 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Model 11       ED  0.8658274         5 0.9999931 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Model 12       KW  0.8643556         4 0.9929266 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Model 13       CW  0.8640355         3 0.9927593 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Model 14      NKR  0.8648384         2 0.9925396 0.000999001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> --------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Suggested variables to be used in the analysis</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> --------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> The clustering was calculated with the  Model 10 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> The variables included in this model were...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  ED CW KW NKR TKW NKE </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> --------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute the distances with standardized data</span></span>
+<span class='r-in'><span class='co'># Define 4 clusters</span></span>
+<span class='r-in'><span class='va'>d4</span> <span class='op'>&lt;-</span> <span class='fu'>clustering</span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>                 by <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>                 scale <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>                 nclust <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

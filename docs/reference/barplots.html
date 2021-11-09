@@ -104,7 +104,7 @@ two-way trial with qualitative-qualitative treatment structure.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -162,8 +162,20 @@ two-way trial with qualitative-qualitative treatment structure.
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -192,23 +204,26 @@ two-way trial with qualitative-qualitative treatment structure.
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -547,27 +562,29 @@ be used. For more details, see <code><a href='https://ggplot2.tidyverse.org/refe
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'># two categorical variables</span>
-<span class='fu'>plot_factbars</span><span class='op'>(</span><span class='va'>data_ge2</span>,
-              <span class='va'>GEN</span>,
-              <span class='va'>ENV</span>,
-              resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span>
-</div><div class='img'><img src='barplots-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># one categorical variable</span>
-<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>PH</span><span class='op'>)</span>
-<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>PH</span>,
-                n.dodge <span class='op'>=</span> <span class='fl'>2</span>, <span class='co'># two rows for x labels</span>
-                y.expand <span class='op'>=</span> <span class='fl'>0.1</span>, <span class='co'># expand y scale</span>
-                y.contract <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.75</span>, <span class='co'># contract the lower limit</span>
-                errorbar <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='co'># remove errorbar</span>
-                color.bar <span class='op'>=</span> <span class='st'>"red"</span>, <span class='co'># color of bars</span>
-                fill.bar <span class='op'>=</span> <span class='fu'><a href='themes.html'>alpha_color</a></span><span class='op'>(</span><span class='st'>"cyan"</span>, <span class='fl'>75</span><span class='op'>)</span>, <span class='co'># create a transparent color</span>
-                lab.bar <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>13</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># add labels</span>
-<span class='fu'><a href='arrange_ggplot.html'>arrange_ggplot</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span>
-</div><div class='img'><img src='barplots-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># two categorical variables</span></span>
+<span class='r-in'><span class='fu'>plot_factbars</span><span class='op'>(</span><span class='va'>data_ge2</span>,</span>
+<span class='r-in'>              <span class='va'>GEN</span>,</span>
+<span class='r-in'>              <span class='va'>ENV</span>,</span>
+<span class='r-in'>              resp <span class='op'>=</span> <span class='va'>PH</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='barplots-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># one categorical variable</span></span>
+<span class='r-in'><span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>PH</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>plot_bars</span><span class='op'>(</span><span class='va'>data_g</span>, <span class='va'>GEN</span>, <span class='va'>PH</span>,</span>
+<span class='r-in'>                n.dodge <span class='op'>=</span> <span class='fl'>2</span>, <span class='co'># two rows for x labels</span></span>
+<span class='r-in'>                y.expand <span class='op'>=</span> <span class='fl'>0.1</span>, <span class='co'># expand y scale</span></span>
+<span class='r-in'>                y.contract <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.75</span>, <span class='co'># contract the lower limit</span></span>
+<span class='r-in'>                errorbar <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='co'># remove errorbar</span></span>
+<span class='r-in'>                color.bar <span class='op'>=</span> <span class='st'>"red"</span>, <span class='co'># color of bars</span></span>
+<span class='r-in'>                fill.bar <span class='op'>=</span> <span class='fu'><a href='themes.html'>alpha_color</a></span><span class='op'>(</span><span class='st'>"cyan"</span>, <span class='fl'>75</span><span class='op'>)</span>, <span class='co'># create a transparent color</span></span>
+<span class='r-in'>                lab.bar <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>13</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># add labels</span></span>
+<span class='r-in'><span class='fu'><a href='arrange_ggplot.html'>arrange_ggplot</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='barplots-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

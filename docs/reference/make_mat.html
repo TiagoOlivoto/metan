@@ -98,7 +98,7 @@ data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ data." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ data." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -278,58 +293,60 @@ in the columns, filled by the argument <code>value</code>.</p>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>matrix</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'>%&gt;%</span> <span class='fu'>make_mat</span><span class='op'>(</span>row <span class='op'>=</span> <span class='va'>GEN</span>, col <span class='op'>=</span> <span class='va'>ENV</span>, val <span class='op'>=</span> <span class='va'>GY</span><span class='op'>)</span>
-<span class='va'>matrix</span>
-</div><div class='output co'>#&gt;           E1      E10      E11      E12      E13      E14       E2       E3
-#&gt; G1  2.365787 2.307633 1.355667 1.342333 2.998259 1.533333 3.040690 4.080333
-#&gt; G10 1.974073 1.536253 0.899100 1.022136 1.830667 1.859210 3.145840 4.114333
-#&gt; G2  2.901747 2.297053 1.490720 1.993333 3.028309 1.426580 3.231053 4.568667
-#&gt; G3  2.888587 2.336727 1.567727 1.764358 3.469148 2.059654 3.608280 4.132333
-#&gt; G4  2.588567 2.167353 1.370000 1.527333 2.635716 1.861333 3.190080 3.854333
-#&gt; G5  2.188260 2.139833 1.325667 1.689000 2.568099 1.784296 3.140137 3.741333
-#&gt; G6  2.300800 2.208147 1.500667 1.385667 2.911667 1.798852 3.291173 3.434667
-#&gt; G7  2.773727 2.441893 1.364333 1.951630 3.183840 1.936333 2.612677 4.101333
-#&gt; G8  2.899360 2.574867 1.683433 2.000000 3.519975 1.991864 3.444797 4.110000
-#&gt; G9  2.325927 1.742333 1.125333 1.409333 2.950630 1.567877 3.094863 4.506000
-#&gt;           E4       E5       E6       E7       E8       E9
-#&gt; G1  3.494333 4.170531 2.809086 1.897880 2.271933 2.783667
-#&gt; G10 4.271000 3.365667 2.484877 2.243627 2.700310 3.150000
-#&gt; G2  3.715573 3.827432 2.541333 1.987627 2.045297 3.363333
-#&gt; G3  4.134000 4.126654 2.984716 2.158547 2.850420 3.293667
-#&gt; G4  3.302167 3.782605 2.701185 1.980887 2.300590 3.724667
-#&gt; G5  3.379113 3.469000 2.433321 1.656767 2.708330 3.299667
-#&gt; G6  3.403473 3.568926 2.335556 1.757787 2.539380 3.039667
-#&gt; G7  3.018953 4.047914 2.665901 2.550813 2.583383 3.140000
-#&gt; G8  4.137773 4.812099 2.908123 2.261780 2.878853 2.828000
-#&gt; G9  3.896340 3.934173 2.768037 1.393247 2.485260 1.943333</div><div class='input'>
-<span class='co'># standart error of mean</span>
-
-<span class='va'>data_ge</span> <span class='op'>%&gt;%</span> <span class='fu'>make_mat</span><span class='op'>(</span><span class='va'>GEN</span>, <span class='va'>ENV</span>, <span class='va'>GY</span>, <span class='va'>sem</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;             E1        E10       E11        E12       E13       E14         E2
-#&gt; G1  0.10176850 0.15393927 0.1840202 0.13684216 0.1960110 0.1616202 0.06714584
-#&gt; G10 0.36385473 0.18293605 0.1148991 0.09783392 0.1298876 0.1328169 0.06402113
-#&gt; G2  0.18617274 0.14997427 0.2228192 0.16035828 0.1043294 0.1317479 0.25773834
-#&gt; G3  0.39297456 0.14894295 0.1971982 0.11905380 0.1923882 0.1674466 0.14152559
-#&gt; G4  0.21791349 0.04356835 0.2035444 0.12112987 0.1084774 0.1530489 0.09983255
-#&gt; G5  0.05179213 0.18957866 0.2077260 0.12125318 0.1990339 0.1793584 0.14477522
-#&gt; G6  0.11077348 0.20694395 0.2720186 0.15590738 0.2124157 0.1170669 0.10386715
-#&gt; G7  0.09357705 0.13297708 0.2556823 0.13901861 0.2210526 0.2084501 0.72265593
-#&gt; G8  0.01350830 0.20686577 0.2372548 0.16558080 0.2242682 0.1121055 0.24083058
-#&gt; G9  0.22483504 0.23436605 0.1576646 0.15024905 0.1576420 0.2145494 0.22648527
-#&gt;             E3        E4         E5        E6         E7         E8         E9
-#&gt; G1  0.23285642 0.2069721 0.22583663 0.1177271 0.27361994 0.18434916 0.24088748
-#&gt; G10 0.33584041 0.1102784 0.16138395 0.1482116 0.11935649 0.12142222 0.32376071
-#&gt; G2  0.13243531 0.1764011 0.07460125 0.1419699 0.27118118 0.05475980 0.23441369
-#&gt; G3  0.18997397 0.1963746 0.19245794 0.1491641 0.22028215 0.14242780 0.41240487
-#&gt; G4  0.26609606 0.2032492 0.17964339 0.1208911 0.28715516 0.26001401 0.13358809
-#&gt; G5  0.35560949 0.1102458 0.18053255 0.1671079 0.15393295 0.24639288 0.23282134
-#&gt; G6  0.31191897 0.2973022 0.19296432 0.1907696 0.14544696 0.28935692 0.17583547
-#&gt; G7  0.25336228 0.2347714 0.12000312 0.0834189 0.21589852 0.14491164 0.11357817
-#&gt; G8  0.34028566 0.1274485 0.16166059 0.1915529 0.10396713 0.21588338 0.11722770
-#&gt; G9  0.06711433 0.3376508 0.09859422 0.1678251 0.06465526 0.06345724 0.09722368</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>matrix</span> <span class='op'>&lt;-</span> <span class='va'>data_ge</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> <span class='fu'>make_mat</span><span class='op'>(</span>row <span class='op'>=</span> <span class='va'>GEN</span>, col <span class='op'>=</span> <span class='va'>ENV</span>, val <span class='op'>=</span> <span class='va'>GY</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>matrix</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           E1      E10      E11      E12      E13      E14       E2       E3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  2.365787 2.307633 1.355667 1.342333 2.998259 1.533333 3.040690 4.080333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 1.974073 1.536253 0.899100 1.022136 1.830667 1.859210 3.145840 4.114333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  2.901747 2.297053 1.490720 1.993333 3.028309 1.426580 3.231053 4.568667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3  2.888587 2.336727 1.567727 1.764358 3.469148 2.059654 3.608280 4.132333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  2.588567 2.167353 1.370000 1.527333 2.635716 1.861333 3.190080 3.854333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  2.188260 2.139833 1.325667 1.689000 2.568099 1.784296 3.140137 3.741333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  2.300800 2.208147 1.500667 1.385667 2.911667 1.798852 3.291173 3.434667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  2.773727 2.441893 1.364333 1.951630 3.183840 1.936333 2.612677 4.101333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  2.899360 2.574867 1.683433 2.000000 3.519975 1.991864 3.444797 4.110000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  2.325927 1.742333 1.125333 1.409333 2.950630 1.567877 3.094863 4.506000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           E4       E5       E6       E7       E8       E9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  3.494333 4.170531 2.809086 1.897880 2.271933 2.783667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 4.271000 3.365667 2.484877 2.243627 2.700310 3.150000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  3.715573 3.827432 2.541333 1.987627 2.045297 3.363333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3  4.134000 4.126654 2.984716 2.158547 2.850420 3.293667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  3.302167 3.782605 2.701185 1.980887 2.300590 3.724667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  3.379113 3.469000 2.433321 1.656767 2.708330 3.299667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  3.403473 3.568926 2.335556 1.757787 2.539380 3.039667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  3.018953 4.047914 2.665901 2.550813 2.583383 3.140000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  4.137773 4.812099 2.908123 2.261780 2.878853 2.828000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  3.896340 3.934173 2.768037 1.393247 2.485260 1.943333</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># standart error of mean</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>data_ge</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> <span class='fu'>make_mat</span><span class='op'>(</span><span class='va'>GEN</span>, <span class='va'>ENV</span>, <span class='va'>GY</span>, <span class='va'>sem</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>             E1        E10       E11        E12       E13       E14         E2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  0.10176850 0.15393927 0.1840202 0.13684216 0.1960110 0.1616202 0.06714584</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 0.36385473 0.18293605 0.1148991 0.09783392 0.1298876 0.1328169 0.06402113</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  0.18617274 0.14997427 0.2228192 0.16035828 0.1043294 0.1317479 0.25773834</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3  0.39297456 0.14894295 0.1971982 0.11905380 0.1923882 0.1674466 0.14152559</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  0.21791349 0.04356835 0.2035444 0.12112987 0.1084774 0.1530489 0.09983255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  0.05179213 0.18957866 0.2077260 0.12125318 0.1990339 0.1793584 0.14477522</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  0.11077348 0.20694395 0.2720186 0.15590738 0.2124157 0.1170669 0.10386715</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  0.09357705 0.13297708 0.2556823 0.13901861 0.2210526 0.2084501 0.72265593</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  0.01350830 0.20686577 0.2372548 0.16558080 0.2242682 0.1121055 0.24083058</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  0.22483504 0.23436605 0.1576646 0.15024905 0.1576420 0.2145494 0.22648527</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>             E3        E4         E5        E6         E7         E8         E9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G1  0.23285642 0.2069721 0.22583663 0.1177271 0.27361994 0.18434916 0.24088748</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G10 0.33584041 0.1102784 0.16138395 0.1482116 0.11935649 0.12142222 0.32376071</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G2  0.13243531 0.1764011 0.07460125 0.1419699 0.27118118 0.05475980 0.23441369</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G3  0.18997397 0.1963746 0.19245794 0.1491641 0.22028215 0.14242780 0.41240487</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G4  0.26609606 0.2032492 0.17964339 0.1208911 0.28715516 0.26001401 0.13358809</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G5  0.35560949 0.1102458 0.18053255 0.1671079 0.15393295 0.24639288 0.23282134</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G6  0.31191897 0.2973022 0.19296432 0.1907696 0.14544696 0.28935692 0.17583547</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G7  0.25336228 0.2347714 0.12000312 0.0834189 0.21589852 0.14491164 0.11357817</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G8  0.34028566 0.1274485 0.16166059 0.1915529 0.10396713 0.21588338 0.11722770</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> G9  0.06711433 0.3376508 0.09859422 0.1678251 0.06465526 0.06345724 0.09722368</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

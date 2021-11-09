@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -154,8 +154,20 @@
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -184,23 +196,26 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -261,36 +276,37 @@ silently.</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-
-<span class='co'># All numeric variables</span>
-<span class='va'>all</span> <span class='op'>&lt;-</span> <span class='fu'>corr_coef</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span>
-
-<span class='co'># Select variables</span>
-<span class='va'>sel</span> <span class='op'>&lt;-</span> <span class='fu'>corr_coef</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>EP</span>, <span class='va'>EL</span>, <span class='va'>CD</span>, <span class='va'>CL</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>sel</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; Pearson's correlation coefficient
-#&gt; ---------------------------------------------------------------------------
-#&gt;       EP    EL    CD    CL
-#&gt; EP 1.000 0.263 0.175 0.391
-#&gt; EL 0.263 1.000 0.912 0.255
-#&gt; CD 0.175 0.912 1.000 0.300
-#&gt; CL 0.391 0.255 0.300 1.000
-#&gt; ---------------------------------------------------------------------------
-#&gt; p-values for the correlation coefficients
-#&gt; ---------------------------------------------------------------------------
-#&gt;          EP       EL       CD       CL
-#&gt; EP 0.00e+00 8.92e-04 2.88e-02 4.55e-07
-#&gt; EL 8.92e-04 0.00e+00 1.97e-61 1.29e-03
-#&gt; CD 2.88e-02 1.97e-61 0.00e+00 1.39e-04
-#&gt; CL 4.55e-07 1.29e-03 1.39e-04 0.00e+00
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># All numeric variables</span></span>
+<span class='r-in'><span class='va'>all</span> <span class='op'>&lt;-</span> <span class='fu'>corr_coef</span><span class='op'>(</span><span class='va'>data_ge2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Select variables</span></span>
+<span class='r-in'><span class='va'>sel</span> <span class='op'>&lt;-</span> <span class='fu'>corr_coef</span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>EP</span>, <span class='va'>EL</span>, <span class='va'>CD</span>, <span class='va'>CL</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>sel</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Pearson's correlation coefficient</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       EP    EL    CD    CL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP 1.000 0.263 0.175 0.391</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL 0.263 1.000 0.912 0.255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD 0.175 0.912 1.000 0.300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL 0.391 0.255 0.300 1.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> p-values for the correlation coefficients</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          EP       EL       CD       CL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EP 0.00e+00 8.92e-04 2.88e-02 4.55e-07</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> EL 8.92e-04 0.00e+00 1.97e-61 1.29e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CD 2.88e-02 1.97e-61 0.00e+00 1.39e-04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CL 4.55e-07 1.29e-03 1.39e-04 0.00e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

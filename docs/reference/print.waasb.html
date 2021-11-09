@@ -97,7 +97,7 @@ the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ the R console. The results can also be exported to the directory." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ the R console. The results can also be exported to the directory." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -225,7 +240,7 @@ the R console. The results can also be exported to the directory." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print an object of class waasb</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/WAASB.R'><code>R/WAASB.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/waasb.R'><code>R/waasb.R</code></a></small>
     <div class="hidden name"><code>print.waasb.Rd</code></div>
     </div>
 
@@ -273,192 +288,199 @@ to the working directory</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>,
-  resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
-  gen <span class='op'>=</span> <span class='va'>GEN</span>,
-  env <span class='op'>=</span> <span class='va'>ENV</span>,
-  rep <span class='op'>=</span> <span class='va'>REP</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </div><div class='output co'>#&gt; <span class='message'>Method: REML/BLUP</span></div><div class='output co'>#&gt; <span class='message'>Random effects: GEN, GEN:ENV</span></div><div class='output co'>#&gt; <span class='message'>Fixed effects: ENV, REP(ENV)</span></div><div class='output co'>#&gt; <span class='message'>Denominador DF: Satterthwaite's method</span></div><div class='output co'>#&gt; ---------------------------------------------------------------------------
-#&gt; P-values for Likelihood Ratio Test of the analyzed traits
-#&gt; ---------------------------------------------------------------------------
-#&gt;     model       GY       HM
-#&gt;  COMPLETE       NA       NA
-#&gt;       GEN 1.11e-05 5.07e-03
-#&gt;   GEN:ENV 2.15e-11 2.27e-15
-#&gt; ---------------------------------------------------------------------------
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Individual fixed-model analysis of variance
-#&gt; ---------------------------------------------------------------------------
-#&gt; NULL
-#&gt; ---------------------------------------------------------------------------
-#&gt; Fixed effects
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 2 x 7</span>
-#&gt;   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> ENV       66.09     5.084     13 279.8    52.58  2.954<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-67</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> ENV:REP    9.662    0.345<span style='text-decoration: underline;'>1</span>    28 252.0     3.569 3.593<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span>
-#&gt; ---------------------------------------------------------------------------
-#&gt; Random effects
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 3 x 3</span>
-#&gt;   Group    Variance Percent
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> GEN       0.028<span style='text-decoration: underline;'>03</span>   15.45
-#&gt; <span style='color: #BCBCBC;'>2</span> GEN:ENV   0.056<span style='text-decoration: underline;'>71</span>   31.26
-#&gt; <span style='color: #BCBCBC;'>3</span> Residual  0.096<span style='text-decoration: underline;'>69</span>   53.29
-#&gt; ---------------------------------------------------------------------------
-#&gt; Likelihood ratio test
-#&gt; ---------------------------------------------------------------------------
-#&gt;               model npar  logLik    AIC    LRT Df Pr(&gt;Chisq)    
-#&gt; &lt;none&gt;            1   45 -214.72 519.43                         
-#&gt; (1 | GEN)         2   44 -224.38 536.75 19.315  1  1.108e-05 ***
-#&gt; (1 | GEN:ENV)     3   44 -237.13 562.27 44.832  1  2.147e-11 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; ---------------------------------------------------------------------------
-#&gt; Variance components and genetic parameters
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 9 x 2</span>
-#&gt;   Parameters           Values
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.181<span style='text-decoration: underline;'>4</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> Heritability         0.154<span style='text-decoration: underline;'>5</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2                0.312<span style='text-decoration: underline;'>6</span>
-#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                 0.815<span style='text-decoration: underline;'>2</span>
-#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy             0.902<span style='text-decoration: underline;'>9</span>
-#&gt; <span style='color: #BCBCBC;'>6</span> rge                  0.369<span style='text-decoration: underline;'>7</span>
-#&gt; <span style='color: #BCBCBC;'>7</span> CVg                  6.260 
-#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 11.63  
-#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio             0.538<span style='text-decoration: underline;'>4</span>
-#&gt; ---------------------------------------------------------------------------
-#&gt;  Principal component analysis of the G x E interaction matrix
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 9 x 4</span>
-#&gt;   PC    Eigenvalue Proportion Accumulated
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> PC1      1.472      34.31         34.31
-#&gt; <span style='color: #BCBCBC;'>2</span> PC2      1.347      31.38         65.69
-#&gt; <span style='color: #BCBCBC;'>3</span> PC3      0.547<span style='text-decoration: underline;'>9</span>     12.77         78.46
-#&gt; <span style='color: #BCBCBC;'>4</span> PC4      0.416<span style='text-decoration: underline;'>7</span>      9.710        88.17
-#&gt; <span style='color: #BCBCBC;'>5</span> PC5      0.212<span style='text-decoration: underline;'>6</span>      4.955        93.12
-#&gt; <span style='color: #BCBCBC;'>6</span> PC6      0.139<span style='text-decoration: underline;'>7</span>      3.256        96.38
-#&gt; <span style='color: #BCBCBC;'>7</span> PC7      0.079<span style='text-decoration: underline;'>12</span>     1.844        98.22
-#&gt; <span style='color: #BCBCBC;'>8</span> PC8      0.056<span style='text-decoration: underline;'>73</span>     1.322        99.55
-#&gt; <span style='color: #BCBCBC;'>9</span> PC9      0.019<span style='text-decoration: underline;'>47</span>     0.453<span style='text-decoration: underline;'>7</span>      100   
-#&gt; ---------------------------------------------------------------------------
-#&gt; Some information regarding the analysis
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 14 x 2</span>
-#&gt;    Parameters Values             
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              
-#&gt; <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>2.67<span style='color: #949494;'>"</span>             
-#&gt; <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.05<span style='color: #949494;'>"</span>             
-#&gt; <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>0.92<span style='color: #949494;'>"</span>             
-#&gt; <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>34.56<span style='color: #949494;'>"</span>            
-#&gt; <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>0.67 (G10 in E11)<span style='color: #949494;'>"</span>
-#&gt; <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>5.09 (G8 in E5)<span style='color: #949494;'>"</span>  
-#&gt; <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E11 (1.37)<span style='color: #949494;'>"</span>       
-#&gt; <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E3 (4.06)<span style='color: #949494;'>"</span>        
-#&gt; <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G10 (2.47) <span style='color: #949494;'>"</span>      
-#&gt; <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G8 (3) <span style='color: #949494;'>"</span>          
-#&gt; <span style='color: #BCBCBC;'>11</span> wresp      <span style='color: #949494;'>"</span>50<span style='color: #949494;'>"</span>               
-#&gt; <span style='color: #BCBCBC;'>12</span> mresp      <span style='color: #949494;'>"</span>100<span style='color: #949494;'>"</span>              
-#&gt; <span style='color: #BCBCBC;'>13</span> Ngen       <span style='color: #949494;'>"</span>10<span style='color: #949494;'>"</span>               
-#&gt; <span style='color: #BCBCBC;'>14</span> Nenv       <span style='color: #949494;'>"</span>14<span style='color: #949494;'>"</span>               
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; Variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Individual fixed-model analysis of variance
-#&gt; ---------------------------------------------------------------------------
-#&gt; NULL
-#&gt; ---------------------------------------------------------------------------
-#&gt; Fixed effects
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 2 x 7</span>
-#&gt;   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> ENV       <span style='text-decoration: underline;'>1</span>166.     89.69     13 257.4    31.58  5.708<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-46</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> ENV:REP    214.9     7.676    28 252.0     2.703 2.197<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span>
-#&gt; ---------------------------------------------------------------------------
-#&gt; Random effects
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 3 x 3</span>
-#&gt;   Group    Variance Percent
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> GEN        0.489<span style='text-decoration: underline;'>8</span>   8.874
-#&gt; <span style='color: #BCBCBC;'>2</span> GEN:ENV    2.189   39.67 
-#&gt; <span style='color: #BCBCBC;'>3</span> Residual   2.840   51.46 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Likelihood ratio test
-#&gt; ---------------------------------------------------------------------------
-#&gt;               model npar  logLik    AIC    LRT Df Pr(&gt;Chisq)    
-#&gt; &lt;none&gt;            1   45 -862.67 1815.3                         
-#&gt; (1 | GEN)         2   44 -866.59 1821.2  7.855  1   0.005068 ** 
-#&gt; (1 | GEN:ENV)     3   44 -894.08 1876.2 62.819  1  2.266e-15 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; ---------------------------------------------------------------------------
-#&gt; Variance components and genetic parameters
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 9 x 2</span>
-#&gt;   Parameters           Values
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Phenotypic variance 5.519  
-#&gt; <span style='color: #BCBCBC;'>2</span> Heritability        0.088<span style='text-decoration: underline;'>74</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> GEIr2               0.396<span style='text-decoration: underline;'>7</span> 
-#&gt; <span style='color: #BCBCBC;'>4</span> h2mg                0.686<span style='text-decoration: underline;'>2</span> 
-#&gt; <span style='color: #BCBCBC;'>5</span> Accuracy            0.828<span style='text-decoration: underline;'>4</span> 
-#&gt; <span style='color: #BCBCBC;'>6</span> rge                 0.435<span style='text-decoration: underline;'>3</span> 
-#&gt; <span style='color: #BCBCBC;'>7</span> CVg                 1.455  
-#&gt; <span style='color: #BCBCBC;'>8</span> CVr                 3.504  
-#&gt; <span style='color: #BCBCBC;'>9</span> CV ratio            0.415<span style='text-decoration: underline;'>3</span> 
-#&gt; ---------------------------------------------------------------------------
-#&gt;  Principal component analysis of the G x E interaction matrix
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 9 x 4</span>
-#&gt;   PC    Eigenvalue Proportion Accumulated
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> PC1      61.96      33.83         33.83
-#&gt; <span style='color: #BCBCBC;'>2</span> PC2      51.91      28.34         62.18
-#&gt; <span style='color: #BCBCBC;'>3</span> PC3      19.82      10.82         73.00
-#&gt; <span style='color: #BCBCBC;'>4</span> PC4      13.90       7.588        80.59
-#&gt; <span style='color: #BCBCBC;'>5</span> PC5      11.50       6.282        86.87
-#&gt; <span style='color: #BCBCBC;'>6</span> PC6      10.38       5.665        92.53
-#&gt; <span style='color: #BCBCBC;'>7</span> PC7       8.392      4.582        97.11
-#&gt; <span style='color: #BCBCBC;'>8</span> PC8       4.583      2.502        99.62
-#&gt; <span style='color: #BCBCBC;'>9</span> PC9       0.701<span style='text-decoration: underline;'>6</span>     0.383<span style='text-decoration: underline;'>1</span>      100   
-#&gt; ---------------------------------------------------------------------------
-#&gt; Some information regarding the analysis
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 14 x 2</span>
-#&gt;    Parameters Values          
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
-#&gt; <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>48.09<span style='color: #949494;'>"</span>         
-#&gt; <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.21<span style='color: #949494;'>"</span>          
-#&gt; <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>4.37<span style='color: #949494;'>"</span>          
-#&gt; <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>9.09<span style='color: #949494;'>"</span>          
-#&gt; <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>38 (G2 in E14)<span style='color: #949494;'>"</span>
-#&gt; <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>58 (G8 in E11)<span style='color: #949494;'>"</span>
-#&gt; <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E14 (41.03)<span style='color: #949494;'>"</span>   
-#&gt; <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E11 (54.2)<span style='color: #949494;'>"</span>    
-#&gt; <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G2 (46.66) <span style='color: #949494;'>"</span>   
-#&gt; <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G5 (49.3) <span style='color: #949494;'>"</span>    
-#&gt; <span style='color: #BCBCBC;'>11</span> wresp      <span style='color: #949494;'>"</span>50<span style='color: #949494;'>"</span>            
-#&gt; <span style='color: #BCBCBC;'>12</span> mresp      <span style='color: #949494;'>"</span>100<span style='color: #949494;'>"</span>           
-#&gt; <span style='color: #BCBCBC;'>13</span> Ngen       <span style='color: #949494;'>"</span>10<span style='color: #949494;'>"</span>            
-#&gt; <span style='color: #BCBCBC;'>14</span> Nenv       <span style='color: #949494;'>"</span>14<span style='color: #949494;'>"</span>            
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>  resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,</span>
+<span class='r-in'>  gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>  env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>  rep <span class='op'>=</span> <span class='va'>REP</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, GEN:ENV</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Denominador DF: Satterthwaite's method</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     model       GY       HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  COMPLETE       NA       NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       GEN 1.11e-05 5.07e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN:ENV 2.15e-11 2.27e-15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Individual fixed-model analysis of variance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fixed effects</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> ENV       66.09     5.084     13 279.8    52.58  2.954<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-67</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> ENV:REP    9.662    0.345<span style='text-decoration: underline;'>1</span>    28 252.0     3.569 3.593<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Random effects</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 3 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Group    Variance Percent</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> GEN       0.028<span style='text-decoration: underline;'>03</span>   15.45</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> GEN:ENV   0.056<span style='text-decoration: underline;'>71</span>   31.26</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> Residual  0.096<span style='text-decoration: underline;'>69</span>   53.29</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Likelihood ratio test</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               model npar  logLik    AIC    LRT Df Pr(&gt;Chisq)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;none&gt;            1   45 -214.72 519.43                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (1 | GEN)         2   44 -224.38 536.75 19.315  1  1.108e-05 ***</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (1 | GEN:ENV)     3   44 -237.13 562.27 44.832  1  2.147e-11 ***</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variance components and genetic parameters</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 9 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Parameters           Values</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Phenotypic variance  0.181<span style='text-decoration: underline;'>4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Heritability         0.154<span style='text-decoration: underline;'>5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> GEIr2                0.312<span style='text-decoration: underline;'>6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> h2mg                 0.815<span style='text-decoration: underline;'>2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Accuracy             0.902<span style='text-decoration: underline;'>9</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> rge                  0.369<span style='text-decoration: underline;'>7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> CVg                  6.260 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> CVr                 11.63  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>9</span> CV ratio             0.538<span style='text-decoration: underline;'>4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Principal component analysis of the G x E interaction matrix</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 9 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   PC    Eigenvalue Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> PC1      1.472      34.31         34.31</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> PC2      1.347      31.38         65.69</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> PC3      0.547<span style='text-decoration: underline;'>9</span>     12.77         78.46</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> PC4      0.416<span style='text-decoration: underline;'>7</span>      9.710        88.17</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> PC5      0.212<span style='text-decoration: underline;'>6</span>      4.955        93.12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> PC6      0.139<span style='text-decoration: underline;'>7</span>      3.256        96.38</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> PC7      0.079<span style='text-decoration: underline;'>12</span>     1.844        98.22</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> PC8      0.056<span style='text-decoration: underline;'>73</span>     1.322        99.55</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>9</span> PC9      0.019<span style='text-decoration: underline;'>47</span>     0.453<span style='text-decoration: underline;'>7</span>      100   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Some information regarding the analysis</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 14 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Parameters Values             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>2.67<span style='color: #949494;'>"</span>             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.05<span style='color: #949494;'>"</span>             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>0.92<span style='color: #949494;'>"</span>             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>34.56<span style='color: #949494;'>"</span>            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>0.67 (G10 in E11)<span style='color: #949494;'>"</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>5.09 (G8 in E5)<span style='color: #949494;'>"</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E11 (1.37)<span style='color: #949494;'>"</span>       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E3 (4.06)<span style='color: #949494;'>"</span>        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G10 (2.47) <span style='color: #949494;'>"</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G8 (3) <span style='color: #949494;'>"</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> wresp      <span style='color: #949494;'>"</span>50<span style='color: #949494;'>"</span>               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> mresp      <span style='color: #949494;'>"</span>100<span style='color: #949494;'>"</span>              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> Ngen       <span style='color: #949494;'>"</span>10<span style='color: #949494;'>"</span>               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> Nenv       <span style='color: #949494;'>"</span>14<span style='color: #949494;'>"</span>               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable HM </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Individual fixed-model analysis of variance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fixed effects</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   SOURCE  `Sum Sq` `Mean Sq` NumDF DenDF `F value`  `Pr(&gt;F)`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> ENV       <span style='text-decoration: underline;'>1</span>166.     89.69     13 257.4    31.58  5.708<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-46</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> ENV:REP    214.9     7.676    28 252.0     2.703 2.197<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Random effects</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 3 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Group    Variance Percent</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> GEN        0.489<span style='text-decoration: underline;'>8</span>   8.874</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> GEN:ENV    2.189   39.67 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> Residual   2.840   51.46 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Likelihood ratio test</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               model npar  logLik    AIC    LRT Df Pr(&gt;Chisq)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;none&gt;            1   45 -862.67 1815.3                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (1 | GEN)         2   44 -866.59 1821.2  7.855  1   0.005068 ** </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (1 | GEN:ENV)     3   44 -894.08 1876.2 62.819  1  2.266e-15 ***</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variance components and genetic parameters</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 9 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Parameters           Values</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Phenotypic variance 5.519  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Heritability        0.088<span style='text-decoration: underline;'>74</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> GEIr2               0.396<span style='text-decoration: underline;'>7</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> h2mg                0.686<span style='text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Accuracy            0.828<span style='text-decoration: underline;'>4</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> rge                 0.435<span style='text-decoration: underline;'>3</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> CVg                 1.455  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> CVr                 3.504  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>9</span> CV ratio            0.415<span style='text-decoration: underline;'>3</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Principal component analysis of the G x E interaction matrix</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 9 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   PC    Eigenvalue Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> PC1      61.96      33.83         33.83</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> PC2      51.91      28.34         62.18</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> PC3      19.82      10.82         73.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> PC4      13.90       7.588        80.59</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> PC5      11.50       6.282        86.87</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> PC6      10.38       5.665        92.53</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> PC7       8.392      4.582        97.11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> PC8       4.583      2.502        99.62</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>9</span> PC9       0.701<span style='text-decoration: underline;'>6</span>     0.383<span style='text-decoration: underline;'>1</span>      100   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Some information regarding the analysis</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 14 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Parameters Values          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Mean       <span style='color: #949494;'>"</span>48.09<span style='color: #949494;'>"</span>         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> SE         <span style='color: #949494;'>"</span>0.21<span style='color: #949494;'>"</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> SD         <span style='color: #949494;'>"</span>4.37<span style='color: #949494;'>"</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> CV         <span style='color: #949494;'>"</span>9.09<span style='color: #949494;'>"</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Min        <span style='color: #949494;'>"</span>38 (G2 in E14)<span style='color: #949494;'>"</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Max        <span style='color: #949494;'>"</span>58 (G8 in E11)<span style='color: #949494;'>"</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> MinENV     <span style='color: #949494;'>"</span>E14 (41.03)<span style='color: #949494;'>"</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> MaxENV     <span style='color: #949494;'>"</span>E11 (54.2)<span style='color: #949494;'>"</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> MinGEN     <span style='color: #949494;'>"</span>G2 (46.66) <span style='color: #949494;'>"</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> MaxGEN     <span style='color: #949494;'>"</span>G5 (49.3) <span style='color: #949494;'>"</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> wresp      <span style='color: #949494;'>"</span>50<span style='color: #949494;'>"</span>            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> mresp      <span style='color: #949494;'>"</span>100<span style='color: #949494;'>"</span>           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> Ngen       <span style='color: #949494;'>"</span>10<span style='color: #949494;'>"</span>            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> Nenv       <span style='color: #949494;'>"</span>14<span style='color: #949494;'>"</span>            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -94,13 +94,13 @@ Note that using the arguments in the correct order, the model above may be fitte
 
 ```{r eval = FALSE}
 AMMI_model <- performs_ammi(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
-    ```
+```
 
 ## The AMMI table
 The following comand creates the well-known ANOVA table for the AMMI model. Note that since
 ```{r echo = TRUE}
-print_table(AMMI_model$GY$ANOVA)
-    ```
+AMMI_model
+```
 
 Nine interaction principal component axis (IPCA) were fitted and four were significant at 5% probability error. Based on this result, the AMMI4 model would be the best model to predict the yielding of the genotypes in the studied environments.
 
@@ -123,8 +123,9 @@ Procedures based on postdictive success, such as Gollobs's test [@Gollob:1968] o
 
 ```{r echo = TRUE}
 predicted <- predict(AMMI_model, naxis = 4)
-print_table(predicted$GY)
-    ```
+print_table(predicted)
+
+```
 
 
 The following values are presented: **ENV** is the environment; **GEN** is the genotype; **Y** is the response variable; **resOLS** is the residual ($\hat{z}_{ij}$) estimated by the Ordinary Least Square (OLS), where $\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{ij}$; **Ypred** is the predicted value by OLS ($\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}$); **ResAMMI** is the residual estimated by the AMMI model ($\hat{a}_{ij}$) considering the number of multiplicative terms informed in the function (in this case 5), where $\hat{a}_{ij} = \lambda_1\alpha_{i1}\tau_{j1}+...+\lambda_5\alpha_{i5}\tau_{j5}$; **YpredAMMI** is the predicted value by AMMI model  $\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}+\hat{a}_{ij}$; and **AMMI0** is the predicted value when no multiplicative terms are used, i.e., $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{ij}$.
@@ -262,7 +263,7 @@ j <- plot_waasby(waas_index,
                  col.shape = c("gray20", "gray80"),
                  plot_theme = theme_metan(grid = "x"))
 arrange_ggplot(i, j, tag_levels = list(c("i", "j")))
-    ```
+```
 
 The values of WAASY in the plot above were computed considering equal weights for mean performance and stability. Different weights may be assigned using the `wresp` argument of the `waas()` function.
 
@@ -301,7 +302,7 @@ The first type of heatmap shows the genotype ranking depending on the number of 
 plot(WAASratio, type = 1)
 
 
-    ```
+```
 
 ### Ranks of genotypes depending on the WAAS/GY ratio
 ```{r echo = TRUE, fig.height = 5, fig.width = 5.5, fig.align = "center", message = F, warning = F}
@@ -363,7 +364,7 @@ The `AMMI_index()` function has two arguments. The first (x) is the model, which
 ```{r }
 stab_indexes <- AMMI_indexes(AMMI_model)
 print_table(stab_indexes$GY)
-    ```
+```
 
 
 # AMMI model for unbalanced data

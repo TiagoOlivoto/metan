@@ -98,7 +98,7 @@ column of df will become column names in the transposed data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ column of df will become column names in the transposed data." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ column of df will become column names in the transposed data." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -252,36 +267,39 @@ column of <code>df</code> will become column names in the transposed data.</p>
     <p>A tibble containing the transposed data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>df</span> <span class='op'>&lt;-</span>
-<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
- GEN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"G1"</span>, <span class='st'>"G2"</span>, <span class='st'>"G3"</span>,<span class='st'>"G4"</span><span class='op'>)</span>,
- E1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>100</span>, <span class='fl'>20</span><span class='op'>)</span>,
- E2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>10</span>, <span class='fl'>2</span><span class='op'>)</span>,
- E3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>50</span>, <span class='fl'>5</span><span class='op'>)</span>,
- E4 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>1000</span>, <span class='fl'>150</span><span class='op'>)</span>
-<span class='op'>)</span>
-<span class='va'>df</span>
-</div><div class='output co'>#&gt;   GEN        E1        E2       E3        E4
-#&gt; 1  G1 104.89280 10.332382 59.79362  919.8328
-#&gt; 2  G2  75.89245 12.794000 50.08101  987.3939
-#&gt; 3  G3  70.81251  7.959122 37.88328 1025.3137
-#&gt; 4  G4 107.48292 10.577962 42.55318  970.1600</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     [,1]        [,2]        [,3]        [,4]       
-#&gt; GEN "G1"        "G2"        "G3"        "G4"       
-#&gt; E1  "104.89280" " 75.89245" " 70.81251" "107.48292"
-#&gt; E2  "10.332382" "12.794000" " 7.959122" "10.577962"
-#&gt; E3  "59.79362"  "50.08101"  "37.88328"  "42.55318" 
-#&gt; E4  " 919.8328" " 987.3939" "1025.3137" " 970.1600"</div><div class='input'><span class='fu'>transpose_df</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span>
-#&gt;   name     G1    G2      G3    G4
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> E1    105.   75.9   70.8  107. 
-#&gt; <span style='color: #BCBCBC;'>2</span> E2     10.3  12.8    7.96  10.6
-#&gt; <span style='color: #BCBCBC;'>3</span> E3     59.8  50.1   37.9   42.6
-#&gt; <span style='color: #BCBCBC;'>4</span> E4    920.  987.  <span style='text-decoration: underline;'>1</span>025.   970. </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df</span> <span class='op'>&lt;-</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span class='r-in'> GEN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"G1"</span>, <span class='st'>"G2"</span>, <span class='st'>"G3"</span>,<span class='st'>"G4"</span><span class='op'>)</span>,</span>
+<span class='r-in'> E1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>100</span>, <span class='fl'>20</span><span class='op'>)</span>,</span>
+<span class='r-in'> E2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>10</span>, <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span class='r-in'> E3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>50</span>, <span class='fl'>5</span><span class='op'>)</span>,</span>
+<span class='r-in'> E4 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>1000</span>, <span class='fl'>150</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEN        E1        E2       E3        E4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  G1 104.89280 10.332382 59.79362  919.8328</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  G2  75.89245 12.794000 50.08101  987.3939</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  G3  70.81251  7.959122 37.88328 1025.3137</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  G4 107.48292 10.577962 42.55318  970.1600</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     [,1]        [,2]        [,3]        [,4]       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GEN "G1"        "G2"        "G3"        "G4"       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> E1  "104.89280" " 75.89245" " 70.81251" "107.48292"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> E2  "10.332382" "12.794000" " 7.959122" "10.577962"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> E3  "59.79362"  "50.08101"  "37.88328"  "42.55318" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> E4  " 919.8328" " 987.3939" "1025.3137" " 970.1600"</span>
+<span class='r-in'><span class='fu'>transpose_df</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   name     G1    G2      G3    G4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> E1    105.   75.9   70.8  107. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> E2     10.3  12.8    7.96  10.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> E3     59.8  50.1   37.9   42.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> E4    920.  987.  <span style='text-decoration: underline;'>1</span>025.   970. </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

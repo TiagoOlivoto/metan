@@ -7,7 +7,8 @@
 ## Minor improvements
 
 * `AMMI_indexes()` has been deprecated in favour of `ammi_indexes()`.
-* Correct the number of environments in the documentation of `data_ge()`
+* Include formulas for the AMMI-indexes in `ammi_indexes()`
+* Correct the number of environments in the documentation of `data_ge()`.
 
 # metan 1.15.0
 * Fix bug when calling `gmd(., "data")`

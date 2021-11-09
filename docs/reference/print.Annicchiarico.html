@@ -98,7 +98,7 @@ into a *.txt file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ into a *.txt file." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ into a *.txt file." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -271,87 +286,89 @@ the working directory.</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>Ann</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Annicchiarico.html'>Annicchiarico</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
-  env <span class='op'>=</span> <span class='va'>ENV</span>,
-  gen <span class='op'>=</span> <span class='va'>GEN</span>,
-  rep <span class='op'>=</span> <span class='va'>REP</span>,
-  resp <span class='op'>=</span> <span class='va'>PH</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>Ann</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable PH 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Environmental index
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span>
-#&gt;   ENV       Y   index class      
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
-#&gt; <span style='color: #BCBCBC;'>1</span> A1     2.79  0.308  favorable  
-#&gt; <span style='color: #BCBCBC;'>2</span> A2     2.46 -<span style='color: #BB0000;'>0.022</span><span style='color: #BB0000; text-decoration: underline;'>9</span> unfavorable
-#&gt; <span style='color: #BCBCBC;'>3</span> A3     2.17 -<span style='color: #BB0000;'>0.318</span>  unfavorable
-#&gt; <span style='color: #BCBCBC;'>4</span> A4     2.52  0.032<span style='text-decoration: underline;'>9</span> favorable  
-#&gt; ---------------------------------------------------------------------------
-#&gt; Analysis for all environments
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 13 x 6</span>
-#&gt;    GEN       Y Mean_rp Sd_rp    Wi  rank
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1     2.62   106.   9.38  99.3     2
-#&gt; <span style='color: #BCBCBC;'> 2</span> H10    2.31    93.0  6.93  88.3    12
-#&gt; <span style='color: #BCBCBC;'> 3</span> H11    2.39    96.1  6.27  91.9     9
-#&gt; <span style='color: #BCBCBC;'> 4</span> H12    2.44    98.6 11.2   91.0    10
-#&gt; <span style='color: #BCBCBC;'> 5</span> H13    2.54   103.  12.4   94.4     7
-#&gt; <span style='color: #BCBCBC;'> 6</span> H2     2.60   105.   9.91  98.1     3
-#&gt; <span style='color: #BCBCBC;'> 7</span> H3     2.59   104.  11.2   96.6     6
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4     2.58   104.   8.76  97.7     5
-#&gt; <span style='color: #BCBCBC;'> 9</span> H5     2.57   103.   5.55  99.5     1
-#&gt; <span style='color: #BCBCBC;'>10</span> H6     2.56   103.   7.83  97.7     4
-#&gt; <span style='color: #BCBCBC;'>11</span> H7     2.40    96.8  6.67  92.3     8
-#&gt; <span style='color: #BCBCBC;'>12</span> H8     2.33    93.6  9.61  87.1    13
-#&gt; <span style='color: #BCBCBC;'>13</span> H9     2.36    94.8  6.85  90.2    11
-#&gt; ---------------------------------------------------------------------------
-#&gt; Analysis for favorable environments
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 13 x 6</span>
-#&gt;    GEN       Y Mean_rp Sd_rp    Wi  rank
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1     2.68   101.  5.09   97.6     9
-#&gt; <span style='color: #BCBCBC;'> 2</span> H10    2.59    97.3 3.38   95.0    12
-#&gt; <span style='color: #BCBCBC;'> 3</span> H11    2.66   100.  2.41   98.5     7
-#&gt; <span style='color: #BCBCBC;'> 4</span> H12    2.61    98.5 3.00   96.5    10
-#&gt; <span style='color: #BCBCBC;'> 5</span> H13    2.66   100.  1.63   99.3     5
-#&gt; <span style='color: #BCBCBC;'> 6</span> H2     2.66   100.  0.203 100.      3
-#&gt; <span style='color: #BCBCBC;'> 7</span> H3     2.70   101.  5.22   97.9     8
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4     2.71   102.  0.839 102.      2
-#&gt; <span style='color: #BCBCBC;'> 9</span> H5     2.74   103.  2.32  102.      1
-#&gt; <span style='color: #BCBCBC;'>10</span> H6     2.63    98.9 0.292  98.7     6
-#&gt; <span style='color: #BCBCBC;'>11</span> H7     2.65    99.9 0.812  99.3     4
-#&gt; <span style='color: #BCBCBC;'>12</span> H8     2.62    98.9 3.60   96.5    11
-#&gt; <span style='color: #BCBCBC;'>13</span> H9     2.62    98.1 9.33   91.8    13
-#&gt; ---------------------------------------------------------------------------
-#&gt; Analysis for unfavorable environments
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 13 x 6</span>
-#&gt;    GEN       Y Mean_rp Sd_rp    Wi  rank
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1     2.56   110.  12.4  102.      1
-#&gt; <span style='color: #BCBCBC;'> 2</span> H10    2.04    88.7  7.65  83.5    12
-#&gt; <span style='color: #BCBCBC;'> 3</span> H11    2.12    92.1  6.93  87.4     9
-#&gt; <span style='color: #BCBCBC;'> 4</span> H12    2.26    98.6 19.2   85.7    11
-#&gt; <span style='color: #BCBCBC;'> 5</span> H13    2.41   105.  20.8   91.2     7
-#&gt; <span style='color: #BCBCBC;'> 6</span> H2     2.55   110.  14.3   99.9     2
-#&gt; <span style='color: #BCBCBC;'> 7</span> H3     2.49   107.  17.8   94.9     6
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4     2.45   105.  14.9   95.1     5
-#&gt; <span style='color: #BCBCBC;'> 9</span> H5     2.40   103.   9.32  97.0     4
-#&gt; <span style='color: #BCBCBC;'>10</span> H6     2.49   107.  10.9   99.7     3
-#&gt; <span style='color: #BCBCBC;'>11</span> H7     2.16    93.6  9.69  87.1    10
-#&gt; <span style='color: #BCBCBC;'>12</span> H8     2.03    88.3 12.3   80.0    13
-#&gt; <span style='color: #BCBCBC;'>13</span> H9     2.11    91.5  3.02  89.4     8
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>Ann</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Annicchiarico.html'>Annicchiarico</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,</span>
+<span class='r-in'>  env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>  gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>  rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>  resp <span class='op'>=</span> <span class='va'>PH</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait PH |============================================| 100% 00:00:00 </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>Ann</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable PH </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Environmental index</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ENV       Y   index class      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> A1     2.79  0.308  favorable  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> A2     2.46 -<span style='color: #BB0000;'>0.022</span><span style='color: #BB0000; text-decoration: underline;'>9</span> unfavorable</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> A3     2.17 -<span style='color: #BB0000;'>0.318</span>  unfavorable</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> A4     2.52  0.032<span style='text-decoration: underline;'>9</span> favorable  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Analysis for all environments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 13 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN       Y Mean_rp Sd_rp    Wi  rank</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1     2.62   106.   9.38  99.3     2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H10    2.31    93.0  6.93  88.3    12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H11    2.39    96.1  6.27  91.9     9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H12    2.44    98.6 11.2   91.0    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H13    2.54   103.  12.4   94.4     7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H2     2.60   105.   9.91  98.1     3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H3     2.59   104.  11.2   96.6     6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4     2.58   104.   8.76  97.7     5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H5     2.57   103.   5.55  99.5     1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H6     2.56   103.   7.83  97.7     4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H7     2.40    96.8  6.67  92.3     8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8     2.33    93.6  9.61  87.1    13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9     2.36    94.8  6.85  90.2    11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Analysis for favorable environments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 13 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN       Y Mean_rp Sd_rp    Wi  rank</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1     2.68   101.  5.09   97.6     9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H10    2.59    97.3 3.38   95.0    12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H11    2.66   100.  2.41   98.5     7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H12    2.61    98.5 3.00   96.5    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H13    2.66   100.  1.63   99.3     5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H2     2.66   100.  0.203 100.      3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H3     2.70   101.  5.22   97.9     8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4     2.71   102.  0.839 102.      2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H5     2.74   103.  2.32  102.      1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H6     2.63    98.9 0.292  98.7     6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H7     2.65    99.9 0.812  99.3     4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8     2.62    98.9 3.60   96.5    11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9     2.62    98.1 9.33   91.8    13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Analysis for unfavorable environments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 13 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN       Y Mean_rp Sd_rp    Wi  rank</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1     2.56   110.  12.4  102.      1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H10    2.04    88.7  7.65  83.5    12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H11    2.12    92.1  6.93  87.4     9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H12    2.26    98.6 19.2   85.7    11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H13    2.41   105.  20.8   91.2     7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H2     2.55   110.  14.3   99.9     2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H3     2.49   107.  17.8   94.9     6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4     2.45   105.  14.9   95.1     5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H5     2.40   103.   9.32  97.0     4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H6     2.49   107.  10.9   99.7     3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H7     2.16    93.6  9.69  87.1    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8     2.03    88.3 12.3   80.0    13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9     2.11    91.5  3.02  89.4     8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Statistics for genotype-vs-environment interaction — ge_stats • metan</title>
+<title>Parametric and non-parametric stability statistics — ge_stats • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,16 +52,10 @@
 
 
 
-<meta property="og:title" content="Statistics for genotype-vs-environment interaction — ge_stats" />
+<meta property="og:title" content="Parametric and non-parametric stability statistics — ge_stats" />
 <meta property="og:description" content="
-Computes (i) within-environment analysis of variance, GEI effect,
-GEI means, and genotype plus GEI effects; (ii) parametric statistics
-including AMMI-based indexes, Annicchiarico's genotypic confidence index
-(1992), Ecovalence (Wricke, 1965), regression-based stability (Eberhart and
-Russell., 1966), Shukla's stability variance parameter (1972); and
-(iii) nonparametric statistics including Fox's stability function
-(Fox et al. 1990), superiority index (Lin and Binns, 1988), Huehn's stability
-statistics (Huehn, 1979), and Thennarasu (1995) statistics." />
+ge_stats() computes parametric and non-parametric stability statistics
+given a data set with environment, genotype, and block factors." />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -104,7 +98,7 @@ statistics (Huehn, 1979), and Thennarasu (1995) statistics." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -162,8 +156,20 @@ statistics (Huehn, 1979), and Thennarasu (1995) statistics." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -192,23 +198,26 @@ statistics (Huehn, 1979), and Thennarasu (1995) statistics." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -231,21 +240,15 @@ statistics (Huehn, 1979), and Thennarasu (1995) statistics." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Statistics for genotype-vs-environment interaction</h1>
+    <h1>Parametric and non-parametric stability statistics</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/ge_stats.R'><code>R/ge_stats.R</code></a></small>
     <div class="hidden name"><code>ge_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
-<p>Computes <strong>(i)</strong> within-environment analysis of variance, GEI effect,
-GEI means, and genotype plus GEI effects; <strong>(ii)</strong> parametric statistics
-including AMMI-based indexes, Annicchiarico's genotypic confidence index
-(1992), Ecovalence (Wricke, 1965), regression-based stability (Eberhart and
-Russell., 1966), Shukla's stability variance parameter (1972); and
-<strong>(iii)</strong> nonparametric statistics including Fox's stability function
-(Fox et al. 1990), superiority index (Lin and Binns, 1988), Huehn's stability
-statistics (Huehn, 1979), and Thennarasu (1995) statistics.</p>
+<p><code>ge_stats()</code> computes parametric and non-parametric stability statistics
+given a data set with environment, genotype, and block factors.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ge_stats</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>env</span>, <span class='va'>gen</span>, <span class='va'>rep</span>, <span class='va'>resp</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span>, prob <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span></pre>
@@ -295,39 +298,58 @@ frame for each variable containing the computed indexes.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function computes the statistics and ranks for the following
-stability indexes. <code>"Y"</code> (Response variable), <code>"CV"</code> (coefficient
-of variation), <code>"ACV"</code> (adjusted coefficient of variation calling
-<code><a href='ge_acv.html'>ge_acv()</a></code> internally); <code>POLAR</code> (Power Law Residuals,
-calling <code><a href='ge_polar.html'>ge_polar()</a></code> internally) <code>"Var"</code> (Genotype's
-variance), <code>"Shukla"</code> (Shukla's variance, calling <code><a href='Shukla.html'>Shukla()</a></code>
-internally), <code>"Wi_g", "Wi_f", "Wi_u"</code> (Annichiarrico's genotypic
+stability indexes.</p><ul>
+<li><p><code>"Y"</code> (Response variable),</p></li>
+<li><p><code>"CV"</code> (coefficient of variation)</p></li>
+<li><p><code>"ACV"</code> (adjusted coefficient of variation calling <code><a href='ge_acv.html'>ge_acv()</a></code> internally)</p></li>
+<li><p><code>POLAR</code> (Power Law Residuals, calling <code><a href='ge_polar.html'>ge_polar()</a></code> internally)</p></li>
+<li><p><code>"Var"</code> (Genotype's variance)</p></li>
+<li><p><code>"Shukla"</code> (Shukla's variance, calling <code><a href='Shukla.html'>Shukla()</a></code> internally)</p></li>
+<li><p><code>"Wi_g", "Wi_f", "Wi_u"</code> (Annichiarrico's genotypic
 confidence index for all, favorable and unfavorable environments,
-respectively, calling <code><a href='Annicchiarico.html'>Annicchiarico()</a></code> internally ),
-<code>"Ecoval"</code> (Wricke's ecovalence, <code><a href='ecovalence.html'>ecovalence()</a></code> internally),
-<code>"Sij"</code> (Deviations from the joint-regression analysis) and
-<code>"R2"</code> (R-squared from the joint-regression analysis, calling
-<code><a href='ge_reg.html'>ge_reg()</a></code> internally), <code>"ASV"</code> (AMMI-stability value),
-<code>"SIPC"</code> (sum of the absolute values of the IPCA scores), <code>"EV"</code>
-(Average of the squared eigenvector values), <code>"ZA"</code> (Absolute values
-of the relative contributions of the IPCAs to the interaction), and
-<code>"WAAS"</code> (Weighted Average of Absolute Scores), by calling
-<code><a href='AMMI_indexes.html'>AMMI_indexes()</a></code> internally; <code>"HMGV"</code> (Harmonic mean of the
-genotypic value), <code>"RPGV"</code> (Relative performance of the genotypic
-values), <code>"HMRPGV"</code> (Harmonic mean of the relative performance of the
-genotypic values), by calling <code><a href='blup_indexes.html'>blup_indexes()</a></code> internally;
-<code>"Pi_a", "Pi_f", "Pi_u"</code> (Superiority indexes for all, favorable and
-unfavorable environments, respectively, calling <code><a href='superiority.html'>superiority()</a></code>
-internally), <code>"Gai"</code> (Geometric adaptability index, calling
-<code><a href='gai.html'>gai()</a></code> internally), <code>"S1"</code> (mean of the absolute rank
-differences of a genotype over the n environments), <code>"S2"</code> (variance
-among the ranks over the k environments), <code>"S3"</code> (sum of the absolute
-deviations), <code>"S6"</code> (relative sum of squares of rank for each
-genotype), by calling <code><a href='Huehn.html'>Huehn()</a></code> internally; and  <code>"N1", "N2", "N3", "N4"</code> (Thennarasu"s statistics, calling
-<code><a href='Thennarasu.html'>Thennarasu()</a></code> internally ).</p>
+respectively, calling <code><a href='Annicchiarico.html'>Annicchiarico()</a></code> internally )</p></li>
+<li><p><code>"Ecoval"</code> (Wricke's ecovalence, <code><a href='ecovalence.html'>ecovalence()</a></code> internally)</p></li>
+<li><p><code>"Sij"</code> (Deviations from the joint-regression analysis) and <code>"R2"</code>
+(R-squared from the joint-regression analysis, calling <code><a href='ge_reg.html'>ge_reg()</a></code>
+internally)</p></li>
+<li><p><code>"ASTAB"</code> (AMMI Based Stability Parameter), <code>"ASI"</code> (AMMI Stability
+Index), <code>"ASV"</code> (AMMI-stability value), <code>"AVAMGE"</code> (Sum Across Environments
+of Absolute Value of GEI Modelled by AMMI ), <code>"Da"</code> (Annicchiarico's D
+Parameter values), <code>"Dz"</code> (Zhang's D Parameter), <code>"EV"</code> (Sums of the
+Averages of the Squared Eigenvector Values), <code>"FA"</code> (Stability Measure
+Based on Fitted AMMI Model), <code>"MASV"</code> (Modified AMMI Stability Value),
+<code>"SIPC"</code> (Sums of the Absolute Value of the IPC Scores), <code>"Za"</code> (Absolute
+Value of the Relative Contribution of IPCs to the Interaction), <code>"WAAS"</code>
+(Weighted average of absolute scores), calling <code><a href='ammi_indexes.html'>ammi_indexes()</a></code> internally</p></li>
+<li><p><code>"HMGV"</code> (Harmonic mean of the genotypic value), <code>"RPGV"</code> (Relative
+performance of the genotypic values), <code>"HMRPGV"</code> (Harmonic mean of the
+relative performance of the genotypic values), by calling <code><a href='blup_indexes.html'>blup_indexes()</a></code>
+internally</p></li>
+<li><p><code>"Pi_a", "Pi_f", "Pi_u"</code> (Superiority indexes for all, favorable and
+unfavorable environments, respectively, calling <code><a href='superiority.html'>superiority()</a></code> internally)</p></li>
+<li><p><code>"Gai"</code> (Geometric adaptability index, calling <code><a href='gai.html'>gai()</a></code> internally)</p></li>
+<li><p><code>"S1"</code> (mean of the absolute rank differences of a genotype over the n
+environments), <code>"S2"</code> (variance among the ranks over the k environments),
+<code>"S3"</code> (sum of the absolute deviations), <code>"S6"</code> (relative sum of squares of
+rank for each genotype), by calling <code><a href='Huehn.html'>Huehn()</a></code> internally</p></li>
+<li><p><code>"N1"</code>, <code>"N2"</code>, <code>"N3"</code>, <code>"N4"</code> (Thennarasu"s statistics, calling
+<code><a href='Thennarasu.html'>Thennarasu()</a></code> internally ).</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Annicchiarico, P. 1992. Cultivar adaptation and recommendation from alfalfa
 trials in Northern Italy. Journal of Genetic \&amp; Breeding, 46:269-278</p>
+<p>Ajay BC, Aravind J, Abdul Fiyaz R, Bera SK, Kumar N, Gangadhar K, Kona P
+(2018). “Modified AMMI Stability Index (MASI) for stability analysis.”
+ICAR-DGR Newsletter, 18, 4–5.</p>
+<p>Ajay BC, Aravind J, Fiyaz RA, Kumar N, Lal C, Gangadhar K, Kona P, Dagla MC,
+Bera SK (2019). “Rectification of modified AMMI stability value (MASV).”
+Indian Journal of Genetics and Plant Breeding (The), 79, 726–731.
+https://www.isgpb.org/article/rectification-of-modified-ammi-stability-value-masv.</p>
+<p>Annicchiarico P (1997). “Joint regression vs AMMI analysis of
+genotype-environment interactions for cereals in Italy.” Euphytica, 94(1),
+53–62. doi: <a href='https://doi.org/10.1023/A:1002954824178'>10.1023/A:1002954824178</a></p>
 <p>Doring, T.F., and M. Reckling. 2018. Detecting global trends of
 cereal yield stability by adjusting the coefficient of variation. Eur. J.
 Agron. 99: 30-36. doi: <a href='https://doi.org/10.1016/j.eja.2018.06.007'>10.1016/j.eja.2018.06.007</a></p>
@@ -337,6 +359,9 @@ doi: <a href='https://doi.org/10.1016/j.fcr.2015.08.005'>10.1016/j.fcr.2015.08.0
 <p>Eberhart, S.A., and W.A. Russell. 1966. Stability parameters for
 comparing Varieties. Crop Sci. 6:36-40.
 doi: <a href='https://doi.org/10.2135/cropsci1966.0011183X000600010011x'>10.2135/cropsci1966.0011183X000600010011x</a></p>
+<p>Farshadfar E (2008) Incorporation of AMMI stability value and grain yield in
+a single non-parametric index (GSI) in bread wheat. Pakistan J Biol Sci
+11:1791–1796. doi: <a href='https://doi.org/10.3923/pjbs.2008.1791.1796'>10.3923/pjbs.2008.1791.1796</a></p>
 <p>Fox, P.N., B. Skovmand, B.K. Thompson, H.J. Braun, and R.
 Cormier. 1990. Yield and adaptation of hexaploid spring triticale.
 Euphytica 47:57-64.
@@ -344,6 +369,10 @@ doi: <a href='https://doi.org/10.1007/BF00040364'>10.1007/BF00040364</a>
 .</p>
 <p>Huehn, V.M. 1979. Beitrage zur erfassung der phanotypischen
 stabilitat. EDV Med. Biol. 10:112.</p>
+<p>Jambhulkar NN, Rath NC, Bose LK, Subudhi HN, Biswajit M, Lipi D, Meher J
+(2017). “Stability analysis for grain yield in rice in demonstrations
+conducted during rabi season in India.” Oryza, 54(2), 236–240.
+doi: <a href='https://doi.org/10.5958/2249-5266.2017.00030.3'>10.5958/2249-5266.2017.00030.3</a></p>
 <p>Kang, M.S., and H.N. Pham. 1991. Simultaneous Selection for High
 Yielding and Stable Crop Genotypes. Agron. J. 83:161.
 doi: <a href='https://doi.org/10.2134/agronj1991.00021962008300010037x'>10.2134/agronj1991.00021962008300010037x</a></p>
@@ -360,42 +389,59 @@ environments. Euphytica, 159(3), 419-432. doi: <a href='https://doi.org/10.1007/
 <p>Shukla, G.K. 1972. Some statistical aspects of partitioning
 genotype-environmental components of variability. Heredity. 29:238-245.
 doi: <a href='https://doi.org/10.1038/hdy.1972.87'>10.1038/hdy.1972.87</a></p>
+<p>Raju BMK (2002). “A study on AMMI model and its biplots.” Journal of the
+Indian Society of Agricultural Statistics, 55(3), 297–322.</p>
+<p>Rao AR, Prabhakaran VT (2005). “Use of AMMI in simultaneous selection of
+genotypes for yield and stability.” Journal of the Indian Society of
+Agricultural Statistics, 59, 76–82.</p>
+<p>Sneller CH, Kilgore-Norquest L, Dombek D (1997). “Repeatability of yield
+stability statistics in soybean.” Crop Science, 37(2), 383–390.
+doi: <a href='https://doi.org/10.2135/cropsci1997.0011183X003700020013x'>10.2135/cropsci1997.0011183X003700020013x</a></p>
 <p>Thennarasu, K. 1995. On certain nonparametric procedures for
 studying genotype x environment interactions and yield stability. Ph.D.
 thesis. P.J. School, IARI, New Delhi, India.</p>
 <p>Wricke, G. 1965. Zur berechnung der okovalenz bei sommerweizen und hafer.
 Z. Pflanzenzuchtg 52:127-138.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='acv.html'>acv()</a></code>, <code><a href='ammi_indexes.html'>ammi_indexes()</a></code>, <code><a href='ecovalence.html'>ecovalence()</a></code>, <code><a href='Fox.html'>Fox()</a></code>, <code><a href='gai.html'>gai()</a></code>,
+<code><a href='ge_reg.html'>ge_reg()</a></code>, <code><a href='blup_indexes.html'>hmgv()</a></code>, <code><a href='blup_indexes.html'>hmrpgv()</a></code>, <code><a href='blup_indexes.html'>rpgv()</a></code>, <code><a href='Huehn.html'>Huehn()</a></code>, <code>polar()</code>,
+<code><a href='Shukla.html'>Shukla()</a></code>, <code><a href='superiority.html'>superiority()</a></code>, <code><a href='Thennarasu.html'>Thennarasu()</a></code>, <code><a href='waas.html'>waas()</a></code>, <code><a href='waasb.html'>waasb()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>ge_stats</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:06 </div><div class='input'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"stats"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: ge_stats</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: stats</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 36</span>
-#&gt;    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> GY    G1     2.60  35.2  34.1  0.029<span style='text-decoration: underline;'>8</span> 10.9  0.028<span style='text-decoration: underline;'>0</span>  84.4  89.2  81.1  1.22 
-#&gt; <span style='color: #BCBCBC;'> 2</span> GY    G10    2.47  42.3  38.6  0.136  14.2  0.244   59.2  64.6  54.4  7.96 
-#&gt; <span style='color: #BCBCBC;'> 3</span> GY    G2     2.74  34.0  35.2  0.057<span style='text-decoration: underline;'>0</span> 11.3  0.086<span style='text-decoration: underline;'>1</span>  82.8  95.3  75.6  3.03 
-#&gt; <span style='color: #BCBCBC;'> 4</span> GY    G3     2.96  29.9  33.8  0.021<span style='text-decoration: underline;'>6</span> 10.1  0.012<span style='text-decoration: underline;'>1</span> 104.   99.7 107.   0.725
-#&gt; <span style='color: #BCBCBC;'> 5</span> GY    G4     2.64  31.4  31.0 -<span style='color: #BB0000;'>0.053</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  8.93 0.064<span style='text-decoration: underline;'>0</span>  85.9  79.5  91.9  2.34 
-#&gt; <span style='color: #BCBCBC;'> 6</span> GY    G5     2.54  30.6  28.8 -<span style='color: #BB0000;'>0.119</span>   7.82 0.048<span style='text-decoration: underline;'>0</span>  82.7  82.2  82.4  1.84 
-#&gt; <span style='color: #BCBCBC;'> 7</span> GY    G6     2.53  29.7  27.8 -<span style='color: #BB0000;'>0.147</span>   7.34 0.046<span style='text-decoration: underline;'>8</span>  83.0  83.7  81.8  1.81 
-#&gt; <span style='color: #BCBCBC;'> 8</span> GY    G7     2.74  27.4  28.3 -<span style='color: #BB0000;'>0.133</span>   7.33 0.122   83.9  77.6  93.4  4.16 
-#&gt; <span style='color: #BCBCBC;'> 9</span> GY    G8     3.00  30.4  35.1  0.053<span style='text-decoration: underline;'>1</span> 10.8  0.071<span style='text-decoration: underline;'>2</span>  98.8  90.5 107.   2.57 
-#&gt; <span style='color: #BCBCBC;'>10</span> GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 
-#&gt; <span style='color: #949494;'># ... with 24 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASV &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   SIPC &lt;dbl&gt;, EV &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;, HMGV &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;, Gai &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;, N3 &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   N4 &lt;dbl&gt;</span></div><div class='input'><span class='co'># }</span>
-
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>ge_stats</span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:04 </span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"stats"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: ge_stats</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: stats</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 44</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> GY    G1     2.60  35.2  34.1  0.029<span style='text-decoration: underline;'>8</span> 10.9  0.028<span style='text-decoration: underline;'>0</span>  84.4  89.2  81.1  1.22 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> GY    G10    2.47  42.3  38.6  0.136  14.2  0.244   59.2  64.6  54.4  7.96 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> GY    G2     2.74  34.0  35.2  0.057<span style='text-decoration: underline;'>0</span> 11.3  0.086<span style='text-decoration: underline;'>1</span>  82.8  95.3  75.6  3.03 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> GY    G3     2.96  29.9  33.8  0.021<span style='text-decoration: underline;'>6</span> 10.1  0.012<span style='text-decoration: underline;'>1</span> 104.   99.7 107.   0.725</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> GY    G4     2.64  31.4  31.0 -<span style='color: #BB0000;'>0.053</span><span style='color: #BB0000; text-decoration: underline;'>7</span>  8.93 0.064<span style='text-decoration: underline;'>0</span>  85.9  79.5  91.9  2.34 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> GY    G5     2.54  30.6  28.8 -<span style='color: #BB0000;'>0.119</span>   7.82 0.048<span style='text-decoration: underline;'>0</span>  82.7  82.2  82.4  1.84 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> GY    G6     2.53  29.7  27.8 -<span style='color: #BB0000;'>0.147</span>   7.34 0.046<span style='text-decoration: underline;'>8</span>  83.0  83.7  81.8  1.81 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> GY    G7     2.74  27.4  28.3 -<span style='color: #BB0000;'>0.133</span>   7.33 0.122   83.9  77.6  93.4  4.16 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> GY    G8     3.00  30.4  35.1  0.053<span style='text-decoration: underline;'>1</span> 10.8  0.071<span style='text-decoration: underline;'>2</span>  98.8  90.5 107.   2.57 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 32 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASTAB &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   ASI &lt;dbl&gt;, ASV &lt;dbl&gt;, AVAMGE &lt;dbl&gt;, DA &lt;dbl&gt;, DZ &lt;dbl&gt;, EV &lt;dbl&gt;, FA &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   MASI &lt;dbl&gt;, MASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   Gai &lt;dbl&gt;, S1 &lt;dbl&gt;, S2 &lt;dbl&gt;, S3 &lt;dbl&gt;, S6 &lt;dbl&gt;, N1 &lt;dbl&gt;, N2 &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   N3 &lt;dbl&gt;, N4 &lt;dbl&gt;</span></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

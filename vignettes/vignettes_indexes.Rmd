@@ -89,7 +89,7 @@ gmd(MTSI_index2, "sel_dif_stab") %>% print_table()
 gmd(MTSI_index2, "sel_dif_trait") %>% print_table()
 
 plot(MTSI_index2)
-    ```
+```
 
 # MGIDI index
 The MGIDI index can be seen as the MTSI index with a weigth of 100 for mean performance. This index is computed with the function `mgidi()`. Here, we will use the example data `data_g()`. By default, all traits are assumed to be increased. To change this default, use the argument `ideotype`. For example, if for three traits, the first one is assumed to be decreased and the last two are assumed to be increased, use `ideotype = c("l, h, h")`.
@@ -133,7 +133,7 @@ fai <- fai_blup(mod, SI = 20)
 
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center", message=F, warning=FALSE}
 plot(fai)
-    ```
+```
 
 
 # Comparing the indexes

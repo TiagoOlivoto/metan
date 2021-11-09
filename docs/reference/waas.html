@@ -112,7 +112,7 @@ override the number of significant axes according to the argument codeprob." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -170,8 +170,20 @@ override the number of significant axes according to the argument codeprob." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -200,23 +212,26 @@ override the number of significant axes according to the argument codeprob." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -372,7 +387,7 @@ and WAASY (the index that consider the weights for stability and productivity
 in the genotype ranking.</p></li>
 <li><p><strong>MeansGxE</strong> The means of genotypes in the environments</p></li>
 <li><p><strong>PCA</strong> Principal Component Analysis.</p></li>
-<li><p><strong>anova</strong> Joint analysis of variance for the main effects and
+<li><p><strong>ANOVA</strong> Joint analysis of variance for the main effects and
 Principal Component analysis of the interaction effect.</p></li>
 <li><p><strong>Details</strong> A list summarizing the results. The following information
 are showed. <code>WgtResponse</code>, the weight for the response variable in
@@ -405,251 +420,270 @@ Agron. J. 111:2949-2960. doi: <a href='https://doi.org/10.2134/agronj2019.03.022
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='co'>#===============================================================#</span>
-<span class='co'># Example 1: Analyzing all numeric variables considering p-value#</span>
-<span class='co'># &lt;= 0.05 to compute the WAAS.                                  #</span>
-<span class='co'>#===============================================================#</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,
-             env <span class='op'>=</span> <span class='va'>ENV</span>,
-             gen <span class='op'>=</span> <span class='va'>GEN</span>,
-             rep <span class='op'>=</span> <span class='va'>REP</span>,
-             resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
-#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
-#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
-#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
-#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
-#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
-#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
-#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
-#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
-#&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
-#&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
-#&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
-#&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
-#&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
-#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
-#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='co'># Residual plot (first variable)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='img'><img src='waas-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Get the WAAS index</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"WAAS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
-#&gt;    GEN      GY    HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1    0.151 0.455
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10   0.652 1.33 
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2    0.283 0.985
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3    0.106 0.418
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4    0.326 0.752
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5    0.270 1.16 
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6    0.233 0.478
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7    0.428 0.766
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8    0.327 0.541
-#&gt; <span style='color: #BCBCBC;'>10</span> G9    0.507 0.701</div><div class='input'>
-<span class='co'># Plot WAAS and response variable</span>
-<span class='fu'><a href='plot_scores.html'>plot_scores</a></span><span class='op'>(</span><span class='va'>model</span>, type <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-</div><div class='img'><img src='waas-2.png' alt='' width='700' height='433' /></div><div class='input'>
-
-<span class='co'>#===============================================================#</span>
-<span class='co'># Example 2: Declaring the number of axis to be used for        #</span>
-<span class='co'># computing WAAS and assigning a larger weight for the response #</span>
-<span class='co'># variable when computing the WAASBY index.                     #</span>
-<span class='co'>#===============================================================#</span>
-
-<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,
-               env <span class='op'>=</span> <span class='va'>ENV</span>,
-               gen <span class='op'>=</span> <span class='va'>GEN</span>,
-               rep <span class='op'>=</span> <span class='va'>REP</span>,
-               resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,
-               naxis <span class='op'>=</span> <span class='fl'>1</span>, <span class='co'># Only to compare with PC1</span>
-               wresp <span class='op'>=</span> <span class='fl'>60</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'naxis'. Setting naxis = 1 to all the 2 variables.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Invalid length in 'wresp'. Setting wresp = 60 to all the 2 variables.</span></div><div class='output co'>#&gt; variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
-#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
-#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
-#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
-#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
-#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
-#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
-#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
-#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
-#&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
-#&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
-#&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
-#&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
-#&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
-#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
-#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'><span class='co'># Get the WAAS index (it will be |PC1|)</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: WAAS</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
-#&gt;    GEN       GY     HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1    0.317  0.280 
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10   1.00   1.78  
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2    0.139  1.56  
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3    0.043<span style='text-decoration: underline;'>4</span> 0.342 
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4    0.325  0.202 
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5    0.326  1.58  
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6    0.098<span style='text-decoration: underline;'>4</span> 0.547 
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7    0.285  1.22  
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8    0.499  0.041<span style='text-decoration: underline;'>8</span>
-#&gt; <span style='color: #BCBCBC;'>10</span> G9    0.467  1.07  </div><div class='input'>
-<span class='co'># Get values for IPCA1</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='st'>"PC1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: PC1</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
-#&gt;    GEN        GY      HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1     0.317   0.280 
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10   -<span style='color: #BB0000;'>1.00</span>   -<span style='color: #BB0000;'>1.78</span>  
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2     0.139   1.56  
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3     0.043<span style='text-decoration: underline;'>4</span>  0.342 
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4    -<span style='color: #BB0000;'>0.325</span>  -<span style='color: #BB0000;'>0.202</span> 
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5    -<span style='color: #BB0000;'>0.326</span>   1.58  
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6    -<span style='color: #BB0000;'>0.098</span><span style='color: #BB0000; text-decoration: underline;'>4</span>  0.547 
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7     0.285  -<span style='color: #BB0000;'>1.22</span>  
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8     0.499  -<span style='color: #BB0000;'>0.041</span><span style='color: #BB0000; text-decoration: underline;'>8</span>
-#&gt; <span style='color: #BCBCBC;'>10</span> G9     0.467  -<span style='color: #BB0000;'>1.07</span>  </div><div class='input'>
-
-<span class='co'>#===============================================================#</span>
-<span class='co'># Example 3: Analyzing GY and HM assuming a random-effect model.#</span>
-<span class='co'># Smaller values for HM and higher values for GY are better.    #</span>
-<span class='co'># To estimate WAASBY, higher weight for the GY (60%) and lower  #</span>
-<span class='co'># weight for HM (40%) are considered for mean performance.      #</span>
-<span class='co'>#===============================================================#</span>
-
-<span class='va'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,
-               env <span class='op'>=</span> <span class='va'>ENV</span>,
-               gen <span class='op'>=</span> <span class='va'>GEN</span>,
-               rep <span class='op'>=</span> <span class='va'>REP</span>,
-               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,
-               mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"h, l"</span><span class='op'>)</span>,
-               wresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>60</span>, <span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; variable GY 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA
-#&gt;   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA
-#&gt;        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA
-#&gt;    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA
-#&gt;        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4
-#&gt;        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2
-#&gt;        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2
-#&gt;        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0
-#&gt;        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6
-#&gt;        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6
-#&gt;        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4
-#&gt;        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6
-#&gt;        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0
-#&gt;  Residuals 252  24.367  0.0967      NA       NA         NA          NA
-#&gt;      Total 536 389.036  0.7258      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; variable HM 
-#&gt; ---------------------------------------------------------------------------
-#&gt; AMMI analysis table
-#&gt; ---------------------------------------------------------------------------
-#&gt;     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated
-#&gt;        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA
-#&gt;   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA
-#&gt;        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA
-#&gt;    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA
-#&gt;        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6
-#&gt;        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6
-#&gt;        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0
-#&gt;        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5
-#&gt;        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7
-#&gt;        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0
-#&gt;        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3
-#&gt;        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7
-#&gt;        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0
-#&gt;  Residuals 252  715.69   2.840      NA       NA         NA          NA
-#&gt;      Total 536 9112.21  17.000      NA       NA         NA          NA
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; All variables with significant (p &lt; 0.05) genotype-vs-environment interaction
-#&gt; Done!</div><div class='input'>
-
-<span class='co'># Get the ranks for the WAASY index</span>
-<span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model3</span>, what <span class='op'>=</span> <span class='st'>"OrWAASY"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Class of the model: waas</span></div><div class='output co'>#&gt; <span class='message'>Variable extracted: OrWAASY</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 3</span>
-#&gt;    GEN      GY    HM
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> G1        4     1
-#&gt; <span style='color: #BCBCBC;'> 2</span> G10      10     9
-#&gt; <span style='color: #BCBCBC;'> 3</span> G2        3     4
-#&gt; <span style='color: #BCBCBC;'> 4</span> G3        1     2
-#&gt; <span style='color: #BCBCBC;'> 5</span> G4        6     7
-#&gt; <span style='color: #BCBCBC;'> 6</span> G5        8    10
-#&gt; <span style='color: #BCBCBC;'> 7</span> G6        7     3
-#&gt; <span style='color: #BCBCBC;'> 8</span> G7        5     6
-#&gt; <span style='color: #BCBCBC;'> 9</span> G8        2     8
-#&gt; <span style='color: #BCBCBC;'>10</span> G9        9     5</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='co'># Example 1: Analyzing all numeric variables considering p-value#</span></span>
+<span class='r-in'><span class='co'># &lt;= 0.05 to compute the WAAS.                                  #</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>             env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>             gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>             rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>             resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  24.367  0.0967      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 389.036  0.7258      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable HM </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  715.69   2.840      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 9112.21  17.000      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Done!</span>
+<span class='r-in'><span class='co'># Residual plot (first variable)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='waas-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get the WAAS index</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model</span>, <span class='st'>"WAAS"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: waas</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: WAAS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN      GY    HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1    0.151 0.455</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10   0.652 1.33 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2    0.283 0.985</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3    0.106 0.418</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4    0.326 0.752</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5    0.270 1.16 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6    0.233 0.478</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7    0.428 0.766</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8    0.327 0.541</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9    0.507 0.701</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Plot WAAS and response variable</span></span>
+<span class='r-in'><span class='fu'><a href='plot_scores.html'>plot_scores</a></span><span class='op'>(</span><span class='va'>model</span>, type <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='waas-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='co'># Example 2: Declaring the number of axis to be used for        #</span></span>
+<span class='r-in'><span class='co'># computing WAAS and assigning a larger weight for the response #</span></span>
+<span class='r-in'><span class='co'># variable when computing the WAASBY index.                     #</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>               env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>               gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>               rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>               resp <span class='op'>=</span> <span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>               naxis <span class='op'>=</span> <span class='fl'>1</span>, <span class='co'># Only to compare with PC1</span></span>
+<span class='r-in'>               wresp <span class='op'>=</span> <span class='fl'>60</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Invalid length in 'naxis'. Setting naxis = 1 to all the 2 variables.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Invalid length in 'wresp'. Setting wresp = 60 to all the 2 variables.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  24.367  0.0967      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 389.036  0.7258      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable HM </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  715.69   2.840      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 9112.21  17.000      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Done!</span>
+<span class='r-in'><span class='co'># Get the WAAS index (it will be |PC1|)</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: waas</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: WAAS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN       GY     HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1    0.317  0.280 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10   1.00   1.78  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2    0.139  1.56  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3    0.043<span style='text-decoration: underline;'>4</span> 0.342 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4    0.325  0.202 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5    0.326  1.58  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6    0.098<span style='text-decoration: underline;'>4</span> 0.547 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7    0.285  1.22  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8    0.499  0.041<span style='text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9    0.467  1.07  </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get values for IPCA1</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='st'>"PC1"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: waas</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: PC1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN        GY      HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1     0.317   0.280 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10   -<span style='color: #BB0000;'>1.00</span>   -<span style='color: #BB0000;'>1.78</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2     0.139   1.56  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3     0.043<span style='text-decoration: underline;'>4</span>  0.342 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4    -<span style='color: #BB0000;'>0.325</span>  -<span style='color: #BB0000;'>0.202</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5    -<span style='color: #BB0000;'>0.326</span>   1.58  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6    -<span style='color: #BB0000;'>0.098</span><span style='color: #BB0000; text-decoration: underline;'>4</span>  0.547 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7     0.285  -<span style='color: #BB0000;'>1.22</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8     0.499  -<span style='color: #BB0000;'>0.041</span><span style='color: #BB0000; text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9     0.467  -<span style='color: #BB0000;'>1.07</span>  </span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'><span class='co'># Example 3: Analyzing GY and HM assuming a random-effect model.#</span></span>
+<span class='r-in'><span class='co'># Smaller values for HM and higher values for GY are better.    #</span></span>
+<span class='r-in'><span class='co'># To estimate WAASBY, higher weight for the GY (60%) and lower  #</span></span>
+<span class='r-in'><span class='co'># weight for HM (40%) are considered for mean performance.      #</span></span>
+<span class='r-in'><span class='co'>#===============================================================#</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>waas</span><span class='op'>(</span><span class='va'>data_ge</span>,</span>
+<span class='r-in'>               env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>               gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>               rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>               resp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>GY</span>, <span class='va'>HM</span><span class='op'>)</span>,</span>
+<span class='r-in'>               mresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"h, l"</span><span class='op'>)</span>,</span>
+<span class='r-in'>               wresp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>60</span>, <span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable GY </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 279.574 21.5057   62.33 0.00e+00         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28   9.662  0.3451    3.57 3.59e-08         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  12.995  1.4439   14.93 2.19e-19         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117  31.220  0.2668    2.76 1.01e-11         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  10.749  0.5119    5.29 0.00e+00       34.4        34.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19   9.924  0.5223    5.40 0.00e+00       31.8        66.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17   4.039  0.2376    2.46 1.40e-03       12.9        79.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   3.074  0.2049    2.12 9.60e-03        9.8        89.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   1.446  0.1113    1.15 3.18e-01        4.6        93.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   0.932  0.0848    0.88 5.61e-01        3.0        96.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   0.567  0.0630    0.65 7.53e-01        1.8        98.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   0.362  0.0518    0.54 8.04e-01        1.2        99.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5   0.126  0.0252    0.26 9.34e-01        0.4       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  24.367  0.0967      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 389.036  0.7258      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> variable HM </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AMMI analysis table</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Source  Df  Sum Sq Mean Sq F value   Pr(&gt;F) Proportion Accumulated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        ENV  13 5710.32 439.255   57.22 1.11e-16         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   REP(ENV)  28  214.93   7.676    2.70 2.20e-05         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        GEN   9  269.81  29.979   10.56 7.41e-14         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN:ENV 117 1100.73   9.408    3.31 1.06e-15         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC1  21  381.13  18.149    6.39 0.00e+00       34.6        34.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC2  19  319.43  16.812    5.92 0.00e+00       29.0        63.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC3  17  114.26   6.721    2.37 2.10e-03       10.4        74.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC4  15   81.96   5.464    1.92 2.18e-02        7.4        81.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC5  13   68.11   5.240    1.84 3.77e-02        6.2        87.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC6  11   59.07   5.370    1.89 4.10e-02        5.4        93.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC7   9   46.69   5.188    1.83 6.33e-02        4.2        97.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC8   7   26.65   3.808    1.34 2.32e-01        2.4        99.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        PC9   5    3.41   0.682    0.24 9.45e-01        0.3       100.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Residuals 252  715.69   2.840      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Total 536 9112.21  17.000      NA       NA         NA          NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Done!</span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get the ranks for the WAASY index</span></span>
+<span class='r-in'><span class='fu'><a href='get_model_data.html'>get_model_data</a></span><span class='op'>(</span><span class='va'>model3</span>, what <span class='op'>=</span> <span class='st'>"OrWAASY"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Class of the model: waas</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable extracted: OrWAASY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN      GY    HM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> G1        4     1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> G10      10     9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> G2        3     4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> G3        1     2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> G4        6     7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> G5        8    10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> G6        7     3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> G7        5     6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> G8        2     8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> G9        9     5</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

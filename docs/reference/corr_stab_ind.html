@@ -99,7 +99,7 @@ ge_stats()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -157,8 +157,20 @@ ge_stats()." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -187,23 +199,26 @@ ge_stats()." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -269,43 +284,50 @@ nonparametric stability indexes computed with the function
 correlation coefficients.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The argument <code>stats</code> is used to chose the statistics to show
-the ranks. Allowed values are <code>"all"</code> (All statistics, default),
-<code>"par"</code> (Parametric statistics), <code>"nonpar"</code> (Non-parametric
-statistics), <code>"ammi"</code> (AMMI-based stability statistics), or the
-following values that can be combined into comma-separated character
-vector. <code>"Y"</code> (Response variable), <code>"Var"</code> (Genotype's variance),
-<code>"Shukla"</code> (Shukla's variance), <code>"Wi_g", "Wi_f", "Wi_u"</code>
-(Annichiarrico's genotypic confidence index for all, favorable and
-unfavorable environments, respectively), <code>"Ecoval"</code> (Wricke's
+    <p>The argument <code>stats</code> is used to chose the statistics to show the
+ranks. Allowed values are <code>"all"</code> (All statistics, default), <code>"par"</code>
+(Parametric statistics), <code>"nonpar"</code> (Non-parametric statistics), <code>"ammi"</code>
+(AMMI-based stability statistics), or the following values that can be
+combined into comma-separated character vector. <code>"Y"</code> (Response variable),
+<code>"Var"</code> (Genotype's variance), <code>"Shukla"</code> (Shukla's variance), <code>"Wi_g", "Wi_f", "Wi_u"</code> (Annichiarrico's genotypic confidence index for all,
+favorable and unfavorable environments, respectively), <code>"Ecoval"</code> (Wricke's
 ecovalence), <code>"Sij"</code> (Deviations from the joint-regression analysis),
-<code>"R2"</code> (R-squared from the joint-regression analysis), <code>"ASV"</code>
-(AMMI-stability value), <code>"SIPC"</code> (sum of the absolute values of the
-IPCA scores), <code>"EV"</code> (Average of the squared eigenvector values),
-<code>"ZA"</code> (Absolute values of the relative contributions of the IPCAs to
-the interaction), <code>"WAAS"</code> (Weighted Average of Absolute Scores),
-<code>"HMGV"</code> (Harmonic mean of the genotypic value), <code>"RPGV"</code>
-(Relative performance of the genotypic values), <code>"HMRPGV"</code> (Harmonic
-mean of the relative performance of the genotypic values), <code>"Pi_a", "Pi_f", "Pi_u"</code> (Superiority indexes for all, favorable and unfavorable
-environments, respectively), <code>"Gai"</code> (Geometric adaptability index),
-<code>"S1"</code> (mean of the absolute rank differences of a genotype over the n
-environments), <code>"S2"</code> (variance among the ranks over the k
-environments), <code>"S3"</code> (sum of the absolute deviations), <code>"S6"</code>
-(relative sum of squares of rank for each genotype), <code>"N1", "N2", "N3", "N4"</code> (Thennarasu"s statistics)).</p>
+<code>"R2"</code> (R-squared from the joint-regression analysis), <code>"ASTAB"</code> (AMMI
+Based Stability Parameter), <code>"ASI"</code> (AMMI Stability Index), <code>"ASV"</code>
+(AMMI-stability value), <code>"AVAMGE"</code> (Sum Across Environments of Absolute
+Value of GEI Modelled by AMMI ), <code>"Da"</code> (Annicchiarico's D Parameter
+values), <code>"Dz"</code> (Zhang's D Parameter), <code>"EV"</code> (Sums of the Averages of the
+Squared Eigenvector Values), <code>"FA"</code> (Stability Measure Based on Fitted AMMI
+Model), <code>"MASV"</code> (Modified AMMI Stability Value), <code>"SIPC"</code> (Sums of the
+Absolute Value of the IPC Scores), <code>"Za"</code> (Absolute Value of the Relative
+Contribution of IPCs to the Interaction), <code>"WAAS"</code> (Weighted average of
+absolute scores), <code>"HMGV"</code> (Harmonic mean of the genotypic value), <code>"RPGV"</code>
+(Relative performance of the genotypic values), <code>"HMRPGV"</code> (Harmonic mean
+of the relative performance of the genotypic values), <code>"Pi_a", "Pi_f", "Pi_u"</code> (Superiority indexes for all, favorable and unfavorable
+environments, respectively), <code>"Gai"</code> (Geometric adaptability index), <code>"S1"</code>
+(mean of the absolute rank differences of a genotype over the n
+environments), <code>"S2"</code> (variance among the ranks over the k environments),
+<code>"S3"</code> (sum of the absolute deviations), <code>"S6"</code> (relative sum of squares of
+rank for each genotype), <code>"N1", "N2", "N3", "N4"</code> (Thennarasu"s
+statistics)).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait GY |============================================| 100% 00:00:04 </div><div class='input'><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_stab_ind-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span>, stats <span class='op'>=</span> <span class='st'>"ammi"</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_stab_ind-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>c</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span>, stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ASV, Sij, R2, WAAS, N1"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='corr_stab_ind-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_stats.html'>ge_stats</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:04 </span>
+<span class='r-in'><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='corr_stab_ind-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span>, stats <span class='op'>=</span> <span class='st'>"ammi"</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='corr_stab_ind-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='va'>c</span> <span class='op'>&lt;-</span> <span class='fu'>corr_stab_ind</span><span class='op'>(</span><span class='va'>model</span>, stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ASV, Sij, R2, WAAS, N1"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='corr_stab_ind-3.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -146,7 +146,7 @@ BLUP_g <- cv_blup(data_ge, ENV, GEN, REP, GY)
 ```{r, message=FALSE, fig.height = 5, fig.width = 10, fig.align = "center" }
 bind1 <- bind_cv(AMMI0, AMMI2, AMMI9)
 bind2 <- bind_cv(AMMI0, AMMI2, AMMI9, bind = "means")
-    ```
+```
 
 # Split a dataframe into subsets grouped by one or more factors
 ## Group data and exclude all non-numeric variables
@@ -168,7 +168,7 @@ print_table(g2[[1]])
 ```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
 g3 <- as.split_factors(CO2)
 names(g3)
-    ```
+```
 
 
 # Make a two-way table based on categorical and numerical arguments
@@ -239,7 +239,7 @@ print_table(c1)
 
 c2 <- comb_vars(data, FUN = "*", order = "first")
 print_table(c2)
-    ```
+```
 
 
 
@@ -251,7 +251,7 @@ df1 <- data.frame(v1 = c(1, 2), v2 = c(2, 3))
 df2 <- data.frame(v3 = c(4, 5))
 rbind_fill_id(df1, df2) %>% print_table()
 rbind_fill_id(df1, df2, .fill = ".") %>% print_table()
-    ```
+```
 
 # Rescale a continuous vector to have specified minimum and maximum values
 ## Rescale a numeric vector

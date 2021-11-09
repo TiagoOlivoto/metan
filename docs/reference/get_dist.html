@@ -99,7 +99,7 @@ from several objects to be further analyzed using pairs_mantel()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -157,8 +157,20 @@ from several objects to be further analyzed using pairs_mantel()." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -187,23 +199,26 @@ from several objects to be further analyzed using pairs_mantel()." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -261,47 +276,48 @@ from several objects to be further analyzed using <code><a href='pairs_mantel.ht
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='utils_rows_cols.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='clustering.html'>clustering</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>get_dist</span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $d
-#&gt;        H1   H10   H11   H12   H13    H2    H3    H4    H5    H6    H7    H8
-#&gt; H1   0.00 49.24 36.63 55.94 39.76 22.00 28.60 34.48 42.49 10.77 24.96 50.59
-#&gt; H10 49.24  0.00 13.73  8.30 42.95 48.85 29.18 46.05 48.06 51.34 26.89  8.77
-#&gt; H11 36.63 13.73  0.00 20.00 40.07 40.23 16.18 41.01 45.28 40.25 13.59 14.45
-#&gt; H12 55.94  8.30 20.00  0.00 49.06 56.01 33.96 52.93 54.39 58.52 32.68  8.59
-#&gt; H13 39.76 42.95 40.07 49.06  0.00 20.76 48.04  9.11  6.78 32.52 40.82 49.88
-#&gt; H2  22.00 48.85 40.23 56.01 20.76  0.00 40.93 14.18 22.03 12.71 34.51 53.61
-#&gt; H3  28.60 29.18 16.18 33.96 48.04 40.93  0.00 46.77 52.96 36.07  7.93 26.52
-#&gt; H4  34.48 46.05 41.01 52.93  9.11 14.18 46.77  0.00  8.67 26.16 39.70 52.51
-#&gt; H5  42.49 48.06 45.28 54.39  6.78 22.03 52.96  8.67  0.00 34.14 45.65 55.21
-#&gt; H6  10.77 51.34 40.25 58.52 32.52 12.71 36.07 26.16 34.14  0.00 30.85 54.36
-#&gt; H7  24.96 26.89 13.59 32.68 40.82 34.51  7.93 39.70 45.65 30.85  0.00 26.25
-#&gt; H8  50.59  8.77 14.45  8.59 49.88 53.61 26.52 52.51 55.21 54.36 26.25  0.00
-#&gt; H9  63.45 16.57 27.13  9.65 58.17 64.91 39.28 61.89 63.28 66.73 39.22 13.19
-#&gt;        H9
-#&gt; H1  63.45
-#&gt; H10 16.57
-#&gt; H11 27.13
-#&gt; H12  9.65
-#&gt; H13 58.17
-#&gt; H2  64.91
-#&gt; H3  39.28
-#&gt; H4  61.89
-#&gt; H5  63.28
-#&gt; H6  66.73
-#&gt; H7  39.22
-#&gt; H8  13.19
-#&gt; H9   0.00
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "clustering"</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='va'>data_ge2</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>      <span class='fu'><a href='utils_stats.html'>means_by</a></span><span class='op'>(</span><span class='va'>GEN</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>      <span class='fu'><a href='utils_rows_cols.html'>column_to_rownames</a></span><span class='op'>(</span><span class='st'>"GEN"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>      <span class='fu'><a href='clustering.html'>clustering</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>get_dist</span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $d</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        H1   H10   H11   H12   H13    H2    H3    H4    H5    H6    H7    H8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H1   0.00 49.24 36.63 55.94 39.76 22.00 28.60 34.48 42.49 10.77 24.96 50.59</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H10 49.24  0.00 13.73  8.30 42.95 48.85 29.18 46.05 48.06 51.34 26.89  8.77</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H11 36.63 13.73  0.00 20.00 40.07 40.23 16.18 41.01 45.28 40.25 13.59 14.45</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H12 55.94  8.30 20.00  0.00 49.06 56.01 33.96 52.93 54.39 58.52 32.68  8.59</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H13 39.76 42.95 40.07 49.06  0.00 20.76 48.04  9.11  6.78 32.52 40.82 49.88</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H2  22.00 48.85 40.23 56.01 20.76  0.00 40.93 14.18 22.03 12.71 34.51 53.61</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H3  28.60 29.18 16.18 33.96 48.04 40.93  0.00 46.77 52.96 36.07  7.93 26.52</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H4  34.48 46.05 41.01 52.93  9.11 14.18 46.77  0.00  8.67 26.16 39.70 52.51</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H5  42.49 48.06 45.28 54.39  6.78 22.03 52.96  8.67  0.00 34.14 45.65 55.21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H6  10.77 51.34 40.25 58.52 32.52 12.71 36.07 26.16 34.14  0.00 30.85 54.36</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H7  24.96 26.89 13.59 32.68 40.82 34.51  7.93 39.70 45.65 30.85  0.00 26.25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H8  50.59  8.77 14.45  8.59 49.88 53.61 26.52 52.51 55.21 54.36 26.25  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H9  63.45 16.57 27.13  9.65 58.17 64.91 39.28 61.89 63.28 66.73 39.22 13.19</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        H9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H1  63.45</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H10 16.57</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H11 27.13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H12  9.65</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H13 58.17</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H2  64.91</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H3  39.28</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H4  61.89</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H5  63.28</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H6  66.73</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H7  39.22</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H8  13.19</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> H9   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "clustering"</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

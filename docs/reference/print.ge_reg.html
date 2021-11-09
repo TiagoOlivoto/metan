@@ -98,7 +98,7 @@ in the R console. The results can also be exported to the directory into a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -156,8 +156,20 @@ in the R console. The results can also be exported to the directory into a
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -186,23 +198,26 @@ in the R console. The results can also be exported to the directory into a
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -271,65 +286,67 @@ the working directory.</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>PH</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Evaluating trait PH |============================================| 100% 00:00:00 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable PH 
-#&gt; ---------------------------------------------------------------------------
-#&gt; Joint-regression Analysis of variance
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 20 x 6</span>
-#&gt;    SV                       Df `Sum Sq` `Mean Sq` `F value`    `Pr(&gt;F)`
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> <span style='color: #949494;'>"</span>Total<span style='color: #949494;'>"</span>                  51   15.0      0.294     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         
-#&gt; <span style='color: #BCBCBC;'> 2</span> <span style='color: #949494;'>"</span>GEN<span style='color: #949494;'>"</span>                    12    1.86     0.155      0.870  0.585     
-#&gt; <span style='color: #BCBCBC;'> 3</span> <span style='color: #949494;'>"</span>ENV + (GEN x ENV)<span style='color: #949494;'>"</span>      39   13.1      0.336     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         
-#&gt; <span style='color: #BCBCBC;'> 4</span> <span style='color: #949494;'>"</span>ENV (linear)<span style='color: #949494;'>"</span>            1    7.72     7.72      <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         
-#&gt; <span style='color: #BCBCBC;'> 5</span> <span style='color: #949494;'>"</span> GEN x ENV (linear)<span style='color: #949494;'>"</span>    12    0.755    0.062<span style='text-decoration: underline;'>9</span>     0.352  0.969     
-#&gt; <span style='color: #BCBCBC;'> 6</span> <span style='color: #949494;'>"</span>Pooled deviation<span style='color: #949494;'>"</span>       26    4.64     0.179     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         
-#&gt; <span style='color: #BCBCBC;'> 7</span> <span style='color: #949494;'>"</span>H1<span style='color: #949494;'>"</span>                      2    0.471    0.235     10.5    0.000<span style='text-decoration: underline;'>075</span>6 
-#&gt; <span style='color: #BCBCBC;'> 8</span> <span style='color: #949494;'>"</span>H10<span style='color: #949494;'>"</span>                     2    0.236    0.118      5.25   0.006<span style='text-decoration: underline;'>85</span>   
-#&gt; <span style='color: #BCBCBC;'> 9</span> <span style='color: #949494;'>"</span>H11<span style='color: #949494;'>"</span>                     2    0.211    0.106      4.71   0.011<span style='text-decoration: underline;'>2</span>    
-#&gt; <span style='color: #BCBCBC;'>10</span> <span style='color: #949494;'>"</span>H12<span style='color: #949494;'>"</span>                     2    0.450    0.225     10.0    0.000<span style='text-decoration: underline;'>110</span>  
-#&gt; <span style='color: #BCBCBC;'>11</span> <span style='color: #949494;'>"</span>H13<span style='color: #949494;'>"</span>                     2    0.410    0.205      9.15   0.000<span style='text-decoration: underline;'>231</span>  
-#&gt; <span style='color: #BCBCBC;'>12</span> <span style='color: #949494;'>"</span>H2<span style='color: #949494;'>"</span>                      2    0.534    0.267     11.9    0.000<span style='text-decoration: underline;'>024</span>1 
-#&gt; <span style='color: #BCBCBC;'>13</span> <span style='color: #949494;'>"</span>H3<span style='color: #949494;'>"</span>                      2    0.584    0.292     13.0    0.000<span style='text-decoration: underline;'>009</span>95
-#&gt; <span style='color: #BCBCBC;'>14</span> <span style='color: #949494;'>"</span>H4<span style='color: #949494;'>"</span>                      2    0.354    0.177      7.89   0.000<span style='text-decoration: underline;'>671</span>  
-#&gt; <span style='color: #BCBCBC;'>15</span> <span style='color: #949494;'>"</span>H5<span style='color: #949494;'>"</span>                      2    0.140    0.070<span style='text-decoration: underline;'>1</span>     3.13   0.048<span style='text-decoration: underline;'>4</span>    
-#&gt; <span style='color: #BCBCBC;'>16</span> <span style='color: #949494;'>"</span>H6<span style='color: #949494;'>"</span>                      2    0.334    0.167      7.44   0.000<span style='text-decoration: underline;'>994</span>  
-#&gt; <span style='color: #BCBCBC;'>17</span> <span style='color: #949494;'>"</span>H7<span style='color: #949494;'>"</span>                      2    0.241    0.121      5.38   0.006<span style='text-decoration: underline;'>09</span>   
-#&gt; <span style='color: #BCBCBC;'>18</span> <span style='color: #949494;'>"</span>H8<span style='color: #949494;'>"</span>                      2    0.505    0.253     11.3    0.000<span style='text-decoration: underline;'>040</span>3 
-#&gt; <span style='color: #BCBCBC;'>19</span> <span style='color: #949494;'>"</span>H9<span style='color: #949494;'>"</span>                      2    0.172    0.086<span style='text-decoration: underline;'>1</span>     3.84   0.024<span style='text-decoration: underline;'>9</span>    
-#&gt; <span style='color: #BCBCBC;'>20</span> <span style='color: #949494;'>"</span>Pooled error<span style='color: #949494;'>"</span>           96    2.15     0.022<span style='text-decoration: underline;'>4</span>    <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         
-#&gt; ---------------------------------------------------------------------------
-#&gt; Regression parameters
-#&gt; ---------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 13 x 10</span>
-#&gt;    GEN      b0    b1 `t(b1=1)`[,1] pval_t[,1]   s2di `F(s2di=0)`    pval_f  RMSE
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> H1     2.62 0.806       -<span style='color: #BB0000;'>0.997</span>    0.321    0.071<span style='text-decoration: underline;'>0</span>       10.5    7.56<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span> 0.198
-#&gt; <span style='color: #BCBCBC;'> 2</span> H10    2.31 1.22         1.12     0.265    0.031<span style='text-decoration: underline;'>8</span>        5.25   6.85<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span> 0.140
-#&gt; <span style='color: #BCBCBC;'> 3</span> H11    2.39 1.08         0.411    0.682    0.027<span style='text-decoration: underline;'>8</span>        4.71   1.12<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span> 0.133
-#&gt; <span style='color: #BCBCBC;'> 4</span> H12    2.44 0.465       -<span style='color: #BB0000;'>2.75</span>     0.007<span style='text-decoration: underline;'>11</span>  0.067<span style='text-decoration: underline;'>6</span>       10.0    1.10<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.194
-#&gt; <span style='color: #BCBCBC;'> 5</span> H13    2.54 0.306       -<span style='color: #BB0000;'>3.57</span>     0.000<span style='text-decoration: underline;'>558</span> 0.060<span style='text-decoration: underline;'>9</span>        9.15   2.31<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.185
-#&gt; <span style='color: #BCBCBC;'> 6</span> H2     2.60 0.963       -<span style='color: #BB0000;'>0.188</span>    0.851    0.081<span style='text-decoration: underline;'>5</span>       11.9    2.41<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span> 0.211
-#&gt; <span style='color: #BCBCBC;'> 7</span> H3     2.59 1.35         1.83     0.071<span style='text-decoration: underline;'>1</span>   0.089<span style='text-decoration: underline;'>8</span>       13.0    9.95<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-6</span> 0.221
-#&gt; <span style='color: #BCBCBC;'> 8</span> H4     2.58 1.27         1.38     0.171    0.051<span style='text-decoration: underline;'>5</span>        7.89   6.71<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.172
-#&gt; <span style='color: #BCBCBC;'> 9</span> H5     2.57 1.17         0.887    0.378    0.015<span style='text-decoration: underline;'>9</span>        3.13   4.84<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span> 0.108
-#&gt; <span style='color: #BCBCBC;'>10</span> H6     2.56 0.936       -<span style='color: #BB0000;'>0.330</span>    0.742    0.048<span style='text-decoration: underline;'>1</span>        7.44   9.94<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.167
-#&gt; <span style='color: #BCBCBC;'>11</span> H7     2.40 0.992       -<span style='color: #BB0000;'>0.039</span><span style='color: #BB0000; text-decoration: underline;'>3</span>   0.969    0.032<span style='text-decoration: underline;'>8</span>        5.38   6.09<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span> 0.142
-#&gt; <span style='color: #BCBCBC;'>12</span> H8     2.33 1.01         0.072<span style='text-decoration: underline;'>0</span>   0.943    0.076<span style='text-decoration: underline;'>7</span>       11.3    4.03<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span> 0.205
-#&gt; <span style='color: #BCBCBC;'>13</span> H9     2.36 1.42         2.18     0.031<span style='text-decoration: underline;'>7</span>   0.021<span style='text-decoration: underline;'>2</span>        3.84   2.49<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span> 0.120
-#&gt; <span style='color: #949494;'># ... with 1 more variable: R2 &lt;dbl&gt;</span>
-#&gt; ---------------------------------------------------------------------------
-#&gt; Variance of b0: 0.001868774 
-#&gt; Variance of b1: 0.03777002 
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/TiagoOlivoto/metan'>metan</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_reg.html'>ge_reg</a></span><span class='op'>(</span><span class='va'>data_ge2</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>PH</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait PH |============================================| 100% 00:00:00 </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable PH </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Joint-regression Analysis of variance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 20 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    SV                       Df `Sum Sq` `Mean Sq` `F value`    `Pr(&gt;F)`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> <span style='color: #949494;'>"</span>Total<span style='color: #949494;'>"</span>                  51   15.0      0.294     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> <span style='color: #949494;'>"</span>GEN<span style='color: #949494;'>"</span>                    12    1.86     0.155      0.870  0.585     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> <span style='color: #949494;'>"</span>ENV + (GEN x ENV)<span style='color: #949494;'>"</span>      39   13.1      0.336     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> <span style='color: #949494;'>"</span>ENV (linear)<span style='color: #949494;'>"</span>            1    7.72     7.72      <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> <span style='color: #949494;'>"</span> GEN x ENV (linear)<span style='color: #949494;'>"</span>    12    0.755    0.062<span style='text-decoration: underline;'>9</span>     0.352  0.969     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> <span style='color: #949494;'>"</span>Pooled deviation<span style='color: #949494;'>"</span>       26    4.64     0.179     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> <span style='color: #949494;'>"</span>H1<span style='color: #949494;'>"</span>                      2    0.471    0.235     10.5    0.000<span style='text-decoration: underline;'>075</span>6 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> <span style='color: #949494;'>"</span>H10<span style='color: #949494;'>"</span>                     2    0.236    0.118      5.25   0.006<span style='text-decoration: underline;'>85</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> <span style='color: #949494;'>"</span>H11<span style='color: #949494;'>"</span>                     2    0.211    0.106      4.71   0.011<span style='text-decoration: underline;'>2</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> <span style='color: #949494;'>"</span>H12<span style='color: #949494;'>"</span>                     2    0.450    0.225     10.0    0.000<span style='text-decoration: underline;'>110</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> <span style='color: #949494;'>"</span>H13<span style='color: #949494;'>"</span>                     2    0.410    0.205      9.15   0.000<span style='text-decoration: underline;'>231</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> <span style='color: #949494;'>"</span>H2<span style='color: #949494;'>"</span>                      2    0.534    0.267     11.9    0.000<span style='text-decoration: underline;'>024</span>1 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> <span style='color: #949494;'>"</span>H3<span style='color: #949494;'>"</span>                      2    0.584    0.292     13.0    0.000<span style='text-decoration: underline;'>009</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> <span style='color: #949494;'>"</span>H4<span style='color: #949494;'>"</span>                      2    0.354    0.177      7.89   0.000<span style='text-decoration: underline;'>671</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> <span style='color: #949494;'>"</span>H5<span style='color: #949494;'>"</span>                      2    0.140    0.070<span style='text-decoration: underline;'>1</span>     3.13   0.048<span style='text-decoration: underline;'>4</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> <span style='color: #949494;'>"</span>H6<span style='color: #949494;'>"</span>                      2    0.334    0.167      7.44   0.000<span style='text-decoration: underline;'>994</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> <span style='color: #949494;'>"</span>H7<span style='color: #949494;'>"</span>                      2    0.241    0.121      5.38   0.006<span style='text-decoration: underline;'>09</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> <span style='color: #949494;'>"</span>H8<span style='color: #949494;'>"</span>                      2    0.505    0.253     11.3    0.000<span style='text-decoration: underline;'>040</span>3 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> <span style='color: #949494;'>"</span>H9<span style='color: #949494;'>"</span>                      2    0.172    0.086<span style='text-decoration: underline;'>1</span>     3.84   0.024<span style='text-decoration: underline;'>9</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>20</span> <span style='color: #949494;'>"</span>Pooled error<span style='color: #949494;'>"</span>           96    2.15     0.022<span style='text-decoration: underline;'>4</span>    <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Regression parameters</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 13 x 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    GEN      b0    b1 `t(b1=1)`[,1] pval_t[,1]   s2di `F(s2di=0)`    pval_f  RMSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> H1     2.62 0.806       -<span style='color: #BB0000;'>0.997</span>    0.321    0.071<span style='text-decoration: underline;'>0</span>       10.5    7.56<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span> 0.198</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> H10    2.31 1.22         1.12     0.265    0.031<span style='text-decoration: underline;'>8</span>        5.25   6.85<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span> 0.140</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> H11    2.39 1.08         0.411    0.682    0.027<span style='text-decoration: underline;'>8</span>        4.71   1.12<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span> 0.133</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> H12    2.44 0.465       -<span style='color: #BB0000;'>2.75</span>     0.007<span style='text-decoration: underline;'>11</span>  0.067<span style='text-decoration: underline;'>6</span>       10.0    1.10<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.194</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> H13    2.54 0.306       -<span style='color: #BB0000;'>3.57</span>     0.000<span style='text-decoration: underline;'>558</span> 0.060<span style='text-decoration: underline;'>9</span>        9.15   2.31<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.185</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> H2     2.60 0.963       -<span style='color: #BB0000;'>0.188</span>    0.851    0.081<span style='text-decoration: underline;'>5</span>       11.9    2.41<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span> 0.211</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> H3     2.59 1.35         1.83     0.071<span style='text-decoration: underline;'>1</span>   0.089<span style='text-decoration: underline;'>8</span>       13.0    9.95<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-6</span> 0.221</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> H4     2.58 1.27         1.38     0.171    0.051<span style='text-decoration: underline;'>5</span>        7.89   6.71<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.172</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> H5     2.57 1.17         0.887    0.378    0.015<span style='text-decoration: underline;'>9</span>        3.13   4.84<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span> 0.108</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> H6     2.56 0.936       -<span style='color: #BB0000;'>0.330</span>    0.742    0.048<span style='text-decoration: underline;'>1</span>        7.44   9.94<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span> 0.167</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> H7     2.40 0.992       -<span style='color: #BB0000;'>0.039</span><span style='color: #BB0000; text-decoration: underline;'>3</span>   0.969    0.032<span style='text-decoration: underline;'>8</span>        5.38   6.09<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span> 0.142</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> H8     2.33 1.01         0.072<span style='text-decoration: underline;'>0</span>   0.943    0.076<span style='text-decoration: underline;'>7</span>       11.3    4.03<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span> 0.205</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> H9     2.36 1.42         2.18     0.031<span style='text-decoration: underline;'>7</span>   0.021<span style='text-decoration: underline;'>2</span>        3.84   2.49<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span> 0.120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 1 more variable: R2 &lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variance of b0: 0.001868774 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variance of b1: 0.03777002 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

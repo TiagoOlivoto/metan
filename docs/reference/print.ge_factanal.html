@@ -97,7 +97,7 @@ shown in the R console. The results can also be exported to the directory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
       </span>
     </div>
 
@@ -155,8 +155,20 @@ shown in the R console. The results can also be exported to the directory." />
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Package news</a>
+    </li>
+    <li>
+      <a href="https://olivoto.netlify.app/">Blog posts</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,23 +197,26 @@ shown in the R console. The results can also be exported to the directory." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">RG</a>
+  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa-researchgate fa-2x"></span>
+     
+  </a>
 </li>
 <li>
   <a href="https://github.com/TiagoOlivoto">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter"></span>
+    <span class="fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley"></span>
+    <span class="fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
@@ -269,72 +284,73 @@ the working directory</p></td>
     <p>Tiago Olivoto <a href='mailto:tiagoolivoto@gmail.com'>tiagoolivoto@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,
-  env <span class='op'>=</span> <span class='va'>ENV</span>,
-  gen <span class='op'>=</span> <span class='va'>GEN</span>,
-  rep <span class='op'>=</span> <span class='va'>REP</span>,
-  resp <span class='op'>=</span> <span class='va'>PH</span>
-<span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Variable PH 
-#&gt; ------------------------------------------------------------------------------------
-#&gt; Correlation matrix among environments
-#&gt; ------------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span>
-#&gt;   ENV        A1      A2      A3      A4
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> A1     1       0.391<span style='text-decoration: underline;'>9</span> -<span style='color: #BB0000;'>0.472</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.498</span><span style='color: #BB0000; text-decoration: underline;'>3</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> A2     0.391<span style='text-decoration: underline;'>9</span>  1      -<span style='color: #BB0000;'>0.220</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  0.272<span style='text-decoration: underline;'>2</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> A3    -<span style='color: #BB0000;'>0.472</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.220</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  1       0.323<span style='text-decoration: underline;'>8</span>
-#&gt; <span style='color: #BCBCBC;'>4</span> A4    -<span style='color: #BB0000;'>0.498</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  0.272<span style='text-decoration: underline;'>2</span>  0.323<span style='text-decoration: underline;'>8</span>  1     
-#&gt; ------------------------------------------------------------------------------------
-#&gt; Eigenvalues and explained variance
-#&gt; ------------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span>
-#&gt;   PCA   Eigenvalues Variance Cumul_var
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> PC1        1.926    48.15      48.15
-#&gt; <span style='color: #BCBCBC;'>2</span> PC2        1.263    31.58      79.74
-#&gt; <span style='color: #BCBCBC;'>3</span> PC3        0.592<span style='text-decoration: underline;'>8</span>   14.82      94.56
-#&gt; <span style='color: #BCBCBC;'>4</span> PC4        0.217<span style='text-decoration: underline;'>8</span>    5.444    100   
-#&gt; ------------------------------------------------------------------------------------
-#&gt; Initial loadings
-#&gt; ------------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 3</span>
-#&gt;   Env       FA1      FA2
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> A1    -<span style='color: #BB0000;'>0.891</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  0.087<span style='text-decoration: underline;'>31</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> A2    -<span style='color: #BB0000;'>0.371</span><span style='color: #BB0000; text-decoration: underline;'>8</span>  0.881<span style='text-decoration: underline;'>6</span> 
-#&gt; <span style='color: #BCBCBC;'>3</span> A3     0.766<span style='text-decoration: underline;'>0</span> -<span style='color: #BB0000;'>0.045</span><span style='color: #BB0000; text-decoration: underline;'>47</span>
-#&gt; <span style='color: #BCBCBC;'>4</span> A4     0.638<span style='text-decoration: underline;'>0</span>  0.690<span style='text-decoration: underline;'>2</span> 
-#&gt; ------------------------------------------------------------------------------------
-#&gt; Loadings after varimax rotation and commonalities
-#&gt; ------------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span>
-#&gt;   Env       FA1     FA2 Communality Uniquenesses
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> A1    -<span style='color: #BB0000;'>0.876</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  0.183<span style='text-decoration: underline;'>9</span>      0.801<span style='text-decoration: underline;'>8</span>      0.198<span style='text-decoration: underline;'>2</span> 
-#&gt; <span style='color: #BCBCBC;'>2</span> A2    -<span style='color: #BB0000;'>0.273</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  0.916<span style='text-decoration: underline;'>9</span>      0.915<span style='text-decoration: underline;'>4</span>      0.084<span style='text-decoration: underline;'>61</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> A3     0.756<span style='text-decoration: underline;'>4</span> -<span style='color: #BB0000;'>0.128</span><span style='color: #BB0000; text-decoration: underline;'>7</span>      0.588<span style='text-decoration: underline;'>8</span>      0.411<span style='text-decoration: underline;'>2</span> 
-#&gt; <span style='color: #BCBCBC;'>4</span> A4     0.709<span style='text-decoration: underline;'>5</span>  0.616<span style='text-decoration: underline;'>6</span>      0.883<span style='text-decoration: underline;'>5</span>      0.116<span style='text-decoration: underline;'>5</span> 
-#&gt; ------------------------------------------------------------------------------------
-#&gt; Environmental stratification based on factor analysis
-#&gt; ------------------------------------------------------------------------------------
-#&gt; <span style='color: #949494;'># A tibble: 4 x 6</span>
-#&gt;   Env   Factor  Mean   Min   Max     CV
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> A1    FA1    2.793 2.692 2.935  2.810
-#&gt; <span style='color: #BCBCBC;'>2</span> A3    FA1    2.167 2.028 2.599  7.724
-#&gt; <span style='color: #BCBCBC;'>3</span> A4    FA1    2.518 2.305 2.638  3.655
-#&gt; <span style='color: #BCBCBC;'>4</span> A2    FA2    2.462 1.959 2.947 16.20 
-#&gt; ------------------------------------------------------------------------------------
-#&gt; Mean = mean; Min = minimum; Max = maximum; CV = coefficient of variation (%)
-#&gt; ------------------------------------------------------------------------------------
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ge_factanal.html'>ge_factanal</a></span><span class='op'>(</span><span class='va'>data_ge2</span>,</span>
+<span class='r-in'>  env <span class='op'>=</span> <span class='va'>ENV</span>,</span>
+<span class='r-in'>  gen <span class='op'>=</span> <span class='va'>GEN</span>,</span>
+<span class='r-in'>  rep <span class='op'>=</span> <span class='va'>REP</span>,</span>
+<span class='r-in'>  resp <span class='op'>=</span> <span class='va'>PH</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Variable PH </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Correlation matrix among environments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ENV        A1      A2      A3      A4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> A1     1       0.391<span style='text-decoration: underline;'>9</span> -<span style='color: #BB0000;'>0.472</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.498</span><span style='color: #BB0000; text-decoration: underline;'>3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> A2     0.391<span style='text-decoration: underline;'>9</span>  1      -<span style='color: #BB0000;'>0.220</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  0.272<span style='text-decoration: underline;'>2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> A3    -<span style='color: #BB0000;'>0.472</span><span style='color: #BB0000; text-decoration: underline;'>3</span> -<span style='color: #BB0000;'>0.220</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  1       0.323<span style='text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> A4    -<span style='color: #BB0000;'>0.498</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  0.272<span style='text-decoration: underline;'>2</span>  0.323<span style='text-decoration: underline;'>8</span>  1     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eigenvalues and explained variance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   PCA   Eigenvalues Variance Cumul_var</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> PC1        1.926    48.15      48.15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> PC2        1.263    31.58      79.74</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> PC3        0.592<span style='text-decoration: underline;'>8</span>   14.82      94.56</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> PC4        0.217<span style='text-decoration: underline;'>8</span>    5.444    100   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Initial loadings</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Env       FA1      FA2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> A1    -<span style='color: #BB0000;'>0.891</span><span style='color: #BB0000; text-decoration: underline;'>2</span>  0.087<span style='text-decoration: underline;'>31</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> A2    -<span style='color: #BB0000;'>0.371</span><span style='color: #BB0000; text-decoration: underline;'>8</span>  0.881<span style='text-decoration: underline;'>6</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> A3     0.766<span style='text-decoration: underline;'>0</span> -<span style='color: #BB0000;'>0.045</span><span style='color: #BB0000; text-decoration: underline;'>47</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> A4     0.638<span style='text-decoration: underline;'>0</span>  0.690<span style='text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Loadings after varimax rotation and commonalities</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Env       FA1     FA2 Communality Uniquenesses</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> A1    -<span style='color: #BB0000;'>0.876</span><span style='color: #BB0000; text-decoration: underline;'>3</span>  0.183<span style='text-decoration: underline;'>9</span>      0.801<span style='text-decoration: underline;'>8</span>      0.198<span style='text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> A2    -<span style='color: #BB0000;'>0.273</span><span style='color: #BB0000; text-decoration: underline;'>5</span>  0.916<span style='text-decoration: underline;'>9</span>      0.915<span style='text-decoration: underline;'>4</span>      0.084<span style='text-decoration: underline;'>61</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> A3     0.756<span style='text-decoration: underline;'>4</span> -<span style='color: #BB0000;'>0.128</span><span style='color: #BB0000; text-decoration: underline;'>7</span>      0.588<span style='text-decoration: underline;'>8</span>      0.411<span style='text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> A4     0.709<span style='text-decoration: underline;'>5</span>  0.616<span style='text-decoration: underline;'>6</span>      0.883<span style='text-decoration: underline;'>5</span>      0.116<span style='text-decoration: underline;'>5</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Environmental stratification based on factor analysis</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Env   Factor  Mean   Min   Max     CV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> A1    FA1    2.793 2.692 2.935  2.810</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> A3    FA1    2.167 2.028 2.599  7.724</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> A4    FA1    2.518 2.305 2.638  3.655</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> A2    FA2    2.462 1.959 2.947 16.20 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Mean = mean; Min = minimum; Max = maximum; CV = coefficient of variation (%)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ------------------------------------------------------------------------------------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
