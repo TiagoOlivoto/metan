@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
 -   Compute [descriptive statistics](https://tiagoolivoto.github.io/metan/reference/desc_stat.html);
 -   Compute [within-environment](https://tiagoolivoto.github.io/metan/reference/anova_ind.html) and [joint-analysis of variance](https://tiagoolivoto.github.io/metan/reference/anova_joint.html);
 -   Compute [AMMI analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) with prediction considering different numbers of interaction principal component axes;
--   Compute [AMMI-based stability indexes](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html);
+-   Compute [AMMI-based stability indexes](https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html);
 -   Compute [GGE biplot analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
 -   Compute [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html) and [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html) biplot analysis;
 -   Compute [BLUP-based stability indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);

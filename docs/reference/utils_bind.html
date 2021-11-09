@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Helper function for binding data — utils_bind • metan</title>
+<title>Helper function for binding rows — utils_bind • metan</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,10 +52,9 @@
 
 
 
-<meta property="og:title" content="Helper function for binding data — utils_bind" />
+<meta property="og:title" content="Helper function for binding rows — utils_bind" />
 <meta property="og:description" content="
 
-rbind_fill()  use rbind_fill_id() instead.
 rbind_fill_id()  Implements the common pattern of do.call(rbind, dfs)
 with data frame identifier and filling of missing values.
 
@@ -244,7 +243,7 @@ with data frame identifier and filling of missing values.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Helper function for binding data</h1>
+    <h1>Helper function for binding rows</h1>
     <small class="dont-index">Source: <a href='https://github.com/TiagoOlivoto/metan/blob/master/R/utils_bind.R'><code>R/utils_bind.R</code></a></small>
     <div class="hidden name"><code>utils_bind.Rd</code></div>
     </div>
@@ -252,16 +251,13 @@ with data frame identifier and filling of missing values.
     <div class="ref-description">
     
 <ul>
-<li><p><code>rbind_fill()</code> <a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a> use <code>rbind_fill_id()</code> instead.</p></li>
-<li><p><code>rbind_fill_id()</code> <a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a> Implements the common pattern of <code>do.call(rbind, dfs)</code>
+<li><p><code>rbind_fill_id()</code> <a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a> Implements the common pattern of <code>do.call(rbind, dfs)</code>
 with data frame identifier and filling of missing values.</p></li>
 </ul>
 
     </div>
 
-    <pre class="usage"><span class='fu'>rbind_fill_id</span><span class='op'>(</span><span class='va'>...</span>, .id <span class='op'>=</span> <span class='cn'>NULL</span>, .fill <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
-
-<span class='fu'>rbind_fill</span><span class='op'>(</span><span class='va'>...</span>, .fill <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rbind_fill_id</span><span class='op'>(</span><span class='va'>...</span>, .id <span class='op'>=</span> <span class='cn'>NULL</span>, .fill <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

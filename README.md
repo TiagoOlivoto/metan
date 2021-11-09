@@ -38,7 +38,7 @@ parametric and non-parametric methods. The package will help you to:
     with prediction considering different numbers of interaction
     principal component axes;
 -   Compute [AMMI-based stability
-    indexes](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html);
+    indexes](https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html);
 -   Compute [GGE biplot
     analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
 -   Compute
@@ -322,7 +322,7 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# Evaluating trait GY |============================================| 100% 00:00:05 
+# Evaluating trait GY |============================================| 100% 00:00:04 
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats

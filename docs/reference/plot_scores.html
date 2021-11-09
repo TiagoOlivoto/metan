@@ -291,10 +291,8 @@ of narrow adaptations.</p>
   shape.env <span class='op'>=</span> <span class='fl'>23</span>,
   size.shape.gen <span class='op'>=</span> <span class='fl'>2.2</span>,
   size.shape.env <span class='op'>=</span> <span class='fl'>2.2</span>,
-  size.shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>,
   size.bor.tick <span class='op'>=</span> <span class='fl'>0.3</span>,
   size.tex.lab <span class='op'>=</span> <span class='fl'>12</span>,
-  size.tex.pa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>,
   size.tex.gen <span class='op'>=</span> <span class='fl'>3.5</span>,
   size.tex.env <span class='op'>=</span> <span class='fl'>3.5</span>,
   size.line <span class='op'>=</span> <span class='fl'>0.5</span>,
@@ -420,10 +418,6 @@ triangle), and <code>25</code> (low triangle).</p></td>
 environments respectively. Defaults to <code>2.2</code>.</p></td>
     </tr>
     <tr>
-      <th>size.shape</th>
-      <td><p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a></p></td>
-    </tr>
-    <tr>
       <th>size.bor.tick</th>
       <td><p>The size of tick of shape. Default is <code>0.3</code>. The
 size of the shape will be <code>max(size.shape.gen, size.shape.env) + size.bor.tick</code></p></td>
@@ -433,10 +427,6 @@ size of the shape will be <code>max(size.shape.gen, size.shape.env) + size.bor.t
       <td><p>The size of the text for axis
 labels (Defaults to 12), genotypes labels, and environments labels
 (Defaults to 3.5).</p></td>
-    </tr>
-    <tr>
-      <th>size.tex.pa</th>
-      <td><p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a></p></td>
     </tr>
     <tr>
       <th>size.line</th>
@@ -646,7 +636,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># WAASB index</span></span>
 <span class='r-in'><span class='va'>waasb_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='waasb.html'>waasb</a></span><span class='op'>(</span><span class='va'>data_ge</span>, <span class='va'>ENV</span>, <span class='va'>GEN</span>, <span class='va'>REP</span>, <span class='va'>GY</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:00 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:01 </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Method: REML/BLUP</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Random effects: GEN, GEN:ENV</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Fixed effects: ENV, REP(ENV)</span>

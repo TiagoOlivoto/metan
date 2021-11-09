@@ -55,7 +55,10 @@
 <meta property="og:title" content="AMMI-based stability indexes — ammi_indexes" />
 <meta property="og:description" content="
 ammi_indexes() computes several AMMI-based stability statistics. See
-Details for a detailed overview." />
+Details for a detailed overview.
+AMMI_indexes()  use ammi_indexes() instead.
+
+" />
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png" />
 
 
@@ -246,9 +249,12 @@ Details for a detailed overview." />
     </div>
 
     <div class="ref-description">
-    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
-<p><code>ammi_indexes()</code> computes several AMMI-based stability statistics. See
-<strong>Details</strong> for a detailed overview.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p><ul>
+<li><p><code>ammi_indexes()</code> computes several AMMI-based stability statistics. See
+<strong>Details</strong> for a detailed overview.</p></li>
+<li><p><code>AMMI_indexes()</code> <a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a> use <code>ammi_indexes()</code> instead.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>ammi_indexes</span><span class='op'>(</span><span class='va'>.data</span>, order.y <span class='op'>=</span> <span class='cn'>NULL</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
