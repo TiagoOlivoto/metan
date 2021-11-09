@@ -102,7 +102,7 @@ reference:
       - cv_ammif
   - subtitle: "Fit models"
     contents:
-      - AMMI_indexes
+      - ammi_indexes
       - impute_missing_val
       - performs_ammi
       - waas
