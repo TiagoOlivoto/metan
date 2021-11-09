@@ -1,7 +1,6 @@
-#' Helper function for binding data
+#' Helper function for binding rows
 #' @description
-#' * [rbind_fill()] `r badge('deprecated')` use `rbind_fill_id()` instead.
-#' * [rbind_fill_id()] `r badge('experimental')` Implements the common pattern of `do.call(rbind, dfs)`
+#' * [rbind_fill_id()] `r badge('stable')` Implements the common pattern of `do.call(rbind, dfs)`
 #' with data frame identifier and filling of missing values.
 #'
 #' @name utils_bind
@@ -54,20 +53,3 @@ rbind_fill_id <- function(..., .id = NULL, .fill = NA){
         replace_na(everything(), replacement = .fill)
     return(bind)
 }
-
-#' @name utils_bind
-#' @export
-# Deprecated
-rbind_fill <- function(..., .fill = NA) {
-    deprecated_error("1.13.0", "metan::rbind_fill()", "metan::rbind_fill_id()")
-    bind_rows <- function(dfs)
-        df <- list(...)
-    ns <- unique(unlist(sapply(df, names)))
-    do.call(rbind, lapply(df, function(x) {
-        for (n in ns[!ns %in% names(x)]) {
-            x[[n]] <- fill
-        }
-        x
-    }))
-}
-

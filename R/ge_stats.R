@@ -201,7 +201,7 @@ ge_stats = function(.data,
     an_mod <- Annicchiarico(data, ENV, GEN, REP, Y, verbose = FALSE, prob = prob)
     shu_mod <- Shukla(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
     fox_mod <- Fox(data, ENV, GEN, Y, verbose = FALSE)[[1]]
-    gai_mod <- gai(data, ENV, GEN, REP, Y, verbose = FALSE)[[1]]
+    gai_mod <- gai(data, ENV, GEN, Y, verbose = FALSE)[[1]]
     hue_mod <- Huehn(data, ENV, GEN, Y, verbose = FALSE)[[1]]
     lb_mod <- superiority(data, ENV, GEN, Y, verbose = FALSE)[[1]]
     then_mod <- Thennarasu(data, ENV, GEN, Y, verbose = FALSE)[[1]]

@@ -62,13 +62,11 @@
 #'   `23` (diamond) for environments. Values must be between `21-25`:
 #'   `21` (circle), `22` (square), `23` (diamond), `24` (up
 #'   triangle), and `25` (low triangle).
-#' @param size.shape `r badge('deprecated')`
 #' @param size.shape.gen,size.shape.env The size of the shapes for genotypes and
 #'   environments respectively. Defaults to `2.2`.
 #' @param size.bor.tick The size of tick of shape. Default is `0.3`. The
 #'   size of the shape will be `max(size.shape.gen, size.shape.env) +
 #'   size.bor.tick`
-#' @param size.tex.pa `r badge('deprecated')`
 #' @param size.tex.lab,size.tex.gen,size.tex.env The size of the text for axis
 #'   labels (Defaults to 12), genotypes labels, and environments labels
 #'   (Defaults to 3.5).
@@ -195,10 +193,8 @@ plot_scores <- function(x,
                         shape.env = 23,
                         size.shape.gen = 2.2,
                         size.shape.env = 2.2,
-                        size.shape = deprecated(),
                         size.bor.tick = 0.3,
                         size.tex.lab = 12,
-                        size.tex.pa = deprecated(),
                         size.tex.gen = 3.5,
                         size.tex.env = 3.5,
                         size.line = 0.5,
@@ -225,14 +221,6 @@ plot_scores <- function(x,
                         height = 7,
                         color = TRUE,
                         ...) {
-  if(is_present(size.tex.pa)){
-    deprecated_error("1.13.0", "metan::plot_scores(size.tex.pa)",
-                     message = "Use 'size.tex.gen' or 'size.tex.env' instead.")
-  }
-  if(is_present(size.shape)){
-    deprecated_error("1.13.0", "metan::plot_scores(size.shape)",
-                     message = "Use 'size.shape.gen' or 'size.shape.env' instead.")
-  }
   varname <- names(x)[var]
   x <- x[[var]]
   df <-

@@ -27,9 +27,11 @@ for one variable.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-
-\code{ammi_indexes()} computes several AMMI-based stability statistics. See
+\itemize{
+\item \code{ammi_indexes()} computes several AMMI-based stability statistics. See
 \strong{Details} for a detailed overview.
+\item \code{AMMI_indexes()} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use \code{ammi_indexes()} instead.
+}
 }
 \details{
 First, let's define some symbols: \mjseqn{N'} is the number of significant

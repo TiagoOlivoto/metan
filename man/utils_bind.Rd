@@ -3,12 +3,9 @@
 \name{utils_bind}
 \alias{utils_bind}
 \alias{rbind_fill_id}
-\alias{rbind_fill}
-\title{Helper function for binding data}
+\title{Helper function for binding rows}
 \usage{
 rbind_fill_id(..., .id = NULL, .fill = NA)
-
-rbind_fill(..., .fill = NA)
 }
 \arguments{
 \item{...}{The dataframes. Either a list of data frames, or a comma-separated
@@ -27,8 +24,7 @@ A data frame.
 }
 \description{
 \itemize{
-\item \code{\link[=rbind_fill]{rbind_fill()}} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use \code{rbind_fill_id()} instead.
-\item \code{\link[=rbind_fill_id]{rbind_fill_id()}} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Implements the common pattern of \code{do.call(rbind, dfs)}
+\item \code{\link[=rbind_fill_id]{rbind_fill_id()}} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} Implements the common pattern of \code{do.call(rbind, dfs)}
 with data frame identifier and filling of missing values.
 }
 }

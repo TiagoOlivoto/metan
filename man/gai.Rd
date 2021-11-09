@@ -4,7 +4,7 @@
 \alias{gai}
 \title{Geometric adaptability index}
 \usage{
-gai(.data, env, gen, rep = "deprecated", resp, verbose = TRUE)
+gai(.data, env, gen, resp, verbose = TRUE)
 }
 \arguments{
 \item{.data}{The dataset containing the columns related to Environments,
@@ -14,8 +14,6 @@ Genotypes, replication/block and response variable(s).}
 environments.}
 
 \item{gen}{The name of the column that contains the levels of the genotypes.}
-
-\item{rep}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}}
 
 \item{resp}{The response variable(s). To analyze multiple variables in a
 single procedure use, for example, \code{resp = c(var1, var2, var3)}.}
@@ -47,7 +45,10 @@ environments, and E is the number of environments
 \examples{
 \donttest{
 library(metan)
-out <- gai(data_ge2, ENV, GEN, REP, c(EH, PH, EL, CD, ED, NKE))
+out <- gai(data_ge2,
+           env = ENV,
+           gen = GEN,
+           resp = c(EH, PH, EL, CD, ED, NKE))
 }
 
 }

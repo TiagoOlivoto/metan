@@ -26,10 +26,8 @@ plot_scores(
   shape.env = 23,
   size.shape.gen = 2.2,
   size.shape.env = 2.2,
-  size.shape = deprecated(),
   size.bor.tick = 0.3,
   size.tex.lab = 12,
-  size.tex.pa = deprecated(),
   size.tex.gen = 3.5,
   size.tex.env = 3.5,
   size.line = 0.5,
@@ -123,16 +121,12 @@ triangle), and \code{25} (low triangle).}
 \item{size.shape.gen, size.shape.env}{The size of the shapes for genotypes and
 environments respectively. Defaults to \code{2.2}.}
 
-\item{size.shape}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}}
-
 \item{size.bor.tick}{The size of tick of shape. Default is \code{0.3}. The
 size of the shape will be \code{max(size.shape.gen, size.shape.env) + size.bor.tick}}
 
 \item{size.tex.lab, size.tex.gen, size.tex.env}{The size of the text for axis
 labels (Defaults to 12), genotypes labels, and environments labels
 (Defaults to 3.5).}
-
-\item{size.tex.pa}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}}
 
 \item{size.line}{The size of the line that indicate the means in the biplot.
 Default is \code{0.5}.}
