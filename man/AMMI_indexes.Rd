@@ -26,9 +26,8 @@ A list where each element contains the result AMMI-based stability indexes
 for one variable.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
-\item \code{ammi_indexes()} computes several AMMI-based stability statistics. See
+\item \code{ammi_indexes()} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} computes several AMMI-based stability statistics. See
 \strong{Details} for a detailed overview.
 \item \code{AMMI_indexes()} \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use \code{ammi_indexes()} instead.
 }

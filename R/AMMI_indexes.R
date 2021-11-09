@@ -1,8 +1,6 @@
 #' AMMI-based stability indexes
 #' @description
-#' `r badge('stable')`
-#'
-#' * `ammi_indexes()` computes several AMMI-based stability statistics. See
+#' * `ammi_indexes()` `r badge('stable')` computes several AMMI-based stability statistics. See
 #' **Details** for a detailed overview.
 #' * `AMMI_indexes()` `r badge('deprecated')` use `ammi_indexes()` instead.
 #'
