@@ -326,7 +326,7 @@ stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
-# # A tibble: 10 x 36
+# # A tibble: 10 x 44
 #    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval
 #    <chr> <chr> <dbl> <dbl> <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl>
 #  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 
@@ -339,11 +339,12 @@ get_model_data(stats)
 #  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 
 #  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 
 # 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 
-# # ... with 24 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASV <dbl>,
-# #   SIPC <dbl>, EV <dbl>, ZA <dbl>, WAAS <dbl>, WAASB <dbl>, HMGV <dbl>,
-# #   RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>, Pi_u <dbl>, Gai <dbl>,
-# #   S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>, N1 <dbl>, N2 <dbl>, N3 <dbl>,
-# #   N4 <dbl>
+# # ... with 32 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASTAB <dbl>,
+# #   ASI <dbl>, ASV <dbl>, AVAMGE <dbl>, DA <dbl>, DZ <dbl>, EV <dbl>, FA <dbl>,
+# #   MASI <dbl>, MASV <dbl>, SIPC <dbl>, ZA <dbl>, WAAS <dbl>, WAASB <dbl>,
+# #   HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>, Pi_u <dbl>,
+# #   Gai <dbl>, S1 <dbl>, S2 <dbl>, S3 <dbl>, S6 <dbl>, N1 <dbl>, N2 <dbl>,
+# #   N3 <dbl>, N4 <dbl>
 ```
 
 # Citation
