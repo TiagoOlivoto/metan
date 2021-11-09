@@ -46,7 +46,7 @@ parametric and non-parametric methods. The package will help you to:
     [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html)
     biplot analysis;
 -   Compute [BLUP-based stability
-    indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);
+    indexes](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html);
 -   Compute variance components and genetic parameters in [single
     environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)
     and
@@ -322,7 +322,7 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# Evaluating trait GY |============================================| 100% 00:00:04 
+# Evaluating trait GY |============================================| 100% 00:00:06 
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats

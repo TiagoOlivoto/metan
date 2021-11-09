@@ -208,7 +208,7 @@
 <li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html">AMMI-based stability indexes</a>;</li>
 <li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/gge.html">GGE biplot analysis</a>;</li>
 <li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/gtb.html">GT</a> and <a href="https://tiagoolivoto.github.io/metan/reference/gytb.html">GYT</a> biplot analysis;</li>
-<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html">BLUP-based stability indexes</a>;</li>
+<li>Compute <a href="https://tiagoolivoto.github.io/metan/reference/blup_indexes.html">BLUP-based stability indexes</a>;</li>
 <li>Compute variance components and genetic parameters in <a href="https://tiagoolivoto.github.io/metan/reference/gamem.html">single environment</a> and <a href="https://tiagoolivoto.github.io/metan/reference/gamem_met.html">multi-environment</a> trials using mixed-effect models;</li>
 <li>Perform cross-validation procedures for <a href="https://tiagoolivoto.github.io/metan/reference/cv_ammif.html">AMMI-family</a> and <a href="https://tiagoolivoto.github.io/metan/reference/cv_blup.html">BLUP</a> models;</li>
 <li>Compute parametric and nonparametric <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html">stability statistics</a>;</li>
@@ -402,7 +402,7 @@
 <p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>gmd()</code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="co"># Evaluating trait GY |============================================| 100% 00:00:04 </span>
+<span class="co"># Evaluating trait GY |============================================| 100% 00:00:06 </span>
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>

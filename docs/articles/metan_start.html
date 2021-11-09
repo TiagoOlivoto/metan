@@ -629,7 +629,7 @@
 <p>To compute all the stability statistics at once, we can use the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. Again we get the results with <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>get_model_data()</code></a>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stat_ge</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="co"># Evaluating trait GY |============================================| 100% 00:00:05 </span>
+<span class="co"># Evaluating trait GY |============================================| 100% 00:00:04 </span>
 <span class="fu"><a href="../reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stat_ge</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>

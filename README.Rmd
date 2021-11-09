@@ -35,7 +35,7 @@ knitr::opts_chunk$set(
 -   Compute [AMMI-based stability indexes](https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html);
 -   Compute [GGE biplot analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
 -   Compute [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html) and [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html) biplot analysis;
--   Compute [BLUP-based stability indexes](https://tiagoolivoto.github.io/metan/reference/Resende_indexes.html);
+-   Compute [BLUP-based stability indexes](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html);
 -   Compute variance components and genetic parameters in [single environment](https://tiagoolivoto.github.io/metan/reference/gamem.html) and [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html) trials using mixed-effect models;
 -   Perform cross-validation procedures for [AMMI-family](https://tiagoolivoto.github.io/metan/reference/cv_ammif.html) and [BLUP](https://tiagoolivoto.github.io/metan/reference/cv_blup.html) models;
 -   Compute parametric and nonparametric [stability statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
