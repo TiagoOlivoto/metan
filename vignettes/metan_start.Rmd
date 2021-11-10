@@ -21,7 +21,7 @@ knitr::opts_chunk$set(comment = "#", collapse = TRUE)
 
 * Parametric methods
    * AMMI analysis with [`performs_ammi()`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html).
-   * AMMI-based stability statistics with [`ammi_indexes()`](https://tiagoolivoto.github.io/metan/reference/AMMI_indexes.html).
+   * AMMI-based stability statistics with [`ammi_indexes()`](https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html).
    * BLUP prediction for multi-environment trials with [`waasb()`](https://tiagoolivoto.github.io/metan/reference/waasb.html).
    * BLUP-based stability indexes with [`blup_indexes()`](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html).
    * Ecovalence [@Wricke1965] using [`ecovalence()`](https://tiagoolivoto.github.io/metan/reference/ecovalence.html).
