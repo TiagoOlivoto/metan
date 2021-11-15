@@ -1,3 +1,5 @@
+# metan (development version)
+
 # metan 1.16.0
 ## New features
 * Include new AMMI-based stability methods.
