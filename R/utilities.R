@@ -641,14 +641,14 @@ column_to_rownames <- function(.data, var = "rowname"){
 }
 #' @name utils_rows_cols
 #' @export
-rownames_to_column <- function(.data, var = "rowname"){
-  df <- .data
-  if(var %in% colnames(df)){
-    stop("Variable '", var, "' already in data.", call. = FALSE)
+rownames_to_column <-  function(.data, var = "rowname"){
+  col_names <- colnames(.data)
+  if (var %in% col_names) {
+    stop("Column `", var, "` already exists in `.data`.")
   }
-  df %>%
-    mutate(`:=`(!!var, rownames(df)), .before = 1) %>%
-    remove_rownames()
+  .data[, var] <- rownames(.data)
+  rownames(.data) <- NULL
+  .data[, c(var, setdiff(col_names, var))]
 }
 #' @name utils_rows_cols
 #' @export
