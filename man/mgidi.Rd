@@ -132,26 +132,26 @@ gmd(mod, "blupg")
 # Compute the MGIDI index
 # Default options (all traits with positive desired gains)
 # Equal weights for all traits
-mgidi <- mgidi(mod)
-gmd(mgidi, "MGIDI")
+mgidi_ind <- mgidi(mod)
+gmd(mgidi_ind, "MGIDI")
 
 # Higher weight for traits V1 and V4
 # This will increase the probability of selecting H7 and H9
 # 30\% selection pressure
-mgidi2 <-
+mgidi_ind2 <-
    mgidi(mod,
          weights = c(1, .2, .2, 1),
          SI = 30)
-gmd(mgidi2, "MGIDI")
+gmd(mgidi_ind2, "MGIDI")
 
 # plot the contribution of each factor on the MGIDI index
-p1 <- plot(mgidi, type = "contribution")
-p2 <- plot(mgidi2, type = "contribution")
+p1 <- plot(mgidi_ind, type = "contribution")
+p2 <- plot(mgidi_ind2, type = "contribution")
 p1 + p2
 
 # Positive desired gains for V1, V2 and V3
 # Negative desired gains for V4
-mgidi3 <-
+mgidi_ind3 <-
   mgidi(mod,
        ideotype = c("h, h, h, l"))
 
