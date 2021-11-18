@@ -156,236 +156,237 @@ mgidi <- function(.data,
                                 verbose = verbose)))
     return(set_class(bind, c("tbl_df",  "mgidi_group", "mgidi", "tbl",  "data.frame")))
   } else{
-  d <- match.call()
-  if(!use_data %in% c("blup", "pheno")){
-    stop("Argument 'use_data = ", d["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
-  }
-  if(has_class(.data, c("gamem", "waasb"))){
-    data <-
-      gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
-      means_by(GEN) %>%
-      column_to_rownames("GEN")
-  } else if(has_class(.data, "gafem")){
-    data <-
-      gmd(.data, "Y", verbose = FALSE) %>%
-      means_by(GEN) %>%
-      column_to_rownames("GEN")
-  } else{
-    if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
-      stop("object '", d[[".data"]], "' must have rownames.", call. = FALSE)
+    d <- match.call()
+    if(!use_data %in% c("blup", "pheno")){
+      stop("Argument 'use_data = ", d["use_data"], "'", "invalid. It must be either 'blup' or 'pheno'.")
     }
-    if(any(sapply(.data, function(x){is.numeric(x)})== FALSE)){
-      stop("All variables in '", d[[".data"]], "' must be numeric.",call. = FALSE)
+    if(has_class(.data, c("gamem", "waasb"))){
+      data <-
+        gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
+        means_by(GEN) %>%
+        column_to_rownames("GEN")
+    } else if(has_class(.data, "gafem")){
+      data <-
+        gmd(.data, "Y", verbose = FALSE) %>%
+        means_by(GEN) %>%
+        column_to_rownames("GEN")
+    } else{
+      if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
+        stop("object '", d[[".data"]], "' must have rownames.", call. = FALSE)
+      }
+      if(any(sapply(.data, function(x){is.numeric(x)})== FALSE)){
+        stop("All variables in '", d[[".data"]], "' must be numeric.",call. = FALSE)
+      }
+      data <- .data
     }
-    data <- .data
-  }
-  if (length(data) == 1) {
-    stop("The multi-trait stability index cannot be computed with one single variable.", call. = FALSE)
-  }
-  if(is.null(ideotype)){
-    rescaled <- rep(100, length(data))
-    ideotype.D <- rep(100, length(data))
-    names(ideotype.D) <- names(data)
-  } else{
-    rescaled <- unlist(strsplit(ideotype, split="\\s*(\\s|,)\\s*")) %>%
-      all_lower_case()
-    if(length(rescaled) != length(data)){
-      stop("Ideotype must have length ", ncol(data), ", the number of columns in data")
+    if (length(data) == 1) {
+      stop("The multi-trait stability index cannot be computed with one single variable.", call. = FALSE)
     }
-    if(!all(rescaled %in% c("h", "l", "m"))){
-      stop("argument 'ideotype' must have 'h', 'l', or 'm' only", call. = FALSE)
+    if(is.null(ideotype)){
+      rescaled <- rep(100, length(data))
+      ideotype.D <- rep(100, length(data))
+      names(ideotype.D) <- names(data)
+    } else{
+      rescaled <- unlist(strsplit(ideotype, split="\\s*(\\s|,)\\s*")) %>%
+        all_lower_case()
+      if(length(rescaled) != length(data)){
+        stop("Ideotype must have length ", ncol(data), ", the number of columns in data")
+      }
+      if(!all(rescaled %in% c("h", "l", "m"))){
+        stop("argument 'ideotype' must have 'h', 'l', or 'm' only", call. = FALSE)
+      }
+      ideotype.D <- ifelse(rescaled == "m", 50, 100)
+      names(ideotype.D) <- names(data)
+      rescaled <- case_when(
+        rescaled == "h" ~ 100,
+        rescaled == "l" ~ 0,
+        TRUE ~ 100)
     }
-    ideotype.D <- ifelse(rescaled == "m", 50, 100)
-    names(ideotype.D) <- names(data)
-    rescaled <- case_when(
-      rescaled == "h" ~ 100,
-      rescaled == "l" ~ 0,
-      TRUE ~ 100)
-  }
-  if (is.null(SI)) {
-    ngs <- NULL
-  } else {
-    ngs <- round(nrow(data) * (SI/100), 0)
-  }
-  means <- data.frame(matrix(ncol = ncol(data), nrow = nrow(data)))
-  rownames(means) <- rownames(data)
-  vars <- tibble(VAR = colnames(data),
-                 sense = rescaled) %>%
-    mutate(sense = ifelse(sense == 0, "decrease", "increase"))
-  for (i in 1:ncol(data)) {
-     means[i] <- resca(values = data[i], new_max = rescaled[i], new_min = 100 - rescaled[i])
-    colnames(means) <- colnames(data)
-  }
-  if(has_na(means)){
-    warning("Missing values observed in the table of means. Using complete observations to compute the correlation matrix.", call. = FALSE)
-  }
-  if(missing(weights)){
-    weights <- rep(1, ncol(data))
-  }
-  cor.means <- cor(means, use = use)
-  eigen.decomposition <- eigen(cor.means)
-  eigen.values <- eigen.decomposition$values
-  eigen.vectors <- eigen.decomposition$vectors
-  colnames(eigen.vectors) <- paste("PC", 1:ncol(cor.means), sep = "")
-  rownames(eigen.vectors) <- colnames(means)
-  if (length(eigen.values[eigen.values >= mineval]) == 1) {
-    eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >= mineval]))))
-    initial_loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
-    A <- initial_loadings
-  } else {
-    eigen.values.factors <-
-      t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >= mineval])))))
-    initial_loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
-    A <- varimax(initial_loadings)[[1]][]
-  }
-  partial <- solve_svd(cor.means)
-  k <- ncol(means)
-  seq_k <- seq_len(ncol(means))
-  for (j in seq_k) {
-    for (i in seq_k) {
-      if (i == j) {
-        next
-      } else {
-        partial[i, j] <- -partial[i, j]/sqrt(partial[i, i] * partial[j, j])
+    if (is.null(SI)) {
+      ngs <- NULL
+    } else {
+      ngs <- round(nrow(data) * (SI/100), 0)
+    }
+    means <- data.frame(matrix(ncol = ncol(data), nrow = nrow(data)))
+    rownames(means) <- rownames(data)
+    vars <- tibble(VAR = colnames(data),
+                   sense = rescaled) %>%
+      mutate(sense = ifelse(sense == 0, "decrease", "increase"))
+    for (i in 1:ncol(data)) {
+      means[i] <- resca(values = data[i], new_max = rescaled[i], new_min = 100 - rescaled[i])
+      colnames(means) <- colnames(data)
+    }
+    if(has_na(means)){
+      warning("Missing values observed in the table of means. Using complete observations to compute the correlation matrix.", call. = FALSE)
+    }
+    if(missing(weights)){
+      weights <- rep(1, ncol(data))
+    }
+    cor.means <- cor(means, use = use)
+    eigen.decomposition <- eigen(cor.means)
+    eigen.values <- eigen.decomposition$values
+    eigen.vectors <- eigen.decomposition$vectors
+    colnames(eigen.vectors) <- paste("PC", 1:ncol(cor.means), sep = "")
+    rownames(eigen.vectors) <- colnames(means)
+    if (length(eigen.values[eigen.values >= mineval]) == 1) {
+      eigen.values.factors <- as.vector(c(as.matrix(sqrt(eigen.values[eigen.values >= mineval]))))
+      initial_loadings <- cbind(eigen.vectors[, eigen.values >= mineval] * eigen.values.factors)
+      A <- initial_loadings
+    } else {
+      eigen.values.factors <-
+        t(replicate(ncol(cor.means), c(as.matrix(sqrt(eigen.values[eigen.values >= mineval])))))
+      initial_loadings <- eigen.vectors[, eigen.values >= mineval] * eigen.values.factors
+      A <- varimax(initial_loadings)[[1]][]
+    }
+    partial <- solve_svd(cor.means)
+    k <- ncol(means)
+    seq_k <- seq_len(ncol(means))
+    for (j in seq_k) {
+      for (i in seq_k) {
+        if (i == j) {
+          next
+        } else {
+          partial[i, j] <- -partial[i, j]/sqrt(partial[i, i] * partial[j, j])
+        }
       }
     }
-  }
-  KMO <- sum((cor.means[!diag(k)])^2)/(sum((cor.means[!diag(k)])^2) + sum((partial[!diag(k)])^2))
-  MSA <- unlist(lapply(seq_k, function(i) {
-    sum((cor.means[i, -i])^2)/(sum((cor.means[i, -i])^2) + sum((partial[i, -i])^2))
-  }))
-  names(MSA) <- colnames(means)
-  colnames(A) <- paste("FA", 1:ncol(initial_loadings), sep = "")
-  pca <- tibble(PC = paste("PC", 1:ncol(means), sep = ""),
-                Eigenvalues = eigen.values,
-                `Variance (%)` = (eigen.values/sum(eigen.values)) * 100,
-                `Cum. variance (%)` = cumsum(`Variance (%)`))
-  Communality <- diag(A %*% t(A))
-  Uniquenesses <- 1 - Communality
-  fa <- cbind(A, Communality, Uniquenesses) %>% as_tibble(rownames = NA) %>%  rownames_to_column("VAR")
-  z <- scale(means, center = FALSE, scale = apply(means, 2, sd, na.rm = TRUE))
-  canonical_loadings <- t(t(A) %*% solve_svd(cor.means))
-  scores <- z %*% canonical_loadings
-  # colnames(scores) <- paste("FA", 1:ncol(scores), sep = "")
-  # rownames(scores) <- rownames(means)
-  pos.var.factor <- which(abs(A) == apply(abs(A), 1, max), arr.ind = TRUE)
-  var.factor <- lapply(1:ncol(A), function(i) {
-    rownames(pos.var.factor)[pos.var.factor[, 2] == i]
-  })
-
-
-  # weights <- c(1, 1, 1, 1, 1)
-
-
-  names(var.factor) <- paste("FA", 1:ncol(A), sep = "")
-  names.pos.var.factor <- rownames(pos.var.factor)
-  ideotypes.matrix <- t(as.matrix(ideotype.D))/apply(means, 2, sd, na.rm = TRUE) * weights
-  rownames(ideotypes.matrix) <- "ID1"
-  ideotypes.scores <- ideotypes.matrix %*% canonical_loadings
-  gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
-  MGIDI <- sort(apply(gen_ide, 1, function(x) sqrt(sum(x^2))), decreasing = FALSE)
-  contr.factor <- data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
-    rownames_to_column("GEN") %>%
-    as_tibble()
-  means.factor <- means[, names.pos.var.factor]
-  observed <- means[, names.pos.var.factor]
-  contri_long <- pivot_longer(contr.factor, -GEN)
-  contri_fac_rank <-
-    contri_long %>%
-    ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
-    split_factors(ENV) %>%
-    map_dfc(~.x %>% pull())
-
-  if (!is.null(ngs)) {
-    selected <- names(MGIDI)[1:ngs]
-    data_order <- data[colnames(observed)]
-    sel_dif_mean <-
-      tibble(VAR = names(pos.var.factor[, 2]),
-             Factor = paste("FA", as.numeric(pos.var.factor[, 2]), sep = ""),
-             Xo = colMeans(data_order, na.rm = TRUE),
-             Xs = colMeans(data_order[selected, ], na.rm = TRUE),
-             SD = Xs - colMeans(data_order, na.rm = TRUE),
-             SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / colMeans(data_order, na.rm = TRUE) * 100)
-
-    if(has_class(.data, c("gamem", "gafem"))){
-      h2 <- gmd(.data, "h2", verbose = FALSE)
-      sel_dif_mean <-
-        left_join(sel_dif_mean, h2, by = "VAR") %>%
-        add_cols(SG = SD * h2,
-                 SGperc = SG / Xo * 100)
-    }
-    sel_dif_mean <-
-      sel_dif_mean %>%
-      left_join(vars, by = "VAR") %>%
-      mutate(goal = case_when(
-        sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
-        TRUE ~ 0
-      ))
-    stat_gain <-
-      desc_stat(sel_dif_mean,
-                by = sense,
-                any_of(c("SDperc", "SGperc")),
-                stats = c("min, mean, ci, sd.amo, max, sum"))
-
-    contri_fac_rank_sel <-
+    KMO <- sum((cor.means[!diag(k)])^2)/(sum((cor.means[!diag(k)])^2) + sum((partial[!diag(k)])^2))
+    MSA <- unlist(lapply(seq_k, function(i) {
+      sum((cor.means[i, -i])^2)/(sum((cor.means[i, -i])^2) + sum((partial[i, -i])^2))
+    }))
+    names(MSA) <- colnames(means)
+    colnames(A) <- paste("FA", 1:ncol(initial_loadings), sep = "")
+    pca <- tibble(PC = paste("PC", 1:ncol(means), sep = ""),
+                  Eigenvalues = eigen.values,
+                  `Variance (%)` = (eigen.values/sum(eigen.values)) * 100,
+                  `Cum. variance (%)` = cumsum(`Variance (%)`))
+    Communality <- diag(A %*% t(A))
+    Uniquenesses <- 1 - Communality
+    fa <- cbind(A, Communality, Uniquenesses) %>% as_tibble(rownames = NA) %>%  rownames_to_column("VAR")
+    z <- scale(means, center = FALSE, scale = apply(means, 2, sd, na.rm = TRUE))
+    canonical_loadings <- t(t(A) %*% solve_svd(cor.means))
+    scores <- z %*% canonical_loadings
+    pos.var.factor <- which(abs(A) == apply(abs(A), 1, max), arr.ind = TRUE)
+    var.factor <- lapply(1:ncol(A), function(i) {
+      rownames(pos.var.factor)[pos.var.factor[, 2] == i]
+    })
+    names(var.factor) <- paste("FA", 1:ncol(A), sep = "")
+    names.pos.var.factor <- rownames(pos.var.factor)
+    ideotypes.matrix <- t(as.matrix(ideotype.D))/apply(means, 2, sd, na.rm = TRUE) * weights
+    rownames(ideotypes.matrix) <- "ID1"
+    ideotypes.scores <- ideotypes.matrix %*% canonical_loadings
+    gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
+    MGIDI <- apply(gen_ide, 1, function(x){sqrt(sum(x^2))}) %>% sort(decreasing = FALSE)
+    contr.factor <-
+      data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
+      rownames_to_column("GEN") %>%
+      as_tibble()
+    means.factor <- means[, names.pos.var.factor]
+    observed <- means[, names.pos.var.factor]
+    contri_long <- pivot_longer(contr.factor, -GEN)
+    contri_fac_rank <-
       contri_long %>%
-      subset(GEN %in% selected) %>%
       ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
       split_factors(ENV) %>%
       map_dfc(~.x %>% pull())
-
-  } else{
-    sel_dif_mean <- NULL
-    contri_fac_rank_sel <- NULL
-  }
-  if (verbose) {
-    cat("\n-------------------------------------------------------------------------------\n")
-    cat("Principal Component Analysis\n")
-    cat("-------------------------------------------------------------------------------\n")
-    print(round_cols(pca))
-    cat("-------------------------------------------------------------------------------\n")
-    cat("Factor Analysis - factorial loadings after rotation-\n")
-    cat("-------------------------------------------------------------------------------\n")
-    print(round_cols(fa))
-    cat("-------------------------------------------------------------------------------\n")
-    cat("Comunalit Mean:", mean(Communality), "\n")
-    cat("-------------------------------------------------------------------------------\n")
     if (!is.null(ngs)) {
-      cat("Selection differential \n")
-      cat("-------------------------------------------------------------------------------\n")
-      print(sel_dif_mean)
-      cat("------------------------------------------------------------------------------\n")
-      cat("Selected genotypes\n")
-      cat("-------------------------------------------------------------------------------\n")
-      cat(selected)
-      cat("\n-------------------------------------------------------------------------------\n")
-    }
-  }
+      selected <- names(MGIDI)[1:ngs]
+      data_order <- data[colnames(observed)]
+      sel_dif_mean <-
+        tibble(VAR = names(pos.var.factor[, 2]),
+               Factor = paste("FA", as.numeric(pos.var.factor[, 2]), sep = ""),
+               Xo = colMeans(data_order, na.rm = TRUE),
+               Xs = colMeans(data_order[selected, ], na.rm = TRUE),
+               SD = Xs - colMeans(data_order, na.rm = TRUE),
+               SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / colMeans(data_order, na.rm = TRUE) * 100)
 
-  return(structure(list(data = rownames_to_column(data, "GEN"),
-                        cormat = as.matrix(cor.means),
-                        PCA = pca,
-                        FA = fa,
-                        KMO = KMO,
-                        MSA = MSA,
-                        communalities = Communality,
-                        communalities_mean = mean(Communality),
-                        initial_loadings = data.frame(initial_loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
-                        finish_loadings = data.frame(A) %>% rownames_to_column("VAR") %>% as_tibble(),
-                        canonical_loadings = data.frame(canonical_loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
-                        scores_gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
-                        scores_ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
-                        gen_ide = as_tibble(gen_ide, rownames = NA) %>% rownames_to_column("GEN"),
-                        MGIDI = as_tibble(MGIDI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MGIDI = value),
-                        contri_fac = contr.factor,
-                        contri_fac_rank = contri_fac_rank,
-                        contri_fac_rank_sel = contri_fac_rank_sel,
-                        sel_dif = sel_dif_mean,
-                        stat_gain = stat_gain,
-                        sel_gen = selected),
-                   class = "mgidi"))
+      if(has_class(.data, c("gamem", "gafem"))){
+        h2 <- gmd(.data, "h2", verbose = FALSE)
+        sel_dif_mean <-
+          left_join(sel_dif_mean, h2, by = "VAR") %>%
+          add_cols(SG = SD * h2,
+                   SGperc = SG / Xo * 100)
+      }
+      sel_dif_mean <-
+        sel_dif_mean %>%
+        left_join(vars, by = "VAR") %>%
+        mutate(goal = case_when(
+          sense == "decrease" & SDperc < 0  |  sense == "increase" & SDperc > 0 ~ 100,
+          TRUE ~ 0
+        ))
+      stat_gain <-
+        sel_dif_mean %>%
+        group_by(sense) %>%
+        summarise(across(any_of(c("SDperc", "SGperc")),
+                         list(n = ~n(),
+                              min = min,
+                              mean = mean,
+                              max = max,
+                              sum = sum,
+                              sd = sd))) %>%
+        pivot_longer(-sense) %>%
+        separate(name, into = c("variable", "stat")) %>%
+        pivot_wider(names_from = stat, values_from = value)
+
+      contri_fac_rank_sel <-
+        contri_long %>%
+        subset(GEN %in% selected) %>%
+        ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
+        split_factors(ENV) %>%
+        map_dfc(~.x %>% pull())
+    } else{
+      sel_dif_mean <- NULL
+      contri_fac_rank_sel <- NULL
+    }
+    if (verbose) {
+      cat("\n-------------------------------------------------------------------------------\n")
+      cat("Principal Component Analysis\n")
+      cat("-------------------------------------------------------------------------------\n")
+      print(round_cols(pca))
+      cat("-------------------------------------------------------------------------------\n")
+      cat("Factor Analysis - factorial loadings after rotation-\n")
+      cat("-------------------------------------------------------------------------------\n")
+      print(round_cols(fa))
+      cat("-------------------------------------------------------------------------------\n")
+      cat("Comunalit Mean:", mean(Communality), "\n")
+      cat("-------------------------------------------------------------------------------\n")
+      if (!is.null(ngs)) {
+        cat("Selection differential \n")
+        cat("-------------------------------------------------------------------------------\n")
+        print(sel_dif_mean)
+        cat("------------------------------------------------------------------------------\n")
+        cat("Selected genotypes\n")
+        cat("-------------------------------------------------------------------------------\n")
+        cat(selected)
+        cat("\n-------------------------------------------------------------------------------\n")
+      }
+    }
+
+    return(structure(list(data = rownames_to_column(data, "GEN"),
+                          cormat = as.matrix(cor.means),
+                          PCA = pca,
+                          FA = fa,
+                          KMO = KMO,
+                          MSA = MSA,
+                          communalities = Communality,
+                          communalities_mean = mean(Communality),
+                          initial_loadings = data.frame(initial_loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
+                          finish_loadings = data.frame(A) %>% rownames_to_column("VAR") %>% as_tibble(),
+                          canonical_loadings = data.frame(canonical_loadings) %>% rownames_to_column("VAR") %>% as_tibble(),
+                          scores_gen = data.frame(scores) %>% rownames_to_column("GEN") %>% as_tibble(),
+                          scores_ide = data.frame(ideotypes.scores) %>% rownames_to_column("GEN") %>% as_tibble(),
+                          gen_ide = as_tibble(gen_ide, rownames = NA) %>% rownames_to_column("GEN"),
+                          MGIDI = as_tibble(MGIDI, rownames = NA) %>% rownames_to_column("Genotype") %>% rename(MGIDI = value),
+                          contri_fac = contr.factor,
+                          contri_fac_rank = contri_fac_rank,
+                          contri_fac_rank_sel = contri_fac_rank_sel,
+                          sel_dif = sel_dif_mean,
+                          stat_gain = stat_gain,
+                          sel_gen = selected),
+                     class = "mgidi"))
   }
 }
+
 
 
 
@@ -476,55 +477,55 @@ plot.mgidi <- function(x,
     stop("The argument 'genotypes' must be one of the 'selected' or 'all'", call. = FALSE)
   }
   if(type == "index"){
-  x.lab <- ifelse(!missing(x.lab), x.lab, "Genotypes")
-  y.lab <- ifelse(!missing(y.lab), y.lab, "Multi-trait genotype-ideotype distance index")
-  data <- x$MGIDI %>% add_cols(sel = "Selected")
-  data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
-  cutpoint <- max(subset(data, sel == "Selected")$MGIDI)
-  p <-
-    ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
-    geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
-    geom_path(colour = "black", group = 1, size = size.line) +
-    geom_point(size = size.point,
-               aes(fill = sel),
-               shape = 21,
-               colour = "black",
-               stroke  = size.point / 10) +
-    scale_x_discrete() +
-    scale_y_reverse() +
-    theme_minimal() +
-    theme(legend.position = legend.position,
-          legend.title = element_blank(),
-          panel.grid = element_line(size = size.line / 2),
-          panel.border = element_blank(),
-          axis.text = element_text(colour = "black"),
-          text = element_text(size = size.text),
-          ...) +
-    labs(y = y.lab,
-         x = x.lab) +
-    scale_fill_manual(values = c(col.nonsel, col.sel))
-  if (radar == TRUE) {
+    x.lab <- ifelse(!missing(x.lab), x.lab, "Genotypes")
+    y.lab <- ifelse(!missing(y.lab), y.lab, "Multi-trait genotype-ideotype distance index")
+    data <- x$MGIDI %>% add_cols(sel = "Selected")
+    data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
+    cutpoint <- max(subset(data, sel == "Selected")$MGIDI)
     p <-
-      p +
-      coord_polar() +
-      theme(axis.title.x = element_blank(), ...)
-    if(arrange.label == TRUE){
-      tot_gen <- length(unique(data$Genotype))
-      fseq <- c(1:(tot_gen/2))
-      sseq <- c((tot_gen/2 + 1):tot_gen)
-      fang <- c(90 - 180/length(fseq) * fseq)
-      sang <- c(-90 - 180/length(sseq) * sseq)
-      p <- p +
-        theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
+      ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
+      geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+      geom_path(colour = "black", group = 1, size = size.line) +
+      geom_point(size = size.point,
+                 aes(fill = sel),
+                 shape = 21,
+                 colour = "black",
+                 stroke  = size.point / 10) +
+      scale_x_discrete() +
+      scale_y_reverse() +
+      theme_minimal() +
+      theme(legend.position = legend.position,
+            legend.title = element_blank(),
+            panel.grid = element_line(size = size.line / 2),
+            panel.border = element_blank(),
+            axis.text = element_text(colour = "black"),
+            text = element_text(size = size.text),
+            ...) +
+      labs(y = y.lab,
+           x = x.lab) +
+      scale_fill_manual(values = c(col.nonsel, col.sel))
+    if (radar == TRUE) {
+      p <-
+        p +
+        coord_polar() +
+        theme(axis.title.x = element_blank(), ...)
+      if(arrange.label == TRUE){
+        tot_gen <- length(unique(data$Genotype))
+        fseq <- c(1:(tot_gen/2))
+        sseq <- c((tot_gen/2 + 1):tot_gen)
+        fang <- c(90 - 180/length(fseq) * fseq)
+        sang <- c(-90 - 180/length(sseq) * sseq)
+        p <- p +
+          theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
+      }
     }
-  }
   } else{
     if(genotypes == "selected"){
-    data <-
-      x$contri_fac %>%
-      subset(GEN %in% x$sel_gen)
-    data$GEN <-
-      factor(data$GEN, levels = x$sel_gen)
+      data <-
+        x$contri_fac %>%
+        subset(GEN %in% x$sel_gen)
+      data$GEN <-
+        factor(data$GEN, levels = x$sel_gen)
     } else{
       data <- x$contri_fac
     }
@@ -571,13 +572,13 @@ plot.mgidi <- function(x,
     } else{
       x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
       y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
-    p <-
-      ggplot(data, aes(GEN, value, fill = name))+
-      geom_bar(stat = "identity",
-               position = position,
-               color = "black",
-               size = size.line,
-               width = width.bar) +
+      p <-
+        ggplot(data, aes(GEN, value, fill = name))+
+        geom_bar(stat = "identity",
+                 position = position,
+                 color = "black",
+                 size = size.line,
+                 width = width.bar) +
         scale_y_continuous(expand = expansion(c(0, ifelse(position == "fill", 0, 0.05))))+
         theme_metan() +
         theme(legend.position = legend.position,
@@ -590,9 +591,9 @@ plot.mgidi <- function(x,
         labs(x = x.lab, y = y.lab)+
         guides(guide_legend(nrow = 1)) +
         ggtitle(title)
-    if(rotate == TRUE){
-      p <- p + coord_flip()
-    }
+      if(rotate == TRUE){
+        p <- p + coord_flip()
+      }
     }
   }
   return(p)
