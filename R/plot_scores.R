@@ -318,7 +318,7 @@ plot_scores <- function(x,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
             legend.text = element_text(size = size.tex.leg)) +
-      labs(x = paste(x.lab), y = paste(y.lab)) +
+      labs(x = x.lab, y = y.lab) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       scale_color_manual(name = "", values = c(col.segm.env, col.segm.gen), theme(legend.position = "none")) +
@@ -455,7 +455,7 @@ plot_scores <- function(x,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
             legend.text = element_text(size = size.tex.leg)) +
-      labs(x = paste(x.lab), y = paste(y.lab)) +
+      labs(x = x.lab, y = y.lab) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       scale_color_manual(name = "", values = c(col.segm.env, col.segm.gen), theme(legend.position = "none")) +
@@ -667,7 +667,7 @@ plot_scores <- function(x,
             axis.text = element_text(size = size.tex.lab, colour = "black"),
             axis.title = element_text(size = size.tex.lab, colour = "black"),
             legend.text = element_text(size = size.tex.leg)) +
-      labs(x = paste(x.lab), y = paste(y.lab)) +
+      labs(x = x.lab, y = y.lab) +
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks) +
       annotate("text",
@@ -795,7 +795,7 @@ plot_scores <- function(x,
       scale_x_continuous(limits = x.lim, breaks = x.breaks) +
       scale_y_continuous(limits = y.lim, breaks = y.breaks,
                          expand = expansion(mult = c(0.003, 0.1))) +
-      labs(x = paste(x.lab), y = y.lab)
+      labs(x = x.lab, y = y.lab)
     if(title == TRUE){
       p4 <- p4 + ggtitle("Nominal yield plot")
     }
