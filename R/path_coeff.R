@@ -4,7 +4,7 @@
 #' `r badge('stable')`
 #'
 #' * `path_coeff()` computes a path analysis using a data frame as input data.
-#' * `path_coeff_2c()` computes a sequential path analysis using primary and secondary traits.
+#' * `path_coeff_seq()` computes a sequential path analysis using primary and secondary traits.
 #' * `path_coeff_mat()` computes a path analysis using correlation matrices as
 #' input data.
 #'
@@ -64,7 +64,7 @@
 #'   console.
 #' @param ... Depends on the function used:
 #' * For `path_coeff()` additional arguments passed on to [stats::plot.lm()].
-#' * For `path_coeff_2c()` additional arguments passed on to [path_coeff].
+#' * For `path_coeff_seq()` additional arguments passed on to [path_coeff].
 #' @return Depends on the function used:
 #' * `path_coeff()`, returns a list with the following items:
 #'    - **Corr.x** A correlation matrix between the predictor variables.
@@ -86,7 +86,7 @@
 #'    - **Response** The response variable.
 #'    - **weightvar** The order of the predictor variables with the highest
 #' weight (highest eigenvector) in the lowest eigenvalue.
-#' * `path_coeff_2c()` returns a list with the following objects
+#' * `path_coeff_seq()` returns a list with the following objects
 #'    - **resp_fc** an object of class `path_coeff` with the results for the
 #'    analysis with dependent trait and first chain predictors.
 #'    - **resp_sc** an object of class `path_coeff` with the results for the
@@ -148,7 +148,7 @@
 #'# NKE and TKW as primary predictors
 #'# PH, EH, EP, and EL as secondary traits
 #' pcoeff6 <-
-#'  path_coeff_2c(data_ge2,
+#'  path_coeff_seq(data_ge2,
 #'                resp = KW,
 #'                chain_1 = c(NKE, TKW),
 #'                chain_2 = c(PH, EH, EP, EL))
@@ -293,16 +293,17 @@ path_coeff <- function(.data,
     if (verbose == TRUE) {
       if (NC > 1000) {
         cat(paste0("Severe multicollinearity. \n",
-                   "Condition Number = ", round(NC, 3), "\n",
-                   "Please, consider using a correction factor, or use 'brutstep = TRUE'. \n"))
+                   "Condition Number: ", round(NC, 3), "\n",
+                   "Consider using a correction factor with 'correction' argument.\n",
+                   "Consider identifying collinear traits with `non_collinear_vars()`\n"))
       }
       if (NC < 100) {
-        cat(paste0("Weak multicollinearity. \n", "Condition Number = ",
+        cat(paste0("Weak multicollinearity. \n", "Condition Number: ",
                    round(NC, 3), "\n", "You will probably have path coefficients close to being unbiased. \n"))
       }
       if (NC > 100 & NC < 1000) {
         cat(paste0("Moderate multicollinearity! \n",
-                   "Condition Number = ", round(NC, 3), "\n",
+                   "Condition Number: ", round(NC, 3), "\n",
                    "Please, cautiosely evaluate the VIF and matrix determinant.",
                    "\n"))
       }
@@ -662,13 +663,13 @@ path_coeff_mat <- function(cor_mat,
 
 #' @name path_coeff
 #' @export
-path_coeff_2c <- function(.data,
-                          resp,
-                          chain_1,
-                          chain_2,
-                          by = NULL,
-                          verbose = TRUE,
-                          ...){
+path_coeff_seq <- function(.data,
+                           resp,
+                           chain_1,
+                           chain_2,
+                           by = NULL,
+                           verbose = TRUE,
+                           ...){
   if (!missing(by)) {
     if (length(as.list(substitute(by))[-1L]) != 0) {
       stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
@@ -677,7 +678,7 @@ path_coeff_2c <- function(.data,
   }
   if (is_grouped_df(.data)){
     results <- .data %>%
-      doo(path_coeff_2c,
+      doo(path_coeff_seq,
           resp = {{resp}},
           chain_1 = {{chain_1}},
           chain_2 = {{chain_2}},
@@ -692,14 +693,29 @@ path_coeff_2c <- function(.data,
     mat_names <- rbind(mat_names, paste0("linear"))
     return(as.vector(mat_names))
   }
-  if(isTRUE(verbose)){
-    cat("First chain with ")
-  }
   cor_coef <- corr_coef(.data, {{resp}}, {{chain_1}}, {{chain_2}})$cor
   # main and first chain
-  resp_fc <- path_coeff(.data, resp = {{resp}}, pred = {{chain_1}}, ...)
+  if(isTRUE(verbose)){
+    cat("========================================================\n")
+    cat("Collinearity diagnosis of first chain predictors\n")
+    cat("========================================================\n")
+  }
+  resp_fc <- path_coeff(.data,
+                        resp = {{resp}},
+                        pred = {{chain_1}},
+                        verbose = verbose,
+                        ...)
   # main and second chain
-  resp_sc <- path_coeff(.data, resp = {{resp}}, pred = {{chain_2}}, ...)
+  if(isTRUE(verbose)){
+    cat("========================================================\n")
+    cat("Collinearity diagnosis of second chain predictors\n")
+    cat("========================================================\n")
+  }
+  resp_sc <- path_coeff(.data,
+                        resp = {{resp}},
+                        pred = {{chain_2}},
+                        verbose = verbose,
+                        ...)
   ncoef <- length(as.matrix(resp_sc$Coefficients))
   vars_c1 <- resp_fc$Predictors
   vars_c2 <- resp_sc$Predictors
@@ -710,7 +726,9 @@ path_coeff_2c <- function(.data,
   for (i in 1:nfc) {
     tmp <- path_coeff(.data,
                       resp =  vars_c1[[i]],
-                      pred = {{chain_2}}, ...)
+                      pred = {{chain_2}},
+                      verbose = FALSE,
+                      ...)
     fc_sc[[vars_c1[[i]]]] <- tmp
     coefs <- as.matrix(tmp$Coefficients)
     n <- 0
@@ -745,6 +763,7 @@ path_coeff_2c <- function(.data,
   fcsc <- res[1:(nrow(res) - 2), ]
   dir_fcsc <-
     fcsc[which(fcsc$effects == "direct"), -2] %>%
+    remove_rownames() %>%
     column_to_rownames("trait")
 
   effects <- list()

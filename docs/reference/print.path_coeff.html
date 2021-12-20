@@ -152,8 +152,9 @@ the working directory</p></dd>
 <span class="r-in"><span class="co"># KW as dependent trait and all others as predictors</span></span>
 <span class="r-in"><span class="va">pcoeff</span> <span class="op">&lt;-</span> <span class="fu"><a href="path_coeff.html">path_coeff</a></span><span class="op">(</span><span class="va">data_ge2</span>, resp <span class="op">=</span> <span class="va">KW</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Severe multicollinearity. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number = 7865.84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Please, consider using a correction factor, or use 'brutstep = TRUE'. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number: 7865.84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Consider using a correction factor with 'correction' argument.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Consider identifying collinear traits with `non_collinear_vars()`</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pcoeff</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Correlation matrix between the predictor traits</span>

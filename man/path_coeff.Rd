@@ -3,7 +3,7 @@
 \name{path_coeff}
 \alias{path_coeff}
 \alias{path_coeff_mat}
-\alias{path_coeff_2c}
+\alias{path_coeff_seq}
 \title{Path coefficients with minimal multicollinearity}
 \usage{
 path_coeff(
@@ -24,7 +24,7 @@ path_coeff(
 
 path_coeff_mat(cor_mat, resp, correction = NULL, knumber = 50, verbose = TRUE)
 
-path_coeff_2c(.data, resp, chain_1, chain_2, by = NULL, ...)
+path_coeff_seq(.data, resp, chain_1, chain_2, by = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{.data}{The data. Must be a data frame or a grouped data passed from
@@ -76,7 +76,7 @@ console.}
 \item{...}{Depends on the function used:
 \itemize{
 \item For \code{path_coeff()} additional arguments passed on to \code{\link[stats:plot.lm]{stats::plot.lm()}}.
-\item For \code{path_coeff_2c()} additional arguments passed on to \link{path_coeff}.
+\item For \code{path_coeff_seq()} additional arguments passed on to \link{path_coeff}.
 }}
 
 \item{cor_mat}{Matrix of correlations containing both dependent and
@@ -110,7 +110,7 @@ lowest eigenvalue.
 \item \strong{weightvar} The order of the predictor variables with the highest
 weight (highest eigenvector) in the lowest eigenvalue.
 }
-\item \code{path_coeff_2c()} returns a list with the following objects
+\item \code{path_coeff_seq()} returns a list with the following objects
 \itemize{
 \item \strong{resp_fc} an object of class \code{path_coeff} with the results for the
 analysis with dependent trait and first chain predictors.
@@ -131,7 +131,7 @@ then the results will be returned into a list-column of data frames.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 \itemize{
 \item \code{path_coeff()} computes a path analysis using a data frame as input data.
-\item \code{path_coeff_2c()} computes a sequential path analysis using primary and secondary traits.
+\item \code{path_coeff_seq()} computes a sequential path analysis using primary and secondary traits.
 \item \code{path_coeff_mat()} computes a path analysis using correlation matrices as
 input data.
 }
@@ -170,8 +170,6 @@ pcoeff3<- path_coeff(data_ge2,
                       pred = c(PH, EH, NKE, TKW),
                       plot_res = TRUE)
 
-
-
 # Selecting a set of predictors with minimal multicollinearity
 # Maximum variance Inflation factor of 5
 pcoeff4 <- path_coeff(data_ge2,
@@ -190,7 +188,7 @@ pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
 # NKE and TKW as primary predictors
 # PH, EH, EP, and EL as secondary traits
 pcoeff6 <-
- path_coeff_2c(data_ge2,
+ path_coeff_seq(data_ge2,
                resp = KW,
                chain_1 = c(NKE, TKW),
                chain_2 = c(PH, EH, EP, EL))

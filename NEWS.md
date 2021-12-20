@@ -1,5 +1,9 @@
 # metan (development version)
+## New features
+* Implement a `plot` method for `path_coeff_*()` functions.
+* New function `path_coeff_seq()` to implement a sequential (two chains) path analysis.
 
+## Minor improvements
 * Fix bug in `rowname_to_column()`.
 * Changes the object name in `mgidi()` example that overwrites the function.
 * Fix bug with `x.lab` and `y.lab` from `plot_scores()`. Now it accepts an object from `expression()`
