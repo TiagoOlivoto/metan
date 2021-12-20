@@ -682,8 +682,9 @@ path_coeff_seq <- function(.data,
           resp = {{resp}},
           chain_1 = {{chain_1}},
           chain_2 = {{chain_2}},
+          verbose = verbose,
           ...)
-    return(set_class(results, c("group_path", "tbl_df", "tbl",  "data.frame")))
+    return(set_class(results, c("group_path_seq", "tbl_df", "tbl",  "data.frame")))
   }
   make_names <- function(vars_c2){
     mat_names <- matrix(rep(paste0("indirect_", vars_c2), length(vars_c2)),
@@ -816,7 +817,8 @@ path_coeff_seq <- function(.data,
               resp_sc2 =  rbind_fill_id(effects),
               fc_sc_list = fc_sc,
               fc_sc_coef = res,
-              cor_mat = cor_coef))
+              cor_mat = cor_coef) %>%
+           set_class("path_coeff_seq"))
 }
 
 #' Print an object of class path_coeff

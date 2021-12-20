@@ -182,6 +182,21 @@ the stability GGE plot
 \strong{Objects of class \code{mtsi}:} See the \strong{Value} section of
 \code{\link[=mtsi]{mtsi()}} to see valid options for \code{what} argument.
 
+**Objects of class \code{path_coeff}
+\itemize{
+\item \code{"coef"} Path coefficients
+\item \code{"eigenval"} Eigenvalues and eigenvectors.
+\item \code{"vif "} Variance Inflation Factor
+}
+
+**Objects of class \code{path_coeff_seq}
+\itemize{
+\item \code{"resp_fc"} Coefficients of primary predictors and response
+\item \code{"resp_sc"} Coefficients of secondary predictors and response
+\item \code{"resp_sc2"} contribution to the total effects through primary traits
+\item \code{"fc_sc_coef"} Coefficients of secondary predictors and primary predictors.
+}
+
 \strong{Objects of class \code{Shukla}:}
 \itemize{
 \item \code{"rMean"} Rank for the mean.

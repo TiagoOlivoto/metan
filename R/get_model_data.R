@@ -137,6 +137,17 @@
 #'  **Objects of class `mtsi`:** See the **Value** section of
 #'  [mtsi()] to see valid options for `what` argument.
 #'
+#'  **Objects of class `path_coeff`
+#' * `"coef"` Path coefficients
+#' * `"eigenval"` Eigenvalues and eigenvectors.
+#' * `"vif "` Variance Inflation Factor
+#'
+#'  **Objects of class `path_coeff_seq`
+#' * `"resp_fc"` Coefficients of primary predictors and response
+#' * `"resp_sc"` Coefficients of secondary predictors and response
+#' * `"resp_sc2"` contribution to the total effects through primary traits
+#' * `"fc_sc_coef"` Coefficients of secondary predictors and primary predictors.
+#'
 #'  **Objects of class `Shukla`:**
 #' * `"rMean"` Rank for the mean.
 #' * `"ShuklaVar"` Shukla's stablity variance (default).
@@ -378,7 +389,8 @@ get_model_data <- function(x,
                       "ge_stats", "Annicchiarico", "Schmildt", "ge_means", "anova_joint",
                       "gafem", "gafem_group", "gamem_group", "anova_ind", "gge", "can_cor",
                       "can_cor_group", "gytb", "ge_acv", "ge_polar", "mgidi", "mtsi",
-                      "env_stratification", "fai_blup", "sh", "mps", "mtmps"))) {
+                      "env_stratification", "fai_blup", "sh", "mps", "mtmps", "path_coeff",
+                      "path_coeff_seq", "group_path_seq", "group_path"))) {
     stop("Invalid class in object ", call_f[["x"]], ". See ?get_model_data for more information.", call. = FALSE)
   }
   if (!is.null(what) && what != "PCA" && substr(what, 1, 2) == "PC") {
@@ -443,6 +455,61 @@ get_model_data <- function(x,
   check32 <- c("observed", "performance", "performance_res", "stability",
                "stability_res", "mps_ind", "h2", "perf_method", "wmper",
                "sense_mper", "stab_method", "wstab", "sense_stab")
+  check33 <- c("coef", "eigenval", "vif")
+  check34 <- c("resp_fc", "resp_sc", "resp_sc2", "fc_sc_coef")
+  if(has_class(x, c("path_coeff", "group_path"))){
+    if (is.null(what)){
+      what <- "coef"
+    }
+    if (!what %in% check33) {
+      stop("Invalid value in 'what' for object of class 'path_coeff'. Allowed are ", paste(check33, collapse = ", "), call. = FALSE)
+    }
+    what <-
+      switch(what,
+             "coef" = "Coefficients",
+             "eigenval" = "Eigen",
+             "vif" = "vif")
+    if(has_class(x, "group_path")){
+      bind <-
+        x %>%
+        mutate(data = map(data, ~.x %>% .[[what]])) %>%
+        unnest(data)
+    } else{
+      bind <- x[[what]]
+    }
+  }
+
+  if (has_class(x, c("path_coeff_seq", "group_path_seq"))){
+    if (is.null(what)){
+      what <- "resp_sc2"
+    }
+    if (!what %in% check34) {
+      stop("Invalid value in 'what' for object of class 'path_coeff_seq'. Allowed are ", paste(check34, collapse = ", "), call. = FALSE)
+    }
+    if(has_class(x, "group_path_seq")){
+      if(what %in% c("resp_fc", "resp_sc")){
+      bind <-
+        x %>%
+        mutate(data = map(data, ~.x %>% .[[what]][["Coefficients"]])) %>%
+        unnest(data)
+      } else{
+        bind <-
+          x %>%
+          mutate(data = map(data, ~.x %>% .[[what]])) %>%
+          unnest(data)
+      }
+    } else{
+      if(what %in% c("resp_fc", "resp_sc")){
+      bind <- x[[what]][["Coefficients"]]
+      } else{
+        bind <- x[[what]]
+      }
+    }
+  }
+
+
+
+
   if (!is.null(what) && what %in% check3 && !has_class(x, c("waasb", "waas", "waasb_group", "gamem", "gamem_group", "gafem", "anova_joint"))) {
     stop("Invalid argument 'what'. It can only be used with an oject of class 'waasb' or 'gamem', 'gafem, or 'anova_joint'. Please, check and fix.")
   }
@@ -1010,9 +1077,9 @@ get_model_data <- function(x,
     }
     if(what == "FMAX"){
       bind <-
-      sapply(x, function(x) {
-        x[["MSRratio"]]
-      }) %>%
+        sapply(x, function(x) {
+          x[["MSRratio"]]
+        }) %>%
         as.data.frame() %>%
         rownames_to_column("TRAIT") %>%
         setNames(c("TRAIT", "F_RATIO"))
@@ -1020,16 +1087,16 @@ get_model_data <- function(x,
     if(what == "ALL"){
       bind <-
         lapply(x, function(x){
-        x[[1]]
-      }) %>%
+          x[[1]]
+        }) %>%
         rbind_fill_id(.id = "trait")
     } else{
-    bind <- sapply(x, function(x) {
-      x[["individual"]][[what]]
-    }) %>%
-      as_tibble() %>%
-      mutate(ENV = x[[1]][["individual"]][["ENV"]]) %>%
-      column_to_first(ENV)
+      bind <- sapply(x, function(x) {
+        x[["individual"]][[what]]
+      }) %>%
+        as_tibble() %>%
+        mutate(ENV = x[[1]][["individual"]][["ENV"]]) %>%
+        column_to_first(ENV)
     }
   }
   if (has_class(x, c("anova_joint", "gafem", "gafem_group"))) {
@@ -1040,45 +1107,45 @@ get_model_data <- function(x,
         unnest(bind) %>%
         remove_cols(data)
     } else{
-    if (is.null(what)){
-      what <- "fitted"
-    }
-    if (!what %in% c(check20)) {
-      stop("Invalid value in 'what' for object of class, ", class(x), ". Allowed are ", paste(check20, collapse = ", "), call. = FALSE)
-    }
-    if(what %in% c("Sum Sq", "Mean Sq", "F value", "Pr(>F)")){
-      bind <- sapply(x, function(x) {
-        x[["anova"]][[what]]
-      }) %>%
-        as_tibble()
-      bind <- cbind(x[[1]][["anova"]] %>% select_non_numeric_cols(), bind) %>%
-        remove_rows_na(verbose = FALSE)
-    }
-    if(what  == "h2"){
-      bind <- sapply(x, function(x){
-        MSG <- as.numeric(x[["anova"]][which(x[["anova"]][["Source"]] == "GEN"), 4])
-        MSE <- as.numeric(x[["anova"]][which(x[["anova"]][["Source"]] == "Residuals"), 4])
-        (MSG - MSE) / MSG
-      }) %>%
-        as.data.frame() %>%
-        rownames_to_column("VAR") %>%
-        set_names("VAR", "h2")
-    }
-    if(what %in% c("Y", "fitted", "resid", "stdres", "se.fit")){
-      bind <- sapply(x, function(x){
-        x[["augment"]][[what]]
-      }) %>%  as_tibble()
-      bind <- cbind(x[[1]][["augment"]] %>% select_non_numeric_cols(), bind) %>%
-        as_tibble()
-    }
-    if(what == "details"){
-      bind <- sapply(x, function(x){
-        x[["details"]][[2]]
-      }) %>%
-        as_tibble() %>%
-        mutate(Parameters = x[[1]][["details"]][["Parameters"]]) %>%
-        column_to_first(Parameters)
-    }
+      if (is.null(what)){
+        what <- "fitted"
+      }
+      if (!what %in% c(check20)) {
+        stop("Invalid value in 'what' for object of class, ", class(x), ". Allowed are ", paste(check20, collapse = ", "), call. = FALSE)
+      }
+      if(what %in% c("Sum Sq", "Mean Sq", "F value", "Pr(>F)")){
+        bind <- sapply(x, function(x) {
+          x[["anova"]][[what]]
+        }) %>%
+          as_tibble()
+        bind <- cbind(x[[1]][["anova"]] %>% select_non_numeric_cols(), bind) %>%
+          remove_rows_na(verbose = FALSE)
+      }
+      if(what  == "h2"){
+        bind <- sapply(x, function(x){
+          MSG <- as.numeric(x[["anova"]][which(x[["anova"]][["Source"]] == "GEN"), 4])
+          MSE <- as.numeric(x[["anova"]][which(x[["anova"]][["Source"]] == "Residuals"), 4])
+          (MSG - MSE) / MSG
+        }) %>%
+          as.data.frame() %>%
+          rownames_to_column("VAR") %>%
+          set_names("VAR", "h2")
+      }
+      if(what %in% c("Y", "fitted", "resid", "stdres", "se.fit")){
+        bind <- sapply(x, function(x){
+          x[["augment"]][[what]]
+        }) %>%  as_tibble()
+        bind <- cbind(x[[1]][["augment"]] %>% select_non_numeric_cols(), bind) %>%
+          as_tibble()
+      }
+      if(what == "details"){
+        bind <- sapply(x, function(x){
+          x[["details"]][[2]]
+        }) %>%
+          as_tibble() %>%
+          mutate(Parameters = x[[1]][["details"]][["Parameters"]]) %>%
+          column_to_first(Parameters)
+      }
     }
   }
 

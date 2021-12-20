@@ -234,7 +234,14 @@ the stability GGE plot</p></li>
 <code><a href="mgidi.html">mgidi()</a></code> to see valid options for <code>what</code> argument.</p>
 <p><strong>Objects of class <code>mtsi</code>:</strong> See the <strong>Value</strong> section of
 <code><a href="mtsi.html">mtsi()</a></code> to see valid options for <code>what</code> argument.</p>
-<p><strong>Objects of class <code>Shukla</code>:</strong></p><ul><li><p><code>"rMean"</code> Rank for the mean.</p></li>
+<p>**Objects of class <code>path_coeff</code></p><ul><li><p><code>"coef"</code> Path coefficients</p></li>
+<li><p><code>"eigenval"</code> Eigenvalues and eigenvectors.</p></li>
+<li><p><code>"vif "</code> Variance Inflation Factor</p></li>
+</ul><p>**Objects of class <code>path_coeff_seq</code></p><ul><li><p><code>"resp_fc"</code> Coefficients of primary predictors and response</p></li>
+<li><p><code>"resp_sc"</code> Coefficients of secondary predictors and response</p></li>
+<li><p><code>"resp_sc2"</code> contribution to the total effects through primary traits</p></li>
+<li><p><code>"fc_sc_coef"</code> Coefficients of secondary predictors and primary predictors.</p></li>
+</ul><p><strong>Objects of class <code>Shukla</code>:</strong></p><ul><li><p><code>"rMean"</code> Rank for the mean.</p></li>
 <li><p><code>"ShuklaVar"</code> Shukla's stablity variance (default).</p></li>
 <li><p><code>"rShukaVar"</code> Rank for Shukla's stablity variance.</p></li>
 <li><p><code>"ssiShukaVar"</code> Simultaneous selection index.</p></li>
@@ -385,7 +392,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-in">               gen <span class="op">=</span> <span class="va">GEN</span>,</span>
 <span class="r-in">               rep <span class="op">=</span>  <span class="va">REP</span>,</span>
 <span class="r-in">               resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">CD</span>, <span class="va">CL</span>, <span class="va">ED</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |=========                                   | 20% 00:00:00 Evaluating trait EH |==================                          | 40% 00:00:00 Evaluating trait CD |==========================                  | 60% 00:00:00 Evaluating trait CL |===================================         | 80% 00:00:01 Evaluating trait ED |============================================| 100% 00:00:01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |=========                                   | 20% 00:00:00 Evaluating trait EH |==================                          | 40% 00:00:00 Evaluating trait CD |==========================                  | 60% 00:00:01 Evaluating trait CL |===================================         | 80% 00:00:01 Evaluating trait ED |============================================| 100% 00:00:01 </span>
 <span class="r-in"><span class="fu">get_model_data</span><span class="op">(</span><span class="va">ge_r</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: ge_reg</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: b1</span>
@@ -435,7 +442,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-in">              gen <span class="op">=</span> <span class="va">GEN</span>,</span>
 <span class="r-in">              rep <span class="op">=</span> <span class="va">REP</span>,</span>
 <span class="r-in">              resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">ED</span>, <span class="va">TKW</span>, <span class="va">NKR</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===========                                 | 25% 00:00:00 Evaluating trait ED |======================                      | 50% 00:00:01 Evaluating trait TKW |================================           | 75% 00:00:01 Evaluating trait NKR |===========================================| 100% 00:00:01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===========                                 | 25% 00:00:00 Evaluating trait ED |======================                      | 50% 00:00:01 Evaluating trait TKW |================================           | 75% 00:00:01 Evaluating trait NKR |===========================================| 100% 00:00:02 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Method: REML/BLUP</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Random effects: GEN, GEN:ENV</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
