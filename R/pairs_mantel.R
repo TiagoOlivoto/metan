@@ -164,7 +164,7 @@ pairs_mantel <- function(...,
                   cutpoints = c(0, 0.001, 0.01, 0.05, 1),
                   symbols = c("***", "**", "*", ""))
     r <- ct[[1]]
-    rt <- format(r, digits = digits)[1]
+    rt <- format(r, digits = digits, nsmall = digits)[1]
     cex <- max(sizeRange)
     percent_of_range <- function(percent, range) {
       percent * diff(range) + min(range, na.rm = TRUE)

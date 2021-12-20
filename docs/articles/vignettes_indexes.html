@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="metan">
 <title>Indexes for simultaneous selection • metan</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,14 +13,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
-<link href="../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Indexes for simultaneous selection">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Indexes for simultaneous selection">
 <meta property="og:description" content="metan">
 <meta property="og:image" content="https://tiagoolivoto.github.io/metan/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -33,274 +31,218 @@
   gtag('config', 'UA-140429633-1');
 </script>
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">metan</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.16.0</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
+    <nav class="navbar fixed-top navbar-inverse navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">metan</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
      
     Home
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Examples
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/vignettes_helper.html">Helper functions</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_utilities.html">Utilities</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_biometry.html">Biometry</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="../articles/vignettes_cross-validation.html">Cross-validation</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_ammi.html">AMMI</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_blup.html">BLUP</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_gge.html">GGE</a>
-    </li>
-    <li>
-      <a href="../articles/vignettes_stability.html">Stability</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="../articles/vignettes_indexes.html">Multivariate indexes</a>
-    </li>
-  </ul>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-examples">Examples</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-examples">
+    <a class="dropdown-item" href="../articles/vignettes_helper.html">Helper functions</a>
+    <a class="dropdown-item" href="../articles/vignettes_utilities.html">Utilities</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/vignettes_descriptive.html">Descriptive statistics</a>
+    <a class="dropdown-item" href="../articles/vignettes_biometry.html">Biometry</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/vignettes_cross-validation.html">Cross-validation</a>
+    <a class="dropdown-item" href="../articles/vignettes_ammi.html">AMMI</a>
+    <a class="dropdown-item" href="../articles/vignettes_blup.html">BLUP</a>
+    <a class="dropdown-item" href="../articles/vignettes_gge.html">GGE</a>
+    <a class="dropdown-item" href="../articles/vignettes_stability.html">Stability</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/vignettes_indexes.html">Multivariate indexes</a>
+  </div>
 </li>
-<li>
-  <a href="../reference/index.html">Functions</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Functions</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../news/index.html">Package news</a>
-    </li>
-    <li>
-      <a href="https://olivoto.netlify.app/">Blog posts</a>
-    </li>
-  </ul>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-news">
+    <a class="dropdown-item" href="../news/index.html">Package news</a>
+    <a class="external-link dropdown-item" href="https://olivoto.netlify.app/">Blog posts</a>
+  </div>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    More
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../CODE_OF_CONDUCT.html">Code of Conduct</a>
-    </li>
-    <li>
-      <a href="../CONTRIBUTING.html">Contributing</a>
-    </li>
-    <li>
-      <a href="../ISSUE_TEMPLATE.html">Issues</a>
-    </li>
-    <li>
-      <a href="../SUPPORT.html">Support</a>
-    </li>
-    <li>
-      <a href="../LICENSE.html">Licence</a>
-    </li>
-  </ul>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-more">More</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-more">
+    <a class="dropdown-item" href="../CODE_OF_CONDUCT.html">Code of Conduct</a>
+    <a class="dropdown-item" href="../CONTRIBUTING.html">Contributing</a>
+    <a class="dropdown-item" href="../ISSUE_TEMPLATE.html">Issues</a>
+    <a class="dropdown-item" href="../SUPPORT.html">Support</a>
+    <a class="dropdown-item" href="../LICENSE.html">Licence</a>
+  </div>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://www.researchgate.net/profile/Tiago_Olivoto2">
-    <span class="fab fa-researchgate fa-2x"></span>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.researchgate.net/profile/Tiago_Olivoto2">
+    <span class="fab fa fab fa-researchgate fa-2x"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://github.com/TiagoOlivoto">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/TiagoOlivoto">
     <span class="fa fa-github fa-2x"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://twitter.com/tolivoto">
-    <span class="fab fa-twitter fa-2x"></span>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://twitter.com/tolivoto">
+    <span class="fab fa fab fa-twitter fa-2x"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://www.mendeley.com/profiles/tiago-olivoto/">
-    <span class="fab fa-mendeley fa-2x"></span>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.mendeley.com/profiles/tiago-olivoto/">
+    <span class="fab fa fab fa-mendeley fa-2x"></span>
      
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-        <div class="form-group">
-          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
-      </form>
-      
-    </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-      
-
-      </header><script src="vignettes_indexes_files/header-attrs-2.11/header-attrs.js"></script><script src="vignettes_indexes_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="vignettes_indexes_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="vignettes_indexes_files/datatables-binding-0.19/datatables.js"></script><script src="vignettes_indexes_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="vignettes_indexes_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="vignettes_indexes_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="vignettes_indexes_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><script src="vignettes_indexes_files/jszip-1.10.20/jszip.min.js"></script><script src="vignettes_indexes_files/pdfmake-1.10.20/pdfmake.js"></script><script src="vignettes_indexes_files/pdfmake-1.10.20/vfs_fonts.js"></script><link href="vignettes_indexes_files/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet">
-<script src="vignettes_indexes_files/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script><link href="vignettes_indexes_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+</nav><div class="container template-article">
+<script src="vignettes_indexes_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="vignettes_indexes_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="vignettes_indexes_files/datatables-binding-0.20/datatables.js"></script><script src="vignettes_indexes_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="vignettes_indexes_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="vignettes_indexes_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="vignettes_indexes_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><script src="vignettes_indexes_files/jszip-1.11.3/jszip.min.js"></script><script src="vignettes_indexes_files/pdfmake-1.11.3/pdfmake.js"></script><script src="vignettes_indexes_files/pdfmake-1.11.3/vfs_fonts.js"></script><link href="vignettes_indexes_files/dt-ext-buttons-1.11.3/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="vignettes_indexes_files/dt-ext-buttons-1.11.3/js/dataTables.buttons.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.11.3/js/buttons.html5.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.11.3/js/buttons.colVis.min.js"></script><script src="vignettes_indexes_files/dt-ext-buttons-1.11.3/js/buttons.print.min.js"></script><link href="vignettes_indexes_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="vignettes_indexes_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Indexes for simultaneous selection</h1>
-                        <h4 class="author">Tiago Olivoto</h4>
+  <main id="main"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Indexes for simultaneous selection</h1>
+                        <h4 data-toc-skip class="author">Tiago Olivoto</h4>
             
-            <h4 class="date">2021-11-09</h4>
+            <h4 data-toc-skip class="date">2021-12-19</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/master/vignettes/vignettes_indexes.Rmd"><code>vignettes/vignettes_indexes.Rmd</code></a></small>
-      <div class="hidden name"><code>vignettes_indexes.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/HEAD/vignettes/vignettes_indexes.Rmd" class="external-link"><code>vignettes/vignettes_indexes.Rmd</code></a></small>
+      <div class="d-none name"><code>vignettes_indexes.Rmd</code></div>
     </div>
 
     
     
-<div id="getting-started" class="section level1">
-<h1 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started</h1>
+<div class="section level1">
+<h1 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h1>
 <p>In this section we will use the data examples <code>data_ge</code> and <code>data_ge2</code> provided in the <strong>metan</strong> package. For more information, please, see <code><a href="../reference/data_ge.html">?data_ge</a></code> and <code><a href="../reference/data_ge2.html">?data_ge2</a></code>. Other data sets can be used provided that the following columns are in the dataset: environment, genotype, block/replicate and response variable(s). See the section <a href="#rendering">Rendering engine</a> to know how HTML tables were generated.</p>
 </div>
-<div id="multi-trait-stability-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#multi-trait-stability-index" class="anchor"></a>Multi-trait stability index</h1>
+<div class="section level1">
+<h1 id="multi-trait-stability-index">Multi-trait stability index<a class="anchor" aria-label="anchor" href="#multi-trait-stability-index"></a>
+</h1>
 <p>The function <code><a href="../reference/mtsi.html">mtsi()</a></code> is used to compute the multi-trait stability index (<em>MTSI</em>) proposed by <span class="citation"><a href="#ref-Olivoto2019a" role="doc-biblioref">Olivoto et al.</a> (<a href="#ref-Olivoto2019a" role="doc-biblioref">2019</a>)</span>. The first argument is a model of the class <code>waasb</code> or <code>waas</code>. It is possible to compute the <em>MTSI</em> for both <em>WAASB</em> -stability only- and <em>WAASBY</em> -simultaneous selection for mean performance and stability.</p>
-<div id="based-on-stability-only" class="section level2">
-<h2 class="hasAnchor">
-<a href="#based-on-stability-only" class="anchor"></a>Based on stability only</h2>
-<p>In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function <code><a href="../reference/waasb.html">waasb()</a></code> is passed to the function <code><a href="../reference/mtsi.html">mtsi()</a></code> by the forward-pipe operator <code>%&gt;%</code>. Finally, the MTSI index is plotted using the function <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>.</p>
+<div class="section level2">
+<h2 id="based-on-stability-only">Based on stability only<a class="anchor" aria-label="anchor" href="#based-on-stability-only"></a>
+</h2>
+<p>In the following example, the selection of stable genotypes will consider five traits, namely, KW, NKE, PH, EH, and TKW. Note that the output of the function <code><a href="../reference/waasb.html">waasb()</a></code> is passed to the function <code><a href="../reference/mtsi.html">mtsi()</a></code> by the forward-pipe operator <code>%&gt;%</code>. Finally, the MTSI index is plotted using the function <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan">metan</a></span><span class="op">)</span>
-<span class="va">MTSI_index</span> <span class="op">&lt;-</span> <span class="va">data_ge2</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span>
+<span class="va">MTSI_index</span> <span class="op">&lt;-</span> <span class="va">data_ge2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
               <span class="fu"><a href="../reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
-                    resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">KW</span>, <span class="va">NKE</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">TKW</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
+                    resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">KW</span>, <span class="va">NKE</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">TKW</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
               <span class="fu"><a href="../reference/mtsi.html">mtsi</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span>, index <span class="op">=</span> <span class="st">"waasb"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="based-on-mean-performance-and-stability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#based-on-mean-performance-and-stability" class="anchor"></a>Based on mean performance and stability</h2>
+<div class="section level2">
+<h2 id="based-on-mean-performance-and-stability">Based on mean performance and stability<a class="anchor" aria-label="anchor" href="#based-on-mean-performance-and-stability"></a>
+</h2>
 <p>The following code considers that higher values for KW, NKE, TKW are better, and lower values for PH and EH are better. By using <code>wresp = 65</code>, the simultaneous selection for mean performance and stability will prioritize the mean performance (mean of the variables) rather than their stability across environments.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">MTSI_index2</span> <span class="op">&lt;-</span> 
-  <span class="va">data_ge2</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
+  <span class="va">data_ge2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/waasb.html">waasb</a></span><span class="op">(</span><span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
-        resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">KW</span>, <span class="va">NKE</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">TKW</span><span class="op">)</span>,
-        mresp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"h, h, l, l, h"</span><span class="op">)</span>,
-        wresp <span class="op">=</span> <span class="fl">65</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="co"># Default is 50</span>
+        resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">KW</span>, <span class="va">NKE</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">TKW</span><span class="op">)</span>,
+        mresp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"h, h, l, l, h"</span><span class="op">)</span>,
+        wresp <span class="op">=</span> <span class="fl">65</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="co"># Default is 50</span>
   <span class="fu"><a href="../reference/mtsi.html">mtsi</a></span><span class="op">(</span>SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Factor analysis</span>
-<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"FA"</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-53e6d08f970c05f8a8e5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-53e6d08f970c05f8a8e5">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["KW","NKE","PH","EH","TKW"],[-0.499747076677228,-0.000686573381208784,0.94024901178732,0.964342010010544,-0.583477725982307],[-0.837790827878125,-0.924228938503857,0.193879951591237,0.162960266525672,-0.655746249173821],[0.951640611924149,0.854199602150975,0.921657639796052,0.956511560737295,0.77044940002302],[0.0483593880758514,0.145800397849025,0.0783423602039482,0.0434884392627048,0.22955059997698]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n      <th>Communality<\/th>\n      <th>Uniquenesses<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+<span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">MTSI_index2</span>, <span class="st">"FA"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">print_table</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-283759423bf197150d25" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-283759423bf197150d25">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["KW","NKE","PH","EH","TKW"],[-0.499747076677228,-0.000686573381208784,0.94024901178732,0.964342010010544,-0.583477725982307],[-0.837790827878125,-0.924228938503857,0.193879951591237,0.162960266525672,-0.655746249173821],[0.951640611924149,0.854199602150975,0.921657639796052,0.956511560737295,0.77044940002302],[0.0483593880758514,0.145800397849025,0.0783423602039482,0.0434884392627048,0.22955059997698]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n      <th>Communality<\/th>\n      <th>Uniquenesses<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
 # Scores for genotypes
 gmd(MTSI_index2, "scores_gen") %&gt;% print_table()
-<div id="htmlwidget-0bbd4faeabe8b109c2b6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0bbd4faeabe8b109c2b6">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[0.0826069165710057,3.07308175311733,2.91389062625203,2.0985118174361,2.01418675673767,1.20650518587513,0.525787630815449,1.8029774370447,2.67074915320108,1.43061736460374,2.7097202888841,2.63893177713191,3.34897361202653],[-2.92497099000764,-3.20546444284095,-3.59854531329736,-2.24445101181493,-3.89676362996834,-3.58885463725425,-2.00050191908342,-4.52094338414682,-4.86408461901238,-3.45584163816848,-3.17822938438037,-1.93022878140175,-1.58351756505255]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GEN<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-ceda948898efad9f6944" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ceda948898efad9f6944">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["H1","H10","H11","H12","H13","H2","H3","H4","H5","H6","H7","H8","H9"],[0.0826069165710057,3.07308175311733,2.91389062625203,2.0985118174361,2.01418675673767,1.20650518587513,0.525787630815449,1.8029774370447,2.67074915320108,1.43061736460374,2.7097202888841,2.63893177713191,3.34897361202653],[-2.92497099000764,-3.20546444284095,-3.59854531329736,-2.24445101181493,-3.89676362996834,-3.58885463725425,-2.00050191908342,-4.52094338414682,-4.86408461901238,-3.45584163816848,-3.17822938438037,-1.93022878140175,-1.58351756505255]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GEN<\/th>\n      <th>FA1<\/th>\n      <th>FA2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 # Selection differential for the 'waasby' index
 gmd(MTSI_index2, "sel_dif_mps") %&gt;% print_table()
-<div id="htmlwidget-8cbd568d6cc0feac912d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8cbd568d6cc0feac912d">{"x":null,"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-27914f4ca6bf1998e788" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-27914f4ca6bf1998e788">{"x":null,"evals":[],"jsHooks":[]}</script>
 # Selection differential for the waasb index
 gmd(MTSI_index2, "sel_dif_stab") %&gt;% print_table()
-<div id="htmlwidget-718e3c9f45b35f300081" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-718e3c9f45b35f300081">{"x":null,"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-788624a6330760bc3986" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-788624a6330760bc3986">{"x":null,"evals":[],"jsHooks":[]}</script>
 # Selection differential for the variables
 gmd(MTSI_index2, "sel_dif_trait") %&gt;% print_table()
-<div id="htmlwidget-14593189589df2106caa" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-14593189589df2106caa">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["PH","EH","KW","NKE","TKW"],["FA 1","FA 1","FA 2","FA 2","FA 2"],[2.48481282051282,1.34332564102564,172.938866694231,511.64358974359,338.666314183666],[2.51266666666667,1.35416666666667,178.378298958333,525.894444444445,339.980285932597],[0.027853846153846,0.0108410256410256,5.43943226410255,14.2508547008547,1.31397174893175],[1.12096355604353,0.80702886254359,3.14529195667732,2.78530895070855,0.387984187945883],[0.0351303365511455,7.95128277706683e-09,0.204288750337347,0,2.22107917690488e-15],[0.000978514989628441,8.6200060465227e-11,1.11121481977816,0,2.91843529059359e-15],[0.039379826985378,6.41691469533868e-09,0.642547763275718,0,8.6174360081495e-16],["decrease","decrease","increase","increase","increase"],[0,0,100,100,100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>Factor<\/th>\n      <th>Xo<\/th>\n      <th>Xs<\/th>\n      <th>SD<\/th>\n      <th>SDperc<\/th>\n      <th>h2<\/th>\n      <th>SG<\/th>\n      <th>SGperc<\/th>\n      <th>sense<\/th>\n      <th>goal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,7,8,10]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-44e19f6abed54787c6f9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-44e19f6abed54787c6f9">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["PH","EH","KW","NKE","TKW"],["FA 1","FA 1","FA 2","FA 2","FA 2"],[2.48481282051282,1.34332564102564,172.938866694231,511.64358974359,338.666314183666],[2.51266666666667,1.35416666666667,178.378298958333,525.894444444445,339.980285932597],[0.027853846153846,0.0108410256410256,5.43943226410255,14.2508547008547,1.31397174893175],[1.12096355604353,0.80702886254359,3.14529195667732,2.78530895070855,0.387984187945883],[0.0351303365511455,7.95128277706683e-09,0.204288750337347,0,2.22107917690488e-15],[0.000978514989628441,8.6200060465227e-11,1.11121481977816,0,2.91843529059359e-15],[0.039379826985378,6.41691469533868e-09,0.642547763275718,0,8.6174360081495e-16],["decrease","decrease","increase","increase","increase"],[0,0,100,100,100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>VAR<\/th>\n      <th>Factor<\/th>\n      <th>Xo<\/th>\n      <th>Xs<\/th>\n      <th>SD<\/th>\n      <th>SDperc<\/th>\n      <th>h2<\/th>\n      <th>SG<\/th>\n      <th>SGperc<\/th>\n      <th>sense<\/th>\n      <th>goal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"dom":"<<t>Bp>","buttons":["copy","excel","pdf","print"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatSignif(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,7,8,10]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script>
 
 plot(MTSI_index2)
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-4-6.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 </div>
-<div id="mgidi-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#mgidi-index" class="anchor"></a>MGIDI index</h1>
+<div class="section level1">
+<h1 id="mgidi-index">MGIDI index<a class="anchor" aria-label="anchor" href="#mgidi-index"></a>
+</h1>
 <p>The MGIDI index can be seen as the MTSI index with a weigth of 100 for mean performance. This index is computed with the function <code><a href="../reference/mgidi.html">mgidi()</a></code>. Here, we will use the example data <code><a href="../reference/data_g.html">data_g()</a></code>. By default, all traits are assumed to be increased. To change this default, use the argument <code>ideotype</code>. For example, if for three traits, the first one is assumed to be decreased and the last two are assumed to be increased, use <code>ideotype = c("l, h, h")</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gamem.html">gamem</a></span><span class="op">(</span><span class="va">data_g</span>,
              gen <span class="op">=</span> <span class="va">GEN</span>,
              rep <span class="op">=</span> <span class="va">REP</span>,
-             resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+             resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">mgidi_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mgidi.html">mgidi</a></span><span class="op">(</span><span class="va">mod</span>,
                      SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="co"># Selection intensity</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, type <span class="op">=</span> <span class="st">"contribution"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mgidi_index</span>, type <span class="op">=</span> <span class="st">"contribution"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 </div>
-<div id="smith-hazel-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#smith-hazel-index" class="anchor"></a>Smith-Hazel index</h1>
+<div class="section level1">
+<h1 id="smith-hazel-index">Smith-Hazel index<a class="anchor" aria-label="anchor" href="#smith-hazel-index"></a>
+</h1>
 <p>The Smith-Hazel index (<span class="citation">(<a href="#ref-Smith1936" role="doc-biblioref">Smith 1936</a>; <a href="#ref-Hazel1943" role="doc-biblioref">Hazel 1943</a>)</span>) is computed with the function <code><a href="../reference/Smith_Hazel.html">Smith_Hazel()</a></code>. Users can compute the index either by declaring known genetic and phenotypic variance-covariance matrices or by using as inpute data, a model fitted with the function <code><a href="../reference/gamem.html">gamem()</a></code>. In this case, the variance-covariance are extracted internally. The economic weights in the argument <code>weights</code> are set by default to 1 for all traits.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">smith</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smith_Hazel.html">Smith_Hazel</a></span><span class="op">(</span><span class="va">mod</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="fai-blup-index" class="section level1">
-<h1 class="hasAnchor">
-<a href="#fai-blup-index" class="anchor"></a>FAI-BLUP index</h1>
+<div class="section level1">
+<h1 id="fai-blup-index">FAI-BLUP index<a class="anchor" aria-label="anchor" href="#fai-blup-index"></a>
+</h1>
 <p>The FAI-BLUP is a multi-trait index based on factor analysis and ideotype-design recently proposed by <span class="citation"><a href="#ref-Rocha2018" role="doc-biblioref">Rocha, Machado, and Carneiro</a> (<a href="#ref-Rocha2018" role="doc-biblioref">2018</a>)</span>. It is based on factor analysis, when the factorial scores of each ideotype are designed according to the desirable and undesirable factors. Then, a spatial probability is estimated based on genotype-ideotype distance, enabling genotype ranking <span class="citation">(<a href="#ref-Rocha2018" role="doc-biblioref">Rocha, Machado, and Carneiro 2018</a>)</span>. Here we will use the mixed-model <code>mod</code> as inpute data. By default, the selection is made to increase the value of all traits. Change this default with the arguments <code>DI</code> and <code>UI</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">fai</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fai_blup.html">fai_blup</a></span><span class="op">(</span><span class="va">mod</span>, SI <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fai</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">fai</span><span class="op">)</span></code></pre></div>
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-9-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
-<div id="comparing-the-indexes" class="section level1">
-<h1 class="hasAnchor">
-<a href="#comparing-the-indexes" class="anchor"></a>Comparing the indexes</h1>
+<div class="section level1">
+<h1 id="comparing-the-indexes">Comparing the indexes<a class="anchor" aria-label="anchor" href="#comparing-the-indexes"></a>
+</h1>
 <p>The function <code>coincidence_indexes()</code> can be used to compute the coincidence index described by <span class="citation"><a href="#ref-Hamblin1986" role="doc-biblioref">Hamblin and Zimmermann</a> (<a href="#ref-Hamblin1986" role="doc-biblioref">1986</a>)</span>, among the multi-trait indexes implemented in <code>metan</code>. To do that, just use a comma-separated list of indexes as inpute data and inform the total number of genotypes.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coincidence</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coincidence_index.html">coincidence_index</a></span><span class="op">(</span><span class="va">mgidi_index</span>, <span class="va">fai</span>, <span class="va">smith</span>, total <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>
@@ -308,12 +250,12 @@ plot(MTSI_index2)
 <span class="co"># ---------------------------------------------------------------------------</span>
 <span class="co"># Coincidence index and common genotypes</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
-<span class="co"># # A tibble: 3 x 5</span>
+<span class="co"># <span style="color: #949494;"># A tibble: 3 x 5</span></span>
 <span class="co">#   V1          V2     index common genotypes</span>
-<span class="co">#   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;    </span>
-<span class="co"># 1 mgidi_index fai   100         3 H13,H5,H2</span>
-<span class="co"># 2 mgidi_index smith  56.71      2 H13,H5   </span>
-<span class="co"># 3 fai         smith  56.71      2 H5,H13</span></code></pre></div>
+<span class="co">#   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co"># <span style="color: #BCBCBC;">1</span> mgidi_index fai   100         3 H13,H5,H2</span>
+<span class="co"># <span style="color: #BCBCBC;">2</span> mgidi_index smith  56.71      2 H13,H5   </span>
+<span class="co"># <span style="color: #BCBCBC;">3</span> fai         smith  56.71      2 H5,H13</span></code></pre></div>
 <p>We can also produce a Venn plot to show the relationships between the indexes</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">MGIDI</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_model_data.html">gmd</a></span><span class="op">(</span><span class="va">mgidi_index</span>, <span class="st">"sel_gen"</span><span class="op">)</span>
@@ -331,89 +273,70 @@ plot(MTSI_index2)
 <p><img src="vignettes_indexes_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <hr>
 </div>
-<div id="rendering" class="section level1">
-<h1 class="hasAnchor">
-<a href="#rendering" class="anchor"></a>Rendering engine</h1>
-<p>This vignette was built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>. All tables were produced with the package <a href="https://rstudio.github.io/DT/"><code>DT</code></a> using the following function.</p>
+<div class="section level1">
+<h1 id="rendering">Rendering engine<a class="anchor" aria-label="anchor" href="#rendering"></a>
+</h1>
+<p>This vignette was built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>. All tables were produced with the package <a href="https://rstudio.github.io/DT/" class="external-link"><code>DT</code></a> using the following function.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT">DT</a></span><span class="op">)</span> <span class="co"># Used to make the tables</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT" class="external-link">DT</a></span><span class="op">)</span> <span class="co"># Used to make the tables</span>
 <span class="co"># Function to make HTML tables</span>
 <span class="va">print_table</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">table</span>, <span class="va">rownames</span> <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">digits</span> <span class="op">=</span> <span class="fl">3</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html">datatable</a></span><span class="op">(</span><span class="va">table</span>, rownames <span class="op">=</span> <span class="va">rownames</span>, extensions <span class="op">=</span> <span class="st">'Buttons'</span>,
-                  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scrollX <span class="op">=</span> <span class="cn">TRUE</span>, 
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="va">table</span>, rownames <span class="op">=</span> <span class="va">rownames</span>, extensions <span class="op">=</span> <span class="st">'Buttons'</span>,
+                  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>scrollX <span class="op">=</span> <span class="cn">TRUE</span>, 
                                  dom <span class="op">=</span> <span class="st">'&lt;&lt;t&gt;Bp&gt;'</span>,
-                                 buttons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'copy'</span>, <span class="st">'excel'</span>, <span class="st">'pdf'</span>, <span class="st">'print'</span><span class="op">)</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span>
-  <span class="va">num_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">table</span>, <span class="va">class</span><span class="op">)</span> <span class="op">==</span> <span class="st">"numeric"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_cols</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/DT/man/formatCurrency.html">formatSignif</a></span><span class="op">(</span><span class="va">df</span>, columns <span class="op">=</span> <span class="va">num_cols</span>, digits <span class="op">=</span> <span class="va">digits</span><span class="op">)</span>
+                                 buttons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'copy'</span>, <span class="st">'excel'</span>, <span class="st">'pdf'</span>, <span class="st">'print'</span><span class="op">)</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span>
+  <span class="va">num_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">table</span>, <span class="va">class</span><span class="op">)</span> <span class="op">==</span> <span class="st">"numeric"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">num_cols</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/DT/man/formatCurrency.html" class="external-link">formatSignif</a></span><span class="op">(</span><span class="va">df</span>, columns <span class="op">=</span> <span class="va">num_cols</span>, digits <span class="op">=</span> <span class="va">digits</span><span class="op">)</span>
   <span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
     <span class="va">df</span>
   <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level1 unnumbered">
+<h1 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Hamblin1986" class="csl-entry">
-Hamblin, John, and Maria Jose de O. Zimmermann. 1986. <span>“<span class="nocase">Breeding Common Bean for Yield in Mixtures</span>.”</span> In <em>Plant Breeding Reviews</em>, 245–72. Hoboken, NJ, USA: John Wiley <span>&amp;</span> Sons, Inc. <a href="https://doi.org/10.1002/9781118061015.ch8">https://doi.org/10.1002/9781118061015.ch8</a>.
+Hamblin, John, and Maria Jose de O. Zimmermann. 1986. <span>“<span class="nocase">Breeding Common Bean for Yield in Mixtures</span>.”</span> In <em>Plant Breeding Reviews</em>, 245–72. Hoboken, NJ, USA: John Wiley <span>&amp;</span> Sons, Inc. <a href="https://doi.org/10.1002/9781118061015.ch8" class="external-link">https://doi.org/10.1002/9781118061015.ch8</a>.
 </div>
 <div id="ref-Hazel1943" class="csl-entry">
-Hazel, L N. 1943. <span>“<span class="nocase">The genetic basis for constructing selection indexes</span>.”</span> <em>Genetics</em> 28 (6): 476–90. <a href="http://www.ncbi.nlm.nih.gov/pubmed/17247099%20http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=PMC1209225">http://www.ncbi.nlm.nih.gov/pubmed/17247099 http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=PMC1209225</a>.
+Hazel, L N. 1943. <span>“<span class="nocase">The genetic basis for constructing selection indexes</span>.”</span> <em>Genetics</em> 28 (6): 476–90. <a href="http://www.ncbi.nlm.nih.gov/pubmed/17247099%20http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=PMC1209225" class="external-link">http://www.ncbi.nlm.nih.gov/pubmed/17247099 http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=PMC1209225</a>.
 </div>
 <div id="ref-Olivoto2019a" class="csl-entry">
-Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. <span>“<span class="nocase">Mean performance and stability in multi-environment trials II: Selection based on multiple traits</span>.”</span> <em>Agronomy Journal</em> 111 (6): 2961–69. <a href="https://doi.org/10.2134/agronj2019.03.0221">https://doi.org/10.2134/agronj2019.03.0221</a>.
+Olivoto, T., A. D. C Lúcio, J. A. G. Da silva, B. G. Sari, and M. I. Diel. 2019. <span>“<span class="nocase">Mean performance and stability in multi-environment trials II: Selection based on multiple traits</span>.”</span> <em>Agronomy Journal</em> 111 (6): 2961–69. <a href="https://doi.org/10.2134/agronj2019.03.0221" class="external-link">https://doi.org/10.2134/agronj2019.03.0221</a>.
 </div>
 <div id="ref-Rocha2018" class="csl-entry">
-Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. <span>“<span class="nocase">Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy</span>.”</span> <em>GCB Bioenergy</em> 10 (1): 52–60. <a href="https://doi.org/10.1111/gcbb.12443">https://doi.org/10.1111/gcbb.12443</a>.
-</div>
-<div id="ref-Rocha2018" class="csl-entry">
-———. 2018. <span>“<span class="nocase">Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy</span>.”</span> <em>GCB Bioenergy</em> 10 (1): 52–60. <a href="https://doi.org/10.1111/gcbb.12443">https://doi.org/10.1111/gcbb.12443</a>.
+Rocha, João Romero do Amaral Santos de Car, Juarez Campolina Machado, and Pedro Crescêncio Souza Carneiro. 2018. <span>“<span class="nocase">Multitrait index based on factor analysis and ideotype-design: proposal and application on elephant grass breeding for bioenergy</span>.”</span> <em>GCB Bioenergy</em> 10 (1): 52–60. <a href="https://doi.org/10.1111/gcbb.12443" class="external-link">https://doi.org/10.1111/gcbb.12443</a>.
 </div>
 <div id="ref-Smith1936" class="csl-entry">
-Smith, H. F. 1936. <span>“<span class="nocase">A discriminant function for plant selection</span>.”</span> <em>Annals of Eugenics</em> 7 (3): 240–50. <a href="https://doi.org/10.1111/j.1469-1809.1936.tb02143.x">https://doi.org/10.1111/j.1469-1809.1936.tb02143.x</a>.
+Smith, H. F. 1936. <span>“<span class="nocase">A discriminant function for plant selection</span>.”</span> <em>Annals of Eugenics</em> 7 (3): 240–50. <a href="https://doi.org/10.1111/j.1469-1809.1936.tb02143.x" class="external-link">https://doi.org/10.1111/j.1469-1809.1936.tb02143.x</a>.
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by <a href="https://olivoto.netlify.app/">Tiago Olivoto</a>.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by <a href="https://olivoto.netlify.app/" class="external-link">Tiago Olivoto</a>.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
-  docsearch({
-    
-    
-    apiKey: 'ef40e3bab94bb0e1d687fd3844052701',
-    indexName: 'metan',
-    inputSelector: 'input#search-input.form-control',
-    transformData: function(hits) {
-      return hits.map(function (hit) {
-        hit.url = updateHitURL(hit);
-        return hit;
-      });
-    }
-  });
-</script>
-</body>
+
+  
+
+  </body>
 </html>

@@ -28,8 +28,7 @@
 #' Avaliacao de metodologias de adaptabilidade e estabilidade de cultivares
 #' milho. Acta Sci. - Agron. 33:51-58. \doi{10.4025/actasciagron.v33i1.5817}
 #'
-#' @return
-#' A list where each element is the result for one variable and contains the
+#' @return A list where each element is the result for one variable and contains the
 #' following data frames:
 #' * **environments** Contains the mean, environmental index and
 #' classification as favorables and unfavorables environments.

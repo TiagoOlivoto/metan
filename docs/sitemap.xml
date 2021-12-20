@@ -1,597 +1,630 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//index.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/404.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/acv.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ammi_indexes.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/metan_start.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Annicchiarico.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_ammi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/anova_ind.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_biometry.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/anova_joint.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/arrange_ggplot.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_cross-validation.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/as.lpcor.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_descriptive.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/barplots.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/bind_cv.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_helper.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/blup_indexes.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_indexes.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/can_corr.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_stability.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/clustering.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/articles/vignettes_utilities.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/coincidence_index.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/authors.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/colindiag.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/comb_vars.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/correlated_vars.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/index.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/corr_ci.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/ISSUE_TEMPLATE.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/corr_coef.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/corr_plot.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/news/index.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/corr_ss.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/acv.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/corr_stab_ind.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/covcor_design.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Annicchiarico.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/cv_ammi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/anova_ind.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/cv_ammif.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/anova_joint.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/cv_blup.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/arrange_ggplot.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/data_alpha.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/as.lpcor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/data_g.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/barplots.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/data_ge.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/bind_cv.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/data_ge2.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/blup_indexes.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/data_simula.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/can_corr.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/desc_stat.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/clustering.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/doo.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/coincidence_index.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ecovalence.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/colindiag.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/env_dissimilarity.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/comb_vars.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/env_stratification.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/correlated_vars.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/fai_blup.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/corr_ci.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/find_outliers.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/corr_coef.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Fox.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/corr_plot.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gafem.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/corr_ss.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gai.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/corr_stab_ind.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gamem.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/covcor_design.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gamem_met.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/cv_ammi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/get_corvars.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/cv_ammif.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/get_covmat.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/cv_blup.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/get_dist.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/data_alpha.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/get_model_data.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/data_g.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_acv.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/data_ge.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_cluster.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/data_ge2.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_details.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/data_simula.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_effects.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/desc_stat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_factanal.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/doo.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_means.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ecovalence.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_plot.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/env_dissimilarity.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_polar.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/env_stratification.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_reg.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/fai_blup.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_stats.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/find_outliers.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/ge_winners.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Fox.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gge.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gafem.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gtb.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gai.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/gytb.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gamem.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Huehn.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gamem_met.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/impute_missing_val.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/get_corvars.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/inspect.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/get_covmat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/int.effects.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/get_dist.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/is.lpcor.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/get_model_data.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/is_balanced_trial.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_acv.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/lineplots.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_cluster.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/lpcor.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_details.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mahala.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_effects.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mahala_design.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_factanal.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/make_long.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_means.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/make_mat.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_plot.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mantel_test.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_polar.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/meansGxE.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_reg.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/metan-package.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_stats.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mgidi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/ge_winners.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mps.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gge.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mtmps.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gtb.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/mtsi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/gytb.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/non_collinear_vars.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Huehn.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/pairs_mantel.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/impute_missing_val.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/path_coeff.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/performs_ammi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/inspect.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/pipe.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/int.effects.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.anova_joint.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/is.lpcor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.can_cor.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/is_balanced_trial.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.clustering.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/lineplots.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.correlated_vars.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/lpcor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.corr_coef.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mahala.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.cvalidation.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mahala_design.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.env_dissimilarity.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/make_long.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.env_stratification.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/make_mat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.fai_blup.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mantel_test.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.gafem.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/meansGxE.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.gamem.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/metan-package.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.ge_cluster.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mgidi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.ge_effects.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mps.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.ge_factanal.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mtmps.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.ge_reg.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/mtsi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.gge.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/non_collinear_vars.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.mgidi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/pairs_mantel.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.mtmps.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/path_coeff.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.mtsi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/performs_ammi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.performs_ammi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.resp_surf.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.anova_joint.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.sh.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.can_cor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.waas.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.clustering.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.waasb.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.correlated_vars.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot.wsmp.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.corr_coef.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_blup.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.cvalidation.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_ci.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.env_dissimilarity.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_eigen.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.env_stratification.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_scores.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.fai_blup.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/plot_waasby.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.gafem.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/predict.gamem.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.gamem.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/predict.gge.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.ge_cluster.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/predict.performs_ammi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.ge_effects.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/predict.waas.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.ge_factanal.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/predict.waasb.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.ge_reg.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.ammi_indexes.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.gge.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.Annicchiarico.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.mgidi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.anova_ind.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.mtmps.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.anova_joint.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.mtsi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.can_cor.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.path_coeff.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.coincidence.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.performs_ammi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.colindiag.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.resp_surf.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.corr_coef.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.sh.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.ecovalence.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.waas.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.env_dissimilarity.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.waasb.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.env_stratification.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot.wsmp.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.Fox.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot_blup.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.gamem.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot_ci.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.ge_factanal.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot_eigen.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.ge_reg.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot_scores.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.ge_stats.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/plot_waasby.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.Huehn.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/predict.gamem.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.lpcor.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/predict.gge.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.mgidi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/predict.performs_ammi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.mtmps.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/predict.waas.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.mtsi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/predict.waasb.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.path_coeff.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.ammi_indexes.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.performs_ammi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.Annicchiarico.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.Schmildt.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.anova_ind.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.sh.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.anova_joint.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.Shukla.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.can_cor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.superiority.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.coincidence.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.Thennarasu.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.colindiag.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.waas.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.corr_coef.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.waasb.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.ecovalence.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/print.waas_means.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.env_dissimilarity.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/reexports.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.env_stratification.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/reorder_cormat.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.Fox.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/resca.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.gamem.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/residual_plots.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.ge_factanal.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/resp_surf.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.ge_reg.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Schmildt.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.ge_stats.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Select_helper.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.Huehn.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/select_pred.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.lpcor.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Shukla.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.mgidi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Smith_Hazel.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.mtmps.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/solve_svd.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.mtsi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/split_factors.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.path_coeff.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/stars_pval.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.performs_ammi.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/superiority.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.Schmildt.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/themes.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.sh.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/Thennarasu.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.Shukla.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/tidyeval.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.superiority.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/transpose_df.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.Thennarasu.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/tukey_hsd.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.waas.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_as.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.waasb.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_bind.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/print.waas_means.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_class.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_data.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/reorder_cormat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_data_org.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/resca.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_mat.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/residual_plots.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_na_zero.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/resp_surf.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_num_str.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Schmildt.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_progress.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Select_helper.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_rows_cols.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/select_pred.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_sets.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Shukla.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/utils_stats.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Smith_Hazel.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/venn_plot.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/solve_svd.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/waas.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/split_factors.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/waasb.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/stars_pval.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/waas_means.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/superiority.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//reference/wsmp.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/themes.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/metan_start.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/Thennarasu.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_ammi.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/tidyeval.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_biometry.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/transpose_df.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_blup.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/tukey_hsd.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_cross-validation.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_as.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_descriptive.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_bind.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_gge.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_class.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_helper.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_data.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_indexes.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_data_org.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_stability.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_mat.html</loc>
   </url>
   <url>
-    <loc>https://tiagoolivoto.github.io/metan//articles/vignettes_utilities.html</loc>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_num_str.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_progress.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_sets.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/utils_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/venn_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/waas.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/waasb.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/waas_means.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/reference/wsmp.html</loc>
+  </url>
+  <url>
+    <loc>https://tiagoolivoto.github.io/metan/SUPPORT.html</loc>
   </url>
 </urlset>

@@ -21,8 +21,7 @@
 #' @seealso [superiority()], [ecovalence()], [ge_stats()]
 #' @references Annicchiarico, P. 1992. Cultivar adaptation and recommendation
 #'   from alfalfa trials in Northern Italy. J. Genet. Breed. 46:269-278.
-#' @return
-#' A list where each element is the result for one variable and contains the
+#' @return A list where each element is the result for one variable and contains the
 #' following data frames:
 #' * **environments** Contains the mean, environmental index and
 #' classification as favorable and unfavorable environments.

@@ -48,8 +48,7 @@
 #' @references Patterson, H.D., and E.R. Williams. 1976. A new class of
 #' resolvable incomplete block designs. Biometrika 63:83-92.
 #'
-#' @return
-#' An object of class `cv_ammif` with the following items:
+#' @return An object of class `cv_ammif` with the following items:
 #' * **RMSPD**: A vector with nboot-estimates of the Root Mean Squared
 #' Prediction Difference between predicted and validating data.
 #'

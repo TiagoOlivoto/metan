@@ -34,8 +34,7 @@
 #'
 #' @param model An object of class `waasb` computed with [waasb()] or
 #'   [gamem_met()].
-#' @return
-#' A tibble containing the indexes.
+#' @return A tibble containing the indexes.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references
 #'   Alves, R.S., L. de Azevedo Peixoto, P.E. Teodoro, L.A. Silva, E.V.

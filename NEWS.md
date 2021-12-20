@@ -1,5 +1,9 @@
 # metan (development version)
 
+* Fix bug in `rowname_to_column()`.
+* Changes the object name in `mgidi()` example that overwrites the function.
+* Fix bug with `x.lab` and `y.lab` from `plot_scores()`. Now it accepts an object from `expression()`
+
 # metan 1.16.0
 ## New features
 * Include new AMMI-based stability methods.

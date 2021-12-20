@@ -50,7 +50,7 @@ at each level. Possible values are \code{'a'} for lowercase letters, \code{'A'} 
 uppercase letters, \code{'1'} for numbers, \code{'i'} for lowercase Roman numerals, and
 \code{'I'} for uppercase Roman numerals. It can also be a list containing
 character vectors defining arbitrary tag sequences. If any element in the
-list is a scalar and one of \code{'a'}, \code{'A'}, \code{'1'}, \verb{'i}, or \code{'I'}, this level
+list is a scalar and one of \code{'a'}, \code{'A'}, \code{'1'}, \code{'i'}, or \code{'I'}, this level
 will be expanded to the expected sequence.}
 
 \item{tag_prefix, tag_suffix}{Strings that should appear before or after the
@@ -86,16 +86,11 @@ arrange_ggplot(p1, p2)
 # Insert plot annotation, titles and subtitles
 arrange_ggplot(p1, p2,
                ncol = 1,
-               tag_levels = list(c("(P1)", "(P2)")),
+               tag_levels = "1",
+               tag_prefix = "P."
                title = "My grouped ggplot",
                subtitle = "Made with arrange_ggplot()",
-               caption = "P1 = scatter plot\nP2 = boxplot",
-               theme = theme(plot.title = element_text(size = 20,
-                                                       face = "bold"),
-                             plot.subtitle = element_text(size = 10,
-                                                          face = "italic"),
-                             plot.caption  = element_text(size = 10,
-                                                          face = "italic")))
+               caption = "P1 = scatter plot - P2 = boxplot")
 }
 
 }

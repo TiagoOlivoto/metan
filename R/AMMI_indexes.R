@@ -72,7 +72,6 @@
 #' names. For example, `order.y = c("h, h, l, h, l")`.
 #' @param level The confidence level. Defaults to 0.95.
 #' @return
-#'
 #' A list where each element contains the result AMMI-based stability indexes
 #' for one variable.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}

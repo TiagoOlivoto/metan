@@ -224,7 +224,7 @@ corr_plot <- function(.data, ...,
                                                                       0.001, 0.01, 0.05, 0.1, 1), symbols = c("***", "**",
                                                                                                               "*", ".", " "))
     r <- unname(ct$estimate)
-    rt <- format(r, digits = digits, decimal.mark = decimal.mark,  scientific = FALSE)[1]
+    rt <- format(r, digits = digits, nsmall = digits, decimal.mark = decimal.mark,  scientific = FALSE)[1]
     cex <- max(sizeRange)
     percent_of_range <- function(percent, range) {
       percent * diff(range) + min(range, na.rm = TRUE)
@@ -243,7 +243,7 @@ corr_plot <- function(.data, ...,
     y <- GGally::eval_data_col(data, mapping$y)
     ct <- cor.test(x, y)
     r <- unname(ct$p.value)
-    rt <- format(r, digits = digits)[1]
+    rt <- format(r, digits = digits, nsmall = digits)[1]
     tt <- as.character(rt)
     p <- ggplot2::ggplot(data = data, mapping = mapping)
     if (!is.null(fill.point) && col.by.test) {

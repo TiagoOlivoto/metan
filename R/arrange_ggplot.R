@@ -23,7 +23,7 @@
 #' uppercase letters, `'1'` for numbers, `'i'` for lowercase Roman numerals, and
 #' `'I'` for uppercase Roman numerals. It can also be a list containing
 #' character vectors defining arbitrary tag sequences. If any element in the
-#' list is a scalar and one of `'a'`, `'A'`, `'1'`, `'i`, or `'I'`, this level
+#' list is a scalar and one of `'a'`, `'A'`, `'1'`, `'i'`, or `'I'`, this level
 #' will be expanded to the expected sequence.
 #' @param tag_prefix,tag_suffix Strings that should appear before or after the
 #' tag.
@@ -50,16 +50,11 @@
 #' # Insert plot annotation, titles and subtitles
 #' arrange_ggplot(p1, p2,
 #'                ncol = 1,
-#'                tag_levels = list(c("(P1)", "(P2)")),
+#'                tag_levels = "1",
+#'                tag_prefix = "P."
 #'                title = "My grouped ggplot",
 #'                subtitle = "Made with arrange_ggplot()",
-#'                caption = "P1 = scatter plot\nP2 = boxplot",
-#'                theme = theme(plot.title = element_text(size = 20,
-#'                                                        face = "bold"),
-#'                              plot.subtitle = element_text(size = 10,
-#'                                                           face = "italic"),
-#'                              plot.caption  = element_text(size = 10,
-#'                                                           face = "italic")))
+#'                caption = "P1 = scatter plot - P2 = boxplot")
 #' }
 #'
 arrange_ggplot <- function(...,
@@ -79,13 +74,13 @@ arrange_ggplot <- function(...,
                            tag_sep = NULL,
                            theme = NULL) {
   p <-
-  wrap_plots(...,
-             ncol = ncol,
-             nrow = nrow,
-             widths = widths,
-             heights = heights,
-             design = design,
-             guides = guides) +
+    wrap_plots(...,
+               ncol = ncol,
+               nrow = nrow,
+               widths = widths,
+               heights = heights,
+               design = design,
+               guides = guides) +
     plot_annotation(title = title,
                     subtitle = subtitle,
                     caption = caption,
@@ -94,7 +89,7 @@ arrange_ggplot <- function(...,
                     tag_suffix = tag_suffix,
                     tag_sep = tag_sep,
                     theme = theme)
-  if(!missing(guides)){
+  if (!missing(guides)) {
     p <-
       p +
       plot_layout(guides = guides) &

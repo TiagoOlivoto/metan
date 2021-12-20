@@ -17,9 +17,7 @@
 #'  one grouping variable use that function.
 #' @param n If a correlation matrix is provided, then `n` is the number of
 #'   objects used to compute the correlation coefficients.
-#' @return
-#'
-#' If `.data` is a grouped data passed from [dplyr::group_by()]
+#' @return If `.data` is a grouped data passed from [dplyr::group_by()]
 #' then the results will be returned into a list-column of data frames.
 #'
 #' * **cormat** A symmetric Pearson's coefficient correlation matrix

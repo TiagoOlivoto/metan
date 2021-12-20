@@ -4,6 +4,7 @@
 #' `r badge('stable')`
 #'
 #' * `path_coeff()` computes a path analysis using a data frame as input data.
+#' * `path_coeff_2c()` computes a sequential path analysis using primary and secondary traits.
 #' * `path_coeff_mat()` computes a path analysis using correlation matrices as
 #' input data.
 #'
@@ -25,17 +26,22 @@
 #'
 #' @param .data The data. Must be a data frame or a grouped data passed from
 #'   [dplyr::group_by()]
-#' @param resp The dependent variable.
+#' @param resp <[`tidy-select`][dplyr_tidy_select]> The dependent trait.
 #' @param cor_mat Matrix of correlations containing both dependent and
 #'   independent traits.
-#' @param pred The predictor variables, set to `everything()`, i.e., the
-#'   predictor variables are all the numeric variables in the data except that
-#'   in `resp`.
+#' @param pred <[`tidy-select`][dplyr_tidy_select]> The predictor traits. set to
+#'   `everything()`, i.e., the predictor traits are all the numeric traits in
+#'   the data except that in `resp`. To select multiple traits, use a
+#'   comma-separated vector of names, (e.g., `pred = c(V1, V2, V2)`), an
+#'   interval of trait names, (e.g., `pred = c(V1:V3)`), or even a select helper
+#'   (e.g., `pred = starts_with("V")`).
+#' @param chain_1,chain_2 <[`tidy-select`][dplyr_tidy_select]> The traits used
+#'   in the first (primary) and second (secondary) chain.
 #' @param by One variable (factor) to compute the function by. It is a shortcut
 #'   to [dplyr::group_by()]. To compute the statistics by more than
 #'   one grouping variable use that function.
 #' @param exclude Logical argument, set to false. If `exclude = TRUE`, then
-#'   the variables in `pred` are deleted from the data, and the analysis
+#'   the traits in `pred` are deleted from the data, and the analysis
 #'   will use as predictor those that remained, except that in `resp`.
 #' @param correction Set to `NULL`. A correction value (k) that will be
 #'   added into the diagonal elements of the **X'X** matrix aiming at
@@ -56,32 +62,43 @@
 #'   predicted value and a normal Q-Q plot.
 #' @param verbose If `verbose = TRUE` then some results are shown in the
 #'   console.
-#' @param ... Additional arguments passed on to [stats::plot.lm()]
-#' @return An object of class `path_coeff, group_path, or brute_path` with
-#'   the following items:
-#' * **Corr.x** A correlation matrix between the predictor variables.
-#' * **Corr.y** A vector of correlations between each predictor variable
+#' @param ... Depends on the function used:
+#' * For `path_coeff()` additional arguments passed on to [stats::plot.lm()].
+#' * For `path_coeff_2c()` additional arguments passed on to [path_coeff].
+#' @return Depends on the function used:
+#' * `path_coeff()`, returns a list with the following items:
+#'    - **Corr.x** A correlation matrix between the predictor variables.
+#'    - **Corr.y** A vector of correlations between each predictor variable
 #' with the dependent variable.
-#' * **Coefficients** The path coefficients. Direct effects are the
+#'    - **Coefficients** The path coefficients. Direct effects are the
 #' diagonal elements, and the indirect effects those in the off-diagonal
 #' elements (lines).
-#' * **Eigen** Eigenvectors and eigenvalues of the `Corr.x.`
-#' * **VIF** The Variance Inflation Factors.
-#' * **plot** A ggplot2-based graphic showing the direct effects in 21
+#'    - **Eigen** Eigenvectors and eigenvalues of the `Corr.x.`
+#'    - **VIF** The Variance Inflation Factors.
+#'    - **plot** A ggplot2-based graphic showing the direct effects in 21
 #' different k values.
-#' * **Predictors** The predictor variables used in the model.
-#' * **CN** The Condition Number, i.e., the ratio between the highest and
+#'    - **Predictors** The predictor variables used in the model.
+#'    - **CN** The Condition Number, i.e., the ratio between the highest and
 #' lowest eigenvalue.
-#' * **Det** The matrix determinant of the `Corr.x.`.
-#' * **R2** The coefficient of determination of the model.
-#' * **Residual** The residual effect of the model.
-#' * **Response** The response variable.
-#' * **weightvar** The order of the predictor variables with the highest
+#'    - **Det** The matrix determinant of the `Corr.x.`.
+#'    - **R2** The coefficient of determination of the model.
+#'    - **Residual** The residual effect of the model.
+#'    - **Response** The response variable.
+#'    - **weightvar** The order of the predictor variables with the highest
 #' weight (highest eigenvector) in the lowest eigenvalue.
-#'
+#' * `path_coeff_2c()` returns a list with the following objects
+#'    - **resp_fc** an object of class `path_coeff` with the results for the
+#'    analysis with dependent trait and first chain predictors.
+#'    - **resp_sc** an object of class `path_coeff` with the results for the
+#'    analysis with dependent trait and second chain predictors.
+#'    - **resp_sc2** The path coefficients of second chain predictors and the
+#'    dependent trait through the first chain predictors
+#'    - **fc_sc_list** A list of objects with the path analysis using each trait
+#'    in the first chain as dependent and second chain as predictors.
+#'    - **fc_sc_coef** The coefficients between first- and second-chain traits.
+#'    - **cor_mat** A correlation matrix between the analyzed traits.
 #' If `.data` is a grouped data passed from [dplyr::group_by()]
-#' then the results will be returned into a list-column of data frames,
-#' containing:
+#' then the results will be returned into a list-column of data frames.
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references
@@ -89,6 +106,11 @@
 #' Pelegrin, V.J. Szareski, and D. Schmidt. 2017. Multicollinearity in path
 #' analysis: a simple method to reduce its effects. Agron. J. 109:131-142.
 #' \doi{10.2134/agronj2016.04.0196}
+#'
+#' Olivoto, T., M. Nardino, I.R. Carvalho, D.N. Follmann, M. Ferrari, et al.
+#' 2017. REML/BLUP and sequential path analysis in estimating genotypic values
+#' and interrelationships among simple maize grain yield-related traits. Genet.
+#' Mol. Res. 16(1): gmr16019525. \doi{10.4238/gmr16019525}
 #'
 #' @export
 #' @examples
@@ -99,22 +121,14 @@
 #'
 #' # The same as above, but using the correlation matrix
 #' cor_mat <- cor(data_ge2 %>% select_numeric_cols())
-#' pcoeff <- path_coeff_mat(cor_mat, resp = KW)
+#' pcoeff2 <- path_coeff_mat(cor_mat, resp = KW)
 #'
 #' # Declaring the predictors
 #' # Create a residual plot with 'plot_res = TRUE'
-#' pcoeff2 <- path_coeff(data_ge2,
+#' pcoeff3<- path_coeff(data_ge2,
 #'                       resp = KW,
 #'                       pred = c(PH, EH, NKE, TKW),
 #'                       plot_res = TRUE)
-#'
-#'
-#' # Selecting variables to be excluded from the analysis
-#'pcoeff3 <- path_coeff(data_ge2,
-#'                      resp = KW,
-#'                      pred = c(NKR, PERK, KW, NKE),
-#'                      exclude = TRUE)
-#'
 #'
 #' # Selecting a set of predictors with minimal multicollinearity
 #' # Maximum variance Inflation factor of 5
@@ -126,7 +140,20 @@
 #'
 #' # When one analysis should be carried out for each environment
 #' # Using the forward-pipe operator %>%
-#'pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
+#' pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
+#'
+#'
+#'# sequential path analysis
+#'# KW as dependent trait
+#'# NKE and TKW as primary predictors
+#'# PH, EH, EP, and EL as secondary traits
+#' pcoeff6 <-
+#'  path_coeff_2c(data_ge2,
+#'                resp = KW,
+#'                chain_1 = c(NKE, TKW),
+#'                chain_2 = c(PH, EH, EP, EL))
+#' pcoeff6$resp_sc$Coefficients
+#' pcoeff6$resp_sc2
 #'
 #'
 path_coeff <- function(.data,
@@ -167,7 +194,6 @@ path_coeff <- function(.data,
     return(set_class(results, c("group_path", "tbl_df", "tbl",  "data.frame")))
   }
   data <- select_numeric_cols(.data)
-  # nam <- names(.data)
   if (brutstep == FALSE) {
     if (exclude == TRUE) {
       pr <- data %>% select(-{{pred}}, -{{resp}})
@@ -238,7 +264,8 @@ path_coeff <- function(.data,
               panel.grid.major.y = element_blank(),
               panel.grid.minor.x = element_blank(),
               panel.grid.minor.y = element_blank()) +
-        labs(x = "k values", y = "Beta values") + geom_abline(intercept = 0,  slope = 0) +
+        labs(x = "k values", y = expression(beta~values)) +
+        geom_abline(intercept = 0,  slope = 0) +
         scale_x_continuous(breaks = seq(0, 1, by = 0.1))
     } else {
       p1 <- "No graphic generated due to correction value"
@@ -621,17 +648,157 @@ path_coeff_mat <- function(cor_mat,
                          Eigen = as_tibble(AvAvet),
                          VIF =  rownames_to_column(VIF, "VAR") %>% as_tibble(),
                          plot = p1,
+                         Response = colnames(cor.y),
                          Predictors = colnames(cor.x),
                          CN = NC,
                          Det = Det,
                          R2 = R2,
                          Residual = Residual,
-                         Response = colnames(cor.y),
                          weightvar = weightvarname),
                     class = "path_coeff")
   return(temp)
 }
 
+
+#' @name path_coeff
+#' @export
+path_coeff_2c <- function(.data,
+                          resp,
+                          chain_1,
+                          chain_2,
+                          by = NULL,
+                          verbose = TRUE,
+                          ...){
+  if (!missing(by)) {
+    if (length(as.list(substitute(by))[-1L]) != 0) {
+      stop("Only one grouping variable can be used in the argument 'by'.\nUse 'group_by()' to pass '.data' grouped by more than one variable.", call. = FALSE)
+    }
+    .data <- group_by(.data, {{by}})
+  }
+  if (is_grouped_df(.data)){
+    results <- .data %>%
+      doo(path_coeff_2c,
+          resp = {{resp}},
+          chain_1 = {{chain_1}},
+          chain_2 = {{chain_2}},
+          ...)
+    return(set_class(results, c("group_path", "tbl_df", "tbl",  "data.frame")))
+  }
+  make_names <- function(vars_c2){
+    mat_names <- matrix(rep(paste0("indirect_", vars_c2), length(vars_c2)),
+                        ncol = length(vars_c2),
+                        nrow = length(vars_c2))
+    diag(mat_names) <- "direct"
+    mat_names <- rbind(mat_names, paste0("linear"))
+    return(as.vector(mat_names))
+  }
+  if(isTRUE(verbose)){
+    cat("First chain with ")
+  }
+  cor_coef <- corr_coef(.data, {{resp}}, {{chain_1}}, {{chain_2}})$cor
+  # main and first chain
+  resp_fc <- path_coeff(.data, resp = {{resp}}, pred = {{chain_1}}, ...)
+  # main and second chain
+  resp_sc <- path_coeff(.data, resp = {{resp}}, pred = {{chain_2}}, ...)
+  ncoef <- length(as.matrix(resp_sc$Coefficients))
+  vars_c1 <- resp_fc$Predictors
+  vars_c2 <- resp_sc$Predictors
+  nfc <- length(vars_c1)
+  fc_sc <- list()
+  res <- as.data.frame(matrix(nrow = ncoef, ncol = nfc))
+  names_effects <- make_names(vars_c2)
+  for (i in 1:nfc) {
+    tmp <- path_coeff(.data,
+                      resp =  vars_c1[[i]],
+                      pred = {{chain_2}}, ...)
+    fc_sc[[vars_c1[[i]]]] <- tmp
+    coefs <- as.matrix(tmp$Coefficients)
+    n <- 0
+    for (j in 1:nrow(coefs)) {
+      for (k in 1:ncol(coefs)) {
+        n <- n + 1
+        res[n, i] <- coefs[j, k]
+      }
+    }
+  }
+  stats <- rbind(
+    sapply(fc_sc, function(x){
+      x$R2
+    }),
+    sapply(fc_sc, function(x){
+      x$Residual
+    })
+  )
+  names(stats) <- vars_c1
+  names(res) <- vars_c1
+  res <- rbind(res, stats)
+  res$trait <- c(rep(vars_c2, each = length(vars_c2) + 1), "R2", "Residual")
+  res$effects <- c(names_effects, "R2", "Residual")
+  res <- res[c("trait", "effects", setdiff(colnames(res), c("effects", "trait")))]
+
+  # coefficients of second chain
+  coef_chain_2 <- resp_sc$Coefficients %>% remove_cols(linear) %>% as.matrix()
+  # direct effects first chain and main trait
+  fcmv <- resp_fc$Coefficients
+  dir_fcmv <- diag(as.matrix(fcmv[, 1:(ncol(fcmv) - 1)]))
+  # direct effects first chain and second chain
+  fcsc <- res[1:(nrow(res) - 2), ]
+  dir_fcsc <-
+    fcsc[which(fcsc$effects == "direct"), -2] %>%
+    column_to_rownames("trait")
+
+  effects <- list()
+  for (i in 1:length(vars_c2)) {
+    sec_trait <- vars_c2[i]
+    npt <- length(vars_c1)
+    nst <- length(vars_c2)
+    if (nst < 2) {
+      var_dif <- setdiff(vars_c2, sec_trait)
+      rnam <- c("direct", "total")
+    } else{
+      var_dif <- setdiff(vars_c2, sec_trait)
+      rnam <- c("direct", paste0("indirect_",var_dif), "total")
+    }
+    tmp <- matrix(nrow = nst, ncol = npt)
+    dir_ef <- dir_fcsc[i, ]
+    for (j in 1:nst) {
+      if (j == 1) {
+        nv <- 0
+      } else{
+        nv <- nv + 1
+      }
+      for (k in 1:npt) {
+        if (j == 1) {
+          tmp[j, k] <- dir_fcmv[k] * dir_ef[[k]]
+        } else{
+          var_ind <- var_dif[nv]
+          cor_i <- which(rownames(cor_coef) == sec_trait)
+          cor_j <- which(colnames(cor_coef) == var_ind)
+          tmp[j, k] <- dir_fcmv[k] * dir_fcsc[which(rownames(dir_fcsc) == var_ind), k] * cor_coef[cor_i, cor_j]
+        }
+      }
+    }
+    colnames(tmp) <- vars_c1
+    tmp_coef <- coef_chain_2[i, ][c(i, setdiff(1:length(coef_chain_2[i, ]), i))]
+    tmp <-
+      as.data.frame(tmp) %>%
+      mutate(total =  as.vector(tmp_coef),
+             residual = rowSums(tmp) - total) %>%
+      reorder_cols(residual, .before = total)
+    tmp <-
+      rbind(tmp, colSums(tmp)) %>%
+      mutate(trait = sec_trait,
+             effect = rnam,
+             .before = 1)
+    effects[[sec_trait]] <- tmp
+  }
+  return(list(resp_fc = resp_fc,
+              resp_sc = resp_sc,
+              resp_sc2 =  rbind_fill_id(effects),
+              fc_sc_list = fc_sc,
+              fc_sc_coef = res,
+              cor_mat = cor_coef))
+}
 
 #' Print an object of class path_coeff
 #'
@@ -720,5 +887,121 @@ print.path_coeff <- function(x, export = FALSE, file.name = NULL, digits = 4, ..
   }
   if (export == TRUE) {
     sink()
+  }
+}
+
+
+
+#' Plots an object of class `path_coeff`
+#'
+#' Plots an object generated by `path_coeff()`. Options includes the path coefficients, variance inflaction factor and the beta values with different values of 'k' values added to the diagonal of the correlation matrix of explanatory traits.
+#'
+#'
+#' @param x An object of class `path_coeff` or `group_path`.
+#' @param which Which to plot: one of `'coef'`, `'vif'`, or `'betas'`.
+#' @param size.text.plot,size.text.labels The size of the text for plot area and
+#'   labels, respectively.
+#' @param digits The significant digits to be shown.
+#' @param ... Further arguments passed on to [ggplot2::theme()].
+#' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
+#' @method plot path_coeff
+#' @export
+#' @examples
+#' \donttest{
+#' library(metan)
+#'
+#' # KW as dependent trait and all others as predictors
+#' # PH, EH, NKE, TKW as predictor
+#'
+#' pcoeff <-
+#'   path_coeff(data_ge2,
+#'              resp = KW,
+#'              pred = c(PH, EH, NKE, TKW))
+#' plot(pcoeff)
+#' plot(pcoeff, which = "vif")
+#' plot(pcoeff, which = "betas")
+#' }
+plot.path_coeff <- function(x,
+                            which = "coef",
+                            size.text.plot = 4,
+                            size.text.labels = 10,
+                            digits = 3,
+                            ...){
+  if(!which %in% c("coef", "vif", "betas")){
+    warning("'which' must be one of 'coef', 'vif', or 'betas'. Plotting the coefficients.", call. = FALSE)
+    which <- "coef"
+  }
+  if(which == "coef"){
+    mat <- x$Coefficients
+    r2 <- format(round(x$R2, digits = digits), nsmall = digits)
+    res <- format(round(x$Residual, digits = digits), nsmall = digits)
+
+    helper_plot <- function(mat) {
+      mat <- make_long(mat)
+      fcts <- as.character(unique(factor(mat$GEN)))
+      mat <-
+        mat %>%
+        mutate(lwid = ifelse((ENV == GEN), 1.5, 0.5)) |>
+        mutate(ENV =  factor(as.factor(ENV), levels = c(fcts, "linear"))) %>%
+        mutate(GEN = factor(as.factor(GEN), levels = rev(fcts))) %>%
+        arrange(lwid)
+      p <-
+        ggplot(mat, aes(x = ENV, y = GEN, fill = Y)) +
+        geom_tile(colour = "black",
+                  size = mat$lwid) +
+        scale_x_discrete(position = "top") +
+        scale_fill_gradient2(low = "red",
+                             mid = "white",
+                             high = "blue",
+                             limits = c(-1, 1)) +
+        geom_text(aes(label = format(round(Y, digits = digits), nsmall = digits)),
+                  size = size.text.plot) +
+
+        labs(x = NULL,
+             y = NULL,
+             caption = expr(paste(R^2, ": ", !!r2, ~~ "|", ~~Residual, ": ", !!res, sep = ""))) +
+        theme_minimal() +
+        theme(legend.position = 'bottom',
+              legend.title = element_blank(),
+              legend.key.width = unit(60, "pt"),
+              legend.key.height = unit(10, "pt"),
+              axis.text = element_text(color = "black", size = size.text.labels),
+              ...) +
+        coord_fixed()
+      return(p)
+    }
+    return(helper_plot(mat))
+  }
+  if(which == "vif"){
+    vifs <- x$VIF
+    p <-
+      ggplot(vifs, aes(x = VAR, y = VIF))+
+      geom_col(color = "black", fill = "gray", width = 0.7) +
+      geom_text(aes(label = round(VIF, 2)),
+                angle = 90, hjust = -0.2,
+                size = size.text.plot) +
+      geom_hline(yintercept = 10, linetype = 2, col = 'red') +
+      labs(x = "Traits",
+           y = "Variance Inflation Factor",
+           caption = "The red dashed line shows the cut point of 10.") +
+      scale_y_continuous(expand = expansion(c(0, 0.15))) +
+      theme(axis.text = element_text(color = "black",
+                                     size = size.text.labels),
+            panel.grid.minor = element_blank()) +
+      theme_bw() +
+      theme(axis.ticks.length = unit(0.2, "cm"),
+            axis.text = element_text(size = 12, colour = "black"),
+            axis.title = element_text(size = 12, colour = "black"),
+            axis.ticks = element_line(colour = "black"),
+            panel.border = element_rect(colour = "black", fill = NA, size = 1),
+            panel.grid.major.x = element_blank(),
+            panel.grid.major.y = element_blank(),
+            panel.grid.minor.x = element_blank(),
+            panel.grid.minor.y = element_blank(),
+            ...)
+    return(p)
+  }
+  if(which == "betas"){
+    x$plot
   }
 }

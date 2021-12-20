@@ -249,7 +249,7 @@ plot.corr_coef <- function(x,
     bind_data <-
       expand.grid(dimnames(correl)) %>%
       mutate(cor = as.vector(correl),
-             pval_star = as.vector(signif(pval, digits = digits.pval))) %>%
+             pval_star = as.vector(format(signif(pval, digits = digits.pval), nsmall = digits.pval))) %>%
       set_names("v1", "v2", "cor", "pval_star") %>%
       dplyr::filter(!is.na(pval_star))
   }
@@ -279,7 +279,7 @@ plot.corr_coef <- function(x,
     ggplot(bind_data, aes(v1, v2, fill = cor)) +
     geom_tile(aes(fill = cor),
               colour = "white") +
-    geom_text(aes(label = round(cor, digits.cor)),
+    geom_text(aes(label = format(round(cor, digits.cor), nsmall = digits.cor)),
               vjust = 0,
               size = size.text.cor) +
     geom_text(aes(label = pval_star),

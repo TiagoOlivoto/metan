@@ -13,8 +13,7 @@
 #'   positive-definiteness in sigma.
 #' @param seed An integer value interpreted as seed.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
-#' @return
-#' A tibble containing the simulated data.
+#' @return A tibble containing the simulated data.
 #' @export
 #'
 #' @examples

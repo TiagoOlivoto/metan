@@ -54,7 +54,6 @@
 #'   WPGMC) or `'centroid'` (= UPGMC).
 #' @param nclust The number of clusters to be formed. Set to `NA`
 #' @return
-#'
 #' * **data** The data that was used to compute the distances.
 #'
 #' * **cutpoint** The cutpoint of the dendrogram according to Mojena (1977).
