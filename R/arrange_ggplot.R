@@ -51,7 +51,7 @@
 #' arrange_ggplot(p1, p2,
 #'                ncol = 1,
 #'                tag_levels = "1",
-#'                tag_prefix = "P."
+#'                tag_prefix = "P.",
 #'                title = "My grouped ggplot",
 #'                subtitle = "Made with arrange_ggplot()",
 #'                caption = "P1 = scatter plot - P2 = boxplot")

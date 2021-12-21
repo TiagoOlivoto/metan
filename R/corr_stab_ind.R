@@ -50,8 +50,6 @@
 #' library(metan)
 #' model <- ge_stats(data_ge, ENV, GEN, REP, GY)
 #' a <- corr_stab_ind(model)
-#' b <- corr_stab_ind(model, stats = "ammi")
-#' c <- corr_stab_ind(model, stats = c("ASV, Sij, R2, WAAS, N1"))
 #' }
 #'
 corr_stab_ind <- function(x, stats = "all", plot = TRUE, ...){

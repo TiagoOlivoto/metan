@@ -326,17 +326,6 @@
 #' \donttest{
 #' library(metan)
 #'
-#' #################### joint-regression analysis #####################
-#' ge_r <- ge_reg(data_ge2,
-#'                env = ENV,
-#'                gen = GEN,
-#'                rep =  REP,
-#'                resp = c(PH, EH, CD, CL, ED))
-#' get_model_data(ge_r)
-#' # Significance of deviations from the regression
-#' # Use gmd(), a shortcut for get_model_data
-#' gmd(ge_r, "pval_f")
-#'
 #'
 #' #################### WAASB index #####################
 #' # Fitting the WAAS index
@@ -349,9 +338,6 @@
 #' # Getting the weighted average of absolute scores
 #' gmd(AMMI, what = "WAASB")
 #'
-#' # And the rank for the WAASB index.
-#' gmd(AMMI, what = "OrWAASB")
-#'
 #'
 #' #################### BLUP model #####################
 #' # Fitting a mixed-effect model
@@ -360,21 +346,14 @@
 #'                   env = ENV,
 #'                   gen = GEN,
 #'                   rep = REP,
-#'                   resp = c(PH, ED, TKW, NKR))
+#'                   resp = c(PH, ED))
 #'
 #' # Getting p-values for likelihood-ratio test
 #' gmd(blup, what = "lrt")
 #'
 #' # Getting the variance components
 #' gmd(blup, what = "vcomp")
-#'
-#' # Getting the genetic parameters
-#' gmd(blup)
-#'
-#' ### BLUP-based stability indexes ###
-#' blup %>%
-#' blup_indexes() %>%
-#' gmd("HMRPGV_R")
+
 #'
 #'}
 #'

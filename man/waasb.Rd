@@ -201,8 +201,6 @@ model <- waasb(data_ge,
               gen = GEN,
               rep = REP,
               resp = everything())
-# Distribution of random effects (first variable)
-plot(model, type = "re")
 
 # Genetic parameters
 get_model_data(model, "genpar")
@@ -227,8 +225,6 @@ model2 <- waasb(data_ge2,
 # Get the index WAASBY
 get_model_data(model2, what = "WAASBY")
 
-# Plot the scores (response x WAASB)
-plot_scores(model2, type = 3)
 
 #===============================================================#
 # Example 3: Analyzing GY and HM assuming a random-effect model.#
@@ -246,11 +242,8 @@ model3 <- waasb(data_ge,
                 mresp = c("h, l"),
                 wresp = c(60, 40))
 
-# Get Likelihood-ratio test
-get_model_data(model3, "lrt")
-
-# Get the random effects
-get_model_data(model3, what = "ranef")
+# Plot the scores (response x WAASB)
+plot_scores(model3, type = 3)
 }
 
 }
