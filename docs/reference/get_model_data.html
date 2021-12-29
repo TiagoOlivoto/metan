@@ -386,54 +386,6 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co">#################### joint-regression analysis #####################</span></span>
-<span class="r-in"><span class="va">ge_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="ge_reg.html">ge_reg</a></span><span class="op">(</span><span class="va">data_ge2</span>,</span>
-<span class="r-in">               env <span class="op">=</span> <span class="va">ENV</span>,</span>
-<span class="r-in">               gen <span class="op">=</span> <span class="va">GEN</span>,</span>
-<span class="r-in">               rep <span class="op">=</span>  <span class="va">REP</span>,</span>
-<span class="r-in">               resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">CD</span>, <span class="va">CL</span>, <span class="va">ED</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |=========                                   | 20% 00:00:00 Evaluating trait EH |==================                          | 40% 00:00:00 Evaluating trait CD |==========================                  | 60% 00:00:01 Evaluating trait CL |===================================         | 80% 00:00:01 Evaluating trait ED |============================================| 100% 00:00:01 </span>
-<span class="r-in"><span class="fu">get_model_data</span><span class="op">(</span><span class="va">ge_r</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: ge_reg</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: b1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    GEN      PH    EH      CD     CL      ED</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    0.806 1.06  -<span style="color: #BB0000;">0.059</span><span style="color: #BB0000; text-decoration: underline;">4</span> -<span style="color: #BB0000;">2.19</span>   0.028<span style="text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> H10   1.22  1.30   2.31    4.63   2.47  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> H11   1.08  1.00   2.74    2.37   0.707 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> H12   0.465 0.590  1.73    2.94   0.808 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> H13   0.306 0.575 -<span style="color: #BB0000;">0.661</span>   0.129  0.636 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> H2    0.963 0.525 -<span style="color: #BB0000;">1.26</span>   -<span style="color: #BB0000;">3.86</span>  -<span style="color: #BB0000;">0.053</span><span style="color: #BB0000; text-decoration: underline;">4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> H3    1.35  1.15   1.40   -<span style="color: #BB0000;">1.33</span>   0.987 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H4    1.27  1.41   0.555  -<span style="color: #BB0000;">0.393</span>  1.20  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H5    1.17  1.30   0.356   0.486  0.197 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H6    0.936 0.780  3.00    1.60   0.940 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> H7    0.992 0.950 -<span style="color: #BB0000;">0.038</span><span style="color: #BB0000; text-decoration: underline;">6</span>  1.48   0.797 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> H8    1.01  0.886  0.903   3.73   1.89  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> H9    1.42  1.48   2.04    3.42   2.40  </span>
-<span class="r-in"><span class="co"># Significance of deviations from the regression</span></span>
-<span class="r-in"><span class="co"># Use gmd(), a shortcut for get_model_data</span></span>
-<span class="r-in"><span class="fu">gmd</span><span class="op">(</span><span class="va">ge_r</span>, <span class="st">"pval_f"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: ge_reg</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: pval_f</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    GEN           PH         EH      CD          CL       ED</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    0.000<span style="text-decoration: underline;">075</span>6  0.000<span style="text-decoration: underline;">094</span>9  0.896   0.508       0.619   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> H10   0.006<span style="text-decoration: underline;">85</span>    0.006<span style="text-decoration: underline;">11</span>    0.447   0.135       0.662   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> H11   0.011<span style="text-decoration: underline;">2</span>     0.011<span style="text-decoration: underline;">2</span>     0.917   0.066<span style="text-decoration: underline;">6</span>      0.003<span style="text-decoration: underline;">41</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> H12   0.000<span style="text-decoration: underline;">110</span>   0.000<span style="text-decoration: underline;">007</span>07 0.227   0.219       0.218   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> H13   0.000<span style="text-decoration: underline;">231</span>   0.006<span style="text-decoration: underline;">52</span>    0.087<span style="text-decoration: underline;">7</span>  0.000<span style="text-decoration: underline;">000</span>327 0.001<span style="text-decoration: underline;">08</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> H2    0.000<span style="text-decoration: underline;">024</span>1  0.000<span style="text-decoration: underline;">001</span>86 0.173   0.047<span style="text-decoration: underline;">3</span>      0.000<span style="text-decoration: underline;">299</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> H3    0.000<span style="text-decoration: underline;">009</span>95 0.000<span style="text-decoration: underline;">006</span>37 0.010<span style="text-decoration: underline;">8</span>  0.208       0.059<span style="text-decoration: underline;">4</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H4    0.000<span style="text-decoration: underline;">671</span>   0.004<span style="text-decoration: underline;">03</span>    0.134   0.027<span style="text-decoration: underline;">7</span>      0.034<span style="text-decoration: underline;">0</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H5    0.048<span style="text-decoration: underline;">4</span>     0.198      0.546   0.000<span style="text-decoration: underline;">277</span>    0.052<span style="text-decoration: underline;">0</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H6    0.000<span style="text-decoration: underline;">994</span>   0.084<span style="text-decoration: underline;">5</span>     0.006<span style="text-decoration: underline;">20</span> 0.000<span style="text-decoration: underline;">028</span>0   0.144   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> H7    0.006<span style="text-decoration: underline;">09</span>    0.043<span style="text-decoration: underline;">5</span>     0.004<span style="text-decoration: underline;">58</span> 0.017<span style="text-decoration: underline;">1</span>      0.107   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> H8    0.000<span style="text-decoration: underline;">040</span>3  0.000<span style="text-decoration: underline;">047</span>2  0.001<span style="text-decoration: underline;">88</span> 0.000<span style="text-decoration: underline;">022</span>5   0.117   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> H9    0.024<span style="text-decoration: underline;">9</span>     0.503      0.014<span style="text-decoration: underline;">4</span>  0.106       0.905   </span>
-<span class="r-in"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">#################### WAASB index #####################</span></span>
 <span class="r-in"><span class="co"># Fitting the WAAS index</span></span>
@@ -442,7 +394,7 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-in">              gen <span class="op">=</span> <span class="va">GEN</span>,</span>
 <span class="r-in">              rep <span class="op">=</span> <span class="va">REP</span>,</span>
 <span class="r-in">              resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">ED</span>, <span class="va">TKW</span>, <span class="va">NKR</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===========                                 | 25% 00:00:00 Evaluating trait ED |======================                      | 50% 00:00:01 Evaluating trait TKW |================================           | 75% 00:00:01 Evaluating trait NKR |===========================================| 100% 00:00:02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===========                                 | 25% 00:00:00 Evaluating trait ED |======================                      | 50% 00:00:00 Evaluating trait TKW |================================           | 75% 00:00:01 Evaluating trait NKR |===========================================| 100% 00:00:01 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Method: REML/BLUP</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Random effects: GEN, GEN:ENV</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
@@ -478,27 +430,6 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> H8    0.334 0.640 4.50  0.612</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> H9    0.208 0.913 5.13  0.632</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># And the rank for the WAASB index.</span></span>
-<span class="r-in"><span class="fu">gmd</span><span class="op">(</span><span class="va">AMMI</span>, what <span class="op">=</span> <span class="st">"OrWAASB"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: waasb</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: OrWAASB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    GEN      PH    ED   TKW   NKR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1       11     9    10     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> H10       8    11     6     3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> H11       4     7     4     6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> H12       9     3     5     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> H13       6    10     1     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> H2       10    13    11     2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> H3       13     4     9     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H4        7     2     8    11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H5        1     5     2     9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H6        5     6     3    13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> H7        3     1     7     4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> H8       12     8    12    10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> H9        2    12    13    12</span>
-<span class="r-in"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">#################### BLUP model #####################</span></span>
 <span class="r-in"><span class="co"># Fitting a mixed-effect model</span></span>
@@ -507,8 +438,8 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-in">                  env <span class="op">=</span> <span class="va">ENV</span>,</span>
 <span class="r-in">                  gen <span class="op">=</span> <span class="va">GEN</span>,</span>
 <span class="r-in">                  rep <span class="op">=</span> <span class="va">REP</span>,</span>
-<span class="r-in">                  resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">ED</span>, <span class="va">TKW</span>, <span class="va">NKR</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===========                                 | 25% 00:00:00 Evaluating trait ED |======================                      | 50% 00:00:00 Evaluating trait TKW |================================           | 75% 00:00:01 Evaluating trait NKR |===========================================| 100% 00:00:01 </span>
+<span class="r-in">                  resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">ED</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |======================                      | 50% 00:00:00 Evaluating trait ED |============================================| 100% 00:00:00 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Method: REML/BLUP</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Random effects: GEN, GEN:ENV</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
@@ -516,10 +447,10 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P-values for Likelihood Ratio Test of the analyzed traits</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     model       PH       ED      TKW     NKR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  COMPLETE       NA       NA       NA      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       GEN 9.39e-01 2.99e-01 1.00e+00 0.78738</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GEN:ENV 1.09e-13 1.69e-08 4.21e-10 0.00404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     model       PH       ED</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  COMPLETE       NA       NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       GEN 9.39e-01 2.99e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GEN:ENV 1.09e-13 1.69e-08</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span>
 <span class="r-in"></span>
@@ -527,70 +458,24 @@ of stability from AMMI model. Ann. Biol. Res. 3:3126-3136.</p>
 <span class="r-in"><span class="fu">gmd</span><span class="op">(</span><span class="va">blup</span>, what <span class="op">=</span> <span class="st">"lrt"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: waasb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: lrt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 x 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   VAR   model    npar  logLik    AIC      LRT    Df `Pr(&gt;Chisq)`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> PH    GEN        14    7.89   12.2 5.81<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span>     1     9.39<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> PH    GEN:ENV    14  -<span style="color: #BB0000;">19.7</span>    67.4 5.52<span style="color: #949494;">e</span>+ 1     1     1.09<span style="color: #949494;">e</span><span style="color: #BB0000;">-13</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ED    GEN        14 -<span style="color: #BB0000;">327.</span>    681.  1.08<span style="color: #949494;">e</span>+ 0     1     2.99<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ED    GEN:ENV    14 -<span style="color: #BB0000;">342.</span>    712.  3.18<span style="color: #949494;">e</span>+ 1     1     1.69<span style="color: #949494;">e</span><span style="color: #BB0000;">- 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> TKW   GEN        14 -<span style="color: #BB0000;">748.</span>   <span style="text-decoration: underline;">1</span>525.  2.27<span style="color: #949494;">e</span><span style="color: #BB0000;">-13</span>     1     1.00<span style="color: #949494;">e</span>+ 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> TKW   GEN:ENV    14 -<span style="color: #BB0000;">768.</span>   <span style="text-decoration: underline;">1</span>564.  3.90<span style="color: #949494;">e</span>+ 1     1     4.21<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> NKR   GEN        14 -<span style="color: #BB0000;">387.</span>    802.  7.27<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>     1     7.87<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> NKR   GEN:ENV    14 -<span style="color: #BB0000;">391.</span>    810.  8.26<span style="color: #949494;">e</span>+ 0     1     4.04<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 x 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VAR   model    npar  logLik   AIC      LRT    Df `Pr(&gt;Chisq)`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> PH    GEN        14    7.89  12.2  0.005<span style="text-decoration: underline;">81</span>     1     9.39<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> PH    GEN:ENV    14  -<span style="color: #BB0000;">19.7</span>   67.4 55.2         1     1.09<span style="color: #949494;">e</span><span style="color: #BB0000;">-13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ED    GEN        14 -<span style="color: #BB0000;">327.</span>   681.   1.08        1     2.99<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ED    GEN:ENV    14 -<span style="color: #BB0000;">342.</span>   712.  31.8         1     1.69<span style="color: #949494;">e</span><span style="color: #BB0000;">- 8</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Getting the variance components</span></span>
 <span class="r-in"><span class="fu">gmd</span><span class="op">(</span><span class="va">blup</span>, what <span class="op">=</span> <span class="st">"vcomp"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: waasb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: vcomp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 x 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Group          PH    ED      TKW   NKR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> GEN      0.000<span style="text-decoration: underline;">455</span> 0.557 8.07<span style="color: #949494;">e</span><span style="color: #BB0000;">-13</span> 0.187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> GEN:ENV  0.042<span style="text-decoration: underline;">5</span>   2.82  1.15<span style="color: #949494;">e</span>+ 3 2.96 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Residual 0.022<span style="text-decoration: underline;">4</span>   2.59  9.18<span style="color: #949494;">e</span>+ 2 7.85 </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Getting the genetic parameters</span></span>
-<span class="r-in"><span class="fu">gmd</span><span class="op">(</span><span class="va">blup</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: waasb</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: genpar</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 x 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameters               PH     ED      TKW     NKR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Phenotypic variance 0.065<span style="text-decoration: underline;">4</span>  5.97   2.07<span style="color: #949494;">e</span>+ 3 11.0   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Heritability        0.006<span style="text-decoration: underline;">96</span> 0.093<span style="text-decoration: underline;">2</span> 3.91<span style="color: #949494;">e</span><span style="color: #BB0000;">-16</span>  0.017<span style="text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> GEIr2               0.650   0.472  5.55<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>  0.269 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> h2mg                0.035<span style="text-decoration: underline;">1</span>  0.377  2.22<span style="color: #949494;">e</span><span style="color: #BB0000;">-15</span>  0.118 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Accuracy            0.187   0.614  4.71<span style="color: #949494;">e</span><span style="color: #BB0000;">- 8</span>  0.344 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> rge                 0.655   0.521  5.55<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>  0.274 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> CVg                 0.858   1.51   2.65<span style="color: #949494;">e</span><span style="color: #BB0000;">- 7</span>  1.34  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> CVr                 6.03    3.25   8.95<span style="color: #949494;">e</span>+ 0  8.69  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> CV ratio            0.142   0.463  2.96<span style="color: #949494;">e</span><span style="color: #BB0000;">- 8</span>  0.154 </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">### BLUP-based stability indexes ###</span></span>
-<span class="r-in"><span class="va">blup</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in"><span class="fu"><a href="blup_indexes.html">blup_indexes</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in"><span class="fu">gmd</span><span class="op">(</span><span class="st">"HMRPGV_R"</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The WAASB index was not computed.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Use an object computed with `waasb()` to get this index.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: blup_ind</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: HMRPGV_R</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    GEN      ED   NKR    PH   TKW</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1        2     7     1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> H10      11     6    13    10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> H11       9     3    10     9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> H12      10    13     8    11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> H13       4    12     7     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> H2        3     8     2     3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> H3        7    10     3     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H4        8     1     4     4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H5        5     2     5     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H6        1     4     6     2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> H7        6     9     9     6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> H8       12    11    12    12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> H9       13     5    11    13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 x 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Group          PH    ED</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> GEN      0.000<span style="text-decoration: underline;">455</span> 0.557</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> GEN:ENV  0.042<span style="text-decoration: underline;">5</span>   2.82 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Residual 0.022<span style="text-decoration: underline;">4</span>   2.59 </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
