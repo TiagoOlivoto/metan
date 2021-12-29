@@ -270,6 +270,9 @@ path_coeff <- function(.data,
     } else {
       p1 <- "No graphic generated due to correction value"
     }
+    if(det(cor.x) < 1e-15){
+      warning("System is computationally singular. Check the collinearity of predictors with `metan::colindiag()`.", call. = FALSE)
+    }
     eigen <- eigen(cor.x)
     Det <- det(cor.x)
     NC <- max(eigen$values)/min(eigen$values)
@@ -278,7 +281,7 @@ path_coeff <- function(.data,
     Avet <- data.frame(t(eigen$vectors))
     names(Avet) <- names
     AvAvet <- cbind(Aval, Avet)
-    Direct <- solve(cor.x, cor.y)
+    Direct <- solve_svd(cor.x %*% t(cor.x)) %*% cor.x %*% cor.y
     n <- ncol(cor.x)
     Coeff <- data.frame(cor.x)
     for (i in 1:n) {
@@ -291,13 +294,13 @@ path_coeff <- function(.data,
     VIF <- data.frame(diag(solve_svd(cor.x)))
     names(VIF) <- "VIF"
     if (verbose == TRUE) {
-      if (NC > 1000) {
+      if (NC > 1000 | NC < 0) {
         cat(paste0("Severe multicollinearity. \n",
                    "Condition Number: ", round(NC, 3), "\n",
                    "Consider using a correction factor with 'correction' argument.\n",
                    "Consider identifying collinear traits with `non_collinear_vars()`\n"))
       }
-      if (NC < 100) {
+      if (NC >= 0 & NC <= 100) {
         cat(paste0("Weak multicollinearity. \n", "Condition Number: ",
                    round(NC, 3), "\n", "You will probably have path coefficients close to being unbiased. \n"))
       }
@@ -436,6 +439,9 @@ path_coeff <- function(.data,
       } else {
         p1 <- "No graphic generated due to correction value"
       }
+      if(det(cor.x) < 1e-15){
+        warning("System is computationally singular. Check the collinearity of predictors with `metan::colindiag()`.", call. = FALSE)
+      }
       eigen <- eigen(cor.x)
       Det <- det(cor.x)
       NC <- max(eigen$values)/min(eigen$values)
@@ -444,7 +450,7 @@ path_coeff <- function(.data,
       Avet <- as.data.frame(eigen$vectors)
       names(Avet) <- names
       AvAvet <- cbind(Aval, Avet)
-      Direct <- solve(cor.x, cor.y)
+      Direct <- solve_svd(cor.x %*% t(cor.x)) %*% cor.x %*% cor.y
       n <- ncol(cor.x)
       Coeff <- data.frame(cor.x)
       for (i in 1:n) {
@@ -599,6 +605,9 @@ path_coeff_mat <- function(cor_mat,
   } else {
     p1 <- "No graphic generated due to correction value"
   }
+  if(det(cor.x) < 1e-15){
+    warning("System is computationally singular. Check the collinearity of predictors with `metan::colindiag()`.", call. = FALSE)
+  }
   eigen <- eigen(cor.x)
   Det <- det(cor.x)
   NC <- max(eigen$values)/min(eigen$values)
@@ -607,8 +616,7 @@ path_coeff_mat <- function(cor_mat,
   Avet <- data.frame(t(eigen$vectors))
   names(Avet) <- names
   AvAvet <- cbind(Aval, Avet)
-  Direct <- solve(cor.x, cor.y)
-
+  Direct <- solve_svd(cor.x %*% t(cor.x)) %*% cor.x %*% cor.y
   n <- ncol(cor.x)
   Coeff <- data.frame(cor.x)
   for (i in 1:n) {
@@ -621,12 +629,12 @@ path_coeff_mat <- function(cor_mat,
   VIF <- data.frame(diag(solve_svd(cor.x)))
   names(VIF) <- "VIF"
   if (verbose == TRUE) {
-    if (NC > 1000) {
+    if (NC > 1000 | NC <= 0) {
       cat(paste0("Severe multicollinearity. \n",
                  "Condition Number = ", round(NC, 3), "\n",
                  "Please, consider using a correction factor, or use 'brutstep = TRUE'. \n"))
     }
-    if (NC < 100) {
+    if (NC >= 0 & NC <= 100) {
       cat(paste0("Weak multicollinearity. \n", "Condition Number = ",
                  round(NC, 3), "\n", "You will probably have path coefficients close to being unbiased. \n"))
     }
