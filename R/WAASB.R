@@ -472,7 +472,7 @@ waasb <- function(.data,
             data.frame(Names = rownames(bups[["GEN:ENV"]])) %>%
             separate(Names, into = c("GEN", "ENV"), sep = ":") %>%
             add_cols(BLUPge = bups[["GEN:ENV"]][[1]]) %>%
-            as_factor(1:2)
+            metan::as_factor(1:2)
         intmatrix <- as.matrix(make_mat(bINT, GEN, ENV, BLUPge))
         if(has_na(intmatrix)){
             intmatrix <- impute_missing_val(intmatrix, verbose = verbose, ...)$.data
@@ -487,21 +487,23 @@ waasb <- function(.data,
                      Accumulated = cumsum(Proportion),
                      PC = paste("PC", 1:minimo, sep = "")) %>%
             column_to_first(PC)
-        SCOREG <- U %*% LL^0.5
-        SCOREE <- V %*% LL^0.5
-        colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
+        SCOREG <- U %*% LL^0.5 %>% as.data.frame() %>% add_cols(GEN = rownames(intmatrix), .before = 1)
+        SCOREE <- V %*% LL^0.5 %>% as.data.frame() %>% add_cols(ENV = colnames(intmatrix), .before = 1)
+        colnames(SCOREG) <- c("GEN", paste("PC", 1:minimo, sep = ""))
+        colnames(SCOREE) <- c("ENV", paste("PC", 1:minimo, sep = ""))
         MEDIAS <- means_by(data, ENV, GEN)
         MGEN <- MEDIAS %>% means_by(GEN) %>% add_cols(type = "GEN")
-        MGEN <- cbind(MGEN, SCOREG)
+        MGEN <- left_join(MGEN, SCOREG, by = "GEN")
         MENV <- MEDIAS %>% means_by(ENV) %>% add_cols(type = "ENV")
-        MENV <- cbind(MENV, SCOREE)
+        MENV <- left_join(MENV, SCOREE, by = "ENV")
         MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS,
                                                  envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
                                                  genPC1 = left_join(MEDIAS, MGEN %>% select(GEN, PC1))$PC1,
                                                  nominal = left_join(MEDIAS, MGEN %>% select(GEN, Y))$Y + genPC1 * envPC1))
         MGEN %<>% rename(Code = GEN)
         MENV %<>% rename(Code = ENV)
-        Escores <- rbind(MGEN, MENV) %>%
+        Escores <-
+            rbind(MGEN, MENV) %>%
             column_to_first(type)
         Pesos <- data.frame(Percent = Eigenvalue$Proportion)
         WAASB <- Escores %>%
@@ -719,7 +721,7 @@ waasb <- function(.data,
                                  Predicted = `BLUPg+e+ge+re+bre` + ovmean)
                 )
         }
-        residuals <- data.frame(fortify.merMod(Complete))
+        residuals <- data.frame(lme4::fortify.merMod(Complete))
         residuals$reff <- BLUPint$BLUPge
         temp <- structure(list(individual = individual[[1]],
                                fixed = fixed %>% rownames_to_column("SOURCE") %>% as_tibble(),
@@ -736,6 +738,7 @@ waasb <- function(.data,
                                ESTIMATES = genpar,
                                residuals = as_tibble(residuals),
                                formula = model_formula), class = "waasb")
+
         if (verbose == TRUE) {
             run_progress(pb,
                          actual = var,
