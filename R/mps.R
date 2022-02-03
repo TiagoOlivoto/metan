@@ -551,7 +551,7 @@ mps <- function(.data,
   }
   ifelse(nvar == 1,
          stab_res <- stab_res,
-         stab <- stab_res[,colnames(mperf_res)])
+         stab_res <- stab_res[,colnames(mperf_res)])
   listres <- list()
   for (i in 1:nvar) {
     weghting <-
