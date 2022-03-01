@@ -5,8 +5,10 @@
 
 ## Minor improvements
 * Fix bug in `rowname_to_column()`.
+* Fix bug in `mps()` where stab was being rewritten with stab_res.
 * Changes the object name in `mgidi()` example that overwrites the function.
 * Fix bug with `x.lab` and `y.lab` from `plot_scores()`. Now it accepts an object from `expression()`
+* `plot_waasby()` now accepts objects of class `waas_means`.
 
 # metan 1.16.0
 ## New features

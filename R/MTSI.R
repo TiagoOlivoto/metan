@@ -312,7 +312,7 @@ mtsi <- function(.data,
     waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
     sel_dif_stab <-
       tibble(
-        TRAIT = names(waasb_selected),
+        VAR = names(waasb_selected),
         Xo = colMeans(waasb_index %>% select_numeric_cols()),
         Xs = waasb_selected,
         SD = Xs - Xo,

@@ -66,7 +66,7 @@ plot_waasby <- function(x, var = 1, export = F, file.type = "pdf", file.name = N
     ...) {
   x <- x[[var]]
     class <- class(x)
-    if (!class %in% c("waas", "waasb")) {
+    if (!class %in% c("waas", "waasb", "waas_means")) {
         stop("The object 'x' must be of class 'waas' or 'waasb'.")
     }
     if (class == "waasb") {
@@ -76,7 +76,7 @@ plot_waasby <- function(x, var = 1, export = F, file.type = "pdf", file.name = N
             mutate(Mean = ifelse(WAASBY < mean(WAASBY), "below", "above")) %>%
             rename(WAASY = WAASBY)
     }
-    if (class == "waas") {
+    if (class %in% c("waas", "waas_means")) {
         data <- subset(x$model, type == "GEN", select = c(Code, WAASY))
         data %<>% mutate(Code = factor(data$Code, levels = data$Code)) %>%
             arrange(desc(WAASY)) %>%
