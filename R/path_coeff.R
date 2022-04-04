@@ -979,7 +979,7 @@ plot.path_coeff <- function(x,
       fcts <- as.character(unique(factor(mat$GEN)))
       mat <-
         mat %>%
-        mutate(lwid = ifelse((ENV == GEN), 1.5, 0.5)) |>
+        mutate(lwid = ifelse((ENV == GEN), 1.5, 0.5)) %>%
         mutate(ENV =  factor(as.factor(ENV), levels = c(fcts, "linear"))) %>%
         mutate(GEN = factor(as.factor(GEN), levels = rev(fcts))) %>%
         arrange(lwid)
