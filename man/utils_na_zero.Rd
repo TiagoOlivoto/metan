@@ -4,8 +4,11 @@
 \alias{utils_na_zero}
 \alias{fill_na}
 \alias{has_na}
+\alias{prop_na}
 \alias{remove_rows_na}
+\alias{remove_rows_all_na}
 \alias{remove_cols_na}
+\alias{remove_cols_all_na}
 \alias{select_cols_na}
 \alias{select_rows_na}
 \alias{replace_na}
@@ -22,9 +25,15 @@ fill_na(.data, ..., direction = "down")
 
 has_na(.data)
 
+prop_na(.data, ...)
+
 remove_rows_na(.data, verbose = TRUE)
 
+remove_rows_all_na(.data, verbose = TRUE)
+
 remove_cols_na(.data, verbose = TRUE)
+
+remove_cols_all_na(.data, verbose = TRUE)
 
 select_cols_na(.data, verbose = TRUE)
 
@@ -62,8 +71,9 @@ variables names. Select helpers are also allowed.}
 \item{verbose}{Logical argument. If \code{TRUE} (default) shows in console
 the rows or columns deleted.}
 
-\item{replacement}{The value used for replacement. Defaults to \code{0}. Use
-\code{replacement. = "colmean"} to replace missing values with column mean.}
+\item{replacement}{The value used for replacement. Defaults to \code{0}. Other
+possible values are Use \code{"colmean"}, \code{"colmin"}, and \code{"colmax"} to replace
+missing values with column mean, minimum and maximum values, respectively.}
 
 \item{prop}{The proportion (percentage) of \code{NA} values to generate in
 \code{.data}.}
@@ -82,12 +92,15 @@ This collection of functions will make it easier to deal with them.
 previous entry.
 \item \verb{has_na(), has_zero()}: Check for \code{NAs} and \verb{0s} in the
 data and return a logical value.
+\item \code{prop_na()} returns the proportion of \code{NAs} in each column of a data frame.
 \item \code{random_na()}: Generate random \code{NA} values in a two-way table
 based on a desired proportion.
-\item \verb{remove_cols_na(), remove_cols_zero()}: Remove columns with \code{NAs}
-and \verb{0s}, respectively.
-\item \verb{remove_rows_na(), remove_rows_zero()}: Remove rows with \code{NAs}
-and \verb{0s}, respectively.
+\item \code{remove_cols_na()}, \code{remove_rows_na()}: Remove columns and rows that
+contains at least one \code{NA} value.
+\item \code{remove_cols_all_na()}, \code{remove_rows_all_na()}: Remove columns and rows
+where all values are \code{NAs}.
+\item \code{remove_cols_zero()}, \code{remove_rows_zero()}: Remove columns and rows that
+contains at least one \code{0} value, respectively.
 \item \verb{select_cols_na(), select_cols_zero()}: Select columns with \code{NAs}
 and \verb{0s}, respectively.
 \item \verb{select_rows_na(), select_rows_zero()}: Select rows with \code{NAs}

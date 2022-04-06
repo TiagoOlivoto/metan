@@ -17,8 +17,9 @@
 #'   "updown" (first up and then down).
 #' @param prop The proportion (percentage) of `NA` values to generate in
 #'   `.data`.
-#' @param replacement The value used for replacement. Defaults to `0`. Use
-#'   `replacement. = "colmean"` to replace missing values with column mean.
+#' @param replacement The value used for replacement. Defaults to `0`. Other
+#'   possible values are Use `"colmean"`, `"colmin"`, and `"colmax"` to replace
+#'   missing values with column mean, minimum and maximum values, respectively.
 #' @param verbose Logical argument. If `TRUE` (default) shows in console
 #'   the rows or columns deleted.
 #' @export
@@ -28,12 +29,15 @@
 #' previous entry.
 #' * `has_na(), has_zero()`: Check for `NAs` and `0s` in the
 #' data and return a logical value.
+#' * `prop_na()` returns the proportion of `NAs` in each column of a data frame.
 #' * `random_na()`: Generate random `NA` values in a two-way table
 #' based on a desired proportion.
-#' * `remove_cols_na(), remove_cols_zero()`: Remove columns with `NAs`
-#' and `0s`, respectively.
-#' * `remove_rows_na(), remove_rows_zero()`: Remove rows with `NAs`
-#' and `0s`, respectively.
+#' * `remove_cols_na()`, `remove_rows_na()`: Remove columns and rows that
+#' contains at least one `NA` value.
+#' * `remove_cols_all_na()`, `remove_rows_all_na()`: Remove columns and rows
+#' where all values are `NAs`.
+#' * `remove_cols_zero()`, `remove_rows_zero()`: Remove columns and rows that
+#' contains at least one `0` value, respectively.
 #' * `select_cols_na(), select_cols_zero()`: Select columns with `NAs`
 #' and `0s`, respectively.
 #' * `select_rows_na(), select_rows_zero()`: Select rows with `NAs`
@@ -78,6 +82,7 @@
 
 # Dealing with NAs
 
+#' @importFrom tidyr fill
 fill_na <- function(.data, ..., direction = "down"){
   if(!direction %in% c("down", "up", "downup", "updown")){
     stop("Argument 'direction' must be one of 'down', 'up', 'downup', or 'updown'. ")
@@ -90,10 +95,26 @@ fill_na <- function(.data, ..., direction = "down"){
 }
 #' @name utils_na_zero
 #' @export
-#' @importFrom tidyr fill
 has_na <- function(.data){
   any(complete.cases(.data) ==  FALSE)
 }
+#' @name utils_na_zero
+#' @export
+prop_na <- function(.data, ...){
+  if(missing(...)){
+  df <- .data |> select(everything())
+  } else{
+  df <- .data |> select(...)
+  }
+  df <- apply(df, 2, function(x){
+    round(length(which(is.na(x))) / length(x), digits = 4)
+  }) |>
+    as.data.frame() |>
+    rownames_to_column("variable") |>
+    set_names(c("variable", "prop"))
+  return(df)
+}
+
 #' @name utils_na_zero
 #' @export
 remove_rows_na <- function(.data, verbose = TRUE){
@@ -106,6 +127,18 @@ return(na.omit(.data))
 
 #' @name utils_na_zero
 #' @export
+remove_rows_all_na <- function(.data, verbose = TRUE){
+  row_with_na <- which(apply(.data, 1, function(x){
+    all(is.na(x))
+  }))
+  if(verbose == TRUE){
+    warning("Row(s) ", paste(row_with_na, collapse = ", "), " with all NA values deleted.", call. = FALSE)
+  }
+  return(.data[-row_with_na, ])
+}
+
+#' @name utils_na_zero
+#' @export
 remove_cols_na <- function(.data, verbose = TRUE){
   cols_with_na <- names(which(sapply(.data, anyNA)))
   if(verbose == TRUE){
@@ -113,6 +146,20 @@ remove_cols_na <- function(.data, verbose = TRUE){
   }
   return(select(.data, -cols_with_na))
 }
+
+#' @name utils_na_zero
+#' @export
+remove_cols_all_na <- function(.data, verbose = TRUE){
+  cols_with_na <- which(sapply(.data, function(x){
+    all(is.na(x))
+  }))
+  if(verbose == TRUE){
+    warning("Column(s) ", paste(names(cols_with_na), collapse = ", "), " with all NA values deleted.", call. = FALSE)
+  }
+  return(.data[, -cols_with_na])
+}
+
+
 #' @name utils_na_zero
 #' @export
 select_cols_na <- function(.data, verbose = TRUE){
@@ -122,6 +169,7 @@ select_cols_na <- function(.data, verbose = TRUE){
   }
   return(select(.data, cols_with_na))
 }
+
 #' @name utils_na_zero
 #' @export
 select_rows_na <- function(.data, verbose = TRUE){
@@ -134,7 +182,9 @@ select_rows_na <- function(.data, verbose = TRUE){
 #' @name utils_na_zero
 #' @export
 replace_na <- function(.data, ..., replacement = 0){
-  test <- !is.na(replacement) && replacement == "colmean"
+  col_mean <- !is.na(replacement) && replacement == "colmean"
+  col_min <- !is.na(replacement) && replacement == "colmin"
+  col_max <- !is.na(replacement) && replacement == "colmax"
   if (has_class(.data, c("data.frame","tbl_df", "data.table"))){
     if(has_rownames(.data)){
       rnames <- rownames(.data)
@@ -142,13 +192,25 @@ replace_na <- function(.data, ..., replacement = 0){
   if(missing(...)){
     cols_with_na <- names(which(sapply(.data, anyNA)))
     df <- mutate(.data, across(all_of(cols_with_na), ~replace(., is.na(.), replacement)))
-    if(test){
+    if(col_mean){
     df <- mutate(.data, across(all_of(cols_with_na), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x)))
+    }
+    if(col_min){
+    df <- mutate(.data, across(all_of(cols_with_na), ~ifelse(is.na(.x), min(.x, na.rm = TRUE), .x)))
+    }
+    if(col_max){
+    df <- mutate(.data, across(all_of(cols_with_na), ~ifelse(is.na(.x), max(.x, na.rm = TRUE), .x)))
     }
   } else{
     df <- mutate(.data, across(c(...), ~replace(., is.na(.), replacement)))
-    if(test){
+    if(col_mean){
     df <- mutate(.data, across(c(...), ~ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x)))
+    }
+    if(col_min){
+    df <- mutate(.data, across(c(...), ~ifelse(is.na(.x), min(.x, na.rm = TRUE), .x)))
+    }
+    if(col_max){
+    df <- mutate(.data, across(c(...), ~ifelse(is.na(.x), max(.x, na.rm = TRUE), .x)))
     }
   }
   } else{
