@@ -851,10 +851,10 @@ tidy_colnames <- function(.data, sep = "_"){
 #' deviation, respectively.
 #'    - `sem()` computes the standard error of the mean.
 #'    - `skew()` computes the skewness like used in SAS and SPSS.
+#'    - `ave_dev()` computes the average of the absolute deviations.
 #'    - `sum_dev()` computes the sum of the absolute deviations.
 #'    - `sum_sq()` computes the sum of the squared values.
 #'    - `sum_sq_dev()` computes the sum of the squared deviations.
-#'    - `ave_sq_dev()` computes the average of the squared deviations.
 #'    - `var_amo(), var_pop()` computes sample and populational variance.
 #'
 #' [desc_stat()] is wrapper function around the above ones and can be
@@ -1373,14 +1373,14 @@ sum_dev <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
-sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
+ave_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
       message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
-    sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
+    mean(abs(df - mean(df, na.rm = na.rm)), na.rm = na.rm)
   }
   if(is.null(nrow(.data))){
     funct(.data)
@@ -1397,17 +1397,16 @@ sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
     }
   }
 }
-
 #' @name utils_stats
 #' @export
-ave_sq_dev <- function(.data, ..., na.rm = FALSE) {
+sum_sq_dev <- function(.data, ..., na.rm = FALSE) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
       message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
       na.rm <- TRUE
     }
-    mean((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
+    sum((df - mean(df, na.rm = na.rm))^2, na.rm = na.rm)
   }
   if(is.null(nrow(.data))){
     funct(.data)
