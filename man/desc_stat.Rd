@@ -66,6 +66,7 @@ quartile, third quartile, and percentile 97.5\\%, respectively.
 \item \code{"skew"}: skewness.
 \item \code{"sum"}. the sum of the values.
 \item \code{"sum.dev"}: the sum of the absolute deviations.
+\item \code{"ave.sq.dev"}: the average of the squared deviations.
 \item \code{"sum.sq.dev"}: the sum of the squared deviations.
 \item \code{"n.valid"}: The size of sample with valid number (not NA).
 \item \verb{"var.amo", "var.pop"}: the sample and population variance.

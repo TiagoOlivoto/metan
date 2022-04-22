@@ -50,6 +50,7 @@
 #'  * `"skew"`: skewness.
 #'  * `"sum"`. the sum of the values.
 #'  * `"sum.dev"`: the sum of the absolute deviations.
+#'  * `"ave.sq.dev"`: the average of the squared deviations.
 #'  * `"sum.sq.dev"`: the sum of the squared deviations.
 #'  * `"n.valid"`: The size of sample with valid number (not NA).
 #'  * `"var.amo", "var.pop"`: the sample and population variance.
@@ -159,18 +160,18 @@ desc_stat <- function(.data = NULL,
           plot_theme = plot_theme)
     return(results)
   }
-  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "n.valid", "n.missing", "n.unique", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "sum.sq.dev",  "var.amo", "var.pop")
+  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "n.valid", "n.missing", "n.unique", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "ave.sq.dev", "sum.sq.dev",  "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
       all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci"),
-      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, n.valid, var.amo, var.pop"),
+      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.sq.dev, sum.sq.dev, n.valid, var.amo, var.pop"),
       all_lower_case(stats) == "robust" ~ c("n, median, iqr, ps"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),
       TRUE ~ all_lower_case(stats)
     ), "\\s*(\\s|,)\\s*")[[1]]
 
   if (!any(stats %in% c("all", "main", "robust", "quantile", all))) {
-    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, sum.sq.dev, n.valid, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
+    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.sq.dev, sum.sq.dev, n.valid, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
   }
   if(has_class(.data, "numeric")){
     .data <- data.frame(val = .data)
@@ -236,6 +237,7 @@ desc_stat <- function(.data = NULL,
                           cv = ~cv(., na.rm = na.rm),
                           sum = ~sum(., na.rm = na.rm),
                           sum.dev = ~sum_dev(., na.rm = na.rm),
+                          ave.sq.dev = ave_sq_dev(., na.rm = na.rm),
                           sum.sq.dev = ~sum_sq_dev(., na.rm = na.rm)),
                      .names = "{fn}"),
               .groups = "drop") %>%

@@ -22,6 +22,7 @@
 \alias{skew}
 \alias{sum_dev}
 \alias{sum_sq_dev}
+\alias{ave_sq_dev}
 \alias{sum_sq}
 \alias{var_pop}
 \alias{var_amo}
@@ -74,6 +75,8 @@ skew(.data, ..., na.rm = FALSE)
 sum_dev(.data, ..., na.rm = FALSE)
 
 sum_sq_dev(.data, ..., na.rm = FALSE)
+
+ave_sq_dev(.data, ..., na.rm = FALSE)
 
 sum_sq(.data, ..., na.rm = FALSE)
 
@@ -167,6 +170,7 @@ deviation, respectively.
 \item \code{sum_dev()} computes the sum of the absolute deviations.
 \item \code{sum_sq()} computes the sum of the squared values.
 \item \code{sum_sq_dev()} computes the sum of the squared deviations.
+\item \code{ave_sq_dev()} computes the average of the squared deviations.
 \item \verb{var_amo(), var_pop()} computes sample and populational variance.
 }
 }
