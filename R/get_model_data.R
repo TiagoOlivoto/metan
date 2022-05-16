@@ -398,7 +398,7 @@ get_model_data <- function(x,
               "FA_R","FA_SSI","MASI","MASI_R","MASI_SSI","MASV","MASV_R","MASV_SSI","SIPC","SIPC_R","SIPC_SSI",
               "ZA","ZA_R","ZA_SSI","WAAS","WAAS_R","WAAS_SSI")
   check8 <- c("Ecoval", "Ecov_perc", "rank")
-  check9 <- c("GEN", "b0", "b1", "t(b1=1)", "pval_t", "s2di", "F(s2di=0)", "pval_f", "RMSE", "R2")
+  check9 <- c("GEN", "b0", "b1", "t(b1=1)", "pval_t", "s2di", "F(s2di=0)", "pval_f", "RMSE", "R2", "coefs", "anova")
   check10 <- c("TOP")
   check11 <- c("ShuklaVar", "rMean", "rShukaVar", "ssiShukaVar")
   check12 <- c("Pi_a", "R_a", "Pi_f", "R_f", "Pi_u", "R_u")
@@ -467,10 +467,10 @@ get_model_data <- function(x,
     }
     if(has_class(x, "group_path_seq")){
       if(what %in% c("resp_fc", "resp_sc")){
-      bind <-
-        x %>%
-        mutate(data = map(data, ~.x %>% .[[what]][["Coefficients"]])) %>%
-        unnest(data)
+        bind <-
+          x %>%
+          mutate(data = map(data, ~.x %>% .[[what]][["Coefficients"]])) %>%
+          unnest(data)
       } else{
         bind <-
           x %>%
@@ -479,7 +479,7 @@ get_model_data <- function(x,
       }
     } else{
       if(what %in% c("resp_fc", "resp_sc")){
-      bind <- x[[what]][["Coefficients"]]
+        bind <- x[[what]][["Coefficients"]]
       } else{
         bind <- x[[what]]
       }
@@ -1324,12 +1324,29 @@ get_model_data <- function(x,
     if (!what %in% c(check9)) {
       stop("Invalid value in 'what' for object of class 'ge_reg'. Allowed are ", paste(check9, collapse = ", "), call. = FALSE)
     }
-    bind <- sapply(x, function(x) {
-      x[["regression"]][[what]]
-    }) %>%
-      as_tibble() %>%
-      mutate(GEN = x[[1]][["regression"]][["GEN"]]) %>%
-      column_to_first(GEN)
+    if(what %in% c("coefs", "anova")){
+      if(what == "coefs"){
+        bind <-
+          lapply(x, function(x){
+            x$regression
+          }) |>
+          rbind_fill_id(.id = "TRAIT")
+      } else{
+        bind <-
+          lapply(x, function(x){
+            x$anova
+          }) |>
+          rbind_fill_id(.id = "TRAIT")
+      }
+    } else{
+      bind <- sapply(x, function(x) {
+        x[["regression"]][[what]]
+      }) %>%
+        as_tibble() %>%
+        mutate(GEN = x[[1]][["regression"]][["GEN"]]) %>%
+        column_to_first(GEN)
+    }
+
   }
 
   if (has_class(x,  "ecovalence")) {
