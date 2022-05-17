@@ -980,7 +980,7 @@ plot.gge <- function(x,
                       col = col.env,
                       size = size.text.env)
     if (title == TRUE) {
-      if(any(class(x) == "gtb")){
+      if(any(inherits(x, "gtb"))){
         ggt <- ggtitle("Relationship Among Traits")
       } else{
         ggt <- ggtitle("Relationship Among Environments")

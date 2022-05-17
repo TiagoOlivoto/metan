@@ -131,9 +131,6 @@ Huehn <- function(.data, env, gen, resp, verbose = TRUE) {
 #' print(model)
 #' }
 print.Huehn <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "Huehn") {
-    stop("The object must be of class 'Huehn'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "Huehn summary", file.name)
     sink(paste0(file.name, ".txt"))

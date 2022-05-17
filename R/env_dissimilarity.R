@@ -172,9 +172,6 @@ env_dissimilarity <- function(.data,
 #' print(mod)
 #' }
 print.env_dissimilarity <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "env_dissimilarity") {
-    stop("The object must be of class 'env_dissimilarity'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "Env_dissimilarity print", file.name)
     sink(paste0(file.name, ".txt"))

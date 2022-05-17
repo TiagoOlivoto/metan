@@ -2,7 +2,7 @@
 #' @description
 #' `r badge('stable')`
 #'
-#' `inspect()` scans a data.frame object for errors that may affect the use
+#' `inspect()` scans a `data.frame` object for errors that may affect the use
 #' of functions in `metan`. By default, all variables are checked regarding
 #' the class (numeric or factor), missing values, and presence of possible
 #' outliers. The function will return a warning if the data looks like
@@ -35,11 +35,11 @@
 #' inspect(data_ge)
 #'
 #' # Create a toy example with messy data
-#' df <- data_ge2[-c(2, 30, 45, 134), c(1:5)]
-#' df[c(1, 20, 50), c(4, 5)] <- NA
-#' df[40, 5] <- df[40, 5] * 2
+#' df <- data_ge2[-c(2, 30, 45, 134), c(1:5)] |> as.data.frame()
+#' df[c(1, 20, 50), 5] <- NA
+#' df[40, 4] <- "2..814"
 #'
-#' inspect(df, plot = TRUE)
+#' inspect(df)
 #' }
 inspect <- function (.data,
                      ...,
@@ -60,7 +60,8 @@ inspect <- function (.data,
       Min = sapply(.data, function(x){ifelse(is.numeric(x), round(min(x, na.rm = TRUE),2), NA)}),
       Median = sapply(.data, function(x){ifelse(is.numeric(x), round(median(x, na.rm = TRUE),2), NA)}),
       Max = sapply(.data, function(x){ifelse(is.numeric(x), round(max(x, na.rm = TRUE),2), NA)}),
-      Outlier = sapply(.data, function(x){ifelse(is.numeric(x), find_outliers(x, verbose = F), NA)})
+      Outlier = sapply(.data, function(x){ifelse(is.numeric(x), find_outliers(x, verbose = F), NA)}),
+      Text = sapply(.data, function(x){ifelse(!is.numeric(x) & !is.factor(x), find_text_in_num(x), NA)})
     ) %>%
     rownames_to_column("Variable") %>%
     as_tibble()
@@ -83,6 +84,10 @@ inspect <- function (.data,
     if(any(df$Missing == "Yes")){
       warning("Missing values in variable(s) ",
               paste(df$Variable[c(which(df$Missing == "Yes"))], collapse = ", "), ".", call. = F)
+    }
+    if(any(!is.na(df$Text))){
+      warning("Possible text fragments in variable(s) ",
+              paste(df$Variable[c(which(!is.na(df$Text)))], collapse = ", "), ".", call. = F)
     }
     if(any(df$Outlier[!is.na(df$Outlier)] != 0)){
       warning("Possible outliers in variable(s) ",

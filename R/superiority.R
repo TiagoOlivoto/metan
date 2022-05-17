@@ -130,9 +130,6 @@ superiority <- function(.data, env, gen, resp, verbose = TRUE) {
 #' print(model)
 #' }
 print.superiority <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "superiority") {
-    stop("The object must be of class 'superiority'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "superiority summary", file.name)
     sink(paste0(file.name, ".txt"))

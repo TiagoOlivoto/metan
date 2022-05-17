@@ -389,9 +389,6 @@ AMMI_indexes <- function(.data, order.y = NULL, level = 0.95) {
 #' print(model)
 #' }
 print.ammi_indexes <- function(x, which = "stats", export = FALSE, file.name = NULL, digits = 3, ...) {
-    if (!class(x) == "ammi_indexes") {
-        stop("The object must be of class 'ammi_indexes'")
-    }
     opar <- options(pillar.sigfig = digits)
     on.exit(options(opar))
     if (export == TRUE) {

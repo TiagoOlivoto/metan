@@ -217,9 +217,6 @@ plot.sh <- function(x,
                     col.sel = "red",
                     col.nonsel = "black",
                     ...) {
-    if (!class(x) == "sh") {
-      stop("The object 'x' is not of class 'sh'")
-    }
     data <- x$index %>% add_cols(sel = "Selected")
     data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- min(subset(data, sel == "Selected")$V1)
@@ -284,9 +281,6 @@ plot.sh <- function(x,
 #' print(index)
 #' }
 print.sh <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
-  if (!class(x) == "sh") {
-    stop("The object must be of class 'sh'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "Smith-Hazel print", file.name)
     sink(paste0(file.name, ".txt"))

@@ -481,9 +481,6 @@ predict.performs_ammi <- function(object, naxis = 2, ...) {
 #' print(model)
 #' }
 print.performs_ammi <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
-    if (!class(x) == "performs_ammi") {
-        stop("The object must be of class 'performs_ammi'")
-    }
     if (export == TRUE) {
         file.name <- ifelse(is.null(file.name) == TRUE, "performs_ammi print", file.name)
         sink(paste0(file.name, ".txt"))

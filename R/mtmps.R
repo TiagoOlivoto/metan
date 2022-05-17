@@ -414,9 +414,6 @@ plot.mtmps <- function(x,
                        col.nonsel = "black",
                        legend.position = "bottom",
                        ...) {
-  if (!class(x) == "mtmps") {
-    stop("The object 'x' is not of class 'mtmps'")
-  }
   if(!type %in% c("index", "contribution")){
     stop("The argument index must be one of the 'index' or 'contribution'", call. = FALSE)
   }
@@ -577,9 +574,6 @@ print.mtmps <- function(x,
                         export = FALSE,
                         file.name = NULL,
                         digits = 4, ...) {
-  if (!class(x) == "mtmps") {
-    stop("The object must be of class 'mtmps'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "mtmps print", file.name)
     sink(paste0(file.name, ".txt"))

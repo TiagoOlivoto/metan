@@ -369,9 +369,6 @@ plot.cvalidation <- function(x, violin = FALSE, export = FALSE, order_box =  FAL
                              resolution = 300, col.violin = "gray90", col.boxplot = "gray70",
                              col.boxplot.win = "cyan", width.boxplot = 0.6, x.lim = NULL,
                              x.breaks = waiver(), ...) {
-  if (!class(x) == "cvalidation") {
-    stop("The object 'x' must be of class 'cvalidation'.")
-  }
   y.lab <- ifelse(missing(y.lab),
                   expression(paste("Root mean square prediction difference (Mg ha"^-1, ")")),
                   y.lab)

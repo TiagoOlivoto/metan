@@ -110,9 +110,6 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #' print(eco)
 #' }
 print.ecovalence <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "ecovalence") {
-    stop("The object must be of class 'ecovalence'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {

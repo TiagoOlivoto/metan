@@ -158,9 +158,6 @@ Annicchiarico <- function(.data,
 #' print(Ann)
 #' }
 print.Annicchiarico <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "Annicchiarico") {
-    stop("The object must be of class 'Annicchiarico'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {

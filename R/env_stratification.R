@@ -216,9 +216,6 @@ plot.env_stratification <- function(x,
 #' print(model)
 #' }
 print.env_stratification <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-    if (!class(x) == "env_stratification") {
-        stop("The object must be of class 'env_stratification'")
-    }
     opar <- options(pillar.sigfig = digits)
     on.exit(options(opar))
     if (export == TRUE) {

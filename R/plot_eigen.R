@@ -54,9 +54,6 @@ plot_eigen <- function(x, var = 1, export = FALSE, plot_theme = theme_metan(), f
     resolution = 300, ...) {
     x <- x[[var]]
     class <- class(x)
-    if(!class(x) ==  "waasb"){
-        stop("The object 'x' must be of class 'waasb'.")
-    }
     eigen <- x$PCA
     eigen$PC <- factor(eigen$PC, levels = eigen$PC)
     scaleFactor <- 100/max(eigen$Eigenvalue)

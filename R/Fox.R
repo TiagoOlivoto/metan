@@ -109,9 +109,6 @@ Fox <- function(.data, env, gen, resp, verbose = TRUE) {
 #' print(out)
 #' }
 print.Fox <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "Fox") {
-    stop("The object must be of class 'Fox'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {

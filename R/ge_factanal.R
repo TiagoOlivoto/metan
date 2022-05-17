@@ -253,9 +253,6 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
                              force.repel = 1, line.type = "dashed", line.alpha = 1,
                              col.line = "black", size.line = 0.5,  ...) {
     x <- x[[var]]
-    if (!class(x) == "ge_factanal") {
-        stop("The object 'x' is not of class 'ge_factanal'")
-    }
     data <- data.frame(x$scores.gen)
     if(ncol(data) == 2){
         stop("A plot cannot be generated with only one factor. \nUse 'mineval' argument in 'ge_factanal()' to increase the number of factors retained.", call. = FALSE)
@@ -320,9 +317,6 @@ plot.ge_factanal <- function(x, var = 1, plot_theme = theme_metan(), x.lim = NUL
 #' print(model)
 #' }
 print.ge_factanal <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
-    if (!class(x) == "ge_factanal") {
-        stop("The object must be of class 'ge_factanal'")
-    }
     opar <- options(pillar.sigfig = digits)
     on.exit(options(opar))
     if (export == TRUE) {

@@ -523,9 +523,6 @@ if(is_grouped_df(.data)){
 #' print(alpha)
 #' }
 print.gamem <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
-  if (!class(x) == "gamem") {
-    stop("The object must be of class 'gamem'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "gamem print", file.name)
     sink(paste0(file.name, ".txt"))

@@ -6,6 +6,7 @@
 \alias{ci_mean}
 \alias{cv}
 \alias{freq_table}
+\alias{freq_hist}
 \alias{hmean}
 \alias{gmean}
 \alias{kurt}
@@ -42,7 +43,16 @@ ci_mean(.data, ..., na.rm = FALSE, level = 0.95)
 
 cv(.data, ..., na.rm = FALSE)
 
-freq_table(.data, ...)
+freq_table(.data, var, k = NULL, digits = 2)
+
+freq_hist(
+  table,
+  xlab = NULL,
+  ylab = NULL,
+  fill = "gray",
+  color = "black",
+  ygrid = TRUE
+)
 
 hmean(.data, ..., na.rm = FALSE)
 
@@ -121,13 +131,34 @@ warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{level}{The confidence level for the confidence interval of the mean.
 Defaults to 0.95.}
+
+\item{var}{The variable to compute the frequency table. See \code{Details} for
+more details.}
+
+\item{k}{The number of classes to be created. See \code{Details} for
+more details.}
+
+\item{digits}{The number of significant figures to show. Defaults to 2.}
+
+\item{table}{A frequency table computed with \code{\link[=freq_table]{freq_table()}}.}
+
+\item{xlab, ylab}{The \code{x} and \code{y} labels.}
+
+\item{fill, color}{The color to fill the bars and color the border of the bar,
+respectively.}
+
+\item{ygrid}{Shows a grid line on the \code{y} axis? Defaults to \code{TRUE}.
+freq_hist <- function(table,}
 }
 \value{
 \itemize{
-\item Functions \verb{*_by()} returns a tbl_df with the computed statistics by
+\item Functions \verb{*_by()} returns a \code{tbl_df} with the computed statistics by
 each level of the factor(s) declared in \code{...}.
-\item All other functions return a nammed integer if the input is a data frame
+\item All other functions return a named integer if the input is a data frame
 or a numeric value if the input is a numeric vector.
+\item \code{freq_table()} Returns a list with the frequency table and the breaks used
+for class definition. These breaks can be used to construct an histogram of
+the variable.
 }
 }
 \description{
@@ -151,7 +182,9 @@ numeric variables from \code{.data} by default).}
 \item \code{av_dev()} computes the average absolute deviation.
 \item \code{ci_mean()} computes the confidence interval for the mean.
 \item \code{cv()} computes the coefficient of variation.
-\item \code{freq_table()} Computes frequency fable. Handles grouped data.
+\item \code{freq_table()} Computes a frequency table for either numeric and
+categorical/discrete data. For numeric data, it is possible to define the
+number of classes to be generated.
 \item \verb{hmean(), gmean()} computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the \emph{n}th root of \emph{n}
@@ -177,6 +210,27 @@ deviation, respectively.
 
 \code{\link[=desc_stat]{desc_stat()}} is wrapper function around the above ones and can be
 used to compute quickly all these statistics at once.
+}
+\details{
+The function \code{freq_table()} computes a frequency table for either
+numerical or categorical variables. If a variable is categorical or
+discrete (integer values), the number of classes will be the number of
+levels that the variable contains.
+
+If a variable (say, data) is continuous, the number of classes (k) is given by
+the square root of the number of samples (n) if \verb{n =< 100} or \code{5 * log10(n)}
+if \code{n > 100}.
+
+The amplitude (\mjseqn{A}) of the data is used to define the size of the class (\mjseqn{c}),
+given by
+
+\loadmathjax
+\mjsdeqn{c = \frac{A}{n - 1}}
+
+The lower limit of the first class (LL1) is given by min(data) - c / 2. The
+upper limit is given by LL1 + c. The limits of the other classes are given in
+the same way. After the creation of the classes, the absolute and relative
+frequencies within each class are computed.
 }
 \examples{
 \donttest{
@@ -209,6 +263,10 @@ data_ge2 \%>\%
   freq_table(NR)
 }
 
+}
+\references{
+Ferreira, Daniel Furtado. 2009. Estatistica Basica. 2 ed. Vicosa,
+MG: UFLA.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

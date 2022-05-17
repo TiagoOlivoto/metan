@@ -132,9 +132,6 @@ coincidence_index <- function(..., total, sel1 = NULL, sel2 = NULL){
 #' print(coinc)
 #' }
 print.coincidence <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
-  if (!class(x) == "coincidence") {
-    stop("The object must be of class 'coincidence'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "waasb print", file.name)
     sink(paste0(file.name, ".txt"))

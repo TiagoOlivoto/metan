@@ -383,9 +383,6 @@ plot.fai_blup <- function(x,
                           col.nonsel = "black",
                           ...) {
 
-  if (!class(x) == "fai_blup") {
-    stop("The object 'x' is not of class 'fai_blup'")
-  }
   data <- x$FAI %>%
     select_cols(Genotype, paste("ID", ideotype, sep = "")) %>%
   add_cols(sel = "Selected") %>%

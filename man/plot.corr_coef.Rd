@@ -79,9 +79,9 @@ Create a correlation heat map for object of class \code{corr_coef}
 \donttest{
 library(metan)
 # All numeric variables
-all <- corr_coef(data_ge2)
-plot(all)
-plot(all, reorder = FALSE)
+x <- corr_coef(data_ge2)
+plot(x)
+plot(x, reorder = FALSE)
 
 # Select variables
 sel <- corr_coef(data_ge2, EP, EL, CD, CL)

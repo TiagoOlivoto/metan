@@ -107,7 +107,7 @@ plot_blup <- function(x,
     if(!class(x)  %in% c("waasb", "gamem")){
         stop("The object 'x' must be of class 'waasb' or 'gamem'.")
     }
-    if(class(x) == "gamem"){
+    if(inherits(x, "gamem")){
         PROB <- ((1 - (1 - prob))/2) + (1 - prob)
         t <- qt(PROB, nlevels(x$residuals$REP))
         GV <- as.numeric(x$ESTIMATES[1, 2])
@@ -119,7 +119,7 @@ plot_blup <- function(x,
                    Mean = ifelse(Predicted < mean(Predicted), "below", "above")) %>%
             arrange(Predicted)
     }
-    if(class(x) ==  "waasb"){
+    if(inherits(x, "waasb")){
         PROB <- ((1 - (1 - prob))/2) + (1 - prob)
         t <- qt(PROB, nlevels(x$residuals$REP))
         GV <- as.numeric(x$random[which(x$random$Group == "GEN"), 2])

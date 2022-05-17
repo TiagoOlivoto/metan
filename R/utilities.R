@@ -192,15 +192,18 @@ extract_string <- function(.data,
 #' @name utils_num_str
 #' @export
 find_text_in_num <- function(.data, ...){
+  help_text <- function(x){
+    which(is.na(suppressWarnings(as.numeric(x))))
+  }
   if(!missing(...)){
     .data <- select_cols(.data, ...)
-    if(ncol(.data)>1){
-      stop("Only one variable is accepted.", call. = FALSE)
-    }
-    .data %<>% pull()
+    apply(.data, 2, help_text)
+
+  } else{
+    paste0("Line(s): ", paste0(help_text(.data), collapse = ","))
   }
-  which(is.na(suppressWarnings(as.numeric(.data))))
 }
+
 #' @name utils_num_str
 #' @export
 has_text_in_num <- function(.data){
@@ -835,7 +838,9 @@ tidy_colnames <- function(.data, sep = "_"){
 #'    - `av_dev()` computes the average absolute deviation.
 #'    - `ci_mean()` computes the confidence interval for the mean.
 #'    - `cv()` computes the coefficient of variation.
-#'    - `freq_table()` Computes frequency fable. Handles grouped data.
+#'    - `freq_table()` Computes a frequency table for either numeric and
+#'    categorical/discrete data. For numeric data, it is possible to define the
+#'    number of classes to be generated.
 #'    - `hmean(), gmean()` computes the harmonic and geometric means,
 #' respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 #' the reciprocals. The geometric mean is the *n*th root of *n*
@@ -860,6 +865,26 @@ tidy_colnames <- function(.data, sep = "_"){
 #' [desc_stat()] is wrapper function around the above ones and can be
 #' used to compute quickly all these statistics at once.
 #'
+#' @details  The function `freq_table()` computes a frequency table for either
+#'   numerical or categorical variables. If a variable is categorical or
+#'   discrete (integer values), the number of classes will be the number of
+#'   levels that the variable contains.
+#'
+#'If a variable (say, data) is continuous, the number of classes (k) is given by
+#'the square root of the number of samples (n) if `n =< 100` or `5 * log10(n)`
+#'if `n > 100`.
+#'
+#'The amplitude (\mjseqn{A}) of the data is used to define the size of the class (\mjseqn{c}),
+#'given by
+#'
+#' \loadmathjax
+#' \mjsdeqn{c = \frac{A}{n - 1}}
+#'
+#' The lower limit of the first class (LL1) is given by min(data) - c / 2. The
+#' upper limit is given by LL1 + c. The limits of the other classes are given in
+#' the same way. After the creation of the classes, the absolute and relative
+#' frequencies within each class are computed.
+#'
 #' @param .data A data frame or a numeric vector.
 #' @param ... The argument depends on the function used.
 #' * For `*_by` functions, `...` is one or more categorical variables
@@ -873,14 +898,30 @@ tidy_colnames <- function(.data, sep = "_"){
 #'  `.data`.
 #' @param na.rm If `FALSE`, the default, missing values are removed with a
 #'   warning. If `TRUE`, missing values are silently removed.
+#' @param var The variable to compute the frequency table. See `Details` for
+#'   more details.
+#' @param k The number of classes to be created. See `Details` for
+#'   more details.
+#' @param digits The number of significant figures to show. Defaults to 2.
+#' @param table A frequency table computed with [freq_table()].
+#' @param xlab,ylab The `x` and `y` labels.
+#' @param fill,color The color to fill the bars and color the border of the bar,
+#'   respectively.
+#' @param ygrid Shows a grid line on the `y` axis? Defaults to `TRUE`.
+#' freq_hist <- function(table,
 #' @param level The confidence level for the confidence interval of the mean.
 #'   Defaults to 0.95.
 #' @return
-#'  * Functions `*_by()` returns a tbl_df with the computed statistics by
+#'  * Functions `*_by()` returns a `tbl_df` with the computed statistics by
 #'  each level of the factor(s) declared in `...`.
-#'  * All other functions return a nammed integer if the input is a data frame
+#'  * All other functions return a named integer if the input is a data frame
 #'  or a numeric value if the input is a numeric vector.
+#'  * `freq_table()` Returns a list with the frequency table and the breaks used
+#'  for class definition. These breaks can be used to construct an histogram of
+#'  the variable.
 #' @md
+#' @references Ferreira, Daniel Furtado. 2009. Estatistica Basica. 2 ed. Vicosa,
+#'   MG: UFLA.
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @examples
 #' \donttest{
@@ -992,14 +1033,212 @@ cv <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
-freq_table <- function(.data, ...){
+freq_table <- function(.data, var, k = NULL, digits = 2){
   if(is_grouped_df(.data)){
-    dplyr::do(.data, freq_table(., ...))
+    res <-
+      metan::doo(.data,
+                 ~freq_table(., {{var}}, k = k, digits = digits))
+    freqs <-
+      res %>%
+      mutate(freqs = map(data, ~.x %>% .[["freqs"]])) |>
+      unnest(freqs) |>
+      remove_cols(data)
+    breaks <-
+      res |>
+      mutate(freqs = map(data, ~.x %>% .[["breaks"]])) |>
+      remove_cols(data)
+    list_breaks <- breaks$freqs
+    names(list_breaks) <- breaks$cor_grao
+    return(list(freqs = freqs,
+                breaks = breaks))
+
+  } else{
+    # function to create a frequence table with continuous variable
+    # adapted from https://bendeivide.github.io/book-epaec/book-epaec.pdf
+    freq_quant <- function(data, k = NULL, digits = digits){
+      # the number of observations
+      n <- length(data)
+
+      # check the number of classes
+      if(is.null(k)){
+        if (n > 100) {
+          k <- round(5 * log10(n), 0)
+        } else{
+          k <- round(sqrt(n), 0)
+        }
+      } else{
+        k <- k
+      }
+      # data range
+      rang <- range(data)
+      # amplitude
+      A <- diff(rang)
+      # the size of the class
+      c <- round(A / (k - 1), digits = digits)
+
+      # lower and upper limit of the first class
+      LI1 <- min(rang) - c / 2
+      vi <- c(LI1,     rep(0, k - 1))
+      vs <- c(LI1 + c, rep(0, k - 1))
+
+      # build the other classes
+      for (i in 2:k) {
+        vi[i] <- vi[i - 1] + c
+        vs[i] <- vs[i - 1] + c
+      }
+      vi <- round(vi, digits = digits)
+      vs <- round(vs, digits = digits)
+      # Find the frequency of each class
+      freq <- function(x, vi, vs, k) {
+        freq <- rep(0, k)
+        for (i in 1:(k - 1)) {
+          freq[i] <- length(x[x >= vi[i] & x < vs[i]])
+        }
+        freq[k] <- length(x[x >= vi[k] & x <= vs[k]])
+        return(freq)
+      }
+
+      # absolute frequency
+      fi <- freq(data, vi, vs, k)
+      # check if any class is empty
+      if(any(fi == 0)){
+        warning("An empty class is not advised. Try to reduce the number of classes with the `k` argument", call. = FALSE)
+      }
+      # building the classes
+      classe <- paste(vi, "|--- ", vs)
+      classe[k] <- paste(vi[k], "|---|", vs[k])
+      freqs <-
+        data.frame(class = classe,
+                   abs_freq = fi) |>
+        mutate(abs_freq_ac = cumsum(abs_freq),
+               rel_freq = abs_freq / sum(abs_freq),
+               rel_freq_ac = cumsum(rel_freq))
+      freqs[nrow(freqs) + 1, ] <- c("Total", sum(freqs[, 2]), sum(freqs[, 2]), 1, 1)
+      freqs <-
+        freqs |>
+        as_numeric(2:5) |>
+        round_cols(digits = digits)
+
+      breaks <- sort(c(vi, vs))
+      return(
+        structure(
+          list(freqs = freqs,
+               LL = vi,
+               UL = vs,
+               vartype = "continuous"),
+          class = "freq_table"
+        )
+      )
+    }
+
+    #check the class of the variable
+    class_data <- .data |> pull({{var}}) |> class()
+    # if variable is discrete or categorical
+    if(class_data %in% c("character", "factor", "integer")){
+       df <-
+        .data %>%
+        count({{var}}) |>
+        as_character(1) |>
+        mutate(abs_freq = n,
+               abs_freq_ac = cumsum(abs_freq),
+               rel_freq = abs_freq / sum(abs_freq),
+               rel_freq_ac = cumsum(rel_freq)) |>
+        remove_cols(n) |>
+        as.data.frame()
+      df[nrow(df) + 1, ] <- c("Total", sum(df[, 2]), sum(df[, 2]), 1, 1)
+      df <- df |> as_numeric(2:5)
+      return(
+        structure(
+          list(freqs = df,
+               vartype = "categorical"),
+          class = "freq_table"
+        )
+      )
+    }
+    # if variable is numeric
+    if(class_data == "numeric"){
+      data <- .data |> pull({{var}})
+      # apply the function freq_quant in the numeric vector
+      freq_quant(data, k = k, digits = digits)
+    }
   }
-  .data %>%
-    count(...) %>%
-    mutate(rel_freq = n / sum(n),
-           cum_freq = cumsum(rel_freq))
+}
+
+#' @name utils_stats
+#' @export
+#' @importFrom graphics axis barplot grid plot.new plot.window rect title
+freq_hist <- function(table,
+                      xlab = NULL,
+                      ylab = NULL,
+                      fill = "gray",
+                      color = "black",
+                      ygrid = TRUE) {
+  if (class(table) != "freq_table"){
+    stop("Class of object `table` is not valid. Please use `freq_table()` to create a valid object.")
+  }
+  if (table$vartype == "categorical") {
+
+    classes <- as.character(table$freqs[[1]])
+    classes <- classes[-length(classes)]
+    freqs <- table$freqs[[2]]
+    freqs <- freqs[-length(freqs)]
+    plot.new()
+
+    if (is.null(xlab)) {
+      xlab <- gettext("Groups")
+    }
+    if (is.null(ylab)) {
+      ylab <- gettext("Frequency")
+    }
+    barplot(freqs ~ classes, xaxt = "n", xlab = "", ylab = "")
+
+    if(isTRUE(ygrid)){
+      grid(nx = NA, ny = NULL, col = "gray")
+      opar <- par(new = TRUE)
+      on.exit(par(opar))
+    }
+    barplot(freqs ~ classes,
+            xlab = xlab,
+            ylab = ylab)
+  }
+  if (table$vartype == "continuous") {
+    xvar1 <- table$LL
+    xvar2 <- table$UL
+    freqs <- table$freqs$abs_freq
+    yvar <- freqs[-length(freqs)]
+    # Limiares
+    xlim <- c(min(xvar1), max(xvar2))
+    ylim <- c(0, 1.2 * max(yvar))
+
+    # Area de plotagem
+    plot.new()
+    plot.window(xlim, ylim)
+
+    # Labels
+    if (is.null(xlab)) {
+      xlab <- gettext("Classes")
+    }
+    if (is.null(ylab)) {
+      ylab <- gettext("Frequency")
+    }
+
+    title(xlab = xlab, ylab = ylab)
+
+    if(isTRUE(ygrid)){
+      grid(nx = NA, ny = NULL, col = "gray")
+      opar <- par(new = TRUE)
+    }
+
+    rect(xvar1,
+         0,
+         xvar2,
+         yvar,
+         col = fill,
+         border = color)
+    xvar <- c(xvar1, max(xvar2))
+    axis(1, at = xvar)
+    axis(2)
+  }
 }
 #' @name utils_stats
 #' @export

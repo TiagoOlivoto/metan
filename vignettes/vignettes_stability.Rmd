@@ -159,6 +159,7 @@ $$
 \mathop Y\nolimits_{ij}  = {\beta _{0i}} + {\beta _{1i}}{I_j} + {\delta _{ij}} + {\bar \varepsilon _{ij}}
 $$
 where ${\beta _{0i}}$ is the grand mean of the genotype *i* (*i* = 1, 2, ..., I); ${\beta _{1i}}$ is the linear response (slope) of the genotype *i* to the environmental index; *Ij* is the environmental index (*j* = 1, 2, ..., *e*), where ${I_j} = [(y_{.j}/g)- (y_{..}/ge)]$, ${\delta _{ij}}$ is the deviation from the regression, and ${\bar \varepsilon _{ij}}$ is the experimental error.
+
 The model is fitted with the function `ge_reg()`. The S3 methods `plot()` and `summary()` may be used to explore the fitted model.
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}

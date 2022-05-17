@@ -34,7 +34,7 @@ A tibble with the following variables:
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 
-\code{inspect()} scans a data.frame object for errors that may affect the use
+\code{inspect()} scans a \code{data.frame} object for errors that may affect the use
 of functions in \code{metan}. By default, all variables are checked regarding
 the class (numeric or factor), missing values, and presence of possible
 outliers. The function will return a warning if the data looks like
@@ -46,11 +46,11 @@ library(metan)
 inspect(data_ge)
 
 # Create a toy example with messy data
-df <- data_ge2[-c(2, 30, 45, 134), c(1:5)]
-df[c(1, 20, 50), c(4, 5)] <- NA
-df[40, 5] <- df[40, 5] * 2
+df <- data_ge2[-c(2, 30, 45, 134), c(1:5)] |> as.data.frame()
+df[c(1, 20, 50), 5] <- NA
+df[40, 4] <- "2..814"
 
-inspect(df, plot = TRUE)
+inspect(df)
 }
 }
 \author{

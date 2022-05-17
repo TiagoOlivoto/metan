@@ -338,9 +338,6 @@ print.ge_stats <- function(x,
                            file.name = NULL,
                            digits = 3,
                            ...) {
-  if (!class(x) == "ge_stats") {
-    stop("The object must be of class 'ge_stats'")
-  }
   if (export == TRUE) {
     file.name <- ifelse(is.null(file.name) == TRUE, "ge_stats print", file.name)
     sink(paste0(file.name, ".txt"))

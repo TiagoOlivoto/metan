@@ -240,9 +240,6 @@ plot.anova_joint <- function(x, ...) {
 #' print(model)
 #' }
 print.anova_joint <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "anova_joint") {
-    stop("The object must be of class 'anova_joint'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {

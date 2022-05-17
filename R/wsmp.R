@@ -94,7 +94,7 @@ wsmp <- function(model,
            increment, "). Please, consider changing the values.")
     }
     datain <- model
-    if (class(model) == "waasb") {
+    if (inherits(model, "waasb")) {
       dfs <- list()
       for (k in 1:length(model)) {
         PesoWAAS <- 100
@@ -247,7 +247,7 @@ wsmp <- function(model,
                                        class = "wsmp")
       }
     }
-    if (class(model) == "waas") {
+    if (inherits(model, "waas")) {
       dfs <- list()
       for (k in 1:length(model)) {
         PesoWAAS <- 100

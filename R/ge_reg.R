@@ -271,9 +271,6 @@ plot.ge_reg <- function(x,
                         size.tex.lab = 12,
                         ...){
   x <- x[[var]]
-  if (!class(x) == "ge_reg") {
-    stop("The object 'x' is not of class 'ge_reg'", call. = FALSE)
-  }
   if(!type  %in% c(1, 2)){
     stop("Argument 'type' must be either 1 or 2", call. = FALSE)
   }
@@ -342,9 +339,6 @@ plot.ge_reg <- function(x,
 #' print(model)
 #' }
 print.ge_reg <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "ge_reg") {
-    stop("The object must be of class 'ge_reg'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {

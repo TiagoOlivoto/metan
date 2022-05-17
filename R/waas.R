@@ -448,9 +448,6 @@ plot.waas <- function(x, ...) {
 #' print(model)
 #' }
 print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
-    if (!class(x) == "waas") {
-        stop("The object must be of class 'waas'")
-    }
     if (export == TRUE) {
         file.name <- ifelse(is.null(file.name) == TRUE, "waas print", file.name)
         sink(paste0(file.name, ".txt"))

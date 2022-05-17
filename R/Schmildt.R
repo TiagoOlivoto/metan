@@ -150,9 +150,6 @@ NULL
 #' print(Sch)
 #' }
 print.Schmildt <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "Schmildt") {
-    stop("The object must be of class 'Schmildt'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {

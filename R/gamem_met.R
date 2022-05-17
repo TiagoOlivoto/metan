@@ -339,7 +339,7 @@ gamem_met <- function(.data,
       CVr <- (sqrt(RV)/ovmean) * 100
       CVratio <- CVg/CVr
       PROB <- ((1 - (1 - prob))/2) + (1 - prob)
-      t <- qt(PROB, 100)
+      t <- qt(PROB, Nrep)
       Limits <- t * sqrt(((1 - AccuGen) * GV))
       genpar <- tibble(Parameters = c("Phenotypic variance", "Heritability", "GEIr2", "h2mg",
                                       "Accuracy", "rge", "CVg", "CVr", "CV ratio"),

@@ -129,9 +129,6 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
 #' print(eco)
 #' }
 print.Shukla <- function(x, export = FALSE, file.name = NULL, digits = 3, ...) {
-  if (!class(x) == "Shukla") {
-    stop("The object must be of class 'Shukla'")
-  }
   opar <- options(pillar.sigfig = digits)
   on.exit(options(opar))
   if (export == TRUE) {
