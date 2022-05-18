@@ -830,6 +830,7 @@ tidy_colnames <- function(.data, sep = "_"){
 #'    - `min_by()` For compuing minimum values.
 #'    - `n_by()` For getting the length.
 #'    - `sd_by()` For computing sample standard deviation.
+#'    - `var_by()` For computing sample variance.
 #'    - `sem_by()` For computing standard error of the mean.
 #'
 #' * **Useful functions for descriptive statistics. All of them work
@@ -1808,6 +1809,17 @@ sd_by <- function(.data, ..., na.rm = FALSE){
   }
   group_by(.data, ...) %>%
     summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop")
+}
+#' @name utils_stats
+#' @export
+var_by <- function(.data, ..., na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
+    na.rm <- TRUE
+  }
+  group_by(.data, ...) %>%
+    summarise(across(where(is.numeric), var, na.rm = na.rm), .groups = "drop")
 }
 #' @name utils_stats
 #' @export

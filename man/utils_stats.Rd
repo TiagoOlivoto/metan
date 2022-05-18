@@ -33,6 +33,7 @@
 \alias{min_by}
 \alias{n_by}
 \alias{sd_by}
+\alias{var_by}
 \alias{sem_by}
 \alias{sum_by}
 \title{Useful functions for computing descriptive statistics}
@@ -106,6 +107,8 @@ n_by(.data, ..., na.rm = FALSE)
 
 sd_by(.data, ..., na.rm = FALSE)
 
+var_by(.data, ..., na.rm = FALSE)
+
 sem_by(.data, ..., na.rm = FALSE)
 
 sum_by(.data, ..., na.rm = FALSE)
@@ -173,6 +176,7 @@ a factor or combination of factors quickly.}
 \item \code{min_by()} For compuing minimum values.
 \item \code{n_by()} For getting the length.
 \item \code{sd_by()} For computing sample standard deviation.
+\item \code{var_by()} For computing sample variance.
 \item \code{sem_by()} For computing standard error of the mean.
 }
 \item \strong{Useful functions for descriptive statistics. All of them work
