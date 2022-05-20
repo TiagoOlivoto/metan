@@ -95,7 +95,7 @@ var_pop(.data, ..., na.rm = FALSE)
 
 var_amo(.data, ..., na.rm = FALSE)
 
-cv_by(.data, ..., na.rm = FALSE)
+cv_by(.data, ..., .vars = everything(), na.rm = FALSE)
 
 max_by(.data, ..., na.rm = FALSE)
 
@@ -152,6 +152,11 @@ respectively.}
 
 \item{ygrid}{Shows a grid line on the \code{y} axis? Defaults to \code{TRUE}.
 freq_hist <- function(table,}
+
+\item{.vars}{Used to select variables in the \verb{*_by()} functions. One or more
+unquoted expressions separated by commas. Variable names can be used as if
+they were positions in the data frame, so expressions like \code{x:y} can be
+used to select a range of variables. Defaults to \code{everything()}.}
 }
 \value{
 \itemize{
