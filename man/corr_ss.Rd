@@ -21,7 +21,7 @@ Find the required (sufficient) sample size for computing a Pearson
 correlation coefficient with a desired confidence interval (Olivoto et al.,
 2018) as follows
 \loadmathjax
-\mjsdeqn{n = {\left[ {\frac{{C{I_w}}}{{{{0.45304}^r} \times 2.25152}}} \right]^{{\rm{ - 0}}{\rm{.50089}}}}}
+\mjsdeqn{n = {\left\[ {\frac{{C{I_w}}}{{{{0.45304}^r} \times 2.25152}}} \right\]^{{\rm{ - 0}}{\rm{.50089}}}}}
 
 where \mjseqn{CI_w} is desired confidence interval and \mjseqn{r} is the
 correlation coefficient.
