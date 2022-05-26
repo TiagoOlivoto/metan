@@ -37,6 +37,7 @@
 #'   other and away from the data points.
 #' @param repulsion Force of repulsion between overlapping text labels. Defaults
 #'   to `1`.
+#' @param max_overlaps Exclude text labels that overlap too many things. Defaults to 20.
 #' @param polygon Logical argument. If `TRUE`, a polygon is drawn when
 #'   `type = 2`.
 #' @param title Logical values (Defaults to `TRUE`) to include
@@ -103,14 +104,13 @@
 #'   to create the appearance of partial or full transparency. Default is
 #'   `0.4`. Values must be between '0' (full transparency) to '1' (full
 #'   color).
-#' @param resolution The resolution of the plot. Parameter valid if
-#'   `file.type = 'tiff'` is used. Default is `300` (300 dpi)
-#' @param file.type The type of file to be exported. Valid parameter if
-#'   `export = T|TRUE`.  Default is `'pdf'`. The graphic can also be
-#'   exported in `*.tiff` format by declaring `file.type = 'tiff'`.
-#' @param export Export (or not) the plot. Default is `FALSE`.
+#' @param resolution deprecated
+#' @param export Export (or not) the plot. Default is `FALSE`. If `TRUE`, calls the
+#'   [ggplot2::ggsave()] function.
 #' @param file.name The name of the file for exportation, default is
 #'   `NULL`, i.e. the files are automatically named.
+#' @param file.type The type of file to be exported. Currently recognises the extensions
+#'   eps/ps, tex, pdf, jpeg, tiff, png (default), bmp, svg and wmf (windows only).
 #' @param width The width 'inch' of the plot. Default is `8`.
 #' @param height The height 'inch' of the plot. Default is `7`.
 #' @param color Should type 4 plot have colors? Default to `TRUE`.
@@ -179,6 +179,7 @@ plot_scores <- function(x,
                         second = "PC2",
                         repel = TRUE,
                         repulsion = 1,
+                        max_overlaps = 20,
                         polygon = FALSE,
                         title = TRUE,
                         plot_theme = theme_metan(),
@@ -213,14 +214,17 @@ plot_scores <- function(x,
                         leg.lab = c("Env", "Gen"),
                         line.type = "solid",
                         line.alpha = 0.9,
-                        resolution = 300,
-                        file.type = "pdf",
+                        resolution = deprecated(),
+                        file.type = "png",
                         export = FALSE,
                         file.name = NULL,
                         width = 8,
                         height = 7,
                         color = TRUE,
                         ...) {
+  if(is_present(resolution)){
+    warning("`resolution` is deprecated as of metan 1.17.")
+  }
   varname <- names(x)[var]
   x <- x[[var]]
   df <-
@@ -330,7 +334,8 @@ plot_scores <- function(x,
                                 color = df$Color,
                                 force = repulsion,
                                 size =  size.text ,
-                                alpha = alpha.col)} +
+                                alpha = alpha.col,
+                                max.overlaps = max_overlaps)} +
       {if(!repel)geom_text(aes(Y, PC1, label = Code),
                            alpha = alpha.col,
                            color = df$Color,
@@ -340,24 +345,12 @@ plot_scores <- function(x,
       {if(title)ggtitle("AMMI1 Biplot")}
     if (export == FALSE) {
       return(p1)
-    } else if (file.type == "pdf") {
-      if (is.null(file.name)) {
-        pdf("GY x PC1.pdf", width = width, height = height)
-      } else pdf(paste0(file.name, ".pdf"), width = width,
-                 height = height)
-      plot(p1)
-      dev.off()
-    }
-    if (file.type == "tiff") {
-      if (is.null(file.name)) {
-        tiff(filename = "GY x PC1.tiff", width = width,
-             height = height, units = "in", compression = "lzw",
-             res = resolution)
-      } else tiff(filename = paste0(file.name, ".tiff"),
-                  width = width, height = height, units = "in",
-                  compression = "lzw", res = resolution)
-      plot(p1)
-      dev.off()
+    } else{
+      if(is.null(file.name)) {
+        ggsave("GY x PC1.png", p1, width = width, height = height)
+      } else{
+        ggsave(paste0(file.name, ".", file.type), p1, width = width, height = height)
+      }
     }
   }
 
@@ -467,7 +460,8 @@ plot_scores <- function(x,
                                 force = repulsion,
                                 color = df$Color,
                                 size =  size.text,
-                                alpha = alpha.col)} +
+                                alpha = alpha.col,
+                                max.overlaps = max_overlaps)} +
       {if(!repel)geom_text(aes(!!sym(first), !!sym(second), label = Code),
                            color = df$Color,
                            size =  size.text,
@@ -529,24 +523,12 @@ plot_scores <- function(x,
     }
     if (export == FALSE) {
       return(p2)
-    } else if (file.type == "pdf") {
-      if (is.null(file.name)) {
-        pdf("PC1 x PC2.pdf", width = width, height = height)
-      } else pdf(paste0(file.name, ".pdf"), width = width,
-                 height = height)
-      plot(p2)
-      dev.off()
-    }
-    if (file.type == "tiff") {
-      if (is.null(file.name)) {
-        tiff(filename = "PC1 x PC2.tiff", width = width,
-             height = height, units = "in", compression = "lzw",
-             res = resolution)
-      } else tiff(filename = paste0(file.name, ".tiff"),
-                  width = width, height = height, units = "in",
-                  compression = "lzw", res = resolution)
-      plot(p2)
-      dev.off()
+    } else{
+      if(is.null(file.name)) {
+        ggsave("PC1 x PC2.png", p2, width = width, height = height)
+      } else{
+        ggsave(paste0(file.name, ".", file.type), p2, width = width, height = height)
+      }
     }
   }
 
@@ -596,7 +578,8 @@ plot_scores <- function(x,
                                   color = df$Color,
                                   force = repulsion,
                                   size =  size.text,
-                                  alpha = alpha.col)} +
+                                  alpha = alpha.col,
+                                  max.overlaps = max_overlaps)} +
         {if(!repel)geom_text(aes(Y, WAASB, label = (Code)),
                              color = df$Color,
                              size =  size.text,
@@ -648,7 +631,8 @@ plot_scores <- function(x,
                                   force = repulsion,
                                   color = df$Color,
                                   size =  size.text,
-                                  alpha = alpha.col)} +
+                                  alpha = alpha.col,
+                                  max.overlaps = max_overlaps)} +
         {if(!repel)geom_text(aes(Y, WAAS, label = Code),
                              color = df$Color,
                              size =  size.text,
@@ -699,24 +683,12 @@ plot_scores <- function(x,
     }
     if (export == FALSE) {
       return(p3)
-    } else if (file.type == "pdf") {
-      if (is.null(file.name)) {
-        pdf("GY x WAASB.pdf", width = width, height = height)
-      } else pdf(paste0(file.name, ".pdf"), width = width,
-                 height = height)
-      plot(p3)
-      dev.off()
-    }
-    if (file.type == "tiff") {
-      if (is.null(file.name)) {
-        tiff(filename = "GY x WAAS.tiff", width = width,
-             height = height, units = "in", compression = "lzw",
-             res = resolution)
-      } else tiff(filename = paste0(file.name, ".tiff"),
-                  width = width, height = height, units = "in",
-                  compression = "lzw", res = resolution)
-      plot(p3)
-      dev.off()
+    } else{
+      if(is.null(file.name)) {
+        ggsave("GY x WAASB.png", p3, width = width, height = height)
+      } else{
+        ggsave(paste0(file.name, ".", file.type), p3, width = width, height = height)
+      }
     }
   }
 
@@ -772,7 +744,8 @@ plot_scores <- function(x,
                                 aes(x = envPC1, y = minim, label = ENV),
                                 size = size.tex.env,
                                 force = repulsion,
-                                alpha = rep(col.alpha.env, nenv))} +
+                                alpha = rep(col.alpha.env, nenv),
+                                max.overlaps = max_overlaps)} +
       {if(!repel)geom_label(data = subset(data, envPC1 == min(envPC1)),
                             aes(label = GEN, color = GEN),
                             size = size.tex.gen,
@@ -800,30 +773,15 @@ plot_scores <- function(x,
       p4 <- p4 + ggtitle("Nominal yield plot")
     }
     if (export == FALSE) {
-      return(p4)
-    } else if (file.type == "pdf") {
-      if (is.null(file.name)) {
-        pdf("Adaptative reponses (AMMI1 model).pdf",
-            width = width, height = height)
-      } else pdf(paste0(file.name, ".pdf"), width = width,
-                 height = height)
-      plot(p4)
-      dev.off()
-
-    }
-    if (file.type == "tiff") {
-      if (is.null(file.name)) {
-        tiff(filename = "Adaptative reponses (AMMI1 model).tiff",
-             width = width, height = height, units = "in",
-             compression = "lzw", res = resolution)
-      } else tiff(filename = paste0(file.name, ".tiff"),
-                  width = width, height = height, units = "in",
-                  compression = "lzw", res = resolution)
-      plot(p4)
-      dev.off()
+      return(p3)
+    } else{
+      if(is.null(file.name)) {
+        ggsave("Adaptative reponses (AMMI1 model).png", p4, width = width, height = height)
+      } else{
+        ggsave(paste0(file.name, ".", file.type), p4, width = width, height = height)
+      }
     }
   }
-
 }
 
 

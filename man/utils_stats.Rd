@@ -3,7 +3,7 @@
 \name{utils_stats}
 \alias{utils_stats}
 \alias{av_dev}
-\alias{ci_mean}
+\alias{ci_mean_t}
 \alias{cv}
 \alias{freq_table}
 \alias{freq_hist}
@@ -40,7 +40,7 @@
 \usage{
 av_dev(.data, ..., na.rm = FALSE)
 
-ci_mean(.data, ..., na.rm = FALSE, level = 0.95)
+ci_mean_t(.data, ..., na.rm = FALSE, level = 0.95)
 
 cv(.data, ..., na.rm = FALSE)
 
@@ -189,7 +189,8 @@ naturally with \verb{\\\%>\\\%}, handle grouped data and multiple variables (all
 numeric variables from \code{.data} by default).}
 \itemize{
 \item \code{av_dev()} computes the average absolute deviation.
-\item \code{ci_mean()} computes the confidence interval for the mean.
+\item \code{ci_mean_t()} computes the t-interval for the mean.
+\item \code{ci_mean_z()} computes the z-interval for the mean.
 \item \code{cv()} computes the coefficient of variation.
 \item \code{freq_table()} Computes a frequency table for either numeric and
 categorical/discrete data. For numeric data, it is possible to define the
@@ -261,7 +262,7 @@ skew(nvec)
 # Grouped by levels of ENV
 data_ge2 \%>\%
   group_by(ENV) \%>\%
-  ci_mean()
+  ci_mean_t()
 
 # standard error of the mean
 # Variable PH and EH

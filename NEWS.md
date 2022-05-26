@@ -4,6 +4,7 @@
 * New function `path_coeff_seq()` to implement a sequential (two chains) path analysis.
 * New function `prop_na()` to measure the proportion of `NAs` in each column.
 * New functions `remove_cols_all_na()` and `remove_rows_all_na()` to remove columns and rows that have all values as `NAs`.
+* New functions `ci_mean_z()` and `ci_mean_t()` to compute z- and t-confidence intervals, respectively.
 
 ## Minor improvements
 * Fix bug in `rowname_to_column()`.
@@ -12,6 +13,7 @@
 * Fix bug with `x.lab` and `y.lab` from `plot_scores()`. Now it accepts an object from `expression()`
 * `plot_waasby()` now accepts objects of class `waas_means`.
 * `get_model_data()` now includes new options `coefs`, and `anova` for objects computed with `ge_reg()`.
+* New argument `max_overlaps` in `plot_scores()` to exclude text labels that overlap too many things.
 
 
 # metan 1.16.0

@@ -26,7 +26,8 @@
 #'  `"quantile"` to show quantile statistics, or chose one (or more) of the
 #'  following:
 #'  * `"av.dev"`: average deviation.
-#'  * `"ci"`: 95 percent confidence interval of the mean.
+#'  * `"ci.t"`: t-interval (95% confidence interval) of the mean.
+#'  * `"ci.z"`: z-interval (95% confidence interval) of the mean.
 #'  * `"cv"`: coefficient of variation.
 #'  * `"iqr"`: interquartile range.
 #'  * `"gmean"`: geometric mean.
@@ -160,18 +161,18 @@ desc_stat <- function(.data = NULL,
           plot_theme = plot_theme)
     return(results)
   }
-  all <- c("av.dev", "ci", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "n.valid", "n.missing", "n.unique", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "ave.dev", "sum.sq.dev",  "var.amo", "var.pop")
+  all <- c("av.dev", "ci.t", "ci.z", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "n.valid", "n.missing", "n.unique", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "ave.dev", "sum.sq.dev",  "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
-      all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci"),
-      all_lower_case(stats) == "all" ~ c("av.dev, ci, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.dev, sum.sq.dev, n.valid, var.amo, var.pop"),
+      all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci.t"),
+      all_lower_case(stats) == "all" ~ c("av.dev, ci.t, ci.z, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.dev, sum.sq.dev, n.valid, var.amo, var.pop"),
       all_lower_case(stats) == "robust" ~ c("n, median, iqr, ps"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),
       TRUE ~ all_lower_case(stats)
     ), "\\s*(\\s|,)\\s*")[[1]]
 
   if (!any(stats %in% c("all", "main", "robust", "quantile", all))) {
-    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci, cv, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.dev, sum.sq.dev, n.valid, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
+    stop("Invalid value for the argument 'stat'. Allowed values are:\nav.dev, ci.t, ci.z, cv, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.dev, sum.sq.dev, n.valid, var.amo, and var.pop.\nAlternatively, you can set the following groups of statistics:\n'main', 'all', 'robust', or 'quantile'.", call. = FALSE)
   }
   if(has_class(.data, "numeric")){
     .data <- data.frame(val = .data)
@@ -231,7 +232,8 @@ desc_stat <- function(.data = NULL,
                           sd.pop = ~sd_pop(., na.rm = na.rm),
                           sd.amo = ~sd_amo(., na.rm = na.rm),
                           se = ~sem(., na.rm = na.rm),
-                          ci = ~ci_mean(., na.rm = na.rm, level = level),
+                          ci.t = ~ci_mean_t(., na.rm = na.rm, level = level),
+                          ci.z = ~ci_mean_z(., na.rm = na.rm, level = level),
                           skew = ~skew(., na.rm = na.rm),
                           kurt = ~kurt(., na.rm = na.rm),
                           cv = ~cv(., na.rm = na.rm),

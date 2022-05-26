@@ -42,7 +42,8 @@ show all the statistics, \code{"robust"} to show robust statistics,
 following:
 \itemize{
 \item \code{"av.dev"}: average deviation.
-\item \code{"ci"}: 95 percent confidence interval of the mean.
+\item \code{"ci.t"}: t-interval (95\% confidence interval) of the mean.
+\item \code{"ci.z"}: z-interval (95\% confidence interval) of the mean.
 \item \code{"cv"}: coefficient of variation.
 \item \code{"iqr"}: interquartile range.
 \item \code{"gmean"}: geometric mean.

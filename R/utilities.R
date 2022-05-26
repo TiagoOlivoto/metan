@@ -837,7 +837,8 @@ tidy_colnames <- function(.data, sep = "_"){
 #' naturally with `\%>\%`, handle grouped data and multiple variables (all
 #' numeric variables from `.data` by default).**
 #'    - `av_dev()` computes the average absolute deviation.
-#'    - `ci_mean()` computes the confidence interval for the mean.
+#'    - `ci_mean_t()` computes the t-interval for the mean.
+#'    - `ci_mean_z()` computes the z-interval for the mean.
 #'    - `cv()` computes the coefficient of variation.
 #'    - `freq_table()` Computes a frequency table for either numeric and
 #'    categorical/discrete data. For numeric data, it is possible to define the
@@ -948,7 +949,7 @@ tidy_colnames <- function(.data, sep = "_"){
 #' # Grouped by levels of ENV
 #' data_ge2 %>%
 #'   group_by(ENV) %>%
-#'   ci_mean()
+#'   ci_mean_t()
 #'
 #' # standard error of the mean
 #' # Variable PH and EH
@@ -986,7 +987,7 @@ av_dev <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
-ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
+ci_mean_t <- function(.data, ..., na.rm = FALSE, level = 0.95) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
       warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
@@ -994,6 +995,30 @@ ci_mean <- function(.data, ..., na.rm = FALSE, level = 0.95) {
       na.rm <- TRUE
     }
     qt((0.5 + level/2), (length(which(!is.na(df))) - 1)) * sd(df, na.rm = na.rm)/sqrt(length(which(!is.na(df))))
+  }
+  if(is.null(nrow(.data))){
+    funct(.data)
+  } else{
+    if(missing(...)){
+      .data %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    } else{
+      .data %>%
+        select_cols(group_vars(.), ...) %>%
+        summarise(across(where(is.numeric), funct)) %>%
+        ungroup()
+    }
+  }
+}
+ci_mean_z <- function(.data, ..., na.rm = FALSE, level = 0.95) {
+  funct <- function(df){
+    if(na.rm == FALSE & has_na(df)){
+      warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+      message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
+      na.rm <- TRUE
+    }
+    qnorm((0.5 + level/2)) * sd(df, na.rm = na.rm)/sqrt(length(which(!is.na(df))))
   }
   if(is.null(nrow(.data))){
     funct(.data)

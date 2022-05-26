@@ -12,6 +12,7 @@ plot_scores(
   second = "PC2",
   repel = TRUE,
   repulsion = 1,
+  max_overlaps = 20,
   polygon = FALSE,
   title = TRUE,
   plot_theme = theme_metan(),
@@ -46,8 +47,8 @@ plot_scores(
   leg.lab = c("Env", "Gen"),
   line.type = "solid",
   line.alpha = 0.9,
-  resolution = 300,
-  file.type = "pdf",
+  resolution = deprecated(),
+  file.type = "png",
   export = FALSE,
   file.name = NULL,
   width = 8,
@@ -85,6 +86,8 @@ other and away from the data points.}
 
 \item{repulsion}{Force of repulsion between overlapping text labels. Defaults
 to \code{1}.}
+
+\item{max_overlaps}{Exclude text labels that overlap too many things. Defaults to 20.}
 
 \item{polygon}{Logical argument. If \code{TRUE}, a polygon is drawn when
 \code{type = 2}.}
@@ -170,14 +173,13 @@ to create the appearance of partial or full transparency. Default is
 \code{0.4}. Values must be between '0' (full transparency) to '1' (full
 color).}
 
-\item{resolution}{The resolution of the plot. Parameter valid if
-\code{file.type = 'tiff'} is used. Default is \code{300} (300 dpi)}
+\item{resolution}{deprecated}
 
-\item{file.type}{The type of file to be exported. Valid parameter if
-\code{export = T|TRUE}.  Default is \code{'pdf'}. The graphic can also be
-exported in \verb{*.tiff} format by declaring \code{file.type = 'tiff'}.}
+\item{file.type}{The type of file to be exported. Currently recognises the extensions
+eps/ps, tex, pdf, jpeg, tiff, png (default), bmp, svg and wmf (windows only).}
 
-\item{export}{Export (or not) the plot. Default is \code{FALSE}.}
+\item{export}{Export (or not) the plot. Default is \code{FALSE}. If \code{TRUE}, calls the
+\code{\link[ggplot2:ggsave]{ggplot2::ggsave()}} function.}
 
 \item{file.name}{The name of the file for exportation, default is
 \code{NULL}, i.e. the files are automatically named.}
