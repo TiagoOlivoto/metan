@@ -4,6 +4,7 @@
 \alias{utils_stats}
 \alias{av_dev}
 \alias{ci_mean_t}
+\alias{ci_mean_z}
 \alias{cv}
 \alias{freq_table}
 \alias{freq_hist}
@@ -41,6 +42,8 @@
 av_dev(.data, ..., na.rm = FALSE)
 
 ci_mean_t(.data, ..., na.rm = FALSE, level = 0.95)
+
+ci_mean_z(.data, ..., na.rm = FALSE, level = 0.95)
 
 cv(.data, ..., na.rm = FALSE)
 

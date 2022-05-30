@@ -5,6 +5,7 @@
 * New function `prop_na()` to measure the proportion of `NAs` in each column.
 * New functions `remove_cols_all_na()` and `remove_rows_all_na()` to remove columns and rows that have all values as `NAs`.
 * New functions `ci_mean_z()` and `ci_mean_t()` to compute z- and t-confidence intervals, respectively.
+* New function `set_wd_here()` to set the working directory to the path of the current script.
 
 ## Minor improvements
 * Fix bug in `rowname_to_column()`.

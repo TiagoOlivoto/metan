@@ -1011,6 +1011,8 @@ ci_mean_t <- function(.data, ..., na.rm = FALSE, level = 0.95) {
     }
   }
 }
+#' @name utils_stats
+#' @export
 ci_mean_z <- function(.data, ..., na.rm = FALSE, level = 0.95) {
   funct <- function(df){
     if(na.rm == FALSE & has_na(df)){
@@ -2468,4 +2470,48 @@ deprecated <- function(){
 }
 is_present <- function(x){
   x != "missing_arg"
+}
+
+
+
+
+#' Set the Working Directory quicky
+#'
+#' It sets the working directory to the path of the current script.
+#'
+#' @param path Path components below the project root. Defaults to `NULL`. This means that
+#'   the directory will be set to the path of the file.
+#' @return A message showing the current working directory
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#' set_wd_here()
+#' }
+set_wd_here <- function(path = NULL){
+  if(!requireNamespace("rstudioapi", quietly = TRUE)) {
+    if(interactive() == TRUE){
+      inst <-
+        switch(menu(c("Yes", "No"), title = "Package {rstudioapi} required but not installed.\nDo you want to install it now?"),
+               "yes", "no")
+      if(inst == "yes"){
+        install.packages("rstudioapi", quiet = TRUE)
+      } else{
+        message("To use `set_wd_here()`, first install {rstudioapi}.")
+      }
+    }
+  } else{
+    dir_path <- dirname(rstudioapi::getSourceEditorContext()$path)
+    if(!is.null(path)){
+      dir_path <- paste0(dir_path, "/", path)
+    }
+    d <- try(setwd(dir_path), TRUE)
+    if(inherits(d, "try-error")){
+      stop("Cannot change working directory to '", dir_path, "'.", call. = FALSE)
+    } else{
+
+      message("Working directory set to '", dir_path, "'")
+    }
+  }
 }

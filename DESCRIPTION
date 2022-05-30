@@ -58,7 +58,8 @@ Suggests:
     DT,
     knitr,
     rmarkdown,
-    roxygen2
+    roxygen2,
+    rstudioapi
 VignetteBuilder: 
     knitr
 RdMacros: 
