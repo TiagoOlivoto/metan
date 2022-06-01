@@ -8,7 +8,8 @@ set_wd_here(path = NULL)
 }
 \arguments{
 \item{path}{Path components below the project root. Defaults to \code{NULL}. This means that
-the directory will be set to the path of the file.}
+the directory will be set to the path of the file. If the path doesn't exist, the
+user will be asked if he wants to create such a folder.}
 }
 \value{
 A message showing the current working directory
