@@ -172,11 +172,11 @@ plot_bars <- function(.data,
     as_factor({{x}}) %>%
     select({{x}}, {{y}}) %>%
     group_by({{x}}) %>%
-    desc_stat({{y}}, stats = c("n, mean, sd.amo, ci, se"), level = level)
+    desc_stat({{y}}, stats = c("n, mean, sd.amo, ci.t, se"), level = level)
   if(errorbar == TRUE){
     if(stat.erbar == "ci"){
-      datac %<>% add_cols(max = mean + ci,
-                          min = mean - ci)
+      datac %<>% add_cols(max = mean + ci.t,
+                          min = mean - ci.t)
     }
     if(stat.erbar == "sd"){
       datac %<>% add_cols(max = mean + sd.amo,
@@ -210,8 +210,8 @@ plot_bars <- function(.data,
              fill = fill.bar)
   if (errorbar == TRUE) {
     if (stat.erbar == "ci") {
-      p <- p + geom_errorbar(aes(ymin = mean - ci,
-                                 ymax = mean + ci),
+      p <- p + geom_errorbar(aes(ymin = mean - ci.t,
+                                 ymax = mean + ci.t),
                              size = size.line,
                              width = width.erbar)
     }
@@ -326,7 +326,8 @@ plot_factbars <- function(.data,
     group_by(...) %>%
     summarise(N = n(),
               mean_var = mean(Y, na.rm = na.rm),
-              sd = sd(Y, na.rm = na.rm), se = sd/sqrt(n()),
+              sd = sd(Y, na.rm = na.rm),
+              se = sd/sqrt(n()),
               ci = se * qt(level/2 + 0.5, n() - 1),
               .groups = "drop")
   nam <- names(select(.data, ...))
