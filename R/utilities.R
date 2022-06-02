@@ -1065,7 +1065,7 @@ cv <- function(.data, ..., na.rm = FALSE) {
 }
 #' @name utils_stats
 #' @export
-freq_table <- function(.data, var, k = NULL, digits = 2){
+freq_table <- function(.data, var, k = NULL, digits = 3){
   if(is_grouped_df(.data)){
     res <-
       metan::doo(.data,
@@ -1176,7 +1176,8 @@ freq_table <- function(.data, var, k = NULL, digits = 2){
                rel_freq = abs_freq / sum(abs_freq),
                rel_freq_ac = cumsum(rel_freq)) |>
         remove_cols(n) |>
-        as.data.frame()
+        as.data.frame() |>
+        round_cols(digits = digits)
       df[nrow(df) + 1, ] <- c("Total", sum(df[, 2]), sum(df[, 2]), 1, 1)
       df <- df |> as_numeric(2:5)
       return(
@@ -1214,7 +1215,6 @@ freq_hist <- function(table,
     classes <- classes[-length(classes)]
     freqs <- table$freqs[[2]]
     freqs <- freqs[-length(freqs)]
-    plot.new()
 
     if (is.null(xlab)) {
       xlab <- gettext("Groups")
