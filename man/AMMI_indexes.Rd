@@ -49,7 +49,7 @@ respectively.
 \item AMMI Based Stability Parameter (ASTAB) (Rao and Prabhakaran 2005).
 \mjsdeqn{ASTAB = \sum_{n=1}^{N'}\lambda_{n}\gamma_{in}^{2}}
 \item AMMI Stability Index (ASI) (Jambhulkar et al. 2017)
-\mjsdeqn{ASI = \sqrt{\left \[ PC_{1}^{2} \times \theta_{1}^{2} \right \]+\left\[ PC_{2}^{2} \times \theta_{2}^{2} \right \]}}
+\mjsdeqn{ASI = \sqrt{\left [ PC_{1}^{2} \times \theta_{1}^{2} \right ]+\left[ PC_{2}^{2} \times \theta_{2}^{2} \right ]}}
 \item AMMI-stability value (ASV) (Purchase et al., 2000).
 \mjsdeqn{ASV_{i}=\sqrt{\frac{SS_{IPCA1}}{SS_{IPCA2}}(\mathrm{IPC} \mathrm{A} 1)^{2}+(\mathrm{IPCA} 2)^{2}}}
 \item Sum Across Environments of Absolute Value of GEI Modelled by AMMI (AVAMGE) (Zali et al. 2012)
