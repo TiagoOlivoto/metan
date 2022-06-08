@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.17.0
 ## New features
 * Implement a `plot` method for `path_coeff_*()` functions.
 * New function `path_coeff_seq()` to implement a sequential (two chains) path analysis.
