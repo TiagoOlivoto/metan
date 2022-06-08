@@ -239,14 +239,14 @@ plot.corr_coef <- function(x,
                between(pval, 0.01, 0.05) ~ "*",
                pval >= 0.05 ~ "ns"
              )) %>%
-      set_names("v1", "v2", "cor", "pval", "pval_star") |>
+      set_names("v1", "v2", "cor", "pval", "pval_star") %>%
       dplyr::filter(!is.na(pval))
   } else{
     bind_data <-
       expand.grid(dimnames(correl)) %>%
       mutate(cor = as.vector(correl),
              pval_star = as.vector(format(signif(pval, digits = digits.pval), nsmall = digits.pval))) %>%
-      set_names("v1", "v2", "cor", "pval_star") |>
+      set_names("v1", "v2", "cor", "pval_star") %>%
       dplyr::filter(!is.na(cor))
   }
 

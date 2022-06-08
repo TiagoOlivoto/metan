@@ -47,7 +47,7 @@ ci_mean_z(.data, ..., na.rm = FALSE, level = 0.95)
 
 cv(.data, ..., na.rm = FALSE)
 
-freq_table(.data, var, k = NULL, digits = 2)
+freq_table(.data, var, k = NULL, digits = 3)
 
 freq_hist(
   table,

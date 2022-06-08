@@ -1072,12 +1072,12 @@ freq_table <- function(.data, var, k = NULL, digits = 3){
                  ~freq_table(., {{var}}, k = k, digits = digits))
     freqs <-
       res %>%
-      mutate(freqs = map(data, ~.x %>% .[["freqs"]])) |>
-      unnest(freqs) |>
+      mutate(freqs = map(data, ~.x %>% .[["freqs"]])) %>%
+      unnest(freqs) %>%
       remove_cols(data)
     breaks <-
-      res |>
-      mutate(freqs = map(data, ~.x %>% .[["breaks"]])) |>
+      res %>%
+      mutate(freqs = map(data, ~.x %>% .[["breaks"]])) %>%
       remove_cols(data)
     list_breaks <- breaks$freqs
     names(list_breaks) <- breaks$cor_grao
@@ -1141,14 +1141,14 @@ freq_table <- function(.data, var, k = NULL, digits = 3){
       classe[k] <- paste(vi[k], "|---|", vs[k])
       freqs <-
         data.frame(class = classe,
-                   abs_freq = fi) |>
+                   abs_freq = fi) %>%
         mutate(abs_freq_ac = cumsum(abs_freq),
                rel_freq = abs_freq / sum(abs_freq),
                rel_freq_ac = cumsum(rel_freq))
       freqs[nrow(freqs) + 1, ] <- c("Total", sum(freqs[, 2]), sum(freqs[, 2]), 1, 1)
       freqs <-
-        freqs |>
-        as_numeric(2:5) |>
+        freqs %>%
+        as_numeric(2:5) %>%
         round_cols(digits = digits)
 
       breaks <- sort(c(vi, vs))
@@ -1164,22 +1164,22 @@ freq_table <- function(.data, var, k = NULL, digits = 3){
     }
 
     #check the class of the variable
-    class_data <- .data |> pull({{var}}) |> class()
+    class_data <- .data %>% pull({{var}}) %>% class()
     # if variable is discrete or categorical
     if(class_data %in% c("character", "factor", "integer")){
       df <-
         .data %>%
-        count({{var}}) |>
-        as_character(1) |>
+        count({{var}}) %>%
+        as_character(1) %>%
         mutate(abs_freq = n,
                abs_freq_ac = cumsum(abs_freq),
                rel_freq = abs_freq / sum(abs_freq),
-               rel_freq_ac = cumsum(rel_freq)) |>
-        remove_cols(n) |>
-        as.data.frame() |>
+               rel_freq_ac = cumsum(rel_freq)) %>%
+        remove_cols(n) %>%
+        as.data.frame() %>%
         round_cols(digits = digits)
       df[nrow(df) + 1, ] <- c("Total", sum(df[, 2]), sum(df[, 2]), 1, 1)
-      df <- df |> as_numeric(2:5)
+      df <- df %>% as_numeric(2:5)
       return(
         structure(
           list(freqs = df,
@@ -1190,7 +1190,7 @@ freq_table <- function(.data, var, k = NULL, digits = 3){
     }
     # if variable is numeric
     if(class_data == "numeric"){
-      data <- .data |> pull({{var}})
+      data <- .data %>% pull({{var}})
       # apply the function freq_quant in the numeric vector
       freq_quant(data, k = k, digits = digits)
     }
@@ -1787,9 +1787,9 @@ cv_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), cv, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), cv, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1804,9 +1804,9 @@ max_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), max, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), max, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1821,9 +1821,9 @@ means_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1838,9 +1838,9 @@ min_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), min, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), min, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1855,9 +1855,9 @@ n_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(everything(), ~sum(!is.na(.))), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(everything(), ~sum(!is.na(.))), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1872,9 +1872,9 @@ sd_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1889,9 +1889,9 @@ var_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), var, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), var, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1906,9 +1906,9 @@ sem_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 #' @name utils_stats
@@ -1923,9 +1923,9 @@ sum_by <- function(.data,
     na.rm <- TRUE
   }
   dfg <- group_by(.data, ...)
-  dfg |>
-    summarise(across(where(is.numeric), sum, na.rm = na.rm), .groups = "drop") |>
-    select(group_vars(dfg), {{.vars}}) |>
+  dfg %>%
+    summarise(across(where(is.numeric), sum, na.rm = na.rm), .groups = "drop") %>%
+    select(group_vars(dfg), {{.vars}}) %>%
     ungroup()
 }
 

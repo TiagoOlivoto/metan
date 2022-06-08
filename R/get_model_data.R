@@ -1329,13 +1329,13 @@ get_model_data <- function(x,
         bind <-
           lapply(x, function(x){
             x$regression
-          }) |>
+          }) %>%
           rbind_fill_id(.id = "TRAIT")
       } else{
         bind <-
           lapply(x, function(x){
             x$anova
-          }) |>
+          }) %>%
           rbind_fill_id(.id = "TRAIT")
       }
     } else{

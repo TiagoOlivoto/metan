@@ -46,7 +46,7 @@ library(metan)
 inspect(data_ge)
 
 # Create a toy example with messy data
-df <- data_ge2[-c(2, 30, 45, 134), c(1:5)] |> as.data.frame()
+df <- data_ge2[-c(2, 30, 45, 134), c(1:5)] \%>\% as.data.frame()
 df[c(1, 20, 50), 5] <- NA
 df[40, 4] <- "2..814"
 

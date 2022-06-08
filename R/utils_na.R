@@ -102,15 +102,15 @@ has_na <- function(.data){
 #' @export
 prop_na <- function(.data, ...){
   if(missing(...)){
-  df <- .data |> select(everything())
+  df <- .data %>% select(everything())
   } else{
-  df <- .data |> select(...)
+  df <- .data %>% select(...)
   }
   df <- apply(df, 2, function(x){
     round(length(which(is.na(x))) / length(x), digits = 4)
-  }) |>
-    as.data.frame() |>
-    rownames_to_column("variable") |>
+  }) %>%
+    as.data.frame() %>%
+    rownames_to_column("variable") %>%
     set_names(c("variable", "prop"))
   return(df)
 }
