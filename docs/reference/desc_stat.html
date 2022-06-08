@@ -30,14 +30,14 @@ argument stat.
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -170,7 +170,8 @@ min, sd.amo, se, ci ). Other allowed values are <code>"all"</code> to
 show all the statistics, <code>"robust"</code> to show robust statistics,
 <code>"quantile"</code> to show quantile statistics, or chose one (or more) of the
 following:</p><ul><li><p><code>"av.dev"</code>: average deviation.</p></li>
-<li><p><code>"ci"</code>: 95 percent confidence interval of the mean.</p></li>
+<li><p><code>"ci.t"</code>: t-interval (95% confidence interval) of the mean.</p></li>
+<li><p><code>"ci.z"</code>: z-interval (95% confidence interval) of the mean.</p></li>
 <li><p><code>"cv"</code>: coefficient of variation.</p></li>
 <li><p><code>"iqr"</code>: interquartile range.</p></li>
 <li><p><code>"gmean"</code>: geometric mean.</p></li>
@@ -194,6 +195,7 @@ quartile, third quartile, and percentile 97.5\<!-- %, respectively. --></p></li>
 <li><p><code>"skew"</code>: skewness.</p></li>
 <li><p><code>"sum"</code>. the sum of the values.</p></li>
 <li><p><code>"sum.dev"</code>: the sum of the absolute deviations.</p></li>
+<li><p><code>"ave.sq.dev"</code>: the average of the squared deviations.</p></li>
 <li><p><code>"sum.sq.dev"</code>: the sum of the squared deviations.</p></li>
 <li><p><code>"n.valid"</code>: The size of sample with valid number (not NA).</p></li>
 <li><p><code>"var.amo", "var.pop"</code>: the sample and population variance.</p></li>
@@ -243,24 +245,24 @@ factors in rows.</p></li>
 <span class="r-in"><span class="co">#===============================================================#</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">desc_stat</span><span class="op">(</span><span class="va">data_ge2</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 x 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    variable    cv     max    mean  median     min  sd.amo     se      ci</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CD        7.34  18.6    16.0    16      12.9    1.17   0.093<span style="text-decoration: underline;">9</span>  0.186 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> CDED      5.71   0.694   0.586   0.588   0.495  0.033<span style="text-decoration: underline;">4</span> 0.002<span style="text-decoration: underline;">7</span>  0.005<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CL        7.95  34.7    29.0    28.7    23.5    2.31   0.185   0.365 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> CW       25.2   38.5    24.8    24.5    11.1    6.26   0.501   0.99  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ED        5.58  54.9    49.5    49.9    43.5    2.76   0.221   0.437 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> EH       21.2    1.88    1.34    1.41    0.752  0.284  0.022<span style="text-decoration: underline;">8</span>  0.045 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> EL        8.28  17.9    15.2    15.1    11.5    1.26   0.101   0.199 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> EP       10.5    0.660   0.537   0.544   0.386  0.056<span style="text-decoration: underline;">4</span> 0.004<span style="text-decoration: underline;">5</span>  0.008<span style="text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> KW       18.9  251.    173.    175.    106.    32.8    2.62    5.18  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> NKE      14.2  697.    512.    509.    332.    72.6    5.82   11.5   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> NKR      10.7   42      32.2    32      23.2    3.47   0.277   0.548 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> NR       10.2   21.2    16.1    16      12.4    1.64   0.131   0.259 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> PERK      2.17  91.8    87.4    87.5    81.2    1.90   0.152   0.300 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> PH       13.4    3.04    2.48    2.52    1.71   0.334  0.026<span style="text-decoration: underline;">7</span>  0.052<span style="text-decoration: underline;">8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> TKW      13.9  452.    339.    342.    218.    47.1    3.77    7.44  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable    cv     max    mean  median     min  sd.amo     se    ci.t n.valid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CD        7.34  18.6    16.0    16      12.9    1.17   0.093<span style="text-decoration: underline;">9</span>  0.186      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> CDED      5.71   0.694   0.586   0.588   0.495  0.033<span style="text-decoration: underline;">4</span> 0.002<span style="text-decoration: underline;">7</span>  0.005<span style="text-decoration: underline;">3</span>     156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CL        7.95  34.7    29.0    28.7    23.5    2.31   0.185   0.365      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> CW       25.2   38.5    24.8    24.5    11.1    6.26   0.501   0.99       156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ED        5.58  54.9    49.5    49.9    43.5    2.76   0.221   0.437      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> EH       21.2    1.88    1.34    1.41    0.752  0.284  0.022<span style="text-decoration: underline;">8</span>  0.045      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> EL        8.28  17.9    15.2    15.1    11.5    1.26   0.101   0.199      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> EP       10.5    0.660   0.537   0.544   0.386  0.056<span style="text-decoration: underline;">4</span> 0.004<span style="text-decoration: underline;">5</span>  0.008<span style="text-decoration: underline;">9</span>     156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> KW       18.9  251.    173.    175.    106.    32.8    2.62    5.18       156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> NKE      14.2  697.    512.    509.    332.    72.6    5.82   11.5        156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> NKR      10.7   42      32.2    32      23.2    3.47   0.277   0.548      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> NR       10.2   21.2    16.1    16      12.4    1.64   0.131   0.259      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> PERK      2.17  91.8    87.4    87.5    81.2    1.90   0.152   0.300      156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> PH       13.4    3.04    2.48    2.52    1.71   0.334  0.026<span style="text-decoration: underline;">7</span>  0.052<span style="text-decoration: underline;">8</span>     156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> TKW      13.9  452.    339.    342.    218.    47.1    3.77    7.44       156</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">#===============================================================#</span></span>
 <span class="r-in"><span class="co">#Example 2: robust statistics using a numeric vector as input   #</span></span>
@@ -268,7 +270,7 @@ factors in rows.</p></li>
 <span class="r-in"><span class="co">#===============================================================#</span></span>
 <span class="r-in"><span class="va">vect</span> <span class="op">&lt;-</span> <span class="va">data_ge2</span><span class="op">$</span><span class="va">TKW</span></span>
 <span class="r-in"><span class="fu">desc_stat</span><span class="op">(</span><span class="va">vect</span>, stats <span class="op">=</span> <span class="st">"robust"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 x 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   variable     n median   iqr    ps</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> val        156   342.  57.8  42.8</span>
@@ -280,7 +282,7 @@ factors in rows.</p></li>
 <span class="r-in"><span class="fu">desc_stat</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">13</span>, <span class="fl">19</span>, <span class="fl">21</span>, <span class="fl">8</span>, <span class="cn">NA</span>, <span class="fl">23</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
 <span class="r-in">          stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'mean, se, cv, n, n.valid'</span><span class="op">)</span>,</span>
 <span class="r-in">          na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 x 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   variable  mean    se    cv     n n.valid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> val         16  2.39  36.7     8       6</span>
@@ -294,24 +296,24 @@ factors in rows.</p></li>
 <span class="r-in">            <span class="va">EP</span>, <span class="va">EL</span>, <span class="va">EH</span>, <span class="va">ED</span>, <span class="va">PH</span>, <span class="va">CD</span>,</span>
 <span class="r-in">            by <span class="op">=</span> <span class="va">GEN</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">stats</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 78 x 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   variable    cv    max   mean median    min sd.amo     se     ci</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    CD        6.44 17.9   15.7   15.7   14.5   1.01   0.292  0.643 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> H1    ED        2.66 53.3   51.2   50.8   49.2   1.36   0.393  0.864 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> H1    EH       19.5   1.88   1.50   1.56   1.05  0.294  0.084<span style="text-decoration: underline;">8</span> 0.187 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> H1    EL        6.27 16.9   15.1   15.1   13.7   0.947  0.273  0.602 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> H1    EP        9.91  0.658  0.570  0.574  0.492 0.056<span style="text-decoration: underline;">5</span> 0.016<span style="text-decoration: underline;">3</span> 0.035<span style="text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> H1    PH       11.7   3.00   2.62   2.70   2.11  0.307  0.088<span style="text-decoration: underline;">5</span> 0.195 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> H10   CD        6.32 17.5   15.9   15.7   14.4   1.00   0.290  0.638 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H10   ED        7.70 54.1   48.4   47.7   43.7   3.73   1.08   2.37  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H10   EH       23.2   1.71   1.26   1.25   0.888 0.293  0.084<span style="text-decoration: underline;">5</span> 0.186 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H10   EL        6.83 16.7   15.1   14.9   13.6   1.03   0.298  0.656 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 68 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 78 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   variable    cv    max   mean median    min sd.amo     se   ci.t n.valid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    CD        6.44 17.9   15.7   15.7   14.5   1.01   0.292  0.643       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> H1    ED        2.66 53.3   51.2   50.8   49.2   1.36   0.393  0.864       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> H1    EH       19.5   1.88   1.50   1.56   1.05  0.294  0.084<span style="text-decoration: underline;">8</span> 0.187       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> H1    EL        6.27 16.9   15.1   15.1   13.7   0.947  0.273  0.602       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> H1    EP        9.91  0.658  0.570  0.574  0.492 0.056<span style="text-decoration: underline;">5</span> 0.016<span style="text-decoration: underline;">3</span> 0.035<span style="text-decoration: underline;">9</span>      12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> H1    PH       11.7   3.00   2.62   2.70   2.11  0.307  0.088<span style="text-decoration: underline;">5</span> 0.195       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> H10   CD        6.32 17.5   15.9   15.7   14.4   1.00   0.290  0.638       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H10   ED        7.70 54.1   48.4   47.7   43.7   3.73   1.08   2.37        12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H10   EH       23.2   1.71   1.26   1.25   0.888 0.293  0.084<span style="text-decoration: underline;">5</span> 0.186       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H10   EL        6.83 16.7   15.1   14.9   13.6   1.03   0.298  0.656       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 68 more rows</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># To get a 'wide' format with the maximum values for all variables</span></span>
 <span class="r-in"><span class="fu">desc_wider</span><span class="op">(</span><span class="va">stats</span>, <span class="va">max</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    GEN      CD    ED    EH    EL    EP    PH</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1     17.9  53.3  1.88  16.9 0.658  3.00</span>
@@ -337,7 +339,7 @@ factors in rows.</p></li>
 <span class="r-in"><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ENV</span>, <span class="va">GEN</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">desc_stat</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 780 x 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 780 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    ENV   GEN   variable    cv     max    mean  median     min  sd.amo      se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> A1    H1    CD        6.91  16.4    15.7    16.3    14.5    1.09    0.627 </span>
@@ -350,7 +352,7 @@ factors in rows.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> A1    H1    EP        5.34   0.658   0.626   0.628   0.591  0.033<span style="text-decoration: underline;">4</span>  0.019<span style="text-decoration: underline;">3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> A1    H1    KW        8.31 217.    203.    208.    184.    16.8     9.72  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> A1    H1    NKE       6.80 565.    527.    521.    494.    35.8    20.7   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 770 more rows, and 1 more variable: ci &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 770 more rows, and 2 more variables: ci.t &lt;dbl&gt;, n.valid &lt;dbl&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
@@ -364,7 +366,7 @@ factors in rows.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

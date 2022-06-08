@@ -38,14 +38,14 @@ of narrow adaptations."><meta property="og:image" content="https://tiagoolivoto.
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -155,6 +155,7 @@ of narrow adaptations.</p>
   second <span class="op">=</span> <span class="st">"PC2"</span>,
   repel <span class="op">=</span> <span class="cn">TRUE</span>,
   repulsion <span class="op">=</span> <span class="fl">1</span>,
+  max_overlaps <span class="op">=</span> <span class="fl">20</span>,
   polygon <span class="op">=</span> <span class="cn">FALSE</span>,
   title <span class="op">=</span> <span class="cn">TRUE</span>,
   plot_theme <span class="op">=</span> <span class="fu"><a href="themes.html">theme_metan</a></span><span class="op">(</span><span class="op">)</span>,
@@ -180,17 +181,20 @@ of narrow adaptations.</p>
   col.line <span class="op">=</span> <span class="st">"black"</span>,
   col.gen <span class="op">=</span> <span class="st">"blue"</span>,
   col.env <span class="op">=</span> <span class="st">"forestgreen"</span>,
-  col.alpha.gen <span class="op">=</span> <span class="cn">NA</span>,
-  col.alpha.env <span class="op">=</span> <span class="cn">NA</span>,
+  col.alpha.gen <span class="op">=</span> <span class="fl">1</span>,
+  col.alpha.env <span class="op">=</span> <span class="fl">1</span>,
   col.segm.gen <span class="op">=</span> <span class="fu"><a href="themes.html">transparent_color</a></span><span class="op">(</span><span class="op">)</span>,
   col.segm.env <span class="op">=</span> <span class="st">"forestgreen"</span>,
   highlight <span class="op">=</span> <span class="cn">NULL</span>,
   col.highlight <span class="op">=</span> <span class="st">"red"</span>,
+  col.alpha.highlight <span class="op">=</span> <span class="fl">1</span>,
+  size.tex.highlight <span class="op">=</span> <span class="fl">5.5</span>,
+  size.shape.highlight <span class="op">=</span> <span class="fl">3.2</span>,
   leg.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Env"</span>, <span class="st">"Gen"</span><span class="op">)</span>,
   line.type <span class="op">=</span> <span class="st">"solid"</span>,
   line.alpha <span class="op">=</span> <span class="fl">0.9</span>,
-  resolution <span class="op">=</span> <span class="fl">300</span>,
-  file.type <span class="op">=</span> <span class="st">"pdf"</span>,
+  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,
+  file.type <span class="op">=</span> <span class="st">"png"</span>,
   export <span class="op">=</span> <span class="cn">FALSE</span>,
   file.name <span class="op">=</span> <span class="cn">NULL</span>,
   width <span class="op">=</span> <span class="fl">8</span>,
@@ -229,6 +233,8 @@ other and away from the data points.</p></dd>
 <dt>repulsion</dt>
 <dd><p>Force of repulsion between overlapping text labels. Defaults
 to <code>1</code>.</p></dd>
+<dt>max_overlaps</dt>
+<dd><p>Exclude text labels that overlap too many things. Defaults to 20.</p></dd>
 <dt>polygon</dt>
 <dd><p>Logical argument. If <code>TRUE</code>, a polygon is drawn when
 <code>type = 2</code>.</p></dd>
@@ -301,7 +307,16 @@ respectively. Valid arguments for plots with <code>type = 1</code> or <code>type
 to <code>NULL</code>.</p></dd>
 <dt>col.highlight</dt>
 <dd><p>The color for shape/labels when a value is provided in
-<code>highlight.</code></p></dd>
+<code>highlight.</code> Defaults to <code>"red"</code>.</p></dd>
+<dt>col.alpha.highlight</dt>
+<dd><p>The alpha value for the color of the highlighted
+genotypes. Defaults to <code>1</code>.</p></dd>
+<dt>size.tex.highlight</dt>
+<dd><p>The size of the text for the highlighted genotypes.
+Defaults to <code>5.5</code>.</p></dd>
+<dt>size.shape.highlight</dt>
+<dd><p>The size of the shape for the highlighted
+genotypes. Defaults to <code>3.2</code>.</p></dd>
 <dt>leg.lab</dt>
 <dd><p>The labs of legend. Default is <code>Gen</code> and <code>Env</code>.</p></dd>
 <dt>line.type</dt>
@@ -314,14 +329,13 @@ to create the appearance of partial or full transparency. Default is
 <code>0.4</code>. Values must be between '0' (full transparency) to '1' (full
 color).</p></dd>
 <dt>resolution</dt>
-<dd><p>The resolution of the plot. Parameter valid if
-<code>file.type = 'tiff'</code> is used. Default is <code>300</code> (300 dpi)</p></dd>
+<dd><p>deprecated</p></dd>
 <dt>file.type</dt>
-<dd><p>The type of file to be exported. Valid parameter if
-<code>export = T|TRUE</code>.  Default is <code>'pdf'</code>. The graphic can also be
-exported in <code>*.tiff</code> format by declaring <code>file.type = 'tiff'</code>.</p></dd>
+<dd><p>The type of file to be exported. Currently recognises the extensions
+eps/ps, tex, pdf, jpeg, tiff, png (default), bmp, svg and wmf (windows only).</p></dd>
 <dt>export</dt>
-<dd><p>Export (or not) the plot. Default is <code>FALSE</code>.</p></dd>
+<dd><p>Export (or not) the plot. Default is <code>FALSE</code>. If <code>TRUE</code>, calls the
+<code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code> function.</p></dd>
 <dt>file.name</dt>
 <dd><p>The name of the file for exportation, default is
 <code>NULL</code>, i.e. the files are automatically named.</p></dd>
@@ -343,7 +357,7 @@ exported in <code>*.tiff</code> format by declaring <code>file.type = 'tiff'</co
     <p>Olivoto, T., A.D.C. L\'ucio, J.A.G. da silva, V.S. Marchioro, V.Q. de
 Souza, and E. Jost. 2019. Mean performance and stability in multi-environment
 trials I: Combining features of AMMI and BLUP techniques. Agron. J.
-111:2949-2960. doi: <a href="https://doi.org/10.2134/agronj2019.03.0220" class="external-link">10.2134/agronj2019.03.0220</a></p>
+111:2949-2960. <a href="https://doi.org/10.2134/agronj2019.03.0220" class="external-link">doi:10.2134/agronj2019.03.0220</a></p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -443,7 +457,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># WAASB index</span></span>
 <span class="r-in"><span class="va">waasb_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="waasb.html">waasb</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait GY |============================================| 100% 00:00:01 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Method: REML/BLUP</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Random effects: GEN, GEN:ENV</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fixed effects: ENV, REP(ENV)</span>
@@ -476,7 +490,7 @@ trials I: Combining features of AMMI and BLUP techniques. Agron. J.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

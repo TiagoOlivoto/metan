@@ -39,14 +39,14 @@
     
     <a class="navbar-brand me-2" href="index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item">
   <a class="nav-link" href="index.html">
@@ -175,7 +175,7 @@
 <div class="section level2">
 <h2 id="cheatsheet">Cheatsheet<a class="anchor" aria-label="anchor" href="#cheatsheet"></a>
 </h2>
-<p><a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf" class="external-link"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/reference/figures/metan_cheat_sheet.png" width="935" height="640"></a></p>
+<p><a href="https://github.com/TiagoOlivoto/metan/raw/master/metan_cheat_sheet.pdf" class="external-link"><img src="https://raw.githubusercontent.com/TiagoOlivoto/metan/master/man/figures/metan_cheat_sheet.png" width="935" height="640"></a></p>
 </div>
 </div>
 <div class="section level1">
@@ -184,16 +184,15 @@
 <p><code>metan</code> offers a set of functions that can be used to manipulate, summarize, analyze and plot typical multi-environment trial data. Maybe, one of the first functions users should use would be <a href="https://tiagoolivoto.github.io/metan/reference/inspect.html"><code>inspect()</code></a>. Here, we will inspect the example dataset <code>data_ge</code> that contains data on two variables assessed in 10 genotypes growing in 14 environments.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span>
-
 <span class="fu"><a href="reference/inspect.html">inspect</a></span><span class="op">(</span><span class="va">data_ge</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># # A tibble: 5 x 9</span>
-<span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier</span>
-<span class="co">#   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co"># 1 ENV      factor  No      14         420 NA     NA    NA         NA</span>
-<span class="co"># 2 GEN      factor  No      10         420 NA     NA    NA         NA</span>
-<span class="co"># 3 REP      factor  No      3          420 NA     NA    NA         NA</span>
-<span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0</span>
-<span class="co"># 5 HM       numeric No      -          420 38     48    58          0</span></code></pre></div>
+<span class="co"># # A tibble: 5 × 10</span>
+<span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier Text </span>
+<span class="co">#   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;</span>
+<span class="co"># 1 ENV      factor  No      14         420 NA     NA    NA         NA NA   </span>
+<span class="co"># 2 GEN      factor  No      10         420 NA     NA    NA         NA NA   </span>
+<span class="co"># 3 REP      factor  No      3          420 NA     NA    NA         NA NA   </span>
+<span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0 NA   </span>
+<span class="co"># 5 HM       numeric No      -          420 38     48    58          0 NA</span></code></pre></div>
 <p><img src="reference/figures/README-INSPECT-1.png" style="display: block; margin: auto;"></p>
 <p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code>find_outliers()</code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na.html">remove_rows_na()</a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html">replace_zero()</a> to replace 0’s with <code>NA</code>, <a href="https://tiagoolivoto.github.io/metan/reference/utils_as.html">as_factor()</a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>find_text_in_num()</code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> to tidy up strings.</p>
 </div>
@@ -203,24 +202,24 @@
 <p><code>metan</code> provides <a href="https://tiagoolivoto.github.io/metan/reference/utils_stats.html">a set of functions</a> to compute descriptive statistics. The easiest way to do that is by using <a href="https://tiagoolivoto.github.io/metan/reference/desc_stat.html"><code>desc_stat()</code></a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/desc_stat.html">desc_stat</a></span><span class="op">(</span><span class="va">data_ge2</span><span class="op">)</span>
-<span class="co"># # A tibble: 15 x 9</span>
-<span class="co">#    variable    cv     max    mean  median     min  sd.amo     se      ci</span>
-<span class="co">#    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#  1 CD        7.34  18.6    16.0    16      12.9    1.17   0.0939  0.186 </span>
-<span class="co">#  2 CDED      5.71   0.694   0.586   0.588   0.495  0.0334 0.0027  0.0053</span>
-<span class="co">#  3 CL        7.95  34.7    29.0    28.7    23.5    2.31   0.185   0.365 </span>
-<span class="co">#  4 CW       25.2   38.5    24.8    24.5    11.1    6.26   0.501   0.99  </span>
-<span class="co">#  5 ED        5.58  54.9    49.5    49.9    43.5    2.76   0.221   0.437 </span>
-<span class="co">#  6 EH       21.2    1.88    1.34    1.41    0.752  0.284  0.0228  0.045 </span>
-<span class="co">#  7 EL        8.28  17.9    15.2    15.1    11.5    1.26   0.101   0.199 </span>
-<span class="co">#  8 EP       10.5    0.660   0.537   0.544   0.386  0.0564 0.0045  0.0089</span>
-<span class="co">#  9 KW       18.9  251.    173.    175.    106.    32.8    2.62    5.18  </span>
-<span class="co"># 10 NKE      14.2  697.    512.    509.    332.    72.6    5.82   11.5   </span>
-<span class="co"># 11 NKR      10.7   42      32.2    32      23.2    3.47   0.277   0.548 </span>
-<span class="co"># 12 NR       10.2   21.2    16.1    16      12.4    1.64   0.131   0.259 </span>
-<span class="co"># 13 PERK      2.17  91.8    87.4    87.5    81.2    1.90   0.152   0.300 </span>
-<span class="co"># 14 PH       13.4    3.04    2.48    2.52    1.71   0.334  0.0267  0.0528</span>
-<span class="co"># 15 TKW      13.9  452.    339.    342.    218.    47.1    3.77    7.44</span></code></pre></div>
+<span class="co"># # A tibble: 15 × 10</span>
+<span class="co">#    variable    cv     max    mean  median     min  sd.amo     se    ci.t n.valid</span>
+<span class="co">#    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#  1 CD        7.34  18.6    16.0    16      12.9    1.17   0.0939  0.186      156</span>
+<span class="co">#  2 CDED      5.71   0.694   0.586   0.588   0.495  0.0334 0.0027  0.0053     156</span>
+<span class="co">#  3 CL        7.95  34.7    29.0    28.7    23.5    2.31   0.185   0.365      156</span>
+<span class="co">#  4 CW       25.2   38.5    24.8    24.5    11.1    6.26   0.501   0.99       156</span>
+<span class="co">#  5 ED        5.58  54.9    49.5    49.9    43.5    2.76   0.221   0.437      156</span>
+<span class="co">#  6 EH       21.2    1.88    1.34    1.41    0.752  0.284  0.0228  0.045      156</span>
+<span class="co">#  7 EL        8.28  17.9    15.2    15.1    11.5    1.26   0.101   0.199      156</span>
+<span class="co">#  8 EP       10.5    0.660   0.537   0.544   0.386  0.0564 0.0045  0.0089     156</span>
+<span class="co">#  9 KW       18.9  251.    173.    175.    106.    32.8    2.62    5.18       156</span>
+<span class="co"># 10 NKE      14.2  697.    512.    509.    332.    72.6    5.82   11.5        156</span>
+<span class="co"># 11 NKR      10.7   42      32.2    32      23.2    3.47   0.277   0.548      156</span>
+<span class="co"># 12 NR       10.2   21.2    16.1    16      12.4    1.64   0.131   0.259      156</span>
+<span class="co"># 13 PERK      2.17  91.8    87.4    87.5    81.2    1.90   0.152   0.300      156</span>
+<span class="co"># 14 PH       13.4    3.04    2.48    2.52    1.71   0.334  0.0267  0.0528     156</span>
+<span class="co"># 15 TKW      13.9  452.    339.    342.    218.    47.1    3.77    7.44       156</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="ammi-model">AMMI model<a class="anchor" aria-label="anchor" href="#ammi-model"></a>
@@ -240,7 +239,7 @@
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">model</span>, <span class="st">"ipca_pval"</span><span class="op">)</span>
 <span class="co"># Class of the model: performs_ammi</span>
 <span class="co"># Variable extracted: Pr(&gt;F)</span>
-<span class="co"># # A tibble: 9 x 4</span>
+<span class="co"># # A tibble: 9 × 4</span>
 <span class="co">#   PC       DF     GY     HM</span>
 <span class="co">#   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span class="co"># 1 PC1      21 0      0     </span>
@@ -260,15 +259,15 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">model</span>,
-                 type <span class="op">=</span> <span class="fl">2</span>,
-                 polygon <span class="op">=</span> <span class="cn">TRUE</span>,
-                 col.env <span class="op">=</span> <span class="st">"gray70"</span>,
-                 col.segm.env <span class="op">=</span> <span class="st">"gray70"</span>,
-                 col.gen <span class="op">=</span> <span class="fu"><a href="reference/themes.html">transparent_color</a></span><span class="op">(</span><span class="op">)</span>,
-                 highlight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"G1"</span>, <span class="st">"G2"</span><span class="op">)</span>,
-                 axis.expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
-<span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">model</span>, type <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+                 type <span class="op">=</span> <span class="fl">2</span>, <span class="co"># AMMI 2 biplot</span>
+                 polygon <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># show a polygon</span>
+                 highlight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"G4"</span>, <span class="st">"G5"</span>, <span class="st">"G6"</span><span class="op">)</span>, <span class="co">#highlight genotypes</span>
+                 col.alpha.env <span class="op">=</span> <span class="fl">0.5</span>, <span class="co"># alpha for environments</span>
+                 col.alpha.gen <span class="op">=</span> <span class="fl">0</span>, <span class="co"># remove the other genotypes</span>
+                 col.env <span class="op">=</span> <span class="st">"gray"</span>, <span class="co"># color for environment point</span>
+                 col.segm.env <span class="op">=</span> <span class="st">"gray"</span>, <span class="co"># color for environment segment</span>
+                 plot_theme <span class="op">=</span> <span class="fu"><a href="reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># theme</span>
+<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-AMMI-1.png"><!-- --></p>
 </div>
 </div>
@@ -280,14 +279,15 @@
 <code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span>
 <span class="va">model3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
-<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>
-<span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model2</span>, type <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-<span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model2</span>,
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model2</span>, type <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model2</span>,
           type <span class="op">=</span> <span class="fl">2</span>,
           col.gen <span class="op">=</span> <span class="st">"black"</span>,
           col.env <span class="op">=</span> <span class="st">"gray70"</span>,
-          axis.expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
-<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">e</span>, <span class="va">f</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+          axis.expand <span class="op">=</span> <span class="fl">1.5</span>,
+          plot_theme <span class="op">=</span> <span class="fu"><a href="reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-GGE-1.png"><!-- --></p>
 </div>
 <div class="section level1">
@@ -319,7 +319,7 @@
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">model2</span>, what <span class="op">=</span> <span class="st">"vcomp"</span><span class="op">)</span>
 <span class="co"># Class of the model: waasb</span>
 <span class="co"># Variable extracted: vcomp</span>
-<span class="co"># # A tibble: 3 x 3</span>
+<span class="co"># # A tibble: 3 × 3</span>
 <span class="co">#   Group        GY    HM</span>
 <span class="co">#   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co"># 1 GEN      0.0280 0.490</span>
@@ -330,12 +330,12 @@
 </h2>
 <p>To produce a plot with the predicted means, use the function <a href="https://tiagoolivoto.github.io/metan/reference/plot_blup.html"><code>plot_blup()</code></a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span>
-<span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">model2</span>,
+<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">model2</span>,
                prob <span class="op">=</span> <span class="fl">0.2</span>,
                col.shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gray20"</span>, <span class="st">"gray80"</span><span class="op">)</span>,
                invert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"g"</span>, <span class="st">"h"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-BLUP-1.png"><!-- --></p>
 </div>
 </div>
@@ -349,7 +349,7 @@
 <span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
 <span class="co"># Class of the model: ge_stats</span>
 <span class="co"># Variable extracted: stats</span>
-<span class="co"># # A tibble: 10 x 44</span>
+<span class="co"># # A tibble: 10 × 44</span>
 <span class="co">#    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span class="co">#  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 </span>
@@ -362,7 +362,7 @@
 <span class="co">#  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 </span>
 <span class="co">#  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 </span>
 <span class="co"># 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 </span>
-<span class="co"># # ... with 32 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASTAB &lt;dbl&gt;,</span>
+<span class="co"># # … with 32 more variables: bij &lt;dbl&gt;, Sij &lt;dbl&gt;, R2 &lt;dbl&gt;, ASTAB &lt;dbl&gt;,</span>
 <span class="co"># #   ASI &lt;dbl&gt;, ASV &lt;dbl&gt;, AVAMGE &lt;dbl&gt;, DA &lt;dbl&gt;, DZ &lt;dbl&gt;, EV &lt;dbl&gt;, FA &lt;dbl&gt;,</span>
 <span class="co"># #   MASI &lt;dbl&gt;, MASV &lt;dbl&gt;, SIPC &lt;dbl&gt;, ZA &lt;dbl&gt;, WAAS &lt;dbl&gt;, WAASB &lt;dbl&gt;,</span>
 <span class="co"># #   HMGV &lt;dbl&gt;, RPGV &lt;dbl&gt;, HMRPGV &lt;dbl&gt;, Pi_a &lt;dbl&gt;, Pi_f &lt;dbl&gt;, Pi_u &lt;dbl&gt;,</span>
@@ -462,7 +462,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>

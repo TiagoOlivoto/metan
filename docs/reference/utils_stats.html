@@ -8,15 +8,19 @@ means_by() For computing arithmetic means.
 min_by() For compuing minimum values.
 n_by() For getting the length.
 sd_by() For computing sample standard deviation.
+var_by() For computing sample variance.
 sem_by() For computing standard error of the mean.
 
 Useful functions for descriptive statistics. All of them work
 naturally with \%&amp;gt;\%, handle grouped data and multiple variables (all
 numeric variables from .data by default).
 av_dev() computes the average absolute deviation.
-ci_mean() computes the confidence interval for the mean.
+ci_mean_t() computes the t-interval for the mean.
+ci_mean_z() computes the z-interval for the mean.
 cv() computes the coefficient of variation.
-freq_table() Computes frequency fable. Handles grouped data.
+freq_table() Computes a frequency table for either numeric and
+categorical/discrete data. For numeric data, it is possible to define the
+number of classes to be generated.
 hmean(), gmean() computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the nth root of n
@@ -32,6 +36,7 @@ sd_amo(), sd_pop() Computes sample and populational standard
 deviation, respectively.
 sem() computes the standard error of the mean.
 skew() computes the skewness like used in SAS and SPSS.
+ave_dev() computes the average of the absolute deviations.
 sum_dev() computes the sum of the absolute deviations.
 sum_sq() computes the sum of the squared values.
 sum_sq_dev() computes the sum of the squared deviations.
@@ -49,15 +54,19 @@ means_by() For computing arithmetic means.
 min_by() For compuing minimum values.
 n_by() For getting the length.
 sd_by() For computing sample standard deviation.
+var_by() For computing sample variance.
 sem_by() For computing standard error of the mean.
 
 Useful functions for descriptive statistics. All of them work
 naturally with \%&amp;gt;\%, handle grouped data and multiple variables (all
 numeric variables from .data by default).
 av_dev() computes the average absolute deviation.
-ci_mean() computes the confidence interval for the mean.
+ci_mean_t() computes the t-interval for the mean.
+ci_mean_z() computes the z-interval for the mean.
 cv() computes the coefficient of variation.
-freq_table() Computes frequency fable. Handles grouped data.
+freq_table() Computes a frequency table for either numeric and
+categorical/discrete data. For numeric data, it is possible to define the
+number of classes to be generated.
 hmean(), gmean() computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the nth root of n
@@ -73,6 +82,7 @@ sd_amo(), sd_pop() Computes sample and populational standard
 deviation, respectively.
 sem() computes the standard error of the mean.
 skew() computes the skewness like used in SAS and SPSS.
+ave_dev() computes the average of the absolute deviations.
 sum_dev() computes the sum of the absolute deviations.
 sum_sq() computes the sum of the squared values.
 sum_sq_dev() computes the sum of the squared deviations.
@@ -98,14 +108,14 @@ used to compute quickly all these statistics at once."><meta property="og:image"
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -198,14 +208,18 @@ a factor or combination of factors quickly.</strong></p><ul><li><p><code>cv_by()
 <li><p><code>min_by()</code> For compuing minimum values.</p></li>
 <li><p><code>n_by()</code> For getting the length.</p></li>
 <li><p><code>sd_by()</code> For computing sample standard deviation.</p></li>
+<li><p><code>var_by()</code> For computing sample variance.</p></li>
 <li><p><code>sem_by()</code> For computing standard error of the mean.</p></li>
 </ul></li>
 <li><p><strong>Useful functions for descriptive statistics. All of them work
 naturally with <code>\%&gt;\%</code>, handle grouped data and multiple variables (all
 numeric variables from <code>.data</code> by default).</strong></p><ul><li><p><code>av_dev()</code> computes the average absolute deviation.</p></li>
-<li><p><code>ci_mean()</code> computes the confidence interval for the mean.</p></li>
+<li><p><code>ci_mean_t()</code> computes the t-interval for the mean.</p></li>
+<li><p><code>ci_mean_z()</code> computes the z-interval for the mean.</p></li>
 <li><p><code>cv()</code> computes the coefficient of variation.</p></li>
-<li><p><code>freq_table()</code> Computes frequency fable. Handles grouped data.</p></li>
+<li><p><code>freq_table()</code> Computes a frequency table for either numeric and
+categorical/discrete data. For numeric data, it is possible to define the
+number of classes to be generated.</p></li>
 <li><p><code>hmean(), gmean()</code> computes the harmonic and geometric means,
 respectively. The harmonic mean is the reciprocal of the arithmetic mean of
 the reciprocals. The geometric mean is the <em>n</em>th root of <em>n</em>
@@ -221,6 +235,7 @@ each variable and a column with the the mean/sum for each row of the data.</p></
 deviation, respectively.</p></li>
 <li><p><code>sem()</code> computes the standard error of the mean.</p></li>
 <li><p><code>skew()</code> computes the skewness like used in SAS and SPSS.</p></li>
+<li><p><code>ave_dev()</code> computes the average of the absolute deviations.</p></li>
 <li><p><code>sum_dev()</code> computes the sum of the absolute deviations.</p></li>
 <li><p><code>sum_sq()</code> computes the sum of the squared values.</p></li>
 <li><p><code>sum_sq_dev()</code> computes the sum of the squared deviations.</p></li>
@@ -234,11 +249,22 @@ used to compute quickly all these statistics at once.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">av_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">ci_mean</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
+<span class="fu">ci_mean_t</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
+
+<span class="fu">ci_mean_z</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
 
 <span class="fu">cv</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">freq_table</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span>
+<span class="fu">freq_table</span><span class="op">(</span><span class="va">.data</span>, <span class="va">var</span>, k <span class="op">=</span> <span class="cn">NULL</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+
+<span class="fu">freq_hist</span><span class="op">(</span>
+  <span class="va">table</span>,
+  xlab <span class="op">=</span> <span class="cn">NULL</span>,
+  ylab <span class="op">=</span> <span class="cn">NULL</span>,
+  fill <span class="op">=</span> <span class="st">"gray"</span>,
+  color <span class="op">=</span> <span class="st">"black"</span>,
+  ygrid <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
 
 <span class="fu">hmean</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
@@ -270,6 +296,8 @@ used to compute quickly all these statistics at once.</p>
 
 <span class="fu">sum_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
+<span class="fu">ave_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
 <span class="fu">sum_sq_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="fu">sum_sq</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -278,21 +306,23 @@ used to compute quickly all these statistics at once.</p>
 
 <span class="fu">var_amo</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">cv_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">cv_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">max_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">max_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">means_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">means_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">min_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">min_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">n_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">n_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">sd_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">sd_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">sem_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">var_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">sum_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu">sem_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="fu">sum_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -316,14 +346,64 @@ warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
 <dt>level</dt>
 <dd><p>The confidence level for the confidence interval of the mean.
 Defaults to 0.95.</p></dd>
+<dt>var</dt>
+<dd><p>The variable to compute the frequency table. See <code>Details</code> for
+more details.</p></dd>
+<dt>k</dt>
+<dd><p>The number of classes to be created. See <code>Details</code> for
+more details.</p></dd>
+<dt>digits</dt>
+<dd><p>The number of significant figures to show. Defaults to 2.</p></dd>
+<dt>table</dt>
+<dd><p>A frequency table computed with <code>freq_table()</code>.</p></dd>
+<dt>xlab, ylab</dt>
+<dd><p>The <code>x</code> and <code>y</code> labels.</p></dd>
+<dt>fill, color</dt>
+<dd><p>The color to fill the bars and color the border of the bar,
+respectively.</p></dd>
+<dt>ygrid</dt>
+<dd><p>Shows a grid line on the <code>y</code> axis? Defaults to <code>TRUE</code>.
+freq_hist &lt;- function(table,</p></dd>
+<dt>.vars</dt>
+<dd><p>Used to select variables in the <code>*_by()</code> functions. One or more
+unquoted expressions separated by commas. Variable names can be used as if
+they were positions in the data frame, so expressions like <code>x:y</code> can be
+used to select a range of variables. Defaults to <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <ul><li><p>Functions <code>*_by()</code> returns a tbl_df with the computed statistics by
+    <ul><li><p>Functions <code>*_by()</code> returns a <code>tbl_df</code> with the computed statistics by
 each level of the factor(s) declared in <code>...</code>.</p></li>
-<li><p>All other functions return a nammed integer if the input is a data frame
+<li><p>All other functions return a named integer if the input is a data frame
 or a numeric value if the input is a numeric vector.</p></li>
+<li><p><code>freq_table()</code> Returns a list with the frequency table and the breaks used
+for class definition. These breaks can be used to construct an histogram of
+the variable.</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The function <code>freq_table()</code> computes a frequency table for either
+numerical or categorical variables. If a variable is categorical or
+discrete (integer values), the number of classes will be the number of
+levels that the variable contains.</p>
+<p>If a variable (say, data) is continuous, the number of classes (k) is given by
+the square root of the number of samples (n) if <code>n =&lt; 100</code> or <code>5 * log10(n)</code>
+if <code>n &gt; 100</code>.</p>
+<p>The amplitude (<em></em>\(A\)) of the data is used to define the size of the class (<em></em>\(c\)),
+given by</p>
+<p><script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
+
+\[c = \frac{A}{n - 1}\]</p>
+<p>The lower limit of the first class (LL1) is given by min(data) - c / 2. The
+upper limit is given by LL1 + c. The limits of the other classes are given in
+the same way. After the creation of the classes, the absolute and relative
+frequencies within each class are computed.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Ferreira, Daniel Furtado. 2009. Estatistica Basica. 2 ed. Vicosa,
+MG: UFLA.</p>
+    </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
     <p>Tiago Olivoto <a href="mailto:tiagoolivoto@gmail.com">tiagoolivoto@gmail.com</a></p>
@@ -335,7 +415,7 @@ or a numeric value if the input is a numeric vector.</p></li>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># means of all numeric variables by ENV</span></span>
 <span class="r-in"><span class="fu">means_by</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">GEN</span>, <span class="va">ENV</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 52 x 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 52 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   ENV      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    A1     2.72 1.68  0.626  15.4  51.1  28.1  15.7  23.5  203.  16.3  33.3</span>
@@ -348,13 +428,13 @@ or a numeric value if the input is a numeric vector.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H10   A4     2.39 1.43  0.600  14.9  50.0  30.7  15.3  28.0  183.  16.4  31.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H11   A1     2.75 1.58  0.574  16.6  48.9  29.0  17.2  23.6  188.  15.2  34.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H11   A2     2.15 1.02  0.475  15.1  47.3  27.2  15.7  24.3  164.  13.7  35  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 42 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 42 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   NKE &lt;dbl&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Coefficient of variation for all numeric variables</span></span>
 <span class="r-in"><span class="co"># by GEN and ENV</span></span>
 <span class="r-in"><span class="fu">cv_by</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">GEN</span>, <span class="va">ENV</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 52 x 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 52 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   ENV       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    A1     4.93   5.36  5.34  7.15 1.98   1.48  6.91  7.93  8.31  5.12</span>
@@ -367,8 +447,8 @@ or a numeric value if the input is a numeric vector.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H10   A4     4.38   3.53  8.82  3.11 3.42   3.89  3.09  5.02  6.07  2.44</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H11   A1     0.988  5.01  4.44  4.94 4.95   5.27  4.72 12.3  13.9  10.5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H11   A2     1.43   3.00  4.00  4.84 0.762  2.48  5.02 15.8   5.37  3.36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 42 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 42 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;, PERK &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Skewness of a numeric vector</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
@@ -381,20 +461,20 @@ or a numeric value if the input is a numeric vector.</p></li>
 <span class="r-in"><span class="co"># Grouped by levels of ENV</span></span>
 <span class="r-in"><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ENV</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">ci_mean</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 x 16</span></span>
+<span class="r-in">  <span class="fu">ci_mean_t</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 16</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ENV       PH     EH     EP    EL    ED    CL    CD    CW    KW    NR   NKR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> A1    0.040<span style="text-decoration: underline;">1</span> 0.041<span style="text-decoration: underline;">5</span> 0.014<span style="text-decoration: underline;">2</span> 0.382 0.598 0.725 0.352  1.83  6.31 0.638 0.948</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> A2    0.129  0.113  0.020<span style="text-decoration: underline;">6</span> 0.442 0.882 0.819 0.436  2.24 11.9  0.467 1.06 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> A3    0.072<span style="text-decoration: underline;">4</span> 0.062<span style="text-decoration: underline;">5</span> 0.015<span style="text-decoration: underline;">3</span> 0.326 0.897 0.781 0.307  1.66  7.03 0.498 1.01 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> A4    0.053<span style="text-decoration: underline;">9</span> 0.048<span style="text-decoration: underline;">3</span> 0.012<span style="text-decoration: underline;">8</span> 0.423 0.700 0.579 0.394  1.48  8.70 0.433 1.20 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># standard error of the mean</span></span>
 <span class="r-in"><span class="co"># Variable PH and EH</span></span>
 <span class="r-in"><span class="fu">sem</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">PH</span>, <span class="va">EH</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 x 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       PH     EH</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0.026<span style="text-decoration: underline;">7</span> 0.022<span style="text-decoration: underline;">8</span></span>
@@ -402,29 +482,32 @@ or a numeric value if the input is a numeric vector.</p></li>
 <span class="r-in"><span class="co"># Frequency table for variable NR</span></span>
 <span class="r-in"><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">freq_table</span><span class="op">(</span><span class="va">NR</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 x 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       NR     n rel_freq cum_freq</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  12.4     1  0.006<span style="text-decoration: underline;">41</span>  0.006<span style="text-decoration: underline;">41</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  13.2     3  0.019<span style="text-decoration: underline;">2</span>   0.025<span style="text-decoration: underline;">6</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  13.6     7  0.044<span style="text-decoration: underline;">9</span>   0.070<span style="text-decoration: underline;">5</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  14      10  0.064<span style="text-decoration: underline;">1</span>   0.135  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  14.4     8  0.051<span style="text-decoration: underline;">3</span>   0.186  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  14.8    11  0.070<span style="text-decoration: underline;">5</span>   0.256  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  15.2    12  0.076<span style="text-decoration: underline;">9</span>   0.333  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  15.6    17  0.109    0.442  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  16      14  0.089<span style="text-decoration: underline;">7</span>   0.532  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  16.4    16  0.103    0.635  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>  16.8    11  0.070<span style="text-decoration: underline;">5</span>   0.705  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>  17.2    13  0.083<span style="text-decoration: underline;">3</span>   0.788  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>  17.6    12  0.076<span style="text-decoration: underline;">9</span>   0.865  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>  18       9  0.057<span style="text-decoration: underline;">7</span>   0.923  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span>  18.4     3  0.019<span style="text-decoration: underline;">2</span>   0.942  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span>  18.8     2  0.012<span style="text-decoration: underline;">8</span>   0.955  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span>  19.6     1  0.006<span style="text-decoration: underline;">41</span>  0.962  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span>  20       3  0.019<span style="text-decoration: underline;">2</span>   0.981  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span>  20.4     2  0.012<span style="text-decoration: underline;">8</span>   0.994  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span>  21.2     1  0.006<span style="text-decoration: underline;">41</span>  1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $freqs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                class abs_freq abs_freq_ac rel_freq rel_freq_ac</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  11.96 |---  12.84        1           1    0.006       0.006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  12.84 |---  13.72       10          11    0.064       0.071</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   13.72 |---  14.6       18          29    0.115       0.186</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   14.6 |---  15.48       23          52    0.147       0.333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  15.48 |---  16.36       31          83    0.199       0.532</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  16.36 |---  17.24       40         123    0.256       0.788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  17.24 |---  18.12       21         144    0.135       0.923</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     18.12 |---  19        5         149    0.032       0.955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     19 |---  19.88        1         150    0.006       0.962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 19.88 |---  20.76        5         155    0.032       0.994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 20.76 |---| 21.64        1         156    0.006       1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12             Total      156         156    1.000       1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $LL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 11.96 12.84 13.72 14.60 15.48 16.36 17.24 18.12 19.00 19.88 20.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $UL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 12.84 13.72 14.60 15.48 16.36 17.24 18.12 19.00 19.88 20.76 21.64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $vartype</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "continuous"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "freq_table"</span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>
@@ -438,7 +521,7 @@ or a numeric value if the input is a numeric vector.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

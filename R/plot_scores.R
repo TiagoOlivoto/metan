@@ -601,7 +601,7 @@ plot_scores <- function(x,
         {if(test)scale_fill_identity()}
     }
     if (class %in% c("waas", "waas_means")) {
-      if (!s.null(x.lim)) {
+      if (!is.null(x.lim)) {
         x.lim <- x.lim
       } else {
         x.lim <- c(min(df$Y) - (min(df$Y) * axis.expand - min(df$Y)),
@@ -729,7 +729,7 @@ plot_scores <- function(x,
     y.lab = ifelse(is.null(y.lab) == F, y.lab, paste0("Nominal Yield (Mg/ha)"))
     x.lab = ifelse(is.null(x.lab) == F, x.lab, paste0("Environment PC1 [square root of  (Mg/ha)]"))
 
-    if (!s.null(x.lim)) {
+    if (!is.null(x.lim)) {
       x.lim <- x.lim
     } else {
       x.lim <- c(min(data$envPC1), max(data$envPC1))

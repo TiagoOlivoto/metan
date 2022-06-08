@@ -2484,7 +2484,7 @@ is_present <- function(x){
 #'   user will be asked if he wants to create such a folder.
 #' @return A message showing the current working directory
 #' @export
-#'
+#' @importFrom utils install.packages menu
 #' @examples
 #'
 #' \dontrun{

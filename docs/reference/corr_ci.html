@@ -30,14 +30,14 @@ where \(n\) is the sample size and \(r\) is the correlation coefficient."><meta 
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -130,7 +130,7 @@ the nonparametric method proposed by Olivoto et al. (2018).</p>
 equation:
 <script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script></p>
 <p>\[CI_w = 0.45304^r \times 2.25152 \times n^{-0.50089}\]</p>
-<p>where \(n\) is the sample size and \(r\) is the correlation coefficient.</p>
+<p>where <em></em>\(n\) is the sample size and <em></em>\(r\) is the correlation coefficient.</p>
     </div>
 
     <div class="section level2">
@@ -184,7 +184,7 @@ B.G. Sari, D.. K. Krysczun, D. Meira, and C. Meier. 2018. Confidence
 interval width for Pearson's correlation coefficient: a
 Gaussian-independent estimator based on sample size and strength of
 association. Agron. J. 110:1-8.
-doi: <a href="https://doi.org/10.2134/agronj2016.04.0196" class="external-link">10.2134/agronj2016.04.0196</a></p>
+<a href="https://doi.org/10.2134/agronj2016.04.0196" class="external-link">doi:10.2134/agronj2016.04.0196</a></p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -197,7 +197,7 @@ doi: <a href="https://doi.org/10.2134/agronj2016.04.0196" class="external-link">
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">CI1</span> <span class="op">&lt;-</span> <span class="fu">corr_ci</span><span class="op">(</span><span class="va">data_ge2</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 105 x 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 105 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    V1    V2     Corr     n     CI    LL    UL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> PH    EH    0.932   156 0.085<span style="text-decoration: underline;">8</span> 0.846 1.02 </span>
@@ -210,14 +210,14 @@ doi: <a href="https://doi.org/10.2134/agronj2016.04.0196" class="external-link">
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> PH    KW    0.753   156 0.098<span style="text-decoration: underline;">8</span> 0.655 0.852</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> PH    NR    0.329   156 0.138  0.190 0.467</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> PH    NKR   0.353   156 0.136  0.217 0.489</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 95 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 95 more rows</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># By each level of the factor 'ENV'</span></span>
 <span class="r-in"><span class="va">CI2</span> <span class="op">&lt;-</span> <span class="fu">corr_ci</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">CD</span>, <span class="va">TKW</span>, <span class="va">NKE</span>,</span>
 <span class="r-in">               by <span class="op">=</span> <span class="va">ENV</span>,</span>
 <span class="r-in">               verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">CI2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 x 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    ENV   V1    V2       Corr     n    CI      LL      UL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> A1    CD    TKW    0.385     39 0.265  0.120   0.650 </span>
@@ -245,7 +245,7 @@ doi: <a href="https://doi.org/10.2134/agronj2016.04.0196" class="external-link">
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

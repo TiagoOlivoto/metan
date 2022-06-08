@@ -22,14 +22,14 @@ p-values, coefficient of variation, heritability, and accuracy of selection."><m
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -207,7 +207,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 <span class="r-in"><span class="fu"><a href="get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">ind_an</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: anova_ind</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: ALL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 x 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 × 16</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    trait ENV    MEAN   DFG   MSG   FCG     PFG   DFB    MSB    FCB     PFB   DFE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> GY    E1     2.52     9 0.337  2.34 5.94<span style="color: #949494;">e</span><span style="color: #BB0000;">-2</span>     2 0.065<span style="text-decoration: underline;">2</span>  0.453 6.43<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>    18</span>
@@ -220,14 +220,14 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> GY    E3     4.06     9 0.335  1.87 1.23<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>     2 0.489   2.73  9.21<span style="color: #949494;">e</span><span style="color: #BB0000;">-2</span>    18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> GY    E4     3.68     9 0.531  3.86 7.12<span style="color: #949494;">e</span><span style="color: #BB0000;">-3</span>     2 0.116   0.846 4.46<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>    18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> GY    E5     3.91     9 0.526  7.93 1.10<span style="color: #949494;">e</span><span style="color: #BB0000;">-4</span>     2 0.219   3.30  6.02<span style="color: #949494;">e</span><span style="color: #BB0000;">-2</span>    18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 18 more rows, and 4 more variables: MSE &lt;dbl&gt;, CV &lt;dbl&gt;, h2 &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 18 more rows, and 4 more variables: MSE &lt;dbl&gt;, CV &lt;dbl&gt;, h2 &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   AS &lt;dbl&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># P-value for genotype effect</span></span>
 <span class="r-in"><span class="fu"><a href="get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">ind_an</span>, <span class="st">"PFG"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Class of the model: anova_ind</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variable extracted: PFG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 x 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    ENV          GY         HM</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> E1    0.059<span style="text-decoration: underline;">4</span>    0.029<span style="text-decoration: underline;">3</span>    </span>
@@ -257,7 +257,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

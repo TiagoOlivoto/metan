@@ -44,14 +44,14 @@ regression."><meta property="og:image" content="https://tiagoolivoto.github.io/m
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -141,15 +141,15 @@ regression."><meta property="og:image" content="https://tiagoolivoto.github.io/m
     <p><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="figures/lifecycle-stable.svg" alt="[Stable]"></a></p>
 <p>Computes the scale-adjusted coefficient of variation,
 <em>acv</em>, (Doring and Reckling, 2018) to account for the systematic
-dependence of \(\sigma^2\) from \(\mu\). The <em>acv</em> is
+dependence of <em></em>\(\sigma^2\) from <em></em>\(\mu\). The <em>acv</em> is
 computed as follows:
 \[acv = \frac{\sqrt{10^{\tilde v_i}}}{\mu_i}\times 100\]
-where \(\tilde v_i\) is the adjusted logarithm of the variance
+where <em></em>\(\tilde v_i\) is the adjusted logarithm of the variance
 computed as:
 \[\tilde v_i = a + (b - 2)\frac{1}{n}\sum m_i + 2m_i + e_i\]
-being \(a\) and \(b\) the coefficients of the linear regression for
-\(log_{10}\) of the variance over the \(log_{10}\) of the mean;
-\( m_i\) is the \(log_{10}\) of the mean, and \( e_i\) is the
+being <em></em>\(a\) and <em></em>\(b\) the coefficients of the linear regression for
+<em></em>\(log_{10}\) of the variance over the <em></em>\(log_{10}\) of the mean;
+<em></em>\( m_i\) is the <em></em>\(log_{10}\) of the mean, and <em></em>\( e_i\) is the
 Power Law Residuals (POLAR), i.e., the residuals for the previously described
 regression.</p>
     </div>
@@ -183,7 +183,7 @@ warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Doring, T.F., and M. Reckling. 2018. Detecting global trends of
 cereal yield stability by adjusting the coefficient of variation. Eur. J.
-Agron. 99: 30-36. doi: <a href="https://doi.org/10.1016/j.eja.2018.06.007" class="external-link">10.1016/j.eja.2018.06.007</a></p>
+Agron. 99: 30-36. <a href="https://doi.org/10.1016/j.eja.2018.06.007" class="external-link">doi:10.1016/j.eja.2018.06.007</a></p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -205,7 +205,7 @@ Agron. 99: 30-36. doi: <a href="https://doi.org/10.1016/j.eja.2018.06.007" class
 <span class="r-in"></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">acv</span><span class="op">(</span><span class="va">u</span>, <span class="va">v</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 x 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     mean    var log10_mean log10_var    POLAR    cv   acv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 0.589 0.006<span style="text-decoration: underline;">4</span>    -<span style="color: #BB0000;">0.230</span>     -<span style="color: #BB0000;">2.19</span>  -<span style="color: #BB0000;">0.326</span>   13.6   7.34</span>
@@ -235,7 +235,7 @@ Agron. 99: 30-36. doi: <a href="https://doi.org/10.1016/j.eja.2018.06.007" class
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

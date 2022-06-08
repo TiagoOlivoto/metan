@@ -84,7 +84,8 @@ The following `_by()` functions are available for computing the main descriptive
 Other useful functions are also implemented. All of them works naturally with `%>%`, handle grouped data with `dplyr::group_by()` and multiple variables (all numeric variables from `.data` by default).
  
  - `av_dev()` computes the average absolute deviation.
- - `ci_mean()` computes the confidence interval for the mean.
+ - `ci_mean_t()` computes t-inverval (95%) for the mean.
+ - `ci_mean_z()` computes z-inverval (95%) for the mean.
  - `cv()` computes the coefficient of variation.
  - `freq_table()` Computes frequency fable.
  - `hm_mean()`, `gm_mean()` computes the harmonic and geometric means, respectively. The harmonic mean is the reciprocal of the arithmetic mean of the reciprocals. The geometric mean is the nth root of n products.
@@ -107,12 +108,12 @@ data_ge2 %>%
   print_table()
 
 
-# Confidence interval 0.95 for the mean
+# Confidence t-interval 0.95 for the mean
 # Variables with name width greater than 3 characters
 # Grouped by levels of ENV
 data_ge2 %>%
   group_by(ENV) %>%
-  ci_mean(width_greater_than(3)) %>% 
+  ci_mean_t(width_greater_than(3)) %>% 
   print_table()
 ```
 

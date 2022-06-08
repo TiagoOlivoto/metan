@@ -16,14 +16,14 @@
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
@@ -142,7 +142,7 @@
 <span class="r-in">              gen <span class="op">=</span> <span class="va">GEN</span>,</span>
 <span class="r-in">              rep <span class="op">=</span> <span class="va">REP</span>,</span>
 <span class="r-in">              resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===                                         | 7% 00:00:00 Evaluating trait EH |======                                      | 13% 00:00:00 Evaluating trait EP |=========                                   | 20% 00:00:00 Evaluating trait EL |============                                | 27% 00:00:00 Evaluating trait ED |===============                             | 33% 00:00:00 Evaluating trait CL |==================                          | 40% 00:00:00 Evaluating trait CD |=====================                       | 47% 00:00:00 Evaluating trait CW |=======================                     | 53% 00:00:00 Evaluating trait KW |==========================                  | 60% 00:00:01 Evaluating trait NR |=============================               | 67% 00:00:01 Evaluating trait NKR |================================           | 73% 00:00:01 Evaluating trait CDED |==================================        | 80% 00:00:01 Evaluating trait PERK |====================================      | 87% 00:00:01 Evaluating trait TKW |========================================   | 93% 00:00:01 Evaluating trait NKE |===========================================| 100% 00:00:01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Evaluating trait PH |===                                         | 7% 00:00:00 Evaluating trait EH |======                                      | 13% 00:00:00 Evaluating trait EP |=========                                   | 20% 00:00:00 Evaluating trait EL |============                                | 27% 00:00:00 Evaluating trait ED |===============                             | 33% 00:00:01 Evaluating trait CL |==================                          | 40% 00:00:01 Evaluating trait CD |=====================                       | 47% 00:00:01 Evaluating trait CW |=======================                     | 53% 00:00:01 Evaluating trait KW |==========================                  | 60% 00:00:01 Evaluating trait NR |=============================               | 67% 00:00:01 Evaluating trait NKR |================================           | 73% 00:00:01 Evaluating trait CDED |==================================        | 80% 00:00:02 Evaluating trait PERK |====================================      | 87% 00:00:02 Evaluating trait TKW |========================================   | 93% 00:00:02 Evaluating trait NKE |===========================================| 100% 00:00:02 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Method: REML/BLUP</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Random effects: GEN</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fixed effects: REP</span>
@@ -161,7 +161,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> PH EH EP EL CD NKR </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 39 x 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 39 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> H1    1      2.12  1.06 0.502  14.9  50.5  31.5  16.0  26.9  156.  15.8  29.9</span>
@@ -174,8 +174,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> H11   2      2.14  1.08 0.496  14.5  46.4  25.8  15.2  14.9  135.  16.4  30.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> H11   3      2.18  1.11 0.499  14.5  47.6  26.5  15.8  17.5  148.  16.0  31.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H12   1      2.26  1.12 0.506  14.8  48.0  26.9  15.3  18.9  150.  16.1  30.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 29 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 29 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   NKE &lt;dbl&gt;</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>
@@ -189,7 +189,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

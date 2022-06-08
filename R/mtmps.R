@@ -201,7 +201,7 @@ mtmps <- function(model,
                         SD = Xs - Xo,
                         SDperc = (Xs - Xo) / Xo * 100)
       stat_dif_mps <-
-        desc_stat(sel_dif, SDperc, stats = c("min, mean, ci, sd.amo, max, sum"))
+        desc_stat(sel_dif, SDperc, stats = c("min, mean, ci.t, sd.amo, max, sum"))
       sel_dif_mean <-
         tibble(VAR = names(pos.var.factor[, 2]),
                Factor = paste("FA", as.numeric(pos.var.factor[, 2])),
@@ -228,7 +228,7 @@ mtmps <- function(model,
         desc_stat(sel_dif_mean,
                   by = sense,
                   any_of(c("SDperc", "SGperc")),
-                  stats = c("min, mean, ci, sd.amo, max, sum"))
+                  stats = c("min, mean, ci.t, sd.amo, max, sum"))
       waasb_index <- model$stability %>% rownames_to_column("GEN")
       waasb_selected <- colMeans(subset(waasb_index, GEN %in% selected) %>% select_numeric_cols())
       sel_dif_stab <-
@@ -250,7 +250,7 @@ mtmps <- function(model,
                ))
       stat_dif_stab <-
         desc_stat(sel_dif_stab, SDperc,
-                  stats = c("min, mean, ci, sd.amo, max, sum"))
+                  stats = c("min, mean, ci.t, sd.amo, max, sum"))
       contri_fac_rank_sel <-
         contri_long %>%
         subset(GEN %in% selected) %>%
