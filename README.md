@@ -103,16 +103,15 @@ on two variables assessed in 10 genotypes growing in 14 environments.
 
 ``` r
 library(metan)
-
 inspect(data_ge, plot = TRUE)
-# # A tibble: 5 x 9
-#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier
-#   <chr>    <chr>   <chr>   <chr>    <int> <dbl>  <dbl> <dbl>   <dbl>
-# 1 ENV      factor  No      14         420 NA     NA    NA         NA
-# 2 GEN      factor  No      10         420 NA     NA    NA         NA
-# 3 REP      factor  No      3          420 NA     NA    NA         NA
-# 4 GY       numeric No      -          420  0.67   2.61  5.09       0
-# 5 HM       numeric No      -          420 38     48    58          0
+# # A tibble: 5 × 10
+#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier Text 
+#   <chr>    <chr>   <chr>   <chr>    <int> <dbl>  <dbl> <dbl>   <dbl> <lgl>
+# 1 ENV      factor  No      14         420 NA     NA    NA         NA NA   
+# 2 GEN      factor  No      10         420 NA     NA    NA         NA NA   
+# 3 REP      factor  No      3          420 NA     NA    NA         NA NA   
+# 4 GY       numeric No      -          420  0.67   2.61  5.09       0 NA   
+# 5 HM       numeric No      -          420 38     48    58          0 NA
 ```
 
 <img src="man/figures/README-INSPECT-1.png" style="display: block; margin: auto;" />
@@ -122,11 +121,11 @@ outliers, missing values, etc.) consider using
 [`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html)
 to find possible outliers in the data set or any `metan`’s data
 manipulation tool such as
-[remove\_rows\_na()](https://tiagoolivoto.github.io/metan/reference/utils_na.html)
+[remove_rows_na()](https://tiagoolivoto.github.io/metan/reference/utils_na.html)
 to remove rows with `NA` values,
-[replace\_zero()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html)
+[replace_zero()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html)
 to replace 0’s with `NA`,
-[as\_factor()](https://tiagoolivoto.github.io/metan/reference/utils_as.html)
+[as_factor()](https://tiagoolivoto.github.io/metan/reference/utils_as.html)
 to convert desired columns to factor,
 [`find_text_in_num()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html)
 to find text fragments in columns assumed to be numeric, or even
@@ -143,24 +142,24 @@ using
 
 ``` r
 desc_stat(data_ge2)
-# # A tibble: 15 x 9
-#    variable    cv     max    mean  median     min  sd.amo     se      ci
-#    <chr>    <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>   <dbl>
-#  1 CD        7.34  18.6    16.0    16      12.9    1.17   0.0939  0.186 
-#  2 CDED      5.71   0.694   0.586   0.588   0.495  0.0334 0.0027  0.0053
-#  3 CL        7.95  34.7    29.0    28.7    23.5    2.31   0.185   0.365 
-#  4 CW       25.2   38.5    24.8    24.5    11.1    6.26   0.501   0.99  
-#  5 ED        5.58  54.9    49.5    49.9    43.5    2.76   0.221   0.437 
-#  6 EH       21.2    1.88    1.34    1.41    0.752  0.284  0.0228  0.045 
-#  7 EL        8.28  17.9    15.2    15.1    11.5    1.26   0.101   0.199 
-#  8 EP       10.5    0.660   0.537   0.544   0.386  0.0564 0.0045  0.0089
-#  9 KW       18.9  251.    173.    175.    106.    32.8    2.62    5.18  
-# 10 NKE      14.2  697.    512.    509.    332.    72.6    5.82   11.5   
-# 11 NKR      10.7   42      32.2    32      23.2    3.47   0.277   0.548 
-# 12 NR       10.2   21.2    16.1    16      12.4    1.64   0.131   0.259 
-# 13 PERK      2.17  91.8    87.4    87.5    81.2    1.90   0.152   0.300 
-# 14 PH       13.4    3.04    2.48    2.52    1.71   0.334  0.0267  0.0528
-# 15 TKW      13.9  452.    339.    342.    218.    47.1    3.77    7.44
+# # A tibble: 15 × 10
+#    variable    cv     max    mean  median     min  sd.amo     se    ci.t n.valid
+#    <chr>    <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>   <dbl>   <dbl>
+#  1 CD        7.34  18.6    16.0    16      12.9    1.17   0.0939  0.186      156
+#  2 CDED      5.71   0.694   0.586   0.588   0.495  0.0334 0.0027  0.0053     156
+#  3 CL        7.95  34.7    29.0    28.7    23.5    2.31   0.185   0.365      156
+#  4 CW       25.2   38.5    24.8    24.5    11.1    6.26   0.501   0.99       156
+#  5 ED        5.58  54.9    49.5    49.9    43.5    2.76   0.221   0.437      156
+#  6 EH       21.2    1.88    1.34    1.41    0.752  0.284  0.0228  0.045      156
+#  7 EL        8.28  17.9    15.2    15.1    11.5    1.26   0.101   0.199      156
+#  8 EP       10.5    0.660   0.537   0.544   0.386  0.0564 0.0045  0.0089     156
+#  9 KW       18.9  251.    173.    175.    106.    32.8    2.62    5.18       156
+# 10 NKE      14.2  697.    512.    509.    332.    72.6    5.82   11.5        156
+# 11 NKR      10.7   42      32.2    32      23.2    3.47   0.277   0.548      156
+# 12 NR       10.2   21.2    16.1    16      12.4    1.64   0.131   0.259      156
+# 13 PERK      2.17  91.8    87.4    87.5    81.2    1.90   0.152   0.300      156
+# 14 PH       13.4    3.04    2.48    2.52    1.71   0.334  0.0267  0.0528     156
+# 15 TKW      13.9  452.    339.    342.    218.    47.1    3.77    7.44       156
 ```
 
 # AMMI model
@@ -186,7 +185,7 @@ model <- performs_ammi(data_ge,
 get_model_data(model, "ipca_pval")
 # Class of the model: performs_ammi
 # Variable extracted: Pr(>F)
-# # A tibble: 9 x 4
+# # A tibble: 9 × 4
 #   PC       DF     GY     HM
 #   <chr> <dbl>  <dbl>  <dbl>
 # 1 PC1      21 0      0     
@@ -215,15 +214,15 @@ first variable of the model. To choose another variable use the argument
 ``` r
 a <- plot_scores(model)
 b <- plot_scores(model,
-                 type = 2,
-                 polygon = TRUE,
-                 col.env = "gray70",
-                 col.segm.env = "gray70",
-                 col.gen = transparent_color(),
-                 highlight = c("G1", "G2"),
-                 axis.expand = 1.5)
-c <- plot_scores(model, type = 4)
-arrange_ggplot(a, b, c, tag_levels = "a", nrow = 1)
+                 type = 2, # AMMI 2 biplot
+                 polygon = TRUE, # show a polygon
+                 highlight = c("G4", "G5", "G6"), #highlight genotypes
+                 col.alpha.env = 0.5, # alpha for environments
+                 col.alpha.gen = 0, # remove the other genotypes
+                 col.env = "gray", # color for environment point
+                 col.segm.env = "gray", # color for environment segment
+                 plot_theme = theme_metan_minimal()) # theme
+arrange_ggplot(a, b, tag_levels = "a")
 ```
 
 ![](man/figures/README-AMMI-1.png)<!-- -->
@@ -239,14 +238,15 @@ vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_gge.html).
 model <- gge(data_ge, ENV, GEN, GY)
 model2 <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
 model3 <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-d <- plot(model)
-e <- plot(model2, type = 8)
-f <- plot(model2,
+a <- plot(model)
+b <- plot(model2, type = 8)
+c <- plot(model2,
           type = 2,
           col.gen = "black",
           col.env = "gray70",
-          axis.expand = 1.5)
-arrange_ggplot(d, e, f, tag_levels = list(c("d", "e", "f")), nrow = 1)
+          axis.expand = 1.5,
+          plot_theme = theme_metan_minimal())
+arrange_ggplot(a, b, c, tag_levels = "a")
 ```
 
 ![](man/figures/README-GGE-1.png)<!-- -->
@@ -255,7 +255,7 @@ arrange_ggplot(d, e, f, tag_levels = list(c("d", "e", "f")), nrow = 1)
 
 Linear-mixed effect models to predict the response variable in METs are
 fitted using the function
-[gamem\_met()](https://tiagoolivoto.github.io/metan/reference/gamem_met.html).
+[gamem_met()](https://tiagoolivoto.github.io/metan/reference/gamem_met.html).
 Here we will obtain the predicted means for genotypes in the variables
 `GY` and `HM`. For more details, see the [complete
 vignette](https://tiagoolivoto.github.io/metan/articles/vignettes_blup.html).
@@ -285,7 +285,7 @@ model2 <-
 get_model_data(model2, what = "vcomp")
 # Class of the model: waasb
 # Variable extracted: vcomp
-# # A tibble: 3 x 3
+# # A tibble: 3 × 3
 #   Group        GY    HM
 #   <chr>     <dbl> <dbl>
 # 1 GEN      0.0280 0.490
@@ -299,12 +299,12 @@ To produce a plot with the predicted means, use the function
 [`plot_blup()`](https://tiagoolivoto.github.io/metan/reference/plot_blup.html).
 
 ``` r
-g <- plot_blup(model2)
-h <- plot_blup(model2,
+a <- plot_blup(model2)
+b <- plot_blup(model2,
                prob = 0.2,
                col.shape = c("gray20", "gray80"),
                invert = TRUE)
-arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
+arrange_ggplot(a, b, tag_levels = "a")
 ```
 
 ![](man/figures/README-BLUP-1.png)<!-- -->
@@ -316,7 +316,7 @@ indexes in `metan` is by using the function
 [`ge_stats()`](https://tiagoolivoto.github.io/metan/reference/ge_stats.html).
 It is a wrapper function around a lot of specific functions for
 stability indexes. To get the results into a *“ready-to-read”* file, use
-[get\_model\_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html)
+[get_model_data()](https://tiagoolivoto.github.io/metan/reference/get_model_data.html)
 or its shortcut
 [`gmd()`](https://tiagoolivoto.github.io/metan/reference/get_model_data.html).
 
@@ -326,7 +326,7 @@ stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
-# # A tibble: 10 x 44
+# # A tibble: 10 × 44
 #    var   GEN       Y    CV   ACV   POLAR   Var Shukla  Wi_g  Wi_f  Wi_u Ecoval
 #    <chr> <chr> <dbl> <dbl> <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>  <dbl>
 #  1 GY    G1     2.60  35.2  34.1  0.0298 10.9  0.0280  84.4  89.2  81.1  1.22 
@@ -339,7 +339,7 @@ get_model_data(stats)
 #  8 GY    G7     2.74  27.4  28.3 -0.133   7.33 0.122   83.9  77.6  93.4  4.16 
 #  9 GY    G8     3.00  30.4  35.1  0.0531 10.8  0.0712  98.8  90.5 107.   2.57 
 # 10 GY    G9     2.51  42.4  39.4  0.154  14.7  0.167   68.8  68.9  70.3  5.56 
-# # ... with 32 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASTAB <dbl>,
+# # … with 32 more variables: bij <dbl>, Sij <dbl>, R2 <dbl>, ASTAB <dbl>,
 # #   ASI <dbl>, ASV <dbl>, AVAMGE <dbl>, DA <dbl>, DZ <dbl>, EV <dbl>, FA <dbl>,
 # #   MASI <dbl>, MASV <dbl>, SIPC <dbl>, ZA <dbl>, WAAS <dbl>, WAASB <dbl>,
 # #   HMGV <dbl>, RPGV <dbl>, HMRPGV <dbl>, Pi_a <dbl>, Pi_f <dbl>, Pi_u <dbl>,

@@ -164,7 +164,7 @@ desc_stat <- function(.data = NULL,
   all <- c("av.dev", "ci.t", "ci.z", "cv", "gmean", "hmean", "iqr", "kurt", "mad", "max", "mean", "median", "min", "n", "n.valid", "n.missing", "n.unique", "ps", "q2.5", "q25", "q75", "q97.5", "range", "sd.amo", "sd.pop", "se", "skew", "sum", "sum.dev", "ave.dev", "sum.sq.dev",  "var.amo", "var.pop")
   stats <- strsplit(
     case_when(
-      all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci.t"),
+      all_lower_case(stats) == "main" ~ c("cv, max, mean, median, min, sd.amo, se, ci.t, n.valid"),
       all_lower_case(stats) == "all" ~ c("av.dev, ci.t, ci.z, cv, gmean, hmean, iqr, kurt, mad, max, mean, median, min, n, n.valid, n.missing, n.unique, ps, q2.5, q25, q75, q97.5, range, sd.amo, sd.pop, se, skew, sum, sum.dev, ave.dev, sum.sq.dev, n.valid, var.amo, var.pop"),
       all_lower_case(stats) == "robust" ~ c("n, median, iqr, ps"),
       all_lower_case(stats) == "quantile" ~ c("n, min, q25, median, q75, max"),

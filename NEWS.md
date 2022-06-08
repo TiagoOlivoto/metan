@@ -15,6 +15,7 @@
 * `plot_waasby()` now accepts objects of class `waas_means`.
 * `get_model_data()` now includes new options `coefs`, and `anova` for objects computed with `ge_reg()`.
 * New argument `max_overlaps` in `plot_scores()` to exclude text labels that overlap too many things.
+* Improve the control over highlighted individuals in `plot_scores()` (shape, alpha, color, and size).
 
 
 # metan 1.16.0

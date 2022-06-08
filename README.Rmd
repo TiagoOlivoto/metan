@@ -74,7 +74,6 @@ For the latest release notes on this development version, see the [NEWS file](ht
 
 ```{r INSPECT, fig.width=7, fig.height=7, fig.align="center", message=FALSE, warning=FALSE}
 library(metan)
-
 inspect(data_ge, plot = TRUE)
 ```
 
@@ -109,18 +108,19 @@ get_model_data(model, "ipca_pval")
 
 The well-known AMMI1 and AMMI2 biplots can be created with [`plot_scores()`](file:///D:/Desktop/metan/docs/reference/plot_scores.html). Note that since [`performs_ammi`](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html) allows analyzing multiple variables at once, e.g., `resp = c(v1, v2, ...)`, the output `model` is a list, in this case with two elements (GY and HM). By default, the biplots are created for the first variable of the model. To choose another variable use the argument `var` (e.g., `var = "HM"`).
 
-```{r AMMI, fig.width=15, fig.height=5, message=FALSE, warning=FALSE}
+
+```{r AMMI, fig.width=10, fig.height=5, message=FALSE, warning=FALSE}
 a <- plot_scores(model)
 b <- plot_scores(model,
-                 type = 2,
-                 polygon = TRUE,
-                 col.env = "gray70",
-                 col.segm.env = "gray70",
-                 col.gen = transparent_color(),
-                 highlight = c("G1", "G2"),
-                 axis.expand = 1.5)
-c <- plot_scores(model, type = 4)
-arrange_ggplot(a, b, c, tag_levels = "a", nrow = 1)
+                 type = 2, # AMMI 2 biplot
+                 polygon = TRUE, # show a polygon
+                 highlight = c("G4", "G5", "G6"), #highlight genotypes
+                 col.alpha.env = 0.5, # alpha for environments
+                 col.alpha.gen = 0, # remove the other genotypes
+                 col.env = "gray", # color for environment point
+                 col.segm.env = "gray", # color for environment segment
+                 plot_theme = theme_metan_minimal()) # theme
+arrange_ggplot(a, b, tag_levels = "a")
 
 ```
 
@@ -132,14 +132,15 @@ The GGE model is fitted with the function [`gge()`](https://tiagoolivoto.github.
 model <- gge(data_ge, ENV, GEN, GY)
 model2 <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
 model3 <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-d <- plot(model)
-e <- plot(model2, type = 8)
-f <- plot(model2,
+a <- plot(model)
+b <- plot(model2, type = 8)
+c <- plot(model2,
           type = 2,
           col.gen = "black",
           col.env = "gray70",
-          axis.expand = 1.5)
-arrange_ggplot(d, e, f, tag_levels = list(c("d", "e", "f")), nrow = 1)
+          axis.expand = 1.5,
+          plot_theme = theme_metan_minimal())
+arrange_ggplot(a, b, c, tag_levels = "a")
 
 ```
 
@@ -164,12 +165,12 @@ get_model_data(model2, what = "vcomp")
 To produce a plot with the predicted means, use the function [`plot_blup()`](https://tiagoolivoto.github.io/metan/reference/plot_blup.html).
 
 ```{r BLUP, fig.width=10, fig.height=5, message=FALSE, warning=FALSE}
-g <- plot_blup(model2)
-h <- plot_blup(model2,
+a <- plot_blup(model2)
+b <- plot_blup(model2,
                prob = 0.2,
                col.shape = c("gray20", "gray80"),
                invert = TRUE)
-arrange_ggplot(g, h, tag_levels = list(c("g", "h")))
+arrange_ggplot(a, b, tag_levels = "a")
 
 ```
 
