@@ -532,9 +532,6 @@ print.waas <- function(x, export = FALSE, file.name = NULL, digits = 4, ...) {
 #'
 predict.waas <- function(object, naxis = 2, ...) {
     cal <- match.call()
-    if (class(object) != "waas") {
-        stop("The objectin must be an objectin of the class 'waas'")
-    }
     if (length(object) != length(naxis)) {
         warning("Invalid length in 'naxis'. Setting 'mresp = ", naxis[[1]],
                 "' to all the ", length(object), " variables.", call. = FALSE)

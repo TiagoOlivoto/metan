@@ -1206,7 +1206,7 @@ freq_hist <- function(table,
                       fill = "gray",
                       color = "black",
                       ygrid = TRUE) {
-  if (class(table) != "freq_table"){
+  if (!inherits(table, "freq_table")){
     stop("Class of object `table` is not valid. Please use `freq_table()` to create a valid object.")
   }
   if (table$vartype == "categorical") {

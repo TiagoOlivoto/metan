@@ -1279,9 +1279,6 @@ print.waasb <- function(x, export = FALSE, blup = FALSE, file.name = NULL, digit
 #' }
 #'
 predict.waasb <- function(object, ...) {
-    if (class(object) != "waasb") {
-        stop("The objectin must be an objectin of the class 'waasb'")
-    }
     factors <- object[[1]][["BLUPint"]] %>% select_non_numeric_cols()
     numeric <- sapply(object, function(x){
         x[["BLUPint"]][["Predicted"]]
