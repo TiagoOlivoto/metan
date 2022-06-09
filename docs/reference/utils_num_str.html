@@ -511,22 +511,22 @@ sensitive and if <code>TRUE</code>, case is ignored during matching.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Env     gen   Env_GEN           y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ENV 1   GEN1  ENV 1.GEN1     304.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Env   1 gen 2 Env   1.gen 2  305.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Env1    Gen.3 Env1.Gen.3     284.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> env1    gen-4 env1.gen-4     297.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Env.1   Gen_5 Env.1.Gen_5    307.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Env_1   GEN_6 Env_1.GEN_6    309.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ENV 1   GEN1  ENV 1.GEN1     302.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Env   1 gen 2 Env   1.gen 2  312.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Env1    Gen.3 Env1.Gen.3     298.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> env1    gen-4 env1.gen-4     300.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Env.1   Gen_5 Env.1.Gen_5    299.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Env_1   GEN_6 Env_1.GEN_6    300.</span>
 <span class="r-in"><span class="fu">tidy_strings</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Env   gen   Env_GEN         y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ENV_1 GEN_1 ENV_1_GEN_1  304.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ENV_1 GEN_2 ENV_1_GEN_2  305.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ENV_1 GEN_3 ENV_1_GEN_3  284.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ENV_1 GEN_4 ENV_1_GEN_4  297.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ENV_1 GEN_5 ENV_1_GEN_5  307.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ENV_1 GEN_6 ENV_1_GEN_6  309.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ENV_1 GEN_1 ENV_1_GEN_1  302.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ENV_1 GEN_2 ENV_1_GEN_2  312.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ENV_1 GEN_3 ENV_1_GEN_3  298.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ENV_1 GEN_4 ENV_1_GEN_4  300.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ENV_1 GEN_5 ENV_1_GEN_5  299.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ENV_1 GEN_6 ENV_1_GEN_6  300.</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>

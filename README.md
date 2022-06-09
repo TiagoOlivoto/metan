@@ -121,7 +121,7 @@ outliers, missing values, etc.) consider using
 [`find_outliers()`](https://tiagoolivoto.github.io/metan/reference/find_outliers.html)
 to find possible outliers in the data set or any `metan`’s data
 manipulation tool such as
-[remove_rows_na()](https://tiagoolivoto.github.io/metan/reference/utils_na.html)
+[remove_rows_na()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html)
 to remove rows with `NA` values,
 [replace_zero()](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html)
 to replace 0’s with `NA`,
@@ -267,7 +267,7 @@ model2 <-
             gen = GEN,
             rep = REP,
             resp = everything())
-# Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 
+# Evaluating trait GY |======================                      | 50% 00:00:01 Evaluating trait HM |============================================| 100% 00:00:02 
 # Method: REML/BLUP
 # Random effects: GEN, GEN:ENV
 # Fixed effects: ENV, REP(ENV)

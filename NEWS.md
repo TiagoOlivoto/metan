@@ -52,12 +52,12 @@
 * `mps()` and `mtmps()` for uni- and multivariate-based mean performance and stability in multi-environment trials.
 
 ## Minor improvements
-* `ge_reg()` now returns hypotesis testing for slope and deviations from the regression. Thanks to [@LeonardoBehring](https://www.researchgate.net/profile/Leonardo_Bhering) and [@MichelSouza](https://www.escavador.com/sobre/6363700/michel-henriques-de-souza) for the suggestion.
+* `ge_reg()` now returns hypotesis testing for slope and deviations from the regression. Thanks to [@LeonardoBehring](https://www.researchgate.net/profile/Leonardo-Bhering) and [@MichelSouza](https://www.escavador.com/sobre/6363700/michel-henriques-de-souza) for the suggestion.
 * `Resende_indexes()` now remove `NA`s before computing harmonic and arithmetic means.
 * Improved outputs in `plot_scores` that now has a `highlight` argument to highlight genotypes or environments by hand. Thanks to [Ibrahim Elbasyoni](https://scholar.google.com/citations?user=zPJjnSEAAAAJ&hl=en&authuser=1) for his suggestions.
 * [Licecycle badges](https://lifecycle.r-lib.org/articles/stages.html) added to the functions' documentation.
 * Fix bug in `clustering()` when using  with `by` argument and defacult `nclust` argument.
-* `get_model_data()` now extract BLUEs from objects computed with `gamem()` and `gamem_met()`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for suggesting me this improvement.
+* `get_model_data()` now extract BLUEs from objects computed with `gamem()` and `gamem_met()`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md-Farhad) for suggesting me this improvement.
 * `g_simula()` and `ge_simula()` now have a `res_eff` to control the residual effect.
 * `mgidi()` now have an optional `weights` argument to assign different weights for each trait in the selection process. Thanks to [@MichelSouza](https://www.escavador.com/sobre/6363700/michel-henriques-de-souza) for his suggestion.
 
@@ -176,7 +176,7 @@ by levels of a factor variable.
 ## New functions
 * `select_rows_na()` and `select_cols_na()` to select rows or columns with with `NA` values.
 * `mgidi()` to compute the multi-trait genotype-ideotype distance index.
-* `plot_bars()` to create bar plots quickly. Thanks to [@MariaDiel](https://www.researchgate.net/profile/Maria_Diel) for her suggestion. 
+* `plot_bars()` to create bar plots quickly. Thanks to [@MariaDiel](https://www.researchgate.net/profile/Maria-Diel) for her suggestion. 
 
 
 ## Minor changes
@@ -190,14 +190,14 @@ by levels of a factor variable.
 * Allow using `fai_blup()` with `gamem()`
 * Improve checking process with `inspect()`
 * Improve feedback for results, indicating random and fixed effects. Thanks to [@NelsonJunior](https://scholar.google.com.br/citations?user=i2F6X04AAAAJ&hl=pt-BR) for his suggestion.
-* `plot()` call on objects of class `gamem`, `waasb` and `waas` now returns the variable names automatically. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for suggesting me this change.
+* `plot()` call on objects of class `gamem`, `waasb` and `waas` now returns the variable names automatically. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md-Farhad) for suggesting me this change.
 * `plot.gamem()` and `plot.waasb()` have a new argument (`type = "vcomp"`) to produce a plot showing the contribution of the variance components to the phenotypic variance
 * `cv_ammi()`, `cv_ammif()`, and `cv_blup()` now check for missing values and unbalanced data before computing the cross-validation. ([#3](https://github.com/TiagoOlivoto/metan/issues/3))
 
 
 ## Bug fixes
 * Fix problems from a recent upgrade of package `tibble` to version 3.0.0.
-* `get_model_data()` now fills rows that don't matches across columns with `NA`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for his report.
+* `get_model_data()` now fills rows that don't matches across columns with `NA`. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md-Farhad) for his report.
 * `get_model_data()` called now report mean squares, F-calculated and P-values for blocks within replicates in `anova_ind()`.
 
 
@@ -218,7 +218,7 @@ by levels of a factor variable.
 
 ## Minor changes
 * `gge()`, `performs_ammi()`, `waas()`, and `waasb()` now handle with unbalanced data by implementing a low-rank matrix approximation using singular value decomposition to impute missing entires. Imputation generates a warning message.
-* `NA` values are checked and removed with a warning when computing stability indexes. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md_Farhad) for alerting me.
+* `NA` values are checked and removed with a warning when computing stability indexes. Thanks to [@MdFarhad](https://www.researchgate.net/profile/Md-Farhad) for alerting me.
 * New argument `plot_res` in `path_coeff()` to create a residual plot of the multiple regression model.
 * Update the citation file to include the [published official reference](https://doi.org/10.1111/2041-210X.13384).
 * Argument `verbose` deprecated in functions `anova_ind()` and `split_factors()`
@@ -286,7 +286,7 @@ by levels of a factor variable.
    - Change 'PC2' with 'PC1' in y-axis of `plot_scores(type = 2)` ([#1](https://github.com/TiagoOlivoto/metan/issues/1))
    - `get_model_data()` now support models of class `anova_joint` and `gafem` and extract random effects of models fitted with `waasb()` and `gamem()`.
    - Update `plot.waasb()` and `plot.gamem()` to show distribution of random effects.
-   - `inspect()`, `cv_blup()`, `cv_ammif()`, and `cv_ammi()` now generate a warning message saying that is not possible to compute cross-validation procedures in experiments with two replicates only. Thanks to [@Vlatko](https://www.researchgate.net/profile/Vlatko_Galic2) for his email.
+   - `inspect()`, `cv_blup()`, `cv_ammif()`, and `cv_ammi()` now generate a warning message saying that is not possible to compute cross-validation procedures in experiments with two replicates only. Thanks to [@Vlatko](https://www.researchgate.net/profile/Vlatko-Galic) for his email.
    - `plot.wsmp()` now returns heatmaps created with ggplot2. Thus, we removed dependency on `gplots`.
    - Vignettes updated
 
