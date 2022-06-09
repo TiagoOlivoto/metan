@@ -13,5 +13,3 @@ This is a minor release (v1.17.0) that add new features and minor improvements. 
 
 * checking CRAN incoming feasibility ... Note_to_CRAN_maintainers Maintainer: 'Tiago Olivoto <tiagoolivoto@gmail.com>'
 
-   - I think the following note doesn't matter.
-

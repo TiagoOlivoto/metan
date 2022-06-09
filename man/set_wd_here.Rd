@@ -15,6 +15,7 @@ user will be asked if he wants to create such a folder.}
 A message showing the current working directory
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 It sets the working directory to the path of the current script.
 }
 \examples{

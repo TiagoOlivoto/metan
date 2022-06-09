@@ -194,7 +194,7 @@
 <span class="co"># 4 GY       numeric No      -          420  0.67   2.61  5.09       0 NA   </span>
 <span class="co"># 5 HM       numeric No      -          420 38     48    58          0 NA</span></code></pre></div>
 <p><img src="reference/figures/README-INSPECT-1.png" style="display: block; margin: auto;"></p>
-<p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code>find_outliers()</code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na.html">remove_rows_na()</a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html">replace_zero()</a> to replace 0’s with <code>NA</code>, <a href="https://tiagoolivoto.github.io/metan/reference/utils_as.html">as_factor()</a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>find_text_in_num()</code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> to tidy up strings.</p>
+<p>No issues while inspecting the data. If any issue is given here (like outliers, missing values, etc.) consider using <a href="https://tiagoolivoto.github.io/metan/reference/find_outliers.html"><code>find_outliers()</code></a> to find possible outliers in the data set or any <code>metan</code>’s data manipulation tool such as <a href="https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html">remove_rows_na()</a> to remove rows with <code>NA</code> values, <a href="https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html">replace_zero()</a> to replace 0’s with <code>NA</code>, <a href="https://tiagoolivoto.github.io/metan/reference/utils_as.html">as_factor()</a> to convert desired columns to factor, <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>find_text_in_num()</code></a> to find text fragments in columns assumed to be numeric, or even <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> to tidy up strings.</p>
 </div>
 <div class="section level1">
 <h1 id="descriptive-statistics">Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"></a>
@@ -301,7 +301,7 @@
             gen <span class="op">=</span> <span class="va">GEN</span>,
             rep <span class="op">=</span> <span class="va">REP</span>,
             resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:01 </span>
+<span class="co"># Evaluating trait GY |======================                      | 50% 00:00:01 Evaluating trait HM |============================================| 100% 00:00:02 </span>
 <span class="co"># Method: REML/BLUP</span>
 <span class="co"># Random effects: GEN, GEN:ENV</span>
 <span class="co"># Fixed effects: ENV, REP(ENV)</span>

@@ -2476,7 +2476,8 @@ is_present <- function(x){
 
 
 #' Set the Working Directory quicky
-#'
+#' @description
+#' `r badge('experimental')`
 #' It sets the working directory to the path of the current script.
 #'
 #' @param path Path components below the project root. Defaults to `NULL`. This means that
