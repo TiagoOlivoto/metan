@@ -161,7 +161,7 @@ data frame.</p>
 <span class="r-in">                env <span class="op">=</span> <span class="va">ENV</span>,</span>
 <span class="r-in">                rep <span class="op">=</span> <span class="va">REP</span>,</span>
 <span class="r-in">                nboot <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:01 Validating 3 of 5 sets |=========================                | 60% 00:00:02 Validating 4 of 5 sets |=================================        | 80% 00:00:02 Validating 5 of 5 sets |=========================================| 100% 00:00:03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:01 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:02 Validating 5 of 5 sets |=========================================| 100% 00:00:03 </span>
 <span class="r-in"><span class="va">BLUP</span> <span class="op">&lt;-</span> <span class="fu"><a href="cv_blup.html">cv_blup</a></span><span class="op">(</span><span class="va">data_ge</span>,</span>
 <span class="r-in">                resp <span class="op">=</span> <span class="va">GY</span>,</span>
 <span class="r-in">                gen <span class="op">=</span> <span class="va">GEN</span>,</span>
@@ -176,8 +176,8 @@ data frame.</p>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">bind_cv</span><span class="op">(</span><span class="va">AMMI</span>, <span class="va">BLUP</span>, bind <span class="op">=</span> <span class="st">'means'</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $RMSPD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         MODEL      mean         sd          se      Q2.5     Q97.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       AMMI2 0.4015262 0.02201781 0.009846664 0.3726176 0.4282221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 BLUP_g_RCBD 0.4215016 0.02981124 0.013331993 0.3864056 0.4445146</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 BLUP_g_RCBD 0.3971465 0.01650126 0.007379588 0.3726176 0.4125433</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       AMMI2 0.4072114 0.02643781 0.011823349 0.3749006 0.4350654</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "cvalidation"</span>
