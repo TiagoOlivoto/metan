@@ -9,8 +9,13 @@
 status](https://www.r-pkg.org/badges/version-ago/metan)](https://CRAN.R-project.org/package=metan)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
-![Downloads](http://cranlogs.r-pkg.org/badges/metan) ![Total
-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan)
+![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/metan)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/last-month/metan?color=orange)](https://r-pkg.org/pkg/metan)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/last-week/metan?color=orange)](https://r-pkg.org/pkg/metan)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/last-day/metan?color=orange)](https://r-pkg.org/pkg/metan)
 [<img src="https://zenodo.org/badge/130062661.svg" alt="DOI" width="186"/>](https://zenodo.org/badge/latestdoi/130062661)
 
 <!-- badges: end -->
@@ -267,7 +272,7 @@ model2 <-
             gen = GEN,
             rep = REP,
             resp = everything())
-# Evaluating trait GY |======================                      | 50% 00:00:01 Evaluating trait HM |============================================| 100% 00:00:02 
+# Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:02 
 # Method: REML/BLUP
 # Random effects: GEN, GEN:ENV
 # Fixed effects: ENV, REP(ENV)
@@ -322,7 +327,7 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# Evaluating trait GY |============================================| 100% 00:00:06 
+# Evaluating trait GY |============================================| 100% 00:00:07 
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
