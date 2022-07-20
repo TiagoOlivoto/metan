@@ -1,3 +1,9 @@
+# metan (development version)
+## Minor improvements
+
+* `plot.waasb()` now has new arguments to control whether to show the percentage values within bars and the order of variables on the x-axis.
+
+
 # metan 1.17.0
 ## New features
 * Implement a `plot` method for `path_coeff_*()` functions.

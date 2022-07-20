@@ -9,6 +9,10 @@
   var = 1,
   type = "res",
   position = "fill",
+  trait.levels = NULL,
+  percent = TRUE,
+  percent.digits = 2,
+  size.text.percent = 3.5,
   rotate = FALSE,
   conf = 0.95,
   out = "print",
@@ -50,6 +54,20 @@ to \code{"fill"}, which shows relative proportions at each trait by
 stacking the bars and then standardizing each bar to have the same height.
 Use \code{position = "stack"} to plot the phenotypic variance for each
 trait.}
+
+\item{trait.levels}{By default, variables are ordered in the x-axis by
+alphabetic order. If a plot with two variables (eg., "GY" and "PH") "PH"
+should appers before "GY", one can use a comma-separated vector of variable
+names to relevel the variable's position in the plot (eg., \code{trait.levels = "PH, GY"}).}
+
+\item{percent}{If \code{TRUE} (default) shows the y-axis as percent and the
+percentage values within each bar.}
+
+\item{percent.digits}{The significant figures for the percentage values.
+Defaults to \code{2}.}
+
+\item{size.text.percent}{The size of the text for the percentage values.
+Defaults to \code{3.5}.}
 
 \item{rotate}{Logical argument. If \code{rotate = TRUE} the plot is rotated,
 i.e., traits in y axis and value in the x axis.}
@@ -121,12 +139,12 @@ object, normal Q-Q plot for random effects may also be obtained declaring
 \examples{
 \donttest{
 library(metan)
-model2 <- waasb(data_ge,
-                resp = GY,
-                gen = GEN,
-                env = ENV,
-                rep = REP)
-plot(model2)
+x <- gamem_met(data_ge,
+               gen = GEN,
+               env = ENV,
+               rep = REP,
+               resp = everything())
+plot(x)
 }
 }
 \author{

@@ -153,7 +153,8 @@ mgidi <- function(.data,
                                 mineval = mineval,
                                 ideotype = ideotype,
                                 use = use,
-                                verbose = verbose)))
+                                verbose = verbose,
+                                weights = weights)))
     return(set_class(bind, c("tbl_df",  "mgidi_group", "mgidi", "tbl",  "data.frame")))
   } else{
     d <- match.call()
@@ -219,7 +220,7 @@ mgidi <- function(.data,
     if(has_na(means)){
       warning("Missing values observed in the table of means. Using complete observations to compute the correlation matrix.", call. = FALSE)
     }
-    if(missing(weights)){
+    if(is.null(weights)){
       weights <- rep(1, ncol(data))
     }
     cor.means <- cor(means, use = use)
