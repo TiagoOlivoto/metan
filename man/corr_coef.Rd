@@ -2,15 +2,33 @@
 % Please edit documentation in R/corr_coef.R
 \name{corr_coef}
 \alias{corr_coef}
-\title{Computes Pearson's correlation matrix with p-values}
+\title{Linear and partial correlation coefficients}
 \usage{
-corr_coef(data, ..., verbose = TRUE)
+corr_coef(
+  data,
+  ...,
+  type = c("linear", "partial"),
+  method = c("pearson", "kendall", "spearman"),
+  use = c("pairwise.complete.obs", "everything", "complete.obs"),
+  verbose = TRUE
+)
 }
 \arguments{
 \item{data}{The data set.}
 
 \item{...}{Variables to use in the correlation. If no variable is informed
 all the numeric variables from \code{data} are used.}
+
+\item{type}{The type of correlation to be computed. Defaults to \code{"linear"}.
+Use \code{type = "partial"} to compute partial correlation.}
+
+\item{method}{a character string indicating which partial correlation
+coefficient is to be computed. One of "pearson" (default), "kendall", or
+"spearman"}
+
+\item{use}{an optional character string giving a method for computing
+covariances in the presence of missing values. See \link[stats:cor]{stats::cor} for more
+details}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}
@@ -19,7 +37,26 @@ silently.}
 A list with the correlation coefficients and p-values
 }
 \description{
-Computes Pearson's correlation matrix with p-values
+Computes Pearson's linear correlation or partial correlation with p-values
+}
+\details{
+The partial correlation coefficient is a technique based on matrix operations
+that allow us to identify the association between two variables by removing
+the effects of the other set of variables present (Anderson 2003) A
+generalized way to estimate the partial correlation coefficient between two
+variables (i and j ) is through the simple correlation matrix that involves
+these two variables and m other variables from which we want to remove the
+effects. The estimate of the partial correlation coefficient between i and j
+excluding the effect of m other variables is given by:
+\loadmathjax
+\mjsdeqn{r_{ij.m} = \frac{{- {a_{ij}}}}{{\sqrt {{a_{ii}}{a_{jj}}}}}}
+
+Where \mjseqn{r_{ij.m}} is the partial correlation coefficient between
+variables i and j, without the effect of the other m variables;
+\mjseqn{a_{ij}} is the ij-order element of the inverse of the linear
+correlation matrix; \mjseqn{a_{ii}}, and \mjseqn{a_{jj}} are the elements of
+orders ii and jj, respectively, of the inverse of the simple correlation
+matrix.
 }
 \examples{
 \donttest{
@@ -28,11 +65,26 @@ library(metan)
 # All numeric variables
 all <- corr_coef(data_ge2)
 
-# Select variables
-sel <- corr_coef(data_ge2, EP, EL, CD, CL)
-print(sel)
+
+# Select variable
+sel <-
+  corr_coef(data_ge2,
+            EP, EL, CD, CL)
+sel$cor
+
+# Select variables, partial correlation
+sel <-
+  corr_coef(data_ge2,
+            EP, EL, CD, CL,
+            type = "partial")
+sel$cor
+
 }
 
+}
+\references{
+Anderson, T. W. 2003. An introduction to multivariate statistical analysis.
+3rd ed. Wiley-Interscience.
 }
 \author{
 Tiago Olivoto \email{tiagoolivoto@gmail.com}

@@ -9,7 +9,9 @@
   type = "lower",
   diag = FALSE,
   reorder = TRUE,
-  signif = "stars",
+  signif = c("stars", "pval"),
+  show = c("all", "signif"),
+  p_val = 0.05,
   caption = TRUE,
   digits.cor = 2,
   digits.pval = 3,
@@ -42,6 +44,11 @@ Defaults to \code{TRUE}.}
 (default), stars are used showing the significance at 0.05 ("\emph{"), 0.01
 ("\strong{") and 0.001 ("}}") probability error. If \code{signif = "pval"}, then
 the p-values are shown.}
+
+\item{show}{The correlations to show. Either \code{all} (default) or \code{signif}
+(only significant correlations).}
+
+\item{p_val}{The p-value to the correlation significance.}
 
 \item{caption}{Logical. If \code{TRUE} (Default) includes a caption with the
 significance meaning for stars.}
