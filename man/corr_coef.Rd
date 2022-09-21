@@ -10,11 +10,13 @@ corr_coef(
   type = c("linear", "partial"),
   method = c("pearson", "kendall", "spearman"),
   use = c("pairwise.complete.obs", "everything", "complete.obs"),
+  by = NULL,
   verbose = TRUE
 )
 }
 \arguments{
-\item{data}{The data set.}
+\item{data}{The data set. It understand grouped data passed from
+\code{\link[dplyr:group_by]{dplyr::group_by()}}.}
 
 \item{...}{Variables to use in the correlation. If no variable is informed
 all the numeric variables from \code{data} are used.}
@@ -29,6 +31,10 @@ coefficient is to be computed. One of "pearson" (default), "kendall", or
 \item{use}{an optional character string giving a method for computing
 covariances in the presence of missing values. See \link[stats:cor]{stats::cor} for more
 details}
+
+\item{by}{One variable (factor) to compute the function by. It is a shortcut
+to \code{\link[dplyr:group_by]{dplyr::group_by()}}.This is especially useful, for example,
+to compute correlation matrices by levels of a factor.}
 
 \item{verbose}{Logical argument. If \code{verbose = FALSE} the code is run
 silently.}

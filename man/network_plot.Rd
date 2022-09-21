@@ -10,7 +10,7 @@ network_plot(
   show = c("signif", "all"),
   p_val = 0.05,
   legend = c("full", "range"),
-  colours = c("red", "white", "forestgreen"),
+  colours = c("red", "white", "blue"),
   legend_width = 1,
   legend_height = 15,
   legend_position = c("right", "left", "top", "bottom"),
