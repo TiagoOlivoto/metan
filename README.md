@@ -186,6 +186,23 @@ model <- performs_ammi(data_ge,
                        rep = REP,
                        resp = everything(),
                        verbose = FALSE)
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
 # Significance of IPCAs
 get_model_data(model, "ipca_pval")
 # Class of the model: performs_ammi
@@ -272,7 +289,30 @@ model2 <-
             gen = GEN,
             rep = REP,
             resp = everything())
-# Evaluating trait GY |======================                      | 50% 00:00:00 Evaluating trait HM |============================================| 100% 00:00:02 
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+# Evaluating trait GY |======================                      | 50% 00:00:01 
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+# Evaluating trait HM |============================================| 100% 00:00:02 
 # Method: REML/BLUP
 # Random effects: GEN, GEN:ENV
 # Fixed effects: ENV, REP(ENV)
@@ -327,7 +367,72 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# Evaluating trait GY |============================================| 100% 00:00:07 
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+
+# Warning: `means_by()` is deprecated as of metan 1.17.0
+# Please use `mean_by()` instead
+# Evaluating trait GY |============================================| 100% 00:00:08 
 get_model_data(stats)
 # Class of the model: ge_stats
 # Variable extracted: stats
@@ -384,3 +489,10 @@ A BibTeX entry for LaTeX users is
 
 -   Suggestions and criticisms to improve the quality and usability of
     the package are welcome!
+
+<div align="center">
+
+<a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=138605&s=2' border='0' alt='Free Website Hit Counter'></a><br/><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">Free
+website hit counter</a></small>
+
+</div>
