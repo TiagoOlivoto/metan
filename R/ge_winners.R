@@ -78,14 +78,14 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
       if (better == "h") {
         temp <-
           temp %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           group_by(ENV) %>%
           arrange(desc(Y), .by_group = TRUE)
       }
       if (better == "l") {
         temp <-
           temp %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           group_by(ENV) %>%
           arrange(Y, .by_group = TRUE)
       }
@@ -93,14 +93,14 @@ ge_winners <- function(.data, env, gen, resp, type = "winners", better = NULL) {
       if (better[[var]] == "h") {
         temp <-
           temp %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           group_by(ENV) %>%
           arrange(desc(Y), .by_group = TRUE)
       }
       if (better[[var]] == "l") {
         temp <-
           temp %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           group_by(ENV) %>%
           arrange(Y, .by_group = TRUE)
       }

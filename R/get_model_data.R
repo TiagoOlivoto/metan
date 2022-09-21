@@ -876,7 +876,7 @@ get_model_data <- function(x,
         }
         bind <-
           data %>%
-          means_by(GEN) %>%
+          mean_by(GEN) %>%
           remove_cols(GEN) %>%
           cov()
       }
@@ -954,7 +954,7 @@ get_model_data <- function(x,
         }
         if (what == "blupge") {
           list <- lapply(x, function(x){
-            x[["residuals"]] %>% means_by(ENV, GEN) %>% select_cols(ENV, GEN, .fitted)
+            x[["residuals"]] %>% mean_by(ENV, GEN) %>% select_cols(ENV, GEN, .fitted)
           })
           bind <-  suppressWarnings(
             lapply(seq_along(list),
@@ -967,7 +967,7 @@ get_model_data <- function(x,
         }
         if (what == "blueg") {
           list <- lapply(x, function(x){
-            x[["residuals_lm"]] %>% select(GEN, .fitted) %>% means_by(GEN)
+            x[["residuals_lm"]] %>% select(GEN, .fitted) %>% mean_by(GEN)
           })
           bind <-  suppressWarnings(
             lapply(seq_along(list),
@@ -980,7 +980,7 @@ get_model_data <- function(x,
         }
         if (what == "bluege") {
           list <- lapply(x, function(x){
-            x[["residuals_lm"]] %>% select(ENV, GEN, .fitted) %>% means_by(ENV, GEN)
+            x[["residuals_lm"]] %>% select(ENV, GEN, .fitted) %>% mean_by(ENV, GEN)
           })
           bind <-  suppressWarnings(
             lapply(seq_along(list),

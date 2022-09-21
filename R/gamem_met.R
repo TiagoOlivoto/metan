@@ -365,7 +365,7 @@ gamem_met <- function(.data,
       rand_ef <-
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
-        means_by(data, GEN) %>%
+        mean_by(data, GEN) %>%
         add_cols(BLUPg = bups$GEN$`(Intercept)`,
                  Predicted = BLUPg + ovmean,
                  Rank = rank(-Predicted),
@@ -387,7 +387,7 @@ gamem_met <- function(.data,
       fix_ef <- c("ENV, REP(ENV)")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
-        means_by(data, GEN) %>%
+        mean_by(data, GEN) %>%
         add_cols(BLUPg = bups$GEN$`(Intercept)`,
                  Predicted = BLUPg + ovmean,
                  Rank = rank(-Predicted),
@@ -407,7 +407,7 @@ gamem_met <- function(.data,
             left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
             select(ENV, REP, BLOCK, GEN, BLUPg, BLUPge, BLUPbre) %>%
             add_cols(`BLUPg+ge+bre` = BLUPge + BLUPg + BLUPbre,
-                     Predicted = `BLUPg+ge+bre` + left_join(data_factors, data %>% means_by(ENV, REP), by = c("ENV", "REP"))$Y)
+                     Predicted = `BLUPg+ge+bre` + left_join(data_factors, data %>% mean_by(ENV, REP), by = c("ENV", "REP"))$Y)
         )
       BLUPenv <- NULL
     } else if (mod3){
@@ -416,7 +416,7 @@ gamem_met <- function(.data,
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <- NULL
       BLUPenv <-
-        means_by(data, ENV) %>%
+        mean_by(data, ENV) %>%
         add_cols(BLUPe =  bups$ENV$`(Intercept)`,
                  Predicted = BLUPe + ovmean) %>%
         arrange(-Predicted) %>%
@@ -434,7 +434,7 @@ gamem_met <- function(.data,
             left_join(blupRWE, by = c("ENV", "REP")) %>%
             select(ENV, GEN, REP, BLUPe, BLUPge, BLUPre) %>%
             add_cols(`BLUPge+e+re` = BLUPge + BLUPe + BLUPre,
-                     Predicted = `BLUPge+e+re` + left_join(data_factors, means_by(data, GEN), by = c("GEN"))$Y)
+                     Predicted = `BLUPge+e+re` + left_join(data_factors, mean_by(data, GEN), by = c("GEN"))$Y)
         )
     } else if (mod4){
       ran_ef <- c("BLOCK(ENV:REP), REP(ENV), ENV, GEN:ENV")
@@ -442,7 +442,7 @@ gamem_met <- function(.data,
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <- NULL
       BLUPenv <-
-        means_by(data, ENV) %>%
+        mean_by(data, ENV) %>%
         add_cols(BLUPe =  bups$ENV$`(Intercept)`,
                  Predicted = BLUPe + ovmean) %>%
         arrange(-Predicted) %>%
@@ -480,7 +480,7 @@ gamem_met <- function(.data,
       fix_ef <- c("-")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
-        means_by(data, GEN) %>%
+        mean_by(data, GEN) %>%
         add_cols(BLUPg = bups$GEN$`(Intercept)`,
                  Predicted = BLUPg + ovmean,
                  Rank = rank(-Predicted),
@@ -489,7 +489,7 @@ gamem_met <- function(.data,
         arrange(-Predicted) %>%
         column_to_first(Rank)
       BLUPenv <-
-        means_by(data, ENV) %>%
+        mean_by(data, ENV) %>%
         add_cols(BLUPe =  bups$ENV$`(Intercept)`,
                  Predicted = BLUPe + ovmean,
                  Rank = rank(-Predicted)) %>%
@@ -515,7 +515,7 @@ gamem_met <- function(.data,
       fix_ef <- c("-")
       data_factors <- data %>% select_non_numeric_cols()
       BLUPgen <-
-        means_by(data, GEN) %>%
+        mean_by(data, GEN) %>%
         add_cols(BLUPg = bups$GEN$`(Intercept)`,
                  Predicted = BLUPg + ovmean,
                  Rank = rank(-Predicted),
@@ -524,7 +524,7 @@ gamem_met <- function(.data,
         arrange(-Predicted) %>%
         column_to_first(Rank)
       BLUPenv <-
-        means_by(data, ENV) %>%
+        mean_by(data, ENV) %>%
         add_cols(BLUPe =  bups$ENV$`(Intercept)`,
                  Predicted = BLUPe + ovmean,
                  Rank = rank(-Predicted)) %>%
@@ -560,7 +560,7 @@ gamem_met <- function(.data,
                            BLUPgen = BLUPgen,
                            BLUPenv = BLUPenv,
                            BLUPint = BLUPint,
-                           MeansGxE = means_by(data, ENV, GEN),
+                           MeansGxE = mean_by(data, ENV, GEN),
                            modellme = Complete,
                            residuals = as_tibble(residuals),
                            model_lm = fixed_mod,

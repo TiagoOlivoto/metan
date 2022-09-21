@@ -74,7 +74,7 @@ Annicchiarico <- function(.data,
     }
     environments <-
       data %>%
-      means_by(ENV, na.rm = TRUE) %>%
+      mean_by(ENV, na.rm = TRUE) %>%
       add_cols(index = Y - mean(Y),
                class = ifelse(index < 0, "unfavorable", "favorable")) %>%
       as_tibble()

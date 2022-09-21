@@ -54,10 +54,10 @@ print_table(aggr)
 ```
 
 # Statistics by levels of a factor
-Using the `metan`'s function `means_by()` the amount of code needed is dramatically reduced. To compute the grand mean for all numeric variables of `data_ge`, we simple use:
+Using the `metan`'s function `mean_by()` the amount of code needed is dramatically reduced. To compute the grand mean for all numeric variables of `data_ge`, we simple use:
 ```{r}
 ov_mean <- 
-means_by(data_ge2)
+mean_by(data_ge2)
 print_table(ov_mean)
 
 ```
@@ -65,7 +65,7 @@ print_table(ov_mean)
 To compute the mean values for each level of the factor GEN, we then need to add the grouping variable `GEN` in the argument `...`.
 ```{r}
 ov_mean2 <- 
-means_by(data_ge2, GEN)
+mean_by(data_ge2, GEN)
 print_table(ov_mean2)
 
 ```
@@ -74,7 +74,7 @@ The following `_by()` functions are available for computing the main descriptive
 
  - `cv_by()` For computing coefficient of variation.
  - `max_by()` For computing maximum values.
- - `means_by()` For computing arithmetic means.
+ - `mean_by()` For computing arithmetic means.
  - `min_by()` For computing minimum values.
  - `n_by()` For getting the length.
  - `sd_by()` For computing sample standard deviation.

@@ -47,10 +47,10 @@ ge_details <- function(.data, env, gen, resp){
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-    env_data <- means_by(data, ENV, na.rm = TRUE) %>%
+    env_data <- mean_by(data, ENV, na.rm = TRUE) %>%
       add_cols(TYPE = "Env") %>%
       rename(CODE = "ENV")
-    gen_data <- means_by(data, GEN, na.rm = TRUE) %>%
+    gen_data <- mean_by(data, GEN, na.rm = TRUE) %>%
       add_cols(TYPE = "Gen")%>%
       rename(CODE = "GEN")
     df_bind <-

@@ -36,7 +36,7 @@ sigma <- matrix(c(1,  .3,  0,
 mu <- c(6,50,5)
 
 df <- get_corvars(n = 10000, mu = mu, sigma = sigma, seed = 101010)
-means_by(df)
+mean_by(df)
 cor(df)
 }
 }

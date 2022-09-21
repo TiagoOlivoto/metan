@@ -168,13 +168,13 @@ gafem <- function(.data,
         as_tibble()
       min_gen <-
         data %>%
-        means_by(GEN) %>%
+        mean_by(GEN) %>%
         top_n(1, -Y) %>%
         select(GEN, Y) %>%
         slice(1)
       max_gen <-
         data %>%
-        means_by(GEN) %>%
+        mean_by(GEN) %>%
         top_n(1, Y) %>%
         select(GEN, Y) %>%
         slice(1)
@@ -256,13 +256,13 @@ gafem <- function(.data,
       anova[3, 1] <- "BLOCK(REP)"
       min_gen <-
         data %>%
-        means_by(GEN) %>%
+        mean_by(GEN) %>%
         top_n(1, -Y) %>%
         select(GEN, Y) %>%
         slice(1)
       max_gen <-
         data %>%
-        means_by(GEN) %>%
+        mean_by(GEN) %>%
         top_n(1, Y) %>%
         select(GEN, Y) %>%
         slice(1)

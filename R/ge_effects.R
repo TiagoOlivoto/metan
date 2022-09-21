@@ -58,7 +58,7 @@ ge_effects <- function(.data,
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-    data <- means_by(data, ENV, GEN, na.rm = TRUE)
+    data <- mean_by(data, ENV, GEN, na.rm = TRUE)
     if(type == "ge"){
       effects <- data %>%
         mutate(ge = residuals(lm(Y ~ ENV + GEN, data = data))) %>%

@@ -109,7 +109,7 @@ plot(cc1, 2)
 
 cc2 <-
 data_ge2 \%>\%
-means_by(GEN) \%>\%
+mean_by(GEN) \%>\%
 column_to_rownames("GEN") \%>\%
 can_corr(FG = c(PH, EH, EP),
                SG = c(EL, ED, CL, CD, CW, KW, NR))

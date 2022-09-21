@@ -25,7 +25,7 @@ from several objects to be further analyzed using \code{\link[=pairs_mantel]{pai
 \donttest{
 library(metan)
 d <- data_ge2 \%>\%
-      means_by(GEN) \%>\%
+      mean_by(GEN) \%>\%
       column_to_rownames("GEN") \%>\%
       clustering()
 get_dist(d)

@@ -153,11 +153,11 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
           as.data.frame()
         MEDIAS <-
           modeling %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           as.data.frame()
         residual <-
           modeling %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           mutate(residuals = residuals(lm(Y ~ ENV + GEN, data = .))) %>%
           pull(residuals)
         s <- svd(t(matrix(residual, Nenv, byrow = T)))
@@ -276,11 +276,11 @@ cv_ammif <- function(.data, env, gen, rep, resp, nboot = 200, block, design = "R
           as.data.frame()
         MEDIAS <-
           modeling %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           as.data.frame()
         residual <- modeling %>%
           mutate(residuals = residuals(lm(Y ~ ENV/REP + REP:BLOCK + ENV +  GEN, data = .))) %>%
-          means_by(ENV, GEN) %>%
+          mean_by(ENV, GEN) %>%
           pull(residuals)
         s <- svd(t(matrix(residual, Nenv, byrow = T)))
         MGEN <- model.matrix(~factor(testing$GEN) - 1)

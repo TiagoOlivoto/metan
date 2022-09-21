@@ -438,7 +438,7 @@ d1 <- clustering(data_ge2)
 ```{r, fig.height = 5, fig.width = 5.5, fig.align = "center"}
 mean_gen <-
  data_ge2 %>%
- means_by(GEN) %>%
+ mean_by(GEN) %>%
  column_to_rownames("GEN")
 
 d2 <- clustering(mean_gen)
@@ -535,7 +535,7 @@ Lets suppose we want compute the Mahalanobis' distance for each pairwise genotyp
 ```{r warning=FALSE, message=FALSE}
 means <- 
   data_ge2 %>%
-  means_by(GEN) %>% 
+  mean_by(GEN) %>% 
   column_to_rownames("GEN") %>%
   select(contains("C"))
 

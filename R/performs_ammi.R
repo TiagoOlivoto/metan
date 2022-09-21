@@ -175,7 +175,7 @@ performs_ammi <- function(.data,
         DFE <- df.residual(model)
         MSE <- deviance(model)/DFE
         MEANS <-
-            means_by(data, GEN, ENV) %>%
+            mean_by(data, GEN, ENV) %>%
             make_mat(GEN, ENV, Y)
         if(has_na(MEANS)){
             MEANS <- impute_missing_val(MEANS, verbose = verbose, ...)$.data
@@ -233,12 +233,12 @@ performs_ammi <- function(.data,
         colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
         bplot <-
             MEANS %>%
-            means_by(GEN) %>%
+            mean_by(GEN) %>%
             mutate(type = "GEN") %>%
             rename(Code = GEN) %>%
             cbind(., SCOREG) %>%
             rbind(., MEANS %>%
-                      means_by(ENV) %>%
+                      mean_by(ENV) %>%
                       mutate(type = "ENV") %>%
                       rename(Code = ENV) %>%
                       cbind(., SCOREE)) %>%

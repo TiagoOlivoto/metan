@@ -100,7 +100,7 @@ model <- waas(data_ge,
               resp = everything())
 
 # Based on means of genotype-environment data
-data_means <- means_by(data_ge, ENV, GEN)
+data_means <- mean_by(data_ge, ENV, GEN)
 model2 <- waas_means(data_ge,
                      env = ENV,
                      gen = GEN,

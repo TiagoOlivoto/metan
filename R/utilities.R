@@ -934,7 +934,7 @@ tidy_colnames <- function(.data, sep = "_"){
 #' \donttest{
 #' library(metan)
 #' # means of all numeric variables by ENV
-#' means_by(data_ge2, GEN, ENV)
+#' mean_by(data_ge2, GEN, ENV)
 #'
 #' # Coefficient of variation for all numeric variables
 #' # by GEN and ENV
@@ -1849,7 +1849,7 @@ means_by <- function(.data,
                      ...,
                      .vars = NULL,
                      na.rm = FALSE){
-  deprecated_warning("1.17.0", "metan::means_by()", "metan::mean_by()")
+  deprecated_warning("1.17.0", "metan::mean_by()", "metan::mean_by()")
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")

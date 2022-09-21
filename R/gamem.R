@@ -259,7 +259,7 @@ if(is_grouped_df(.data)){
         suppressWarnings(
           left_join(data_factors, BLUPgen, by = "GEN") %>%
             select_cols(GEN, REP, BLUPg) %>%
-            add_cols(Predicted = BLUPg + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
+            add_cols(Predicted = BLUPg + left_join(data_factors, mean_by(data, REP), by = "REP")$Y)
         )
       min_gen <- data %>%
         group_by(GEN) %>%
@@ -401,7 +401,7 @@ if(is_grouped_df(.data)){
             left_join(blupBWR, by = c("REP", "BLOCK")) %>%
             select_cols(GEN, REP, BLOCK, BLUPg, BLUPbre) %>%
             add_cols(`BLUPg+bre` =  BLUPg + BLUPbre,
-                     Predicted = `BLUPg+bre` + left_join(data_factors, means_by(data, REP), by = "REP")$Y)
+                     Predicted = `BLUPg+bre` + left_join(data_factors, mean_by(data, REP), by = "REP")$Y)
         )
       min_gen <- data %>%
         group_by(GEN) %>%

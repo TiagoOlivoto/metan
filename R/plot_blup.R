@@ -135,7 +135,7 @@ plot_blup <- function(x,
         } else{
             blup <-
                 x$BLUPint %>%
-                means_by(ENV, GEN) %>%
+                mean_by(ENV, GEN) %>%
                 mutate(LL = Predicted - Limits,
                        UL = Predicted + Limits,
                        Mean = ifelse(Predicted < mean(Predicted), "below", "above"))

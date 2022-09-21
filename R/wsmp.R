@@ -135,13 +135,13 @@ wsmp <- function(model,
         SCOREG <- U %*% LL^0.5
         SCOREE <- V %*% LL^0.5
         colnames(SCOREG) <- colnames(SCOREE) <- paste("PC", 1:minimo, sep = "")
-        MEDIAS <- means_by(data, ENV, GEN)
+        MEDIAS <- mean_by(data, ENV, GEN)
         MGEN <-
-          means_by(data, GEN) %>%
+          mean_by(data, GEN) %>%
           add_cols(type = "GEN")
         MGEN <- cbind(MGEN, SCOREG) %>%
           rename(Code = GEN)
-        MENV <- means_by(data, ENV) %>%
+        MENV <- mean_by(data, ENV) %>%
           add_cols(type = "ENV")
         MENV <- cbind(MENV, SCOREE) %>%
           rename(Code = ENV)

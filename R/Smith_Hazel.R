@@ -86,12 +86,12 @@ Smith_Hazel <- function(.data,
            weights <- weights)
     mat <-
       gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
-      means_by(GEN) %>%
+      mean_by(GEN) %>%
       column_to_rownames("GEN") %>%
       as.matrix()
     pcov <-
       gmd(.data, "data", verbose = FALSE) %>%
-      means_by(GEN) %>%
+      mean_by(GEN) %>%
       column_to_rownames("GEN") %>%
       as.matrix() %>%
       cov()

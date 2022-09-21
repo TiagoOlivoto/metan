@@ -92,7 +92,7 @@ ge_plot <- function(.data,
                     ENV = {{env}},
                     GEN = {{gen}},
                     Y = {{resp}}) |>
-        means_by(ENV, GEN)
+        mean_by(ENV, GEN)
       if(is.null(order_e)){
         order_e <- levels(df_long$ENV)
       } else{

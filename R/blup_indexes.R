@@ -92,7 +92,7 @@ hmgv <- function(model){
             model[["BLUPint"]] %>%
             make_mat(GEN, ENV, Predicted)
         HMGV <- tibble(GEN = rownames(GEPRED),
-                       Y = model[["MeansGxE"]] %>% means_by(GEN) %>% pull(Y),
+                       Y = model[["MeansGxE"]] %>% mean_by(GEN) %>% pull(Y),
                        HMGV = apply(GEPRED, 1, FUN = hmean, na.rm = TRUE),
                        HMGV_R = rank(-HMGV))
         return(HMGV)
@@ -118,7 +118,7 @@ rpgv <- function(model){
         mean_env <- apply(GEMEAN, 2, FUN = mean, na.rm = TRUE)
         RPGV <-
             tibble(GEN = rownames(GEPRED),
-                   Y = model[["MeansGxE"]] %>% means_by(GEN) %>% pull(Y),
+                   Y = model[["MeansGxE"]] %>% mean_by(GEN) %>% pull(Y),
                    RPGV = apply(t(t(GEPRED)/mean_env), 1, mean, na.rm = TRUE)) %>%
             add_cols(RPGV_Y = RPGV * ovmean,
                      RPGV_R = rank(-RPGV_Y))
@@ -145,7 +145,7 @@ hmrpgv <- function(model){
         mean_env <- apply(GEMEAN, 2, FUN = mean, na.rm = TRUE)
         HMRPGV <-
             tibble(GEN = rownames(GEPRED),
-                   Y = Y %>% means_by(GEN) %>% pull(Y),
+                   Y = Y %>% mean_by(GEN) %>% pull(Y),
                    HMRPGV = apply(t(t(GEPRED)/mean_env), 1, hmean, na.rm = TRUE)) %>%
             mutate(HMRPGV_Y = HMRPGV * ovmean,
                    HMRPGV_R = rank(-HMRPGV_Y))

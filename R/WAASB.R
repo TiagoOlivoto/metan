@@ -493,10 +493,10 @@ waasb <- function(.data,
     SCOREE <- V %*% LL^0.5 %>% as.data.frame() %>% add_cols(ENV = colnames(intmatrix), .before = 1)
     colnames(SCOREG) <- c("GEN", paste("PC", 1:minimo, sep = ""))
     colnames(SCOREE) <- c("ENV", paste("PC", 1:minimo, sep = ""))
-    MEDIAS <- means_by(data, ENV, GEN)
-    MGEN <- MEDIAS %>% means_by(GEN) %>% add_cols(type = "GEN")
+    MEDIAS <- mean_by(data, ENV, GEN)
+    MGEN <- MEDIAS %>% mean_by(GEN) %>% add_cols(type = "GEN")
     MGEN <- left_join(MGEN, SCOREG, by = "GEN")
-    MENV <- MEDIAS %>% means_by(ENV) %>% add_cols(type = "ENV")
+    MENV <- MEDIAS %>% mean_by(ENV) %>% add_cols(type = "ENV")
     MENV <- left_join(MENV, SCOREE, by = "ENV")
     MEDIAS <- suppressMessages(dplyr::mutate(MEDIAS,
                                              envPC1 = left_join(MEDIAS, MENV %>% select(ENV, PC1))$PC1,
@@ -582,7 +582,7 @@ waasb <- function(.data,
             left_join(blupBRE, by = c("ENV", "REP", "BLOCK")) %>%
             select(ENV, REP, BLOCK, GEN, BLUPg, BLUPge, BLUPbre) %>%
             add_cols(`BLUPg+ge+bre` = BLUPge + BLUPg + BLUPbre,
-                     Predicted = `BLUPg+ge+bre` + left_join(data_factors, data %>% means_by(ENV, REP), by = c("ENV", "REP"))$Y)
+                     Predicted = `BLUPg+ge+bre` + left_join(data_factors, data %>% mean_by(ENV, REP), by = c("ENV", "REP"))$Y)
         )
       BLUPenv <- NULL
     } else if (mod3){

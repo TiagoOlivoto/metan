@@ -19,7 +19,7 @@
 #' library(metan)
 #' library(dplyr)
 #' # Compute the mean for genotypes
-#' means <- means_by(data_ge, GEN) %>%
+#' means <- mean_by(data_ge, GEN) %>%
 #'          column_to_rownames("GEN")
 #'
 #' # Compute the covariance matrix

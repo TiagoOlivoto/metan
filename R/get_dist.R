@@ -15,7 +15,7 @@
 #' \donttest{
 #' library(metan)
 #'d <- data_ge2 %>%
-#'       means_by(GEN) %>%
+#'       mean_by(GEN) %>%
 #'       column_to_rownames("GEN") %>%
 #'       clustering()
 #'get_dist(d)

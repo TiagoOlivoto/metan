@@ -253,7 +253,7 @@ frequencies within each class are computed.
 \donttest{
 library(metan)
 # means of all numeric variables by ENV
-means_by(data_ge2, GEN, ENV)
+mean_by(data_ge2, GEN, ENV)
 
 # Coefficient of variation for all numeric variables
 # by GEN and ENV

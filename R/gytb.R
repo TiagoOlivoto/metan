@@ -174,7 +174,7 @@ gytb <- function(.data,
     has_text_in_num(data)
   }
   gt_mat <-
-    means_by(data, GEN) %>%
+    mean_by(data, GEN) %>%
     column_to_rownames("GEN") %>%
     as.matrix()
 

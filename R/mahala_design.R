@@ -105,7 +105,7 @@ mahala_design <- function(.data,
     }
     means <-
       data.frame(cbind(GEN, covdata)) %>%
-      means_by(GEN) %>%
+      mean_by(GEN) %>%
       column_to_rownames("GEN")
     covdata2 <- comb_vars(data.frame(covdata), order = "first")
     index <- data.frame(t(combn(ncol(mat), 2)))

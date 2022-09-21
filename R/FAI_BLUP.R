@@ -99,7 +99,7 @@ fai_blup <- function(.data,
   if(has_class(.data, c("gamem", "waasb"))){
     means <-
       gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
-      means_by(GEN) %>%
+      mean_by(GEN) %>%
       column_to_rownames("GEN")
   } else {
     if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){

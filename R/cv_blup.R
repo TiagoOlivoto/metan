@@ -183,7 +183,7 @@ cv_blup <- function(.data,
                 base::as.data.frame()
             MEDIAS <-
                 modeling %>%
-                means_by(ENV, GEN) %>%
+                mean_by(ENV, GEN) %>%
                 as.data.frame()
 
             model <- suppressWarnings(suppressMessages(lme4::lmer(model_formula, data = modeling)))
@@ -191,7 +191,7 @@ cv_blup <- function(.data,
             validation <-
                 modeling %>%
                 mutate(pred = predict(model)) %>%
-                means_by(ENV, GEN) %>%
+                mean_by(ENV, GEN) %>%
                 mutate(error = pred - testing$Y)
             RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))
             RMSPDres[, 1][b] <- RMSPD
@@ -268,7 +268,7 @@ cv_blup <- function(.data,
             validation <-
                 modeling %>%
                 mutate(pred = predict(model)) %>%
-                means_by(ENV, GEN) %>%
+                mean_by(ENV, GEN) %>%
                 mutate(error = pred - testing$Y,
                        code = testing$GEN)
             RMSPD <- sqrt(sum(validation$error^2)/length(validation$error))

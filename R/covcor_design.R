@@ -136,7 +136,7 @@ covcor_design <- function(.data,
   vgen <- (diag(ms[, 1]) - diag(ms[, 2]))/3
   means <-
     as_tibble(cbind(GEN, covdata)) %>%
-    means_by(GEN) %>%
+    mean_by(GEN) %>%
     column_to_rownames("GEN")
   covdata2 <- comb_vars(data.frame(covdata), order = "first")
   index <- data.frame(t(combn(nvar, 2)))

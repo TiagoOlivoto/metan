@@ -73,8 +73,8 @@ Shukla <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       data <- remove_rows_na(data)
       has_text_in_num(data)
     }
-    g_means <- means_by(data, GEN)
-    ge_means <- means_by(data, GEN, ENV)
+    g_means <- mean_by(data, GEN)
+    ge_means <- mean_by(data, GEN, ENV)
     ge_effect <- ge_means %>%
       mutate(ge = residuals(lm(Y ~ ENV + GEN, data = .))) %>%
       make_mat(GEN, ENV, ge) %>%

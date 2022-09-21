@@ -55,7 +55,7 @@ ecovalence <- function(.data, env, gen, rep, resp, verbose = TRUE) {
       has_text_in_num(data)
     }
     data2 <- data %>%
-      means_by(ENV, GEN) %>%
+      mean_by(ENV, GEN) %>%
       as.data.frame()
     data3 <- mutate(data2,
                     ge = residuals(lm(Y ~ ENV + GEN, data = data2)))

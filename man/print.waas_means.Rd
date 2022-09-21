@@ -26,7 +26,7 @@ in the R console. The results can also be exported to the directory.
 \examples{
 \donttest{
 library(metan)
-data_means <- means_by(data_ge, ENV, GEN)
+data_means <- mean_by(data_ge, ENV, GEN)
 model <- waas_means(data_ge,
                     env = ENV,
                     gen = GEN,

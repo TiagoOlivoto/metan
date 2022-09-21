@@ -76,21 +76,21 @@ ge_reg = function(.data,
     }
     data2 <-
       data %>%
-      means_by(ENV, GEN) %>%
+      mean_by(ENV, GEN) %>%
       as.data.frame()
     model1 <- lm(Y ~ GEN + ENV + ENV/REP + ENV * GEN, data = data)
     modav <- anova(model1)
     mydf <-
       data %>%
-      means_by(GEN, ENV)
+      mean_by(GEN, ENV)
     iamb <-
       data %>%
-      means_by(ENV) %>%
+      mean_by(ENV) %>%
       add_cols(IndAmb = Y - mean(Y)) %>%
       select_cols(ENV, IndAmb)
     iamb2 <-
       data %>%
-      means_by(ENV, GEN) %>%
+      mean_by(ENV, GEN) %>%
       left_join(iamb, by = "ENV")
     meandf <- make_mat(mydf, GEN, ENV, Y) %>% rownames_to_column("GEN")
     matx <- make_mat(mydf, GEN, ENV, Y) %>% as.matrix()

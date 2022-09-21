@@ -72,7 +72,7 @@ Schmildt <- function(.data, env, gen, rep, resp, prob = 0.05,
       mutate(Y = vars[[var]])
     environments <-
       data %>%
-      means_by(ENV, na.rm = TRUE) %>%
+      mean_by(ENV, na.rm = TRUE) %>%
       add_cols(index = Y - mean(Y),
                class = ifelse(index < 0, "unfavorable", "favorable")) %>%
       as_tibble()

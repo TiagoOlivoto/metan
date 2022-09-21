@@ -54,9 +54,9 @@ ge_means <- function(.data, env, gen, resp) {
       has_text_in_num(data)
     }
     ge_m <- data %>%
-      means_by(ENV, GEN)
-    g_m <- means_by(data, GEN)
-    e_m <- means_by(data, ENV)
+      mean_by(ENV, GEN)
+    g_m <- mean_by(data, GEN)
+    e_m <- mean_by(data, ENV)
     listres[[paste(names(vars[var]))]] <-
       structure(list(ge_means_mat =  make_mat(ge_m, GEN, ENV, Mean),
                      ge_means_long = ge_m,

@@ -81,7 +81,7 @@
 #'               resp = everything())
 #'
 #' # Based on means of genotype-environment data
-#' data_means <- means_by(data_ge, ENV, GEN)
+#' data_means <- mean_by(data_ge, ENV, GEN)
 #' model2 <- waas_means(data_ge,
 #'                      env = ENV,
 #'                      gen = GEN,
@@ -164,7 +164,7 @@ waas_means <- function(.data,
       has_text_in_num(data)
     }
     data <-
-      means_by(data, GEN, ENV) %>%
+      mean_by(data, GEN, ENV) %>%
       make_mat(GEN, ENV, Y)
     if(has_na(data)){
       data <- impute_missing_val(data, verbose = verbose, ...)$.data
@@ -174,12 +174,12 @@ waas_means <- function(.data,
 
     vin <- vin + 1
     MGEN <-
-      means_by(data, GEN) %>%
+      mean_by(data, GEN) %>%
       rename(Code = GEN) %>%
       add_cols(type = "GEN")%>%
       select_cols(type, Code, Y)
     MENV <-
-      means_by(data, ENV) %>%
+      mean_by(data, ENV) %>%
       rename(Code = ENV) %>%
       add_cols(type = "ENV") %>%
       select_cols(type, Code, Y)
@@ -282,7 +282,7 @@ waas_means <- function(.data,
 #' @examples
 #'\donttest{
 #' library(metan)
-#' data_means <- means_by(data_ge, ENV, GEN)
+#' data_means <- mean_by(data_ge, ENV, GEN)
 #' model <- waas_means(data_ge,
 #'                     env = ENV,
 #'                     gen = GEN,

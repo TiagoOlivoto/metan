@@ -114,7 +114,7 @@ d1 <- clustering(data_ge2)
 # Based on the mean for each genotype
 mean_gen <-
  data_ge2 \%>\%
- means_by(GEN) \%>\%
+ mean_by(GEN) \%>\%
  column_to_rownames("GEN")
 
 d2 <- clustering(mean_gen)

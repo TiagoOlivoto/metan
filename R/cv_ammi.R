@@ -155,11 +155,11 @@ cv_ammi <- function(.data, env, gen, rep, resp, block = NULL, naxis = 2, nboot =
         as.data.frame()
       MEDIAS <-
         modeling %>%
-        means_by(ENV, GEN) %>%
+        mean_by(ENV, GEN) %>%
         as.data.frame()
       residual <-
         modeling %>%
-        means_by(ENV, GEN) %>%
+        mean_by(ENV, GEN) %>%
         ungroup() %>%
         mutate(residuals = residuals(lm(Y ~ ENV + GEN, data = .))) %>%
         pull(residuals)

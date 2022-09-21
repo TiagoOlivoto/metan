@@ -250,7 +250,7 @@ mps <- function(.data,
   }
   # mean performance
   observed <- gmd(mod, "data", verbose = FALSE) %>%
-    means_by(GEN) %>%
+    mean_by(GEN) %>%
     column_to_rownames("GEN")
   mperf <-
     switch(performance,

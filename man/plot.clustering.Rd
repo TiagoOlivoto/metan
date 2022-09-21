@@ -28,7 +28,7 @@ Plot an object of class clustering
 \donttest{
 mean_gen <-
  data_ge2 \%>\%
- means_by(GEN) \%>\%
+ mean_by(GEN) \%>\%
  column_to_rownames("GEN")
 
 d <- clustering(mean_gen)
