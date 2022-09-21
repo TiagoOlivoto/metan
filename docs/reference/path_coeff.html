@@ -5,7 +5,7 @@ path_coeff_seq() computes a sequential path analysis using primary and secondary
 path_coeff_mat() computes a path analysis using correlation matrices as
 input data.
 
-"><title>Path coefficients with minimal multicollinearity — path_coeff • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Path coefficients with minimal multicollinearity — path_coeff"><meta property="og:description" content="
+"><title>Path coefficients with minimal multicollinearity — path_coeff • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Path coefficients with minimal multicollinearity — path_coeff"><meta property="og:description" content="
 path_coeff() computes a path analysis using a data frame as input data.
 path_coeff_seq() computes a sequential path analysis using primary and secondary traits.
 path_coeff_mat() computes a path analysis using correlation matrices as
@@ -28,7 +28,7 @@ input data.
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,25 +129,25 @@ input data.</p></li>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">path_coeff</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  <span class="va">resp</span>,
-  pred <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,
-  by <span class="op">=</span> <span class="cn">NULL</span>,
-  exclude <span class="op">=</span> <span class="cn">FALSE</span>,
-  correction <span class="op">=</span> <span class="cn">NULL</span>,
-  knumber <span class="op">=</span> <span class="fl">50</span>,
-  brutstep <span class="op">=</span> <span class="cn">FALSE</span>,
-  maxvif <span class="op">=</span> <span class="fl">10</span>,
-  missingval <span class="op">=</span> <span class="st">"pairwise.complete.obs"</span>,
-  plot_res <span class="op">=</span> <span class="cn">FALSE</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">path_coeff_mat</span><span class="op">(</span><span class="va">cor_mat</span>, <span class="va">resp</span>, correction <span class="op">=</span> <span class="cn">NULL</span>, knumber <span class="op">=</span> <span class="fl">50</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">path_coeff_seq</span><span class="op">(</span><span class="va">.data</span>, <span class="va">resp</span>, <span class="va">chain_1</span>, <span class="va">chain_2</span>, by <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">path_coeff</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  <span class="va">resp</span>,</span>
+<span>  pred <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  exclude <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  correction <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  knumber <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  brutstep <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  maxvif <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  missingval <span class="op">=</span> <span class="st">"pairwise.complete.obs"</span>,</span>
+<span>  plot_res <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">path_coeff_mat</span><span class="op">(</span><span class="va">cor_mat</span>, <span class="va">resp</span>, correction <span class="op">=</span> <span class="cn">NULL</span>, knumber <span class="op">=</span> <span class="fl">50</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">path_coeff_seq</span><span class="op">(</span><span class="va">.data</span>, <span class="va">resp</span>, <span class="va">chain_1</span>, <span class="va">chain_2</span>, by <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -155,8 +155,12 @@ input data.</p></li>
     <dl><dt>.data</dt>
 <dd><p>The data. Must be a data frame or a grouped data passed from
 <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">dplyr::group_by()</a></code></p></dd>
+
+
 <dt>resp</dt>
 <dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; The dependent trait.</p></dd>
+
+
 <dt>pred</dt>
 <dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; The predictor traits. set to
 <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>, i.e., the predictor traits are all the numeric traits in
@@ -164,54 +168,81 @@ the data except that in <code>resp</code>. To select multiple traits, use a
 comma-separated vector of names, (e.g., <code>pred = c(V1, V2, V2)</code>), an
 interval of trait names, (e.g., <code>pred = c(V1:V3)</code>), or even a select helper
 (e.g., <code>pred = starts_with("V")</code>).</p></dd>
+
+
 <dt>by</dt>
 <dd><p>One variable (factor) to compute the function by. It is a shortcut
 to <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">dplyr::group_by()</a></code>. To compute the statistics by more than
 one grouping variable use that function.</p></dd>
+
+
 <dt>exclude</dt>
 <dd><p>Logical argument, set to false. If <code>exclude = TRUE</code>, then
 the traits in <code>pred</code> are deleted from the data, and the analysis
 will use as predictor those that remained, except that in <code>resp</code>.</p></dd>
+
+
 <dt>correction</dt>
 <dd><p>Set to <code>NULL</code>. A correction value (k) that will be
 added into the diagonal elements of the <strong>X'X</strong> matrix aiming at
 reducing the harmful problems of the multicollinearity in path analysis
 (Olivoto et al., 2017)</p></dd>
+
+
 <dt>knumber</dt>
 <dd><p>When <code>correction = NULL</code>, a plot showing the values of
 direct effects in a set of different k values (0-1) is produced.
 <code>knumber</code> is the number of k values used in the range of 0 to 1.</p></dd>
+
+
 <dt>brutstep</dt>
 <dd><p>Logical argument, set to <code>FALSE</code>. If true, then an
 algorithm will select a subset of variables with minimal multicollinearity
 and fit a set of possible models. See the <strong>Details</strong> section for more
 information.</p></dd>
+
+
 <dt>maxvif</dt>
 <dd><p>The maximum value for the Variance Inflation Factor (cut point)
 that will be accepted. See the <strong>Details</strong> section for more information.</p></dd>
+
+
 <dt>missingval</dt>
 <dd><p>How to deal with missing values. For more information,
 please see <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">stats::cor()</a></code>.</p></dd>
+
+
 <dt>plot_res</dt>
 <dd><p>If <code>TRUE</code>, create a scatter plot of residual against
 predicted value and a normal Q-Q plot.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>If <code>verbose = TRUE</code> then some results are shown in the
 console.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Depends on the function used:</p><ul><li><p>For <code>path_coeff()</code> additional arguments passed on to <code><a href="https://rdrr.io/r/stats/plot.lm.html" class="external-link">stats::plot.lm()</a></code>.</p></li>
 <li><p>For <code>path_coeff_seq()</code> additional arguments passed on to path_coeff.</p></li>
 </ul></dd>
+
+
 <dt>cor_mat</dt>
 <dd><p>Matrix of correlations containing both dependent and
 independent traits.</p></dd>
+
+
 <dt>chain_1, chain_2</dt>
 <dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; The traits used
 in the first (primary) and second (secondary) chain.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Depends on the function used:</p><ul><li><p><code>path_coeff()</code>, returns a list with the following items:</p><ul><li><p><strong>Corr.x</strong> A correlation matrix between the predictor variables.</p></li>
+    
+
+<p>Depends on the function used:</p><ul><li><p><code>path_coeff()</code>, returns a list with the following items:</p><ul><li><p><strong>Corr.x</strong> A correlation matrix between the predictor variables.</p></li>
 <li><p><strong>Corr.y</strong> A vector of correlations between each predictor variable
 with the dependent variable.</p></li>
 <li><p><strong>Coefficients</strong> The path coefficients. Direct effects are the
@@ -281,39 +312,39 @@ Mol. Res. 16(1): gmr16019525. <a href="https://doi.org/10.4238/gmr16019525" clas
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Using KW as the response variable and all other ones as predictors</span></span>
-<span class="r-in"><span class="va">pcoeff</span> <span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>, resp <span class="op">=</span> <span class="va">KW</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Using KW as the response variable and all other ones as predictors</span></span></span>
+<span class="r-in"><span><span class="va">pcoeff</span> <span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>, resp <span class="op">=</span> <span class="va">KW</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Severe multicollinearity. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number: 7865.84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider using a correction factor with 'correction' argument.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider identifying collinear traits with `non_collinear_vars()`</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The same as above, but using the correlation matrix</span></span>
-<span class="r-in"><span class="va">cor_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="utils_rows_cols.html">select_numeric_cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pcoeff2</span> <span class="op">&lt;-</span> <span class="fu">path_coeff_mat</span><span class="op">(</span><span class="va">cor_mat</span>, resp <span class="op">=</span> <span class="va">KW</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The same as above, but using the correlation matrix</span></span></span>
+<span class="r-in"><span><span class="va">cor_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="utils_rows_cols.html">select_numeric_cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pcoeff2</span> <span class="op">&lt;-</span> <span class="fu">path_coeff_mat</span><span class="op">(</span><span class="va">cor_mat</span>, resp <span class="op">=</span> <span class="va">KW</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Severe multicollinearity. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number = 7865.84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Please, consider using a correction factor, or use 'brutstep = TRUE'. </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Declaring the predictors</span></span>
-<span class="r-in"><span class="co"># Create a residual plot with 'plot_res = TRUE'</span></span>
-<span class="r-in"><span class="va">pcoeff3</span><span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>,</span>
-<span class="r-in">                      resp <span class="op">=</span> <span class="va">KW</span>,</span>
-<span class="r-in">                      pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">NKE</span>, <span class="va">TKW</span><span class="op">)</span>,</span>
-<span class="r-in">                      plot_res <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Declaring the predictors</span></span></span>
+<span class="r-in"><span><span class="co"># Create a residual plot with 'plot_res = TRUE'</span></span></span>
+<span class="r-in"><span><span class="va">pcoeff3</span><span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>,</span></span>
+<span class="r-in"><span>                      resp <span class="op">=</span> <span class="va">KW</span>,</span></span>
+<span class="r-in"><span>                      pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">NKE</span>, <span class="va">TKW</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      plot_res <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="path_coeff-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Weak multicollinearity. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number: 40.232</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> You will probably have path coefficients close to being unbiased. </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Selecting a set of predictors with minimal multicollinearity</span></span>
-<span class="r-in"><span class="co"># Maximum variance Inflation factor of 5</span></span>
-<span class="r-in"><span class="va">pcoeff4</span> <span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>,</span>
-<span class="r-in">                     resp <span class="op">=</span> <span class="va">KW</span>,</span>
-<span class="r-in">                     brutstep <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">                     maxvif <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Selecting a set of predictors with minimal multicollinearity</span></span></span>
+<span class="r-in"><span><span class="co"># Maximum variance Inflation factor of 5</span></span></span>
+<span class="r-in"><span><span class="va">pcoeff4</span> <span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>,</span></span>
+<span class="r-in"><span>                     resp <span class="op">=</span> <span class="va">KW</span>,</span></span>
+<span class="r-in"><span>                     brutstep <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>                     maxvif <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The algorithm has selected a set of 8 predictors with largest VIF = 3.346. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Selected predictors: NR PERK EP CDED EL NKR TKW PH </span>
@@ -338,11 +369,11 @@ Mol. Res. 16(1): gmr16019525. <a href="https://doi.org/10.4238/gmr16019525" clas
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL_6 1329       2  2.23      0.8555 0.738    0.512   1.17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># When one analysis should be carried out for each environment</span></span>
-<span class="r-in"><span class="co"># Using the forward-pipe operator %&gt;%</span></span>
-<span class="r-in"><span class="va">pcoeff5</span> <span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>, resp <span class="op">=</span> <span class="va">KW</span>, by <span class="op">=</span> <span class="va">ENV</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># When one analysis should be carried out for each environment</span></span></span>
+<span class="r-in"><span><span class="co"># Using the forward-pipe operator %&gt;%</span></span></span>
+<span class="r-in"><span><span class="va">pcoeff5</span> <span class="op">&lt;-</span> <span class="fu">path_coeff</span><span class="op">(</span><span class="va">data_ge2</span>, resp <span class="op">=</span> <span class="va">KW</span>, by <span class="op">=</span> <span class="va">ENV</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Severe multicollinearity. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number: 13958.438</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider using a correction factor with 'correction' argument.</span>
@@ -359,17 +390,17 @@ Mol. Res. 16(1): gmr16019525. <a href="https://doi.org/10.4238/gmr16019525" clas
 <span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number: 12981.917</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider using a correction factor with 'correction' argument.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider identifying collinear traits with `non_collinear_vars()`</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># sequential path analysis</span></span>
-<span class="r-in"><span class="co"># KW as dependent trait</span></span>
-<span class="r-in"><span class="co"># NKE and TKW as primary predictors</span></span>
-<span class="r-in"><span class="co"># PH, EH, EP, and EL as secondary traits</span></span>
-<span class="r-in"><span class="va">pcoeff6</span> <span class="op">&lt;-</span></span>
-<span class="r-in"> <span class="fu">path_coeff_seq</span><span class="op">(</span><span class="va">data_ge2</span>,</span>
-<span class="r-in">               resp <span class="op">=</span> <span class="va">KW</span>,</span>
-<span class="r-in">               chain_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">NKE</span>, <span class="va">TKW</span><span class="op">)</span>,</span>
-<span class="r-in">               chain_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">EP</span>, <span class="va">EL</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># sequential path analysis</span></span></span>
+<span class="r-in"><span><span class="co"># KW as dependent trait</span></span></span>
+<span class="r-in"><span><span class="co"># NKE and TKW as primary predictors</span></span></span>
+<span class="r-in"><span><span class="co"># PH, EH, EP, and EL as secondary traits</span></span></span>
+<span class="r-in"><span><span class="va">pcoeff6</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span> <span class="fu">path_coeff_seq</span><span class="op">(</span><span class="va">data_ge2</span>,</span></span>
+<span class="r-in"><span>               resp <span class="op">=</span> <span class="va">KW</span>,</span></span>
+<span class="r-in"><span>               chain_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">NKE</span>, <span class="va">TKW</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>               chain_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">EP</span>, <span class="va">EL</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Collinearity diagnosis of first chain predictors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
@@ -383,13 +414,13 @@ Mol. Res. 16(1): gmr16019525. <a href="https://doi.org/10.4238/gmr16019525" clas
 <span class="r-out co"><span class="r-pr">#&gt;</span> Condition Number: 1047.993</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider using a correction factor with 'correction' argument.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Consider identifying collinear traits with `non_collinear_vars()`</span>
-<span class="r-in"><span class="va">pcoeff6</span><span class="op">$</span><span class="va">resp_sc</span><span class="op">$</span><span class="va">Coefficients</span></span>
+<span class="r-in"><span><span class="va">pcoeff6</span><span class="op">$</span><span class="va">resp_sc</span><span class="op">$</span><span class="va">Coefficients</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           PH         EH        EP        EL    linear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PH 1.4800514 -1.3237892 0.4282428 0.1689388 0.7534439</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH 1.3791537 -1.4206365 0.5832858 0.1611440 0.7029469</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EP 0.9448831 -1.2353087 0.6707935 0.1170515 0.4974193</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EL 0.5627096 -0.5151991 0.1767029 0.4443467 0.6685601</span>
-<span class="r-in"><span class="va">pcoeff6</span><span class="op">$</span><span class="va">resp_sc2</span></span>
+<span class="r-in"><span><span class="va">pcoeff6</span><span class="op">$</span><span class="va">resp_sc2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    trait      effect         NKE         TKW     residual      total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     PH      direct  1.45585270 -0.07780424 -0.102002953  1.4800514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     PH indirect_EH -1.70571124  0.54287910  0.160957033 -1.3237892</span>
@@ -411,8 +442,8 @@ Mol. Res. 16(1): gmr16019525. <a href="https://doi.org/10.4238/gmr16019525" clas
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18    EL indirect_EH -0.66383754  0.21128050  0.062642093 -0.5151991</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 19    EL indirect_EP  0.20198546 -0.05259902 -0.027316482  0.1767029</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 20    EL       total  0.33903919  0.31852275 -0.010998175  0.6685601</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -424,7 +455,7 @@ Mol. Res. 16(1): gmr16019525. <a href="https://doi.org/10.4238/gmr16019525" clas
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

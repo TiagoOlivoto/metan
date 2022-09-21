@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Analyzing multienvironment trials using GGE">
 <meta property="og:description" content="metan">
@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,12 +134,12 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Analyzing multienvironment trials using GGE</h1>
                         <h4 data-toc-skip class="author">Tiago
 Olivoto</h4>
             
-            <h4 data-toc-skip class="date">2022-06-09</h4>
+            <h4 data-toc-skip class="date">2022-09-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TiagoOlivoto/metan/blob/HEAD/vignettes/vignettes_gge.Rmd" class="external-link"><code>vignettes/vignettes_gge.Rmd</code></a></small>
       <div class="d-none name"><code>vignettes_gge.Rmd</code></div>
@@ -164,7 +164,7 @@ more information, please, see <code><a href="../reference/data_ge.html">?data_ge
 be used provided that the following columns are in the dataset:
 environment, genotype, block/replicate and response variable(s).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="the-gge-model">The GGE model<a class="anchor" aria-label="anchor" href="#the-gge-model"></a>
@@ -264,21 +264,21 @@ which contains data for grain yield evaluated in 10 genotypes conducted
 in 14 environments. First of all, let’s inspect this data for possible
 problems.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/inspect.html">inspect</a></span><span class="op">(</span><span class="va">data_ge</span><span class="op">)</span>
-<span class="co"># <span style="color: #949494;"># A tibble: 5 × 10</span></span>
-<span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier Text </span>
-<span class="co">#   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span></span>
-<span class="co"># <span style="color: #BCBCBC;">1</span> ENV      factor  No      14         420 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
-<span class="co"># <span style="color: #BCBCBC;">2</span> GEN      factor  No      10         420 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
-<span class="co"># <span style="color: #BCBCBC;">3</span> REP      factor  No      3          420 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span>
-<span class="co"># <span style="color: #BCBCBC;">4</span> GY       numeric No      -          420  0.67   2.61  5.09       0 <span style="color: #BB0000;">NA</span>   </span>
-<span class="co"># <span style="color: #BCBCBC;">5</span> HM       numeric No      -          420 38     48    58          0 <span style="color: #BB0000;">NA</span></span>
-<span class="co"># No issues detected while inspecting data.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/inspect.html">inspect</a></span><span class="op">(</span><span class="va">data_ge</span><span class="op">)</span></span>
+<span><span class="co"># <span style="color: #949494;"># A tibble: 5 × 10</span></span></span>
+<span><span class="co">#   Variable Class   Missing Levels Valid_n   Min Median   Max Outlier Text </span></span>
+<span><span class="co">#   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span></span></span>
+<span><span class="co"># <span style="color: #BCBCBC;">1</span> ENV      factor  No      14         420 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co"># <span style="color: #BCBCBC;">2</span> GEN      factor  No      10         420 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co"># <span style="color: #BCBCBC;">3</span> REP      factor  No      3          420 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co"># <span style="color: #BCBCBC;">4</span> GY       numeric No      -          420  0.67   2.61  5.09       0 <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co"># <span style="color: #BCBCBC;">5</span> HM       numeric No      -          420 38     48    58          0 <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co"># No issues detected while inspecting data.</span></span></code></pre></div>
 <p>The GGE model is fitted with the function <code><a href="../reference/gge.html">gge()</a></code>. This
 function produces a GGE model using a data frame containing at least the
 columns for genotypes, environments and the response variable(s).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span></span></code></pre></div>
 <p>The model above was fitted considering (i) column metric preserving
 (where the singular value is entirely partitioned into the environment
 eigenvectors); (ii) environment centered (the biplot will contain a
@@ -331,12 +331,12 @@ options of the function.</p>
 is produced by just calling <code>plot(model)</code>, as shown
 below.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span><span class="op">)</span>
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          col.gen <span class="op">=</span> <span class="st">"orange"</span>,
-          size.text.env <span class="op">=</span> <span class="fl">2</span>,
-          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>grid <span class="op">=</span>  <span class="st">"both"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span><span class="op">)</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"orange"</span>,</span>
+<span>          size.text.env <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>grid <span class="op">=</span>  <span class="st">"both"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -361,15 +361,15 @@ greater instability. In our example, G3 was found to be the most stable
 and the second most productive genotype, while G9 had great
 instability.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span>
-<span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">2</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          col.env <span class="op">=</span> <span class="st">"red"</span>,
-          axis_expand <span class="op">=</span> <span class="fl">1.5</span>,
-          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">c</span>, <span class="va">d</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span></span>
+<span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.env <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>          axis_expand <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">c</span>, <span class="va">d</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -392,27 +392,27 @@ the highest-yielding genotype in all environments that share the sector
 with it <span class="citation">(<a href="#ref-Yan2007" role="doc-biblioref">W. Yan et al. 2007</a>)</span>. In this case, G4
 was the highest-yielding in E9, as shown in the two-way table above.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
-<span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">3</span>,
-          size.shape.win <span class="op">=</span> <span class="fl">5</span>,
-          large_label <span class="op">=</span> <span class="fl">6</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          col.env <span class="op">=</span> <span class="st">"gray"</span>,
-          title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">f</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span></span>
+<span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>          size.shape.win <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>          large_label <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.env <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>          title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">f</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="biplot-type-4-discriminativeness-vs--representativeness">Biplot type 4: Discriminativeness vs. representativeness<a class="anchor" aria-label="anchor" href="#biplot-type-4-discriminativeness-vs--representativeness"></a>
 </h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">4</span>,
-          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"g"</span>, <span class="st">"h"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">h</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"g"</span>, <span class="st">"h"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -429,16 +429,16 @@ lowest-yielding genotype was G10, and the order of the genotypes were G8
 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt;
 G10.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
-<span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">5</span>, sel_env <span class="op">=</span> <span class="st">"E10"</span><span class="op">)</span>
-<span class="va">j</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">5</span>,
-          sel_env <span class="op">=</span> <span class="st">"E10"</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          col.env <span class="op">=</span> <span class="st">"black"</span>,
-          size.text.env <span class="op">=</span> <span class="fl">10</span>,
-          axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">j</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"i"</span>, <span class="st">"j"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span></span>
+<span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">5</span>, sel_env <span class="op">=</span> <span class="st">"E10"</span><span class="op">)</span></span>
+<span><span class="va">j</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>          sel_env <span class="op">=</span> <span class="st">"E10"</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.env <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          size.text.env <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>          axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">j</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"i"</span>, <span class="st">"j"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -452,19 +452,19 @@ is “environment” (default). It can be seen that E13 is the closest to
 the ideal environment, and, therefore, is most desirable of all 14
 environments. E4 and E9 were the least desirable test environments.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
-<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">6</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          col.env <span class="op">=</span> <span class="st">"black"</span>,
-          col.circle <span class="op">=</span> <span class="st">"red"</span>,
-          col.alpha.circle <span class="op">=</span> <span class="fl">0.5</span>,
-          size.text.env <span class="op">=</span> <span class="fl">10</span>,
-          axis_expand <span class="op">=</span> <span class="fl">1.5</span>,
-          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>color.background <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">l</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"k"</span>, <span class="st">"l"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span></span>
+<span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.env <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.circle <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>          col.alpha.circle <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>          size.text.env <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>          axis_expand <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>color.background <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">l</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"k"</span>, <span class="st">"l"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -475,17 +475,17 @@ environments. E4 and E9 were the least desirable test environments.</p>
 achieved by drawing an average environment coordinate (AEC) on the
 genotype-focused biplot <span class="citation">(<a href="#ref-Yan2007" role="doc-biblioref">W. Yan et al. 2007</a>)</span>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span>
-<span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">7</span>, sel_gen <span class="op">=</span> <span class="st">"G8"</span><span class="op">)</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">7</span>,
-          sel_gen <span class="op">=</span> <span class="st">"G8"</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          col.env <span class="op">=</span> <span class="st">"black"</span>,
-          size.text.env <span class="op">=</span> <span class="fl">10</span>,
-          axis_expand <span class="op">=</span> <span class="fl">1.5</span>,
-          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>grid <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">7</span>, sel_gen <span class="op">=</span> <span class="st">"G8"</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">7</span>,</span>
+<span>          sel_gen <span class="op">=</span> <span class="st">"G8"</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.env <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          size.text.env <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>          axis_expand <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan</a></span><span class="op">(</span>grid <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -500,14 +500,14 @@ genotypes are ranked based on their distance from the ideal genotype
 Yan et al. 2007</a>)</span>. In our example, G3 and G8 were found to
 outperform the other genotypes.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">o</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">8</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          col.env <span class="op">=</span> <span class="st">"gray"</span>,
-          size.text.gen <span class="op">=</span> <span class="fl">6</span>,
-          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">o</span>, <span class="va">p</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"o"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">o</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          col.env <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>          size.text.gen <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>          plot_theme <span class="op">=</span> <span class="fu"><a href="../reference/themes.html">theme_metan_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">o</span>, <span class="va">p</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"o"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -522,28 +522,28 @@ line, together with G8. This indicates that G10 yielded more than G8 in
 E9, but G8. yielded more than G10 in the other 13 environments <span class="citation">(<a href="#ref-Yan2007" role="doc-biblioref">W. Yan et
 al. 2007</a>)</span>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
-<span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">9</span>, sel_gen1 <span class="op">=</span> <span class="st">"G8"</span>, sel_gen2 <span class="op">=</span> <span class="st">"G10"</span><span class="op">)</span>
-<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">9</span>,
-          sel_gen1 <span class="op">=</span> <span class="st">"G8"</span>,
-          sel_gen2 <span class="op">=</span> <span class="st">"G10"</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">q</span>, <span class="va">r</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span></span>
+<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">9</span>, sel_gen1 <span class="op">=</span> <span class="st">"G8"</span>, sel_gen2 <span class="op">=</span> <span class="st">"G10"</span><span class="op">)</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">9</span>,</span>
+<span>          sel_gen1 <span class="op">=</span> <span class="st">"G8"</span>,</span>
+<span>          sel_gen2 <span class="op">=</span> <span class="st">"G10"</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">q</span>, <span class="va">r</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="biplot-type-10-relationship-among-environments">Biplot type 10: Relationship among environments<a class="anchor" aria-label="anchor" href="#biplot-type-10-relationship-among-environments"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
-<span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
-          type <span class="op">=</span> <span class="fl">10</span>,
-          col.gen <span class="op">=</span> <span class="st">"black"</span>,
-          title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"s"</span>, <span class="st">"t"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,</span>
+<span>          type <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>          col.gen <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">t</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"s"</span>, <span class="st">"t"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gge_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -577,7 +577,7 @@ Genotype-by-Environment Data</span>.”</span> <em>Crop Science</em> 47
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

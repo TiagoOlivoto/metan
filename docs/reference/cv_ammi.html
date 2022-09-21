@@ -16,7 +16,7 @@ Difference (RMSPD) is computed. At the end of boots, a list is returned.
 IMPORTANT: If the data set is unbalanced (i.e., any genotype missing
 in any environment) the function will return an error. An error is also
 observed if any combination of genotype-environment has a different number of
-replications than observed in the trial."><title>Cross-validation procedure — cv_ammi • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Cross-validation procedure — cv_ammi"><meta property="og:description" content="
+replications than observed in the trial."><title>Cross-validation procedure — cv_ammi • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Cross-validation procedure — cv_ammi"><meta property="og:description" content="
 Cross-validation for estimation of AMMI models
 THe original dataset is split into two datasets: training set and validation
 set. The 'training' set has all combinations (genotype x environment) with
@@ -50,7 +50,7 @@ replications than observed in the trial."><meta property="og:image" content="htt
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -165,18 +165,18 @@ replications than observed in the trial.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cv_ammi</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  <span class="va">env</span>,
-  <span class="va">gen</span>,
-  <span class="va">rep</span>,
-  <span class="va">resp</span>,
-  block <span class="op">=</span> <span class="cn">NULL</span>,
-  naxis <span class="op">=</span> <span class="fl">2</span>,
-  nboot <span class="op">=</span> <span class="fl">200</span>,
-  design <span class="op">=</span> <span class="st">"RCBD"</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cv_ammi</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  <span class="va">env</span>,</span>
+<span>  <span class="va">gen</span>,</span>
+<span>  <span class="va">rep</span>,</span>
+<span>  <span class="va">resp</span>,</span>
+<span>  block <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  naxis <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  nboot <span class="op">=</span> <span class="fl">200</span>,</span>
+<span>  design <span class="op">=</span> <span class="st">"RCBD"</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -184,39 +184,60 @@ replications than observed in the trial.</p>
     <dl><dt>.data</dt>
 <dd><p>The dataset containing the columns related to Environments,
 Genotypes, replication/block and response variable(s).</p></dd>
+
+
 <dt>env</dt>
 <dd><p>The name of the column that contains the levels of the
 environments.</p></dd>
+
+
 <dt>gen</dt>
 <dd><p>The name of the column that contains the levels of the genotypes.</p></dd>
+
+
 <dt>rep</dt>
 <dd><p>The name of the column that contains the levels of the
 replications/blocks. <strong>AT LEAST THREE REPLICATES ARE REQUIRED TO
 PERFORM THE CROSS-VALIDATION</strong>.</p></dd>
+
+
 <dt>resp</dt>
 <dd><p>The response variable.</p></dd>
+
+
 <dt>block</dt>
 <dd><p>Defaults to <code>NULL</code>. In this case, a randomized complete
 block design is considered. If block is informed, then a resolvable
 alpha-lattice design (Patterson and Williams, 1976) is employed.
 <strong>All effects, except the error, are assumed to be fixed.</strong></p></dd>
+
+
 <dt>naxis</dt>
 <dd><p>The number of axis to be considered for estimation of GE
 effects.</p></dd>
+
+
 <dt>nboot</dt>
 <dd><p>The number of resamples to be used in the cross-validation.
 Defaults to 200.</p></dd>
+
+
 <dt>design</dt>
 <dd><p>The experimental design. Defaults to <code>RCBD</code> (Randomized
 complete Block Design). For Completely Randomized Designs inform
 <code>design = 'CRD'</code>.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>A logical argument to define if a progress bar is shown.
 Default is <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>cv_ammi</code> with the following items: *
+    
+
+<p>An object of class <code>cv_ammi</code> with the following items: *
 <strong>RMSPD</strong>: A vector with nboot-estimates of the Root Mean Squared
 Prediction Difference between predicted and validating data.</p><ul><li><p><strong>RMSPDmean</strong>: The mean of RMSPDmean estimates.</p></li>
 <li><p><strong>Estimated</strong>: A data frame that contain the values (predicted,
@@ -245,20 +266,20 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">cv_ammi</span><span class="op">(</span><span class="va">data_ge</span>,</span>
-<span class="r-in">                env <span class="op">=</span> <span class="va">ENV</span>,</span>
-<span class="r-in">                gen <span class="op">=</span> <span class="va">GEN</span>,</span>
-<span class="r-in">                rep <span class="op">=</span> <span class="va">REP</span>,</span>
-<span class="r-in">                resp <span class="op">=</span> <span class="va">GY</span>,</span>
-<span class="r-in">                nboot <span class="op">=</span> <span class="fl">5</span>,</span>
-<span class="r-in">                naxis <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:01 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:02 Validating 5 of 5 sets |=========================================| 100% 00:00:03 </span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">cv_ammi</span><span class="op">(</span><span class="va">data_ge</span>,</span></span>
+<span class="r-in"><span>                env <span class="op">=</span> <span class="va">ENV</span>,</span></span>
+<span class="r-in"><span>                gen <span class="op">=</span> <span class="va">GEN</span>,</span></span>
+<span class="r-in"><span>                rep <span class="op">=</span> <span class="va">REP</span>,</span></span>
+<span class="r-in"><span>                resp <span class="op">=</span> <span class="va">GY</span>,</span></span>
+<span class="r-in"><span>                nboot <span class="op">=</span> <span class="fl">5</span>,</span></span>
+<span class="r-in"><span>                naxis <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Validating 1 of 5 sets |========                                 | 20% 00:00:00 Validating 2 of 5 sets |================                         | 40% 00:00:01 Validating 3 of 5 sets |=========================                | 60% 00:00:01 Validating 4 of 5 sets |=================================        | 80% 00:00:02 Validating 5 of 5 sets |=========================================| 100% 00:00:02 </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -270,7 +291,7 @@ resolvable incomplete block designs. Biometrika 63:83-92.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

@@ -3,7 +3,7 @@
 This function generate a pairwise matrix of plots to compare the similarity
 of two or more correlation matrices. In the upper diagonal are presented the
 plots and in the lower diagonal the result of Mantel test based on
-permutations."><title>Mantel test for a set of correlation matrices — pairs_mantel • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mantel test for a set of correlation matrices — pairs_mantel"><meta property="og:description" content="
+permutations."><title>Mantel test for a set of correlation matrices — pairs_mantel • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mantel test for a set of correlation matrices — pairs_mantel"><meta property="og:description" content="
 This function generate a pairwise matrix of plots to compare the similarity
 of two or more correlation matrices. In the upper diagonal are presented the
 plots and in the lower diagonal the result of Mantel test based on
@@ -24,7 +24,7 @@ permutations."><meta property="og:image" content="https://tiagoolivoto.github.io
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,36 +126,36 @@ permutations.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pairs_mantel</span><span class="op">(</span>
-  <span class="va">...</span>,
-  type <span class="op">=</span> <span class="fl">1</span>,
-  nrepet <span class="op">=</span> <span class="fl">1000</span>,
-  names <span class="op">=</span> <span class="cn">NULL</span>,
-  prob <span class="op">=</span> <span class="fl">0.05</span>,
-  diag <span class="op">=</span> <span class="cn">FALSE</span>,
-  export <span class="op">=</span> <span class="cn">FALSE</span>,
-  main <span class="op">=</span> <span class="st">"auto"</span>,
-  file.type <span class="op">=</span> <span class="st">"pdf"</span>,
-  file.name <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="fl">8</span>,
-  height <span class="op">=</span> <span class="fl">7</span>,
-  resolution <span class="op">=</span> <span class="fl">300</span>,
-  size.point <span class="op">=</span> <span class="fl">0.5</span>,
-  shape.point <span class="op">=</span> <span class="fl">19</span>,
-  alpha.point <span class="op">=</span> <span class="fl">1</span>,
-  fill.point <span class="op">=</span> <span class="cn">NULL</span>,
-  col.point <span class="op">=</span> <span class="st">"black"</span>,
-  minsize <span class="op">=</span> <span class="fl">2</span>,
-  maxsize <span class="op">=</span> <span class="fl">3</span>,
-  signcol <span class="op">=</span> <span class="st">"green"</span>,
-  alpha <span class="op">=</span> <span class="fl">0.15</span>,
-  diagcol <span class="op">=</span> <span class="st">"gray"</span>,
-  col.up.panel <span class="op">=</span> <span class="st">"gray"</span>,
-  col.lw.panel <span class="op">=</span> <span class="st">"gray"</span>,
-  col.dia.panel <span class="op">=</span> <span class="st">"gray"</span>,
-  pan.spacing <span class="op">=</span> <span class="fl">0.15</span>,
-  digits <span class="op">=</span> <span class="fl">2</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pairs_mantel</span><span class="op">(</span></span>
+<span>  <span class="va">...</span>,</span>
+<span>  type <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  nrepet <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  names <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  prob <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  diag <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  export <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">"auto"</span>,</span>
+<span>  file.type <span class="op">=</span> <span class="st">"pdf"</span>,</span>
+<span>  file.name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  height <span class="op">=</span> <span class="fl">7</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="fl">300</span>,</span>
+<span>  size.point <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  shape.point <span class="op">=</span> <span class="fl">19</span>,</span>
+<span>  alpha.point <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  fill.point <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col.point <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  minsize <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  maxsize <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  signcol <span class="op">=</span> <span class="st">"green"</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>  diagcol <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>  col.up.panel <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>  col.lw.panel <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>  col.dia.panel <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>  pan.spacing <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>  digits <span class="op">=</span> <span class="fl">2</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -163,73 +163,126 @@ permutations.</p>
     <dl><dt>...</dt>
 <dd><p>The input matrices. May be an output generated by the function
 <code>lpcor</code> or a coerced list generated by the function <code>as.lpcor</code></p></dd>
+
+
 <dt>type</dt>
 <dd><p>The type of correlation if an obect generated by the function
 <code>lpcor</code> is used. 1 = Linear correlation matrices, or 2 = partial
 correlation matrices.</p></dd>
+
+
 <dt>nrepet</dt>
 <dd><p>The number of permutations. Default is 1000</p></dd>
+
+
 <dt>names</dt>
 <dd><p>An optional vector of names of the same length of <code>...</code> .</p></dd>
+
+
 <dt>prob</dt>
 <dd><p>The error probability for Mantel test.</p></dd>
+
+
 <dt>diag</dt>
 <dd><p>Logical argument. If <code>TRUE</code>, the Kernel density is shown in
 the diagonal of plot.</p></dd>
+
+
 <dt>export</dt>
 <dd><p>Logical argument. If <code>TRUE</code>, then the plot is exported to
 the current directory.</p></dd>
+
+
 <dt>main</dt>
 <dd><p>The title of the plot, set to 'auto'.</p></dd>
+
+
 <dt>file.type</dt>
 <dd><p>The format of the file if <code>export = TRUE</code>.  Set to
 <code>'pdf'</code>. Other possible values are <code>*.tiff</code> using <code>file.type = 'tiff'</code>.</p></dd>
+
+
 <dt>file.name</dt>
 <dd><p>The name of the plot when exported. Set to <code>NULL</code>,
 i.e., automatically.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>The width of the plot, set to <code>8</code>.</p></dd>
+
+
 <dt>height</dt>
 <dd><p>The height of the plot, set to <code>7</code>.</p></dd>
+
+
 <dt>resolution</dt>
 <dd><p>The resolution of the plot if <code>file.type = 'tiff'</code> is
 used. Set to <code>300</code> (300 dpi).</p></dd>
+
+
 <dt>size.point</dt>
 <dd><p>The size of the points in the plot. Set to <code>0.5</code>.</p></dd>
+
+
 <dt>shape.point</dt>
 <dd><p>The shape of the point, set to <code> 19</code>.</p></dd>
+
+
 <dt>alpha.point</dt>
 <dd><p>The value for transparency of the points: 1 = full color.</p></dd>
+
+
 <dt>fill.point</dt>
 <dd><p>The color to fill the points. Valid argument if points are
 between 21 and 25.</p></dd>
+
+
 <dt>col.point</dt>
 <dd><p>The color for the edge of the point, set to <code>black</code>.</p></dd>
+
+
 <dt>minsize</dt>
 <dd><p>The size of the letter that will represent the smallest
 correlation coefficient.</p></dd>
+
+
 <dt>maxsize</dt>
 <dd><p>The size of the letter that will represent the largest
 correlation coefficient.</p></dd>
+
+
 <dt>signcol</dt>
 <dd><p>The colour that indicate significant correlations (based on
 the <code>prob</code> value.), set to 'green'.</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>The value for transparency of the color informed in
 <code>signcol</code>, when 1 = full color. Set to 0.15.</p></dd>
+
+
 <dt>diagcol</dt>
 <dd><p>The color in the kernel distribution. Set to 'gray'.</p></dd>
+
+
 <dt>col.up.panel, col.lw.panel, col.dia.panel</dt>
 <dd><p>The color for the opper, lower
 and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></dd>
+
+
 <dt>pan.spacing</dt>
 <dd><p>The space between the pannels. Set to 0.15.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>The number of digits to show in the plot.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>gg, ggmatrix</code>.</p>
+    
+
+<p>An object of class <code>gg, ggmatrix</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -242,23 +295,23 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># iris dataset</span></span>
-<span class="r-in"><span class="va">lpc</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">       <span class="fu"><a href="lpcor.html">lpcor</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">       <span class="fu">pairs_mantel</span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'setosa'</span>, <span class="st">'versicolor'</span>, <span class="st">'virginica'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># mtcars dataset</span></span>
-<span class="r-in"><span class="va">mt_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="utils_rows_cols.html">select_numeric_cols</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">lpdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="as.lpcor.html">as.lpcor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span>
-<span class="r-in">                   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span>
-<span class="r-in">                   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
-<span class="r-in">                   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">          <span class="fu">pairs_mantel</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># }</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># iris dataset</span></span></span>
+<span class="r-in"><span><span class="va">lpc</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>       <span class="fu"><a href="lpcor.html">lpcor</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>       <span class="fu">pairs_mantel</span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'setosa'</span>, <span class="st">'versicolor'</span>, <span class="st">'virginica'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># mtcars dataset</span></span></span>
+<span class="r-in"><span><span class="va">mt_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="utils_rows_cols.html">select_numeric_cols</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">lpdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="as.lpcor.html">as.lpcor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mt_num</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>          <span class="fu">pairs_mantel</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -270,7 +323,7 @@ and diagonal pannels. Set to 'gray', 'gray', and 'gray', respectively.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

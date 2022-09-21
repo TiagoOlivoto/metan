@@ -4,7 +4,7 @@ The following functions compute descriptive statistics by levels of
 a factor or combination of factors quickly.
 cv_by() For computing coefficient of variation.
 max_by() For computing maximum values.
-means_by() For computing arithmetic means.
+mean_by() For computing arithmetic means.
 min_by() For compuing minimum values.
 n_by() For getting the length.
 sd_by() For computing sample standard deviation.
@@ -45,12 +45,12 @@ var_amo(), var_pop() computes sample and populational variance.
 
 
 desc_stat() is wrapper function around the above ones and can be
-used to compute quickly all these statistics at once."><title>Useful functions for computing descriptive statistics — utils_stats • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Useful functions for computing descriptive statistics — utils_stats"><meta property="og:description" content="
+used to compute quickly all these statistics at once."><title>Useful functions for computing descriptive statistics — utils_stats • metan</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Useful functions for computing descriptive statistics — utils_stats"><meta property="og:description" content="
 The following functions compute descriptive statistics by levels of
 a factor or combination of factors quickly.
 cv_by() For computing coefficient of variation.
 max_by() For computing maximum values.
-means_by() For computing arithmetic means.
+mean_by() For computing arithmetic means.
 min_by() For compuing minimum values.
 n_by() For getting the length.
 sd_by() For computing sample standard deviation.
@@ -108,7 +108,7 @@ used to compute quickly all these statistics at once."><meta property="og:image"
     
     <a class="navbar-brand me-2" href="../index.html">metan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -204,7 +204,7 @@ used to compute quickly all these statistics at once."><meta property="og:image"
     <p><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="figures/lifecycle-stable.svg" alt="[Stable]"></a></p><ul><li><p><strong>The following functions compute descriptive statistics by levels of
 a factor or combination of factors quickly.</strong></p><ul><li><p><code>cv_by()</code> For computing coefficient of variation.</p></li>
 <li><p><code>max_by()</code> For computing maximum values.</p></li>
-<li><p><code>means_by()</code> For computing arithmetic means.</p></li>
+<li><p><code>mean_by()</code> For computing arithmetic means.</p></li>
 <li><p><code>min_by()</code> For compuing minimum values.</p></li>
 <li><p><code>n_by()</code> For getting the length.</p></li>
 <li><p><code>sd_by()</code> For computing sample standard deviation.</p></li>
@@ -247,88 +247,92 @@ used to compute quickly all these statistics at once.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">av_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">ci_mean_t</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-
-<span class="fu">ci_mean_z</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-
-<span class="fu">cv</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">freq_table</span><span class="op">(</span><span class="va">.data</span>, <span class="va">var</span>, k <span class="op">=</span> <span class="cn">NULL</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-
-<span class="fu">freq_hist</span><span class="op">(</span>
-  <span class="va">table</span>,
-  xlab <span class="op">=</span> <span class="cn">NULL</span>,
-  ylab <span class="op">=</span> <span class="cn">NULL</span>,
-  fill <span class="op">=</span> <span class="st">"gray"</span>,
-  color <span class="op">=</span> <span class="st">"black"</span>,
-  ygrid <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="fu">hmean</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">gmean</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">kurt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">n_missing</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">n_unique</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">n_valid</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">pseudo_sigma</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">range_data</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">row_col_mean</span><span class="op">(</span><span class="va">.data</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">row_col_sum</span><span class="op">(</span><span class="va">.data</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sd_amo</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sd_pop</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sem</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">skew</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sum_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">ave_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sum_sq_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sum_sq</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">var_pop</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">var_amo</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">cv_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">max_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">means_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">min_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">n_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sd_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">var_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sem_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">sum_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">av_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ci_mean_t</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ci_mean_z</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cv</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">freq_table</span><span class="op">(</span><span class="va">.data</span>, <span class="va">var</span>, k <span class="op">=</span> <span class="cn">NULL</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">freq_hist</span><span class="op">(</span></span>
+<span>  <span class="va">table</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fill <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  ygrid <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">hmean</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">gmean</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kurt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">n_missing</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">n_unique</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">n_valid</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">pseudo_sigma</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">range_data</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">row_col_mean</span><span class="op">(</span><span class="va">.data</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">row_col_sum</span><span class="op">(</span><span class="va">.data</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sd_amo</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sd_pop</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sem</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">skew</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sum_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ave_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sum_sq_dev</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sum_sq</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">var_pop</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">var_amo</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cv_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">max_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">min_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">means_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">mean_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">n_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sd_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">var_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sem_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sum_by</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .vars <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>.data</dt>
 <dd><p>A data frame or a numeric vector.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>The argument depends on the function used.</p><ul><li><p>For <code>*_by</code> functions, <code>...</code> is one or more categorical variables
 for grouping the data. Then the statistic required will be computed for all
@@ -340,39 +344,63 @@ variable names to compute the statistics. If no variables are informed in n
 <code>...</code>, the statistic will be computed for all numeric variables in
 <code>.data</code>.</p></li>
 </ul></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>If <code>FALSE</code>, the default, missing values are removed with a
 warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
+
+
 <dt>level</dt>
 <dd><p>The confidence level for the confidence interval of the mean.
 Defaults to 0.95.</p></dd>
+
+
 <dt>var</dt>
 <dd><p>The variable to compute the frequency table. See <code>Details</code> for
 more details.</p></dd>
+
+
 <dt>k</dt>
 <dd><p>The number of classes to be created. See <code>Details</code> for
 more details.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>The number of significant figures to show. Defaults to 2.</p></dd>
+
+
 <dt>table</dt>
 <dd><p>A frequency table computed with <code>freq_table()</code>.</p></dd>
+
+
 <dt>xlab, ylab</dt>
 <dd><p>The <code>x</code> and <code>y</code> labels.</p></dd>
+
+
 <dt>fill, color</dt>
 <dd><p>The color to fill the bars and color the border of the bar,
 respectively.</p></dd>
+
+
 <dt>ygrid</dt>
 <dd><p>Shows a grid line on the <code>y</code> axis? Defaults to <code>TRUE</code>.
 freq_hist &lt;- function(table,</p></dd>
+
+
 <dt>.vars</dt>
 <dd><p>Used to select variables in the <code>*_by()</code> functions. One or more
 unquoted expressions separated by commas. Variable names can be used as if
 they were positions in the data frame, so expressions like <code>x:y</code> can be
-used to select a range of variables. Defaults to <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.</p></dd>
+used to select a range of variables. Defaults to <code>NULL</code> (all numeric
+variables are analyzed)..</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <ul><li><p>Functions <code>*_by()</code> returns a <code>tbl_df</code> with the computed statistics by
+    
+
+<ul><li><p>Functions <code>*_by()</code> returns a <code>tbl_df</code> with the computed statistics by
 each level of the factor(s) declared in <code>...</code>.</p></li>
 <li><p>All other functions return a named integer if the input is a data frame
 or a numeric value if the input is a numeric vector.</p></li>
@@ -411,10 +439,10 @@ MG: UFLA.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># means of all numeric variables by ENV</span></span>
-<span class="r-in"><span class="fu">means_by</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">GEN</span>, <span class="va">ENV</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan" class="external-link">metan</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># means of all numeric variables by ENV</span></span></span>
+<span class="r-in"><span><span class="fu">mean_by</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">GEN</span>, <span class="va">ENV</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 52 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   ENV      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -430,10 +458,10 @@ MG: UFLA.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H11   A2     2.15 1.02  0.475  15.1  47.3  27.2  15.7  24.3  164.  13.7  35  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 42 more rows, and 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   NKE &lt;dbl&gt;</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Coefficient of variation for all numeric variables</span></span>
-<span class="r-in"><span class="co"># by GEN and ENV</span></span>
-<span class="r-in"><span class="fu">cv_by</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">GEN</span>, <span class="va">ENV</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Coefficient of variation for all numeric variables</span></span></span>
+<span class="r-in"><span><span class="co"># by GEN and ENV</span></span></span>
+<span class="r-in"><span><span class="fu">cv_by</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">GEN</span>, <span class="va">ENV</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 52 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    GEN   ENV       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -449,19 +477,19 @@ MG: UFLA.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> H11   A2     1.43   3.00  4.00  4.84 0.762  2.48  5.02 15.8   5.37  3.36</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 42 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;, PERK &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Skewness of a numeric vector</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">nvec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">skew</span><span class="op">(</span><span class="va">nvec</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Skewness of a numeric vector</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nvec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">skew</span><span class="op">(</span><span class="va">nvec</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1977769</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Confidence interval 0.95 for the mean</span></span>
-<span class="r-in"><span class="co"># All numeric variables</span></span>
-<span class="r-in"><span class="co"># Grouped by levels of ENV</span></span>
-<span class="r-in"><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ENV</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">ci_mean_t</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Confidence interval 0.95 for the mean</span></span></span>
+<span class="r-in"><span><span class="co"># All numeric variables</span></span></span>
+<span class="r-in"><span><span class="co"># Grouped by levels of ENV</span></span></span>
+<span class="r-in"><span><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ENV</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">ci_mean_t</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 16</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ENV       PH     EH     EP    EL    ED    CL    CD    CW    KW    NR   NKR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -470,18 +498,18 @@ MG: UFLA.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> A3    0.072<span style="text-decoration: underline;">4</span> 0.062<span style="text-decoration: underline;">5</span> 0.015<span style="text-decoration: underline;">3</span> 0.326 0.897 0.781 0.307  1.66  7.03 0.498 1.01 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> A4    0.053<span style="text-decoration: underline;">9</span> 0.048<span style="text-decoration: underline;">3</span> 0.012<span style="text-decoration: underline;">8</span> 0.423 0.700 0.579 0.394  1.48  8.70 0.433 1.20 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more variables: CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># standard error of the mean</span></span>
-<span class="r-in"><span class="co"># Variable PH and EH</span></span>
-<span class="r-in"><span class="fu">sem</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">PH</span>, <span class="va">EH</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># standard error of the mean</span></span></span>
+<span class="r-in"><span><span class="co"># Variable PH and EH</span></span></span>
+<span class="r-in"><span><span class="fu">sem</span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">PH</span>, <span class="va">EH</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       PH     EH</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0.026<span style="text-decoration: underline;">7</span> 0.022<span style="text-decoration: underline;">8</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Frequency table for variable NR</span></span>
-<span class="r-in"><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">freq_table</span><span class="op">(</span><span class="va">NR</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Frequency table for variable NR</span></span></span>
+<span class="r-in"><span><span class="va">data_ge2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">freq_table</span><span class="op">(</span><span class="va">NR</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $freqs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                class abs_freq abs_freq_ac rel_freq rel_freq_ac</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  11.96 |---  12.84        1           1    0.006       0.006</span>
@@ -508,8 +536,8 @@ MG: UFLA.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "freq_table"</span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -521,7 +549,7 @@ MG: UFLA.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>
