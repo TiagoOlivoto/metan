@@ -16,6 +16,8 @@
 #' @param type The type of plot `type = 1` for a heatmap or `type = 2`
 #'   for a line plot.
 #' @param values Show the values in the plot? Defaults to `TRUE`.
+#' @param text_row_pos,text_col_pos The position of the text in the
+#'   rows and columns. The defaults show the text at left and top.
 #' @param average Show the average values for environments and genotypes?
 #'   Defaults to `TRUE`.
 #' @param order_g,order_e A charactere vector indicating the order of the levels
@@ -44,6 +46,8 @@ ge_plot <- function(.data,
                     resp,
                     type = 1,
                     values = TRUE,
+                    text_col_pos = c("top", "bottom"),
+                    text_row_pos = c("left", "right"),
                     average = TRUE,
                     order_g = NULL,
                     order_e = NULL,
@@ -53,6 +57,8 @@ ge_plot <- function(.data,
                     heigth_bar = 15,
                     plot_theme = theme_metan(),
                     colour = TRUE) {
+  text_col_pos <- rlang::arg_match(text_col_pos)
+  text_row_pos <- rlang::arg_match(text_row_pos)
   if(type == 1){
     if(isTRUE(average)){
       mat <-
@@ -105,8 +111,16 @@ ge_plot <- function(.data,
     p <-
       ggplot(df_long, aes(ENV, GEN, fill = Y)) +
       geom_tile(color = "black")+
-      scale_y_discrete(expand = expansion(mult = c(0,0)))+
-      scale_x_discrete(expand = expansion(mult = c(0,0)))+
+      {if(text_row_pos == "left")
+        scale_y_discrete(expand = expansion(mult = c(0,0)))}+
+      {if(text_row_pos != "left")
+        scale_y_discrete(expand = expansion(mult = c(0,0)),
+                         position = "right")}+
+      {if(text_col_pos != "top")
+        scale_x_discrete(expand = expansion(mult = c(0,0)))} +
+      {if(text_col_pos == "top")
+        scale_x_discrete(position = "top",
+                         expand = expansion(0))} +
       scale_fill_viridis_c() +
       {if(isTRUE(values))geom_text(aes(label = round(Y, 1)),
                                    color = "black",
@@ -127,6 +141,11 @@ ge_plot <- function(.data,
       labs(x = xlab,
            y = ylab)
 
+    if(text_col_pos == "top"){
+      p <- p + theme(axis.text.x.top = element_text(angle = 90, vjust = 0.5, hjust = 0))
+    } else{
+      p <- p + theme(axis.text.x.bottom = element_text(angle = 90, vjust = 0.5, hjust = 1))
+    }
   }
   if(type == 2){
     p <- ggplot(.data, aes(x = {{env}}, y = {{resp}}))

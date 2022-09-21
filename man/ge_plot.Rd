@@ -11,6 +11,8 @@ ge_plot(
   resp,
   type = 1,
   values = TRUE,
+  text_col_pos = c("top", "bottom"),
+  text_row_pos = c("left", "right"),
   average = TRUE,
   order_g = NULL,
   order_e = NULL,
@@ -37,6 +39,9 @@ environments}
 for a line plot.}
 
 \item{values}{Show the values in the plot? Defaults to \code{TRUE}.}
+
+\item{text_row_pos, text_col_pos}{The position of the text in the
+rows and columns. The defaults show the text at left and top.}
 
 \item{average}{Show the average values for environments and genotypes?
 Defaults to \code{TRUE}.}

@@ -30,8 +30,9 @@
 \alias{var_amo}
 \alias{cv_by}
 \alias{max_by}
-\alias{means_by}
 \alias{min_by}
+\alias{means_by}
+\alias{mean_by}
 \alias{n_by}
 \alias{sd_by}
 \alias{var_by}
@@ -98,23 +99,25 @@ var_pop(.data, ..., na.rm = FALSE)
 
 var_amo(.data, ..., na.rm = FALSE)
 
-cv_by(.data, ..., .vars = everything(), na.rm = FALSE)
+cv_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-max_by(.data, ..., .vars = everything(), na.rm = FALSE)
+max_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-means_by(.data, ..., .vars = everything(), na.rm = FALSE)
+min_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-min_by(.data, ..., .vars = everything(), na.rm = FALSE)
+means_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-n_by(.data, ..., .vars = everything(), na.rm = FALSE)
+mean_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-sd_by(.data, ..., .vars = everything(), na.rm = FALSE)
+n_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-var_by(.data, ..., .vars = everything(), na.rm = FALSE)
+sd_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-sem_by(.data, ..., .vars = everything(), na.rm = FALSE)
+var_by(.data, ..., .vars = NULL, na.rm = FALSE)
 
-sum_by(.data, ..., .vars = everything(), na.rm = FALSE)
+sem_by(.data, ..., .vars = NULL, na.rm = FALSE)
+
+sum_by(.data, ..., .vars = NULL, na.rm = FALSE)
 }
 \arguments{
 \item{.data}{A data frame or a numeric vector.}
@@ -159,7 +162,8 @@ freq_hist <- function(table,}
 \item{.vars}{Used to select variables in the \verb{*_by()} functions. One or more
 unquoted expressions separated by commas. Variable names can be used as if
 they were positions in the data frame, so expressions like \code{x:y} can be
-used to select a range of variables. Defaults to \code{everything()}.}
+used to select a range of variables. Defaults to \code{NULL} (all numeric
+variables are analyzed)..}
 }
 \value{
 \itemize{
@@ -180,7 +184,7 @@ a factor or combination of factors quickly.}
 \itemize{
 \item \code{cv_by()} For computing coefficient of variation.
 \item \code{max_by()} For computing maximum values.
-\item \code{means_by()} For computing arithmetic means.
+\item \code{mean_by()} For computing arithmetic means.
 \item \code{min_by()} For compuing minimum values.
 \item \code{n_by()} For getting the length.
 \item \code{sd_by()} For computing sample standard deviation.

@@ -566,8 +566,8 @@ plot.mtsi <- function(x,
               legend.title = element_blank(),
               ...) +
         labs(x = NULL,
-             y = "Contribution of each factor to the MTSI index") +
-        {if(title)ggtitle("The strengths and weaknesses for genotypes")} +
+             y = "Contribution to the MTSI index") +
+        {if(title)ggtitle("Strengths and weaknesses view")} +
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()

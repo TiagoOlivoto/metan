@@ -826,7 +826,7 @@ tidy_colnames <- function(.data, sep = "_"){
 #' a factor or combination of factors quickly.**
 #'    - `cv_by()` For computing coefficient of variation.
 #'    - `max_by()` For computing maximum values.
-#'    - `means_by()` For computing arithmetic means.
+#'    - `mean_by()` For computing arithmetic means.
 #'    - `min_by()` For compuing minimum values.
 #'    - `n_by()` For getting the length.
 #'    - `sd_by()` For computing sample standard deviation.
@@ -901,7 +901,8 @@ tidy_colnames <- function(.data, sep = "_"){
 #' @param .vars Used to select variables in the `*_by()` functions. One or more
 #'   unquoted expressions separated by commas. Variable names can be used as if
 #'   they were positions in the data frame, so expressions like `x:y` can be
-#'   used to select a range of variables. Defaults to `everything()`.
+#'   used to select a range of variables. Defaults to `NULL` (all numeric
+#'   variables are analyzed)..
 #' @param na.rm If `FALSE`, the default, missing values are removed with a
 #'   warning. If `TRUE`, missing values are silently removed.
 #' @param var The variable to compute the frequency table. See `Details` for
@@ -1774,160 +1775,229 @@ var_amo <- function(.data, ..., na.rm = FALSE) {
   }
 }
 
+
+
 # main statistics, possible by one or more factors
 #' @name utils_stats
 #' @export
 cv_by <- function(.data,
                   ...,
-                  .vars = everything(),
+                  .vars = NULL,
                   na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), cv, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), cv, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, cv, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
 }
 #' @name utils_stats
 #' @export
 max_by <- function(.data,
                    ...,
-                   .vars = everything(),
+                   .vars = NULL,
                    na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), max, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
-}
-#' @name utils_stats
-#' @export
-means_by <- function(.data,
-                     ...,
-                     .vars = everything(),
-                     na.rm = FALSE){
-  if(na.rm == FALSE & has_na(.data)){
-    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
-    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
-    na.rm <- TRUE
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), max, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, max, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
 }
+
 #' @name utils_stats
 #' @export
 min_by <- function(.data,
                    ...,
-                   .vars = everything(),
+                   .vars = NULL,
                    na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), min, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), min, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, min, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
 }
+
+#' @name utils_stats
+#' @export
+means_by <- function(.data,
+                     ...,
+                     .vars = NULL,
+                     na.rm = FALSE){
+  deprecated_warning("1.17.0", "metan::means_by()", "metan::mean_by()")
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
+    na.rm <- TRUE
+  }
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, mean, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
+}
+#' @name utils_stats
+#' @export
+mean_by <- function(.data,
+                    ...,
+                    .vars = NULL,
+                    na.rm = FALSE){
+  if(na.rm == FALSE & has_na(.data)){
+    warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
+    message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
+    na.rm <- TRUE
+  }
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), mean, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, mean, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
+}
+
+
 #' @name utils_stats
 #' @export
 n_by <- function(.data,
                  ...,
-                 .vars = everything(),
+                 .vars = NULL,
                  na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(everything(), ~sum(!is.na(.))), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(everything(), ~sum(!is.na(.))), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, ~sum(!is.na(.))), .groups = "drop") %>%
+      ungroup()
+  }
+
 }
 #' @name utils_stats
 #' @export
 sd_by <- function(.data,
                   ...,
-                  .vars = everything(),
+                  .vars = NULL,
                   na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), sd, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, sd, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
 }
 #' @name utils_stats
 #' @export
 var_by <- function(.data,
                    ...,
-                   .vars = everything(),
+                   .vars = NULL,
                    na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), var, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), var, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, var, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
 }
 #' @name utils_stats
 #' @export
 sem_by <- function(.data,
                    ...,
-                   .vars = everything(),
+                   .vars = NULL,
                    na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), sem, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, sem, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
 }
 #' @name utils_stats
 #' @export
 sum_by <- function(.data,
                    ...,
-                   .vars = everything(),
+                   .vars = NULL,
                    na.rm = FALSE){
   if(na.rm == FALSE & has_na(.data)){
     warning("NA values removed to compute the function. Use 'na.rm = TRUE' to suppress this warning.", call. = FALSE)
     message("To remove rows with NA use `remove_rows_na()'. \nTo remove columns with NA use `remove_cols_na()'.")
     na.rm <- TRUE
   }
-  dfg <- group_by(.data, ...)
-  dfg %>%
-    summarise(across(where(is.numeric), sum, na.rm = na.rm), .groups = "drop") %>%
-    select(group_vars(dfg), {{.vars}}) %>%
-    ungroup()
+  if(missing(.vars)){
+    group_by(.data, ...) %>%
+      summarise(across(where(is.numeric), sum, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  } else{
+    group_by(.data, ...) %>%
+      summarise(across({{.vars}}, sum, na.rm = na.rm), .groups = "drop") %>%
+      ungroup()
+  }
 }
+
+
+
+
 
 #' @title Utilities for handling with matrices
 #' @description

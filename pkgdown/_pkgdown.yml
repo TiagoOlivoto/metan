@@ -253,6 +253,7 @@ reference:
       - as.lpcor
       - corr_coef
       - corr_plot
+      - corr_focus
       - corr_ci
       - corr_ss
       - correlated_vars
@@ -262,6 +263,7 @@ reference:
       - is.lpcor
       - lpcor
       - mantel_test
+      - network_plot
       - pairs_mantel
       - plot_ci
       - plot.corr_coef
