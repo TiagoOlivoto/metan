@@ -24,48 +24,47 @@ downloads](https://cranlogs.r-pkg.org/badges/last-day/metan?color=orange)](https
 useful functions for analyzing multi-environment trial data using
 parametric and non-parametric methods. The package will help you to:
 
--   [Inspect](https://tiagoolivoto.github.io/metan/reference/inspect.html)
-    data for possible common errors;
--   Manipulate [rows and
-    columns](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html);
--   Manipulate [numbers and
-    strings](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html);
--   Manipulate [`NA`s and
-    `0`s](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html);
--   Compute [descriptive
-    statistics](https://tiagoolivoto.github.io/metan/reference/desc_stat.html);
--   Compute
-    [within-environment](https://tiagoolivoto.github.io/metan/reference/anova_ind.html)
-    and [joint-analysis of
-    variance](https://tiagoolivoto.github.io/metan/reference/anova_joint.html);
--   Compute [AMMI
-    analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html)
-    with prediction considering different numbers of interaction
-    principal component axes;
--   Compute [AMMI-based stability
-    indexes](https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html);
--   Compute [GGE biplot
-    analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
--   Compute
-    [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html) and
-    [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html)
-    biplot analysis;
--   Compute [BLUP-based stability
-    indexes](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html);
--   Compute variance components and genetic parameters in [single
-    environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)
-    and
-    [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html)
-    trials using mixed-effect models;
--   Perform cross-validation procedures for
-    [AMMI-family](https://tiagoolivoto.github.io/metan/reference/cv_ammif.html)
-    and
-    [BLUP](https://tiagoolivoto.github.io/metan/reference/cv_blup.html)
-    models;
--   Compute parametric and nonparametric [stability
-    statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
--   Implement [biometrical
-    models](https://tiagoolivoto.github.io/metan/reference/index.html#section-biometry).
+- [Inspect](https://tiagoolivoto.github.io/metan/reference/inspect.html)
+  data for possible common errors;
+- Manipulate [rows and
+  columns](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html);
+- Manipulate [numbers and
+  strings](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html);
+- Manipulate [`NA`s and
+  `0`s](https://tiagoolivoto.github.io/metan/reference/utils_na_zero.html);
+- Compute [descriptive
+  statistics](https://tiagoolivoto.github.io/metan/reference/desc_stat.html);
+- Compute
+  [within-environment](https://tiagoolivoto.github.io/metan/reference/anova_ind.html)
+  and [joint-analysis of
+  variance](https://tiagoolivoto.github.io/metan/reference/anova_joint.html);
+- Compute [AMMI
+  analysis](https://tiagoolivoto.github.io/metan/reference/performs_ammi.html)
+  with prediction considering different numbers of interaction principal
+  component axes;
+- Compute [AMMI-based stability
+  indexes](https://tiagoolivoto.github.io/metan/reference/ammi_indexes.html);
+- Compute [GGE biplot
+  analysis](https://tiagoolivoto.github.io/metan/reference/gge.html);
+- Compute [GT](https://tiagoolivoto.github.io/metan/reference/gtb.html)
+  and [GYT](https://tiagoolivoto.github.io/metan/reference/gytb.html)
+  biplot analysis;
+- Compute [BLUP-based stability
+  indexes](https://tiagoolivoto.github.io/metan/reference/blup_indexes.html);
+- Compute variance components and genetic parameters in [single
+  environment](https://tiagoolivoto.github.io/metan/reference/gamem.html)
+  and
+  [multi-environment](https://tiagoolivoto.github.io/metan/reference/gamem_met.html)
+  trials using mixed-effect models;
+- Perform cross-validation procedures for
+  [AMMI-family](https://tiagoolivoto.github.io/metan/reference/cv_ammif.html)
+  and
+  [BLUP](https://tiagoolivoto.github.io/metan/reference/cv_blup.html)
+  models;
+- Compute parametric and nonparametric [stability
+  statistics](https://tiagoolivoto.github.io/metan/reference/ge_stats.html);
+- Implement [biometrical
+  models](https://tiagoolivoto.github.io/metan/reference/index.html#section-biometry).
 
 # Installation
 
@@ -186,23 +185,6 @@ model <- performs_ammi(data_ge,
                        rep = REP,
                        resp = everything(),
                        verbose = FALSE)
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
 # Significance of IPCAs
 get_model_data(model, "ipca_pval")
 # Class of the model: performs_ammi
@@ -289,30 +271,7 @@ model2 <-
             gen = GEN,
             rep = REP,
             resp = everything())
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-# Evaluating trait GY |======================                      | 50% 00:00:01 
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-# Evaluating trait HM |============================================| 100% 00:00:02 
+# Evaluating trait GY |======================                      | 50% 00:00:01 Evaluating trait HM |============================================| 100% 00:00:02 
 # Method: REML/BLUP
 # Random effects: GEN, GEN:ENV
 # Fixed effects: ENV, REP(ENV)
@@ -367,71 +326,6 @@ or its shortcut
 
 ``` r
 stats <- ge_stats(data_ge, ENV, GEN, REP, GY)
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
-
-# Warning: `means_by()` is deprecated as of metan 1.17.0
-# Please use `mean_by()` instead
 # Evaluating trait GY |============================================| 100% 00:00:08 
 get_model_data(stats)
 # Class of the model: ge_stats
@@ -484,11 +378,11 @@ A BibTeX entry for LaTeX users is
 
 # Getting help
 
--   If you encounter a clear bug, please file a minimal reproducible
-    example on [github](https://github.com/TiagoOlivoto/metan/issues)
+- If you encounter a clear bug, please file a minimal reproducible
+  example on [github](https://github.com/TiagoOlivoto/metan/issues)
 
--   Suggestions and criticisms to improve the quality and usability of
-    the package are welcome!
+- Suggestions and criticisms to improve the quality and usability of the
+  package are welcome!
 
 <div align="center">
 

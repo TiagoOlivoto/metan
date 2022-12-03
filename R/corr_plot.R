@@ -29,6 +29,9 @@
 #'   overwritten.
 #' @param size.axis.label The size of the text for axis labels if
 #'   `axis.labels = TRUE`. Defaults to 12.
+#' @param size.varnames The size of the text for variable names. Defaults to 12.
+#' @param col.varnames The color of the text for variable names. Defaults to
+#'   "black".
 #' @param diag Should the diagonal be shown?
 #' @param diag.type The type of plot to show in the diagonal if `diag
 #'   TRUE`. It must be one of the 'histogram' (to show an histogram), 'density'
@@ -139,6 +142,8 @@ corr_plot <- function(.data, ...,
                       axis.labels = FALSE,
                       show.labels.in = "show",
                       size.axis.label = 12,
+                      size.varnames = 12,
+                      col.varnames = "black",
                       diag = TRUE,
                       diag.type = "histogram",
                       bins = 20,
@@ -365,7 +370,8 @@ corr_plot <- function(.data, ...,
                         switch = switch, diag = diag, progress = progress, axisLabels = axis.labels)+
     theme(panel.spacing = grid::unit(pan.spacing, "lines"),
           axis.text = element_text(size = size.axis.label, color = "black"),
-          axis.ticks.length = unit(0.2, "cm"))
+          axis.ticks.length = unit(0.2, "cm"),
+          strip.text = element_text(size = size.varnames, colour = col.varnames))
   if (export == FALSE) {
     return(p1)
   } else if (file.type == "pdf") {

@@ -14,6 +14,8 @@ corr_plot(
   axis.labels = FALSE,
   show.labels.in = "show",
   size.axis.label = 12,
+  size.varnames = 12,
+  col.varnames = "black",
   diag = TRUE,
   diag.type = "histogram",
   bins = 20,
@@ -81,6 +83,11 @@ overwritten.}
 
 \item{size.axis.label}{The size of the text for axis labels if
 \code{axis.labels = TRUE}. Defaults to 12.}
+
+\item{size.varnames}{The size of the text for variable names. Defaults to 12.}
+
+\item{col.varnames}{The color of the text for variable names. Defaults to
+"black".}
 
 \item{diag}{Should the diagonal be shown?}
 

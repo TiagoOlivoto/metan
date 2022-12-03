@@ -196,6 +196,7 @@ citation("metan")
 
 # Getting help
 
+
 -   If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/TiagoOlivoto/metan/issues)
 
 -   Suggestions and criticisms to improve the quality and usability of the package are welcome!
