@@ -235,23 +235,6 @@
 <span>                       rep <span class="op">=</span> <span class="va">REP</span>,</span>
 <span>                       resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                       verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
 <span><span class="co"># Significance of IPCAs</span></span>
 <span><span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">model</span>, <span class="st">"ipca_pval"</span><span class="op">)</span></span>
 <span><span class="co"># Class of the model: performs_ammi</span></span>
@@ -318,30 +301,7 @@
 <span>            gen <span class="op">=</span> <span class="va">GEN</span>,</span>
 <span>            rep <span class="op">=</span> <span class="va">REP</span>,</span>
 <span>            resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span><span class="co"># Evaluating trait GY |======================                      | 50% 00:00:01 </span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span><span class="co"># Evaluating trait HM |============================================| 100% 00:00:02 </span></span>
+<span><span class="co"># Evaluating trait GY |======================                      | 50% 00:00:01 Evaluating trait HM |============================================| 100% 00:00:02 </span></span>
 <span><span class="co"># Method: REML/BLUP</span></span>
 <span><span class="co"># Random effects: GEN, GEN:ENV</span></span>
 <span><span class="co"># Fixed effects: ENV, REP(ENV)</span></span>
@@ -385,71 +345,6 @@
 <p>The easiest way to compute parametric and non-parametric stability indexes in <code>metan</code> is by using the function <a href="https://tiagoolivoto.github.io/metan/reference/ge_stats.html"><code>ge_stats()</code></a>. It is a wrapper function around a lot of specific functions for stability indexes. To get the results into a <em>“ready-to-read”</em> file, use <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html">get_model_data()</a> or its shortcut <a href="https://tiagoolivoto.github.io/metan/reference/get_model_data.html"><code>gmd()</code></a>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
-<span></span>
-<span><span class="co"># Warning: `means_by()` is deprecated as of metan 1.17.0</span></span>
-<span><span class="co"># Please use `mean_by()` instead</span></span>
 <span><span class="co"># Evaluating trait GY |============================================| 100% 00:00:08 </span></span>
 <span><span class="fu"><a href="reference/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
 <span><span class="co"># Class of the model: ge_stats</span></span>

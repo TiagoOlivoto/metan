@@ -3,6 +3,7 @@
 
 * `plot.waasb()` now has new arguments to control whether to show the percentage values within bars and the order of variables on the x-axis.
 * `corr_coef()` now handles grouped data passed from `group_by()`
+* New arguments `size.varnames` and `col.varnames` added in `corr_plot()`.
 
 
 # metan 1.17.0
