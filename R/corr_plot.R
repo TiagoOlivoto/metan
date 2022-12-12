@@ -275,6 +275,7 @@ corr_plot <- function(.data, ...,
                                                                               color = col.lw.panel))
     if (smooth == TRUE) {
       p <- p + geom_smooth(method = "lm",
+                           formula = y ~ x,
                            se = confint,
                            size = size.line,
                            color = col.smooth, ...)
