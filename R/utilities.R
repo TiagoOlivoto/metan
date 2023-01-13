@@ -2545,21 +2545,29 @@ is_present <- function(x){
 
 
 
-#' Set the Working Directory quicky
+#' Set and get the Working Directory quicky
 #' @description
 #' `r badge('experimental')`
-#' It sets the working directory to the path of the current script.
+#' * [get_wd_here()] gets the working directory to the path of the current script.
+#' * [set_wd_here()] sets the working directory to the path of the current script.
+#' * [open_wd_here()] Open the File Explorer at the directory path of the current script.
+#' * [open_wd()] Open the File Explorer at the current working directory.
 #'
 #' @param path Path components below the project root. Defaults to `NULL`. This means that
 #'   the directory will be set to the path of the file. If the path doesn't exist, the
 #'   user will be asked if he wants to create such a folder.
-#' @return A message showing the current working directory
+#' @return
+#' * [get_wd_here()] returns a full-path directory name.
+#' * [get_wd_here()] returns a message showing the current working directory.
+#' * [open_wd_here()] Opens the File Explorer of the path returned by `get_wd_here()`.
 #' @export
-#' @importFrom utils install.packages menu
+#' @name utils_wd
 #' @examples
 #'
 #' \dontrun{
+#' get_wd_here()
 #' set_wd_here()
+#' open_wd_here()
 #' }
 set_wd_here <- function(path = NULL){
   if(!requireNamespace("rstudioapi", quietly = TRUE)) {
@@ -2591,5 +2599,65 @@ set_wd_here <- function(path = NULL){
     } else{
       message("Working directory set to '", dir_path, "'")
     }
+  }
+}
+
+#' @export
+#' @name utils_wd
+get_wd_here <- function(path = NULL){
+  if(!requireNamespace("rstudioapi", quietly = TRUE)) {
+    if(interactive() == TRUE){
+      inst <-
+        switch(menu(c("Yes", "No"), title = "Package {rstudioapi} required but not installed.\nDo you want to install it now?"),
+               "yes", "no")
+      if(inst == "yes"){
+        install.packages("rstudioapi", quiet = TRUE)
+      } else{
+        message("To use `set_wd_here()`, first install {rstudioapi}.")
+      }
+    }
+  } else{
+    dir_path <- dirname(rstudioapi::documentPath())
+    if(!is.null(path)){
+      dir_path <- paste0(dir_path, "/", path)
+    }
+    dir_path
+  }
+}
+#' @export
+#' @name utils_wd
+open_wd_here <- function(path = get_wd_here()){
+  if(!requireNamespace("utils", quietly = TRUE)) {
+    if(interactive() == TRUE){
+      inst <-
+        switch(menu(c("Yes", "No"), title = "Package {utils} required but not installed.\nDo you want to install it now?"),
+               "yes", "no")
+      if(inst == "yes"){
+        install.packages("utils", quiet = TRUE)
+      } else{
+        message("To use `open_wd_here()`, first install {utils}.")
+      }
+    }
+  } else{
+    utils::browseURL(url = path)
+  }
+}
+
+#' @export
+#' @name utils_wd
+open_wd <- function(path = getwd()){
+  if(!requireNamespace("utils", quietly = TRUE)) {
+    if(interactive() == TRUE){
+      inst <-
+        switch(menu(c("Yes", "No"), title = "Package {utils} required but not installed.\nDo you want to install it now?"),
+               "yes", "no")
+      if(inst == "yes"){
+        install.packages("utils", quiet = TRUE)
+      } else{
+        message("To use `open_wd()`, first install {utils}.")
+      }
+    }
+  } else{
+    utils::browseURL(url = path)
   }
 }
