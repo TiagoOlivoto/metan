@@ -1,4 +1,12 @@
 # metan (development version)
+## New features
+* New functions `*_wd_here()` to set and get the Working Directory (wd) quicky.
+  - `get_wd_here()` gets the working directory to the path of the current script.
+  - `set_wd_here()` sets the working directory to the path of the current script.
+  - `open_wd_here()` open the File Explorer at the directory path of the current script.
+  - `open_wd()` open the File Explorer at the current working directory.
+
+
 ## Minor improvements
 
 * `plot.waasb()` now has new arguments to control whether to show the percentage values within bars and the order of variables on the x-axis.

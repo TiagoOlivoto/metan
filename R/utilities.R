@@ -2613,7 +2613,7 @@ get_wd_here <- function(path = NULL){
       if(inst == "yes"){
         install.packages("rstudioapi", quiet = TRUE)
       } else{
-        message("To use `set_wd_here()`, first install {rstudioapi}.")
+        message("To use `get_wd_here()`, first install {rstudioapi}.")
       }
     }
   } else{
