@@ -259,7 +259,7 @@ mtsi <- function(.data,
                       Xo = colMeans(means.factor),
                       Xs = colMeans(means.factor[names(MTSI)[1:ngs], ]),
                       SD = Xs - Xo,
-                      SDperc = (Xs - Xo) / Xo * 100)
+                      SDperc = (Xs - Xo) / abs(Xo) * 100)
     stat_dif_mps <-
       desc_stat(sel_dif, SDperc, stats = c("min, mean, ci.t, sd.amo, max, sum"))
     sel_dif_mean <-
@@ -268,7 +268,7 @@ mtsi <- function(.data,
              Xo = colMeans(observed),
              Xs = colMeans(observed[names(MTSI)[1:ngs], ]),
              SD = Xs - colMeans(observed),
-             SDperc = (Xs - colMeans(observed)) / colMeans(observed) * 100)
+             SDperc = (Xs - colMeans(observed)) / abs(colMeans(observed)) * 100)
       if(missing(ideotype)){
         sel_dif_mean <-
           sel_dif_mean %>%
@@ -316,7 +316,7 @@ mtsi <- function(.data,
         Xo = colMeans(waasb_index %>% select_numeric_cols()),
         Xs = waasb_selected,
         SD = Xs - Xo,
-        SDperc = (Xs - Xo) / Xo * 100)
+        SDperc = (Xs - Xo) / abs(Xo) * 100)
     stat_dif_stab <-
       desc_stat(sel_dif_stab, SDperc,
                 stats = c("min, mean, ci.t, sd.amo, max, sum"))

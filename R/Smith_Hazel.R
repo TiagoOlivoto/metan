@@ -131,7 +131,7 @@ Smith_Hazel <- function(.data,
            Xo = colMeans(mat),
            Xs = colMeans(xsel),
            SD = Xs - Xo,
-           SDperc = (Xs - Xo) / Xo * 100)
+           SDperc = (Xs - Xo) / abs(Xo) * 100)
   vars <- tibble(VAR = colnames(mat),
                  sense = weights) %>%
     mutate(sense = ifelse(sense < 0, "decrease", "increase"))
@@ -139,7 +139,7 @@ Smith_Hazel <- function(.data,
     sel_dif_trait <-
       left_join(sel_dif_trait, h2, by = "VAR") %>%
       add_cols(SG = SD * h2,
-               SGperc = SG / Xo * 100)
+               SGperc = SG / abs(Xo) * 100)
   }
   sel_dif_trait <-
     sel_dif_trait %>%

@@ -299,7 +299,7 @@ mgidi <- function(.data,
                Xo = colMeans(data_order, na.rm = TRUE),
                Xs = colMeans(data_order[selected, ], na.rm = TRUE),
                SD = Xs - colMeans(data_order, na.rm = TRUE),
-               SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / colMeans(data_order, na.rm = TRUE) * 100)
+               SDperc = (Xs - colMeans(data_order, na.rm = TRUE)) / abs(colMeans(data_order, na.rm = TRUE)) * 100)
 
       if(has_class(.data, c("gamem", "gafem"))){
         h2 <- gmd(.data, "h2", verbose = FALSE)
