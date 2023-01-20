@@ -169,12 +169,14 @@ mps <- function(.data,
                 block = NULL,
                 by = NULL,
                 random = "gen",
-                performance = "blupg",
+                performance = c("blupg", "blueg"),
                 stability = "waasb",
                 ideotype_mper = NULL,
                 ideotype_stab = NULL,
                 wmper = NULL,
                 verbose = TRUE) {
+
+  performance <- rlang::arg_match(performance)
 
   if (!missing(by)){
     if(length(as.list(substitute(by))[-1L]) != 0){
@@ -248,8 +250,10 @@ mps <- function(.data,
                 random = random,
                 verbose = verbose)
   }
+  return(mod)
   # mean performance
-  observed <- gmd(mod, "data", verbose = FALSE) %>%
+  observed <-
+    gmd(mod, "data", verbose = FALSE) %>%
     mean_by(GEN) %>%
     column_to_rownames("GEN")
   mperf <-

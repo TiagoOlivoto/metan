@@ -769,8 +769,8 @@ get_model_data <- function(x,
         unnest(bind) %>%
         remove_cols(data)
     } else{
-      if(is.null(x[[1]][["ESTIMATES"]]) == TRUE && what == "genpar"){
-        warning("Using what = 'genpar' is only possible for models fitted with random = 'gen' or random = 'all'\nSetting what to 'vcomp'.", call. = FALSE)
+      if(is.null(x[[1]][["ESTIMATES"]]) == TRUE && what  %in%  c("genpar", "gcov", "gcor", "h2")){
+        warning("Using what = '",what, "' is only possible for models fitted with random = 'gen' or random = 'all'\nSetting what to 'vcomp'.", call. = FALSE)
         what <- "vcomp"
       }
       if(has_class(x,  "gamem") && !what %in% check3.1){
