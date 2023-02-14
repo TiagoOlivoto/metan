@@ -264,9 +264,16 @@ gge <- function(.data,
 #' 8. Ranking genotypes.
 #' 9. Compare two genotypes.
 #' 10. Relationship among environments (or trait/yield*trait combination).
-#' @param sel_env,sel_gen The name of the environment (or trait/yield*trait combination) and genotype to examine
-#'   when `type = 5` and   `type = 7`, respectively. Must be a string
-#'   which matches a environment or genotype label.
+#' @param repel If `TRUE` (default), the text labels repel away from each
+#'   other and away from the data points.
+#' @param repulsion Force of repulsion between overlapping text labels. Defaults
+#'   to `1`.
+#' @param max_overlaps Exclude text labels that overlap too many things.
+#'   Defaults to 20.
+#' @param sel_env,sel_gen The name of the environment (or trait/yield*trait
+#'   combination) and genotype to examine when `type = 5` and   `type = 7`,
+#'   respectively. Must be a string which matches a environment or genotype
+#'   label.
 #' @param sel_gen1,sel_gen2 The name of genotypes to compare between when
 #'   `type = 9`. Must be a string present in the genotype's name.
 #' @param shape.gen,shape.env The shape for genotype and environment indication
@@ -329,6 +336,9 @@ gge <- function(.data,
 plot.gge <- function(x,
                      var = 1,
                      type = 1,
+                     repel = TRUE,
+                     repulsion = 1,
+                     max_overlaps = 20,
                      sel_env = NA,
                      sel_gen = NA,
                      sel_gen1 = NA,
@@ -453,11 +463,20 @@ plot.gge <- function(x,
                          values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab,
                         values = c(col.env, col.gen)) +
-      geom_text_repel(aes(col = type,
-                          label = label,
-                          size = type),
-                      show.legend = FALSE,
-                      col = c(rep(col.gen, ngen), rep(col.env, nenv))) +
+      {if(repel)geom_text_repel(aes(col = type,
+                                    label = label,
+                                    size = type),
+                                show.legend = FALSE,
+                                col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                force = repulsion,
+                                max.overlaps = max_overlaps)} +
+      {if(!repel)geom_text(aes(col = type,
+                               label = label,
+                               size = type),
+                           show.legend = FALSE,
+                           col = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                           hjust = "outward",
+                           vjust = "outward")} +
       plot_theme %+replace%
       theme(axis.text = element_text(size = size.text.lab, colour = "black"),
             axis.title = element_text(size = size.text.lab, colour = "black"))
@@ -576,20 +595,36 @@ plot.gge <- function(x,
                  alpha = col.alpha,
                  color = col.stroke,
                  show.legend = FALSE) +
-      geom_text_repel(data = subset(df_winners, win == "no"),
-                      aes(col = type, label = label, size = type),
-                      show.legend = FALSE) +
+      {if(repel)geom_text_repel(data = subset(df_winners, win == "no"),
+                                aes(col = type, label = label, size = type),
+                                show.legend = FALSE,
+                                force = repulsion,
+                                max.overlaps = max_overlaps)} +
+      {if(!repel)geom_text(data = subset(df_winners, win == "no"),
+                           aes(col = type, label = label, size = type),
+                           show.legend = FALSE,
+                           hjust = "outward",
+                           vjust = "outward")} +
       geom_point(data = subset(df_winners, win == "yes"),
                  aes(d1, d2, fill = type, shape = type),
                  size = size.shape.win,
                  stroke = size.stroke,
                  color = col.stroke,
                  alpha = col.alpha) +
-      geom_text_repel(data = subset(df_winners, win == "yes"),
-                      aes(col = type, label = label),
-                      show.legend = FALSE,
-                      fontface = "bold",
-                      size = size.text.win)
+      {if(repel)geom_text_repel(data = subset(df_winners, win == "yes"),
+                                aes(col = type, label = label),
+                                show.legend = FALSE,
+                                fontface = "bold",
+                                size = size.text.win,
+                                force = repulsion,
+                                max.overlaps = max_overlaps)}
+    {if(!repel)geom_text(data = subset(df_winners, win == "yes"),
+                         aes(col = type, label = label),
+                         show.legend = FALSE,
+                         fontface = "bold",
+                         size = size.text.win,
+                         hjust = "outward",
+                         vjust = "outward")}
     if("genotype" %in% others$type){
       P2 <-
         P2 +
@@ -658,9 +693,16 @@ plot.gge <- function(x,
                    yend = 0,
                    color = alpha(col.line, col.alpha),
                    size = size.line) +
-      geom_text_repel(aes(col = type, label = label, size = type),
-                      show.legend = FALSE,
-                      color = c(rep(col.gen, ngen), rep(col.env, nenv)))
+      {if(repel)geom_text_repel(aes(col = type, label = label, size = type),
+                                show.legend = FALSE,
+                                color = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                force = repulsion,
+                                max.overlaps = max_overlaps)} +
+    {if(!repel)geom_text(aes(col = type, label = label, size = type),
+                         show.legend = FALSE,
+                         color = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                         hjust = "outward",
+                         vjust = "outward")}
     if (title == TRUE) {
       ggt <- ggtitle("Discriminativeness vs. representativeness")
     }
@@ -769,11 +811,20 @@ plot.gge <- function(x,
                  color = col.stroke,
                  alpha = col.alpha,
                  data = subset(plotdata, type == "environment")) +
-      geom_text_repel(data = subset(plotdata, type == "environment"),
-                      aes(label = label),
-                      size = size.text.env,
-                      show.legend = FALSE,
-                      col = col.env) +
+      {if(repel)geom_text_repel(data = subset(plotdata, type == "environment"),
+                                aes(label = label),
+                                size = size.text.env,
+                                show.legend = FALSE,
+                                col = col.env,
+                                force = repulsion,
+                                max.overlaps = max_overlaps)} +
+      {if(!repel)geom_text(data = subset(plotdata, type == "environment"),
+                           aes(label = label),
+                           size = size.text.env,
+                           show.legend = FALSE,
+                           col = col.env,
+                           hjust = "outward",
+                           vjust = "outward")} +
       geom_point(aes(xcoord, ycoord),
                  shape = 1,
                  size = 4,
@@ -896,9 +947,16 @@ plot.gge <- function(x,
                  alpha = col.alpha) +
       scale_shape_manual(labels = leg.lab, values = c(shape.env, shape.gen)) +
       scale_fill_manual(labels = leg.lab, values = c(col.env, col.gen)) +
-      geom_text_repel(aes(col = type, label = label, size = type),
-                      show.legend = FALSE,
-                      color = c(rep(col.gen, ngen), rep(col.env, nenv))) +
+      {if(repel)geom_text_repel(aes(col = type, label = label, size = type),
+                                show.legend = FALSE,
+                                color = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                                force = repulsion,
+                                max.overlaps = max_overlaps)} +
+      {if(!repel)geom_text(aes(col = type, label = label, size = type),
+                           show.legend = FALSE,
+                           color = c(rep(col.gen, ngen), rep(col.env, nenv)),
+                           hjust = "outward",
+                           vjust = "outward")} +
       geom_point(aes(coordx, coordy),
                  shape = 1,
                  color = col.stroke,
@@ -974,11 +1032,20 @@ plot.gge <- function(x,
                  stroke = size.stroke,
                  color = col.stroke,
                  alpha = col.alpha) +
-      geom_text_repel(data = subset(plotdata, type == "environment"),
-                      aes(label = label),
-                      show.legend = FALSE,
-                      col = col.env,
-                      size = size.text.env)
+      {if(repel)geom_text_repel(data = subset(plotdata, type == "environment"),
+                                aes(label = label),
+                                show.legend = FALSE,
+                                col = col.env,
+                                size = size.text.env,
+                                force = repulsion,
+                                max.overlaps = max_overlaps)} +
+    {if(!repel)geom_text(data = subset(plotdata, type == "environment"),
+                         aes(label = label),
+                         show.legend = FALSE,
+                         col = col.env,
+                         size = size.text.env,
+                         hjust = "outward",
+                         vjust = "outward")}
     if (title == TRUE) {
       if(any(inherits(x, "gtb"))){
         ggt <- ggtitle("Relationship Among Traits")

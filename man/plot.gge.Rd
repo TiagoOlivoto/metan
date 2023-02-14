@@ -8,6 +8,9 @@
   x,
   var = 1,
   type = 1,
+  repel = TRUE,
+  repulsion = 1,
+  max_overlaps = 20,
   sel_env = NA,
   sel_gen = NA,
   sel_gen1 = NA,
@@ -58,9 +61,19 @@ Coordination view for genotype-trait and genotype-yield*trait biplots.
 \item Relationship among environments (or trait/yield*trait combination).
 }}
 
-\item{sel_env, sel_gen}{The name of the environment (or trait/yield*trait combination) and genotype to examine
-when \code{type = 5} and   \code{type = 7}, respectively. Must be a string
-which matches a environment or genotype label.}
+\item{repel}{If \code{TRUE} (default), the text labels repel away from each
+other and away from the data points.}
+
+\item{repulsion}{Force of repulsion between overlapping text labels. Defaults
+to \code{1}.}
+
+\item{max_overlaps}{Exclude text labels that overlap too many things.
+Defaults to 20.}
+
+\item{sel_env, sel_gen}{The name of the environment (or trait/yield*trait
+combination) and genotype to examine when \code{type = 5} and   \code{type = 7},
+respectively. Must be a string which matches a environment or genotype
+label.}
 
 \item{sel_gen1, sel_gen2}{The name of genotypes to compare between when
 \code{type = 9}. Must be a string present in the genotype's name.}
