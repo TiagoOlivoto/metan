@@ -250,7 +250,6 @@ mps <- function(.data,
                 random = random,
                 verbose = verbose)
   }
-  return(mod)
   # mean performance
   observed <-
     gmd(mod, "data", verbose = FALSE) %>%

@@ -71,7 +71,7 @@ sample_systematic <- function(data,
   if(!missing(by)){
     data <- data |> group_by({{by}})
   }
-  if(is.grouped_df(data)){
+  if(is_grouped_df(data)){
     groups <- group_vars(data)
     data |>
       ungroup() |>

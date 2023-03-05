@@ -7,6 +7,7 @@
   - `open_wd()` open the File Explorer at the current working directory.
 * `corr_coef()` now can compute both linear and partial correlation, controled by the argument `type`.
 * New function `network_plot()` to produce a network plot of a correlation matrix or an object computed with `corr_coef()`. 
+* New functions `sample_random()` and `sample_systematic()` for random and systematic sampling, respectively.
 
 
 ## Minor improvements

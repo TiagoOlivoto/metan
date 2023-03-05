@@ -2561,6 +2561,7 @@ is_present <- function(x){
 #' * [get_wd_here()] returns a message showing the current working directory.
 #' * [open_wd_here()] Opens the File Explorer of the path returned by `get_wd_here()`.
 #' @export
+#' @importFrom utils install.packages menu
 #' @name utils_wd
 #' @examples
 #'
