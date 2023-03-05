@@ -132,7 +132,7 @@ by levels of a factor variable.
 * `mtsi()` and `mgidi()` now returns the ranks for the contribution of each factor and understand models fitted with `gamem()` and `waasb()` using the `by` argument.
 * `plot.mtsi()` and `plot.mgidi()` now returns a radar plot by default when using `type = "contribution"`.
 * `get_model_data()` now returns the genotypic and phenotypic correlation matrices from objects of class `waasb` and `gamem`.
-* `replace_string()`, `replace_number()`, `extract_string()`, and `extract_number()` now accepts [tidy evaluation](https://tidyeval.tidyverse.org/index.html) in the new `...` argument.
+* `replace_string()`, `replace_number()`, `extract_string()`, and `extract_number()` now accepts [tidy evaluation](https://tidyselect.r-lib.org/articles/syntax.html) in the new `...` argument.
 
 # metan 1.9.0
 * New functions `add_prefix()` and `add_suffix()` to add prefixes and suffixes to variable names, respectively.

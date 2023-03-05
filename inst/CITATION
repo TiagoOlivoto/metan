@@ -1,17 +1,12 @@
-citHeader("Please, support this project by citing it in your publications!")
-  citEntry(key         = "Olivoto2020",
-           entry       = "Article",
-           author      = personList(person("Tiago", "Olivoto"),
- 	                                  person(c("Alessandro", "Dal'Col"), "L{\'{u}}cio")),
-	         title       = "metan: an R package for multi-environment trial analysis",
-	         journal     = {"Methods in Ecology and Evolution"},
-	         volume      = {"11"},
-	         number      = {"6"},
-	         pages       = {"783-789"},
-	         year        = "2020",
-	         doi         = "10.1111/2041-210X.13384",
-	         textVersion =
-	         paste("Olivoto, T., and L\u00FAcio, A.D. (2020).",
-	               "metan: an R package for multi-environment trial analysis.",
-	               "Methods Ecol Evol. 11:783-789",
-	               "doi:10.1111/2041-210X.13384"))
+bibentry(
+  "Article",
+  header = "Please, support this project by citing it in your publications!",
+  title = "metan: An R package for multi‐environment trial analysis",
+	author = "Tiago Olivoto, Alessandro Dal’Col Lúcio",
+  year = 2020,
+  journal = "Methods in Ecology and Evolution",
+  volume = 11,
+  number = 6,
+  pages = "783-789",
+  doi = "10.1111/2041-210X.13384",
+)
