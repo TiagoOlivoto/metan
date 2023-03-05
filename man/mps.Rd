@@ -13,7 +13,7 @@ mps(
   block = NULL,
   by = NULL,
   random = "gen",
-  performance = "blupg",
+  performance = c("blupg", "blueg"),
   stability = "waasb",
   ideotype_mper = NULL,
   ideotype_stab = NULL,

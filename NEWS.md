@@ -5,6 +5,8 @@
   - `set_wd_here()` sets the working directory to the path of the current script.
   - `open_wd_here()` open the File Explorer at the directory path of the current script.
   - `open_wd()` open the File Explorer at the current working directory.
+* `corr_coef()` now can compute both linear and partial correlation, controled by the argument `type`.
+* New function `network_plot()` to produce a network plot of a correlation matrix or an object computed with `corr_coef()`. 
 
 
 ## Minor improvements
@@ -12,6 +14,8 @@
 * `plot.waasb()` now has new arguments to control whether to show the percentage values within bars and the order of variables on the x-axis.
 * `corr_coef()` now handles grouped data passed from `group_by()`
 * New arguments `size.varnames` and `col.varnames` added in `corr_plot()`.
+* Fix bug in `gmd(mod, "h2")`, when `mod` is computed with `random = "env"`.
+* Include the argument `repel` in `plot.gge()`.
 
 
 # metan 1.17.0
