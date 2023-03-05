@@ -1,5 +1,8 @@
 # Release summary
-This is a minor release (v1.18.0) that add new features and minor improvements. See `News.md` for more information. 
+In this resubmission, I fixed the following erros:
+
+* changed old-style citEntry() with bibentry()
+* Updated the invalid URL https://tidyeval.tidyverse.org/index.html
 
 
 # Test environments
