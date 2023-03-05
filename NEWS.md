@@ -1,4 +1,4 @@
-# metan (development version)
+# metan 1.18.0
 ## New features
 * New functions `*_wd_here()` to set and get the Working Directory (wd) quicky.
   - `get_wd_here()` gets the working directory to the path of the current script.

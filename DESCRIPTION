@@ -1,7 +1,7 @@
 Type: Package
 Package: metan
 Title: Multi Environment Trials Analysis
-Version: 1.17.0.9000
+Version: 1.18.0
 Authors@R: 
     person("Tiago", "Olivoto", , "tiagoolivoto@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0241-9636"))
