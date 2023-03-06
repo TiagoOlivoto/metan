@@ -375,6 +375,7 @@ reference:
       - themes
       - transpose_df
       - tukey_hsd
+      - utils_samples
 
 
   - title: "Datasets"

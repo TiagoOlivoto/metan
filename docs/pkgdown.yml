@@ -1,5 +1,5 @@
-pandoc: '2.18'
-pkgdown: 2.0.6
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   metan_start: metan_start.html
@@ -13,7 +13,7 @@ articles:
   vignettes_indexes: vignettes_indexes.html
   vignettes_stability: vignettes_stability.html
   vignettes_utilities: vignettes_utilities.html
-last_built: 2022-09-21T17:01Z
+last_built: 2023-03-06T11:07Z
 urls:
   reference: https://tiagoolivoto.github.io/metan/reference
   article: https://tiagoolivoto.github.io/metan/articles
