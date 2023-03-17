@@ -200,7 +200,7 @@ wsmp <- function(model,
             if (progbar == TRUE) {
               run_progress(pb,
                            actual = initial,
-                           text = paste("Ranks considering ", PesoResp, " for GY and ", PesoWAAS, " for WAASB", sep = ""))
+                           text = paste("Ranks considering ", PesoResp, " for Y and ", PesoWAAS, " for WAASB", sep = ""))
 
             }
           }

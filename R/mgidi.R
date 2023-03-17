@@ -17,10 +17,10 @@
 #' closer to the ideotype and therefore should presents desired values for all
 #' the analyzed traits.
 #'
-#' @param .data An object fitted with the function [gafem()],
-#'   [gamem()] or a two-way table with BLUPs for genotypes in each
-#'   trait (genotypes in rows and traits in columns). In the last case, row
-#'   names must contain the genotypes names.
+#' @param .data An object fitted with the function [gafem()], [gamem()] or a
+#'   two-way table with BLUPs for genotypes in each trait (genotypes in rows and
+#'   traits in columns). In the last case, the first column is assumed to have
+#'   the genotype's name.
 #' @param use_data Define which data to use if `.data` is an object of
 #'   class `gamem`. Defaults to `"blup"` (the BLUPs for genotypes).
 #'   Use `"pheno"` to use phenotypic means instead BLUPs for computing the
@@ -129,11 +129,11 @@
 #'p2 <- plot(mgidi_ind2, type = "contribution")
 #'p1 + p2
 #'
-#'# Positive desired gains for V1, V2 and V3
-#'# Negative desired gains for V4
+#'# Negative desired gains for V1
+#'# Positive desired gains for V2, V3 and V4
 #'mgidi_ind3 <-
 #'   mgidi(mod,
-#'        ideotype = c("h, h, h, l"))
+#'        ideotype = c("l, h, h, h"))
 #'
 #'}
 mgidi <- function(.data,
@@ -144,6 +144,20 @@ mgidi <- function(.data,
                   weights = NULL,
                   use = "complete.obs",
                   verbose = TRUE) {
+  if(is_grouped_df(.data)){
+    bind <-
+      .data %>%
+      doo(mgidi,
+          use_data = use_data,
+          SI = SI,
+          mineval = mineval,
+          ideotype = ideotype,
+          use = use,
+          verbose = verbose,
+          weights = weights)
+    return(set_class(bind, c("tbl_df",  "mgidi_group", "mgidi", "tbl",  "data.frame")))
+  }
+
   if(has_class(.data, c("gamem_group", "gafem_group", "waasb_group"))){
     bind <-
       .data %>%
@@ -164,56 +178,68 @@ mgidi <- function(.data,
     if(has_class(.data, c("gamem", "waasb"))){
       data <-
         gmd(.data, ifelse(use_data == "blup", "blupg", "data"), verbose = FALSE) %>%
-        mean_by(GEN) %>%
-        column_to_rownames("GEN")
+        mean_by(GEN)
     } else if(has_class(.data, "gafem")){
       data <-
         gmd(.data, "Y", verbose = FALSE) %>%
-        mean_by(GEN) %>%
-        column_to_rownames("GEN")
+        mean_by(GEN)
     } else{
-      if(has_class(.data, c("data.frame", "matrix")) & !has_rownames(.data)){
-        stop("object '", d[[".data"]], "' must have rownames.", call. = FALSE)
-      }
-      if(any(sapply(.data, function(x){is.numeric(x)})== FALSE)){
-        stop("All variables in '", d[[".data"]], "' must be numeric.",call. = FALSE)
-      }
       data <- .data
+      cols_class <- sapply(data, function(x) !is.numeric(x))
+      if(all(cols_class == FALSE)){
+        warning("All columns are numeric. A sequential id will be used as genotype name.", call. = FALSE)
+        data <- data |> mutate(gen = paste0("G", 1:nrow(data)), .before = 1)
+      } else{
+        nonn_cols <- which(cols_class == TRUE)
+        if(length(nonn_cols) > 1){
+          stop("More than one non-numeric column. Please, verify.", call. = FALSE)
+        }
+        if(nonn_cols != 1){
+          warning("The genotype column seems to be in the wrong location. Relocating it to the first position.", call. = FALSE)
+          data <- column_to_first(data, all_of(nonn_cols))
+        }
+      }
     }
-    if (length(data) == 1) {
+    nvar <- length(data) - 1
+    gen_name <- data |> pull(1)
+    data <- as.data.frame(data[, -1])
+    rownames(data) <- gen_name
+    var_name <- colnames(data)
+    if (nvar == 1) {
       stop("The multi-trait stability index cannot be computed with one single variable.", call. = FALSE)
     }
     if(is.null(ideotype)){
-      rescaled <- rep(100, length(data))
-      ideotype.D <- rep(100, length(data))
-      names(ideotype.D) <- names(data)
+      rescaled <- rep(100, nvar)
+      ideotype.D <- rep(100, nvar)
+      names(ideotype.D) <- var_name
     } else{
       rescaled <- unlist(strsplit(ideotype, split="\\s*(\\s|,)\\s*")) %>%
         all_lower_case()
-      if(length(rescaled) != length(data)){
-        stop("Ideotype must have length ", ncol(data), ", the number of columns in data")
+      if(length(rescaled) != nvar){
+        stop("Ideotype must have length ", nvar, ", the number of columns in data")
       }
       if(!all(rescaled %in% c("h", "l", "m"))){
         stop("argument 'ideotype' must have 'h', 'l', or 'm' only", call. = FALSE)
       }
       ideotype.D <- ifelse(rescaled == "m", 50, 100)
-      names(ideotype.D) <- names(data)
+      names(ideotype.D) <- var_name
       rescaled <- case_when(
         rescaled == "h" ~ 100,
         rescaled == "l" ~ 0,
         TRUE ~ 100)
     }
+
     if (is.null(SI)) {
       ngs <- NULL
     } else {
       ngs <- round(nrow(data) * (SI/100), 0)
     }
-    means <- data.frame(matrix(ncol = ncol(data), nrow = nrow(data)))
-    rownames(means) <- rownames(data)
-    vars <- tibble(VAR = colnames(data),
+    means <- data.frame(matrix(ncol = nvar, nrow = nrow(data)))
+    rownames(means) <- gen_name
+    vars <- tibble(VAR = var_name,
                    sense = rescaled) %>%
       mutate(sense = ifelse(sense == 0, "decrease", "increase"))
-    for (i in 1:ncol(data)) {
+    for (i in 1:nvar) {
       means[i] <- resca(values = data[i], new_max = rescaled[i], new_min = 100 - rescaled[i])
       colnames(means) <- colnames(data)
     }
@@ -221,7 +247,7 @@ mgidi <- function(.data,
       warning("Missing values observed in the table of means. Using complete observations to compute the correlation matrix.", call. = FALSE)
     }
     if(is.null(weights)){
-      weights <- rep(1, ncol(data))
+      weights <- rep(1, nvar)
     }
     cor.means <- cor(means, use = use)
     eigen.decomposition <- eigen(cor.means)
@@ -363,7 +389,7 @@ mgidi <- function(.data,
       }
     }
 
-    return(structure(list(data = rownames_to_column(data, "GEN"),
+    return(structure(list(data = data,
                           cormat = as.matrix(cor.means),
                           PCA = pca,
                           FA = fa,
