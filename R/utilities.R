@@ -1067,6 +1067,7 @@ cv <- function(.data, ..., na.rm = FALSE) {
 #' @name utils_stats
 #' @export
 freq_table <- function(.data, var, k = NULL, digits = 3){
+  var <- rlang::ensym(var)
   if(is_grouped_df(.data)){
     res <-
       metan::doo(.data,
@@ -1080,8 +1081,6 @@ freq_table <- function(.data, var, k = NULL, digits = 3){
       res %>%
       mutate(freqs = map(data, ~.x %>% .[["breaks"]])) %>%
       remove_cols(data)
-    list_breaks <- breaks$freqs
-    names(list_breaks) <- breaks$cor_grao
     return(list(freqs = freqs,
                 breaks = breaks))
 
