@@ -169,31 +169,17 @@ pcoeff3<- path_coeff(data_ge2,
                       resp = KW,
                       pred = c(PH, EH, NKE, TKW),
                       plot_res = TRUE)
-
-# Selecting a set of predictors with minimal multicollinearity
-# Maximum variance Inflation factor of 5
-pcoeff4 <- path_coeff(data_ge2,
-                     resp = KW,
-                     brutstep = TRUE,
-                     maxvif = 5)
-
-
-# When one analysis should be carried out for each environment
-# Using the forward-pipe operator \%>\%
-pcoeff5 <- path_coeff(data_ge2, resp = KW, by = ENV)
-
-
 # sequential path analysis
 # KW as dependent trait
 # NKE and TKW as primary predictors
 # PH, EH, EP, and EL as secondary traits
-pcoeff6 <-
+pcoeff4 <-
  path_coeff_seq(data_ge2,
-               resp = KW,
-               chain_1 = c(NKE, TKW),
-               chain_2 = c(PH, EH, EP, EL))
-pcoeff6$resp_sc$Coefficients
-pcoeff6$resp_sc2
+                resp = KW,
+                chain_1 = c(NKE, TKW),
+                chain_2 = c(PH, EH, EP, EL))
+pcoeff4$resp_sc$Coefficients
+pcoeff4$resp_sc2
 
 
 }

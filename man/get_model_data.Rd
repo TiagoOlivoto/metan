@@ -112,6 +112,15 @@ MSE).
 \item \code{"canonical"} The canonical correlations and hypothesis testing.
 }
 
+\strong{Objects of class \code{colindiag}:}
+\itemize{
+\item \code{"cormat"} The correlation matrix betwen predictors.
+\item \code{"corlist"} The correlations in a 'long' format
+\item \code{"evalevet"} The eigenvalue with associated eigenvectors
+\item \code{"VIF"} The Variance Inflation Factor
+\item \code{"indicators"} The colinearity indicators
+}
+
 \strong{Objects of class \code{ecovalence}:}
 \itemize{
 \item \code{"Ecoval"} Ecovalence value (default).

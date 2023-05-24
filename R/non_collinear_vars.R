@@ -34,9 +34,18 @@
 #' non_collinear_vars(data_ge2, EH, CL, CW, KW, NKE, max_vif = 5)
 #' }
 non_collinear_vars <- function(.data,
-                              ...,
-                              max_vif = 10,
-                              missingval = "pairwise.complete.obs"){
+                               ...,
+                               max_vif = 10,
+                               missingval = "pairwise.complete.obs"){
+  if(is_grouped_df(.data)){
+    result <-
+      .data |>
+      doo(non_collinear_vars,
+          ...,
+          max_vif = max_vif,
+          missingval = missingval)
+    return(result)
+  }
   if(!missing(...)){
     xxx <-  select_cols(.data, ...)
     xxx %<>% select_numeric_cols()

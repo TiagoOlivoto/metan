@@ -49,6 +49,8 @@ ge_plot <- function(.data,
                     text_col_pos = c("top", "bottom"),
                     text_row_pos = c("left", "right"),
                     average = TRUE,
+                    row_col = TRUE,
+                    row_col_type = c("average", "sum"),
                     order_g = NULL,
                     order_e = NULL,
                     xlab = NULL,
@@ -60,17 +62,35 @@ ge_plot <- function(.data,
   text_col_pos <- rlang::arg_match(text_col_pos)
   text_row_pos <- rlang::arg_match(text_row_pos)
   if(type == 1){
-    if(isTRUE(average)){
-      mat <-
-        select_cols(.data,
-                    ENV = {{env}},
-                    GEN = {{gen}},
-                    Y = {{resp}}) |>
-        make_mat(GEN, ENV, Y) |>
-        row_col_mean()
+    if(!isTRUE(average)){
+      warning("'average' argument was deprecated as of metan 1.19.0. Use 'row_col' instead")
+      row_col <- average
+    }
+    if(isTRUE(row_col)){
+      row_col_type <- rlang::arg_match(row_col_type)
+      if(row_col_type == "average"){
+        mat <-
+          select_cols(.data,
+                      ENV = {{env}},
+                      GEN = {{gen}},
+                      Y = {{resp}}) |>
+          make_mat(GEN, ENV, Y) |>
+          row_col_mean()
+        colnames(mat)[ncol(mat)] <- "Average"
+        rownames(mat)[nrow(mat)] <- "Average"
+      } else{
+        mat <-
+          select_cols(.data,
+                      ENV = {{env}},
+                      GEN = {{gen}},
+                      Y = {{resp}}) |>
+          make_mat(GEN, ENV, Y) |>
+          row_col_sum()
+        colnames(mat)[ncol(mat)] <- "Sum"
+        rownames(mat)[nrow(mat)] <- "Sum"
+      }
 
-      colnames(mat)[ncol(mat)] <- "Average"
-      rownames(mat)[nrow(mat)] <- "Average"
+
       if(is.null(order_e)){
         order_e <- colnames(mat)[-ncol(mat)]
       } else{

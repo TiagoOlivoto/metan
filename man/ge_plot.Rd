@@ -14,6 +14,8 @@ ge_plot(
   text_col_pos = c("top", "bottom"),
   text_row_pos = c("left", "right"),
   average = TRUE,
+  row_col = TRUE,
+  row_col_type = c("average", "sum"),
   order_g = NULL,
   order_e = NULL,
   xlab = NULL,

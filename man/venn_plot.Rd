@@ -8,6 +8,8 @@ venn_plot(
   ...,
   names = NULL,
   show_elements = FALSE,
+  split_labels = FALSE,
+  split_each = 4,
   show_sets = FALSE,
   fill = ggplot_color(4),
   alpha = 0.5,
@@ -33,6 +35,13 @@ of the objects provided.}
 objects in \code{...} (\code{names = NULL}). Use \code{names} to override this default.}
 
 \item{show_elements}{Show set elements instead of count. Defaults to \code{FALSE}.}
+
+\item{split_labels}{Splits the element labels into new lines each
+\code{split_each} elements? Defaults to \code{TRUE}. This is useful to split labels
+into several lines when \code{show_elements = TRUE} is used.}
+
+\item{split_each}{The number of elements that will apper in each line when
+\code{split_labels = TRUE} is used.}
 
 \item{show_sets}{Show set names instead of count. Defaults to \code{FALSE}.}
 

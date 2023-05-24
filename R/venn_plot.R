@@ -12,6 +12,11 @@
 #' @param names By default, the names of the sets are set as the names of the
 #'   objects in `...` (`names = NULL`). Use `names` to override this default.
 #' @param show_elements Show set elements instead of count. Defaults to `FALSE`.
+#' @param split_labels Splits the element labels into new lines each
+#'   `split_each` elements? Defaults to `TRUE`. This is useful to split labels
+#'   into several lines when `show_elements = TRUE` is used.
+#' @param split_each The number of elements that will apper in each line when
+#'   `split_labels = TRUE` is used.
 #' @param show_sets Show set names instead of count. Defaults to `FALSE`.
 #' @param fill Filling colors in circles. Defaults to the default ggplot2 color
 #'   palette. A vector of length 1 will be recycled.
@@ -62,6 +67,8 @@
 venn_plot <- function(...,
                       names = NULL,
                       show_elements = FALSE,
+                      split_labels = FALSE,
+                      split_each = 4,
                       show_sets = FALSE,
                       fill = ggplot_color(4),
                       alpha = 0.5,
@@ -125,18 +132,20 @@ venn_plot <- function(...,
   }
   prepare_data <- function(data,
                            show_elements = show_elements,
+                           split_labels = split_labels,
+                           split_each = split_each,
                            label_sep = label_sep) {
     # Adapted from ggvenn' ggvenn()
     # https://github.com/yanlinlin82/ggvenn/blob/master/R/ggvenn.R
     # Copyright (c) 2019-2020 Linlin Yan
     # Thanks to @yanlinlin82 (https://twitter.com/yanlinlin82)
     get_shape <- function(group,
-                           x_offset = 0,
-                           y_offset = 0,
-                           radius = 1,
-                           radius_b = radius,
-                           theta_offset = 0,
-                           length.out = 200) {
+                          x_offset = 0,
+                          y_offset = 0,
+                          radius = 1,
+                          radius_b = radius,
+                          theta_offset = 0,
+                          length.out = 200) {
       tibble(group = group,
              theta = seq(0, 2 * pi, length.out = length.out)) %>%
         mutate(x_raw = radius * cos(theta),
@@ -152,6 +161,7 @@ venn_plot <- function(...,
                    get_shape(2L,  .6, 0, 1))
       set_a <- data[[1]]
       set_b <- data[[2]]
+
       texts <-
         tribble(~name, ~x, ~y, ~label,
                 "A",   -1,  0,  set_difference(set_a, set_b),
@@ -159,8 +169,12 @@ venn_plot <- function(...,
                 "AB",   0,  0,  set_intersect(set_a, set_b)) %>%
         rowwise() %>%
         mutate(n = length(label),
-               label = ifelse(show_elements == TRUE, paste(label, collapse = label_sep), n),
-               label = ifelse(show_sets == TRUE, name, label))
+               label = case_when(show_elements == TRUE && split_labels == TRUE ~ paste0(list(paste0(label, ifelse(1:length(label)%%split_each == 0, "\n", "|")))[[1]], collapse = ""),
+                                 show_elements == TRUE && split_labels == FALSE ~ paste(label, collapse = label_sep),
+                                 show_sets == TRUE ~ name,
+                                 TRUE ~ paste0(n)),
+               label = sub("\\|\\s*$", "", label)
+        )
 
       labels <-
         tribble(~name, ~x,   ~y,  ~hjust, ~vjust,
@@ -178,6 +192,7 @@ venn_plot <- function(...,
       set_a <- data[[1]]
       set_b <- data[[2]]
       set_c <- data[[3]]
+
       texts <-
         tribble(~name, ~x,    ~y, ~label,
                 "A",   -1,    0.75, set_a %>% set_difference(set_union(set_b, set_c)),
@@ -190,8 +205,14 @@ venn_plot <- function(...,
         ) %>%
         rowwise() %>%
         mutate(n = length(label),
-               label = ifelse(show_elements == TRUE, paste(label, collapse = label_sep), n),
-               label = ifelse(show_sets == TRUE, name, label))
+               label = case_when(show_elements == TRUE && split_labels == TRUE ~ paste0(list(paste0(label, ifelse(1:length(label)%%split_each == 0, "\n", "|")))[[1]], collapse = ""),
+                                 show_elements == TRUE && split_labels == FALSE ~ paste(label, collapse = label_sep),
+                                 show_sets == TRUE ~ name,
+                                 TRUE ~ paste0(n)),
+               label = sub("\\|\\s*$", "", label)
+        )
+
+
       labels <-
         tribble(~name, ~x,    ~y,  ~hjust, ~vjust,
                 "A",   -0.8,  1.6, 0.5,    0,
@@ -230,8 +251,12 @@ venn_plot <- function(...,
       ) %>%
         rowwise() %>%
         mutate(n = length(label),
-               label = ifelse(show_elements == TRUE, paste(label, collapse = label_sep), n),
-               label = ifelse(show_sets == TRUE, name, label))
+               label = case_when(show_elements == TRUE && split_labels == TRUE ~ paste0(list(paste0(label, ifelse(1:length(label)%%split_each == 0, "\n", "|")))[[1]], collapse = ""),
+                                 show_elements == TRUE && split_labels == FALSE ~ paste(label, collapse = label_sep),
+                                 show_sets == TRUE ~ name,
+                                 TRUE ~ paste0(n)),
+               label = sub("\\|\\s*$", "", label)
+        )
       labels <-
         tribble(~name, ~x,   ~y,    ~hjust, ~vjust,
                 "A",   -1.6,  0.85,      1,     1,
@@ -242,7 +267,7 @@ venn_plot <- function(...,
       return(list(shapes = d, texts = texts, labels = labels))
     }
   }
-  venn <- prepare_data(sets, show_elements, label_sep)
+  venn <- prepare_data(sets, show_elements, split_labels, split_each, label_sep)
   venn$shapes %>%
     mutate(group = LETTERS[group]) %>%
     ggplot() +

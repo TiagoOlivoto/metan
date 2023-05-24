@@ -313,7 +313,7 @@ fai_blup <- function(.data,
                         canonical_loadings = data.frame(canonical.loadings) %>% rownames_to_column("Variable") %>% as_tibble(),
                         FAI = data.frame(ideotype.rank) %>% rownames_to_column("Genotype") %>% as_tibble(),
                         sel_dif_trait = selection.diferential,
-                        sel_gen = names(ideotype.rank[[1]])[1:ngs],
+                        sel_gen = lapply(ideotype.rank, function(x){names(x)[1:ngs]}),
                         construction_ideotypes = construction.ideotypes,
                         total_gain = total_gain),
                    class = "fai_blup"))

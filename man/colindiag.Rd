@@ -32,16 +32,19 @@ between the variables
 coefficients
 \item \strong{evalevet} The eigenvalues with associated eigenvectors of the
 correlation matrix
-\item \strong{VIF} The Variance Inflation Factors, being the diagonal elements of
+\item \strong{indicators} A \code{data.frame} with the following indicators
+}
+\itemize{
+\item \code{VIF} The Variance Inflation Factors, being the diagonal elements of
 the inverse of the correlation matrix.
-\item \strong{CN} The Condition Number of the correlation matrix, given by the
+\item \code{cn} The Condition Number of the correlation matrix, given by the
 ratio between the largest and smallest eigenvalue.
-\item \strong{det} The determinant of the correlation matrix.
-\item \strong{ncorhigh} Number of correlation greather than |0.8|.
-\item \strong{largest_corr} The largest correlation (in absolute value) observed.
-\item \strong{smallest_corr} The smallest correlation (in absolute value)
+\item \code{det} The determinant of the correlation matrix.
+\item \code{ncorhigh} Number of correlation greather than |0.8|.
+\item \code{largest_corr} The largest correlation (in absolute value) observed.
+\item \code{smallest_corr} The smallest correlation (in absolute value)
 observed.
-\item \strong{weight_var} The variables with largest eigenvector (largest weight)
+\item \code{weight_var} The variables with largest eigenvector (largest weight)
 in the eigenvalue of smallest value, sorted in decreasing order.
 }
 }

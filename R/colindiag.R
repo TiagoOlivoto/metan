@@ -29,23 +29,19 @@
 #' * **evalevet** The eigenvalues with associated eigenvectors of the
 #' correlation matrix
 #'
-#' * **VIF** The Variance Inflation Factors, being the diagonal elements of
+#' * **indicators** A `data.frame` with the following indicators
+#' - `VIF` The Variance Inflation Factors, being the diagonal elements of
 #' the inverse of the correlation matrix.
-#'
-#' * **CN** The Condition Number of the correlation matrix, given by the
+#' - `cn` The Condition Number of the correlation matrix, given by the
 #' ratio between the largest and smallest eigenvalue.
-#'
-#' * **det** The determinant of the correlation matrix.
-#'
-#' * **ncorhigh** Number of correlation greather than |0.8|.
-#'
-#' * **largest_corr** The largest correlation (in absolute value) observed.
-#'
-#' * **smallest_corr** The smallest correlation (in absolute value)
+#' - `det` The determinant of the correlation matrix.
+#' - `ncorhigh` Number of correlation greather than |0.8|.
+#' - `largest_corr` The largest correlation (in absolute value) observed.
+#' - `smallest_corr` The smallest correlation (in absolute value)
 #' observed.
-#'
-#' * **weight_var** The variables with largest eigenvector (largest weight)
+#' - `weight_var` The variables with largest eigenvector (largest weight)
 #' in the eigenvalue of smallest value, sorted in decreasing order.
+#'
 #' @md
 #' @author Tiago Olivoto \email{tiagoolivoto@@gmail.com}
 #' @references
@@ -103,7 +99,7 @@ colindiag <- function(.data,
       doo(colindiag,
           ...,
           n = n)
-    return(results %>% set_class(c("tbl_df", "tbl",  "data.frame", "colingroup", "colindiag")))
+    return(results %>% set_class(c("colingroup", "tbl_df", "tbl",  "data.frame")))
   }
   internal <- function(x) {
     if (is.matrix(x)) {
@@ -121,8 +117,8 @@ colindiag <- function(.data,
     Avet <- data.frame(t(eigen$vectors))
     names(Avet) <- colnames(x)
     AvAvet <- cbind(Aval, Avet)
-    VIF <- data.frame(diag(solve_svd(cor.x)))
-    names(VIF) <- "VIF"
+    VIF <- data.frame(diag(solve_svd(cor.x))) |> rownames_to_column("var")
+    names(VIF)[2] <- "VIF"
     results <- data.frame(linear = as.vector(t(cor.x)[lower.tri(cor.x,
                                                                 diag = F)]))
     results <- dplyr::mutate(results, t = linear * (sqrt(n -
@@ -143,18 +139,20 @@ colindiag <- function(.data,
     rownames(abs) <- rownames(ultimo)
     ultimo <- abs[order(abs[, "Peso"], decreasing = T), , drop = FALSE]
     pesovarname <- paste(rownames(ultimo), collapse = " > ")
+    indicators <- data.frame(cn = NC,
+                             det = Det,
+                             ncohigh = ncorhigh,
+                             largest_corr = largest_corr,
+                             smallest_corr = smallest_corr,
+                             weight_var = pesovarname)
     final <- list(cormat = data.frame(cor.x),
                   corlist = results,
                   evalevet = AvAvet,
                   VIF = VIF,
-                  CN = NC,
-                  det = Det,
-                  ncorhigh = ncorhigh,
-                  largest_corr = largest_corr,
-                  smallest_corr = smallest_corr,
-                  weight_var = pesovarname)
+                  indicators = indicators)
     invisible(final)
   }
+
   if (is.matrix(.data)) {
     out <- internal(.data)
   }
@@ -216,51 +214,51 @@ print.colindiag <- function(x, export = FALSE, file.name = NULL, digits = 3, ...
       cat("Level:", names, "\n")
       cat("---------------------------------------------------------------------------\n")
       dat <- df[["data"]][[1]]
-      CN <- dat$CN
-      VIF <- dat$VIF
-    if (CN > 1000) {
-      cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
-                 "CN = ", round(CN, digits), "\n"))
-    }
-    if (CN < 100) {
-      cat(paste0("Weak multicollinearity in the matrix\n",
-                 "CN = ", round(CN, digits), "\n"))
-    }
-    if (CN > 100 & CN < 1000) {
-      cat(paste0("The multicollinearity in the matrix should be investigated.\n",
-                 "CN = ", round(CN, digits), "\n", "Largest VIF = ",
-                 max(VIF), "\n"))
-    }
-      cat(paste0("Matrix determinant: ", round(dat$det, 7)), "\n")
-      cat(paste0("Largest correlation: ", dat$largest_corr), "\n")
-      cat(paste0("Smallest correlation: ", dat$smallest_corr), "\n")
+      cn <- dat$indicators$cn
+      VIF <- dat$VIF$VIF
+      if (cn > 1000) {
+        cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
+                   "cn = ", round(cn, digits), "\n"))
+      }
+      if (cn < 100) {
+        cat(paste0("Weak multicollinearity in the matrix\n",
+                   "cn = ", round(cn, digits), "\n"))
+      }
+      if (cn > 100 & cn < 1000) {
+        cat(paste0("The multicollinearity in the matrix should be investigated.\n",
+                   "cn = ", round(cn, digits), "\n", "Largest VIF = ",
+                   max(VIF), "\n"))
+      }
+      cat(paste0("Matrix determinant: ", round(dat$indicators$det, 7)), "\n")
+      cat(paste0("Largest correlation: ", dat$indicators$largest_corr), "\n")
+      cat(paste0("Smallest correlation: ", dat$indicators$smallest_corr), "\n")
       cat(paste0("Number of VIFs > 10: ", length(which(VIF > 10))), "\n")
-      cat(paste0("Number of correlations with r >= |0.8|: ",dat$ncorhigh), "\n")
-      cat(paste0("Variables with largest weight in the last eigenvalues: \n", dat$weight_var), "\n")
+      cat(paste0("Number of correlations with r >= |0.8|: ",dat$indicators$ncorhigh), "\n")
+      cat(paste0("Variables with largest weight in the last eigenvalues: \n", dat$indicators$weight_var), "\n")
       cat("---------------------------------------------------------------------------\n")
     }
   } else{
-    CN <- x$CN
-    VIF <- x$VIF
-    if (CN > 1000) {
+    cn <- x$indicators$cn
+    VIF <- x$VIF$VIF
+    if (cn > 1000) {
       cat(paste0("Severe multicollinearity in the matrix! Pay attention on the variables listed bellow\n",
-                 "CN = ", round(CN, digits), "\n"))
+                 "cn = ", round(cn, digits), "\n"))
     }
-    if (CN < 100) {
+    if (cn < 100) {
       cat(paste0("Weak multicollinearity in the matrix\n",
-                 "CN = ", round(CN, digits), "\n"))
+                 "cn = ", round(cn, digits), "\n"))
     }
-    if (CN > 100 & CN < 1000) {
+    if (cn > 100 & cn < 1000) {
       cat(paste0("The multicollinearity in the matrix should be investigated.\n",
-                 "CN = ", round(CN, digits), "\n", "Largest VIF = ",
+                 "cn = ", round(cn, digits), "\n", "Largest VIF = ",
                  max(VIF), "\n"))
     }
-    cat(paste0("Matrix determinant: ", round(x$det, 7)), "\n")
-    cat(paste0("Largest correlation: ", x$largest_corr), "\n")
-    cat(paste0("Smallest correlation: ", x$smallest_corr), "\n")
+    cat(paste0("Matrix determinant: ", round(x$indicators$det, 7)), "\n")
+    cat(paste0("Largest correlation: ", x$indicators$largest_corr), "\n")
+    cat(paste0("Smallest correlation: ", x$indicators$smallest_corr), "\n")
     cat(paste0("Number of VIFs > 10: ", length(which(VIF > 10))), "\n")
-    cat(paste0("Number of correlations with r >= |0.8|: ",x$ncorhigh), "\n")
-    cat(paste0("Variables with largest weight in the last eigenvalues: \n", x$weight_var), "\n")
+    cat(paste0("Number of correlations with r >= |0.8|: ",x$indicators$ncorhigh), "\n")
+    cat(paste0("Variables with largest weight in the last eigenvalues: \n", x$indicators$weight_var), "\n")
   }
   if (export == TRUE) {
     sink()

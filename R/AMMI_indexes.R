@@ -169,7 +169,7 @@ ammi_indexes <- function(.data, order.y = NULL, level = 0.95) {
     for (var in 1:length(.data)) {
         model <- .data[[var]]
         n <- sum(model$PCA$`Pr(>F)` <= (1 - level), na.rm = TRUE)
-        n <- ifelse(n == 0, 1, n)
+        n <- ifelse(n < 2, 2, n)
         meange <- model$MeansGxE
         effects <- residuals(lm(Y ~ ENV + GEN, data = meange))
         meange$residual <- effects
