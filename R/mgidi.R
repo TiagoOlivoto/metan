@@ -72,6 +72,9 @@
 #' variables in such factor are.
 #' * **contri_fac_rank, contri_fac_rank_sel** The rank for the contribution
 #' of each factor for all genotypes and selected genotypes, respectively.
+#' * **complementarity** The complementarity matrix, which is the Euclidean
+#' distance between selected genotypes based on the contribution of each factor
+#'  on the MGIDI index (waiting reference).
 #' * **sel_dif** The selection differential for the variables.
 #' * **stat_gain** A descriptive statistic for the selection gains. The
 #' minimum, mean, confidence interval, standard deviation, maximum, and sum of
@@ -308,6 +311,7 @@ mgidi <- function(.data,
       data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%
       rownames_to_column("GEN") %>%
       as_tibble()
+
     means.factor <- means[, names.pos.var.factor]
     observed <- means[, names.pos.var.factor]
     contri_long <- pivot_longer(contr.factor, -GEN)
@@ -361,6 +365,13 @@ mgidi <- function(.data,
         ge_winners(name, GEN, value, type = "ranks", better = "l") %>%
         split_factors(ENV) %>%
         map_dfc(~.x %>% pull())
+
+      # Complementarity matrix
+      compl_sel_gen <-
+        contr.factor |>
+        subset(GEN %in% selected) |>
+        column_to_rownames("GEN")
+      compl_mat <- dist(compl_sel_gen) |> as.matrix()
     } else{
       sel_dif_mean <- NULL
       contri_fac_rank_sel <- NULL
@@ -407,6 +418,7 @@ mgidi <- function(.data,
                           contri_fac = contr.factor,
                           contri_fac_rank = contri_fac_rank,
                           contri_fac_rank_sel = contri_fac_rank_sel,
+                          complementarity = compl_mat,
                           sel_dif = sel_dif_mean,
                           stat_gain = stat_gain,
                           sel_gen = selected),

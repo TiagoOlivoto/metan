@@ -16,10 +16,10 @@ mgidi(
 )
 }
 \arguments{
-\item{.data}{An object fitted with the function \code{\link[=gafem]{gafem()}},
-\code{\link[=gamem]{gamem()}} or a two-way table with BLUPs for genotypes in each
-trait (genotypes in rows and traits in columns). In the last case, row
-names must contain the genotypes names.}
+\item{.data}{An object fitted with the function \code{\link[=gafem]{gafem()}}, \code{\link[=gamem]{gamem()}} or a
+two-way table with BLUPs for genotypes in each trait (genotypes in rows and
+traits in columns). In the last case, the first column is assumed to have
+the genotype's name.}
 
 \item{use_data}{Define which data to use if \code{.data} is an object of
 class \code{gamem}. Defaults to \code{"blup"} (the BLUPs for genotypes).
@@ -80,6 +80,9 @@ value. The lower the contribution of a factor, the close of the ideotype the
 variables in such factor are.
 \item \strong{contri_fac_rank, contri_fac_rank_sel} The rank for the contribution
 of each factor for all genotypes and selected genotypes, respectively.
+\item \strong{complementarity} The complementarity matrix, which is the Euclidean
+distance between selected genotypes based on the contribution of each factor
+on the MGIDI index (waiting reference).
 \item \strong{sel_dif} The selection differential for the variables.
 \item \strong{stat_gain} A descriptive statistic for the selection gains. The
 minimum, mean, confidence interval, standard deviation, maximum, and sum of
@@ -149,11 +152,11 @@ p1 <- plot(mgidi_ind, type = "contribution")
 p2 <- plot(mgidi_ind2, type = "contribution")
 p1 + p2
 
-# Positive desired gains for V1, V2 and V3
-# Negative desired gains for V4
+# Negative desired gains for V1
+# Positive desired gains for V2, V3 and V4
 mgidi_ind3 <-
   mgidi(mod,
-       ideotype = c("h, h, h, l"))
+       ideotype = c("l, h, h, h"))
 
 }
 }
