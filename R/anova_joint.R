@@ -84,10 +84,11 @@ anova_joint <- function(.data,
   }
   vars <- .data %>% select({{resp}}, -names(factors))
   vars %<>% select_numeric_cols()
+
   if(!missing(block)){
-    factors %<>% set_names("ENV", "GEN", "REP", "BLOCK")
+    factors %<>% set_names(c("ENV", "GEN", "REP", "BLOCK"))
   } else{
-    factors %<>% set_names("ENV", "GEN", "REP")
+    factors %<>% set_names(c("ENV", "GEN", "REP"))
   }
   listres <- list()
   nvar <- ncol(vars)
@@ -111,8 +112,41 @@ anova_joint <- function(.data,
         rownames_to_column("Source") %>%
         select_rows(2, 4, 1, 3, 5) %>%
         as.data.frame()
+
+      fcgen <- anova[3, 4] / anova[4, 4]
+      pfgen <- pf(fcgen, anova[3, 2], anova[4, 2], lower.tail = FALSE)
+      fcenv <- anova[1, 4] / anova[2, 4]
+      pfenv <- pf(fcenv, anova[1, 2], anova[2, 2], lower.tail = FALSE)
+      anova[3, 5:6] <- c(fcgen, pfgen)
+      anova[1, 5:6] <- c(fcenv, pfenv)
       anova[2, 1] <- "REP(ENV)"
-      CV <- tibble(Source = "CV(%)", Df = as.numeric(sqrt(anova[5, 4]) / mean(data$mean) * 100))
+
+      # genotype within environment
+      mat_sum <- xtabs(mean ~ GEN + ENV, data = data)
+      I <- nlevels(factor(data$GEN))
+      J <- nlevels(factor(data$ENV))
+      K <- nlevels(factor(data$REP))
+      sum_gen <- apply(mat_sum, 1, sum)
+      Cgen <- sum_gen ^2 / (J * K)
+      sqgen_env <- apply(apply(mat_sum, 1, function(x){x ^2}), 2, sum) / K - Cgen
+      qmgen_env <- sqgen_env / (J - 1)
+      fcal <- qmgen_env / anova[5, 4]
+      pfcal <- pf(fcal, J - 1, anova[5, 2], lower.tail = FALSE)
+      qmgen_env_tot <- sum(sqgen_env) /((J - 1) * I)
+      fcalgen_env <- qmgen_env_tot / anova[5, 4]
+      pfcalgen_env <- pf(fcalgen_env, ((J - 1) * I), anova[5, 2], lower.tail = FALSE)
+      decomp <- data.frame(
+        Source = c("ENV/GEN", paste0("   ENV/", names(sum_gen))),
+        Df = c((J - 1) * I, replicate(I, (J - 1))),
+        `Sum Sq` = c(sum(sqgen_env), sqgen_env),
+        `Mean Sq` = c(qmgen_env_tot , qmgen_env),
+        `F value` = c(fcalgen_env, fcal),
+        `Pr(>F)` = c(pfcalgen_env, pfcal)
+      )
+      colnames(decomp) <- c("Source", "Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")
+      anova <- rbind(anova[1:4, ], decomp, anova[5, ])
+      rownames(anova) <- NULL
+      CV <- tibble(Source = "CV(%)", Df = as.numeric(sqrt(anova[nrow(anova), 4]) / mean(data$mean) * 100))
       msr <- tibble(Source = "MSR+/MSR-", Df = max(msr) / min(msr))
       ovmean <- tibble(Source = "OVmean", Df = mean(data$mean))
       temp <- rbind_fill_id(anova, CV, msr, ovmean)
@@ -128,6 +162,7 @@ anova_joint <- function(.data,
         select_rows(2, 4, 5, 1, 3, 6)
       anova[2, 1] <- "REP(ENV)"
       anova[3, 1] <- "BLOCK(REP*ENV)"
+      rownames(anova) <- NULL
       CV <- tibble(Source = "CV(%)", Df = as.numeric(sqrt(anova[6, 4]) / mean(data$mean) * 100))
       msr <- tibble(Source = "MSR+/MSR-", Df = max(msr) / min(msr))
       ovmean <- tibble(Source = "OVmean", Df = mean(data$mean))

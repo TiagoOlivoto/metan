@@ -53,6 +53,7 @@
 #'    - `PFG and PFB`: The P-values for genotype and blocks, respectively.
 #'    - `CV`: coefficient of variation.
 #'    - `h2`: broad-sense heritability.
+#'    - `h2MG`: broad-sense heritability at a plot level.
 #'    - `AS`: accuracy of selection (square root of `h2`)
 #'
 #'
@@ -135,11 +136,13 @@ anova_ind <- function(.data,
         MSG <- anova[1, 3]
         DFE <- anova[3, 1]
         MSE <- anova[3, 3]
-        h2 <- (MSG - MSE) / MSG
+        VG <- (MSG - MSE) / (DFB + 1)
+        h2 <- VG  / (VG + MSE)
+        h2mg <- VG  / (VG + MSE / (DFB + 1))
         if (h2 < 0) {
           AS <- 0
         } else {
-          AS <- sqrt(h2)
+          AS <- sqrt(h2mg)
         }
         final <- tibble(MEAN = mean(x$Y),
                         DFG = DFG,
@@ -154,6 +157,7 @@ anova_ind <- function(.data,
                         MSE = MSE,
                         CV = sqrt(MSE) / mean(x$Y) * 100,
                         h2 = h2,
+                        h2mg = h2mg,
                         AS = AS)
       }))
       if (verbose == TRUE) {
@@ -177,7 +181,9 @@ anova_ind <- function(.data,
         MSIB_R <- anova[3, 3]
         DFE <- anova[4, 1]
         MSE <- anova[4, 3]
-        h2 <- (MSG - MSE) / MSG
+        VG <- (MSG - MSE) / (DFCR + 1)
+        h2 <- VG  / (VG + MSE)
+        h2mg <- VG  / (VG + MSE / (DFCR + 1))
         if (h2 < 0) {
           AS <- 0
         } else {
@@ -200,6 +206,7 @@ anova_ind <- function(.data,
                         MSE = MSE,
                         CV = sqrt(MSE) / mean(x$Y) * 100,
                         h2 = h2,
+                        h2mg = h2mg,
                         AS = AS)
       }))
       if (verbose == TRUE) {

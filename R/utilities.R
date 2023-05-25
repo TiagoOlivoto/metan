@@ -1485,10 +1485,16 @@ row_col_mean <- function(.data, na.rm = FALSE) {
     stop("All columns in '.data' must be numeric")
   }
   mat <- as.matrix(.data)
-  row_means <- rowMeans(mat, na.rm = na.rm)
-  col_means <- colMeans(mat, na.rm = na.rm)
-  cmeans <- suppressWarnings(cbind(mat,  row_means) %>% rbind(col_means))
-  rownames(cmeans) <- c(1:nrow(mat), "col_means")
+
+  if(is.null(rownames(mat))){
+    row_names <- 1:nrow(mat)
+  } else{
+    row_names <- rownames(mat)
+  }
+  row_mean <- rowMeans(mat, na.rm = na.rm)
+  col_mean <- colMeans(mat, na.rm = na.rm)
+  cmeans <- suppressWarnings(cbind(mat,  row_mean) %>% rbind(col_mean))
+  rownames(cmeans) <- c(row_names, "col_mean")
   cmeans[nrow(cmeans), ncol(cmeans)] <- mean(mat, na.rm = na.rm)
   return(cmeans)
 }
@@ -1504,10 +1510,15 @@ row_col_sum <- function(.data, na.rm = FALSE) {
     stop("All columns in '.data' must be numeric")
   }
   mat <- as.matrix(.data)
-  row_sums <- rowSums(mat, na.rm = na.rm)
-  col_sums <- colSums(mat, na.rm = na.rm)
-  cmeans <- suppressWarnings(cbind(mat,  row_sums) %>% rbind(col_sums))
-  rownames(cmeans) <- c(1:nrow(mat), "col_sums")
+  if(is.null(rownames(mat))){
+    row_names <- 1:nrow(mat)
+  } else{
+    row_names <- rownames(mat)
+  }
+  row_sum <- rowSums(mat, na.rm = na.rm)
+  col_sum <- colSums(mat, na.rm = na.rm)
+  cmeans <- suppressWarnings(cbind(mat,  row_sum) %>% rbind(col_sum))
+  rownames(cmeans) <- c(row_names, "col_sum")
   cmeans[nrow(cmeans), ncol(cmeans)] <- sum(mat, na.rm = na.rm)
   return(cmeans)
 }
