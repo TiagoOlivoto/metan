@@ -62,6 +62,7 @@ blocks within replicates, respectively.
 \item \verb{PFG and PFB}: The P-values for genotype and blocks, respectively.
 \item \code{CV}: coefficient of variation.
 \item \code{h2}: broad-sense heritability.
+\item \code{h2MG}: broad-sense heritability at a plot level.
 \item \code{AS}: accuracy of selection (square root of \code{h2})
 }
 }

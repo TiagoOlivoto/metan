@@ -29,15 +29,20 @@
 #' total number of genotypes.
 #' @param mineval The minimum value so that an eigenvector is retained in the
 #' factor analysis.
-#' @param ideotype A vector of length `nvar` where `nvar` is the
-#'   number of variables used to plan the ideotype. Use `'h'` to indicate
-#'   the traits in which higher values are desired or `'l'` to indicate the
-#'   variables in which lower values are desired. For example, `ideotype =
-#'   c("h, h, h, h, l")` will consider that the ideotype has higher values for
-#'   the first four traits and lower values for the last trait. If `.data`
-#'   is a model fitted with the functions [gafem()] or
-#'   [gamem()], the order of the traits will be the declared in the
-#'   argument `resp` in those functions.
+#' @param ideotype A vector of length `nvar` where `nvar` is the number of
+#'   traits used to plan the ideotype. Use `'h'` to indicate the traits in which
+#'   higher values are desired or `'l'` to indicate the traits in which lower
+#'   values are desired. For example, `ideotype = c("h, h, h, h, l")` will
+#'   consider that the ideotype has higher values for the first four traits and
+#'   lower values for the last trait. ALternatively, one can use a mixed vector,
+#'   indicating both h/l values and a numeric value for the target trait(s),
+#'   eg., `ideotype = c("120, h, 30, h, l")`. In this scenario, a numeric value
+#'   to define the ideotype is declared for the first and third traits. For this
+#'   traits, the absolute difference between the observed value and the numeric
+#'   ideotype will be computed, and after the rescaling procedure, the genotype
+#'   with the smallest difference will have 100. If `.data`is a model fitted
+#'   with the functions [gafem()] or [gamem()], the order of the traits will be
+#'   the declared in the argument `resp` in those functions.
 #' @param weights Optional weights to assign for each trait in the selection
 #'   process. It must be a numeric vector of length equal to the number of
 #'   traits in `.data`. By default (`NULL`) a numeric vector of weights equal to
@@ -136,7 +141,23 @@
 #'# Positive desired gains for V2, V3 and V4
 #'mgidi_ind3 <-
 #'   mgidi(mod,
-#'        ideotype = c("l, h, h, h"))
+#'        ideotype = c("h, h, h, l"))
+#'
+#'
+#' # Extract the BLUPs for each genotype
+#' (blupsg <- gmd(mod, "blupg"))
+#'
+#' # Consider the following ideotype that will be close to H4
+#' # Define a numeric ideotype for the first three traits, and the lower values
+#' # for the last trait
+#' ideotype <- c("129.46, 76.8, 89.7, l")
+#'
+#'mgidi_ind4 <-
+#'   mgidi(mod,
+#'        ideotype = ideotype)
+#'
+#' # Note how the strenghts of H4 are related to FA1 (V1 and V2)
+#' plot(mgidi_ind4, type = "contribution", genotypes = "all")
 #'
 #'}
 mgidi <- function(.data,
@@ -213,6 +234,7 @@ mgidi <- function(.data,
     }
     if(is.null(ideotype)){
       rescaled <- rep(100, nvar)
+      rescaled2 <- rep("h", nvar)
       ideotype.D <- rep(100, nvar)
       names(ideotype.D) <- var_name
     } else{
@@ -221,15 +243,10 @@ mgidi <- function(.data,
       if(length(rescaled) != nvar){
         stop("Ideotype must have length ", nvar, ", the number of columns in data")
       }
-      if(!all(rescaled %in% c("h", "l", "m"))){
-        stop("argument 'ideotype' must have 'h', 'l', or 'm' only", call. = FALSE)
-      }
       ideotype.D <- ifelse(rescaled == "m", 50, 100)
       names(ideotype.D) <- var_name
-      rescaled <- case_when(
-        rescaled == "h" ~ 100,
-        rescaled == "l" ~ 0,
-        TRUE ~ 100)
+      rescaled2 <- rescaled
+      rescaled <- suppressWarnings(ifelse(rescaled == "l" | !is.na(as.numeric(rescaled)), 0, 100))
     }
 
     if (is.null(SI)) {
@@ -242,10 +259,16 @@ mgidi <- function(.data,
     vars <- tibble(VAR = var_name,
                    sense = rescaled) %>%
       mutate(sense = ifelse(sense == 0, "decrease", "increase"))
+    data2 <- data
     for (i in 1:nvar) {
+      num_ide <- suppressWarnings(as.numeric(rescaled2[i]))
+      if(!is.na(num_ide)){
+        data[i] <- abs(data[i] - num_ide)
+      }
       means[i] <- resca(values = data[i], new_max = rescaled[i], new_min = 100 - rescaled[i])
       colnames(means) <- colnames(data)
     }
+    data <- data2
     if(has_na(means)){
       warning("Missing values observed in the table of means. Using complete observations to compute the correlation matrix.", call. = FALSE)
     }
@@ -306,6 +329,10 @@ mgidi <- function(.data,
     rownames(ideotypes.matrix) <- "ID1"
     ideotypes.scores <- ideotypes.matrix %*% canonical_loadings
     gen_ide <- sweep(scores, 2, ideotypes.scores, "-")
+    for (col in 1:ncol(gen_ide)) {
+      # Avoid NAs
+      gen_ide[, col][gen_ide[, col] == 0] <- 1e-10
+    }
     MGIDI <- apply(gen_ide, 1, function(x){sqrt(sum(x^2))}) %>% sort(decreasing = FALSE)
     contr.factor <-
       data.frame((sqrt(gen_ide^2)/apply(gen_ide, 1, function(x) sum(sqrt(x^2)))) * 100) %>%

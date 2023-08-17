@@ -32,14 +32,20 @@ total number of genotypes.}
 \item{mineval}{The minimum value so that an eigenvector is retained in the
 factor analysis.}
 
-\item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the
-number of variables used to plan the ideotype. Use \code{'h'} to indicate
-the traits in which higher values are desired or \code{'l'} to indicate the
-variables in which lower values are desired. For example, \code{ideotype = c("h, h, h, h, l")} will consider that the ideotype has higher values for
-the first four traits and lower values for the last trait. If \code{.data}
-is a model fitted with the functions \code{\link[=gafem]{gafem()}} or
-\code{\link[=gamem]{gamem()}}, the order of the traits will be the declared in the
-argument \code{resp} in those functions.}
+\item{ideotype}{A vector of length \code{nvar} where \code{nvar} is the number of
+traits used to plan the ideotype. Use \code{'h'} to indicate the traits in which
+higher values are desired or \code{'l'} to indicate the traits in which lower
+values are desired. For example, \code{ideotype = c("h, h, h, h, l")} will
+consider that the ideotype has higher values for the first four traits and
+lower values for the last trait. ALternatively, one can use a mixed vector,
+indicating both h/l values and a numeric value for the target trait(s),
+eg., \code{ideotype = c("120, h, 30, h, l")}. In this scenario, a numeric value
+to define the ideotype is declared for the first and third traits. For this
+traits, the absolute difference between the observed value and the numeric
+ideotype will be computed, and after the rescaling procedure, the genotype
+with the smallest difference will have 100. If \code{.data}is a model fitted
+with the functions \code{\link[=gafem]{gafem()}} or \code{\link[=gamem]{gamem()}}, the order of the traits will be
+the declared in the argument \code{resp} in those functions.}
 
 \item{weights}{Optional weights to assign for each trait in the selection
 process. It must be a numeric vector of length equal to the number of
@@ -156,7 +162,23 @@ p1 + p2
 # Positive desired gains for V2, V3 and V4
 mgidi_ind3 <-
   mgidi(mod,
-       ideotype = c("l, h, h, h"))
+       ideotype = c("h, h, h, l"))
+
+
+# Extract the BLUPs for each genotype
+(blupsg <- gmd(mod, "blupg"))
+
+# Consider the following ideotype that will be close to H4
+# Define a numeric ideotype for the first three traits, and the lower values
+# for the last trait
+ideotype <- c("129.46, 76.8, 89.7, l")
+
+mgidi_ind4 <-
+  mgidi(mod,
+       ideotype = ideotype)
+
+# Note how the strenghts of H4 are related to FA1 (V1 and V2)
+plot(mgidi_ind4, type = "contribution", genotypes = "all")
 
 }
 }

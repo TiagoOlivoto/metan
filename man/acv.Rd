@@ -18,7 +18,7 @@ warning. If \code{TRUE}, missing values are silently removed.}
 \value{
 A tibble with the following columns
 \itemize{
-\item \strong{mean} The mean values;
+\item \strong{mean} The mean values.
 \item \strong{var} The variance values;
 \item \strong{log10_mean} The base 10 logarithm of mean;
 \item \strong{log10_var} The base 10 logarithm of variance;

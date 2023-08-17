@@ -1,3 +1,9 @@
+# metan 1.19.0
+## New features
+
+* New "complementarity" object returned in the function `mgidi()`.
+
+
 # metan 1.18.0
 ## New features
 * New functions `*_wd_here()` to set and get the Working Directory (wd) quicky.

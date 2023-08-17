@@ -22,7 +22,7 @@
 #'   warning. If `TRUE`, missing values are silently removed.
 #'
 #' @return A tibble with the following columns
-#' * **mean** The mean values;
+#' * **mean** The mean values.
 #' * **var** The variance values;
 #' * **log10_mean** The base 10 logarithm of mean;
 #' * **log10_var** The base 10 logarithm of variance;
