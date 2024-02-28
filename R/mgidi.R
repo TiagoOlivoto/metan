@@ -527,10 +527,9 @@ plot.mgidi <- function(x,
                        x.lab = NULL,
                        y.lab = NULL,
                        title = NULL,
-                       arrange.label = FALSE,
                        size.point = 2.5,
                        size.line = 0.7,
-                       size.text = 10,
+                       size.text = 3.5,
                        width.bar = 0.75,
                        col.sel = "red",
                        col.nonsel = "gray",
@@ -548,42 +547,69 @@ plot.mgidi <- function(x,
     data <- x$MGIDI %>% add_cols(sel = "Selected")
     data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
     cutpoint <- max(subset(data, sel == "Selected")$MGIDI)
-    p <-
-      ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
-      geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
-      geom_path(colour = "black", group = 1, size = size.line) +
-      geom_point(size = size.point,
-                 aes(fill = sel),
-                 shape = 21,
-                 colour = "black",
-                 stroke  = size.point / 10) +
-      scale_x_discrete() +
-      scale_y_reverse() +
-      theme_minimal() +
-      theme(legend.position = legend.position,
-            legend.title = element_blank(),
-            panel.grid = element_line(size = size.line / 2),
-            panel.border = element_blank(),
-            axis.text = element_text(colour = "black"),
-            text = element_text(size = size.text),
-            ...) +
-      labs(y = y.lab,
-           x = x.lab) +
-      scale_fill_manual(values = c(col.nonsel, col.sel))
-    if (radar == TRUE) {
+    if (radar == FALSE) {
       p <-
-        p +
+        ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
+        geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+        geom_path(colour = "black", group = 1, size = size.line) +
+        geom_point(size = size.point,
+                   aes(fill = sel),
+                   shape = 21,
+                   colour = "black",
+                   stroke  = size.point / 10) +
+        scale_x_discrete() +
+        scale_y_reverse() +
+        theme_minimal() +
+        theme(legend.position = legend.position,
+              legend.title = element_blank(),
+              panel.grid = element_line(size = size.line / 2),
+              panel.border = element_blank(),
+              axis.text = element_text(colour = "black"),
+              text = element_text(size = size.text / .35),
+              ...) +
+        labs(y = y.lab,
+             x = x.lab) +
+        scale_fill_manual(values = c(col.nonsel, col.sel))
+
+    } else{
+      data <- data |> add_row_id()
+      ngens <- nrow(data)
+      angle_1 <-  90 - 360 * (data$row_id-0.5) /ngens
+      data$hjust<-ifelse( angle_1 < -90, 2.8, -2)
+      data$angle<-ifelse(angle_1 < -90, angle_1+180, angle_1)
+      p <-
+        ggplot(data = data, aes(x = reorder(Genotype, -MGIDI), y = MGIDI)) +
+        geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+        geom_path(colour = "black", group = 1, size = size.line) +
+        geom_point(size = size.point,
+                   aes(fill = sel),
+                   shape = 21,
+                   colour = "black",
+                   stroke  = size.point / 10) +
+        geom_text(data=data,
+                  aes(x = row_id,
+                      y = min(MGIDI) * .95,
+                      label = rev(Genotype),
+                      hjust = "outward"),
+                  color = "black",
+                  size = size.text,
+                  angle = data$angle,
+                  inherit.aes = FALSE) +
         coord_polar() +
-        theme(axis.title.x = element_blank(), ...)
-      if(arrange.label == TRUE){
-        tot_gen <- length(unique(data$Genotype))
-        fseq <- c(1:(tot_gen/2))
-        sseq <- c((tot_gen/2 + 1):tot_gen)
-        fang <- c(90 - 180/length(fseq) * fseq)
-        sang <- c(-90 - 180/length(sseq) * sseq)
-        p <- p +
-          theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
-      }
+        scale_x_discrete() +
+        scale_y_reverse() +
+        theme_minimal()  +
+        theme(legend.position = legend.position,
+              legend.title = element_blank(),
+              # axis.title.x = element_blank(),
+              panel.border = element_blank(),
+              panel.grid = element_line(size = size.line / 2),
+              panel.grid.major.y = element_blank(),
+              axis.text.x = element_blank()) +
+        labs(y = y.lab,
+             x = x.lab) +
+        scale_fill_manual(values = c(col.nonsel, col.sel))
+
     }
   } else{
     if(genotypes == "selected"){
@@ -612,11 +638,11 @@ plot.mgidi <- function(x,
                      show.legend = FALSE) +
         geom_line(aes(group = name, color = name), size = size.line) +
         theme_minimal() +
-        theme(strip.text.x = element_text(size = size.text),
-              axis.text.x = element_text(color = "black", size = size.text),
+        theme(strip.text.x = element_text(size = size.text / .35),
+              axis.text.x = element_text(color = "black", size = size.text / .35),
               axis.ticks.y = element_blank(),
               panel.grid = element_line(size = size.line / 2),
-              axis.text.y = element_text(size = size.text, color = "black"),
+              axis.text.y = element_text(size = size.text / .35, color = "black"),
               legend.position = legend.position,
               legend.title = element_blank(),
               ...) +
@@ -626,15 +652,6 @@ plot.mgidi <- function(x,
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()
-      if(arrange.label == TRUE){
-        tot_gen <- length(unique(data$GEN))
-        fseq <- c(1:(tot_gen/2))
-        sseq <- c((tot_gen/2 + 1):tot_gen)
-        fang <- c(90 - 180/length(fseq) * fseq)
-        sang <- c(-90 - 180/length(sseq) * sseq)
-        p <- p +
-          theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
-      }
     } else{
       x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
       y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
@@ -664,6 +681,7 @@ plot.mgidi <- function(x,
   }
   return(p)
 }
+
 
 
 #' Print an object of class mgidi

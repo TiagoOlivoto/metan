@@ -428,9 +428,6 @@ mtsi <- function(.data,
 #'   automatically generated titles.
 #' @param radar Logical argument. If true (default) a radar plot is generated
 #'   after using `coord_polar()`.
-#' @param arrange.label Logical argument. If `TRUE`, the labels are
-#'   arranged to avoid text overlapping. This becomes useful when the number of
-#'   genotypes is large, say, more than 30.
 #' @param x.lab,y.lab The labels for the axes x and y, respectively. x label is
 #'   set to null when a radar plot is produced.
 #' @param size.point The size of the point in graphic. Defaults to 2.5.
@@ -468,12 +465,11 @@ plot.mtsi <- function(x,
                       genotypes = "selected",
                       title = TRUE,
                       radar = TRUE,
-                      arrange.label = FALSE,
                       x.lab = NULL,
                       y.lab = NULL,
                       size.point = 2.5,
                       size.line = 0.7,
-                      size.text = 10,
+                      size.text = 3.5,
                       width.bar = 0.75,
                       n.dodge = 1,
                       check.overlap = FALSE,
@@ -489,48 +485,72 @@ plot.mtsi <- function(x,
     stop("The argument 'genotypes' must be one of the 'selected' or 'all'", call. = FALSE)
   }
   if(type == "index"){
-  data <- x$MTSI %>%
-    add_cols(sel = "Selected")
-  data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
-  cutpoint <- max(subset(data, sel == "Selected")$MTSI)
-  p <-
-    ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
-    geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
-    geom_path(colour = "black", group = 1, size = size.line) +
-    geom_point(size = size.point,
-               stroke = size.point / 10,
-               aes(fill = sel),
-               shape = 21,
-               colour = "black",
-               ) +
-    scale_x_discrete() +
-    scale_y_reverse() +
-    theme_minimal()  +
-    theme(legend.position = legend.position,
-          legend.title = element_blank(),
-          axis.title.x = element_blank(),
-          panel.border = element_blank(),
-          panel.grid = element_line(size = size.line / 2),
-          axis.text = element_text(colour = "black"),
-          text = element_text(size = size.text),
-          ...) +
-    labs(y = "Multitrait stability index") +
-    scale_fill_manual(values = c(col.nonsel, col.sel))
-  if (radar == TRUE) {
-    if(arrange.label == TRUE){
-      tot_gen <- length(unique(data$Genotype))
-      fseq <- c(1:(tot_gen/2))
-      sseq <- c((tot_gen/2 + 1):tot_gen)
-      fang <- c(90 - 180/length(fseq) * fseq)
-      sang <- c(-90 - 180/length(sseq) * sseq)
+    data <- x$MTSI %>%
+      add_cols(sel = "Selected")
+    data[["sel"]][(round(nrow(data) * (SI/100), 0) + 1):nrow(data)] <- "Nonselected"
+    cutpoint <- max(subset(data, sel == "Selected")$MTSI)
+    if(radar == FALSE){
       p <-
-        p +
-        coord_polar()  +
-        theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
-    } else{
-      p <- p + coord_polar()
+        ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
+        geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+        geom_path(colour = "black", group = 1, size = size.line) +
+        geom_point(size = size.point,
+                   stroke = size.point / 10,
+                   aes(fill = sel),
+                   shape = 21,
+                   colour = "black",
+        ) +
+        scale_x_discrete() +
+        scale_y_reverse() +
+        theme_minimal()  +
+        theme(legend.position = legend.position,
+              legend.title = element_blank(),
+              axis.title.x = element_blank(),
+              panel.border = element_blank(),
+              panel.grid = element_line(size = size.line / 2),
+              axis.text = element_text(colour = "black"),
+              text = element_text(size = size.text)) +
+        labs(y = "Multitrait stability index") +
+        scale_fill_manual(values = c(col.nonsel, col.sel))
+    } else {
+      data <- data |> add_row_id()
+      ngens <- nrow(data)
+      angle_1 <-  90 - 360 * (data$row_id-0.5) /ngens
+      data$hjust<-ifelse(angle_1 < -90,  2.8, -2)
+      data$angle<-ifelse(angle_1 < -90, angle_1+180, angle_1)
+
+      p <-
+        ggplot(data = data, aes(x = reorder(Genotype, -MTSI), y = MTSI)) +
+        geom_hline(yintercept = cutpoint, col = col.sel, size = size.line) +
+        geom_path(colour = "black", group = 1, size = size.line) +
+        geom_point(size = size.point,
+                   stroke = size.point / 10,
+                   aes(fill = sel),
+                   shape = 21,
+                   colour = "black",
+        ) +
+        geom_text(data=data,
+                  aes(x = row_id,
+                      y = min(MTSI) * .5,
+                      label = Genotype,
+                      hjust = hjust),
+                  color = "black",
+                  size = size.text,
+                  angle = data$angle,
+                  inherit.aes = FALSE) +
+        coord_polar() +
+        scale_x_discrete() +
+        scale_y_reverse() +
+        theme_minimal()  +
+        theme(legend.position = legend.position,
+              legend.title = element_blank(),
+              axis.title.x = element_blank(),
+              panel.border = element_blank(),
+              panel.grid = element_line(size = size.line / 2),
+              axis.text.x = element_blank()) +
+        labs(y = "Multitrait stability index") +
+        scale_fill_manual(values = c(col.nonsel, col.sel))
     }
-  }
   } else{
     x.lab <- ifelse(!missing(x.lab), x.lab, "Selected genotypes")
     y.lab <- ifelse(!missing(y.lab), y.lab, "Proportion")
@@ -544,8 +564,9 @@ plot.mtsi <- function(x,
     }
     data %<>% pivot_longer(-GEN)
     if(radar == TRUE){
+
       p <-
-      ggplot(data, aes(x = GEN, y = value)) +
+        ggplot(data, aes(x = GEN, y = value)) +
         geom_polygon(aes(group = name, color = name),
                      fill = NA,
                      size = size.line) +
@@ -557,53 +578,43 @@ plot.mtsi <- function(x,
                      show.legend = FALSE) +
         geom_line(aes(group = name, color = name), size = size.line) +
         theme_minimal()  +
-        theme(strip.text.x = element_text(size = size.text),
-              axis.text.x = element_text(color = "black", size = size.text),
+        theme(strip.text.x = element_text(size = size.text / .35),
+              axis.text.x = element_text(color = "black", size = size.text / .35),
               axis.ticks.y = element_blank(),
               panel.grid = element_line(size = size.line / 2),
-              axis.text.y = element_text(size = size.text, color = "black"),
+              axis.text.y = element_text(size = size.text / .35, color = "black"),
               legend.position = legend.position,
-              legend.title = element_blank(),
-              ...) +
+              legend.title = element_blank()) +
         labs(x = NULL,
              y = "Contribution to the MTSI index") +
         {if(title)ggtitle("Strengths and weaknesses view")} +
         scale_y_reverse() +
         guides(color = guide_legend(nrow = 1)) +
         coord_radar()
-      if(arrange.label == TRUE){
-        tot_gen <- length(unique(data$GEN))
-        fseq <- c(1:(tot_gen/2))
-        sseq <- c((tot_gen/2 + 1):tot_gen)
-        fang <- c(90 - 180/length(fseq) * fseq)
-        sang <- c(-90 - 180/length(sseq) * sseq)
-        p <- p  +
-          theme(axis.text.x = suppressMessages(suppressWarnings(element_text(angle = c(fang, sang)))), ...)
-      }
     } else{
-    p <-
-      ggplot(data, aes(GEN, value, fill = name))+
-      geom_bar(stat = "identity",
-               position = position,
-               color = "black",
-               size = size.line,
-               width = width.bar) +
-      scale_y_continuous(expand = expansion(0))+
-      theme_metan()  +
-      theme(legend.position = legend.position,
-            axis.ticks = element_line(size = size.line),
-            plot.margin = margin(0.5, 0.5, 0, 0, "cm"),
-            panel.border = element_rect(size = size.line),
-            ...)+
-      scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
-                       expand = expansion(0))+
-      labs(x = x.lab,
-           y = y.lab) +
-      {if(title)ggtitle("The strengths and weaknesses for genotypes")} +
-      guides(guide_legend(nrow = 1))
-    if(invert == TRUE){
-      p <- p + coord_flip()
-    }
+      p <-
+        ggplot(data, aes(GEN, value, fill = name))+
+        geom_bar(stat = "identity",
+                 position = position,
+                 color = "black",
+                 size = size.line,
+                 width = width.bar) +
+        scale_y_continuous(expand = expansion(0))+
+        theme_metan()  +
+        theme(legend.position = legend.position,
+              axis.ticks = element_line(size = size.line),
+              plot.margin = margin(0.5, 0.5, 0, 0, "cm"),
+              panel.border = element_rect(size = size.line),
+              ...)+
+        scale_x_discrete(guide = guide_axis(n.dodge = n.dodge, check.overlap = check.overlap),
+                         expand = expansion(0))+
+        labs(x = x.lab,
+             y = y.lab) +
+        {if(title)ggtitle("The strengths and weaknesses for genotypes")} +
+        guides(guide_legend(nrow = 1))
+      if(invert == TRUE){
+        p <- p + coord_flip()
+      }
     }
   }
   return(p)
