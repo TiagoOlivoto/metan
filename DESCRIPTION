@@ -33,7 +33,7 @@ Description: Performs stability analysis of multi-environment trial data
     inspecting, manipulating, summarizing and plotting typical
     multi-environment trial data are also provided.
 License: GPL-3
-URL: https://github.com/TiagoOlivoto/metan
+URL: https://github.com/TiagoOlivoto/metan, https://tiagoolivoto.github.io/metan/
 BugReports: https://github.com/TiagoOlivoto/metan/issues
 Depends: 
     R (>= 4.1.0)
