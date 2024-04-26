@@ -585,7 +585,8 @@ mps <- function(.data,
       sense_mper = ifelse(sense_mper == 0, "l", "h"),
       stab_method = stability,
       wstab = peso_stab,
-      sense_stab = ifelse(rescaled == 0, "l", "h")
+      sense_stab = ifelse(rescaled == 0, "l", "h"),
+      .resid =  gmd(mod, "data", verbose = FALSE) %>% mean_by(ENV, GEN)
     ) %>% set_class("mps")
   )
 }
