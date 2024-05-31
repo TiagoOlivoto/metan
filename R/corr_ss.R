@@ -32,7 +32,7 @@
 #'
 #'
 corr_ss <- function(r, CI, verbose = TRUE) {
-    n <- round((CI/(0.45304^r * 2.25152))^(1/-0.50089), 0)
+    n <- round((CI/(0.45304^abs(r) * 2.25152))^(1/-0.50089), 0)
     if(verbose == TRUE){
     cat("-------------------------------------------------", "\n")
     cat("Sample size planning for correlation coefficient", "\n")
